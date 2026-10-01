@@ -1,0 +1,89 @@
+# Sources de la veille. Une URL n'est ajoutée qu'après avoir été testée.
+
+google_alerts:
+  # Une alerte Google par code requis, livrée en flux RSS (google.com/alerts > Livrer à : flux RSS).
+  # Remplacer chaque REMPLACER par l'URL du flux. Les entrées REMPLACER sont ignorées.
+  - {nom: alerte-M1, code: M1, requete: "marché silver économie objets connectés", url: REMPLACER}
+  - {nom: alerte-M2, code: M2, requete: "seniors vivant à domicile projections INSEE", url: REMPLACER}
+  - {nom: alerte-C1, code: C1, requete: "téléassistance OR \"détection de chute\" seniors", url: REMPLACER}
+  - {nom: alerte-C2, code: C2, requete: "téléassistance prix abonnement", url: REMPLACER}
+  - {nom: alerte-C3, code: C3, requete: "silver tech startup échec OR succès", url: REMPLACER}
+  - {nom: alerte-C4, code: C4, requete: "silver tech levée de fonds OR rachat OR liquidation", url: REMPLACER}
+  - {nom: alerte-C5, code: C5, requete: "objet connecté senior promesse réalité test", url: REMPLACER}
+  - {nom: alerte-U3, code: U3, requete: "téléassistance abandon port du bracelet", url: REMPLACER}
+  - {nom: alerte-T1, code: T1, requete: "détection de chute capteur radar IA limites", url: REMPLACER}
+  - {nom: alerte-R1, code: R1, requete: "CNIL données de santé objets connectés", url: REMPLACER}
+  - {nom: alerte-R2, code: R2, requete: "dispositif médical ou bien-être logiciel ANSM", url: REMPLACER}
+  - {nom: alerte-R3, code: R3, requete: "AI Act obligations transparence haut risque", url: REMPLACER}
+  - {nom: alerte-R4, code: R4, requete: "propriété intellectuelle application no-code marque INPI", url: REMPLACER}
+
+medias:
+  # Testés le 2026-10-01 (HTTP 200 + entrées présentes)
+  - {nom: maddyness, url: "https://www.maddyness.com/feed/"}
+  - {nom: frenchweb, url: "https://www.frenchweb.fr/feed"}
+  - {nom: silvereco, url: "https://www.silvereco.fr/feed/"}
+  - {nom: cnil, url: "https://www.cnil.fr/fr/rss.xml"}
+
+reddit:
+  # Flux RSS publics. Reddit limite fortement le débit (HTTP 429) : en cas d'échec,
+  # le flux est signalé dans le bilan et retenté au run suivant.
+  - {nom: r-nocode, sub: nocode, url: "https://www.reddit.com/r/nocode/.rss"}
+  - {nom: r-agingparents, sub: AgingParents, url: "https://www.reddit.com/r/AgingParents/.rss"}
+  - {nom: r-caregiversupport, sub: CaregiverSupport, url: "https://www.reddit.com/r/CaregiverSupport/.rss"}
+
+app_store:
+  # Flux public d'avis Apple : https://itunes.apple.com/fr/rss/customerreviews/id=<app_id>/sortBy=mostRecent/json
+  # app_id vérifiés via l'API de recherche iTunes le 2026-10-01.
+  pays: fr
+  apps:
+    - {nom: Famileo, app_id: "1018182135", famille: lien_familial}
+    - {nom: "Tous FAMiliés", app_id: "6447434484", famille: lien_familial}
+    - {nom: Life360, app_id: "384830320", famille: localisation_famille}
+    - {nom: Signia, app_id: "1316911473", famille: audition}
+
+google_play:
+  # Pas d'API publique gratuite et pas de scraping : collecte manuelle.
+  # Procédure : lire les avis sur la fiche Play Store, recopier un extrait anonymisé
+  # dans un JSON et l'envoyer à scripts/add_items.py avec "origine": "avis_app".
+
+donnees_entreprises:
+  # Consultation ciblée par l'agent collecteur pour C1 et C4 uniquement, jamais d'extraction massive.
+  sites: [pappers.fr, societe.com, crunchbase.com]
+  codes: [C1, C4]
+
+recherche_web:
+  # 2 à 3 requêtes par code, lancées par l'agent collecteur (WebSearch).
+  sites_cibles: [aidants.fr, pour-les-personnes-agees.gouv.fr, ansm.sante.fr, eur-lex.europa.eu, insee.fr, drees.solidarites-sante.gouv.fr]
+  requetes:
+    M1: ["taille marché silver économie France objets connectés 2025", "marché téléassistance France chiffre d'affaires croissance"]
+    M2: ["INSEE projections personnes âgées vivant à domicile 2030 2050", "DREES nombre seniors domicile perte d'autonomie projections"]
+    M3: ["nombre aidants familiaux France DREES 2024", "profil aidants proches distance charge baromètre", "site:aidants.fr chiffres aidants"]
+    M4: ["chute personne âgée déclencheur achat téléassistance", "retour d'hospitalisation équipement senior domicile aidant"]
+    M5: ["APA téléassistance prise en charge département", "crédit d'impôt téléassistance services à la personne", "site:pour-les-personnes-agees.gouv.fr téléassistance"]
+    M6: ["téléassistance distribution mutuelles pharmacies canaux de vente", "vente objets connectés seniors grande distribution pharmacie"]
+    M7: ["politique maintien à domicile 2025 plan France", "loi bien vieillir 2024 mesures domicile"]
+    C1: ["acteurs téléassistance France Présence Verte Vitaris Filien", "startups détection de chute capteurs seniors France", "robot compagnon seniors France startup"]
+    C2: ["téléassistance tarif mensuel frais d'installation engagement comparatif", "prix bracelet détection chute abonnement France"]
+    C3: ["silver tech startup échec pourquoi", "succès startup seniors connectés France croissance"]
+    C4: ["levée de fonds silver tech 2025", "rachat entreprise téléassistance 2025", "liquidation judiciaire startup seniors connectés"]
+    C5: ["test bracelet détection chute fiabilité fausses alertes", "objet connecté senior promesse marketing réalité enquête"]
+    C6: ["publicité téléassistance stéréotypes seniors âgisme", "discours marketing silver économie stigmatisant"]
+    C7: ["lancement nouveau objet connecté seniors 2026", "nouvelle offre téléassistance IA lancement"]
+    U1: ["seniors refusent bracelet téléassistance pourquoi", "personnes âgées ressenti objets connectés surveillance étude"]
+    U2: ["aidants difficultés téléassistance témoignage", "aidants inquiétude parent âgé seul solution technologique"]
+    U3: ["bracelet téléassistance non porté taux d'usage étude", "abandon objets connectés seniors tiroir"]
+    U4: ["baromètre numérique seniors équipement smartphone CREDOC 2025", "illectronisme personnes âgées INSEE"]
+    U5: ["avis utilisateurs téléassistance satisfaction seniors", "ce que les seniors apprécient technologies domicile étude"]
+    T1: ["détection de chute technologies radar accéléromètre limites", "capteurs détection chute sans wearable fiabilité étude"]
+    T2: ["IA détection anomalie routine personnes âgées domicile", "compagnon IA conversationnel seniors expérimentation"]
+    T3: ["outil no-code application santé seniors", "no-code IA prototype application aidants"]
+    T4: ["fin réseau 2G 3G téléassistance France impact", "autonomie batterie montre détection chute seniors"]
+    T5: ["interopérabilité objets connectés santé standard Matter", "norme téléassistance NF Service interopérabilité"]
+    R1: ["CNIL données de santé objets connectés recommandations", "RGPD données de santé consentement application bien-être"]
+    R2: ["ANSM logiciel dispositif médical ou bien-être qualification", "règlement 2017/745 logiciel dispositif médical détection chute"]
+    R3: ["AI Act niveaux de risque obligations transparence calendrier", "site:eur-lex.europa.eu règlement 2024/1689 intelligence artificielle"]
+    R4: ["propriété intellectuelle application no-code qui détient le code", "INPI dépôt marque startup application"]
+    R5: ["consentement personne âgée vulnérable géolocalisation", "majeur protégé consentement surveillance domicile éthique"]
+    R6: ["European Accessibility Act juin 2025 obligations applications", "RGAA accessibilité numérique obligations entreprises"]
+    R7: ["loi résiliation abonnement en trois clics 2023", "droit consommation résiliation abonnement téléassistance"]
+    R8: ["hébergement données de santé HDS quand obligatoire", "certification HDS application bien-être obligation"]

@@ -1,0 +1,82 @@
+# Règles du filtrage sans IA et du score de fiabilité.
+# Toute modification de règle se fait ICI, jamais dans le code.
+
+domaines:
+  exclus: [facebook.com, instagram.com, tiktok.com, pinterest.com]
+  # Niveau 3 : sources officielles. Un sous-domaine hérite du niveau (ex. drees.solidarites-sante.gouv.fr).
+  officiels: [gouv.fr, europa.eu, cnil.fr, insee.fr, has-sante.fr, ansm.sante.fr, cnsa.fr,
+              santepubliquefrance.fr, service-public.fr, inpi.fr, legifrance.gouv.fr]
+  # Niveau 2 : médias reconnus
+  medias: [silvereco.fr, maddyness.com, frenchweb.fr, lesechos.fr, lemonde.fr, lefigaro.fr,
+           liberation.fr, francetvinfo.fr, usine-digitale.fr, numerama.com, aidants.fr]
+
+mots_cles_inclusion:
+  - senior
+  - âgé
+  - agé
+  - personne âgée
+  - personnes âgées
+  - aidant
+  - aidante
+  - téléassistance
+  - teleassistance
+  - chute
+  - maintien à domicile
+  - silver
+  - ehpad
+  - autonomie
+  - objet connecté
+  - objets connectés
+  - cnil
+  - rgpd
+  - dispositif médical
+  - dispositifs médicaux
+  - ai act
+  - règlement sur l'ia
+  - accessibilité
+  - grand-parent
+  - grands-parents
+  - vieillissement
+  - perte d'autonomie
+  - dépendance
+  - elderly
+  - aging
+  - caregiver
+  - no-code
+  - nocode
+
+# Origines dispensées du filtre par mots-clés.
+# - avis_app : imposé par le cahier des charges.
+# - web_search : ajouté au run 1 (2026-10-01). Ces résultats viennent d'une requête déjà ciblée
+#   sur un code du catalogue, et WebSearch ne renvoie que le titre (pas d'extrait) : le filtre
+#   rejetait à tort 20 sources officielles (EUR-Lex AI Act, ANSM, INSEE, DREES…).
+exemptes_mots_cles: [avis_app, web_search]
+
+doublons:
+  fenetre_jours: 30
+
+age_max:
+  mois: 36
+  # Exception « axe réglementaire » : au préfiltre, l'axe n'est pas encore connu.
+  # On ne rejette pas un élément qui vise un code réglementaire OU vient d'un domaine officiel.
+  prefixe_code_reglementaire: R
+
+score:
+  fraicheur:
+    mois_2_points: 12
+    mois_1_point: 24
+  # Un « texte en vigueur » ne se détecte pas par script : un élément réglementaire
+  # issu d'un domaine officiel (niveau 3) obtient 2 points de fraîcheur.
+  reglementaire_officiel_fraicheur: 2
+  source_primaire:
+    officielle: 2
+    autre: 1
+  seuils:
+    prioritaire: 5
+    a_verifier: 3
+
+collecte:
+  max_par_flux: 30
+  max_avis_par_app: 15
+  max_resultats_par_requete: 5
+  plafond_qualification_par_run: 100

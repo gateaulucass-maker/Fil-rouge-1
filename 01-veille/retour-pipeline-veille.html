@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retour pipeline veille</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#fff;--fg:#111418;--muted:#5d636b;--hair:#d5d7d9;--soft:#f4f4f2;--orange:#e8571c;--blue:#1f3fbf;--ok:#1d7a46;
+--display:"Archivo","Helvetica Neue",Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1113;--fg:#ecedee;--muted:#9aa0a6;--hair:#2c3035;--soft:#181b1e;
+--orange:#ff7a45;--blue:#7d95ff;--ok:#4cc38a;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:clamp(28px,6vw,72px) clamp(16px,4vw,48px) 56px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;font:11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+border-top:2px solid var(--fg);padding-top:12px}.meta b{color:var(--fg);font-weight:500}
+h1{font-weight:800;font-size:clamp(40px,8vw,96px);line-height:.93;letter-spacing:-.035em;margin:clamp(24px,5vw,48px) 0 0;text-wrap:balance}
+h1 .o{color:var(--orange)}h1 .bl{color:var(--blue)}
+.lede{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;margin-top:28px}
+.lede .tag{grid-column:1/span 4;font:11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:5px}
+.lede p{grid-column:5/span 8;margin:0;font-size:clamp(17px,1.6vw,20px);font-weight:500;line-height:1.45;max-width:58ch}
+h2{font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;margin:clamp(44px,6vw,64px) 0 0;padding-top:14px;border-top:2px solid var(--fg);
+display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+h2 small{font:11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.cta a{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;font-weight:700;text-decoration:none;border:2px solid var(--fg);color:var(--fg)}
+.cta a.p{background:var(--orange);border-color:var(--orange);color:#fff}
+.cta a:hover{border-color:var(--orange)}.cta a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair);margin-top:20px}
+.kpi{background:var(--bg);padding:14px 16px}.kpi .n{font-size:32px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi .k{font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:20px;border:1px solid var(--hair)}
+.step{padding:14px 14px 16px;border-right:1px solid var(--hair);min-width:0}.step:last-child{border-right:0}
+.step .k{font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.step .t{font-weight:800;font-size:17px;margin:2px 0 6px}.step p{margin:0;font-size:13.5px;color:var(--muted)}
+.step .ia{display:inline-block;font:10.5px var(--mono);padding:1px 6px;margin-top:8px;border:1px solid var(--hair)}
+.step .ia.y{border-color:var(--blue);color:var(--blue)}.step .ia.n{border-color:var(--ok);color:var(--ok)}
+.bar{display:flex;height:34px;margin-top:20px;font:11px var(--mono);letter-spacing:.04em;color:#fff}
+.bar span{display:flex;align-items:center;padding:0 10px;white-space:nowrap;overflow:hidden}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:8px;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px}.two>*{min-width:0}
+h3{font-size:16px;margin:0 0 8px}
+ul.clean{margin:0;padding-left:18px}ul.clean li{margin-bottom:6px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:16px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.tbl{overflow-x:auto}
+code{font:13px var(--mono);background:var(--soft);padding:1px 5px}
+.todo{counter-reset:t;list-style:none;padding:0;margin:20px 0 0}
+.todo li{counter-increment:t;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--hair)}
+.todo li::before{content:counter(t,decimal-leading-zero);font:700 20px var(--mono);color:var(--orange)}
+.todo b{display:block}.todo span{color:var(--muted);font-size:14px}
+.insight{background:var(--soft);border-left:4px solid var(--blue);padding:14px 18px;margin-top:20px}
+.insight p{margin:0 0 8px}.insight p:last-child{margin:0}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:14px;font-size:12.5px;color:var(--muted)}
+@media (max-width:760px){
+  .lede{grid-template-columns:1fr}.lede .tag,.lede p{grid-column:1}.lede .tag{margin-bottom:8px}
+  .flow{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--hair)}.step:last-child{border-bottom:0}
+  .two{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="meta">
+    <span><b>Ynov</b> B2 Product Builder No-Code</span>
+    <span>PFR Générations Connectées</span>
+    <span>Phase 1 · Veille</span>
+    <span>Retour du 01/10/2026</span>
+  </div>
+
+  <h1><span class="o">Pipeline de veille</span><br><span class="bl">construit et lancé</span></h1>
+
+  <div class="lede">
+    <div class="tag">Masterprompt<br>veille silver tech</div>
+    <p>Le pipeline complet tourne de bout en bout. Le premier run a collecté 284 éléments, en a écarté 89 sans IA et en a qualifié 180. Il reste ta revue humaine et le branchement à Neon.</p>
+  </div>
+
+  <div class="cta">
+    <a class="p" href="veille-silvertech/rapports/rapport-2026-S40.html">Ouvrir le rapport de la semaine →</a>
+    <a href="https://github.com/gateaulucass-maker/Fil-rouge-1/tree/main/01-veille/veille-silvertech">Voir le code sur GitHub</a>
+  </div>
+
+  <h2>Premier run <small>run #1 · 2026-S40</small></h2>
+  <div class="kpis">
+    <div class="kpi"><div class="n">284</div><div class="k">collectés</div></div>
+    <div class="kpi"><div class="n">89</div><div class="k">filtrés sans IA</div></div>
+    <div class="kpi"><div class="n">114</div><div class="k">faits qualifiés</div></div>
+    <div class="kpi"><div class="n">66</div><div class="k">signaux usagers</div></div>
+    <div class="kpi"><div class="n">15</div><div class="k">hors sujet (IA)</div></div>
+    <div class="kpi"><div class="n">33/33</div><div class="k">tests pytest</div></div>
+  </div>
+
+  <div class="bar" role="img" aria-label="Répartition des 284 éléments collectés : RSS médias 60, Reddit 75, avis App Store 54, recherche web 95">
+    <span style="flex:60;background:#e8571c">RSS 60</span>
+    <span style="flex:75;background:#b8430f">Reddit 75</span>
+    <span style="flex:54;background:#1f3fbf">App Store 54</span>
+    <span style="flex:95;background:#14287a">Web 95</span>
+  </div>
+  <div class="legend">
+    <span><i style="background:#e8571c"></i>Médias RSS : Silvereco, Maddyness, FrenchWeb, CNIL</span>
+    <span><i style="background:#b8430f"></i>r/nocode, r/AgingParents, r/CaregiverSupport</span>
+    <span><i style="background:#1f3fbf"></i>Avis : Famileo, Tous FAMiliés, Life360, Signia</span>
+    <span><i style="background:#14287a"></i>Recherche ciblée sur les 13 codes requis</span>
+  </div>
+
+  <div class="two">
+    <div>
+      <h3>Score de fiabilité des 114 faits</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Score /7</th><th>Niveau</th><th>Faits</th></tr></thead>
+        <tbody>
+          <tr><td>7</td><td>prioritaire</td><td class="n">2</td></tr>
+          <tr><td>5</td><td>prioritaire</td><td class="n">16</td></tr>
+          <tr><td>3-4</td><td>à vérifier</td><td class="n">26</td></tr>
+          <tr><td>1-2</td><td>faible (souvent non daté)</td><td class="n">70</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div>
+      <h3>Signaux usagers par irritant</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Irritant</th><th>Signaux</th></tr></thead>
+        <tbody>
+          <tr><td>Retours positifs (U5)</td><td class="n">26</td></tr>
+          <tr><td>Fiabilité technique</td><td class="n">19</td></tr>
+          <tr><td>Autre (surtout épuisement des aidants)</td><td class="n">12</td></tr>
+          <tr><td>Complexité</td><td class="n">7</td></tr>
+          <tr><td>Prix / abonnement</td><td class="n">2</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <p><b>Premier enseignement</b> (synthèse de l'agent, à vérifier) : le tri confirme la tension de ta veille Apple Watch / Famileo.</p>
+    <p>Le senior supporte mal le dispositif : la téléassistance est perçue comme un marqueur de dépendance par 87 % des seniors (Senior Strategic, 2016), et le manque d'intérêt est le premier frein aux objets connectés (41 %, Linexio). À l'inverse, ce qui ne lui demande rien est apprécié (avis Famileo). Côté aidant, la rassurance dépend de la fiabilité, et l'aidant est déjà épuisé.</p>
+  </div>
+
+  <h2>Ce qui a été construit <small>01-veille/veille-silvertech</small></h2>
+  <div class="flow">
+    <div class="step"><div class="k">01</div><div class="t">Collecte</div><p>Flux RSS, avis App Store, recherche web par code du catalogue.</p><span class="ia y">agent collecteur</span></div>
+    <div class="step"><div class="k">02</div><div class="t">Filtre</div><p>Domaine exclu, mots-clés, doublon de titre, plus de 36 mois.</p><span class="ia n">sans IA</span></div>
+    <div class="step"><div class="k">03</div><div class="t">Qualification</div><p>Axe, code, résumé reformulé, chiffres sourcés, irritant, verbatim anonymisé.</p><span class="ia y">agent qualificateur</span></div>
+    <div class="step"><div class="k">04</div><div class="t">Score</div><p>Autorité + fraîcheur + source primaire, sur 7. Vérifie chiffres et liens dans la page.</p><span class="ia n">script</span></div>
+    <div class="step"><div class="k">05</div><div class="t">Revue</div><p>Valider ou rejeter, pertinence finale 1-3, signé d'un prénom.</p><span class="ia n">humain</span></div>
+  </div>
+
+  <div class="tbl"><table>
+    <thead><tr><th>Livrable</th><th>Contenu</th></tr></thead>
+    <tbody>
+      <tr><td><code>config/</code></td><td>Catalogue (32 codes), sources testées, règles de filtre et de score</td></tr>
+      <tr><td><code>scripts/</code></td><td>13 scripts Python : collecte, préfiltre, qualification, score, revue, couverture, rapport, export, journal des runs</td></tr>
+      <tr><td><code>.claude/</code></td><td>3 sous-agents (collecteur, qualificateur, rapporteur) et 4 commandes : <code>/veille</code> <code>/revue</code> <code>/couverture</code> <code>/export-fiche</code></td></tr>
+      <tr><td><code>tests/</code></td><td>33 tests sans base : score, fraîcheur, domaines, Google Alerts, préfiltre, échappement HTML, anonymisation</td></tr>
+      <tr><td><code>docs/dispositif-veille.md</code></td><td><b>Annexe de la fiche</b> (RNCP C.1.1.1) : sources, outils, fréquence, méthode, limites, usage de l'IA</td></tr>
+      <tr><td><code>README.md</code></td><td>Installation en 8 étapes, usage hebdomadaire, qui fait quoi</td></tr>
+      <tr><td><code>rapports/</code></td><td>Rapport HTML S40, synthèse de l'agent, export de la fiche (vide tant que rien n'est validé)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Écarts au masterprompt <small>à connaître</small></h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Point</th><th>Ce que j'ai fait</th><th>Pourquoi</th></tr></thead>
+    <tbody>
+      <tr><td>Base Neon</td><td>Run lancé sur une <b>base PostgreSQL locale</b> de test</td><td>Je n'avais pas ton <code>DATABASE_URL</code>, et le masterprompt interdit de créer quoi que ce soit dans Neon sans ton accord. Même moteur, même code : il suffit de changer <code>.env</code>.</td></tr>
+      <tr><td>« 35 types d'information »</td><td><b>32 codes</b></td><td>La liste de la section 5 en contient 32 (7 + 7 + 5 + 5 + 8), dont 13 requis.</td></tr>
+      <tr><td>Filtre mots-clés</td><td>Recherche web <b>dispensée</b> (comme les avis d'apps)</td><td>WebSearch ne renvoie que le titre : le filtre jetait à tort 20 sources officielles (EUR-Lex AI Act, ANSM, INSEE). Changement fait dans <code>regles.yaml</code>, documenté.</td></tr>
+      <tr><td>Plafond 100 par run</td><td>Porté à <b>200</b> pour ce premier run</td><td>Rattrapage initial (195 éléments). Le plafond reste réglable par <code>/veille 100</code>.</td></tr>
+      <tr><td>Exception réglementaire</td><td>Code R* ou domaine officiel</td><td>L'axe n'est pas connu au préfiltre ; « texte en vigueur » = officiel + réglementaire (non détectable par script).</td></tr>
+      <tr><td>Rapports</td><td><b>Commités</b> dans git</td><td>Tu as demandé que l'équipe les retrouve sur GitHub (le masterprompt les mettait en gitignore).</td></tr>
+      <tr><td>Garde-fou ajouté</td><td><code>save_qualified.py</code> retélécharge la page</td><td>Il retire tout chiffre ou lien absent de la page. Ce run : 5 chiffres retirés automatiquement.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Sources : les 4 flux médias et les 3 subreddits ont été testés (Reddit renvoie parfois une erreur 429, gérée par une nouvelle tentative). Les identifiants App Store ont été vérifiés via l'API iTunes. Pappers, Societe.com et Crunchbase n'ont pas été utilisés sur ce run.</p>
+
+  <h2>À faire de ton côté <small>par ordre</small></h2>
+  <ol class="todo">
+    <li><div><b>Me donner le <code>DATABASE_URL</code> Neon</b><span>Je lance <code>init_db.py</code> sur Neon et je transfère les 284 éléments du run 1, pour que l'équipe partage la même base.</span></div></li>
+    <li><div><b>Créer les Google Alerts en flux RSS</b><span>13 requêtes prêtes dans <code>config/sources.yaml</code> (une par code requis) : remplacer chaque <code>REMPLACER</code> par l'URL du flux.</span></div></li>
+    <li><div><b>Valider les subreddits</b><span>r/AgingParents et r/CaregiverSupport (anglophones : aucune communauté française assez active trouvée).</span></div></li>
+    <li><div><b>Faire la première revue : <code>/revue</code></b><span>180 éléments à revoir, 0 validé. Les 13 codes requis ont tous de la matière. Commence par les 18 faits prioritaires (score ≥ 5).</span></div></li>
+    <li><div><b>Combler les trous bonus utiles</b><span>M3 (aidants familiaux), T2 (IA appliquée) et R5 (consentement des majeurs vulnérables) sont vides : à cibler au prochain <code>/veille</code>.</span></div></li>
+  </ol>
+
+  <footer>Généré par Claude Code le 01/10/2026 · Score de fiabilité calculé par script, jamais par l'IA · Rien n'entre dans la fiche sans validation humaine.</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+# Catalogue des 35 types d'information de la veille.
+# statut : requis | bonus ; phase_cible : texte libre.
+marche:
+  - {code: M1, libelle: "Taille et croissance du marché silver tech", statut: requis}
+  - {code: M2, libelle: "Démographie : seniors à domicile, projections", statut: requis}
+  - {code: M3, libelle: "Aidants familiaux : nombre, profil, distance, charge", statut: bonus, phase_cible: "phase 2"}
+  - {code: M4, libelle: "Moments déclencheurs d'achat", statut: bonus, phase_cible: "phase 2"}
+  - {code: M5, libelle: "Aides publiques et prises en charge", statut: bonus, phase_cible: "modèle économique"}
+  - {code: M6, libelle: "Canaux de distribution", statut: bonus, phase_cible: "parcours d'achat, phase 3"}
+  - {code: M7, libelle: "Politiques publiques de maintien à domicile", statut: bonus}
+concurrence:
+  - {code: C1, libelle: "Acteurs par famille (téléassistance, wearables, capteurs, compagnons)", statut: requis}
+  - {code: C2, libelle: "Offres et prix réels (engagement, frais cachés)", statut: requis}
+  - {code: C3, libelle: "Réussites et échecs + hypothèse d'explication", statut: requis}
+  - {code: C4, libelle: "Levées de fonds, rachats, faillites", statut: requis}
+  - {code: C5, libelle: "Promesses marketing vs réalité", statut: requis}
+  - {code: C6, libelle: "Discours de marque (stigmatisant ou non)", statut: bonus}
+  - {code: C7, libelle: "Nouveaux lancements", statut: bonus}
+usagers:
+  - {code: U1, libelle: "Irritants côté seniors", statut: bonus, phase_cible: "phase 2"}
+  - {code: U2, libelle: "Irritants côté aidants", statut: bonus, phase_cible: "phase 2"}
+  - {code: U3, libelle: "Raisons d'abandon (« le tiroir »)", statut: requis}
+  - {code: U4, libelle: "Fracture numérique : équipement et usages", statut: bonus, phase_cible: "phase 3"}
+  - {code: U5, libelle: "Ce que les utilisateurs apprécient", statut: bonus}
+techno:
+  - {code: T1, libelle: "Technologies de détection et leurs limites", statut: requis}
+  - {code: T2, libelle: "IA appliquée (résumé d'activité, anomalie de routine, compagnon)", statut: bonus, phase_cible: "phase 5"}
+  - {code: T3, libelle: "Outils no-code et IA adaptés", statut: bonus, phase_cible: "phase 5"}
+  - {code: T4, libelle: "Connectivité, autonomie, installation", statut: bonus, phase_cible: "phase 6"}
+  - {code: T5, libelle: "Standards et interopérabilité", statut: bonus}
+reglementaire:
+  - {code: R1, libelle: "RGPD : données de santé et de vie quotidienne, consentement", statut: requis}
+  - {code: R2, libelle: "Frontière dispositif médical / bien-être", statut: requis}
+  - {code: R3, libelle: "AI Act : transparence, niveaux de risque", statut: requis}
+  - {code: R4, libelle: "Propriété intellectuelle", statut: requis}
+  - {code: R5, libelle: "Consentement des majeurs vulnérables", statut: bonus, phase_cible: "éthique"}
+  - {code: R6, libelle: "Accessibilité numérique (RGAA, European Accessibility Act)", statut: bonus}
+  - {code: R7, libelle: "Droit des abonnements et résiliation", statut: bonus}
+  - {code: R8, libelle: "Hébergement de données de santé", statut: bonus, phase_cible: "applicabilité à vérifier"}
