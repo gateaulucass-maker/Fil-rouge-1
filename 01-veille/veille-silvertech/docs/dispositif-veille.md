@@ -20,7 +20,7 @@ répartis en 5 axes : marché (M1-M7), concurrence (C1-C7), usagers (U1-U5), tec
 | Médias spécialisés (RSS) | Silvereco, Maddyness, FrenchWeb | flux RSS testés | hebdomadaire |
 | Régulateur (RSS) | CNIL | flux RSS | hebdomadaire |
 | Google Alerts (RSS) | 13 alertes, 1 par code requis (créées le 01/10/2026) | flux RSS, français, tous les résultats | au fil de l'eau côté Google, relevé hebdomadaire |
-| Communautés (RSS) | r/nocode, r/AgingParents, r/CaregiverSupport | flux RSS publics de Reddit | hebdomadaire |
+| Communautés (RSS) | r/nocode ; r/AgingParents et r/CaregiverSupport (validés par l'équipe le 01/10/2026 : seule source donnant la voix des aidants) | flux RSS publics de Reddit | hebdomadaire |
 | Avis d'applications | App Store : Famileo, Tous FAMiliés, Life360, Signia | flux public d'avis Apple | hebdomadaire |
 | Avis Google Play | fiches Play Store | **saisie manuelle** (pas d'API gratuite, pas de scraping) | ponctuelle |
 | Recherche web ciblée | 2-3 requêtes par code (`config/sources.yaml`), priorité aux sites officiels : aidants.fr, pour-les-personnes-agees.gouv.fr, ansm.sante.fr, eur-lex.europa.eu, insee.fr, DREES | agent collecteur | hebdomadaire, sur les codes sous-couverts |

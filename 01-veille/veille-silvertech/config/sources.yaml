@@ -26,6 +26,8 @@ medias:
   - {nom: cnil, url: "https://www.cnil.fr/fr/rss.xml"}
 
 reddit:
+  # r/nocode imposé par le cahier des charges ; r/AgingParents et r/CaregiverSupport
+  # proposés par Claude et validés par Lucas le 2026-10-01 (voix des aidants, en anglais).
   # Flux RSS publics. Reddit limite fortement le débit (HTTP 429) : en cas d'échec,
   # le flux est signalé dans le bilan et retenté au run suivant.
   - {nom: r-nocode, sub: nocode, url: "https://www.reddit.com/r/nocode/.rss"}
