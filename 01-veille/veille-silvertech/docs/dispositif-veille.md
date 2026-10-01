@@ -19,7 +19,7 @@ répartis en 5 axes : marché (M1-M7), concurrence (C1-C7), usagers (U1-U5), tec
 |---|---|---|---|
 | Médias spécialisés (RSS) | Silvereco, Maddyness, FrenchWeb | flux RSS testés | hebdomadaire |
 | Régulateur (RSS) | CNIL | flux RSS | hebdomadaire |
-| Google Alerts (RSS) | 1 alerte par code requis | flux RSS (à créer par l'équipe) | quotidien côté Google, relevé hebdomadaire |
+| Google Alerts (RSS) | 13 alertes, 1 par code requis (créées le 01/10/2026) | flux RSS, français, tous les résultats | au fil de l'eau côté Google, relevé hebdomadaire |
 | Communautés (RSS) | r/nocode, r/AgingParents, r/CaregiverSupport | flux RSS publics de Reddit | hebdomadaire |
 | Avis d'applications | App Store : Famileo, Tous FAMiliés, Life360, Signia | flux public d'avis Apple | hebdomadaire |
 | Avis Google Play | fiches Play Store | **saisie manuelle** (pas d'API gratuite, pas de scraping) | ponctuelle |
@@ -99,7 +99,7 @@ modèle d'IA, durée) : c'est la preuve du fonctionnement du dispositif.
 - **Avis d'applications** : seulement l'App Store, et seulement les avis récents exposés par le flux d'Apple.
   Google Play reste manuel.
 - **Score** : il mesure la fiabilité de la *source*, pas la vérité de l'information. Un média reconnu peut se tromper.
-- **Google Alerts** : les flux sont à créer par l'équipe (placeholders `REMPLACER` dans `config/sources.yaml`).
+- **Google Alerts** : une alerte ne remonte que les contenus publiés après sa création (01/10/2026). Elle ne rattrape pas l'historique, d'où la recherche web ciblée en complément. Les alertes sont rattachées au compte Google de Lucas.
 - **IA** : malgré les garde-fous, un résumé peut mal interpréter une page. C'est pourquoi rien n'entre dans la fiche
   sans validation humaine.
 

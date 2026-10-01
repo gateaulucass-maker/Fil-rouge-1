@@ -1,21 +1,22 @@
 # Sources de la veille. Une URL n'est ajoutée qu'après avoir été testée.
 
 google_alerts:
-  # Une alerte Google par code requis, livrée en flux RSS (google.com/alerts > Livrer à : flux RSS).
-  # Remplacer chaque REMPLACER par l'URL du flux. Les entrées REMPLACER sont ignorées.
-  - {nom: alerte-M1, code: M1, requete: "marché silver économie objets connectés", url: REMPLACER}
-  - {nom: alerte-M2, code: M2, requete: "seniors vivant à domicile projections INSEE", url: REMPLACER}
-  - {nom: alerte-C1, code: C1, requete: "téléassistance OR \"détection de chute\" seniors", url: REMPLACER}
-  - {nom: alerte-C2, code: C2, requete: "téléassistance prix abonnement", url: REMPLACER}
-  - {nom: alerte-C3, code: C3, requete: "silver tech startup échec OR succès", url: REMPLACER}
-  - {nom: alerte-C4, code: C4, requete: "silver tech levée de fonds OR rachat OR liquidation", url: REMPLACER}
-  - {nom: alerte-C5, code: C5, requete: "objet connecté senior promesse réalité test", url: REMPLACER}
-  - {nom: alerte-U3, code: U3, requete: "téléassistance abandon port du bracelet", url: REMPLACER}
-  - {nom: alerte-T1, code: T1, requete: "détection de chute capteur radar IA limites", url: REMPLACER}
-  - {nom: alerte-R1, code: R1, requete: "CNIL données de santé objets connectés", url: REMPLACER}
-  - {nom: alerte-R2, code: R2, requete: "dispositif médical ou bien-être logiciel ANSM", url: REMPLACER}
-  - {nom: alerte-R3, code: R3, requete: "AI Act obligations transparence haut risque", url: REMPLACER}
-  - {nom: alerte-R4, code: R4, requete: "propriété intellectuelle application no-code marque INPI", url: REMPLACER}
+  # Une alerte Google par code requis, livrée en flux RSS (google.com/alerts > Envoyer à : Flux RSS).
+  # Créées le 2026-10-01 sur le compte de Lucas : français, toutes régions, tous les résultats.
+  # Pour en ajouter une : créer l'alerte, copier l'URL du flux (icône RSS), ajouter une ligne ici.
+  - {nom: alerte-M1, code: M1, requete: "marché silver économie objets connectés", url: "https://www.google.com/alerts/feeds/05656609586957326835/616537715028132146"}
+  - {nom: alerte-M2, code: M2, requete: "seniors vivant à domicile projections INSEE", url: "https://www.google.com/alerts/feeds/05656609586957326835/18257633410394496232"}
+  - {nom: alerte-C1, code: C1, requete: "téléassistance OR \"détection de chute\" seniors", url: "https://www.google.com/alerts/feeds/05656609586957326835/18257633410394493086"}
+  - {nom: alerte-C2, code: C2, requete: "téléassistance prix abonnement", url: "https://www.google.com/alerts/feeds/05656609586957326835/248581083720530547"}
+  - {nom: alerte-C3, code: C3, requete: "silver tech startup échec OR succès", url: "https://www.google.com/alerts/feeds/05656609586957326835/5273560571667129523"}
+  - {nom: alerte-C4, code: C4, requete: "silver tech levée de fonds OR rachat OR liquidation", url: "https://www.google.com/alerts/feeds/05656609586957326835/4782430663150672153"}
+  - {nom: alerte-C5, code: C5, requete: "objet connecté senior promesse réalité test", url: "https://www.google.com/alerts/feeds/05656609586957326835/13784406048109716441"}
+  - {nom: alerte-U3, code: U3, requete: "téléassistance abandon port du bracelet", url: "https://www.google.com/alerts/feeds/05656609586957326835/6301873926497854045"}
+  - {nom: alerte-T1, code: T1, requete: "détection de chute capteur radar IA limites", url: "https://www.google.com/alerts/feeds/05656609586957326835/4782430663150671173"}
+  - {nom: alerte-R1, code: R1, requete: "CNIL données de santé objets connectés", url: "https://www.google.com/alerts/feeds/05656609586957326835/3029569646366294185"}
+  - {nom: alerte-R2, code: R2, requete: "dispositif médical ou bien-être logiciel ANSM", url: "https://www.google.com/alerts/feeds/05656609586957326835/6301873926497856992"}
+  - {nom: alerte-R3, code: R3, requete: "AI Act obligations transparence haut risque", url: "https://www.google.com/alerts/feeds/05656609586957326835/3917026912975807670"}
+  - {nom: alerte-R4, code: R4, requete: "propriété intellectuelle application no-code marque INPI", url: "https://www.google.com/alerts/feeds/05656609586957326835/3029569646366295929"}
 
 medias:
   # Testés le 2026-10-01 (HTTP 200 + entrées présentes)
