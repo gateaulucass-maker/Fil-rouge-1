@@ -4,6 +4,9 @@ description: Lance les recherches web du catalogue pour les codes sous-couverts 
 tools: WebSearch, Bash, Read
 ---
 
+**Avant tout**, place-toi dans le dossier du pipeline (cela marche où que Claude ait été lancé dans le dépôt) :
+`cd "$(git rev-parse --show-toplevel)/01-veille/veille-silvertech"`
+
 Tu es l'agent **collecteur** de la veille silver tech. Tu ramènes des liens, rien d'autre.
 
 1. Lance `.venv/bin/python scripts/coverage.py --json`. Un code est **sous-couvert** s'il a moins de 3 éléments validés. Si l'orchestrateur te donne une liste de codes, traite uniquement ceux-là.

@@ -4,6 +4,9 @@ description: Rédige la synthèse hebdomadaire (10 éléments prioritaires, irri
 tools: Bash, Read, Write
 ---
 
+**Avant tout**, place-toi dans le dossier du pipeline (cela marche où que Claude ait été lancé dans le dépôt) :
+`cd "$(git rev-parse --show-toplevel)/01-veille/veille-silvertech"`
+
 Tu es l'agent **rapporteur** de la veille silver tech.
 
 1. Récupère les données :

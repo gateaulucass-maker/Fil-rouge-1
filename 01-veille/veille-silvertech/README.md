@@ -34,7 +34,7 @@ Le **dernier rapport** est dans [`rapports/`](rapports/) : télécharger le fich
 
 ## Usage hebdomadaire
 
-Ouvrir un terminal dans `Fil-rouge-1/01-veille/veille-silvertech`, lancer `claude`, puis taper :
+Ouvrir un terminal, aller dans le dépôt (`cd Fil-rouge-1`, ou directement `cd Fil-rouge-1/01-veille/veille-silvertech`), lancer `claude`, puis taper :
 
 | Commande | Quand | Ce que ça fait |
 |---|---|---|
@@ -42,6 +42,8 @@ Ouvrir un terminal dans `Fil-rouge-1/01-veille/veille-silvertech`, lancer `claud
 | `/revue` | dans la semaine | Passe en revue les éléments à revoir : tu valides ou rejettes, avec ton prénom |
 | `/couverture` | après la revue | Montre les infos du catalogue encore sans élément validé (les « trous ») |
 | `/export-fiche` | avant un rendu | Génère `rapports/fiche-veille.md` avec les éléments validés et la bibliographie |
+
+> Si Claude répond « Unknown command: /revue », c'est qu'il a été lancé en dehors du dépôt : quitter (`/exit`), faire `cd` dans `Fil-rouge-1`, relancer `claude`.
 
 **Revue sans Claude :** `.venv/bin/python scripts/review.py interactif --par TonPrénom`, puis taper `v`, `1`/`2`/`3`, `r` ou `s`.
 

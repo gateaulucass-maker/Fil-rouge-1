@@ -3,6 +3,9 @@ description: Revue humaine des éléments à revoir (valider / rejeter)
 argument-hint: "[axe] — optionnel : marche, concurrence, usagers, techno, reglementaire"
 ---
 
+**Avant tout**, place-toi dans le dossier du pipeline (cela marche où que Claude ait été lancé dans le dépôt) :
+`cd "$(git rev-parse --show-toplevel)/01-veille/veille-silvertech"`
+
 Aide l'utilisateur à faire la revue humaine de la veille.
 
 1. Demande le **prénom** de la personne qui fait la revue (il sera enregistré dans `valide_par`).
