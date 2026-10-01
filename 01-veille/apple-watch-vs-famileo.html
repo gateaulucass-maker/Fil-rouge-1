@@ -1,0 +1,185 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Apple Watch / Famileo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: grille suisse 12 colonnes, titre massif fer à gauche, tableau en 3 colonnes (critère | Apple Watch | Famileo), filets fins, orange et bleu en aplats de repère */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5d636b;
+  --rule: #111418;
+  --hair: #d5d7d9;
+  --orange: #e8571c;
+  --blue: #1f3fbf;
+  --on-accent: #ffffff;
+  --font-display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); padding-block: clamp(32px, 6vw, 72px) 48px; }
+
+.meta { display: flex; flex-wrap: wrap; gap: 8px 32px; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border-top: 2px solid var(--rule); padding-top: 12px; }
+.meta b { color: var(--fg); font-weight: 500; }
+
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(44px, 9vw, 112px); line-height: .92; letter-spacing: -.035em; margin: clamp(28px, 5vw, 56px) 0 0; text-wrap: balance; }
+h1 .o { color: var(--orange); }
+h1 .b { color: var(--blue); }
+h1 .sl { font-weight: 400; color: var(--muted); }
+
+.lede { display: grid; grid-template-columns: repeat(12, 1fr); gap: 0 24px; margin-top: clamp(24px, 4vw, 40px); }
+.lede p { grid-column: 5 / span 7; margin: 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; font-weight: 500; max-width: 60ch; text-wrap: pretty; }
+.lede .tag { grid-column: 1 / span 4; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding-top: 6px; }
+
+.grid { margin-top: clamp(40px, 6vw, 72px); border-top: 2px solid var(--rule); }
+.row { display: grid; grid-template-columns: 3fr 4.5fr 4.5fr; gap: 0 24px; border-bottom: 1px solid var(--hair); padding-block: 20px; }
+.row > * { min-width: 0; }
+.head { padding-block: 0; border-bottom: 2px solid var(--rule); }
+.head .col { padding: 18px 0 16px; display: flex; flex-direction: column; gap: 4px; }
+.head .col .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.head .col .n { font-family: var(--font-display); font-weight: 800; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -.02em; line-height: 1.05; }
+.head .col .s { font-size: 13px; color: var(--muted); }
+.head .aw { border-top: 8px solid var(--orange); }
+.head .fa { border-top: 8px solid var(--blue); }
+
+.lab { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: -.005em; display: flex; gap: 10px; align-items: baseline; }
+.lab i { font-style: normal; font-family: var(--font-mono); font-size: 11px; color: var(--muted); font-weight: 400; }
+.cell { font-size: 15px; line-height: 1.5; max-width: 52ch; }
+.cell .m { display: none; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+.cell.aw .m { color: var(--orange); }
+.cell.fa .m { color: var(--blue); }
+.num { font-variant-numeric: tabular-nums; font-weight: 700; }
+.aw .num { color: var(--orange); }
+.fa .num { color: var(--blue); }
+.flag { font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--muted); border: 1px solid var(--hair); padding: 1px 6px; white-space: nowrap; }
+
+.row.thesis { background: transparent; }
+.row.thesis .lab { color: var(--fg); }
+
+.synth { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; margin-top: clamp(40px, 6vw, 64px); padding-top: 16px; border-top: 2px solid var(--rule); }
+.synth .k { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding-top: 6px; }
+.synth p { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 2.8vw, 34px); line-height: 1.15; letter-spacing: -.02em; max-width: 30ch; text-wrap: balance; }
+.synth p .o { color: var(--orange); }
+.synth p .b { color: var(--blue); }
+
+.scale { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; margin-top: 32px; }
+.bar { position: relative; height: 44px; display: grid; grid-template-columns: 1fr 1fr; }
+.bar span { display: flex; align-items: center; padding: 0 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--on-accent); }
+.bar .l { background: var(--orange); }
+.bar .r { background: var(--blue); justify-content: flex-end; }
+.bar .mid { position: absolute; left: 50%; top: -8px; bottom: -8px; width: 2px; background: var(--fg); transform: translateX(-1px); }
+.scale .cap { grid-column: 2; display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); margin-top: 10px; }
+.scale .cap b { color: var(--fg); font-weight: 700; }
+
+footer { margin-top: clamp(48px, 7vw, 88px); border-top: 1px solid var(--hair); padding-top: 16px; display: grid; grid-template-columns: 3fr 9fr; gap: 12px 24px; font-size: 12.5px; color: var(--muted); }
+footer .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+footer ol { margin: 0; padding-left: 18px; columns: 2; column-gap: 32px; }
+footer li { break-inside: avoid; margin-bottom: 4px; }
+footer a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--hair); text-underline-offset: 3px; }
+footer a:hover, footer a:focus-visible { text-decoration-color: var(--orange); }
+a:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+@media (max-width: 760px) {
+  .lede, .synth, .scale, footer { grid-template-columns: 1fr; }
+  .lede p, .lede .tag { grid-column: 1; }
+  .lede .tag { margin-bottom: 8px; }
+  .scale .cap { grid-column: 1; }
+  .head { display: none; }
+  .row { grid-template-columns: 1fr; gap: 12px; padding-block: 20px 22px; }
+  .cell .m { display: block; }
+  .cell.aw { border-left: 3px solid var(--orange); padding-left: 12px; }
+  .cell.fa { border-left: 3px solid var(--blue); padding-left: 12px; }
+  footer ol { columns: 1; }
+}
+</style>
+
+<div class="wrap">
+  <div class="meta">
+    <span><b>Ynov</b> B2 Product Builder No-Code</span>
+    <span>PFR Générations Connectées</span>
+    <span>Phase 1 · Veille</span>
+    <span>Octobre 2026</span>
+  </div>
+
+  <h1><span class="o">Apple Watch</span> <span class="sl">/</span><br><span class="b">Famileo</span></h1>
+
+  <div class="lede">
+    <div class="tag">Analyse comparative<br>Silver economy</div>
+    <p>Deux produits, deux façons de rassurer une famille. L'un détecte un danger, l'autre entretient un lien. Grille d'analyse en six critères.</p>
+  </div>
+
+  <section class="grid" aria-label="Grille comparative">
+    <div class="row head">
+      <div class="col"><span class="k">Critère</span></div>
+      <div class="col aw"><span class="k">Produit A</span><span class="n">Apple Watch</span><span class="s">Détection de chute</span></div>
+      <div class="col fa"><span class="k">Produit B</span><span class="n">Famileo</span><span class="s">Gazette familiale papier</span></div>
+    </div>
+
+    <div class="row">
+      <div class="lab"><i>A</i>Promesse</div>
+      <div class="cell aw"><div class="m">Apple Watch</div>Détecter une chute dure et prévenir les secours et les proches si le porteur ne bouge plus pendant environ <span class="num">1 min</span>.</div>
+      <div class="cell fa"><div class="m">Famileo</div>Garder le lien avec des grands-parents peu ou pas connectés grâce à une gazette papier envoyée par la famille.</div>
+    </div>
+
+    <div class="row">
+      <div class="lab"><i>B</i>Acheteur / utilisateur</div>
+      <div class="cell aw"><div class="m">Apple Watch</div>Souvent le même. Un enfant peut l'offrir, mais il faut un iPhone et un réglage (fiche médicale, contacts).</div>
+      <div class="cell fa"><div class="m">Famileo</div>Différents : la famille paie et alimente l'appli, le senior reçoit du papier sans rien manipuler.</div>
+    </div>
+
+    <div class="row">
+      <div class="lab"><i>C</i>Modèle éco et prix</div>
+      <div class="cell aw"><div class="m">Apple Watch</div>Achat unique : SE 3 à partir de <span class="num">269 €</span> (GPS). Forfait cellulaire en plus, environ <span class="num">10 $/mois</span> d'après une source américaine <span class="flag">prix France à vérifier</span></div>
+      <div class="cell fa"><div class="m">Famileo</div>Abonnement : <span class="num">5,99 €</span>/mois (mensuel), <span class="num">9,99 €</span> (2 semaines), <span class="num">17,99 €</span> (hebdo). Aussi un modèle B2B avec <span class="num">2 700</span> EHPAD partenaires.</div>
+    </div>
+
+    <div class="row">
+      <div class="lab"><i>D</i>Signes d'adoption</div>
+      <div class="cell aw"><div class="m">Apple Watch</div>Fonction active par défaut dès <span class="num">55 ans</span>. Fiabilité reconnue par les guides spécialisés.</div>
+      <div class="cell fa"><div class="m">Famileo</div><span class="num">260 000</span> familles abonnées, <span class="num">14 M€</span> de CA en 2024, <span class="num">4,8/5</span> sur <span class="num">5 300</span> avis App Store.</div>
+    </div>
+
+    <div class="row">
+      <div class="lab"><i>E</i>Signes de rejet</div>
+      <div class="cell aw"><div class="m">Apple Watch</div>Recharge presque quotidienne (<span class="num">18 h</span> d'autonomie), fausses alertes en sport, ne détecte pas toutes les chutes, appelle les secours sans opérateur dédié.</div>
+      <div class="cell fa"><div class="m">Famileo</div>Peu de rejet trouvé. Limites : peu de personnalisation, et seul le lien familial est couvert, pas la sécurité.</div>
+    </div>
+
+    <div class="row thesis">
+      <div class="lab"><i>F</i>Hypothèse business</div>
+      <div class="cell aw"><div class="m">Apple Watch</div>Ça marche pour les seniors actifs et à l'aise avec la tech. Ça échoue dès qu'il y a oubli, complexité ou isolement.</div>
+      <div class="cell fa"><div class="m">Famileo</div>Ça marche parce que le senior n'a rien à faire et ne se sent pas surveillé. Le payeur est celui qui culpabilise.</div>
+    </div>
+  </section>
+
+  <div class="synth">
+    <div class="k">Enseignement pour le projet</div>
+    <p><span class="o">L'Apple Watch</span> rassure l'enfant mais demande un effort au parent. <span class="b">Famileo</span> ne demande rien au parent mais ne détecte aucun danger.</p>
+  </div>
+
+  <div class="scale" aria-label="Positionnement">
+    <div></div>
+    <div>
+      <div class="bar"><span class="l">Sécurité</span><span class="r">Lien</span><i class="mid" aria-hidden="true"></i></div>
+    </div>
+    <div class="cap"><span>Effort côté senior : <b>élevé</b></span><span><b>Notre produit se joue ici</b></span><span>Effort côté senior : <b>nul</b></span></div>
+  </div>
+
+  <footer>
+    <div class="k">Sources</div>
+    <ol>
+      <li><a href="https://support.apple.com/en-us/108896">Apple, Détection de chute</a></li>
+      <li><a href="https://www.apple.com/fr/shop/buy-watch/apple-watch-se">Apple France, Apple Watch SE 3</a></li>
+      <li><a href="https://www.ageinplaceguide.com/blog/apple-watch-fall-detection-seniors">Age in Place Guide, Apple Watch pour seniors</a></li>
+      <li><a href="https://touteslesbox.fr/famileo/">Toutes les box, Famileo (avril 2026)</a></li>
+      <li><a href="https://www.bretagne-economique.com/portraits/famileo-260-000-familles-abonnees-et-des-horizons-europeens/">Bretagne Économique (déc. 2025)</a></li>
+      <li><a href="https://apps.apple.com/fr/app/famileo-journal-familial/id1018182135">App Store, Famileo</a></li>
+    </ol>
+  </footer>
+</div>
+
+</body></html>
