@@ -58,7 +58,12 @@ def connexion():
     url = os.environ.get("DATABASE_URL")
     if not url:
         sys.exit("DATABASE_URL absent : copier .env.example en .env et le remplir.")
-    return psycopg.connect(url)
+    try:
+        return psycopg.connect(url)
+    except psycopg.Error as exc:
+        # ne jamais afficher la chaîne de connexion (elle contient le mot de passe)
+        message = re.sub(r"://[^@\s]*@", "://***:***@", str(exc))
+        sys.exit(f"Connexion à la base impossible : {message}")
 
 
 def lire_json_stdin():
