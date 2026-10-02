@@ -1,0 +1,228 @@
+<title>Analyse du marché silver tech</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Grille suisse : rail gauche pour les grands numéros, colonne de contenu à droite, filets noirs, typographie très contrastée */
+:root{--cream:#f4eee1;--paper:#faf6ec;--ink:#111526;--muted:#5d6172;--blue:#1d3bc1;--blue-soft:#dfe3f2;--line:#d3ccba;
+--sans:"Archivo",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+body{background:var(--cream);color:var(--ink);font:17px/1.55 var(--sans)}
+main{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:48px 80px}
+header{display:grid;gap:28px;padding-bottom:56px}
+.keybar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--cream);border-bottom:3px solid var(--blue)}
+.keyin{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:9px;display:flex;gap:14px;align-items:baseline}
+.keyin span{flex:none;font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.keyin p{margin:0;font-size:15px;font-weight:700;line-height:1.3}
+@media (max-width:760px){.keyin{flex-direction:column;gap:2px}.keyin p{font-size:13.5px}}
+.eyebrow{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-weight:800;font-size:clamp(44px,8.5vw,112px);line-height:.92;letter-spacing:-.035em;margin:0;max-width:11ch}
+.key{border-top:6px solid var(--blue);padding-top:18px;display:grid;gap:10px;max-width:30em}
+.key span{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.key p{margin:0;font-size:clamp(22px,3vw,34px);font-weight:700;line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.toc{display:flex;flex-wrap:wrap;gap:6px 28px;margin:0;padding:0;list-style:none;font:500 14px var(--mono)}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}.toc a:hover{color:var(--blue);border-color:var(--blue)}
+.legend{font:13px var(--mono);color:var(--muted);margin:0}
+.q{scroll-margin-top:72px;display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:0 32px;border-top:3px solid var(--ink);padding-block:28px 72px}
+.rail{min-width:0}
+.qnum{display:block;font-weight:800;font-size:clamp(56px,8vw,104px);line-height:.85;letter-spacing:-.04em;color:var(--blue)}
+.qbody{min-width:0;display:grid;gap:22px}
+.kicker{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h2{font-size:clamp(30px,4.4vw,54px);font-weight:800;margin:0;line-height:1;letter-spacing:-.025em;text-wrap:balance}
+h3{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 0 0}
+.lead{margin:0;font:500 14px var(--mono);color:var(--muted)}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px}
+thead th{text-align:left;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 16px 10px 0;border-bottom:2px solid var(--ink)}
+tbody th,tbody td{padding:16px 16px 16px 0;vertical-align:top;border-bottom:1px solid var(--line);text-align:left}
+tbody th{font-weight:800;font-size:19px;width:18%;line-height:1.2}
+tbody td:nth-child(2){color:var(--muted);width:20%}
+table.models tbody td:nth-child(2),table.models tbody td:nth-child(3),table.models tbody td:nth-child(4){color:var(--muted);width:14%}
+table.calc tbody td:nth-child(2){color:var(--ink);width:auto}
+table.calc tbody td:nth-child(3){font-weight:800;white-space:nowrap}
+.b{display:inline-block;font:500 10px var(--mono);border:1px solid;padding:0 4px;margin-left:4px;vertical-align:2px}
+.b.f{color:var(--blue)}.b.h{color:var(--muted)}
+sup{font:500 10px var(--mono);margin-left:2px}
+sup a{color:var(--muted);text-decoration:none}sup a:hover,sup a:focus-visible{color:var(--blue);text-decoration:underline}
+.sum{margin:8px 0 0;font-size:clamp(20px,2.4vw,27px);font-weight:700;line-height:1.25;letter-spacing:-.01em;max-width:34em;padding-left:20px;border-left:6px solid var(--blue);text-wrap:pretty}
+.map{overflow-x:auto;border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.map svg{display:block;width:100%;min-width:560px;height:auto;font-family:var(--sans)}
+.frame{fill:none;stroke:none}.axis{stroke:var(--ink);stroke-width:1.5}
+.gap{fill:var(--blue-soft);stroke:var(--blue);stroke-dasharray:4 3}
+.gapt{font-size:12px;fill:var(--blue);font-weight:700}
+.ax{font:500 11px var(--mono);fill:var(--muted);letter-spacing:.06em}
+.pl{font-size:13px;fill:var(--ink);font-weight:500}
+.p{stroke:var(--cream);stroke-width:1.5}
+.p.t{fill:#1d3bc1}.p.w{fill:#6f84dd}.p.d{fill:#0a1658}.p.c{fill:#a39a83}.p.l{fill:#c49a3c}
+.leg{display:flex;flex-wrap:wrap;gap:6px 22px;list-style:none;margin:0;padding:0;font-size:13px;color:var(--muted)}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.leg i.t{background:#1d3bc1}.leg i.w{background:#6f84dd}.leg i.d{background:#0a1658}.leg i.c{background:#a39a83}.leg i.l{background:#c49a3c}
+.note{margin:0;font-size:13px;color:var(--muted);max-width:75ch}
+.sources{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:16px 32px;border-top:3px solid var(--ink);padding-top:28px}
+.sources h2{font-size:clamp(24px,3vw,32px)}
+.sources>div{min-width:0;display:grid;gap:12px}
+.sources ol{margin:0;padding-left:26px;columns:2 320px;column-gap:36px;font-size:13px}
+.sources li{break-inside:avoid;margin-bottom:5px}.sources a{color:var(--ink)}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.persona{margin-top:12px}
+.persona summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);border:1.5px solid var(--blue);padding:5px 10px}
+.persona summary::-webkit-details-marker{display:none}
+.persona summary::before{content:"+";font-size:15px;line-height:1}
+.persona[open] summary::before{content:"−"}
+.persona summary:hover,.persona summary:focus-visible{background:var(--blue);color:#fff;outline:none}
+.pcard{margin-top:12px;background:var(--paper);border-left:6px solid var(--blue);padding:18px 20px;display:grid;gap:10px}
+.pname{margin:0;font-size:24px;font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.pmeta{margin:0;font:500 12px var(--mono);color:var(--muted);letter-spacing:.04em}
+.pcard dl{margin:4px 0 0;display:grid;gap:10px}
+.pcard dl div{display:grid;grid-template-columns:minmax(0,9em) minmax(0,1fr);gap:12px;border-top:1px solid var(--line);padding-top:10px}
+.pcard dt{font-weight:700;font-size:14px}.pcard dd{margin:0;font-size:15px}
+.pnote{margin:0;font-size:12px;color:var(--muted)}
+@media (max-width:760px){.pcard dl div{grid-template-columns:minmax(0,1fr);gap:2px}}
+
+@media (max-width:760px){.q,.sources{grid-template-columns:minmax(0,1fr);gap:12px}.q{padding-block:20px 52px}}
+</style>
+<div class="keybar"><div class="keyin"><span>Question clé</span><p>Comment le marché aide-t-il aujourd’hui un enfant et son parent âgé à domicile à rester en lien et à veiller sur sa santé, et où ce double besoin, relationnel et médical, reste-t-il mal couvert ?</p></div></div>
+<main>
+<header>
+<div class="eyebrow">Leçon 2.1 · PFR Générations Connectées · Octobre 2026</div>
+<h1>Le marché de la silver tech</h1>
+<ul class="toc"><li><a href="#qq1">Q1 Qui ?</a></li><li><a href="#qq2">Q2 Combien ?</a></li><li><a href="#qq3">Q3 Quels concurrents ?</a></li><li><a href="#qq4">Q4 Quels modèles ?</a></li><li><a href="#qcarte">Carte</a></li><li><a href="#qq5">Q5 Ce qui manque</a></li></ul>
+<p class="legend">F = fait sourcé · H = hypothèse ou calcul de l’équipe · chiffres = sources en bas de page.</p>
+</header>
+<section id="qq1" class="q">
+<div class="rail"><span class="qnum">Q1</span></div>
+<div class="qbody">
+<h2>Qui utilise, qui paie, qui influence ?</h2>
+
+<div class="tw"><table class=""><thead><tr><th scope="col">Rôle</th><th scope="col">Définition</th><th scope="col">Notre marché</th></tr></thead><tbody><tr><th scope="row">Utilisateur</th><td>Utilise le produit au quotidien</td><td>Le senior de 60 ans et plus qui vit à domicile. <span class="b f">F</span><sup><a href="#s1">1</a> <a href="#s2">2</a></sup><br>L’enfant aidant, qui reçoit l’alerte ou alimente l’application. <span class="b f">F</span><sup><a href="#s3">3</a></sup><details class="persona"><summary>Persona utilisateur</summary><div class="pcard"><p class="pname">Jeanne, 83 ans</p><p class="pmeta">Vit seule chez elle · autonome (GIR 5-6) · deux enfants à distance</p><dl><div><dt>Sa situation</dt><dd>Un senior de plus de 65 ans sur trois chute chaque année, et 80 % des chutes ont lieu à domicile. <span class="b f">F</span><sup><a href="#s4">4</a></sup></dd></div><div><dt>Ce qu’elle attend</dt><dd>Des nouvelles de sa famille, sans rien manipuler : la gazette papier est attendue chaque mois. <span class="b f">F</span><sup><a href="#s5">5</a> <a href="#s6">6</a></sup></dd></div><div><dt>Ce qui la freine</dt><dd>Le manque d’intérêt (41 %) plus que le prix (29 %) ; elle préfère le contact humain. <span class="b f">F</span><sup><a href="#s7">7</a></sup><br>Le bracelet se porte surtout quand on est seul, pas en continu. <span class="b f">F</span><sup><a href="#s8">8</a></sup></dd></div><div><dt>Ce qu’elle accepte</dt><dd>Ce qui ne lui demande aucun effort et ne la désigne pas comme dépendante. <span class="b h">H</span></dd></div></dl><p class="pnote">Persona fictif construit à partir de la veille <span class="b h">H</span> ; les traits sont sourcés.</p></div></details></td></tr>
+<tr><th scope="row">Payeur</th><td>Finance l’achat</td><td>Le senior abonné ou l’enfant aidant. <span class="b h">H</span><br>L’APA finance seulement les GIR 1 à 4 ; crédit d’impôt de 50 % sur la téléassistance. <span class="b f">F</span><sup><a href="#s9">9</a> <a href="#s10">10</a></sup><details class="persona"><summary>Persona payeur</summary><div class="pcard"><p class="pname">Sophie, 54 ans</p><p class="pmeta">Fille aînée · aidante principale · travaille, enfants encore à charge</p><dl><div><dt>Sa situation</dt><dd>Elle fait partie des 725 000 aidants pivots, qui soutiennent un parent âgé tout en ayant des enfants. <span class="b f">F</span><sup><a href="#s11">11</a></sup><br>39 % des aidants pivots sont seuls à aider dans leur fratrie. <span class="b f">F</span><sup><a href="#s12">12</a></sup></dd></div><div><dt>Ce qu’elle attend</dt><dd>Être prévenue en cas de problème et garder le lien sans appeler tous les jours. <span class="b h">H</span><br>Elle paie déjà des petits abonnements de lien (5,99 à 17,99 €/mois). <span class="b f">F</span><sup><a href="#s13">13</a></sup></dd></div><div><dt>Ce qui la freine</dt><dd>L’épuisement : relances, fatigue, culpabilité (témoignages d’aidants). <span class="b f">F</span><sup><a href="#s14">14</a> <a href="#s15">15</a></sup><br>Une appli qui devient « une corvée ». <span class="b f">F</span><sup><a href="#s16">16</a></sup></dd></div><div><dt>Ce qui la fait payer</dt><dd>Une chute : 61 % des achats de téléassistance suivent une chute. <span class="b f">F</span><sup><a href="#s17">17</a></sup><br>Le crédit d’impôt de 50 %, ouvert à l’enfant qui paie. <span class="b f">F</span><sup><a href="#s18">18</a></sup></dd></div></dl><p class="pnote">Persona fictif construit à partir de la veille <span class="b h">H</span> ; les traits sont sourcés.</p></div></details></td></tr>
+<tr><th scope="row">Prescripteur</th><td>Recommande ou oriente</td><td>Le médecin traitant et l’équipe médico-sociale APA du département. <span class="b f">F</span><sup><a href="#s19">19</a> <a href="#s20">20</a> <a href="#s9">9</a></sup><br>Certaines mutuelles ; le bouche-à-oreille entre proches. <span class="b f">F</span><sup><a href="#s21">21</a> <a href="#s22">22</a></sup> <span class="b h">H</span></td></tr>
+<tr><th scope="row">Décideur</th><td>Tranche au final</td><td>En droit, le senior, qui s’abonne et consent. <span class="b f">F</span><sup><a href="#s23">23</a></sup><br>En pratique, l’enfant aidant, souvent après une chute : 61 % des achats de téléassistance (2016). <span class="b f">F</span><sup><a href="#s24">24</a></sup> <span class="b h">H</span><sup><a href="#s2">2</a> <a href="#s25">25</a></sup></td></tr>
+<tr><th scope="row">Fournisseur</th><td>Fait exister le produit</td><td>Les opérateurs de téléassistance : Vitaris, Filien, Allovie, La Poste, Présence Verte. <span class="b f">F</span><sup><a href="#s24">24</a> <a href="#s26">26</a> <a href="#s27">27</a></sup><br>Des start-up de capteurs (Domalys, SeniorAdom, Vitalbase) ; des faillites (Myxyty). <span class="b f">F</span><sup><a href="#s28">28</a> <a href="#s29">29</a> <a href="#s30">30</a></sup></td></tr>
+</tbody></table></div>
+<p class="sum">Pour le lien comme pour la santé, l’enfant aidant paie et pousse l’achat, mais c’est le parent qui vit avec l’offre : il faut convaincre les deux.</p>
+</div>
+</section>
+<section id="qq2" class="q">
+<div class="rail"><span class="qnum">Q2</span></div>
+<div class="qbody">
+<h2>Combien sont-ils ?</h2>
+<p class="lead">TAM, SAM, SOM.</p>
+<div class="tw"><table class=""><thead><tr><th scope="col">Niveau</th><th scope="col">Définition</th><th scope="col">Notre marché</th></tr></thead><tbody><tr><th scope="row">TAM · marché total</th><td>Tous ceux qui pourraient avoir le besoin</td><td>≈ 7,5 M de personnes de 75 ans et plus (750 000 abonnés à la téléassistance = 10 % des 75 ans et plus). <span class="b h">H</span><sup><a href="#s31">31</a></sup><br>Dépense actuelle en téléassistance : ≈ 250 M€ par an. <span class="b f">F</span><sup><a href="#s32">32</a></sup></td></tr>
+<tr><th scope="row">SAM · marché adressable</th><td>Ceux qu’une offre peut réellement toucher</td><td>Parents autonomes (GIR 5-6), vivant seuls, aidés par un enfant, non équipés : 0,2 à 0,6 M de foyers. <span class="b h">H</span><sup><a href="#s12">12</a> <a href="#s11">11</a></sup><br>De 15 à 218 M€ par an selon le prix (5,99 à 30 €/mois). <span class="b h">H</span><sup><a href="#s13">13</a> <a href="#s33">33</a></sup></td></tr>
+<tr><th scope="row">SOM · marché atteignable</th><td>Ce qu’un nouvel entrant peut capter de façon réaliste</td><td>600 à 3 000 foyers en 3 ans, soit 0,1 à 0,5 % du SAM. <span class="b h">H</span><br>Repère : 6 000 seniors équipés en montres via un réseau de résidences. <span class="b f">F</span><sup><a href="#s34">34</a></sup></td></tr>
+</tbody></table></div><h3>Deux méthodes de calcul</h3><div class="tw"><table class="calc"><thead><tr><th scope="col">Méthode</th><th scope="col">Calcul</th><th scope="col">Résultat</th></tr></thead><tbody><tr><th scope="row">Descendante</th><td>2,1 M d’enfants aidants <sup><a href="#s12">12</a></sup> × 75-80 % de parents en GIR 5-6 <sup><a href="#s12">12</a></sup> × 40 % vivant seuls <span class="b h">H</span> × 90 % non équipés <sup><a href="#s31">31</a></sup></td><td>≈ 0,6 M de foyers</td></tr>
+<tr><th scope="row">Ascendante</th><td>725 000 aidants pivots <sup><a href="#s11">11</a></sup> × 80 % × 40 % × 90 %, puis × 72 à 360 € par an <sup><a href="#s13">13</a> <a href="#s33">33</a></sup></td><td>≈ 0,21 M de foyers · 15 à 75 M€ par an</td></tr>
+</tbody></table></div>
+<p class="sum">Le double besoin touche 7,5 M de personnes de 75 ans et plus ; 0,2 à 0,6 M de foyers, un parent autonome et seul aidé par un enfant, ne sont encore équipés de rien.</p>
+</div>
+</section>
+<section id="qq3" class="q">
+<div class="rail"><span class="qnum">Q3</span></div>
+<div class="qbody">
+<h2>Qui y répond déjà ?</h2>
+
+<div class="tw"><table class=""><thead><tr><th scope="col">Type</th><th scope="col">Définition</th><th scope="col">Notre marché</th></tr></thead><tbody><tr><th scope="row">Concurrent direct</th><td>Même offre, même cible</td><td>Capteurs fixes au domicile, rien à porter : Domalys, Orme, SeniorAdom, Telegrafik, Vitalbase, détection par wi-fi. <span class="b f">F</span><sup><a href="#s35">35</a> <a href="#s36">36</a> <a href="#s37">37</a> <a href="#s38">38</a></sup><br>Aucune vente aux familles documentée. <span class="b h">H</span></td></tr>
+<tr><th scope="row">Concurrent indirect</th><td>Offre différente, même besoin</td><td>Téléassistance : 750 000 bénéficiaires, 20-30 €/mois. <span class="b f">F</span><sup><a href="#s31">31</a> <a href="#s33">33</a></sup><br>Montres (Apple Watch dès 269 €), robots compagnons (Cutii), gazettes familiales (Famileo, 260 000 familles). <span class="b f">F</span><sup><a href="#s39">39</a> <a href="#s40">40</a> <a href="#s41">41</a></sup></td></tr>
+<tr><th scope="row">Substitut</th><td>Une autre façon de régler le problème</td><td>La famille elle-même : 2,1 M d’enfants aidants qui appellent et passent. <span class="b f">F</span><sup><a href="#s12">12</a></sup><br>L’aide à domicile : 41 % des 80 ans et plus. <span class="b f">F</span><sup><a href="#s42">42</a></sup></td></tr>
+<tr><th scope="row">Ne rien faire</th><td>Garder la situation actuelle</td><td>90 % des 75 ans et plus ne sont pas équipés. <span class="b f">F</span><sup><a href="#s31">31</a></sup><br>61 % des achats de téléassistance suivent une chute : avant, on attend. <span class="b f">F</span><sup><a href="#s17">17</a></sup></td></tr>
+</tbody></table></div>
+<p class="sum">Le marché sépare les deux besoins : la téléassistance et les capteurs veillent sur la santé, les gazettes entretiennent le lien ; seul le substitut, la famille et son téléphone, couvre les deux, gratuitement, jusqu’à la première chute.</p>
+</div>
+</section>
+<section id="qq4" class="q">
+<div class="rail"><span class="qnum">Q4</span></div>
+<div class="qbody">
+<h2>Comment gagnent-ils de l’argent ?</h2>
+
+<div class="tw"><table class="models"><thead><tr><th scope="col">Modèle</th><th scope="col">Principe</th><th scope="col">Avantage</th><th scope="col">Risque</th><th scope="col">Exemple vu</th></tr></thead><tbody><tr><th scope="row">Achat unique</th><td>On paie une fois</td><td>Simple, rassurant</td><td>Pas de revenus récurrents</td><td>Apple Watch SE 3, dès 269 €. <span class="b f">F</span><sup><a href="#s39">39</a></sup></td></tr>
+<tr><th scope="row">Abonnement</th><td>On paie chaque mois</td><td>Revenus réguliers</td><td>Lassitude, résiliation</td><td>Téléassistance, 20-30 €/mois ; Famileo, 5,99-17,99 €/mois. <span class="b f">F</span><sup><a href="#s33">33</a> <a href="#s13">13</a></sup></td></tr>
+<tr><th scope="row">Hybride</th><td>Achat + abonnement</td><td>Revenus immédiats et réguliers</td><td>Prix total opaque</td><td>Bracelet 4G : 10-40 €/mois + 30-60 € d’installation. <span class="b f">F</span><sup><a href="#s43">43</a></sup></td></tr>
+<tr><th scope="row">Freemium</th><td>Gratuit, puis options payantes</td><td>Adoption rapide</td><td>Peu de gens paient</td><td>Life360 : application gratuite, formule payante. <span class="b f">F</span><sup><a href="#s44">44</a></sup></td></tr>
+<tr><th scope="row">Tiers payeur</th><td>Un autre paie pour l’utilisateur</td><td>Pas de frein au prix pour l’utilisateur</td><td>Le payeur décide sans l’utilisateur</td><td>APA (GIR 1-4) ; mutuelles (AÉSIO, Filien) ; crédit d’impôt de 50 %. <span class="b f">F</span><sup><a href="#s45">45</a> <a href="#s46">46</a> <a href="#s47">47</a> <a href="#s48">48</a></sup></td></tr>
+</tbody></table></div>
+<p class="sum">Le lien se vend à petit prix (5,99 €/mois), la sécurité plus cher (20 à 30 €/mois), presque toujours par abonnement ; l’aide publique porte sur la téléassistance, donc sur le seul volet sécurité.</p>
+</div>
+</section>
+<section id="qcarte" class="q">
+<div class="rail"><span class="qnum">Q4</span></div>
+<div class="qbody">
+<span class="kicker">Carte de positionnement</span><h2>Où se placent les offres ?</h2>
+
+<div class="map"><svg viewBox="0 0 640 520" role="img" aria-label="Carte de positionnement : promesse faite à l’aidant (lien à sécurité) et discrétion pour le senior (stigmatisant à discret)"><rect x="70.0" y="70.0" width="500.0" height="380.0" class="frame"/><line x1="320.0" y1="70.0" x2="320.0" y2="450.0" class="axis"/><line x1="70.0" y1="260.0" x2="570.0" y2="260.0" class="axis"/><rect x="320.0" y="70.0" width="125.0" height="114.0" class="gap"/><text x="328.0" y="162.0" class="gapt">Peu occupé :</text><text x="328.0" y="176.0" class="gapt">sécurité discrète + lien</text><text x="70.0" y="252.0" class="ax">← LIEN</text><text x="570.0" y="252.0" class="ax" text-anchor="end">SÉCURITÉ →</text><text x="326.0" y="58.0" class="ax">↑ DISCRET, RIEN À FAIRE</text><text x="326.0" y="474.0" class="ax">↓ STIGMATISANT, À PORTER</text><circle cx="508" cy="450" r="6" class="p t"/><text x="498" y="454" text-anchor="end" class="pl">Téléassistance</text><circle cx="445" cy="412" r="6" class="p t"/><text x="435" y="416" text-anchor="end" class="pl">Bracelet sans abonnement</text><circle cx="520" cy="379" r="6" class="p w"/><text x="510" y="383" text-anchor="end" class="pl">Montres seniors</text><circle cx="508" cy="346" r="6" class="p w"/><text x="498" y="350" text-anchor="end" class="pl">Apple Watch</text><circle cx="382" cy="355" r="6" class="p l"/><text x="392" y="359" text-anchor="start" class="pl">Life360</text><circle cx="95" cy="89" r="6" class="p l"/><text x="105" y="93" text-anchor="start" class="pl">Gazettes (Famileo)</text><circle cx="195" cy="288" r="6" class="p c"/><text x="205" y="292" text-anchor="start" class="pl">Robots compagnons</text><circle cx="195" cy="212" r="6" class="p c"/><text x="205" y="216" text-anchor="start" class="pl">Assistants vocaux</text><circle cx="551" cy="132" r="6" class="p d"/><text x="541" y="136" text-anchor="end" class="pl">Capteurs fixes</text><circle cx="551" cy="80" r="6" class="p d"/><text x="541" y="84" text-anchor="end" class="pl">Détection wi-fi</text><circle cx="445" cy="118" r="6" class="p d"/><text x="435" y="122" text-anchor="end" class="pl">Actimétrie</text></svg></div><ul class="leg"><li><i class="p t"></i>Téléassistance</li><li><i class="p w"></i>Montres et bracelets</li><li><i class="p d"></i>Capteurs au domicile</li><li><i class="p c"></i>Compagnons</li><li><i class="p l"></i>Lien familial</li></ul>
+<p class="note">Axe horizontal : la promesse faite à l’aidant, qui paie. Axe vertical : la discrétion pour le senior, qui doit accepter. Placement qualitatif de l’équipe. <span class="b h">H</span><sup><a href="#s17">17</a> <a href="#s8">8</a> <a href="#s34">34</a> <a href="#s39">39</a> <a href="#s35">35</a> <a href="#s36">36</a> <a href="#s38">38</a> <a href="#s41">41</a> <a href="#s40">40</a> <a href="#s44">44</a></sup></p>
+<p class="sum">Chaque offre choisit un côté : la sécurité, souvent portée et stigmatisante, ou le lien, sans aucune détection ; la case qui réunit lien et sécurité discrète reste peu occupée.</p>
+</div>
+</section>
+<section id="qq5" class="q">
+<div class="rail"><span class="qnum">Q5</span></div>
+<div class="qbody">
+<h2>Opportunités, menaces et gaps produit</h2>
+
+<div class="tw"><table class=""><thead><tr><th scope="col"></th><th scope="col">Définition</th><th scope="col">Notre marché</th></tr></thead><tbody><tr><th scope="row">Opportunité</th><td>Évolution externe favorable</td><td>De 2 M à 2,8 M de seniors en perte d’autonomie d’ici les années 2050. <span class="b f">F</span><sup><a href="#s49">49</a></sup><br>Objectif du secteur : de 10 % à 20 % des 75 ans et plus équipés d’ici 2030. <span class="b f">F</span><sup><a href="#s50">50</a></sup><br>Fin de la 2G : les transmetteurs doivent être renouvelés. <span class="b f">F</span><sup><a href="#s51">51</a></sup></td></tr>
+<tr><th scope="row">Menace</th><td>Évolution externe défavorable</td><td>Une analyse à visée médicale fait du logiciel un dispositif médical. <span class="b f">F</span><sup><a href="#s52">52</a> <a href="#s53">53</a></sup><br>Données de santé (RGPD) et transparence de l’IA (AI Act, 2026). <span class="b f">F</span><sup><a href="#s54">54</a> <a href="#s55">55</a></sup><br>Valeur de la téléassistance en stagnation, start-up en faillite. <span class="b f">F</span><sup><a href="#s56">56</a> <a href="#s57">57</a></sup></td></tr>
+<tr><th scope="row">Gap produit</th><td>Besoin réel que personne ne couvre bien</td><td>1. Détecter une chute sans rien porter : 90 % portent leur dispositif seulement quand ils sont seuls. <span class="b f">F</span><sup><a href="#s8">8</a> <a href="#s58">58</a></sup><br>2. Des alertes rares et fiables : 5 à 15 % de fausses alertes. <span class="b f">F</span><sup><a href="#s59">59</a> <a href="#s60">60</a></sup><br>3. Rassurer sans stigmatiser : 87 % voient la téléassistance comme un marqueur de dépendance. <span class="b f">F</span><sup><a href="#s17">17</a> <a href="#s34">34</a></sup></td></tr>
+</tbody></table></div>
+<p class="sum">La démographie fait grandir le double besoin, la réglementation santé et IA freine le volet médical ; aucune offre ne réunit les deux : veiller sans effort du senior, alerter sans épuiser l’aidant, garder le lien sans surveiller.</p>
+</div>
+</section>
+<section class="sources"><h2>Sources</h2><div><ol>
+<li id="s1"><a href="https://drees.solidarites-sante.gouv.fr/publications/700-000-seniors-en-perte-dautonomie-supplementaires-dici-2050">DREES : perte d&#x27;autonomie des seniors jusqu&#x27;en 2050</a></li>
+<li id="s2"><a href="https://drees.solidarites-sante.gouv.fr/sites/default/files/2021-10/DD83.pdf">Aider son parent âgé en ayant des enfants à charge (DD83)</a></li>
+<li id="s3"><a href="https://apps.apple.com/fr/app/id1018182135#avis-14520600855">Famileo apprécié : la famille contribue, les grands-parents attendent</a></li>
+<li id="s4"><a href="https://www.capretraite.fr/blog/maintien-a-domicile/les-erreurs-courantes-a-eviter-lors-de-lachat-dun-bracelet-anti-chute-pour-seniors/">Bracelet anti-chute : erreurs à éviter</a></li>
+<li id="s5"><a href="https://apps.apple.com/fr/app/id1018182135#avis-14520600855">Famileo : les grands-parents attendent</a></li>
+<li id="s6"><a href="https://apps.apple.com/fr/app/id1018182135#avis-14351440327">Famileo : une grand-mère ravie de sa gazette</a></li>
+<li id="s7"><a href="https://www.objetconnecte.com/etude-seniors-objets-connectes-1708/">Étude seniors et objets connectés (Linexio)</a></li>
+<li id="s8"><a href="https://www.tele-assistance-senior.fr/porter-teleassistance-toute-la-journee">Téléassistance : le non-port continu et ses raisons</a></li>
+<li id="s9"><a href="https://www.pour-les-personnes-agees.gouv.fr/vivre-a-domicile/aides-financieres/les-aides-financieres-pour-installer-une-teleassistance">Aides financières pour installer une téléassistance</a></li>
+<li id="s10"><a href="https://www.pour-les-personnes-agees.gouv.fr/vivre-a-domicile/aides-financieres/les-aides-fiscales-pour-l-aide-a-domicile">Crédit d&#x27;impôt aide à domicile : 50 % et enfant payeur</a></li>
+<li id="s11"><a href="https://drees.solidarites-sante.gouv.fr/communique-de-presse/725-000-aidants-pivots-soutiennent-leur-parent-age-tout-en-ayant-des-enfants">725 000 aidants pivots</a></li>
+<li id="s12"><a href="https://drees.solidarites-sante.gouv.fr/sites/default/files/2021-10/DD83.pdf">DREES DD83 : aider son parent âgé (enquête 2015)</a></li>
+<li id="s13"><a href="https://www.pole-ecoindustries.fr/famileo-service-en-ligne-de-gazette-familiale-pour-maintenir-le-lien-entre-generations-et-rompre-lisolement-des-proches/">Famileo : Pôle Éco-industries (mars 2026)</a></li>
+<li id="s14"><a href="https://www.reddit.com/r/CaregiverSupport/comments/1wupff7/long_time_lurker_first_time_poster/">Burn-out d&#x27;un aidant (2026-10-01)</a></li>
+<li id="s15"><a href="https://www.reddit.com/r/CaregiverSupport/comments/1wuyyzg/i_pray_to_die_daily_i_am_done/">Aidant en détresse (2026-10-01)</a></li>
+<li id="s16"><a href="https://apps.apple.com/fr/app/id1018182135#avis-14387598146">Famileo : appli devenue une corvée</a></li>
+<li id="s17"><a href="https://www.fredericserriere.com/797-000-personnes-equipees-dune-teleassistance-en-france/">797 000 personnes équipées de téléassistance (2016)</a></li>
+<li id="s18"><a href="https://www.pour-les-personnes-agees.gouv.fr/vivre-a-domicile/aides-financieres/les-aides-fiscales-pour-l-aide-a-domicile">Crédit d&#x27;impôt 50 % et enfant payeur</a></li>
+<li id="s19"><a href="https://www.cnsa.fr/sites/default/files/2024-04/la_teleassistance_pour_le_maintien_a_domicile_30avril2010.pdf">Téléassistance et maintien à domicile (École Polytechnique, 2010)</a></li>
+<li id="s20"><a href="https://www.silvereco.fr/les-seniors-et-les-objets-connectes-resultats-de-letude-institut-francais-des-seniors-medisite/3156228">Seniors et objets connectés (IFS / Medisite, 2016)</a></li>
+<li id="s21"><a href="https://www.aesio.fr/particulier/assurance-prevoyance/teleassistance">Téléassistance Sérélia (AÉSIO)</a></li>
+<li id="s22"><a href="https://www.harmonie-mutuelle.fr/marque/actualites/regions/harmonie-mutuelle-partenaire-famileo">Harmonie Mutuelle partenaire de Famileo</a></li>
+<li id="s23"><a href="https://www.pour-les-personnes-agees.gouv.fr/vivre-a-domicile/beneficier-d-aide-a-domicile/la-teleassistance">Téléassistance : à qui s&#x27;adresser, qui souscrit</a></li>
+<li id="s24"><a href="https://www.fredericserriere.com/797-000-personnes-equipees-dune-teleassistance-en-france/">797 000 personnes équipées de téléassistance en France</a></li>
+<li id="s25"><a href="https://drees.solidarites-sante.gouv.fr/communique-de-presse/725-000-aidants-pivots-soutiennent-leur-parent-age-tout-en-ayant-des-enfants">725 000 aidants pivots</a></li>
+<li id="s26"><a href="https://senior-autonomie.fr/maintien-domicile/bracelet-alarme-senior-comparatif/">Bracelets d&#x27;alarme seniors : comparatif 2026 de cinq offres</a></li>
+<li id="s27"><a href="https://www.aladom.fr/actualites/secteur-service/10017/quels-sont-les-acteurs-de-la-teleassistance-en-france/">Acteurs de la téléassistance en France</a></li>
+<li id="s28"><a href="https://www.marchedesseniors.com/chute-des-personnes-agees-6-start-up-francaises/21249">Chutes des seniors : six start-up françaises</a></li>
+<li id="s29"><a href="https://www.domalys.com/blog/actualites-5/detecteur-chute-personne-agee-121">Détecteurs de chute pour seniors : comparatif d&#x27;un fabricant</a></li>
+<li id="s30"><a href="https://www.objetconnecte.com/myxyty-liquidation/">Myxyty : liquidation de l&#x27;assistant vocal français</a></li>
+<li id="s31"><a href="https://www.afrata.fr/wp-content/uploads/2026/02/E%CC%81tude-AFRATA-2024.pdf">Étude AFRATA 2024 (source intéressée)</a></li>
+<li id="s32"><a href="https://www.xerfi.com/presentationetude/le-marche-de-la-teleassistance_sme125">Xerfi : marché de la téléassistance 2030</a></li>
+<li id="s33"><a href="https://www.smatis.fr/particuliers/teleassistance-pour-maintien-a-domicile/teleassistance-cout-et-remboursement/">Téléassistance : coûts et financements (SMATIS)</a></li>
+<li id="s34"><a href="https://www.longevite.xyz/p/comment-les-montres-connectees-ont">Montres connectées senior : échec du B2C, pivot B2B2C</a></li>
+<li id="s35"><a href="https://www.domalys.com/blog/actualites-5/detecteur-chute-personne-agee-121">Domalys : comparatif d&#x27;un fabricant</a></li>
+<li id="s36"><a href="https://www.silvereco.fr/orme-un-capteur-de-chute-destine-aux-personnes-fragiles/">Orme : capteur de profondeur (2016)</a></li>
+<li id="s37"><a href="https://korii.slate.fr/tech/start-up-francaise-detecte-chutes-personnes-agees-surveillance-wi-fi-ondes-seniors-dispositif-alerte-ia-zoe-care">Start-up détectant les chutes via le wi-fi (extrait seul)</a></li>
+<li id="s38"><a href="https://www.marchedesseniors.com/chute-des-personnes-agees-6-start-up-francaises/21249">Chutes des seniors : six start-up françaises</a></li>
+<li id="s39"><a href="https://www.apple.com/fr/shop/buy-watch/apple-watch-se">Apple France, Apple Watch SE 3</a></li>
+<li id="s40"><a href="https://www.enaco.fr/actualites/cutii-compagnon-seniors/">Cutii, robot compagnon</a></li>
+<li id="s41"><a href="https://www.bretagne-economique.com/portraits/famileo-260-000-familles-abonnees-et-des-horizons-europeens/">Famileo : portrait Bretagne Économique (déc. 2025)</a></li>
+<li id="s42"><a href="https://www.insee.fr/fr/statistiques/8383720">Insee : services à la personne d&#x27;ici 2050</a></li>
+<li id="s43"><a href="https://www.capretraite.fr/blog/maintien-a-domicile/bracelet-anti-chute-le-point-sur-loffre-en-2025/">Bracelets anti-chute en 2025</a></li>
+<li id="s44"><a href="https://apps.apple.com/fr/app/id384830320#avis-14573237948">Life360 : la localisation rassure la famille</a></li>
+<li id="s45"><a href="https://www.pour-les-personnes-agees.gouv.fr/vivre-a-domicile/aides-financieres/les-aides-financieres-pour-installer-une-teleassistance">Aides financières pour installer une téléassistance</a></li>
+<li id="s46"><a href="https://www.aesio.fr/particulier/assurance-prevoyance/teleassistance">AÉSIO, téléassistance Sérélia</a></li>
+<li id="s47"><a href="https://www.filien.com/teleassistance-mutuelle/">Filien, téléassistance prise en charge par la mutuelle</a></li>
+<li id="s48"><a href="https://www.economie.gouv.fr/particuliers/gerer-mon-argent/beneficier-daides-et-de-reductions-dimpots/tout-savoir-sur-le-credit-dimpot-lie-lemploi-dun-salarie-domicile">Crédit d&#x27;impôt : téléassistance éligible</a></li>
+<li id="s49"><a href="https://drees.solidarites-sante.gouv.fr/publications/700-000-seniors-en-perte-dautonomie-supplementaires-dici-2050">DREES : perte d&#x27;autonomie jusqu&#x27;en 2050</a></li>
+<li id="s50"><a href="https://www.cahiers-silvereconomie.fr/p/teleassistance-2030-comment-la-france">Téléassistance 2030 : doubler le taux d&#x27;équipement</a></li>
+<li id="s51"><a href="https://www.silvereco.fr/category/actu/securite-et-urgences-a-domicile/teleassistance/">Archives téléassistance Silvereco (consolidation, 2G)</a></li>
+<li id="s52"><a href="https://ansm.sante.fr/documents/reference/le-logiciel-ou-lapplication-sante-que-je-vais-mettre-sur-le-marche-releve-t-il-du-statut-de-dispositif-medical-dm-ou-de-dispositif-medical-de-diagnostic-in-vitro-dm-div">ANSM : quand un logiciel devient dispositif médical</a></li>
+<li id="s53"><a href="https://ansm.sante.fr/documents/reference/impact-des-nouveaux-reglements-europeens-sur-la-classification-des-logiciels">ANSM : classification des logiciels</a></li>
+<li id="s54"><a href="https://www.cnil.fr/fr/applications-mobiles-en-sante-et-protection-des-donnees-personnelles-les-questions-se-poser">CNIL : application mobile de santé (2018)</a></li>
+<li id="s55"><a href="https://www.studeria.fr/articles-de-blog/ai-act-definition-niveaux-risque-calendrier">AI Act : niveaux de risque et calendrier 2026</a></li>
+<li id="s56"><a href="https://www.entreprises.gouv.fr/la-dge/publications/lavenir-du-marche-de-la-teleassistance-et-des-services-associes">Avenir du marché de la téléassistance (DGE/PIPAME)</a></li>
+<li id="s57"><a href="https://www.objetconnecte.com/myxyty-liquidation/">Myxyty : liquidation</a></li>
+<li id="s58"><a href="https://www.filien.com/infos-conseils/faq-produits-personnes-agees/detecteur-de-chute/">Filien : limites de la détection</a></li>
+<li id="s59"><a href="https://www.autonomag.com/capteurs-de-chute-fonctionnement-efficacite/">Capteurs de chute : fonctionnement et fiabilité (guide 2026)</a></li>
+<li id="s60"><a href="https://www.seniors-en-mission.org/bracelet-anti-chute-senior-sans-abonnement-erreurs-frequentes-qui-limitent-lefficacite/">Bracelet anti-chute sans abonnement : pièges</a></li>
+</ol><p class="note">Toutes les sources viennent de la veille validée de l’équipe (dépôt Fil-rouge-1).</p></div></section>
+</main>

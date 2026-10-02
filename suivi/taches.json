@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T13:10",
+  "mise_a_jour": "2026-10-02T15:07",
   "phases": [
     {
       "id": "P0",
@@ -378,10 +378,12 @@
           "note": "Payeur × Capteurs, Décideur de fait × Famileo et × Capteurs, Déclencheur × Famileo. Aucune source n'existe : 3 à 5 entretiens (médecin traitant, service social hospitalier, aidants)."
         },
         {
-          "titre": "Questions suivantes de la leçon 2.1",
-          "statut": "a_faire",
-          "qui": "Lucas",
-          "note": "En attente de l'énoncé (photo de la diapo)."
+          "titre": "Questions 2 à 5 de la leçon 2.1 et carte de positionnement",
+          "statut": "a_valider",
+          "qui": "Clément + équipe d'agents",
+          "note": "Page unique Q1 à Q5 + carte, guidée par une question clé (lien et santé entre enfant et parent). Veille du dépôt uniquement, 60 sources. Personas payeur et utilisateur dans la Q1. Grille du panorama des acteurs (slide 14) à faire après validation.",
+          "date": "2026-10-02",
+          "lien": "S1-2026-2027/02-marche/rendus/analyse-marche-questions-1-5.html"
         }
       ]
     },
