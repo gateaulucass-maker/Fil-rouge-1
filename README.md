@@ -27,5 +27,6 @@ Thème : silver economy — rassurer les familles sur leurs proches âgés.
 
 ### Leçon 2.1 · Marché
 
-- **[Question 1 : qui utilise, qui paie, qui influence ?](02-marche/question-1-acteurs.html)** (HTML) — tableau des 5 rôles (utilisateur, payeur, prescripteur, décideur formel / de fait / déclencheur, fournisseur) sur 4 colonnes (marché silver tech, téléassistance, lien familial Famileo, capteurs ambiants), qui faut-il convaincre, 3 enseignements pour le produit, annexes et 68 sources. Produit par une équipe de 5 agents (analyste-veille, chercheur, stratège, contradicteur, designer).
+- **[Question 1 : qui utilise, qui paie, qui influence ?](02-marche/question-1-acteurs.html)** (HTML) — tableau simple des 5 rôles pour notre marché, comme l'exemple du prof, avec 7 sources officielles.
+  - [Version détaillée par segment](02-marche/question-1-detail-par-segment.html) (annexe : 4 colonnes, scores de fiabilité, 70 sources).
 

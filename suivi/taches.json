@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T11:44",
+  "mise_a_jour": "2026-10-02T11:56",
   "phases": [
     {
       "id": "P0",
@@ -203,7 +203,7 @@
           "qui": "Équipe d'agents",
           "date": "2026-10-02",
           "lien": "02-marche/question-1-acteurs.html",
-          "note": "Tableau 5 rôles × 4 colonnes, renvois triés par fiabilité puis pertinence. Bilan : 9 cases solides, 15 partielles, 4 fragiles. À relire, surtout les cases en hypothèse.",
+          "note": "Tableau simple, une colonne pour tout le marché, comme l'exemple du prof. 7 sources officielles. La version détaillée par segment reste en annexe.",
           "etapes": [
             {
               "titre": "Preuves tirées de la veille validée",
@@ -252,6 +252,18 @@
               "titre": "Version v3 vérifiée et page mise à jour",
               "statut": "termine",
               "qui": "stratège + contradicteur + designer",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Version par segments (4 colonnes, scores) : trop complexe",
+              "statut": "a_refaire",
+              "qui": "Lucas",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Tableau simple, une colonne marché",
+              "statut": "termine",
+              "qui": "Claude",
               "date": "2026-10-02"
             },
             {
