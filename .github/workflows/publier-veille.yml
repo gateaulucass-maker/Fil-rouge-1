@@ -1,0 +1,26 @@
+# Publie la page de veille hebdomadaire sur main (GitHub Pages)
+# quand la tâche planifiée Claude la pousse sur sa branche de travail claude/…
+name: Publier la veille hebdo
+on:
+  push:
+    branches: ["claude/**", "veille/**"]
+    paths: ["veille-hebdo/**"]
+permissions:
+  contents: write
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Copier veille-hebdo/ depuis la branche de la veille
+        run: |
+          git fetch origin "${GITHUB_REF_NAME}"
+          git checkout "origin/${GITHUB_REF_NAME}" -- veille-hebdo/
+          if git diff --cached --quiet; then echo "Rien à publier"; exit 0; fi
+          git config user.name "veille-hebdo-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -m "Veille hebdo publiée depuis ${GITHUB_REF_NAME}"
+          git push origin main
