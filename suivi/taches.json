@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T12:51",
+  "mise_a_jour": "2026-10-02T12:54",
   "phases": [
     {
       "id": "P0",
@@ -67,6 +67,14 @@
               "qui": "agent"
             }
           ]
+        },
+        {
+          "titre": "Rangement du dépôt selon le CLAUDE.md (semestre, phase, interne / rendus)",
+          "statut": "termine",
+          "qui": "Claude",
+          "date": "2026-10-02",
+          "lien": "CLAUDE.md",
+          "note": "01-veille et 02-marche déplacés dans S1-2026-2027/ (rendus/ et interne/<prénom>/), pipeline dans 01-veille/interne/commun/, chemins des commandes, scripts, pages, README et suivi mis à jour. Accord des 3 donné par Lucas."
         }
       ]
     },
@@ -79,7 +87,7 @@
           "statut": "termine",
           "qui": "Lucas",
           "date": "2026-10-01",
-          "lien": "01-veille/apple-watch-vs-famileo.html",
+          "lien": "S1-2026-2027/01-veille/rendus/apple-watch-vs-famileo.html",
           "note": "Grille en six critères. Enseignement : la sécurité demande un effort au senior, le lien n'en demande aucun."
         },
         {
@@ -87,7 +95,7 @@
           "statut": "termine",
           "qui": "Claude",
           "date": "2026-10-01",
-          "lien": "01-veille/veille-silvertech/README.md",
+          "lien": "S1-2026-2027/01-veille/interne/commun/veille-silvertech/README.md",
           "note": "Collecte RSS, avis App Store, recherche web ; filtre sans IA ; qualification par agents ; score de fiabilité par script ; revue humaine.",
           "etapes": [
             {
@@ -119,7 +127,7 @@
               "titre": "Annexe « dispositif de veille » pour la fiche",
               "statut": "termine",
               "date": "2026-10-01",
-              "lien": "01-veille/veille-silvertech/docs/dispositif-veille.md"
+              "lien": "S1-2026-2027/01-veille/interne/commun/veille-silvertech/docs/dispositif-veille.md"
             }
           ]
         },
@@ -173,7 +181,7 @@
           "statut": "termine",
           "qui": "Claude",
           "date": "2026-10-01",
-          "lien": "01-veille/veille-silvertech/rapports/rapport-2026-S40.html",
+          "lien": "S1-2026-2027/01-veille/interne/commun/veille-silvertech/rapports/rapport-2026-S40.html",
           "note": "La synthèse de l'agent décrit l'état d'avant la revue ; la prochaine sera faite au prochain /veille."
         },
         {
@@ -181,7 +189,7 @@
           "statut": "a_refaire",
           "qui": "Claude",
           "date": "2026-10-02",
-          "lien": "01-veille/fiche-veille-silvertech.html",
+          "lien": "S1-2026-2027/01-veille/rendus/fiche-veille-silvertech.html",
           "note": "Construite sur 130 éléments ; la base en compte 164 et les scores ont changé. À régénérer et à relire (texte d'analyse)."
         },
         {
@@ -284,7 +292,7 @@
           "statut": "a_valider",
           "qui": "Équipe d'agents",
           "date": "2026-10-02",
-          "lien": "02-marche/question-1-acteurs.html",
+          "lien": "S1-2026-2027/02-marche/rendus/question-1-acteurs.html",
           "note": "Tableau simple, une colonne pour tout le marché, comme l'exemple du prof. 7 sources officielles. La version détaillée par segment reste en annexe.",
           "etapes": [
             {

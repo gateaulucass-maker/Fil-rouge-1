@@ -71,7 +71,7 @@ Famileo, Présence Verte, Vitaris, Filien (ADMR), Telegrafik (Otono-me), La Post
 Pour chacun : y a-t-il une nouveauté datée de la fenêtre de collecte (lancement, prix, levée de fonds, arrêt, partenariat, chiffre d'usage) ? Si non, écris « Rien de nouveau cette semaine ». La liste peut être enrichie : si un nouvel acteur revient au moins 2 semaines de suite, propose-le dans la synthèse sans l'ajouter toi-même.
 
 ### Sources
-- **Flux suivis en continu (source n° 1, toujours lus en premier)** : les mêmes flux que le pipeline de veille de l'équipe, définis dans `01-veille/veille-silvertech/config/sources.yaml` et lus par le script `automatisation/collecte_flux.py` :
+- **Flux suivis en continu (source n° 1, toujours lus en premier)** : les mêmes flux que le pipeline de veille de l'équipe, définis dans `S1-2026-2027/01-veille/interne/commun/veille-silvertech/config/sources.yaml` et lus par le script `automatisation/collecte_flux.py` :
   - les **13 Google Alerts** (une par information requise du catalogue : marché, démographie, acteurs, prix, réussites et échecs, levées de fonds, promesses, abandon, détection de chute, CNIL, dispositif médical, AI Act, propriété intellectuelle) ;
   - les médias **Silvereco, Maddyness, FrenchWeb** et l'actualité de la **CNIL** ;
   - les communautés **Reddit** r/nocode, r/AgingParents, r/CaregiverSupport (témoignages d'aidants et retours no-code) ;
@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS veille_config (
 ## 9. Page HTML de rendu
 
 - Une seule page, `veille-hebdo/index.html`, mise à jour chaque jeudi à la même adresse. Les données de la semaine sont écrites dans la page au moment de la publication : la page ne se connecte jamais à Neon et ne contient jamais d'identifiant, de mot de passe ou de chaîne de connexion.
-- Style : suisse, sobre, fond blanc, grande typographie alignée à gauche, grille nette, filets fins, orange (#e8571c) pour ce qui est nouveau ou à surveiller, bleu (#1f3fbf) pour le reste. Polices Archivo et IBM Plex Mono (Google Fonts). Lisible sur téléphone (390 px sans défilement horizontal). Pour la cohérence visuelle, inspire-toi de `01-veille/fiche-veille-silvertech.html` dans le dépôt.
+- Style : suisse, sobre, fond blanc, grande typographie alignée à gauche, grille nette, filets fins, orange (#e8571c) pour ce qui est nouveau ou à surveiller, bleu (#1f3fbf) pour le reste. Polices Archivo et IBM Plex Mono (Google Fonts). Lisible sur téléphone (390 px sans défilement horizontal). Pour la cohérence visuelle, inspire-toi de `S1-2026-2027/01-veille/rendus/fiche-veille-silvertech.html` dans le dépôt.
 - En-tête : « Veille Générations Connectées », semaine du jour, nombre de fiches ajoutées, date de la prochaine exécution : le jeudi suivant, calculée avec une commande (par exemple `date -v+thu -v+1d +%d/%m/%Y` sur macOS), jamais devinée.
 - Section 1, **Synthèse de la semaine** : les 3 à 5 lignes de l'étape 7.
 - Section 2, **Nouveautés de la semaine** : une carte par fiche avec les 8 champs, l'axe et la pertinence en étiquettes, le lien vers la source. Triées par pertinence, puis par date.

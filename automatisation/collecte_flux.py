@@ -1,6 +1,6 @@
 """Collecte des flux de la veille (mêmes sources que le pipeline /veille) pour la veille du jeudi.
 
-Lit 01-veille/veille-silvertech/config/sources.yaml : 13 Google Alerts, médias (Silvereco,
+Lit S1-2026-2027/01-veille/interne/commun/veille-silvertech/config/sources.yaml : 13 Google Alerts, médias (Silvereco,
 Maddyness, FrenchWeb, CNIL), Reddit (3 communautés), avis App Store (4 applications).
 N'écrit rien en base : affiche une liste JSON de candidats datés sur la sortie standard.
 
@@ -23,7 +23,7 @@ from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 RACINE = Path(__file__).resolve().parent.parent
-PIPELINE = RACINE / "01-veille" / "veille-silvertech"
+PIPELINE = RACINE / "S1-2026-2027" / "01-veille" / "interne" / "commun" / "veille-silvertech"
 sys.path.insert(0, str(PIPELINE / "scripts"))
 
 try:

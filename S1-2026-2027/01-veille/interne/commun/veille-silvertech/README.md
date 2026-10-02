@@ -23,7 +23,7 @@ Le **dernier rapport** est dans [`rapports/`](rapports/) : télécharger le fich
 
 1. Installer [Python 3.11+](https://www.python.org/downloads/) et [Claude Code](https://claude.com/claude-code).
 2. Cloner le dépôt : `git clone https://github.com/gateaulucass-maker/Fil-rouge-1.git`
-3. Aller dans le dossier : `cd Fil-rouge-1/01-veille/veille-silvertech`
+3. Aller dans le dossier : `cd Fil-rouge-1/S1-2026-2027/01-veille/interne/commun/veille-silvertech`
 4. Créer l'environnement : `python3 -m venv .venv`
 5. Installer les dépendances : `.venv/bin/pip install -r requirements.txt`
 6. Copier la configuration : `cp .env.example .env`
@@ -34,7 +34,7 @@ Le **dernier rapport** est dans [`rapports/`](rapports/) : télécharger le fich
 
 ## Usage hebdomadaire
 
-Ouvrir un terminal, aller dans le dépôt (`cd Fil-rouge-1`, ou directement `cd Fil-rouge-1/01-veille/veille-silvertech`), lancer `claude`, puis taper :
+Ouvrir un terminal, aller dans le dépôt (`cd Fil-rouge-1`, ou directement `cd Fil-rouge-1/S1-2026-2027/01-veille/interne/commun/veille-silvertech`), lancer `claude`, puis taper :
 
 | Commande | Quand | Ce que ça fait |
 |---|---|---|

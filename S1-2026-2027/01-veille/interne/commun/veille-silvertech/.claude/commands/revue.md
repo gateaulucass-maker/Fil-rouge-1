@@ -4,7 +4,7 @@ argument-hint: "[axe] — optionnel : marche, concurrence, usagers, techno, regl
 ---
 
 **Avant tout**, place-toi dans le dossier du pipeline (cela marche où que Claude ait été lancé dans le dépôt) :
-`cd "$(git rev-parse --show-toplevel)/01-veille/veille-silvertech"`
+`cd "$(git rev-parse --show-toplevel)/S1-2026-2027/01-veille/interne/commun/veille-silvertech"`
 
 Aide l'utilisateur à faire la revue humaine de la veille.
 

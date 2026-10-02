@@ -4,7 +4,7 @@ argument-hint: "[plafond d'éléments à qualifier, défaut 100]"
 ---
 
 **Avant tout**, place-toi dans le dossier du pipeline (cela marche où que Claude ait été lancé dans le dépôt) :
-`cd "$(git rev-parse --show-toplevel)/01-veille/veille-silvertech"`
+`cd "$(git rev-parse --show-toplevel)/S1-2026-2027/01-veille/interne/commun/veille-silvertech"`
 
 Lance le pipeline de veille complet. Plafond de qualification : $ARGUMENTS (100 si vide). Toutes les commandes depuis la racine du projet avec `.venv/bin/python`.
 

@@ -46,16 +46,19 @@ S2-2026-2027/
   01-…/
 suivi/          # tâches et statuts de toute l'année (suivi.html généré)
 automatisation/ # scripts et prompts partagés (veille hebdo…)
+veille-hebdo/   # page de la veille du jeudi (réécrite par la veille automatique)
 ```
 
 Règles de création :
 - Un nouveau semestre : `S<n>-2026-2027/`. Une nouvelle phase : `NN-nom-court/`, numérotée dans l'ordre du semestre (`03-persona/`). Chaque nouvelle phase est créée **avec** `interne/clement/`, `interne/lucas/`, `interne/camille/`, `interne/commun/` et `rendus/`. Mettre un `.gitkeep` dans les dossiers vides.
-- Aucun nouveau dossier à la racine en dehors de `S*/`, `suivi/` et `automatisation/` sans accord de l'équipe.
+- Aucun nouveau dossier à la racine en dehors de `S*/`, `suivi/`, `automatisation/` et `veille-hebdo/` (page de la veille du jeudi) sans accord de l'équipe.
 - Noms de fichiers et de dossiers : minuscules, sans accent ni espace, mots séparés par des tirets (`question-2-taille-marche.html`).
 - `rendus/` ne contient que des versions finales, avec un nom qui dit ce que c'est (`question-1-acteurs.html`, `fiche-veille-silvertech.html`). Les brouillons, données et essais vont dans `interne/`.
 - Quand un rendu est ajouté, l'agent ajoute son lien dans le `README.md` (section du semestre et de la phase) et met à jour `suivi/taches.json`.
 
-> **Migration en attente.** Les dossiers actuels `01-veille/` et `02-marche/` sont encore à la racine. On les déplacera dans `S1-2026-2027/` en une seule fois, avec l'accord des 3 et sans travail en cours non poussé, car les chemins du pipeline de veille et des liens du README changent. D'ici là, on garde les chemins actuels.
+> **Migration faite le 2 octobre 2026** (accord des 3) : `01-veille/` et `02-marche/` sont dans `S1-2026-2027/`. Le pipeline de veille est dans `S1-2026-2027/01-veille/interne/commun/veille-silvertech/`.
+>
+> **Exception validée** : `veille-hebdo/` reste à la racine. C'est la page publiée chaque jeudi par la veille automatique, à l'adresse fixe https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/ ; seule la veille automatique la réécrit.
 
 ## 4. Le rythme de l'année
 
@@ -85,4 +88,4 @@ Avant chaque commit, l'agent vérifie `git diff --cached` et refuse de commiter 
 4. Il vérifie le diff (section 5), commite avec un message clair, fait `git pull --rebase`, puis `git push`.
 5. Il ne pousse que si le membre le lui demande, et dit ce qu'il a poussé.
 
-Les règles du pipeline de veille (`01-veille/veille-silvertech/CLAUDE.md`) s'ajoutent à celles-ci pour ce dossier.
+Les règles du pipeline de veille (`S1-2026-2027/01-veille/interne/commun/veille-silvertech/CLAUDE.md`) s'ajoutent à celles-ci pour ce dossier.

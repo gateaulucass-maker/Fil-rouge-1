@@ -1,4 +1,4 @@
-"""Génère la fiche de veille HTML (01-veille/fiche-veille-silvertech.html) à partir des éléments validés.
+"""Génère la fiche de veille HTML (S1-2026-2027/01-veille/rendus/fiche-veille-silvertech.html) à partir des éléments validés.
 
 Les données (faits, signaux, bibliographie, chiffres) viennent de la base ; le texte d'analyse
 ci-dessous (THESE, AXE_TEXTE, IMPLICATIONS, LIMITES) a été rédigé pour la fiche d'octobre 2026
@@ -15,7 +15,7 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RACINE, "scripts"))
 from common import catalogue, connexion  # noqa: E402
 
-SORTIE = os.path.join(os.path.dirname(RACINE), "fiche-veille-silvertech.html")
+SORTIE = os.path.join(RACINE, "..", "..", "..", "rendus", "fiche-veille-silvertech.html")
 
 AXES = [("marche", "Marché"), ("concurrence", "Concurrence"), ("usagers", "Usagers"),
         ("techno", "Technologie"), ("reglementaire", "Réglementaire")]

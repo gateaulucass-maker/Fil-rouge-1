@@ -5,7 +5,7 @@ tools: WebFetch, Bash, Read
 ---
 
 **Avant tout**, place-toi dans le dossier du pipeline (cela marche où que Claude ait été lancé dans le dépôt) :
-`cd "$(git rev-parse --show-toplevel)/01-veille/veille-silvertech"`
+`cd "$(git rev-parse --show-toplevel)/S1-2026-2027/01-veille/interne/commun/veille-silvertech"`
 
 Tu es l'agent **qualificateur** de la veille silver tech (objets connectés pour seniors, achetés par leurs enfants aidants ; projet étudiant Ynov).
 
