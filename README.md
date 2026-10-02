@@ -14,6 +14,7 @@ Thème : silver economy — rassurer les familles sur leurs proches âgés.
 
 ### Phase 1 · Veille
 
+- **[Fiche de veille « Silver tech / marché & règles »](01-veille/fiche-veille-silvertech.html)** (HTML) — **le livrable** : thèse, chiffres clés, 5 axes, signaux usagers, positionnement, 5 principes pour le produit, méthode et 130 sources.
 - [Apple Watch / Famileo](01-veille/apple-watch-vs-famileo.html) — grille comparative en six critères (promesse, acheteur/utilisateur, modèle éco, adoption, rejet, hypothèse business).
   Enseignement : l'Apple Watch rassure l'enfant mais demande un effort au senior ; Famileo ne demande rien au senior mais ne détecte aucun danger. Notre produit se joue entre les deux.
 - [Pipeline de veille silver tech](01-veille/veille-silvertech/) — collecte RSS / avis App Store / recherche web, filtre sans IA, qualification par agents Claude, score de fiabilité par script, revue humaine. **Mode d'emploi pour l'équipe : [README du pipeline](01-veille/veille-silvertech/README.md).**

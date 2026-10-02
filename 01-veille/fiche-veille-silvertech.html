@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fiche de veille silver tech</title>
+<meta name="description" content="Fiche de veille Marché et réglementation silver tech, PFR Générations Connectées, Ynov B2.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#fff;--fg:#111418;--muted:#5d636b;--hair:#d5d7d9;--soft:#f5f5f3;--orange:#e8571c;--blue:#1f3fbf;
+--ok:#1d7a46;--warn:#a86400;--low:#8a8f96;--on:#fff;
+--display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(28px,6vw,72px) clamp(16px,4vw,48px) 64px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 32px;font:11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;
+color:var(--muted);border-top:2px solid var(--fg);padding-top:12px}.meta b{color:var(--fg);font-weight:500}
+h1{font-weight:800;font-size:clamp(46px,9.4vw,124px);line-height:.9;letter-spacing:-.04em;margin:clamp(28px,5vw,56px) 0 0;text-wrap:balance}
+h1 .o{color:var(--orange)}h1 .b{color:var(--blue)}h1 .sl{font-weight:400;color:var(--muted)}
+.lede{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;margin-top:clamp(28px,4vw,44px)}
+.lede .k{grid-column:1/span 4;padding-top:6px}
+.lede p{grid-column:5/span 8;margin:0;font-size:clamp(19px,2vw,26px);line-height:1.32;font-weight:700;letter-spacing:-.012em;max-width:34ch;text-wrap:pretty}
+.toc{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;margin-top:40px;border-top:1px solid var(--hair);padding-top:14px}
+.toc .k{grid-column:1/span 4}.toc nav{grid-column:5/span 8;display:flex;flex-wrap:wrap;gap:8px 22px}
+.toc a{text-decoration:none;font-weight:700;display:inline-flex;gap:8px;align-items:baseline}
+.toc a span{font:11px var(--mono);color:var(--orange)}.toc a:hover{color:var(--orange)}
+section{margin-top:clamp(56px,8vw,96px)}
+.sec-h{border-top:2px solid var(--fg);padding-top:14px}
+h2{font-weight:800;font-size:clamp(26px,3.4vw,44px);line-height:1.02;letter-spacing:-.03em;margin:6px 0 0;text-wrap:balance}
+h3{margin:0;font-size:17px;letter-spacing:-.01em}
+.kfs{display:grid;grid-template-columns:repeat(4,1fr);margin-top:22px;border-top:1px solid var(--fg)}
+.kf{padding:18px 20px 20px 0;border-bottom:1px solid var(--hair);min-width:0}
+.kf:not(:nth-child(4n)){border-right:1px solid var(--hair);margin-right:0}.kf:not(:nth-child(4n+1)){padding-left:20px}
+.kv{font-weight:800;font-size:clamp(30px,3.4vw,44px);letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums}
+.kf:nth-child(-n+4) .kv{color:var(--blue)}.kf:nth-child(n+5) .kv{color:var(--orange)}
+.kt{margin-top:10px;font-size:14px;line-height:1.4}.ks{margin-top:8px;font:11px var(--mono);color:var(--muted)}
+.kcap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:10px;font:11px var(--mono);color:var(--muted);letter-spacing:.04em}
+.kcap b{font-weight:500}.kcap .b{color:var(--blue)}.kcap .o{color:var(--orange)}
+.axe-h{display:grid;grid-template-columns:3fr 9fr;gap:0 24px;border-top:2px solid var(--fg);padding-top:14px}
+.axe-n{font-weight:800;font-size:clamp(56px,8vw,104px);line-height:.85;letter-spacing:-.05em;color:var(--orange)}
+#axe-marche .axe-n,#axe-techno .axe-n{color:var(--blue)}#axe-usagers .axe-n{color:var(--fg)}
+.axe-meta{margin-top:10px;font:11.5px var(--mono);color:var(--muted)}
+.points{list-style:none;counter-reset:p;margin:26px 0 0;padding:0;display:grid;grid-template-columns:3fr 9fr;gap:0 24px}
+.points li{grid-column:2;counter-increment:p;display:grid;grid-template-columns:34px 1fr;gap:10px;padding:12px 0;border-top:1px solid var(--hair);
+font-size:16.5px;line-height:1.5;max-width:76ch}
+.points li::before{content:counter(p,upper-alpha);font:500 12px var(--mono);color:var(--muted);padding-top:4px}
+.refs{font:500 10.5px var(--mono);margin-left:2px;white-space:nowrap}
+.refs a.ref{text-decoration:none;color:var(--orange)}.refs a.ref:hover{text-decoration:underline}
+.tbl{overflow-x:auto;margin-top:24px}
+table{width:100%;border-collapse:collapse}
+.faits th{text-align:left;font:10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:400;
+padding:8px 10px;border-bottom:1px solid var(--fg)}
+.faits td{padding:12px 10px;border-bottom:1px solid var(--hair);vertical-align:top;font-size:14px}
+.faits td.num a{font:500 12px var(--mono);color:var(--muted);text-decoration:none}
+.faits td.code{font:500 12px var(--mono)}
+.faits .t{font-weight:700;line-height:1.3}.faits .res{color:var(--muted);margin-top:4px;line-height:1.45;max-width:70ch}
+.faits ul.ch{margin:8px 0 0;padding-left:16px;font-size:13px}.faits ul.ch .src{color:var(--muted)}
+.faits td.srcc{font:12px var(--mono);color:var(--muted);white-space:nowrap}
+.faits td.sc{text-align:center;white-space:nowrap}
+.pill{display:inline-block;min-width:26px;padding:2px 6px;font:700 12px var(--mono);border:1.5px solid currentColor}
+.pill.hi{color:var(--ok)}.pill.mid{color:var(--warn)}.pill.lo{color:var(--low)}
+.pert{font-size:11px;letter-spacing:2px;color:var(--orange)}
+.sig-grid{display:grid;grid-template-columns:4fr 8fr;gap:24px 40px;margin-top:24px}
+.hbars .k{margin-bottom:12px}
+.hb{display:grid;grid-template-columns:1fr 34px;gap:4px 10px;align-items:center;margin-bottom:12px}
+.hl{grid-column:1/-1;font-size:13.5px;font-weight:500}
+.hbar{height:10px;background:linear-gradient(90deg,var(--orange) var(--w),var(--soft) var(--w))}
+.hbar.pos{background:linear-gradient(90deg,var(--blue) var(--w),var(--soft) var(--w))}
+.hv{font:700 13px var(--mono);text-align:right}
+.note{font-size:12.5px;color:var(--muted);margin-top:14px}
+.sgs{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.sg{border-top:1px solid var(--fg);padding:12px 0 18px;min-width:0}
+.sg-h{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.sg-h span{font:11px var(--mono);color:var(--muted)}
+.sg-c{display:flex;gap:10px;margin:6px 0 8px;font:700 12px var(--mono)}.cp{color:var(--blue)}.cn{color:var(--orange)}
+blockquote{margin:8px 0 0;padding:2px 0 2px 12px;font-size:14px;line-height:1.45}
+blockquote.p{border-left:3px solid var(--blue)}blockquote.n{border-left:3px solid var(--orange)}
+.pos-grid{display:grid;grid-template-columns:7fr 5fr;gap:24px 40px;margin-top:24px;align-items:start}
+.pos{margin:0}.pos svg{width:100%;height:auto;display:block}
+.pos .frame{fill:none;stroke:var(--fg);stroke-width:1.5}.pos .mid{stroke:var(--hair);stroke-width:1}
+.pos .zone{fill:none;stroke:var(--fg);stroke-width:1.5;stroke-dasharray:5 4}
+.pos .zl{font:700 12px var(--display);fill:var(--fg)}
+.pos .pt.o{fill:var(--orange)}.pos .pt.b{fill:var(--blue)}
+.pos .pl{font:700 12.5px var(--display);fill:var(--fg)}.pos .ps{font:10.5px var(--mono);fill:var(--muted)}
+.pos .ax{font:11px var(--mono);fill:var(--muted);letter-spacing:.04em}
+.pos-txt p{margin:0 0 14px;font-size:16px;line-height:1.5}.pos-txt b.o{color:var(--orange)}.pos-txt b.b{color:var(--blue)}
+.impl{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--fg)}
+.impl li{padding:16px 18px 20px 0;min-width:0}.impl li+li{padding-left:18px;border-left:1px solid var(--hair)}
+.impl .in{display:block;font:800 34px var(--display);letter-spacing:-.04em;color:var(--orange);line-height:1;margin-bottom:12px}
+.impl h3{font-size:16px;line-height:1.2}.impl p{margin:8px 0 0;font-size:14px;line-height:1.5;color:var(--fg)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px 48px;margin-top:24px}
+.two ul{margin:0;padding-left:18px}.two li{margin-bottom:10px;font-size:14.5px}
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--fg);margin-top:4px}
+.pipe div{padding:12px;border-right:1px solid var(--hair)}.pipe div:last-child{border-right:0}
+.pipe b{display:block;font:800 26px var(--display);letter-spacing:-.03em}.pipe span{font:10.5px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.pipe div:last-child b{color:var(--orange)}
+.bib{list-style:none;padding:0;margin:24px 0 0;columns:2;column-gap:40px;font-size:12.5px;line-height:1.45}
+.bib li{display:grid;grid-template-columns:30px 1fr;gap:6px;break-inside:avoid;margin-bottom:8px}
+.bib li:target{background:color-mix(in srgb,var(--orange) 12%,transparent)}
+.bib .bn{font:500 11px var(--mono);color:var(--orange)}.bib a{color:var(--muted);overflow-wrap:anywhere;text-decoration-color:var(--hair)}
+footer{margin-top:72px;border-top:1px solid var(--hair);padding-top:14px;font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media (max-width:900px){
+  .kfs{grid-template-columns:1fr 1fr}.kf{padding:16px 14px 16px 0!important;border-right:0!important}
+  .kf:nth-child(odd){border-right:1px solid var(--hair)!important}.kf:nth-child(even){padding-left:14px!important}
+  .impl{grid-template-columns:1fr 1fr}.impl li{border-left:0!important;padding-left:0!important;border-bottom:1px solid var(--hair)}
+  .sig-grid,.pos-grid{grid-template-columns:1fr}.sgs{grid-template-columns:1fr}
+}
+@media (max-width:680px){
+  .lede,.toc,.axe-h,.points,.two{grid-template-columns:1fr}.lede .k,.lede p,.toc .k,.toc nav,.points li{grid-column:1}
+  .lede .k,.toc .k{margin-bottom:8px}.axe-n{font-size:56px;margin-bottom:8px}
+  .impl{grid-template-columns:1fr}.bib{columns:1}
+  .pipe{grid-template-columns:1fr 1fr}.pipe div{border-bottom:1px solid var(--hair)}
+  .faits th:nth-child(2),.faits td.code,.faits th:nth-child(4),.faits td.srcc{display:none}
+  .faits td{padding:10px 6px}
+}
+@media print{
+  body{font-size:11pt}.wrap{max-width:none;padding:0}.toc{display:none}
+  section{break-inside:auto}.faits tr,.kf,.sg,.impl li{break-inside:avoid}
+  a{text-decoration:none}.bib{columns:2}
+}
+</style></head><body><div class="wrap">
+
+<div class="meta"><span><b>Ynov</b> B2 Product Builder No-Code</span><span>PFR Générations Connectées</span>
+<span>Phase 1 · Veille</span><span>Octobre 2026</span><span>130 éléments validés</span></div>
+
+<h1><span class="o">Silver tech</span> <span class="sl">/</span><br><span class="b">marché &amp; règles</span></h1>
+
+<div class="lede"><div class="k">Fiche de veille<br>Thèse</div><p>Le besoin de sécurité à domicile est massif et ne fera que grandir. Pourtant, les produits qui détectent un danger demandent un effort au senior, et c&#x27;est cet effort qui les fait abandonner. Ceux qui ne lui demandent rien sont appréciés, mais ne protègent de rien.</p></div>
+
+<div class="toc"><div class="k">Sommaire</div><nav><a href="#axe-marche"><span>01</span>Marché</a><a href="#axe-concurrence"><span>02</span>Concurrence</a><a href="#axe-usagers"><span>03</span>Usagers</a><a href="#axe-techno"><span>04</span>Technologie</a><a href="#axe-reglementaire"><span>05</span>Réglementaire</a><a href="#signaux"><span>06</span>Signaux</a>
+<a href="#position"><span>07</span>Positionnement</a><a href="#implications"><span>08</span>Implications</a><a href="#methode"><span>09</span>Méthode</a></nav></div>
+
+<section id="chiffres"><div class="sec-h"><div class="k">Chiffres clés</div><h2>Le besoin, et le frein</h2></div>
+<div class="kfs"><div class="kf"><div class="kv">2 → 2,8 M</div><div class="kt">seniors de 60 ans et plus en perte d&#x27;autonomie, de 2021 aux années 2050</div><div class="ks">Insee, Drees <sup class="refs"><a class="ref" href="#ref-7">7</a></sup></div></div><div class="kf"><div class="kv">1 sur 3</div><div class="kt">des plus de 65 ans chute chaque année ; 80 % des chutes ont lieu au domicile</div><div class="ks">Ministère de la Santé, 2022 <sup class="refs"><a class="ref" href="#ref-38">38</a></sup></div></div><div class="kf"><div class="kv">900 000</div><div class="kt">abonnés à la téléassistance en France</div><div class="ks">Silver Valley, baromètre 2024 <sup class="refs"><a class="ref" href="#ref-2">2</a></sup></div></div><div class="kf"><div class="kv">2 %</div><div class="kt">des 7 millions d&#x27;appels annuels de téléassistance sont transmis aux secours</div><div class="ks">AFRATA <sup class="refs"><a class="ref" href="#ref-1">1</a></sup></div></div><div class="kf"><div class="kv">87 %</div><div class="kt">voient la téléassistance comme un marqueur de dépendance</div><div class="ks">Senior Strategic, 2016 <sup class="refs"><a class="ref" href="#ref-19">19</a></sup></div></div><div class="kf"><div class="kv">90 %</div><div class="kt">des utilisateurs portent leur dispositif surtout quand ils sont seuls chez eux</div><div class="ks">Drees, enquête VQS <sup class="refs"><a class="ref" href="#ref-45">45</a></sup></div></div><div class="kf"><div class="kv">5–15 %</div><div class="kt">de fausses alertes pour les capteurs de chute, pour 80 à 95 % de chutes détectées</div><div class="ks">ANSP 2017 ; DITP 2023 <sup class="refs"><a class="ref" href="#ref-51">51</a></sup></div></div><div class="kf"><div class="kv">41 %</div><div class="kt">des seniors citent le manque d&#x27;intérêt comme premier frein aux objets connectés</div><div class="ks">Linexio, ≈ 250 seniors <sup class="refs"><a class="ref" href="#ref-48">48</a></sup></div></div></div>
+<div class="kcap"><span><b class="b">Bleu</b> · le besoin et le marché</span><span><b class="o">Orange</b> · l'adoption et ses freins</span></div></section>
+
+<section class="axe" id="axe-marche">
+<div class="axe-h">
+  <div class="axe-n">01</div>
+  <div><div class="k">Axe · Marché</div><h2>Un besoin qui grossit, un marché qui stagne</h2>
+  <div class="axe-meta">15 faits · 0 signaux · codes M1, M2, M7</div></div>
+</div>
+<ol class="points"><li><div>La démographie porte tout : environ 700 000 seniors de plus en perte d&#x27;autonomie d&#x27;ici les années 2050 <sup class="refs"><a class="ref" href="#ref-7">7</a></sup>, 5 millions de 60 ans et plus supplémentaires et 150 000 à 200 000 emplois à créer pour les accompagner <sup class="refs"><a class="ref" href="#ref-9">9</a></sup>. La demande de services à domicile suit la même pente <sup class="refs"><a class="ref" href="#ref-10">10</a></sup>.</div></li><li><div>La taille du « marché silver » dépend entièrement du périmètre : de 60 à 130 milliards d&#x27;euros <sup class="refs"><a class="ref" href="#ref-3">3</a>, <a class="ref" href="#ref-6">6</a></sup>. Le segment qui nous concerne, la téléassistance, ne pèse qu&#x27;environ 250 millions d&#x27;euros <sup class="refs"><a class="ref" href="#ref-5">5</a></sup>.</div></li><li><div>Ce segment stagne en valeur malgré un parc en hausse <sup class="refs"><a class="ref" href="#ref-4">4</a></sup>, et le secteur vise à doubler l&#x27;équipement des 75 ans et plus d&#x27;ici 2030, d&#x27;environ 10 % à 20 % <sup class="refs"><a class="ref" href="#ref-1">1</a></sup>. Il y a donc de la place, mais la croissance ne vient pas toute seule.</div></li></ol>
+<div class="tbl"><table class="faits">
+<thead><tr><th>Réf.</th><th>Code</th><th>Information</th><th>Source</th><th title="Score de fiabilité sur 7, calculé par script">Fiab.</th><th title="Pertinence décidée en revue humaine">Pert.</th></tr></thead>
+<tbody><tr>
+<td class="num"><a id="f-1" href="#ref-1">1</a></td>
+<td class="code">M1</td>
+<td><div class="t">Téléassistance 2030 : doubler le taux d&#x27;équipement en France</div><div class="res">Des acteurs de la téléassistance visent un équipement de 20 % des 75 ans et plus d&#x27;ici 2030, contre environ 10 % aujourd&#x27;hui, avec comparaisons européennes. L&#x27;article reprend des données de l&#x27;AFRATA sur le volume d&#x27;appels et le faible taux de transmission aux secours.</div><ul class="ch"><li><b>7 millions</b> appels de téléassistance par an <span class="src">(AFRATA)</span></li><li><b>2%</b> appels transmis aux secours <span class="src">(AFRATA)</span></li><li><b>80%</b> chutes sans hospitalisation <span class="src">(AFRATA)</span></li></ul></td>
+<td class="srcc">cahiers-silvereconomie.fr</td>
+<td class="sc"><span class="pill lo">2</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-2" href="#ref-2">2</a></td>
+<td class="code">M1</td>
+<td><div class="t">Marché français de la téléassistance et de la domotique senior (2026)</div><div class="res">Le marché évolue du bouton d&#x27;alerte vers des écosystèmes connectés (géolocalisation, capteurs, habitat intelligent). Freins : manque d&#x27;information, fracture numérique, faible lisibilité. Perspectives 2030 : intégration logement-santé et simplification d&#x27;usage.</div><ul class="ch"><li><b>900 000 abonnés</b> abonnés de téléassistance en France <span class="src">(Silver Valley, Baromètre Téléassistance et Innovation 2024)</span></li><li><b>130 milliards d&#x27;euros</b> poids de la silver économie <span class="src">(Ministère de l&#x27;Économie, Chiffres clés de la silver économie)</span></li><li><b>4-6 %</b> croissance annuelle de la silver économie <span class="src">(Ministère de l&#x27;Économie, Chiffres clés de la silver économie)</span></li></ul></td>
+<td class="srcc">autonomag.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-3" href="#ref-3">3</a></td>
+<td class="code">M1</td>
+<td><div class="t">Silver économie en France : taille du marché selon le périmètre</div><div class="res">Le marché est estimé entre 60 et 130 milliards d&#x27;euros selon le périmètre. Le grand âge dépasse 30 milliards. La croissance est surtout démographique avec l&#x27;arrivée des baby-boomers.</div><ul class="ch"><li><b>130 milliards</b> marché silver économie incluant toute la consommation des 55+ <span class="src">(BPI France)</span></li><li><b>60 milliards</b> marché opérationnel ciblé <span class="src">(Xerfi)</span></li><li><b>+49 %</b> croissance 2021-2031 des 75-84 ans <span class="src">(INSEE)</span></li></ul></td>
+<td class="srcc">sweet-home.info</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-4" href="#ref-4">4</a></td>
+<td class="code">M1</td>
+<td><div class="t">Avenir du marché de la téléassistance (étude DGE/PIPAME)</div><div class="res">Étude publiée en 2020 : le parc d&#x27;abonnés croît régulièrement mais le marché stagne en valeur. Les scénarios vont d&#x27;une consolidation autour de quelques opérateurs à un rôle de vecteur des solutions numériques d&#x27;alerte et de prévention.</div></td>
+<td class="srcc">entreprises.gouv.fr</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-5" href="#ref-5">5</a></td>
+<td class="code">M1</td>
+<td><div class="t">Xerfi : marché de la téléassistance à l&#x27;horizon 2030</div><div class="res">Xerfi présente une étude sur le marché français de la téléassistance, qui évolue de l&#x27;urgence vers une solution intégrée de maintien à domicile, portée par le vieillissement et le virage domiciliaire. L&#x27;étude complète est payante.</div><ul class="ch"><li><b>250 millions d&#x27;euros</b> taille du marché français de la téléassistance <span class="src">(Xerfi)</span></li></ul></td>
+<td class="srcc">xerfi.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-6" href="#ref-6">6</a></td>
+<td class="code">M1</td>
+<td><div class="t">Silver économie 2026 : IA et sport-santé portent le marché</div><div class="res">L&#x27;article présente la silver économie française en 2026 comme tirée par l&#x27;IA et le sport-santé, avec le lancement d&#x27;un label Sport Senior Santé par la FFRS. Il cite des ordres de grandeur de consommation et de marché issus de Bpifrance et Xerfi.</div><ul class="ch"><li><b>130 milliards d&#x27;euros</b> consommation totale des 55 ans et plus <span class="src">(Bpifrance)</span></li><li><b>109 milliards d&#x27;euros</b> projection 2026 du marché <span class="src">(Xerfi)</span></li></ul></td>
+<td class="srcc">directmag.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-7" href="#ref-7">7</a></td>
+<td class="code">M2</td>
+<td><div class="t">DREES : perte d&#x27;autonomie des seniors jusqu&#x27;en 2050</div><div class="res">Projections Insee-Drees : le nombre de seniors de 60 ans et plus en perte d&#x27;autonomie, plus de 2 millions en 2021, augmenterait jusqu&#x27;aux années 2050 pour approcher 2,8 millions, soit environ 700 000 de plus.</div><ul class="ch"><li><b>plus de 2 millions</b> personnes de 60 ans ou plus en perte d&#x27;autonomie en 2021, parmi 18 millions de 60 ans ou plus <span class="src">(Insee, Drees)</span></li><li><b>approcher 2,8 millions</b> seniors en perte d&#x27;autonomie aux années 2050 <span class="src">(Insee, Drees)</span></li></ul></td>
+<td class="srcc">drees.solidarites-sante.gouv.fr</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●●●</span></td>
+</tr><tr>
+<td class="num"><a id="f-8" href="#ref-8">8</a></td>
+<td class="code">M2</td>
+<td><div class="t">DREES : projections LIVIA de la perte d&#x27;autonomie par lieu de vie</div><div class="res">Jeu de données projetant les 60 ans et plus de 2021 à 2070 par département, besoins d&#x27;aide et lieu de vie (Ehpad, résidence autonomie, domicile ordinaire).</div></td>
+<td class="srcc">data.drees.solidarites-sante.gouv.fr</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●●●</span></td>
+</tr><tr>
+<td class="num"><a id="f-9" href="#ref-9">9</a></td>
+<td class="code">M2</td>
+<td><div class="t">DREES : 150 000 à 200 000 emplois de plus nécessaires en 2050 pour l&#x27;autonomie</div><div class="res">Une projection de la DREES estime les besoins en emplois pour soutenir l&#x27;autonomie des personnes âgées d&#x27;ici 2050. Sans création de places en Ehpad, les résidents seraient très majoritairement en perte d&#x27;autonomie sévère. Le besoin en résidences autonomie augmenterait fortement.</div><ul class="ch"><li><b>150 000 à 200 000</b> emplois supplémentaires nécessaires en 2050 pour le soutien à l&#x27;autonomie <span class="src">(Drees, modèle LIVIA)</span></li><li><b>5 millions</b> personnes de 60 ans et plus supplémentaires en 2050 <span class="src">(Drees, modèle LIVIA)</span></li><li><b>85 %</b> résidents d&#x27;Ehpad en perte d&#x27;autonomie sévère en 2050 sans création de places <span class="src">(Drees, modèle LIVIA)</span></li></ul></td>
+<td class="srcc">drees.solidarites-sante.gouv.fr</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-10" href="#ref-10">10</a></td>
+<td class="code">M2</td>
+<td><div class="t">Insee : forte hausse de la demande de services à la personne d&#x27;ici 2050</div><div class="res">Selon le scénario central de l&#x27;Insee, environ 5 millions de ménages utiliseraient des services à la personne en 2050, le vieillissement expliquant l&#x27;essentiel de la hausse. Les 80 ans et plus y recourent déjà fortement.</div><ul class="ch"><li><b>5 millions de ménages</b> utilisateurs de services à la personne en 2050, scénario central <span class="src">(Insee Première n° 2042)</span></li><li><b>41 %</b> des personnes de 80 ans ou plus recourent à ces services <span class="src">(Insee Première n° 2042)</span></li><li><b>85 %</b> part du vieillissement dans l&#x27;effet total de hausse <span class="src">(Insee Première n° 2042)</span></li></ul></td>
+<td class="srcc">insee.fr</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-11" href="#ref-11">11</a></td>
+<td class="code">M2</td>
+<td><div class="t">Predict 360 : études territoriales automatisées sur le vieillissement</div><div class="res">Domelia propose un outil en ligne qui génère en quelques minutes des analyses territoriales sur la transition démographique. Il cible communes, CCAS, bailleurs et résidences services, à partir de données publiques (INSEE, CAF).</div></td>
+<td class="srcc">silvereco<br>09/2026</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-12" href="#ref-12">12</a></td>
+<td class="code">M7</td>
+<td><div class="t">Campagne vidéo des caisses de retraite contre l&#x27;âgisme</div><div class="res">Les caisses de retraite diffusent quatre portraits de seniors engagés (bénévolat, grands-parents, habitat intergénérationnel, tiers-lieu en EHPAD) pour contrer les stéréotypes sur l&#x27;avancée en âge. Une enquête du HCFEA rappelle que la vieillesse reste associée à la maladie et à l&#x27;isolement.</div></td>
+<td class="srcc">silvereco<br>09/2026</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-13" href="#ref-13">13</a></td>
+<td class="code">M7</td>
+<td><div class="t">Prescription sociale et bien vieillir : événement à Paris le 14 octobre 2026</div><div class="res">Makesense et l&#x27;Assurance retraite organisent une matinée à Paris sur la prescription sociale, qui oriente les patients vers des ressources non médicales (associations, activités, groupes de parole). Interviennent notamment un DAC, une CPTS et une structure d&#x27;ordonnances artistiques. Inscription gratuite.</div><ul class="ch"><li><b>750 000 personnes âgées</b> seraient en situation de mort sociale <span class="src">(Les Petits Frères des Pauvres (repris par Le Monde))</span></li></ul></td>
+<td class="srcc">silvereco<br>09/2026</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-14" href="#ref-14">14</a></td>
+<td class="code">M7</td>
+<td><div class="t">Maintien à domicile : le rôle de la mobilité des aides à domicile</div><div class="res">La chronique souligne que le maintien à domicile dépend aussi de la mobilité des intervenants. Un dispositif lancé en septembre 2026 aide les aides à domicile à acquérir des véhicules électriques d&#x27;occasion.</div></td>
+<td class="srcc">silvereco<br>09/2026</td>
+<td class="sc"><span class="pill mid">4</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-15" href="#ref-15">15</a></td>
+<td class="code">M7</td>
+<td><div class="t">MonSenior : trois partenariats HLM pour l&#x27;habitat partagé</div><div class="res">MonSenior signe des conventions avec trois organismes HLM pour développer des hameaux d&#x27;habitat partagé pour seniors. L&#x27;article évoque aussi une feuille de route interministérielle de mai 2026 sur ce type d&#x27;habitat.</div></td>
+<td class="srcc">silvereco<br>10/2026</td>
+<td class="sc"><span class="pill mid">4</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr></tbody></table></div>
+</section><section class="axe" id="axe-concurrence">
+<div class="axe-h">
+  <div class="axe-n">02</div>
+  <div><div class="k">Axe · Concurrence</div><h2>Beaucoup d&#x27;acteurs, peu de succès grand public</h2>
+  <div class="axe-meta">28 faits · 0 signaux · codes C1, C2, C3, C4, C5, C7</div></div>
+</div>
+<ol class="points"><li><div>Quatre familles se partagent le terrain : la téléassistance historique (Vitaris, Filien, Présence Verte…) <sup class="refs"><a class="ref" href="#ref-19">19</a>, <a class="ref" href="#ref-23">23</a></sup>, les bracelets et montres de détection <sup class="refs"><a class="ref" href="#ref-20">20</a></sup>, les capteurs sans port <sup class="refs"><a class="ref" href="#ref-22">22</a>, <a class="ref" href="#ref-18">18</a></sup> et les robots compagnons <sup class="refs"><a class="ref" href="#ref-17">17</a>, <a class="ref" href="#ref-24">24</a>, <a class="ref" href="#ref-21">21</a></sup>.</div></li><li><div>Les prix s&#x27;étalent de 6 € par mois en option <sup class="refs"><a class="ref" href="#ref-28">28</a></sup> à 20-50 € pour la téléassistance <sup class="refs"><a class="ref" href="#ref-26">26</a></sup> et 90 € pour un robot compagnon <sup class="refs"><a class="ref" href="#ref-24">24</a></sup>. L&#x27;engagement de 12 mois et les frais de résiliation restent courants <sup class="refs"><a class="ref" href="#ref-27">27</a></sup>.</div></li><li><div>Les échecs ont des causes récurrentes : stigmatisation et déni du risque pour les montres senior, qui pivotent vers le B2B <sup class="refs"><a class="ref" href="#ref-30">30</a></sup>, financement trop court <sup class="refs"><a class="ref" href="#ref-32">32</a></sup>, cycles de vente longs <sup class="refs"><a class="ref" href="#ref-31">31</a></sup>. Le secteur se consolide par rachats <sup class="refs"><a class="ref" href="#ref-34">34</a></sup>, et des faillites tombent encore <sup class="refs"><a class="ref" href="#ref-35">35</a></sup>.</div></li><li><div>L&#x27;écart entre promesse et réalité est documenté : les chutes « molles » ne sont pas détectées, de l&#x27;aveu même d&#x27;un opérateur <sup class="refs"><a class="ref" href="#ref-39">39</a></sup>, et le « sans abonnement » cache souvent un forfait SIM et une mise en service lourde pour les proches <sup class="refs"><a class="ref" href="#ref-37">37</a></sup>.</div></li></ol>
+<div class="tbl"><table class="faits">
+<thead><tr><th>Réf.</th><th>Code</th><th>Information</th><th>Source</th><th title="Score de fiabilité sur 7, calculé par script">Fiab.</th><th title="Pertinence décidée en revue humaine">Pert.</th></tr></thead>
+<tbody><tr>
+<td class="num"><a id="f-16" href="#ref-16">16</a></td>
+<td class="code">C1</td>
+<td><div class="t">Chutes des seniors : la nouvelle vague technologique</div><div class="res">Panorama de solutions anti-chute : lampe connectée à capteurs infrarouges, ceinture airbag de hanche, lunettes connectées, capteurs de mouvement avec analyse par IA. Des assureurs et groupes de protection sociale testent ou déploient ces dispositifs. L&#x27;article rappelle le coût des chutes pour la collectivité.</div><ul class="ch"><li><b>près de 2 milliards d&#x27;euros par an</b> coût estimé des chutes chez les seniors <span class="src">(Cour des comptes)</span></li></ul></td>
+<td class="srcc">lassuranceenmouvement.com<br>07/2026</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-17" href="#ref-17">17</a></td>
+<td class="code">C1</td>
+<td><div class="t">Compan&#x27;IA : intégrateur de robots compagnons IA pour seniors</div><div class="res">Compan&#x27;IA se présente comme intégrateur européen de robots humanoïdes IA pour l&#x27;accompagnement à domicile et en Ehpad. Une phase pilote en 2026 prévoit deux robots à Miramas et Paris, puis une phase commerciale en PACA en 2027.</div><ul class="ch"><li><b>40 % des personnes âgées dépendantes vivent seules en France</b> isolement des personnes âgées dépendantes <span class="src">(DREES, 2025)</span></li><li><b>11 millions d&#x27;aidants familiaux</b> aidants familiaux, souvent en épuisement <span class="src">(Fondation de France, 2024)</span></li><li><b>+ 700 000 personnes dépendantes supplémentaires attendues d&#x27;ici 2050</b> projection de dépendance <span class="src">(DREES, projection 2021)</span></li></ul></td>
+<td class="srcc">bisqi.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-18" href="#ref-18">18</a></td>
+<td class="code">C1</td>
+<td><div class="t">Start-up française détectant les chutes via le wi-fi</div><div class="res">Une start-up française propose de détecter les chutes de personnes âgées en analysant les perturbations du wi-fi, sans capteur porté. Page inaccessible (403).</div></td>
+<td class="srcc">korii.slate.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-19" href="#ref-19">19</a></td>
+<td class="code">C1</td>
+<td><div class="t">797 000 personnes équipées de téléassistance en France</div><div class="res">Selon l&#x27;étude Boomers 2016 de Senior Strategic, 797 000 personnes sont équipées de téléassistance, dont une majorité d&#x27;achats après une chute. L&#x27;image de marqueur de dépendance freine l&#x27;adoption. Vitaris, Europ Téléassistance, Filien, Présence Verte et Mondial Assistance sont cités.</div><ul class="ch"><li><b>797.000</b> personnes équipées d&#x27;une téléassistance en France <span class="src">(Senior Strategic, étude Boomers 2016)</span></li><li><b>87%</b> perçoivent la téléassistance comme un marqueur de dépendance <span class="src">(Senior Strategic, étude Boomers 2016)</span></li><li><b>61%</b> des achats de téléassistance font suite à une chute <span class="src">(Senior Strategic, étude Boomers 2016)</span></li></ul></td>
+<td class="srcc">fredericserriere.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-20" href="#ref-20">20</a></td>
+<td class="code">C1</td>
+<td><div class="t">Silvereco : panorama des solutions de détection de chute</div><div class="res">Le portail recense des montres et bracelets connectés de détection de chute qui alertent une équipe d&#x27;assistance, dont Navigil, Attentive, Europ Assistance et Assystel/Vibby. Aucun chiffre n&#x27;est donné.</div></td>
+<td class="srcc">silvereco.fr</td>
+<td class="sc"><span class="pill lo">2</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-21" href="#ref-21">21</a></td>
+<td class="code">C1</td>
+<td><div class="t">Blue Frog Robotics et le robot compagnon Buddy</div><div class="res">Startup française développant Buddy, robot émotionnel pour seniors, enfants malades et élèves en situation de handicap. Un marché de l&#x27;Éducation nationale a porté sur des robots de téléprésence. Article de 2021.</div><ul class="ch"><li><b>1750</b> robots de téléprésence commandés pour le programme TED-i <span class="src">(ministère de l&#x27;Éducation nationale)</span></li></ul></td>
+<td class="srcc">salon-services-personne.com</td>
+<td class="sc"><span class="pill lo">2</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-22" href="#ref-22">22</a></td>
+<td class="code">C1</td>
+<td><div class="t">Chutes des seniors : six start-up françaises</div><div class="res">Panorama de six start-up françaises : Creative Specific Software (capteurs optiques), Vitalbase (détecteur automatique), SeniorAdom (actimétrie sans caméra), Telegrafik (plateforme de capteurs), Prédical (prévention de la fragilité), Noviatek (apprentissage des habitudes).</div></td>
+<td class="srcc">marchedesseniors.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-23" href="#ref-23">23</a></td>
+<td class="code">C1</td>
+<td><div class="t">AFRATA : l&#x27;association des opérateurs de téléassistance</div><div class="res">Page de présentation de l&#x27;association française de téléassistance, créée en 2005, qui regroupe les principaux opérateurs et impose une charte de déontologie en dix points (service 24h/24, contrats transparents, enregistrement des appels). Elle se présente comme interlocuteur des pouvoirs publics.</div></td>
+<td class="srcc">assystel.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-24" href="#ref-24">24</a></td>
+<td class="code">C1</td>
+<td><div class="t">Cutii, robot compagnon pour seniors</div><div class="res">Présentation d&#x27;une start-up de robot compagnon proposant activités quotidiennes, bien-être et culture pour aider le maintien à domicile, avec un abonnement annoncé à 90 euros par mois. L&#x27;article est un portrait de start-up, sans source pour ses chiffres de contexte.</div></td>
+<td class="srcc">enaco.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-25" href="#ref-25">25</a></td>
+<td class="code">C2</td>
+<td><div class="t">Bracelets anti-chute en 2025 : modèles, prix et limites</div><div class="res">Panorama de bracelets, montres et pendentifs anti-chute 4G avec détection automatique, GPS optionnel et téléassistance. Prix indicatifs annoncés : 80 à 300 euros sans abonnement ou 10 à 40 euros par mois, installation 30 à 60 euros. Limites citées : autonomie, fausses alertes, dépendance au réseau, aucun financement par MaPrimeAdapt&#x27;.</div></td>
+<td class="srcc">capretraite.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-26" href="#ref-26">26</a></td>
+<td class="code">C2</td>
+<td><div class="t">Téléassistance : coûts et financements selon SMATIS</div><div class="res">Le comparateur situe la téléassistance classique à 20-30 euros par mois, la version mobile à 35-50 euros et la médicalisée à partir de 50 euros. L&#x27;APA peut financer en partie et un crédit d&#x27;impôt de 50 % s&#x27;applique. Les engagements varient selon les prestataires.</div></td>
+<td class="srcc">smatis.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-27" href="#ref-27">27</a></td>
+<td class="code">C2</td>
+<td><div class="t">Téléassistance senior : prix, engagement et aides en 2026</div><div class="res">Fourchettes de prix mensuels selon les options (classique, géolocalisation, détecteur de chute), installation parfois gratuite avec engagement de 12 mois, frais de résiliation en cas d&#x27;arrêt anticipé, et aides possibles (crédit d&#x27;impôt, APA, PCH, caisses de retraite).</div></td>
+<td class="srcc">aquarelia.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-28" href="#ref-28">28</a></td>
+<td class="code">C2</td>
+<td><div class="t">Allovie : bracelet détecteur de chute en option à 6 euros par mois</div><div class="res">Offre de bracelet avec détection automatique des chutes brutales et assistance 24h/24 via un centre d&#x27;appel. Annoncé à 6 euros par mois en option, sans engagement de durée, installation sous 24-48 h.</div></td>
+<td class="srcc">teleassistance-allovie.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-29" href="#ref-29">29</a></td>
+<td class="code">C2</td>
+<td><div class="t">Bracelets d&#x27;alarme seniors : comparatif 2026 de cinq offres</div><div class="res">Comparatif de cinq offres de bracelets d&#x27;alarme (Vitaris, Filien, Allovie, La Poste, Nexecur) avec tarifs mensuels de départ, options de détection de chute et géolocalisation, et aides possibles. Les prix ne sont pas sourcés.</div></td>
+<td class="srcc">senior-autonomie.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-30" href="#ref-30">30</a></td>
+<td class="code">C3</td>
+<td><div class="t">Montres connectées senior : échec du B2C, pivot vers le B2B2C</div><div class="res">L&#x27;article explique que les montres connectées senior stagnent faute d&#x27;adoption, freinées par le déni du risque et la stigmatisation. Des fabricants se sont tournés vers les Ehpad et résidences services, un modèle qui ne règle pas l&#x27;autonomie à domicile.</div><ul class="ch"><li><b>6 000 seniors</b> seniors équipés via un partenariat avec Domitys <span class="src">(Nicolas Chiquet, CEO de LifePlus)</span></li></ul></td>
+<td class="srcc">longevite.xyz</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●●</span></td>
+</tr><tr>
+<td class="num"><a id="f-31" href="#ref-31">31</a></td>
+<td class="code">C3</td>
+<td><div class="t">Startups silver économie en difficulté : qui les accompagne</div><div class="res">L&#x27;article présente comment Banque des Territoires, Future4care et Silver Valley soutiennent les startups en difficulté face aux cycles longs du marché senior. Coyalli et Collibree sont cités comme faillites récentes, sans détail.</div><ul class="ch"><li><b>360 millions d&#x27;euros</b> investis par la Banque des Territoires dans la Silver Économie <span class="src">(interview de François Wohrer, Banque des Territoires)</span></li></ul></td>
+<td class="srcc">cahiers-silvereconomie.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-32" href="#ref-32">32</a></td>
+<td class="code">C3</td>
+<td><div class="t">Myxyty : liquidation de l&#x27;assistant vocal français</div><div class="res">Myxyty, assistant vocal de Sophia Antipolis, a cessé son activité le 23 mai 2018 après une levée non aboutie et une dette d&#x27;environ 3 millions d&#x27;euros. Sa version George, avec La Poste, ciblait les seniors.</div><ul class="ch"><li><b>3 à 5 millions d&#x27;euros</b> levée recherchée et non obtenue <span class="src">(Invest Securities)</span></li><li><b>2 millions d&#x27;euros</b> chiffre d&#x27;affaires 2017, en baisse <span class="src">(La Tribune)</span></li></ul></td>
+<td class="srcc">objetconnecte.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-33" href="#ref-33">33</a></td>
+<td class="code">C3</td>
+<td><div class="t">Silver économie : pourquoi tant de flops</div><div class="res">Un consultant défend que les échecs viennent de recettes marketing classiques inadaptées aux seniors et du manque d&#x27;attention aux signaux faibles. Il cite l&#x27;échec de Lively aux États-Unis et du projet français Vigilio, un détecteur de chutes arrêté faute de revenus.</div></td>
+<td class="srcc">fredericserriere.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-34" href="#ref-34">34</a></td>
+<td class="code">C4</td>
+<td><div class="t">Archives téléassistance Silvereco : consolidation du secteur</div><div class="res">Titres récents : acquisition de Présence Verte par la Fondation Partage &amp; Vie, rachat d&#x27;Axel Health par Legrand Care, nouvelle marque Redion de Generali, expansion de Téléassistance Sérénité, fermeture du réseau 2G en 2026.</div></td>
+<td class="srcc">silvereco.fr</td>
+<td class="sc"><span class="pill lo">2</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-35" href="#ref-35">35</a></td>
+<td class="code">C4</td>
+<td><div class="t">Liquidation judiciaire de Senior &amp; Cie (communiqué CFDT)</div><div class="res">La CFDT Services dénonce la liquidation judiciaire de Senior &amp; Cie, prononcée en septembre 2025 après un plan social au printemps. Le communiqué est d&#x27;origine syndicale.</div><ul class="ch"><li><b>51 salariés</b> concernés par la liquidation judiciaire prononcée le 24 septembre 2025 <span class="src">(communiqué CFDT Services du 26 septembre 2025)</span></li></ul></td>
+<td class="srcc">services.cfdt.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-36" href="#ref-36">36</a></td>
+<td class="code">C4</td>
+<td><div class="t">Levées de fonds françaises, semaine 25 de 2025</div><div class="res">Le récapitulatif hebdomadaire recense seize levées de startups françaises. Quelques-unes touchent la silver tech ou la medtech, comme Skarlett, Jubilé et Nabla.</div></td>
+<td class="srcc">multeam.substack.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-37" href="#ref-37">37</a></td>
+<td class="code">C5</td>
+<td><div class="t">Bracelet anti-chute sans abonnement : pièges fréquents</div><div class="res">L&#x27;article estime que ces bracelets échouent surtout à cause de l&#x27;organisation : proches peu joignables la nuit, forfait SIM souvent nécessaire malgré l&#x27;appellation, fausses alertes qui lassent l&#x27;entourage et chutes lentes mal détectées. Il indique que la mise en service demande une à deux semaines de présence d&#x27;un proche.</div></td>
+<td class="srcc">seniors-en-mission.org</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●●</span></td>
+</tr><tr>
+<td class="num"><a id="f-38" href="#ref-38">38</a></td>
+<td class="code">C5</td>
+<td><div class="t">Bracelet anti-chute : erreurs à éviter avant l&#x27;achat</div><div class="res">Guide listant sept erreurs d&#x27;achat (compatibilité, acceptabilité, interface complexe, SAV, abonnements, couverture réseau, formation). Il signale les fausses alertes de la détection automatique et l&#x27;importance de l&#x27;étanchéité et de l&#x27;autonomie.</div><ul class="ch"><li><b>1 senior sur 3 de plus de 65 ans chute annuellement</b> fréquence des chutes <span class="src">(Ministère de la Santé, 2022)</span></li><li><b>80 %</b> des chutes surviennent au domicile <span class="src">(Ministère de la Santé, 2022)</span></li></ul></td>
+<td class="srcc">capretraite.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-39" href="#ref-39">39</a></td>
+<td class="code">C5</td>
+<td><div class="t">Filien : bracelet détecteur de chute et limites de la détection</div><div class="res">Le bracelet détecte les chutes lourdes suivies de 15 secondes d&#x27;immobilité et alerte le centre d&#x27;écoute, avec annulation possible des fausses alertes. Le fabricant reconnaît que les chutes molles ne sont pas détectées automatiquement. Il promet une longue autonomie et l&#x27;étanchéité, pour un prix d&#x27;environ 1 euro par jour.</div></td>
+<td class="srcc">filien.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-40" href="#ref-40">40</a></td>
+<td class="code">C7</td>
+<td><div class="t">Lauréats du Festival SilverEco Bien-Vieillir 2026</div><div class="res">La 18e édition des trophées a distingué 36 structures, dont des solutions silver tech et services aux aidants : plateforme de coordination Sawa Care, assistant vocal Agely, télésurveillance EPOCA, application Ma Famille Grandit. Des lauréats internationaux sont aussi cités.</div></td>
+<td class="srcc">silvereco<br>09/2026</td>
+<td class="sc"><span class="pill mid">4</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-41" href="#ref-41">41</a></td>
+<td class="code">C7</td>
+<td><div class="t">Spokeo, assistant d&#x27;écoute pour résidents malentendants en EHPAD</div><div class="res">Quand l&#x27;appareil auditif ne peut plus être manipulé ou accepté, le soignant porte un micro et le résident reçoit le son : Spokeo complète l&#x27;appareillage sans le remplacer. Une étude auprès de professionnels de santé en EHPAD rapporte un bénéfice sur la communication.</div><ul class="ch"><li><b>93 %</b> des professionnels affirment que le dispositif simplifie les échanges <span class="src">(étude auprès de 28 professionnels de santé dans 14 établissements)</span></li></ul></td>
+<td class="srcc">silvereco<br>09/2026</td>
+<td class="sc"><span class="pill mid">4</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-42" href="#ref-42">42</a></td>
+<td class="code">C7</td>
+<td><div class="t">Huit startups de la silver economy à suivre (Maddyness, 2024)</div><div class="res">Sélection de huit startups sur l&#x27;isolement, la stimulation cognitive, la santé mentale, l&#x27;accessibilité et la prévention des chutes. Peu d&#x27;informations de financement : une levée annoncée en 2023 et une autre auprès de business angels.</div></td>
+<td class="srcc">maddyness.com<br>05/2024</td>
+<td class="sc"><span class="pill lo">2</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-43" href="#ref-43">43</a></td>
+<td class="code">C7</td>
+<td><div class="t">Start-up pour seniors en Espagne et en Europe</div><div class="res">Tour d&#x27;horizon de jeunes pousses : assistant vocal IA, localisateurs GPS, capteurs connectés, bracelet de données de santé, robot contre l&#x27;isolement, familles d&#x27;accueil formées. Aucun chiffre ni source externe.</div></td>
+<td class="srcc">lesitedesaidants.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr></tbody></table></div>
+</section><section class="axe" id="axe-usagers">
+<div class="axe-h">
+  <div class="axe-n">03</div>
+  <div><div class="k">Axe · Usagers</div><h2>Le senior ne veut pas porter, l&#x27;aidant n&#x27;en peut plus</h2>
+  <div class="axe-meta">6 faits · 51 signaux · codes U1, U2, U3, U4, U5</div></div>
+</div>
+<ol class="points"><li><div>Le dispositif n&#x27;est pas porté quand il le faudrait : gêne, déclenchements accidentels, activités <sup class="refs"><a class="ref" href="#ref-45">45</a></sup>. Les objets connectés finissent au tiroir par complexité ou utilité insuffisante <sup class="refs"><a class="ref" href="#ref-47">47</a>, <a class="ref" href="#ref-46">46</a></sup>.</div></li><li><div>Les seniors sont peu équipés en objets de santé connectés (9 % des 60-69 ans, 5 % des 70 ans et plus en 2019) <sup class="refs"><a class="ref" href="#ref-49">49</a></sup>, et le manque d&#x27;intérêt freine plus que le prix <sup class="refs"><a class="ref" href="#ref-48">48</a></sup>.</div></li><li><div>Côté aidants, les témoignages convergent vers l&#x27;épuisement : charge mentale, relances répétées, finances qui s&#x27;effondrent <sup class="refs"><a class="ref" href="#ref-120">120</a>, <a class="ref" href="#ref-122">122</a>, <a class="ref" href="#ref-123">123</a>, <a class="ref" href="#ref-124">124</a></sup>. Un outil qui ajoute une tâche à l&#x27;aidant devient une corvée et finit abandonné <sup class="refs"><a class="ref" href="#ref-77">77</a>, <a class="ref" href="#ref-108">108</a></sup>.</div></li><li><div>Ce qui est apprécié ne demande rien au senior : la gazette papier ravit les grands-parents <sup class="refs"><a class="ref" href="#ref-87">87</a>, <a class="ref" href="#ref-116">116</a>, <a class="ref" href="#ref-86">86</a></sup>, et la localisation rassure la famille <sup class="refs"><a class="ref" href="#ref-97">97</a>, <a class="ref" href="#ref-98">98</a></sup>… tant qu&#x27;elle est fiable <sup class="refs"><a class="ref" href="#ref-90">90</a>, <a class="ref" href="#ref-91">91</a>, <a class="ref" href="#ref-93">93</a></sup>.</div></li></ol>
+<div class="tbl"><table class="faits">
+<thead><tr><th>Réf.</th><th>Code</th><th>Information</th><th>Source</th><th title="Score de fiabilité sur 7, calculé par script">Fiab.</th><th title="Pertinence décidée en revue humaine">Pert.</th></tr></thead>
+<tbody><tr>
+<td class="num"><a id="f-44" href="#ref-44">44</a></td>
+<td class="code">U2</td>
+<td><div class="t">Un forum d&#x27;aidants interdit les contenus IA</div><div class="res">Les modérateurs d&#x27;un subreddit sur les parents vieillissants interdisent désormais les contenus générés par IA et les recommandations d&#x27;outils d&#x27;IA, face à un afflux de messages.</div></td>
+<td class="srcc">r-agingparents<br>06/2026</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-45" href="#ref-45">45</a></td>
+<td class="code">U3</td>
+<td><div class="t">Téléassistance : le non-port continu et ses raisons</div><div class="res">La page explique que ne pas porter le dispositif empêche d&#x27;appeler rapidement en cas de chute ou de malaise. Les raisons de non-port sont la gêne, le déclenchement accidentel, certaines activités et les allergies. Aucune obligation légale de port permanent.</div><ul class="ch"><li><b>90 %</b> des utilisateurs portent le dispositif principalement quand ils sont seuls à domicile <span class="src">(enquête Vie Quotidienne et Santé de la DREES)</span></li></ul></td>
+<td class="srcc">tele-assistance-senior.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●●</span></td>
+</tr><tr>
+<td class="num"><a id="f-46" href="#ref-46">46</a></td>
+<td class="code">U3</td>
+<td><div class="t">Objets connectés : un tiers des utilisateurs abandonnent en six mois</div><div class="res">L&#x27;article, daté de 2014, rapporte qu&#x27;un tiers des utilisateurs d&#x27;objets connectés (montres, trackers) les abandonnent dans les six mois, surtout pour prix et fonctions insuffisantes.</div><ul class="ch"><li><b>33%</b> des utilisateurs d&#x27;objets connectés les abandonnent complètement dans les six mois (article de 2014) <span class="src">(GfK)</span></li></ul></td>
+<td class="srcc">phonandroid.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-47" href="#ref-47">47</a></td>
+<td class="code">U3</td>
+<td><div class="t">Objets connectés abandonnés au fond d&#x27;un tiroir : les causes</div><div class="res">L&#x27;article liste des objets souvent délaissés (montres, enceintes, balances) et cinq causes : achat impulsif, complexité, concurrence du smartphone, obsolescence et utilité insuffisante.</div></td>
+<td class="srcc">directmag.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-48" href="#ref-48">48</a></td>
+<td class="code">U4</td>
+<td><div class="t">Étude : seniors et objets connectés</div><div class="res">Une enquête Linexio pour Senior Compagnie auprès d&#x27;environ 250 seniors montre une préférence pour le contact humain. Le manque d&#x27;intérêt est le premier frein, devant le prix, et la santé-sécurité reste la priorité d&#x27;usage.</div><ul class="ch"><li><b>41%</b> seniors citant le manque d&#x27;intérêt comme frein aux objets connectés <span class="src">(Linexio pour Senior Compagnie)</span></li><li><b>29%</b> seniors considérant le prix comme frein <span class="src">(Linexio pour Senior Compagnie)</span></li></ul></td>
+<td class="srcc">objetconnecte.com</td>
+<td class="sc"><span class="pill lo">2</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-49" href="#ref-49">49</a></td>
+<td class="code">U4</td>
+<td><div class="t">Objets connectés de santé : adoption modeste chez les seniors (2020)</div><div class="res">Article de juillet 2020 : peu de seniors possèdent des objets connectés de santé, même si une part plus grande envisage d&#x27;en utiliser. Il passe en revue balances, lecteurs de glycémie, piluliers et tensiomètres connectés, et note que seuls les dispositifs marqués CE se vendent en pharmacie.</div><ul class="ch"><li><b>9 %</b> des 60-69 ans possèdent des objets connectés de santé <span class="src">(Baromètre du numérique 2019, Crédoc)</span></li><li><b>5 %</b> des 70 ans et plus possèdent des objets connectés de santé <span class="src">(Baromètre du numérique 2019, Crédoc)</span></li></ul></td>
+<td class="srcc">revuepharma.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr></tbody></table></div>
+</section><section class="axe" id="axe-techno">
+<div class="axe-h">
+  <div class="axe-n">04</div>
+  <div><div class="k">Axe · Technologie</div><h2>Détecter sans être porté</h2>
+  <div class="axe-meta">7 faits · 4 signaux · codes T1, T3</div></div>
+</div>
+<ol class="points"><li><div>Les détecteurs portés reposent sur accéléromètre et gyroscope. Ils ratent les chutes molles et dépendent d&#x27;un centre d&#x27;écoute <sup class="refs"><a class="ref" href="#ref-50">50</a></sup>, avec 5 à 15 % de fausses alertes <sup class="refs"><a class="ref" href="#ref-51">51</a></sup>.</div></li><li><div>Une génération de capteurs ambiants détecte sans rien porter : capteur de profondeur sans image <sup class="refs"><a class="ref" href="#ref-54">54</a></sup>, analyse des ondes wi-fi <sup class="refs"><a class="ref" href="#ref-18">18</a></sup>, capteur fixe sans caméra ni bracelet <sup class="refs"><a class="ref" href="#ref-53">53</a></sup>. C&#x27;est la piste qui répond directement au problème du non-port.</div></li><li><div>Pour construire en no-code, deux alertes : la sécurité des backends (des apps Supabase mal configurées exposent leurs données) <sup class="refs"><a class="ref" href="#ref-55">55</a></sup>, et le plafond des outils quand le produit grandit <sup class="refs"><a class="ref" href="#ref-128">128</a></sup>. Un prototype livré en huit semaines avec un agent IA reste possible <sup class="refs"><a class="ref" href="#ref-130">130</a></sup>.</div></li></ol>
+<div class="tbl"><table class="faits">
+<thead><tr><th>Réf.</th><th>Code</th><th>Information</th><th>Source</th><th title="Score de fiabilité sur 7, calculé par script">Fiab.</th><th title="Pertinence décidée en revue humaine">Pert.</th></tr></thead>
+<tbody><tr>
+<td class="num"><a id="f-50" href="#ref-50">50</a></td>
+<td class="code">T1</td>
+<td><div class="t">Principe et limites des détecteurs de chute</div><div class="res">Les détecteurs reposent sur un accéléromètre, des capteurs gyroscopiques et la géolocalisation pour analyser les mouvements. Limites : difficulté à détecter les chutes molles sans impact et délai lié au passage par un centre d&#x27;écoute.</div></td>
+<td class="srcc">seniorizon.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-51" href="#ref-51">51</a></td>
+<td class="code">T1</td>
+<td><div class="t">Capteurs de chute : fonctionnement et fiabilité (guide 2026)</div><div class="res">Le guide explique que les capteurs de chute utilisent accéléromètre et gyroscope, intégrés à bracelets ou montres. Il avance un taux de détection de 80 à 95 % et 5 à 15 % de fausses alertes, et évoque des systèmes prédictifs.</div><ul class="ch"><li><b>80 à 95 %</b> taux de détection des capteurs de chute <span class="src">(DITP (2023))</span></li><li><b>5 à 15 %</b> taux de fausses alertes des capteurs de chute <span class="src">(ANSP (2017))</span></li></ul></td>
+<td class="srcc">autonomag.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-52" href="#ref-52">52</a></td>
+<td class="code">T1</td>
+<td><div class="t">Outils numériques de prédiction et détection des chutes : état des lieux</div><div class="res">Publication scientifique faisant le point sur les outils numériques de prédiction, prévention et détection des chutes, avec perspectives cliniques. Page illisible (accès refusé).</div></td>
+<td class="srcc">sciencedirect.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-53" href="#ref-53">53</a></td>
+<td class="code">T1</td>
+<td><div class="t">Détecteurs de chute pour seniors : comparatif d&#x27;un fabricant</div><div class="res">Page d&#x27;un fabricant (Domalys) présentant bracelets, montres et capteurs fixes de détection de chute, avec son produit phare sans caméra ni bracelet. Elle cite des statistiques de chutes de Santé publique France.</div><ul class="ch"><li><b>174 824 hospitalisations</b> liées aux chutes chez les 65 ans et plus en 2024 <span class="src">(Santé publique France)</span></li><li><b>20 148 décès</b> liés aux chutes chez les 65 ans et plus en 2024 <span class="src">(Santé publique France)</span></li></ul></td>
+<td class="srcc">domalys.com</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-54" href="#ref-54">54</a></td>
+<td class="code">T1</td>
+<td><div class="t">Orme : capteur de profondeur de détection de chute</div><div class="res">La société toulousaine Orme a conçu un capteur de profondeur qui détecte les chutes en Ehpad et à domicile sans produire d&#x27;images, et alerte les soignants. Un partenariat avec Synox vise le maintien à domicile. Article daté de 2016.</div></td>
+<td class="srcc">silvereco.fr</td>
+<td class="sc"><span class="pill lo">2</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-55" href="#ref-55">55</a></td>
+<td class="code">T3</td>
+<td><div class="t">Exposition systémique de données dans des apps Supabase</div><div class="res">Une discussion revient sur des apps Supabase mal configurées qui exposent les données de leurs clients. Le commentaire compare avec les précédents S3, MongoDB et Redis et s&#x27;interroge sur l&#x27;effet du no-code.</div></td>
+<td class="srcc">r-nocode<br>09/2026</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-56" href="#ref-56">56</a></td>
+<td class="code">T3</td>
+<td><div class="t">Trouver le récit client d&#x27;une app no-code (exemple fictif)</div><div class="res">Un post donne un exemple fictif d&#x27;app de rappels pour tuteurs afin de montrer comment formuler une histoire client avant de développer. Il recommande des entretiens centrés sur un vécu réel.</div></td>
+<td class="srcc">r-nocode<br>10/2026</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr></tbody></table></div>
+</section><section class="axe" id="axe-reglementaire">
+<div class="axe-h">
+  <div class="axe-n">05</div>
+  <div><div class="k">Axe · Réglementaire</div><h2>Rester « bien-être », protéger les données, annoncer l&#x27;IA</h2>
+  <div class="axe-meta">19 faits · 0 signaux · codes R1, R2, R3, R4</div></div>
+</div>
+<ol class="points"><li><div>Un logiciel devient dispositif médical s&#x27;il a une finalité médicale, produit un résultat propre à un patient et analyse des données ; stocker ou transmettre ne suffit pas <sup class="refs"><a class="ref" href="#ref-64">64</a></sup>. S&#x27;il bascule, il passe le plus souvent en classe IIa ou plus, avec organisme notifié <sup class="refs"><a class="ref" href="#ref-65">65</a>, <a class="ref" href="#ref-66">66</a></sup>. Le statut dépend de ce que l&#x27;éditeur annonce <sup class="refs"><a class="ref" href="#ref-67">67</a></sup>.</div></li><li><div>Des données de vie quotidienne et de santé imposent consentement explicite, minimisation et analyse d&#x27;impact (PIA) <sup class="refs"><a class="ref" href="#ref-60">60</a>, <a class="ref" href="#ref-61">61</a>, <a class="ref" href="#ref-58">58</a></sup>, plus une sécurité dès la conception <sup class="refs"><a class="ref" href="#ref-59">59</a>, <a class="ref" href="#ref-63">63</a></sup>. Les amendes RGPD ont désormais une méthode de calcul européenne <sup class="refs"><a class="ref" href="#ref-62">62</a></sup>.</div></li><li><div>Tout compagnon ou assistant IA doit dire qu&#x27;il est une IA : l&#x27;obligation de transparence de l&#x27;AI Act s&#x27;applique depuis le 2 août 2026, avec des sanctions jusqu&#x27;à 15 M€ ou 3 % du chiffre d&#x27;affaires <sup class="refs"><a class="ref" href="#ref-68">68</a>, <a class="ref" href="#ref-69">69</a>, <a class="ref" href="#ref-70">70</a></sup>.</div></li><li><div>Côté propriété intellectuelle, le code appartient à son auteur sauf cession écrite : une facture payée ne suffit pas <sup class="refs"><a class="ref" href="#ref-71">71</a>, <a class="ref" href="#ref-74">74</a></sup>. Le nom du produit se protège par un dépôt de marque à l&#x27;INPI <sup class="refs"><a class="ref" href="#ref-75">75</a>, <a class="ref" href="#ref-73">73</a></sup>.</div></li></ol>
+<div class="tbl"><table class="faits">
+<thead><tr><th>Réf.</th><th>Code</th><th>Information</th><th>Source</th><th title="Score de fiabilité sur 7, calculé par script">Fiab.</th><th title="Pertinence décidée en revue humaine">Pert.</th></tr></thead>
+<tbody><tr>
+<td class="num"><a id="f-57" href="#ref-57">57</a></td>
+<td class="code">R1</td>
+<td><div class="t">CNIL et Cybermalveillance : guide en cas de violation de données</div><div class="res">À l&#x27;occasion du Cybermois 2026, la CNIL et Cybermalveillance.gouv.fr publient un dépliant en 3 étapes pour réagir à une violation de données personnelles, du jour de la découverte jusqu&#x27;à J+30.</div></td>
+<td class="srcc">cnil<br>10/2026</td>
+<td class="sc"><span class="pill hi">7</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-58" href="#ref-58">58</a></td>
+<td class="code">R1</td>
+<td><div class="t">CNIL : analyse d&#x27;impact (PIA) appliquée aux objets connectés</div><div class="res">Document de la CNIL (édition février 2018) appliquant la méthode d&#x27;analyse d&#x27;impact sur la vie privée aux objets connectés.</div></td>
+<td class="srcc">cnil.fr<br>02/2018</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-59" href="#ref-59">59</a></td>
+<td class="code">R1</td>
+<td><div class="t">CNIL : questions à se poser pour une application mobile de santé</div><div class="res">Fiche CNIL (2018) : le RGPD s&#x27;applique dès qu&#x27;il y a connexion ou service à distance, minimisation des données, responsable de traitement, consentement, sécurité dès la conception, hébergeur agréé pour les données de santé.</div></td>
+<td class="srcc">cnil.fr</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-60" href="#ref-60">60</a></td>
+<td class="code">R1</td>
+<td><div class="t">RGPD et données de santé : principes et obligations</div><div class="res">Les données de santé sont sensibles : leur traitement est interdit sauf consentement explicite ou exception légale. Les organisations doivent notamment tenir un registre, réaliser une analyse d&#x27;impact et parfois désigner un DPO.</div></td>
+<td class="srcc">legalplace.fr</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-61" href="#ref-61">61</a></td>
+<td class="code">R1</td>
+<td><div class="t">Objets connectés de santé : enjeux juridiques (RGPD, dispositifs médicaux)</div><div class="res">Un cabinet d&#x27;avocats rappelle que les données de santé sont soumises à une interdiction de principe de traitement avec exceptions (consentement explicite notamment), et à des obligations de finalité, minimisation, sécurité et analyse d&#x27;impact. Il distingue les dispositifs médicaux (règlement UE 2017/745, marquage CE) des objets non médicaux.</div></td>
+<td class="srcc">aumans-avocats.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-62" href="#ref-62">62</a></td>
+<td class="code">R1</td>
+<td><div class="t">CEPD : lignes directrices sur les amendes RGPD et lien DSA-RGPD</div><div class="res">Le 17 septembre 2026, le CEPD a adopté une méthodologie en cinq étapes pour fixer les amendes RGPD, avec exemples pratiques, et la version finale de ses lignes directrices sur l&#x27;articulation DSA/RGPD. Une consultation publique reste ouverte sur le texte des amendes.</div></td>
+<td class="srcc">cnil<br>09/2026</td>
+<td class="sc"><span class="pill hi">7</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-63" href="#ref-63">63</a></td>
+<td class="code">R1</td>
+<td><div class="t">CNIL : conseils pour sécuriser les objets connectés</div><div class="res">La CNIL recommande de vérifier l&#x27;authentification, changer les mots de passe par défaut, sécuriser le Wi-Fi, désactiver le partage automatique et effacer les données avant revente. Article ancien (2015).</div></td>
+<td class="srcc">cnil.fr</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-64" href="#ref-64">64</a></td>
+<td class="code">R2</td>
+<td><div class="t">ANSM : quand un logiciel santé devient dispositif médical</div><div class="res">L&#x27;ANSM indique que trois critères cumulatifs qualifient un logiciel de dispositif médical : finalité médicale, résultat propre à un seul patient, action sur les données entrantes (analyse). Le simple stockage ou la transmission de données ne suffit pas.</div></td>
+<td class="srcc">ansm.sante.fr</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●●●</span></td>
+</tr><tr>
+<td class="num"><a id="f-65" href="#ref-65">65</a></td>
+<td class="code">R2</td>
+<td><div class="t">ANSM : classification des logiciels selon les règlements européens</div><div class="res">L&#x27;ANSM explique que le règlement 2017/745 introduit la règle 11 pour les logiciels, qui passent le plus souvent en classe IIa au minimum, voire IIb ou III. Pour le diagnostic in vitro (2017/746), un logiciel autonome atteint en général la classe B ou plus, avec organisme notifié. Elle renvoie aux guides MDCG et à un guichet d&#x27;orientation.</div></td>
+<td class="srcc">ansm.sante.fr</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●●●</span></td>
+</tr><tr>
+<td class="num"><a id="f-66" href="#ref-66">66</a></td>
+<td class="code">R2</td>
+<td><div class="t">Règlement (UE) 2017/745 sur les dispositifs médicaux</div><div class="res">Texte européen du 5 avril 2017 encadrant les dispositifs médicaux. Il sert de référence pour tracer la frontière entre dispositif médical et simple bien-être. Page non lue en détail.</div></td>
+<td class="srcc">eur-lex.europa.eu<br>04/2017</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-67" href="#ref-67">67</a></td>
+<td class="code">R2</td>
+<td><div class="t">Une app est-elle un dispositif médical ?</div><div class="res">Une application devient dispositif médical selon la destination que l&#x27;éditeur lui donne (diagnostic, thérapie). L&#x27;ANSM peut requalifier après coup, avec des risques civils, pénaux et commerciaux. L&#x27;éditeur doit donc déclarer honnêtement le statut.</div></td>
+<td class="srcc">desmarais-avocats.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-68" href="#ref-68">68</a></td>
+<td class="code">R3</td>
+<td><div class="t">AI Act : calendrier 2026-2028, risques et sanctions</div><div class="res">Guide présentant le calendrier d&#x27;application (transparence depuis le 2 août 2026, haut risque en 2027-2028), les quatre niveaux de risque, l&#x27;obligation d&#x27;informer l&#x27;utilisateur qu&#x27;il interagit avec une IA, et les barèmes de sanctions.</div><ul class="ch"><li><b>35 millions € ou 7 % du CA mondial</b> plafond de sanction pour pratiques interdites <span class="src">(article 99 de l&#x27;AI Act)</span></li><li><b>15 millions € ou 3 %</b> plafond pour manquements haut risque et transparence <span class="src">(article 99 de l&#x27;AI Act)</span></li></ul></td>
+<td class="srcc">leto.legal</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●●</span></td>
+</tr><tr>
+<td class="num"><a id="f-69" href="#ref-69">69</a></td>
+<td class="code">R3</td>
+<td><div class="t">Règlement (UE) 2024/1689 sur l&#x27;intelligence artificielle</div><div class="res">Texte officiel de l&#x27;AI Act, règlement du 13 juin 2024 fixant des règles harmonisées sur l&#x27;IA.</div></td>
+<td class="srcc">eur-lex.europa.eu<br>06/2024</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-70" href="#ref-70">70</a></td>
+<td class="code">R3</td>
+<td><div class="t">AI Act : niveaux de risque et calendrier 2026</div><div class="res">L&#x27;AI Act classe les usages de l&#x27;IA en quatre niveaux de risque, applicables par étapes. Les pouvoirs de sanction s&#x27;activent le 2 août 2026 et le Digital Omnibus reporterait les obligations haut risque au 2 décembre 2027.</div><ul class="ch"><li><b>35 millions d&#x27;euros ou 7 % du chiffre d&#x27;affaires annuel mondial</b> amende maximale prévue par l&#x27;AI Act <span class="src">(Règlement UE 2024/1689)</span></li></ul></td>
+<td class="srcc">studeria.fr</td>
+<td class="sc"><span class="pill mid">3</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-71" href="#ref-71">71</a></td>
+<td class="code">R4</td>
+<td><div class="t">Propriété du code d&#x27;un logiciel : salariés et prestataires</div><div class="res">Le code est une oeuvre de l&#x27;esprit protégée par le droit d&#x27;auteur. L&#x27;employeur détient les droits du salarié ; pour prestataires, stagiaires et indépendants, les droits restent au créateur sauf cession contractuelle.</div></td>
+<td class="srcc">code-garage.com</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-72" href="#ref-72">72</a></td>
+<td class="code">R4</td>
+<td><div class="t">Protection d&#x27;un logiciel par le droit d&#x27;auteur</div><div class="res">Le logiciel est protégé automatiquement sans formalité (code, interface, manuel), mais pas les algorithmes ni les fonctionnalités générales. L&#x27;originalité est requise. Preuve d&#x27;antériorité par envoi recommandé, notaire, huissier ou INPI.</div></td>
+<td class="srcc">legalstart.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●●○</span></td>
+</tr><tr>
+<td class="num"><a id="f-73" href="#ref-73">73</a></td>
+<td class="code">R4</td>
+<td><div class="t">Start INPI : application gratuite pour entrepreneurs</div><div class="res">L&#x27;INPI propose une application mobile gratuite qui guide les formalités d&#x27;entreprise et initie à la propriété intellectuelle (marques, dessins, brevets, contrefaçon) via tutoriels, vidéos et quiz.</div></td>
+<td class="srcc">inpi.fr</td>
+<td class="sc"><span class="pill hi">5</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-74" href="#ref-74">74</a></td>
+<td class="code">R4</td>
+<td><div class="t">Titularité des droits sur un logiciel</div><div class="res">L&#x27;APP explique que l&#x27;auteur garde ses droits moraux mais peut céder ses droits patrimoniaux. Elle cite un arrêt de Colmar de 2025 selon lequel une cession ne peut être implicite et le paiement de factures ne suffit pas.</div></td>
+<td class="srcc">app.asso.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr><tr>
+<td class="num"><a id="f-75" href="#ref-75">75</a></td>
+<td class="code">R4</td>
+<td><div class="t">Dépôt de marque à l&#x27;INPI : procédure et coûts</div><div class="res">Le guide décrit le dépôt de marque à l&#x27;INPI : recherche d&#x27;antériorité, dépôt en ligne, publication au BOPI puis enregistrement. La protection dure 10 ans.</div></td>
+<td class="srcc">legalstart.fr</td>
+<td class="sc"><span class="pill lo">1</span></td>
+<td class="sc"><span class="pert">●○○</span></td>
+</tr></tbody></table></div>
+</section>
+
+<section id="signaux"><div class="sec-h"><div class="k">Signaux usagers</div>
+<h2>Ce que disent seniors et aidants</h2></div>
+<div class="sig-grid">
+<div class="hbars"><div class="k">51 signaux validés, par irritant</div><div class="hb"><span class="hl">Retours positifs</span><span class="hbar pos" style="--w:100%"></span><span class="hv">17</span></div><div class="hb"><span class="hl">Fiabilité technique</span><span class="hbar " style="--w:100%"></span><span class="hv">17</span></div><div class="hb"><span class="hl">Épuisement et charge de l&#x27;aidant</span><span class="hbar " style="--w:53%"></span><span class="hv">9</span></div><div class="hb"><span class="hl">Complexité</span><span class="hbar " style="--w:41%"></span><span class="hv">7</span></div><div class="hb"><span class="hl">Prix, abonnement</span><span class="hbar " style="--w:6%"></span><span class="hv">1</span></div>
+<p class="note">Avis App Store et témoignages Reddit, anonymisés. Les verbatims anglais sont traduits (trad.).</p></div>
+<div class="sgs"><article class="sg"><div class="sg-h"><h3>Famileo</h3><span>Gazette familiale papier</span></div>
+<div class="sg-c"><span class="cp">+ 8</span><span class="cn">− 5</span></div><blockquote class="p">« Toute la famille participe activement chaque mois pour la joie des grands-parents, qui attendent chaque parution avec impatience. »<sup class="refs"><a class="ref" href="#ref-81">81</a></sup></blockquote><blockquote class="p">« Souvent les personnes âgées ne sont pas à l&#x27;aise avec les réseaux sociaux et manquent des moments importants de la famille. Avec cette revue mensuelle, elles peuvent participer à nos voyages et visualiser nos aventures quotidiennes. »<sup class="refs"><a class="ref" href="#ref-83">83</a></sup></blockquote><blockquote class="n">« Le concept est bien mais l&#x27;application est si peu pratique que c&#x27;est devenu une corvée, avec l&#x27;impression d&#x27;être piégé. On passera à la concurrence. »<sup class="refs"><a class="ref" href="#ref-77">77</a></sup></blockquote></article><article class="sg"><div class="sg-h"><h3>Tous FAMiliés</h3><span>Journal familial mensuel</span></div>
+<div class="sg-c"><span class="cp">+ 4</span><span class="cn">− 2</span></div><blockquote class="p">« Très bonne application, superbe pour permettre aux grands-parents de profiter de nos souvenirs ! Je recommande grandement ! »<sup class="refs"><a class="ref" href="#ref-114">114</a></sup></blockquote><blockquote class="p">« L&#x27;interface est vraiment fluide. Très beau cadeau pour ma grand-mère, ravie ! Je compte renouveler. »<sup class="refs"><a class="ref" href="#ref-115">115</a></sup></blockquote><blockquote class="n">« Idée excellente et bien réalisée. Cependant l&#x27;application prend de plus en plus de place de stockage et les temps de chargement sont parfois excessivement longs. »<sup class="refs"><a class="ref" href="#ref-113">113</a></sup></blockquote></article><article class="sg"><div class="sg-h"><h3>Life360</h3><span>Localisation de la famille</span></div>
+<div class="sg-c"><span class="cp">+ 3</span><span class="cn">− 7</span></div><blockquote class="p">« C&#x27;est très pratique pour savoir où est notre enfant, et l&#x27;application ne plante pas. »<sup class="refs"><a class="ref" href="#ref-96">96</a></sup></blockquote><blockquote class="n">« L&#x27;application est incroyable, on peut voir en temps réel où sont nos proches, mais le gros problème c&#x27;est qu&#x27;elle utilise énormément de batterie même quand le téléphone est en veille. »<sup class="refs"><a class="ref" href="#ref-89">89</a></sup></blockquote><blockquote class="n">« Cette application paraît excellente mais ne l&#x27;est pas : elle bug sans arrêt et confond les destinations. Une app de localisation gratuite est vachement mieux. »<sup class="refs"><a class="ref" href="#ref-90">90</a></sup></blockquote></article><article class="sg"><div class="sg-h"><h3>Signia</h3><span>Application d&#x27;aides auditives</span></div>
+<div class="sg-c"><span class="cp">+ 2</span><span class="cn">− 11</span></div><blockquote class="n">« L&#x27;application n&#x27;est pas synchronisée avec les mises à jour d&#x27;iOS. Il faut attendre plusieurs semaines pour qu&#x27;elle fonctionne correctement. Je songe à changer de marque de prothèses auditives. »<sup class="refs"><a class="ref" href="#ref-109">109</a></sup></blockquote><blockquote class="n">« L&#x27;application ne prend pas en compte le temps de port des aides auditives, et je dois régulièrement la désinstaller puis la réinstaller pour que les aides soient reconnues. »<sup class="refs"><a class="ref" href="#ref-106">106</a></sup></blockquote><blockquote class="n">« L&#x27;appli est très lente et demande de se connecter très régulièrement dans la journée pour être à jour. Une perte de temps et une charge mentale supplémentaire. »<sup class="refs"><a class="ref" href="#ref-108">108</a></sup></blockquote></article><article class="sg"><div class="sg-h"><h3>Aidants</h3><span>r/AgingParents, r/CaregiverSupport</span></div>
+<div class="sg-c"><span class="cp">+ 0</span><span class="cn">− 9</span></div><blockquote class="n">« J&#x27;ai dit à ma mère où est sa carte d&#x27;assurance, qui est le médecin et quand est le rendez-vous, il y a un mois. Le jour J, elle ne sait toujours pas qui elle va voir et me dérange au travail pour l&#x27;adresse, pourtant reçue par SMS. (trad.) »<sup class="refs"><a class="ref" href="#ref-120">120</a></sup></blockquote><blockquote class="n">« Ma mère a des problèmes de mobilité, ramasser des objets n&#x27;est plus possible. Ce qui me prend 15 minutes lui prendrait une heure. Pendant qu&#x27;elle dormait, j&#x27;ai passé l&#x27;aspirateur et rangé. J&#x27;espère qu&#x27;elle l&#x27;apprécie. (trad.) »<sup class="refs"><a class="ref" href="#ref-119">119</a></sup></blockquote><blockquote class="n">« Je suis épuisé de m&#x27;occuper à domicile de deux parents très âgés. Mes économies sont épuisées, je n&#x27;ai plus de relations à cause d&#x27;eux. Ma mère est tombée aujourd&#x27;hui, les frais médicaux s&#x27;élèvent à 5 000 $. (trad.) »<sup class="refs"><a class="ref" href="#ref-122">122</a></sup></blockquote></article></div></div></section>
+
+<section id="position"><div class="sec-h"><div class="k">Positionnement</div>
+<h2>Où notre produit se joue</h2></div>
+<div class="pos-grid"><figure class="pos">
+<svg viewBox="0 0 640 420" role="img" aria-label="Carte de positionnement : axe horizontal du lien vers la sécurité, axe vertical de l'effort demandé au senior. La zone sécurité avec effort nul est peu occupée.">
+<rect x="46" y="46" width="548" height="328" class="frame"/>
+<line x1="320.0" y1="46" x2="320.0" y2="374" class="mid"/><line x1="46" y1="210.0" x2="594" y2="210.0" class="mid"/>
+<ellipse cx="364" cy="295" rx="100" ry="26" class="zone"/>
+<text x="364" y="299" text-anchor="middle" class="zl">Notre produit se joue ici</text>
+<circle cx="517" cy="85" r="7" class="pt o"/><text x="505" y="83" text-anchor="end" class="pl">Apple Watch</text><text x="505" y="97" text-anchor="end" class="ps">veille précédente</text><circle cx="484" cy="158" r="7" class="pt o"/><text x="472" y="156" text-anchor="end" class="pl">Bracelet téléassistance</text><text x="472" y="170" text-anchor="end" class="ps">Filien, Vitaris, Allovie</text><circle cx="386" cy="210" r="7" class="pt o"/><text x="398" y="208" text-anchor="start" class="pl">Life360</text><text x="398" y="222" text-anchor="start" class="ps">localisation</text><circle cx="178" cy="217" r="7" class="pt b"/><text x="190" y="215" text-anchor="start" class="pl">Robots compagnons</text><text x="190" y="229" text-anchor="start" class="ps">Cutii, Buddy, Compan&#x27;IA</text><circle cx="101" cy="308" r="7" class="pt b"/><text x="113" y="306" text-anchor="start" class="pl">Famileo</text><text x="113" y="320" text-anchor="start" class="ps">gazette papier</text><circle cx="101" cy="354" r="7" class="pt b"/><text x="113" y="352" text-anchor="start" class="pl">Tous FAMiliés</text><text x="113" y="366" text-anchor="start" class="ps">journal mensuel</text><circle cx="528" cy="354" r="7" class="pt o"/><text x="516" y="352" text-anchor="end" class="pl">Capteurs ambiants</text><text x="516" y="366" text-anchor="end" class="ps">Orme, wi-fi, Domalys</text>
+<text x="320.0" y="406" text-anchor="middle" class="ax">← Lien · Sécurité →</text>
+<text x="46" y="34" class="ax">↑ Effort senior élevé</text><text x="46" y="392" class="ax">Effort nul</text>
+</svg></figure>
+<div class="pos-txt"><p>Les produits de <b class="o">sécurité</b> demandent un effort au senior : porter, recharger, accepter l'image de la dépendance <sup class="refs"><a class="ref" href="#ref-45">45</a>, <a class="ref" href="#ref-19">19</a></sup>.
+Les produits de <b class="b">lien</b> ne lui demandent rien et sont plébiscités, mais ne détectent aucun danger <sup class="refs"><a class="ref" href="#ref-87">87</a>, <a class="ref" href="#ref-116">116</a></sup>.</p>
+<p>Le coin <b>sécurité sans effort</b> est presque vide : seuls quelques capteurs ambiants s'y trouvent <sup class="refs"><a class="ref" href="#ref-54">54</a>, <a class="ref" href="#ref-18">18</a>, <a class="ref" href="#ref-53">53</a></sup>, surtout vendus aux Ehpad.
+C'est là que se joue notre produit, qui doit aussi porter une dimension de lien pour ne pas être vécu comme une surveillance.</p>
+<p class="note">Carte qualitative : placement établi par l'équipe à partir des éléments validés, pas une mesure.</p></div></div></section>
+
+<section id="implications"><div class="sec-h"><div class="k">Implications pour le projet</div>
+<h2>Cinq principes pour la suite</h2></div><ol class="impl"><li><span class="in">01</span><div><h3>Zéro effort pour le senior</h3><p>Le produit ne doit rien demander au senior : ni port, ni recharge, ni écran. C&#x27;est la condition d&#x27;adoption la plus documentée <sup class="refs"><a class="ref" href="#ref-45">45</a>, <a class="ref" href="#ref-19">19</a>, <a class="ref" href="#ref-48">48</a></sup>. Piste : capteurs ambiants à la maison <sup class="refs"><a class="ref" href="#ref-54">54</a>, <a class="ref" href="#ref-18">18</a>, <a class="ref" href="#ref-53">53</a></sup>.</p></div></li><li><span class="in">02</span><div><h3>Une fiabilité avant les fonctions</h3><p>La confiance de l&#x27;aidant se perd au premier bug ou à la première fausse alerte <sup class="refs"><a class="ref" href="#ref-90">90</a>, <a class="ref" href="#ref-91">91</a>, <a class="ref" href="#ref-51">51</a>, <a class="ref" href="#ref-37">37</a></sup>. Mieux vaut peu de signaux, mais justes.</p></div></li><li><span class="in">03</span><div><h3>Alléger l&#x27;aidant, pas le solliciter</h3><p>Des aidants déjà épuisés <sup class="refs"><a class="ref" href="#ref-122">122</a>, <a class="ref" href="#ref-123">123</a>, <a class="ref" href="#ref-124">124</a></sup> : notifications rares et utiles, résumé plutôt que flux continu. Ce qui devient une corvée est abandonné <sup class="refs"><a class="ref" href="#ref-77">77</a>, <a class="ref" href="#ref-108">108</a></sup>.</p></div></li><li><span class="in">04</span><div><h3>Un récit de lien, pas de dépendance</h3><p>Éviter le vocabulaire de la surveillance et de la dépendance <sup class="refs"><a class="ref" href="#ref-19">19</a>, <a class="ref" href="#ref-30">30</a>, <a class="ref" href="#ref-12">12</a></sup>. Famileo montre qu&#x27;un produit de lien est attendu chaque mois <sup class="refs"><a class="ref" href="#ref-87">87</a>, <a class="ref" href="#ref-116">116</a></sup>.</p></div></li><li><span class="in">05</span><div><h3>Bien-être par conception</h3><p>Pas de finalité médicale ni d&#x27;analyse diagnostique, pour rester hors dispositif médical <sup class="refs"><a class="ref" href="#ref-64">64</a>, <a class="ref" href="#ref-65">65</a></sup>. RGPD et PIA dès le prototype <sup class="refs"><a class="ref" href="#ref-58">58</a>, <a class="ref" href="#ref-60">60</a></sup>, et toute IA s&#x27;annonce comme telle <sup class="refs"><a class="ref" href="#ref-68">68</a></sup>.</p></div></li></ol></section>
+
+<section id="methode"><div class="sec-h"><div class="k">Méthode et limites</div><h2>Comment cette veille a été faite</h2></div>
+<div class="two"><div>
+<div class="pipe"><div><b>284</b><span>collectés</span></div><div><b>89</b><span>filtrés sans IA</span></div>
+<div><b>180</b><span>qualifiés par IA</span></div><div><b>65</b><span>rejetés ou hors sujet</span></div>
+<div><b>130</b><span>validés humain</span></div></div>
+<p>Collecte du 1<sup>er</sup> octobre 2026 : flux RSS (Silvereco, Maddyness, FrenchWeb, CNIL), 3 communautés Reddit, avis App Store de 4 applications
+et recherche web ciblée sur les 13 informations requises du catalogue. Un filtre sans IA écarte les hors-sujet ; un agent IA résume et classe ;
+chaque élément a été relu et validé ou rejeté par l'équipe.</p>
+<p>Le <b>score de fiabilité</b> (sur 7) est calculé par script, jamais par l'IA : autorité du site (0-3), fraîcheur (0-2), source primaire citée (0-2).
+La <b>pertinence</b> (●●● sur 3) est la décision de l'équipe. Les chiffres cités ont été revérifiés automatiquement dans leur page source.</p>
+<p class="note">Dispositif complet : <code>01-veille/veille-silvertech/docs/dispositif-veille.md</code>.</p>
+</div><div><div class="k" style="margin-bottom:10px">Limites</div><ul><li>Plusieurs chiffres clés sont anciens : abandon des objets connectés (2014) <sup class="refs"><a class="ref" href="#ref-46">46</a></sup>, perception de la téléassistance (2016) <sup class="refs"><a class="ref" href="#ref-19">19</a></sup>, équipement des seniors (2019) <sup class="refs"><a class="ref" href="#ref-49">49</a></sup>. Ils sont à actualiser.</li><li>Les éléments de concurrence viennent surtout de pages commerciales ou éditoriales, avec une fiabilité de 1 à 3 sur 7 : les prix sont des ordres de grandeur, pas des tarifs vérifiés.</li><li>Les signaux d&#x27;usagers viennent de 4 applications et de 3 communautés Reddit anglophones : ils éclairent des irritants, ils ne mesurent pas leur fréquence dans la population.</li><li>Aucune donnée solide sur les aidants familiaux (M3) ni sur le consentement des personnes vulnérables (R5) : ce sont les trous prioritaires.</li></ul></div></div></section>
+
+<section id="biblio"><div class="sec-h"><div class="k">Bibliographie</div><h2>130 sources</h2></div>
+<ol class="bib"><li id="ref-1"><span class="bn">1</span><span>Téléassistance 2030 : doubler le taux d&#x27;équipement en France. <i>cahiers-silvereconomie.fr</i>. <a href="https://www.cahiers-silvereconomie.fr/p/teleassistance-2030-comment-la-france" rel="noopener">https://www.cahiers-silvereconomie.fr/p/teleassistance-2030-comment-la-france</a></span></li><li id="ref-2"><span class="bn">2</span><span>Marché français de la téléassistance et de la domotique senior (2026). <i>autonomag.com</i>. <a href="https://www.autonomag.com/marche-teleassistance-domotique-senior/" rel="noopener">https://www.autonomag.com/marche-teleassistance-domotique-senior/</a></span></li><li id="ref-3"><span class="bn">3</span><span>Silver économie en France : taille du marché selon le périmètre. <i>sweet-home.info</i>. <a href="https://sweet-home.info/etudes-de-cas/silver-economie-guide-complet/" rel="noopener">https://sweet-home.info/etudes-de-cas/silver-economie-guide-complet/</a></span></li><li id="ref-4"><span class="bn">4</span><span>Avenir du marché de la téléassistance (étude DGE/PIPAME). <i>entreprises.gouv.fr</i>. <a href="https://www.entreprises.gouv.fr/la-dge/publications/lavenir-du-marche-de-la-teleassistance-et-des-services-associes" rel="noopener">https://www.entreprises.gouv.fr/la-dge/publications/lavenir-du-marche-de-la-teleassistance-et-des-services-associes</a></span></li><li id="ref-5"><span class="bn">5</span><span>Xerfi : marché de la téléassistance à l&#x27;horizon 2030. <i>xerfi.com</i>. <a href="https://www.xerfi.com/presentationetude/le-marche-de-la-teleassistance_sme125" rel="noopener">https://www.xerfi.com/presentationetude/le-marche-de-la-teleassistance_sme125</a></span></li><li id="ref-6"><span class="bn">6</span><span>Silver économie 2026 : IA et sport-santé portent le marché. <i>directmag.com</i>. <a href="https://www.directmag.com/retraite-seniors/info19252/silver-economie-2026-ia-sport-sante-seniors.html" rel="noopener">https://www.directmag.com/retraite-seniors/info19252/silver-economie-2026-ia-sport-sante-seniors.html</a></span></li><li id="ref-7"><span class="bn">7</span><span>DREES : perte d&#x27;autonomie des seniors jusqu&#x27;en 2050. <i>drees.solidarites-sante.gouv.fr</i>. <a href="https://drees.solidarites-sante.gouv.fr/publications/700-000-seniors-en-perte-dautonomie-supplementaires-dici-2050" rel="noopener">https://drees.solidarites-sante.gouv.fr/publications/700-000-seniors-en-perte-dautonomie-supplementaires-dici-2050</a></span></li><li id="ref-8"><span class="bn">8</span><span>DREES : projections LIVIA de la perte d&#x27;autonomie par lieu de vie. <i>data.drees.solidarites-sante.gouv.fr</i>. <a href="https://data.drees.solidarites-sante.gouv.fr/explore/dataset/projections-du-nombre-de-personnes-agees-en-perte-dautonomie-par-lieu-de-vie-mod/information" rel="noopener">https://data.drees.solidarites-sante.gouv.fr/explore/dataset/projections-du-nombre-de-personnes-agees-en-perte-dautonomie-par-lieu-de-vie-mod/information</a></span></li><li id="ref-9"><span class="bn">9</span><span>DREES : 150 000 à 200 000 emplois de plus nécessaires en 2050 pour l&#x27;autonomie. <i>drees.solidarites-sante.gouv.fr</i>. <a href="https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/260205-soutien-autonomie-personnes-agees" rel="noopener">https://drees.solidarites-sante.gouv.fr/publications-communique-de-presse/etudes-et-resultats/260205-soutien-autonomie-personnes-agees</a></span></li><li id="ref-10"><span class="bn">10</span><span>Insee : forte hausse de la demande de services à la personne d&#x27;ici 2050. <i>insee.fr</i>. <a href="https://www.insee.fr/fr/statistiques/8383720" rel="noopener">https://www.insee.fr/fr/statistiques/8383720</a></span></li><li id="ref-11"><span class="bn">11</span><span>Predict 360 : études territoriales automatisées sur le vieillissement. <i>silvereco</i>, 30/09/2026. <a href="https://www.silvereco.fr/entretien-predict-360-veut-democratiser-les-etudes-territoriales-le-public-qui-en-a-le-plus-besoin-na-jamais-eu-les-moyens-de-se-les-offrir/" rel="noopener">https://www.silvereco.fr/entretien-predict-360-veut-democratiser-les-etudes-territoriales-le-public-qui-en-a-le-plus-besoin-na-jamais-eu-les-moyens-de-se-les-offrir/</a></span></li><li id="ref-12"><span class="bn">12</span><span>Campagne vidéo des caisses de retraite contre l&#x27;âgisme. <i>silvereco</i>, 30/09/2026. <a href="https://www.silvereco.fr/vieillir-autrement-des-histoires-qui-changent-le-regard-sur-lavancee-en-age/" rel="noopener">https://www.silvereco.fr/vieillir-autrement-des-histoires-qui-changent-le-regard-sur-lavancee-en-age/</a></span></li><li id="ref-13"><span class="bn">13</span><span>Prescription sociale et bien vieillir : événement à Paris le 14 octobre 2026. <i>silvereco</i>, 30/09/2026. <a href="https://www.silvereco.fr/prescription-sociale-et-bien-vieillir-un-evenement-a-paris-pour-explorer-une-autre-approche-de-la-sante/" rel="noopener">https://www.silvereco.fr/prescription-sociale-et-bien-vieillir-un-evenement-a-paris-pour-explorer-une-autre-approche-de-la-sante/</a></span></li><li id="ref-14"><span class="bn">14</span><span>Maintien à domicile : le rôle de la mobilité des aides à domicile. <i>silvereco</i>, 28/09/2026. <a href="https://www.silvereco.fr/hebdo-du-vieillissement-rester-a-domicile-commence-parfois-par-les-solutions-de-mobilite/" rel="noopener">https://www.silvereco.fr/hebdo-du-vieillissement-rester-a-domicile-commence-parfois-par-les-solutions-de-mobilite/</a></span></li><li id="ref-15"><span class="bn">15</span><span>MonSenior : trois partenariats HLM pour l&#x27;habitat partagé. <i>silvereco</i>, 01/10/2026. <a href="https://www.silvereco.fr/habitat-partage-pour-seniors-monsenior-signe-trois-partenariats-avec-des-organismes-hlm/" rel="noopener">https://www.silvereco.fr/habitat-partage-pour-seniors-monsenior-signe-trois-partenariats-avec-des-organismes-hlm/</a></span></li><li id="ref-16"><span class="bn">16</span><span>Chutes des seniors : la nouvelle vague technologique. <i>lassuranceenmouvement.com</i>, 06/07/2026. <a href="https://www.lassuranceenmouvement.com/2026/07/06/chutes-des-seniors-la-nouvelle-vague-technologique" rel="noopener">https://www.lassuranceenmouvement.com/2026/07/06/chutes-des-seniors-la-nouvelle-vague-technologique</a></span></li><li id="ref-17"><span class="bn">17</span><span>Compan&#x27;IA : intégrateur de robots compagnons IA pour seniors. <i>bisqi.fr</i>. <a href="https://www.bisqi.fr/compania-robots-compagnons-ia/" rel="noopener">https://www.bisqi.fr/compania-robots-compagnons-ia/</a></span></li><li id="ref-18"><span class="bn">18</span><span>Start-up française détectant les chutes via le wi-fi. <i>korii.slate.fr</i>. <a href="https://korii.slate.fr/tech/start-up-francaise-detecte-chutes-personnes-agees-surveillance-wi-fi-ondes-seniors-dispositif-alerte-ia-zoe-care" rel="noopener">https://korii.slate.fr/tech/start-up-francaise-detecte-chutes-personnes-agees-surveillance-wi-fi-ondes-seniors-dispositif-alerte-ia-zoe-care</a></span></li><li id="ref-19"><span class="bn">19</span><span>797 000 personnes équipées de téléassistance en France. <i>fredericserriere.com</i>. <a href="https://www.fredericserriere.com/797-000-personnes-equipees-dune-teleassistance-en-france/" rel="noopener">https://www.fredericserriere.com/797-000-personnes-equipees-dune-teleassistance-en-france/</a></span></li><li id="ref-20"><span class="bn">20</span><span>Silvereco : panorama des solutions de détection de chute. <i>silvereco.fr</i>. <a href="https://www.silvereco.fr/detection-des-chutes/" rel="noopener">https://www.silvereco.fr/detection-des-chutes/</a></span></li><li id="ref-21"><span class="bn">21</span><span>Blue Frog Robotics et le robot compagnon Buddy. <i>salon-services-personne.com</i>. <a href="https://www.salon-services-personne.com/blog/blue-frog-robotics-startup-francaise-cree-robots-for-good-pour-seniors-sante-education.html" rel="noopener">https://www.salon-services-personne.com/blog/blue-frog-robotics-startup-francaise-cree-robots-for-good-pour-seniors-sante-education.html</a></span></li><li id="ref-22"><span class="bn">22</span><span>Chutes des seniors : six start-up françaises. <i>marchedesseniors.com</i>. <a href="https://www.marchedesseniors.com/chute-des-personnes-agees-6-start-up-francaises/21249" rel="noopener">https://www.marchedesseniors.com/chute-des-personnes-agees-6-start-up-francaises/21249</a></span></li><li id="ref-23"><span class="bn">23</span><span>AFRATA : l&#x27;association des opérateurs de téléassistance. <i>assystel.fr</i>. <a href="https://www.assystel.fr/association-afrata-qu-est-ce-que-c-est.html" rel="noopener">https://www.assystel.fr/association-afrata-qu-est-ce-que-c-est.html</a></span></li><li id="ref-24"><span class="bn">24</span><span>Cutii, robot compagnon pour seniors. <i>enaco.fr</i>. <a href="https://www.enaco.fr/actualites/cutii-compagnon-seniors/" rel="noopener">https://www.enaco.fr/actualites/cutii-compagnon-seniors/</a></span></li><li id="ref-25"><span class="bn">25</span><span>Bracelets anti-chute en 2025 : modèles, prix et limites. <i>capretraite.fr</i>. <a href="https://www.capretraite.fr/blog/maintien-a-domicile/bracelet-anti-chute-le-point-sur-loffre-en-2025/" rel="noopener">https://www.capretraite.fr/blog/maintien-a-domicile/bracelet-anti-chute-le-point-sur-loffre-en-2025/</a></span></li><li id="ref-26"><span class="bn">26</span><span>Téléassistance : coûts et financements selon SMATIS. <i>smatis.fr</i>. <a href="https://www.smatis.fr/particuliers/teleassistance-pour-maintien-a-domicile/teleassistance-cout-et-remboursement/" rel="noopener">https://www.smatis.fr/particuliers/teleassistance-pour-maintien-a-domicile/teleassistance-cout-et-remboursement/</a></span></li><li id="ref-27"><span class="bn">27</span><span>Téléassistance senior : prix, engagement et aides en 2026. <i>aquarelia.fr</i>. <a href="https://aquarelia.fr/guide/maintien-a-domicile/teleassistance-senior/" rel="noopener">https://aquarelia.fr/guide/maintien-a-domicile/teleassistance-senior/</a></span></li><li id="ref-28"><span class="bn">28</span><span>Allovie : bracelet détecteur de chute en option à 6 euros par mois. <i>teleassistance-allovie.com</i>. <a href="https://teleassistance-allovie.com/solutions-allovie/detecteur-de-chute/" rel="noopener">https://teleassistance-allovie.com/solutions-allovie/detecteur-de-chute/</a></span></li><li id="ref-29"><span class="bn">29</span><span>Bracelets d&#x27;alarme seniors : comparatif 2026 de cinq offres. <i>senior-autonomie.fr</i>. <a href="https://senior-autonomie.fr/maintien-domicile/bracelet-alarme-senior-comparatif/" rel="noopener">https://senior-autonomie.fr/maintien-domicile/bracelet-alarme-senior-comparatif/</a></span></li><li id="ref-30"><span class="bn">30</span><span>Montres connectées senior : échec du B2C, pivot vers le B2B2C. <i>longevite.xyz</i>. <a href="https://www.longevite.xyz/p/comment-les-montres-connectees-ont" rel="noopener">https://www.longevite.xyz/p/comment-les-montres-connectees-ont</a></span></li><li id="ref-31"><span class="bn">31</span><span>Startups silver économie en difficulté : qui les accompagne. <i>cahiers-silvereconomie.fr</i>. <a href="https://www.cahiers-silvereconomie.fr/p/startups-de-la-silver-economie-qui" rel="noopener">https://www.cahiers-silvereconomie.fr/p/startups-de-la-silver-economie-qui</a></span></li><li id="ref-32"><span class="bn">32</span><span>Myxyty : liquidation de l&#x27;assistant vocal français. <i>objetconnecte.com</i>. <a href="https://www.objetconnecte.com/myxyty-liquidation/" rel="noopener">https://www.objetconnecte.com/myxyty-liquidation/</a></span></li><li id="ref-33"><span class="bn">33</span><span>Silver économie : pourquoi tant de flops. <i>fredericserriere.com</i>. <a href="https://www.fredericserriere.com/silver-economie-la-raison-essentiel-des-echecs/" rel="noopener">https://www.fredericserriere.com/silver-economie-la-raison-essentiel-des-echecs/</a></span></li><li id="ref-34"><span class="bn">34</span><span>Archives téléassistance Silvereco : consolidation du secteur. <i>silvereco.fr</i>. <a href="https://www.silvereco.fr/category/actu/securite-et-urgences-a-domicile/teleassistance/" rel="noopener">https://www.silvereco.fr/category/actu/securite-et-urgences-a-domicile/teleassistance/</a></span></li><li id="ref-35"><span class="bn">35</span><span>Liquidation judiciaire de Senior &amp; Cie (communiqué CFDT). <i>services.cfdt.fr</i>. <a href="https://services.cfdt.fr/sinformer/nos-communiques/senior-cie-du-redressement-a-la-liquidation-judiciaire" rel="noopener">https://services.cfdt.fr/sinformer/nos-communiques/senior-cie-du-redressement-a-la-liquidation-judiciaire</a></span></li><li id="ref-36"><span class="bn">36</span><span>Levées de fonds françaises, semaine 25 de 2025. <i>multeam.substack.com</i>. <a href="https://multeam.substack.com/p/les-levees-de-fonds-de-la-semaine-19a" rel="noopener">https://multeam.substack.com/p/les-levees-de-fonds-de-la-semaine-19a</a></span></li><li id="ref-37"><span class="bn">37</span><span>Bracelet anti-chute sans abonnement : pièges fréquents. <i>seniors-en-mission.org</i>. <a href="https://www.seniors-en-mission.org/bracelet-anti-chute-senior-sans-abonnement-erreurs-frequentes-qui-limitent-lefficacite/" rel="noopener">https://www.seniors-en-mission.org/bracelet-anti-chute-senior-sans-abonnement-erreurs-frequentes-qui-limitent-lefficacite/</a></span></li><li id="ref-38"><span class="bn">38</span><span>Bracelet anti-chute : erreurs à éviter avant l&#x27;achat. <i>capretraite.fr</i>. <a href="https://www.capretraite.fr/blog/maintien-a-domicile/les-erreurs-courantes-a-eviter-lors-de-lachat-dun-bracelet-anti-chute-pour-seniors/" rel="noopener">https://www.capretraite.fr/blog/maintien-a-domicile/les-erreurs-courantes-a-eviter-lors-de-lachat-dun-bracelet-anti-chute-pour-seniors/</a></span></li><li id="ref-39"><span class="bn">39</span><span>Filien : bracelet détecteur de chute et limites de la détection. <i>filien.com</i>. <a href="https://www.filien.com/infos-conseils/faq-produits-personnes-agees/detecteur-de-chute/" rel="noopener">https://www.filien.com/infos-conseils/faq-produits-personnes-agees/detecteur-de-chute/</a></span></li><li id="ref-40"><span class="bn">40</span><span>Lauréats du Festival SilverEco Bien-Vieillir 2026. <i>silvereco</i>, 25/09/2026. <a href="https://www.silvereco.fr/festival-silvereco-bien-vieillir-2026-les-laureats-sont/" rel="noopener">https://www.silvereco.fr/festival-silvereco-bien-vieillir-2026-les-laureats-sont/</a></span></li><li id="ref-41"><span class="bn">41</span><span>Spokeo, assistant d&#x27;écoute pour résidents malentendants en EHPAD. <i>silvereco</i>, 28/09/2026. <a href="https://www.silvereco.fr/resident-malentendant-en-ehpad-que-faire-quand-lappareil-auditif-ne-suffit-plus/" rel="noopener">https://www.silvereco.fr/resident-malentendant-en-ehpad-que-faire-quand-lappareil-auditif-ne-suffit-plus/</a></span></li><li id="ref-42"><span class="bn">42</span><span>Huit startups de la silver economy à suivre (Maddyness, 2024). <i>maddyness.com</i>, 03/05/2024. <a href="https://www.maddyness.com/2024/05/03/10-startups-de-la-silver-economy-que-vous-devriez-suivre/" rel="noopener">https://www.maddyness.com/2024/05/03/10-startups-de-la-silver-economy-que-vous-devriez-suivre/</a></span></li><li id="ref-43"><span class="bn">43</span><span>Start-up pour seniors en Espagne et en Europe. <i>lesitedesaidants.fr</i>. <a href="https://lesitedesaidants.fr/startups-pour-les-seniors-comment-leur-faciliter-la-vie/" rel="noopener">https://lesitedesaidants.fr/startups-pour-les-seniors-comment-leur-faciliter-la-vie/</a></span></li><li id="ref-44"><span class="bn">44</span><span>Un forum d&#x27;aidants interdit les contenus IA. <i>r-agingparents</i>, 10/06/2026. <a href="https://www.reddit.com/r/AgingParents/comments/1u241vf/new_subreddit_rule_no_ai_allowed/" rel="noopener">https://www.reddit.com/r/AgingParents/comments/1u241vf/new_subreddit_rule_no_ai_allowed/</a></span></li><li id="ref-45"><span class="bn">45</span><span>Téléassistance : le non-port continu et ses raisons. <i>tele-assistance-senior.fr</i>. <a href="https://www.tele-assistance-senior.fr/porter-teleassistance-toute-la-journee" rel="noopener">https://www.tele-assistance-senior.fr/porter-teleassistance-toute-la-journee</a></span></li><li id="ref-46"><span class="bn">46</span><span>Objets connectés : un tiers des utilisateurs abandonnent en six mois. <i>phonandroid.com</i>. <a href="https://www.phonandroid.com/objets-connectes-tiers-utilisateurs-les-abandonnent-6-mois.html" rel="noopener">https://www.phonandroid.com/objets-connectes-tiers-utilisateurs-les-abandonnent-6-mois.html</a></span></li><li id="ref-47"><span class="bn">47</span><span>Objets connectés abandonnés au fond d&#x27;un tiroir : les causes. <i>directmag.com</i>. <a href="https://www.directmag.com/forme-bien-etre/info19082/objets-connectes-inutiles.html" rel="noopener">https://www.directmag.com/forme-bien-etre/info19082/objets-connectes-inutiles.html</a></span></li><li id="ref-48"><span class="bn">48</span><span>Étude : seniors et objets connectés. <i>objetconnecte.com</i>. <a href="https://www.objetconnecte.com/etude-seniors-objets-connectes-1708/" rel="noopener">https://www.objetconnecte.com/etude-seniors-objets-connectes-1708/</a></span></li><li id="ref-49"><span class="bn">49</span><span>Objets connectés de santé : adoption modeste chez les seniors (2020). <i>revuepharma.fr</i>. <a href="https://www.revuepharma.fr/2020/07/les-objets-connectes-un-atout-pour-la-sante-des-seniors/" rel="noopener">https://www.revuepharma.fr/2020/07/les-objets-connectes-un-atout-pour-la-sante-des-seniors/</a></span></li><li id="ref-50"><span class="bn">50</span><span>Principe et limites des détecteurs de chute. <i>seniorizon.fr</i>. <a href="https://www.seniorizon.fr/fonctionnement-et-principe-des-detecteurs-de-chute/" rel="noopener">https://www.seniorizon.fr/fonctionnement-et-principe-des-detecteurs-de-chute/</a></span></li><li id="ref-51"><span class="bn">51</span><span>Capteurs de chute : fonctionnement et fiabilité (guide 2026). <i>autonomag.com</i>. <a href="https://www.autonomag.com/capteurs-de-chute-fonctionnement-efficacite/" rel="noopener">https://www.autonomag.com/capteurs-de-chute-fonctionnement-efficacite/</a></span></li><li id="ref-52"><span class="bn">52</span><span>Outils numériques de prédiction et détection des chutes : état des lieux. <i>sciencedirect.com</i>. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2666479825001429" rel="noopener">https://www.sciencedirect.com/science/article/abs/pii/S2666479825001429</a></span></li><li id="ref-53"><span class="bn">53</span><span>Détecteurs de chute pour seniors : comparatif d&#x27;un fabricant. <i>domalys.com</i>. <a href="https://www.domalys.com/blog/actualites-5/detecteur-chute-personne-agee-121" rel="noopener">https://www.domalys.com/blog/actualites-5/detecteur-chute-personne-agee-121</a></span></li><li id="ref-54"><span class="bn">54</span><span>Orme : capteur de profondeur de détection de chute. <i>silvereco.fr</i>. <a href="https://www.silvereco.fr/orme-un-capteur-de-chute-destine-aux-personnes-fragiles/" rel="noopener">https://www.silvereco.fr/orme-un-capteur-de-chute-destine-aux-personnes-fragiles/</a></span></li><li id="ref-55"><span class="bn">55</span><span>Exposition systémique de données dans des apps Supabase. <i>r-nocode</i>, 30/09/2026. <a href="https://www.reddit.com/r/nocode/comments/1wu0f4n/systemic_data_exposure_in_supabase_apps/" rel="noopener">https://www.reddit.com/r/nocode/comments/1wu0f4n/systemic_data_exposure_in_supabase_apps/</a></span></li><li id="ref-56"><span class="bn">56</span><span>Trouver le récit client d&#x27;une app no-code (exemple fictif). <i>r-nocode</i>, 01/10/2026. <a href="https://www.reddit.com/r/nocode/comments/1wuxvkr/a_nocode_app_needs_a_customer_story_three_launch/" rel="noopener">https://www.reddit.com/r/nocode/comments/1wuxvkr/a_nocode_app_needs_a_customer_story_three_launch/</a></span></li><li id="ref-57"><span class="bn">57</span><span>CNIL et Cybermalveillance : guide en cas de violation de données. <i>cnil</i>, 01/10/2026. <a href="https://www.cnil.fr/fr/cybermois-2026" rel="noopener">https://www.cnil.fr/fr/cybermois-2026</a></span></li><li id="ref-58"><span class="bn">58</span><span>CNIL : analyse d&#x27;impact (PIA) appliquée aux objets connectés. <i>cnil.fr</i>, 01/02/2018. <a href="https://www.cnil.fr/sites/default/files/atoms/files/cnil-pia-piaf-connectedobjects-fr.pdf" rel="noopener">https://www.cnil.fr/sites/default/files/atoms/files/cnil-pia-piaf-connectedobjects-fr.pdf</a></span></li><li id="ref-59"><span class="bn">59</span><span>CNIL : questions à se poser pour une application mobile de santé. <i>cnil.fr</i>. <a href="https://www.cnil.fr/fr/applications-mobiles-en-sante-et-protection-des-donnees-personnelles-les-questions-se-poser" rel="noopener">https://www.cnil.fr/fr/applications-mobiles-en-sante-et-protection-des-donnees-personnelles-les-questions-se-poser</a></span></li><li id="ref-60"><span class="bn">60</span><span>RGPD et données de santé : principes et obligations. <i>legalplace.fr</i>. <a href="https://www.legalplace.fr/guides/rgpd-donnees-sante/" rel="noopener">https://www.legalplace.fr/guides/rgpd-donnees-sante/</a></span></li><li id="ref-61"><span class="bn">61</span><span>Objets connectés de santé : enjeux juridiques (RGPD, dispositifs médicaux). <i>aumans-avocats.com</i>. <a href="https://aumans-avocats.com/objets-connectes-de-sante-enjeux-juridiques/" rel="noopener">https://aumans-avocats.com/objets-connectes-de-sante-enjeux-juridiques/</a></span></li><li id="ref-62"><span class="bn">62</span><span>CEPD : lignes directrices sur les amendes RGPD et lien DSA-RGPD. <i>cnil</i>, 23/09/2026. <a href="https://www.cnil.fr/fr/pleniere-cepd-amendes-reglement-services-numeriques" rel="noopener">https://www.cnil.fr/fr/pleniere-cepd-amendes-reglement-services-numeriques</a></span></li><li id="ref-63"><span class="bn">63</span><span>CNIL : conseils pour sécuriser les objets connectés. <i>cnil.fr</i>. <a href="https://www.cnil.fr/fr/objets-connectes-noubliez-pas-de-les-securiser" rel="noopener">https://www.cnil.fr/fr/objets-connectes-noubliez-pas-de-les-securiser</a></span></li><li id="ref-64"><span class="bn">64</span><span>ANSM : quand un logiciel santé devient dispositif médical. <i>ansm.sante.fr</i>. <a href="https://ansm.sante.fr/documents/reference/le-logiciel-ou-lapplication-sante-que-je-vais-mettre-sur-le-marche-releve-t-il-du-statut-de-dispositif-medical-dm-ou-de-dispositif-medical-de-diagnostic-in-vitro-dm-div" rel="noopener">https://ansm.sante.fr/documents/reference/le-logiciel-ou-lapplication-sante-que-je-vais-mettre-sur-le-marche-releve-t-il-du-statut-de-dispositif-medical-dm-ou-de-dispositif-medical-de-diagnostic-in-vitro-dm-div</a></span></li><li id="ref-65"><span class="bn">65</span><span>ANSM : classification des logiciels selon les règlements européens. <i>ansm.sante.fr</i>. <a href="https://ansm.sante.fr/documents/reference/impact-des-nouveaux-reglements-europeens-sur-la-classification-des-logiciels" rel="noopener">https://ansm.sante.fr/documents/reference/impact-des-nouveaux-reglements-europeens-sur-la-classification-des-logiciels</a></span></li><li id="ref-66"><span class="bn">66</span><span>Règlement (UE) 2017/745 sur les dispositifs médicaux. <i>eur-lex.europa.eu</i>, 05/04/2017. <a href="https://eur-lex.europa.eu/eli/reg/2017/745/oj?locale=fr" rel="noopener">https://eur-lex.europa.eu/eli/reg/2017/745/oj?locale=fr</a></span></li><li id="ref-67"><span class="bn">67</span><span>Une app est-elle un dispositif médical ?. <i>desmarais-avocats.fr</i>. <a href="https://www.desmarais-avocats.fr/mon-app-est-elle-un-dispositif-medical/" rel="noopener">https://www.desmarais-avocats.fr/mon-app-est-elle-un-dispositif-medical/</a></span></li><li id="ref-68"><span class="bn">68</span><span>AI Act : calendrier 2026-2028, risques et sanctions. <i>leto.legal</i>. <a href="https://www.leto.legal/guides/ai-act-conformite" rel="noopener">https://www.leto.legal/guides/ai-act-conformite</a></span></li><li id="ref-69"><span class="bn">69</span><span>Règlement (UE) 2024/1689 sur l&#x27;intelligence artificielle. <i>eur-lex.europa.eu</i>, 13/06/2024. <a href="https://eur-lex.europa.eu/legal-content/FR/ALL/?uri=CELEX%3A32024R1689" rel="noopener">https://eur-lex.europa.eu/legal-content/FR/ALL/?uri=CELEX%3A32024R1689</a></span></li><li id="ref-70"><span class="bn">70</span><span>AI Act : niveaux de risque et calendrier 2026. <i>studeria.fr</i>. <a href="https://www.studeria.fr/articles-de-blog/ai-act-definition-niveaux-risque-calendrier" rel="noopener">https://www.studeria.fr/articles-de-blog/ai-act-definition-niveaux-risque-calendrier</a></span></li><li id="ref-71"><span class="bn">71</span><span>Propriété du code d&#x27;un logiciel : salariés et prestataires. <i>code-garage.com</i>. <a href="https://code-garage.com/blog/propriete-intellectuelle-a-qui-appartient-le-code-dun-site-logiciel" rel="noopener">https://code-garage.com/blog/propriete-intellectuelle-a-qui-appartient-le-code-dun-site-logiciel</a></span></li><li id="ref-72"><span class="bn">72</span><span>Protection d&#x27;un logiciel par le droit d&#x27;auteur. <i>legalstart.fr</i>. <a href="https://www.legalstart.fr/fiches-pratiques/proteger-une-creation/protection-logiciel/" rel="noopener">https://www.legalstart.fr/fiches-pratiques/proteger-une-creation/protection-logiciel/</a></span></li><li id="ref-73"><span class="bn">73</span><span>Start INPI : application gratuite pour entrepreneurs. <i>inpi.fr</i>. <a href="https://www.inpi.fr/nos-solutions/se-former/lapplication-start-inpi" rel="noopener">https://www.inpi.fr/nos-solutions/se-former/lapplication-start-inpi</a></span></li><li id="ref-74"><span class="bn">74</span><span>Titularité des droits sur un logiciel. <i>app.asso.fr</i>. <a href="https://www.app.asso.fr/protection/comprendre-titularite-des-droits-logiciels.html" rel="noopener">https://www.app.asso.fr/protection/comprendre-titularite-des-droits-logiciels.html</a></span></li><li id="ref-75"><span class="bn">75</span><span>Dépôt de marque à l&#x27;INPI : procédure et coûts. <i>legalstart.fr</i>. <a href="https://www.legalstart.fr/fiches-pratiques/depot-marque/inpi-depot-marque/" rel="noopener">https://www.legalstart.fr/fiches-pratiques/depot-marque/inpi-depot-marque/</a></span></li><li id="ref-76"><span class="bn">76</span><span>Famileo : demande de notifications et de compteur d&#x27;échéance. <i>App Store · Famileo</i>, 20/07/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14328027879" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14328027879</a></span></li><li id="ref-77"><span class="bn">77</span><span>Famileo : bon concept mais appli devenue une corvée. <i>App Store · Famileo</i>, 04/08/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14387598146" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14387598146</a></span></li><li id="ref-78"><span class="bn">78</span><span>Famileo : très apprécié mais des fonctions d&#x27;édition manquent. <i>App Store · Famileo</i>, 24/07/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14341988625" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14341988625</a></span></li><li id="ref-79"><span class="bn">79</span><span>Famileo : expérience peu intuitive, album décevant. <i>App Store · Famileo</i>, 12/09/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14540863269" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14540863269</a></span></li><li id="ref-80"><span class="bn">80</span><span>Famileo : appréciée mais bug photos sous iOS 26. <i>App Store · Famileo</i>, 05/09/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14512632317" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14512632317</a></span></li><li id="ref-81"><span class="bn">81</span><span>Famileo apprécié : la famille contribue, les grands-parents attendent. <i>App Store · Famileo</i>, 07/09/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14520600855" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14520600855</a></span></li><li id="ref-82"><span class="bn">82</span><span>Famileo : gazette familiale simple d&#x27;usage, avis 5/5. <i>App Store · Famileo</i>, 20/09/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14571421293" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14571421293</a></span></li><li id="ref-83"><span class="bn">83</span><span>Famileo : une revue mensuelle qui inclut les grands-parents. <i>App Store · Famileo</i>, 21/08/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14455553930" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14455553930</a></span></li><li id="ref-84"><span class="bn">84</span><span>Famileo : améliorations photos appréciées. <i>App Store · Famileo</i>, 23/07/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14339245341" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14339245341</a></span></li><li id="ref-85"><span class="bn">85</span><span>Famileo : gazette attendue, partage en fratrie plus léger. <i>App Store · Famileo</i>, 14/08/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14425724709" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14425724709</a></span></li><li id="ref-86"><span class="bn">86</span><span>Famileo : une gazette simple et peu chère pour les petits-enfants. <i>App Store · Famileo</i>, 21/07/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14330323983" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14330323983</a></span></li><li id="ref-87"><span class="bn">87</span><span>Famileo : une grand-mère ravie de sa gazette. <i>App Store · Famileo</i>, 26/07/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14351440327" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14351440327</a></span></li><li id="ref-88"><span class="bn">88</span><span>Famileo : journal papier apprécié, rédaction partagée. <i>App Store · Famileo</i>, 13/07/2026. <a href="https://apps.apple.com/fr/app/id1018182135#avis-14297903677" rel="noopener">https://apps.apple.com/fr/app/id1018182135#avis-14297903677</a></span></li><li id="ref-89"><span class="bn">89</span><span>Life360 : forte consommation de batterie. <i>App Store · Life360</i>, 20/09/2026. <a href="https://apps.apple.com/fr/app/id384830320#avis-14571584983" rel="noopener">https://apps.apple.com/fr/app/id384830320#avis-14571584983</a></span></li><li id="ref-90"><span class="bn">90</span><span>Life360 : bugs et localisation peu fiable. <i>App Store · Life360</i>, 13/09/2026. <a href="https://apps.apple.com/fr/app/id384830320#avis-14544545174" rel="noopener">https://apps.apple.com/fr/app/id384830320#avis-14544545174</a></span></li><li id="ref-91"><span class="bn">91</span><span>Life360 : localisation erronée et aide en ligne inefficace. <i>App Store · Life360</i>, 12/09/2026. <a href="https://apps.apple.com/fr/app/id384830320#avis-14541880536" rel="noopener">https://apps.apple.com/fr/app/id384830320#avis-14541880536</a></span></li><li id="ref-92"><span class="bn">92</span><span>Life360 : géolocalisation devenue peu fiable après refonte. <i>App Store · Life360</i>, 20/09/2026. <a href="https://apps.apple.com/fr/app/id384830320#avis-14574799845" rel="noopener">https://apps.apple.com/fr/app/id384830320#avis-14574799845</a></span></li><li id="ref-93"><span class="bn">93</span><span>Life360 : suivi défaillant malgré l&#x27;abonnement payant. <i>App Store · Life360</i>, 16/09/2026. <a href="https://apps.apple.com/fr/app/id384830320#avis-14555704053" rel="noopener">https://apps.apple.com/fr/app/id384830320#avis-14555704053</a></span></li><li id="ref-94"><span class="bn">94</span><span>Life360 : widget iPhone cassé après une mise à jour. <i>App Store · Life360</i>, 21/09/2026. <a href="https://apps.apple.com/fr/app/id384830320#avis-14575708498" rel="noopener">https://apps.apple.com/fr/app/id384830320#avis-14575708498</a></span></li><li id="ref-95"><span class="bn">95</span><span>Life360 : bon avis mais kilométrage imprécis. <i>App Store · Life360</i>, 13/09/2026. <a href="https://apps.apple.com/fr/app/id384830320#avis-14544982696" rel="noopener">https://apps.apple.com/fr/app/id384830320#avis-14544982696</a></span></li><li id="ref-96"><span class="bn">96</span><span>Life360 : pratique et stable pour localiser un proche. <i>App Store · Life360</i>, 16/09/2026. <a href="https://apps.apple.com/fr/app/id384830320#avis-14557060261" rel="noopener">https://apps.apple.com/fr/app/id384830320#avis-14557060261</a></span></li><li id="ref-97"><span class="bn">97</span><span>Life360 : le sentiment de rassurance de savoir où est un proche. <i>App Store · Life360</i>, 10/09/2026. <a href="https://apps.apple.com/fr/app/id384830320#avis-14532471801" rel="noopener">https://apps.apple.com/fr/app/id384830320#avis-14532471801</a></span></li><li id="ref-98"><span class="bn">98</span><span>Life360 : la localisation rassure la famille d&#x27;un utilisateur fragile. <i>App Store · Life360</i>, 20/09/2026. <a href="https://apps.apple.com/fr/app/id384830320#avis-14573237948" rel="noopener">https://apps.apple.com/fr/app/id384830320#avis-14573237948</a></span></li><li id="ref-99"><span class="bn">99</span><span>Signia : application jugée limitée en réglages. <i>App Store · Signia</i>, 28/08/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14483223605" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14483223605</a></span></li><li id="ref-100"><span class="bn">100</span><span>Signia : appareils difficiles à programmer, sans instructions. <i>App Store · Signia</i>, 05/06/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14148019058" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14148019058</a></span></li><li id="ref-101"><span class="bn">101</span><span>Signia : réglages du son jugés insuffisants. <i>App Store · Signia</i>, 05/07/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14268925436" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14268925436</a></span></li><li id="ref-102"><span class="bn">102</span><span>Signia : perte du contrôle Bluetooth après mise à jour. <i>App Store · Signia</i>, 22/08/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14458492623" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14458492623</a></span></li><li id="ref-103"><span class="bn">103</span><span>Signia : l&#x27;application ne fonctionne plus après une mise à jour. <i>App Store · Signia</i>, 09/09/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14530331353" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14530331353</a></span></li><li id="ref-104"><span class="bn">104</span><span>Signia : pannes répétées du même appareil. <i>App Store · Signia</i>, 19/09/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14569163976" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14569163976</a></span></li><li id="ref-105"><span class="bn">105</span><span>Signia : appli d&#x27;appareils auditifs lente et bloquante. <i>App Store · Signia</i>, 30/08/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14489617163" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14489617163</a></span></li><li id="ref-106"><span class="bn">106</span><span>Signia : l&#x27;app oublie le temps de port et perd les aides auditives. <i>App Store · Signia</i>, 11/09/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14537407044" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14537407044</a></span></li><li id="ref-107"><span class="bn">107</span><span>Signia : l&#x27;app cherche les appareils puis se bloque. <i>App Store · Signia</i>, 27/08/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14477884675" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14477884675</a></span></li><li id="ref-108"><span class="bn">108</span><span>Signia : application lente et charge mentale supplémentaire. <i>App Store · Signia</i>, 30/06/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14245285037" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14245285037</a></span></li><li id="ref-109"><span class="bn">109</span><span>Signia : application désynchronisée des mises à jour iOS. <i>App Store · Signia</i>, 10/08/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14411714044" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14411714044</a></span></li><li id="ref-110"><span class="bn">110</span><span>Signia : app d&#x27;audioprothèse appréciée, Bluetooth manquant. <i>App Store · Signia</i>, 09/09/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14530462200" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14530462200</a></span></li><li id="ref-111"><span class="bn">111</span><span>Signia : bonne appli, mode TV apprécié, Bluetooth instable. <i>App Store · Signia</i>, 13/08/2026. <a href="https://apps.apple.com/fr/app/id1316911473#avis-14422331056" rel="noopener">https://apps.apple.com/fr/app/id1316911473#avis-14422331056</a></span></li><li id="ref-112"><span class="bn">112</span><span>Tous FAMiliés : bon concept, personnalisation insuffisante. <i>App Store · Tous FAMiliés</i>, 24/02/2026. <a href="https://apps.apple.com/fr/app/id6447434484#avis-13783522871" rel="noopener">https://apps.apple.com/fr/app/id6447434484#avis-13783522871</a></span></li><li id="ref-113"><span class="bn">113</span><span>Tous FAMiliés : bonne idée, stockage et chargement à améliorer. <i>App Store · Tous FAMiliés</i>, 16/02/2026. <a href="https://apps.apple.com/fr/app/id6447434484#avis-13758014362" rel="noopener">https://apps.apple.com/fr/app/id6447434484#avis-13758014362</a></span></li><li id="ref-114"><span class="bn">114</span><span>Tous FAMiliés : partager les souvenirs avec les grands-parents. <i>App Store · Tous FAMiliés</i>, 22/09/2024. <a href="https://apps.apple.com/fr/app/id6447434484#avis-11752051949" rel="noopener">https://apps.apple.com/fr/app/id6447434484#avis-11752051949</a></span></li><li id="ref-115"><span class="bn">115</span><span>Tous FAMiliés : interface fluide, cadeau apprécié par une grand-mère. <i>App Store · Tous FAMiliés</i>, 24/04/2024. <a href="https://apps.apple.com/fr/app/id6447434484#avis-11196612325" rel="noopener">https://apps.apple.com/fr/app/id6447434484#avis-11196612325</a></span></li><li id="ref-116"><span class="bn">116</span><span>Tous FAMiliés : le journal mensuel ravit la grand-mère. <i>App Store · Tous FAMiliés</i>, 25/10/2023. <a href="https://apps.apple.com/fr/app/id6447434484#avis-10514316961" rel="noopener">https://apps.apple.com/fr/app/id6447434484#avis-10514316961</a></span></li><li id="ref-117"><span class="bn">117</span><span>Tous FAMiliés : une grand-mère suit les aventures familiales. <i>App Store · Tous FAMiliés</i>, 04/02/2026. <a href="https://apps.apple.com/fr/app/id6447434484#avis-13713258691" rel="noopener">https://apps.apple.com/fr/app/id6447434484#avis-13713258691</a></span></li><li id="ref-118"><span class="bn">118</span><span>Aidante épuisée : un fils s&#x27;inquiète pour sa mère, aidante d&#x27;un père Alzheimer. <i>r-agingparents</i>, 30/09/2026. <a href="https://www.reddit.com/r/AgingParents/comments/1wuguhy/i_need_advice/" rel="noopener">https://www.reddit.com/r/AgingParents/comments/1wuguhy/i_need_advice/</a></span></li><li id="ref-119"><span class="bn">119</span><span>Aidant qui assume seul les petites tâches physiques pour un parent à mobilité réduite. <i>r-agingparents</i>, 30/09/2026. <a href="https://www.reddit.com/r/AgingParents/comments/1wuikjt/doing_tiny_tasks_because_your_senior_parent_is/" rel="noopener">https://www.reddit.com/r/AgingParents/comments/1wuikjt/doing_tiny_tasks_because_your_senior_parent_is/</a></span></li><li id="ref-120"><span class="bn">120</span><span>Aidant épuisé par les relances répétées d&#x27;un parent pour un rendez-vous médical. <i>r-agingparents</i>, 30/09/2026. <a href="https://www.reddit.com/r/AgingParents/comments/1wu9r1c/having_an_immigrant_parent_absolutely_fucking/" rel="noopener">https://www.reddit.com/r/AgingParents/comments/1wu9r1c/having_an_immigrant_parent_absolutely_fucking/</a></span></li><li id="ref-121"><span class="bn">121</span><span>Rémunérer l&#x27;enfant aidant sur les fonds du parent. <i>r-agingparents</i>, 30/09/2026. <a href="https://www.reddit.com/r/AgingParents/comments/1wukpr4/how_many_people_pay_themselves_to_take_care_of/" rel="noopener">https://www.reddit.com/r/AgingParents/comments/1wukpr4/how_many_people_pay_themselves_to_take_care_of/</a></span></li><li id="ref-122"><span class="bn">122</span><span>Aidant en détresse : épuisement financier et moral auprès de parents très âgés. <i>r-caregiversupport</i>, 01/10/2026. <a href="https://www.reddit.com/r/CaregiverSupport/comments/1wuyyzg/i_pray_to_die_daily_i_am_done/" rel="noopener">https://www.reddit.com/r/CaregiverSupport/comments/1wuyyzg/i_pray_to_die_daily_i_am_done/</a></span></li><li id="ref-123"><span class="bn">123</span><span>Épuisement d&#x27;une jeune aidante auprès de sa grand-mère. <i>r-caregiversupport</i>, 01/10/2026. <a href="https://www.reddit.com/r/CaregiverSupport/comments/1wuoh92/need_support_in_a_really_bad_place/" rel="noopener">https://www.reddit.com/r/CaregiverSupport/comments/1wuoh92/need_support_in_a_really_bad_place/</a></span></li><li id="ref-124"><span class="bn">124</span><span>Burn-out d&#x27;un aidant principal depuis dix ans. <i>r-caregiversupport</i>, 01/10/2026. <a href="https://www.reddit.com/r/CaregiverSupport/comments/1wupff7/long_time_lurker_first_time_poster/" rel="noopener">https://www.reddit.com/r/CaregiverSupport/comments/1wupff7/long_time_lurker_first_time_poster/</a></span></li><li id="ref-125"><span class="bn">125</span><span>Après le décès de sa mère, une aidante quitte la maison. <i>r-caregiversupport</i>, 30/09/2026. <a href="https://www.reddit.com/r/CaregiverSupport/comments/1wuglie/leaving_moms_house/" rel="noopener">https://www.reddit.com/r/CaregiverSupport/comments/1wuglie/leaving_moms_house/</a></span></li><li id="ref-126"><span class="bn">126</span><span>Aidante conjugale : la relation réduite aux soins. <i>r-caregiversupport</i>, 01/10/2026. <a href="https://www.reddit.com/r/CaregiverSupport/comments/1wun19d/what_do_spouses_talk_about/" rel="noopener">https://www.reddit.com/r/CaregiverSupport/comments/1wun19d/what_do_spouses_talk_about/</a></span></li><li id="ref-127"><span class="bn">127</span><span>Passation d&#x27;un workflow no-code quand son créateur part. <i>r-nocode</i>, 29/09/2026. <a href="https://www.reddit.com/r/nocode/comments/1wszi7m/whats_the_minimum_handoff_for_a_nocode_workflow/" rel="noopener">https://www.reddit.com/r/nocode/comments/1wszi7m/whats_the_minimum_handoff_for_a_nocode_workflow/</a></span></li><li id="ref-128"><span class="bn">128</span><span>Quand quitter le no-code pour du sur-mesure. <i>r-nocode</i>, 30/09/2026. <a href="https://www.reddit.com/r/nocode/comments/1wue9en/when_did_custom_software_become_worth_leaving/" rel="noopener">https://www.reddit.com/r/nocode/comments/1wue9en/when_did_custom_software_become_worth_leaving/</a></span></li><li id="ref-129"><span class="bn">129</span><span>Quel no-code pour une base filtrable avec abonnements payants ?. <i>r-nocode</i>, 29/09/2026. <a href="https://www.reddit.com/r/nocode/comments/1wtdxr6/best_nocode_platform_for_subscriptiongated/" rel="noopener">https://www.reddit.com/r/nocode/comments/1wtdxr6/best_nocode_platform_for_subscriptiongated/</a></span></li><li id="ref-130"><span class="bn">130</span><span>Une designer livre une PWA sans coder grâce à un agent IA. <i>r-nocode</i>, 30/09/2026. <a href="https://www.reddit.com/r/nocode/comments/1wu65gl/zero_code_real_product_how_a_designer_shipped_a/" rel="noopener">https://www.reddit.com/r/nocode/comments/1wu65gl/zero_code_real_product_how_a_designer_shipped_a/</a></span></li></ol></section>
+
+<footer><span>Fiche de veille · PFR Générations Connectées · Phase 1</span><span>Données : base de veille, revue du 1<sup>er</sup> octobre 2026</span></footer>
+</div></body></html>
