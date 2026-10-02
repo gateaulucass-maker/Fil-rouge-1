@@ -13,7 +13,7 @@ PROMPT="$(cat "$MESSAGE")"
 if [ "${ESSAI:-0}" = "1" ]; then
   PROMPT="$PROMPT
 
-ESSAI : cette exécution est un test. Envoie l'email UNIQUEMENT à gateau.lucass@gmail.com (pas au reste de l'équipe) et commence son objet par « [Essai] ». Tout le reste se fait normalement."
+ESSAI : cette exécution est un test. Envoie l'email UNIQUEMENT à la première adresse de la liste de l'équipe (celle de Lucas), pas aux autres et commence son objet par « [Essai] ». Tout le reste se fait normalement."
 fi
 {
   echo "===== $(date '+%Y-%m-%d %H:%M') : veille hebdo ${ESSAI:+(essai)} ====="
