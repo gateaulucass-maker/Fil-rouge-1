@@ -9,6 +9,7 @@ Thème : silver economy — rassurer les familles sur leurs proches âgés.
 | Dossier | Phase | Contenu |
 |---|---|---|
 | [`01-veille/`](01-veille/) | Phase 1 · Veille | Analyses comparatives + pipeline de veille automatisé |
+| [`02-marche/`](02-marche/) | Leçon 2.1 · Marché | Qui utilise, qui paie, qui influence ? |
 
 ## Livrables
 
@@ -23,3 +24,8 @@ Thème : silver economy — rassurer les familles sur leurs proches âgés.
   - [Retour de construction du pipeline](01-veille/retour-pipeline-veille.html) (HTML) : ce qui a été fait, résultats du run 1, écarts, prochaines étapes
 
 > Pour voir un livrable HTML : télécharger le fichier et l'ouvrir dans un navigateur.
+
+### Leçon 2.1 · Marché
+
+- **[Question 1 : qui utilise, qui paie, qui influence ?](02-marche/question-1-acteurs.html)** (HTML) — tableau des 5 rôles (utilisateur, payeur, prescripteur, décideur formel / de fait / déclencheur, fournisseur) sur 4 colonnes (marché silver tech, téléassistance, lien familial Famileo, capteurs ambiants), qui faut-il convaincre, 3 enseignements pour le produit, annexes et 68 sources. Produit par une équipe de 5 agents (analyste-veille, chercheur, stratège, contradicteur, designer).
+
