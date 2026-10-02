@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Suivi Fil rouge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+
+/* Thème unique blanc et bleu, voulu par Lucas. Grille suisse : colonne d'étiquettes à gauche, contenu à droite ; blanc et bleu, filets fins, l'état porté par la couleur des pastilles */
+:root{
+  --bg:#ffffff; --fg:#0c1630; --muted:#5a6580; --hair:#d8deeb; --soft:#f2f5fc;
+  --blue:#1838c8; --blue-ink:#ffffff;
+  --s-a_faire:#7d879c; --s-en_cours:#1838c8; --s-a_valider:#a96300; --s-termine:#1b7a4b; --s-a_refaire:#c2361b; --s-bloque:#8c1430;
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+:root{color-scheme:light} *{box-sizing:border-box} [hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(16px,4vw,48px);padding-block:clamp(28px,5vw,64px) 64px}
+a{color:inherit} a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.k{font:11px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;font:11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-top:3px solid var(--blue);padding-top:12px}
+.meta b{color:var(--fg);font-weight:500}
+.hd{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;margin-top:clamp(24px,4vw,44px);align-items:end}
+h1{grid-column:1/span 8;margin:0;font-weight:800;font-size:clamp(52px,10vw,128px);line-height:.86;letter-spacing:-.045em;color:var(--blue)}
+h1 span{display:block;color:var(--fg)}
+.maj{grid-column:9/span 4;text-align:right;min-width:0}
+.maj .v{display:block;font:500 clamp(20px,2.4vw,28px)/1.1 var(--mono);color:var(--fg);margin-top:6px;font-variant-numeric:tabular-nums}
+.prog{margin-top:clamp(32px,5vw,56px);border-top:1px solid var(--fg);padding-top:16px}
+.prog-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.prog-h b{font-size:20px;letter-spacing:-.01em}
+.bar{display:flex;height:14px;margin-top:12px;gap:2px}
+.seg{display:block;min-width:6px}
+.seg-bloque,.dot-bloque{background:var(--s-bloque)}.seg-a_valider,.dot-a_valider{background:var(--s-a_valider)}.seg-a_refaire,.dot-a_refaire{background:var(--s-a_refaire)}.seg-en_cours,.dot-en_cours{background:var(--s-en_cours)}.seg-a_faire,.dot-a_faire{background:var(--s-a_faire)}.seg-termine,.dot-termine{background:var(--s-termine)}
+.cts{display:grid;grid-template-columns:repeat(6,1fr);margin-top:18px;border-top:1px solid var(--hair)}
+.ct{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:2px;padding:12px 14px 14px 0;border-bottom:3px solid transparent}
+.ct+.ct{padding-left:14px;border-left:1px solid var(--hair)}
+.ct:hover .ct-l{color:var(--fg)}
+.ct[aria-pressed="true"]{border-bottom-color:var(--blue)}
+.ct-n{font-weight:800;font-size:clamp(28px,3.4vw,42px);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.ct-l{display:flex;align-items:center;gap:7px;font:11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.dot{display:inline-block;width:9px;height:9px;flex:none}
+.dot-a_faire{background:transparent;box-shadow:inset 0 0 0 1.5px var(--s-a_faire)}
+.filt{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:13px;color:var(--muted)}
+.filt button{all:unset;cursor:pointer;text-decoration:underline;text-underline-offset:3px;color:var(--blue)}
+section{margin-top:clamp(44px,6vw,72px)}
+.blk-h{display:grid;grid-template-columns:3fr 9fr;gap:0 24px;border-top:3px solid var(--fg);padding-top:14px}
+h2{margin:0;font-weight:800;font-size:clamp(24px,3vw,36px);letter-spacing:-.025em;line-height:1.05;text-wrap:balance}
+.acs{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:3fr 9fr;gap:0 24px}
+.ac{grid-column:2;display:grid;grid-template-columns:118px 1fr 170px;gap:6px 16px;padding:14px 0;border-bottom:1px solid var(--hair);align-items:start}
+.ac-t{min-width:0} .ac-t b{display:block;font-size:16px;letter-spacing:-.005em} .ac-t span{display:block;color:var(--muted);font-size:14px;margin-top:3px;max-width:70ch}
+.ac>.st,.tk-s>.st{justify-self:start} .ac-q{font:12px var(--mono);color:var(--muted);text-align:right}
+.vide{grid-column:2;padding:14px 0;color:var(--muted)}
+.st{display:inline-block;font:500 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;padding:4px 8px;white-space:nowrap;border:1.5px solid currentColor}
+.st-bloque{color:var(--s-bloque)}.st-a_valider{color:var(--s-a_valider)}.st-a_refaire{color:var(--s-a_refaire)}.st-en_cours{color:var(--s-en_cours)}.st-a_faire{color:var(--s-a_faire)}.st-termine{color:var(--s-termine)}
+.st-bloque{background:var(--s-bloque);border-color:var(--s-bloque);color:var(--bg)}
+.st-a_refaire{background:var(--s-a_refaire);border-color:var(--s-a_refaire);color:var(--bg)}
+.ph-h{display:grid;grid-template-columns:3fr 5fr 1.6fr 1.2fr 1.6fr;gap:0 24px;border-top:3px solid var(--blue);padding-top:14px;align-items:baseline}
+.ph-h h2{grid-column:2/span 3} .ph-id{font:500 13px var(--mono);color:var(--blue);letter-spacing:.06em}
+.ph-n{font:12px var(--mono);color:var(--muted);text-align:right}
+.tk{display:grid;grid-template-columns:3fr 5fr 1.6fr 1.2fr 1.6fr;gap:6px 24px;padding:18px 0;border-bottom:1px solid var(--hair);align-items:start}
+.tk>*{min-width:0}
+.tk h3{margin:0;font-size:17px;letter-spacing:-.01em;line-height:1.25;text-wrap:balance}
+.tk p{margin:6px 0 0;color:var(--muted);font-size:14px;max-width:68ch}
+.tk-m{font-size:13.5px;overflow-wrap:anywhere} .tk-m .k{display:block;margin-bottom:2px}
+.lk{color:var(--blue);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;font:12.5px var(--mono)}
+.et{margin-top:10px}
+.et summary{cursor:pointer;font:12px var(--mono);color:var(--blue);list-style:none}
+.et summary::-webkit-details-marker{display:none} .et summary::before{content:"+ "} .et[open] summary::before{content:"– "}
+.et ul{list-style:none;margin:10px 0 0;padding:0;border-left:1px solid var(--hair)}
+.et li{display:grid;grid-template-columns:20px 1fr;gap:2px 0;padding:6px 0 6px 12px;font-size:13.5px}
+.et li .dot{margin-top:5px} .et-t{min-width:0} .et-m{grid-column:2;font:11.5px var(--mono);color:var(--muted)}
+.tk[hidden]{display:none}
+footer{margin-top:72px;border-top:1px solid var(--hair);padding-top:14px;font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:860px){
+  .ph-h{grid-template-columns:auto 1fr auto} .ph-h h2{grid-column:auto}
+  .tk{grid-template-columns:1fr 1fr 1fr} .tk-s{grid-column:1/-1} .tk-c{grid-column:1/-1}
+  .cts{grid-template-columns:repeat(3,1fr)} .ct:nth-child(4){padding-left:0;border-left:0}
+  .ac{grid-template-columns:1fr} .ac-q{text-align:left}
+}
+@media (max-width:640px){
+  .ph-h h2{grid-column:1}
+  .hd,.blk-h,.acs,.ph-h{grid-template-columns:1fr} h1,.maj{grid-column:1} .maj{text-align:left;margin-top:18px}
+  .ac,.vide{grid-column:1} .ph-n{text-align:left}
+  .cts{grid-template-columns:1fr 1fr} .ct{padding-left:0!important;border-left:0!important}
+}
+@media (prefers-reduced-motion:no-preference){.seg{transition:flex .3s}}
+</style>
+</head><body><div class="wrap">
+<div class="meta"><span><b>Ynov</b> B2 Product Builder No-Code</span><span>Fil rouge · PFR Générations Connectées</span><span>18 tâches · 11 terminées</span></div>
+
+<header class="hd"><h1>Suivi<span>Fil rouge</span></h1>
+<div class="maj"><span class="k">Dernière mise à jour</span><span class="v">2 oct. 2026 · 11:44</span></div></header>
+
+<div class="prog">
+<div class="prog-h"><b>Où en est le projet</b><span class="k">18 tâches · filtre en cliquant un statut</span></div>
+<div class="bar" role="img" aria-label="Bloqué 1 · À valider 1 · À refaire 1 · En cours 0 · À faire 4 · Terminé 11"><span class="seg seg-bloque" style="flex:1" title="Bloqué : 1"></span><span class="seg seg-a_valider" style="flex:1" title="À valider : 1"></span><span class="seg seg-a_refaire" style="flex:1" title="À refaire : 1"></span><span class="seg seg-a_faire" style="flex:4" title="À faire : 4"></span><span class="seg seg-termine" style="flex:11" title="Terminé : 11"></span></div>
+<div class="cts" role="group" aria-label="Filtrer par statut"><button type="button" class="ct" data-f="bloque" aria-pressed="false" id="f-bloque"><span class="ct-n">1</span><span class="ct-l"><i class="dot dot-bloque"></i>Bloqué</span></button><button type="button" class="ct" data-f="a_valider" aria-pressed="false" id="f-a_valider"><span class="ct-n">1</span><span class="ct-l"><i class="dot dot-a_valider"></i>À valider</span></button><button type="button" class="ct" data-f="a_refaire" aria-pressed="false" id="f-a_refaire"><span class="ct-n">1</span><span class="ct-l"><i class="dot dot-a_refaire"></i>À refaire</span></button><button type="button" class="ct" data-f="en_cours" aria-pressed="false" id="f-en_cours"><span class="ct-n">0</span><span class="ct-l"><i class="dot dot-en_cours"></i>En cours</span></button><button type="button" class="ct" data-f="a_faire" aria-pressed="false" id="f-a_faire"><span class="ct-n">4</span><span class="ct-l"><i class="dot dot-a_faire"></i>À faire</span></button><button type="button" class="ct" data-f="termine" aria-pressed="false" id="f-termine"><span class="ct-n">11</span><span class="ct-l"><i class="dot dot-termine"></i>Terminé</span></button></div>
+<div class="filt"><span id="filt-txt">Toutes les tâches affichées.</span><button type="button" id="filt-all" hidden>Tout afficher</button></div>
+</div>
+
+<section id="action"><div class="blk-h"><span class="k">À traiter</span><h2>Ce qui attend une action</h2></div>
+<ul class="acs"><li class="ac"><span class="st st-bloque">Bloqué</span><div class="ac-t"><b>Changer le mot de passe Neon</b><span>Le mot de passe est apparu dans le chat. Console Neon › Roles › neondb_owner › Reset password, puis nouvelle chaîne dans .env.</span></div><div class="ac-q">Lucas</div></li><li class="ac"><span class="st st-a_valider">À valider</span><div class="ac-t"><b>Question 1 : qui utilise, qui paie, qui influence ?</b><span>Tableau 5 rôles × 4 colonnes, renvois triés par fiabilité puis pertinence. Bilan : 9 cases solides, 15 partielles, 4 fragiles. À relire, surtout les cases en hypothèse.</span></div><div class="ac-q">Équipe d&#x27;agents<br><a class="lk" href="02-marche/question-1-acteurs.html">question-1-acteurs.html</a></div></li><li class="ac"><span class="st st-a_refaire">À refaire</span><div class="ac-t"><b>Fiche de veille « Silver tech / marché &amp; règles »</b><span>Construite sur 130 éléments ; la base en compte 164 et les scores ont changé. À régénérer et à relire (texte d&#x27;analyse).</span></div><div class="ac-q">Claude<br><a class="lk" href="01-veille/fiche-veille-silvertech.html">fiche-veille-silvertech.html</a></div></li></ul></section>
+
+<section class="ph" id="P0">
+<div class="ph-h"><span class="ph-id">P0</span><h2>Mise en place</h2><span class="ph-n">5 tâches</span></div>
+<article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>Dépôt GitHub du semestre</h3><p>Dépôt Fil-rouge-1 organisé par phase, README avec la liste des livrables.</p></div>
+<div class="tk-m"><span class="k">Qui</span>Claude</div>
+<div class="tk-m"><span class="k">Date</span>1 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span><a class="lk" href="README.md">README.md</a></div>
+</article><article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>Base de veille Neon</h3><p>Projet Neon créé (Francfort), tables créées, run 1 transféré depuis la base de test.</p></div>
+<div class="tk-m"><span class="k">Qui</span>Lucas + Claude</div>
+<div class="tk-m"><span class="k">Date</span>1 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article><article class="tk" data-s="bloque">
+<div class="tk-s"><span class="st st-bloque">Bloqué</span></div>
+<div class="tk-c"><h3>Changer le mot de passe Neon</h3><p>Le mot de passe est apparu dans le chat. Console Neon › Roles › neondb_owner › Reset password, puis nouvelle chaîne dans .env.</p></div>
+<div class="tk-m"><span class="k">Qui</span>Lucas</div>
+<div class="tk-m"><span class="k">Date</span>1 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article><article class="tk" data-s="a_faire">
+<div class="tk-s"><span class="st st-a_faire">À faire</span></div>
+<div class="tk-c"><h3>Donner l&#x27;accès Neon aux collègues</h3><p>Après le changement de mot de passe : envoyer la nouvelle chaîne en message privé, chacun suit le README du pipeline.</p></div>
+<div class="tk-m"><span class="k">Qui</span>Lucas</div>
+<div class="tk-m"><span class="k">Date</span>—</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article><article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>Équipe de 5 agents IA</h3><p>5 terminaux Claude dans cmux : analyste-veille, chercheur, stratège, contradicteur, designer. Claude orchestre.</p><details class="et"><summary>5 étapes terminées sur 5</summary><ul><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">analyste-veille : extrait les preuves de la base validée</span><span class="et-m">agent</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">chercheur : comble les trous par recherche web, ajoute au pipeline</span><span class="et-m">agent</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">stratège : rédige les tableaux</span><span class="et-m">agent</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">contradicteur : attaque chaque case, vérifie les preuves</span><span class="et-m">agent</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">designer : met en page en HTML style suisse</span><span class="et-m">agent</span></li></ul></details></div>
+<div class="tk-m"><span class="k">Qui</span>Claude</div>
+<div class="tk-m"><span class="k">Date</span>2 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article></section><section class="ph" id="P1">
+<div class="ph-h"><span class="ph-id">P1</span><h2>Phase 1 · Veille</h2><span class="ph-n">9 tâches</span></div>
+<article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>Analyse comparative Apple Watch / Famileo</h3><p>Grille en six critères. Enseignement : la sécurité demande un effort au senior, le lien n&#x27;en demande aucun.</p></div>
+<div class="tk-m"><span class="k">Qui</span>Lucas</div>
+<div class="tk-m"><span class="k">Date</span>1 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span><a class="lk" href="01-veille/apple-watch-vs-famileo.html">apple-watch-vs-famileo.html</a></div>
+</article><article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>Pipeline de veille automatisé</h3><p>Collecte RSS, avis App Store, recherche web ; filtre sans IA ; qualification par agents ; score de fiabilité par script ; revue humaine.</p><details class="et"><summary>6 étapes terminées sur 6</summary><ul><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Catalogue des 32 types d&#x27;information, sources, règles</span><span class="et-m">1 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Scripts de collecte, filtre, qualification, score, revue, rapport, export</span><span class="et-m">1 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Commandes /veille, /revue, /couverture, /export-fiche</span><span class="et-m">1 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Tests automatiques (35)</span><span class="et-m">2 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Run 1 : 284 collectés, 89 filtrés, 195 qualifiés</span><span class="et-m">1 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Annexe « dispositif de veille » pour la fiche</span><span class="et-m">1 oct. · <a class="lk" href="01-veille/veille-silvertech/docs/dispositif-veille.md">dispositif-veille.md</a></span></li></ul></details></div>
+<div class="tk-m"><span class="k">Qui</span>Claude</div>
+<div class="tk-m"><span class="k">Date</span>1 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span><a class="lk" href="01-veille/veille-silvertech/README.md">README.md</a></div>
+</article><article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>13 Google Alerts en flux RSS</h3><p>Une alerte par information requise, sur ton compte Google. Les flux se remplissent avec les nouveaux contenus.</p></div>
+<div class="tk-m"><span class="k">Qui</span>Claude</div>
+<div class="tk-m"><span class="k">Date</span>2 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article><article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>Valider les subreddits aidants</h3><p>r/AgingParents et r/CaregiverSupport gardés : seule source qui donne la voix des aidants.</p></div>
+<div class="tk-m"><span class="k">Qui</span>Lucas</div>
+<div class="tk-m"><span class="k">Date</span>2 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article><article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>Revues des éléments de veille</h3><p>164 éléments validés au total.</p><details class="et"><summary>3 étapes terminées sur 3</summary><ul><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Revue 1 : 180 éléments (130 validés, 50 rejetés)</span><span class="et-m">1 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Revue 2 : #196 à #225 (28 validés, #208 et #212 rejetés)</span><span class="et-m">2 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Revue 3 : #226 à #231 (6 validés)</span><span class="et-m">2 oct.</span></li></ul></details></div>
+<div class="tk-m"><span class="k">Qui</span>Lucas</div>
+<div class="tk-m"><span class="k">Date</span>2 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article><article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>Corriger les règles de score</h3><p>ameli.fr, AP-HP, Assurance retraite… ajoutés comme officiels ; scores recalculés (script rescore.py).</p></div>
+<div class="tk-m"><span class="k">Qui</span>Claude</div>
+<div class="tk-m"><span class="k">Date</span>2 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article><article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>Rapport de veille semaine 40</h3><p>La synthèse de l&#x27;agent décrit l&#x27;état d&#x27;avant la revue ; la prochaine sera faite au prochain /veille.</p></div>
+<div class="tk-m"><span class="k">Qui</span>Claude</div>
+<div class="tk-m"><span class="k">Date</span>1 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span><a class="lk" href="01-veille/veille-silvertech/rapports/rapport-2026-S40.html">rapport-2026-S40.html</a></div>
+</article><article class="tk" data-s="a_refaire">
+<div class="tk-s"><span class="st st-a_refaire">À refaire</span></div>
+<div class="tk-c"><h3>Fiche de veille « Silver tech / marché &amp; règles »</h3><p>Construite sur 130 éléments ; la base en compte 164 et les scores ont changé. À régénérer et à relire (texte d&#x27;analyse).</p></div>
+<div class="tk-m"><span class="k">Qui</span>Claude</div>
+<div class="tk-m"><span class="k">Date</span>2 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span><a class="lk" href="01-veille/fiche-veille-silvertech.html">fiche-veille-silvertech.html</a></div>
+</article><article class="tk" data-s="a_faire">
+<div class="tk-s"><span class="st st-a_faire">À faire</span></div>
+<div class="tk-c"><h3>Prochain /veille</h3><p>Lundi 5 octobre : lancer /veille depuis ~/Fil-rouge-1, puis revue.</p></div>
+<div class="tk-m"><span class="k">Qui</span>Équipe</div>
+<div class="tk-m"><span class="k">Date</span>5 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article></section><section class="ph" id="L21">
+<div class="ph-h"><span class="ph-id">L21</span><h2>Leçon 2.1 · Marché</h2><span class="ph-n">3 tâches</span></div>
+<article class="tk" data-s="a_valider">
+<div class="tk-s"><span class="st st-a_valider">À valider</span></div>
+<div class="tk-c"><h3>Question 1 : qui utilise, qui paie, qui influence ?</h3><p>Tableau 5 rôles × 4 colonnes, renvois triés par fiabilité puis pertinence. Bilan : 9 cases solides, 15 partielles, 4 fragiles. À relire, surtout les cases en hypothèse.</p><details class="et"><summary>7 étapes terminées sur 9</summary><ul><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Preuves tirées de la veille validée</span><span class="et-m">analyste-veille · 2 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Recherche web : 30 sources (aides, aidants, consentement, canaux)</span><span class="et-m">chercheur · 2 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Tableau v1</span><span class="et-m">stratège · 2 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Critique de la v1 (19 preuves vérifiées)</span><span class="et-m">contradicteur · 2 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Tableau final et page HTML</span><span class="et-m">stratège + designer · 2 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Tri par fiabilité : 13 cases fragiles repérées, 6 sources ajoutées</span><span class="et-m">chercheur + analyste · 2 oct.</span></li><li><i class="dot dot-a_refaire" title="À refaire"></i><span class="et-t">Version triée v2 (tri appliqué à 70 %, statuts surévalués) · Remplacée par la v3.</span><span class="et-m">stratège · 2 oct.</span></li><li><i class="dot dot-termine" title="Terminé"></i><span class="et-t">Version v3 vérifiée et page mise à jour</span><span class="et-m">stratège + contradicteur + designer · 2 oct.</span></li><li><i class="dot dot-a_valider" title="À valider"></i><span class="et-t">Relecture par Lucas</span><span class="et-m">Lucas</span></li></ul></details></div>
+<div class="tk-m"><span class="k">Qui</span>Équipe d&#x27;agents</div>
+<div class="tk-m"><span class="k">Date</span>2 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span><a class="lk" href="02-marche/question-1-acteurs.html">question-1-acteurs.html</a></div>
+</article><article class="tk" data-s="a_faire">
+<div class="tk-s"><span class="st st-a_faire">À faire</span></div>
+<div class="tk-c"><h3>Renforcer les 4 cases fragiles</h3><p>Payeur × Capteurs, Décideur de fait × Famileo et × Capteurs, Déclencheur × Famileo. Aucune source n&#x27;existe : 3 à 5 entretiens (médecin traitant, service social hospitalier, aidants).</p></div>
+<div class="tk-m"><span class="k">Qui</span>Équipe</div>
+<div class="tk-m"><span class="k">Date</span>—</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article><article class="tk" data-s="a_faire">
+<div class="tk-s"><span class="st st-a_faire">À faire</span></div>
+<div class="tk-c"><h3>Questions suivantes de la leçon 2.1</h3><p>En attente de l&#x27;énoncé (photo de la diapo).</p></div>
+<div class="tk-m"><span class="k">Qui</span>Lucas</div>
+<div class="tk-m"><span class="k">Date</span>—</div>
+<div class="tk-m"><span class="k">Fichier</span>—</div>
+</article></section><section class="ph" id="OUT">
+<div class="ph-h"><span class="ph-id">OUT</span><h2>Suivi</h2><span class="ph-n">1 tâche</span></div>
+<article class="tk" data-s="termine">
+<div class="tk-s"><span class="st st-termine">Terminé</span></div>
+<div class="tk-c"><h3>Page de suivi du projet</h3><p>Mise à jour par Claude à chaque avancée (fichier suivi/taches.json, puis python3 suivi/build.py).</p></div>
+<div class="tk-m"><span class="k">Qui</span>Claude</div>
+<div class="tk-m"><span class="k">Date</span>2 oct.</div>
+<div class="tk-m"><span class="k">Fichier</span><a class="lk" href="suivi.html">suivi.html</a></div>
+</article></section>
+
+<footer><span>Statuts : bloqué (attend une action extérieure) · à valider (par Lucas) · à refaire · en cours · à faire · terminé.</span>
+<span>Page tenue à jour par Claude à chaque avancée.</span></footer>
+</div>
+<script>
+(function(){
+  var btns=[].slice.call(document.querySelectorAll('.ct')),tks=[].slice.call(document.querySelectorAll('.tk')),
+      txt=document.getElementById('filt-txt'),all=document.getElementById('filt-all'),
+      libs={"bloque": "Bloqué", "a_valider": "À valider", "a_refaire": "À refaire", "en_cours": "En cours", "a_faire": "À faire", "termine": "Terminé"},cur=null;
+  function apply(f){
+    cur=f;var n=0;
+    tks.forEach(function(t){var ok=!f||t.dataset.s===f;t.hidden=!ok;if(ok)n++;});
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.f===f));});
+    document.querySelectorAll('.ph').forEach(function(p){p.hidden=!p.querySelector('.tk:not([hidden])');});
+    txt.textContent=f?(n+' tâche'+(n>1?'s':'')+' « '+libs[f]+' » affichée'+(n>1?'s':'')+'.'):'Toutes les tâches affichées.';
+    all.hidden=!f;
+    try{f?localStorage.setItem('suivi-filtre',f):localStorage.removeItem('suivi-filtre');}catch(e){}
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){apply(cur===b.dataset.f?null:b.dataset.f);});});
+  all.addEventListener('click',function(){apply(null);});
+  try{var s=localStorage.getItem('suivi-filtre');if(s&&libs[s])apply(s);}catch(e){}
+})();
+</script>
+</body></html>

@@ -1,0 +1,293 @@
+{
+  "projet": "Fil rouge · PFR Générations Connectées",
+  "mise_a_jour": "2026-10-02T11:44",
+  "phases": [
+    {
+      "id": "P0",
+      "titre": "Mise en place",
+      "taches": [
+        {
+          "titre": "Dépôt GitHub du semestre",
+          "statut": "termine",
+          "qui": "Claude",
+          "date": "2026-10-01",
+          "lien": "README.md",
+          "note": "Dépôt Fil-rouge-1 organisé par phase, README avec la liste des livrables."
+        },
+        {
+          "titre": "Base de veille Neon",
+          "statut": "termine",
+          "qui": "Lucas + Claude",
+          "date": "2026-10-01",
+          "note": "Projet Neon créé (Francfort), tables créées, run 1 transféré depuis la base de test."
+        },
+        {
+          "titre": "Changer le mot de passe Neon",
+          "statut": "bloque",
+          "qui": "Lucas",
+          "date": "2026-10-01",
+          "note": "Le mot de passe est apparu dans le chat. Console Neon › Roles › neondb_owner › Reset password, puis nouvelle chaîne dans .env."
+        },
+        {
+          "titre": "Donner l'accès Neon aux collègues",
+          "statut": "a_faire",
+          "qui": "Lucas",
+          "note": "Après le changement de mot de passe : envoyer la nouvelle chaîne en message privé, chacun suit le README du pipeline."
+        },
+        {
+          "titre": "Équipe de 5 agents IA",
+          "statut": "termine",
+          "qui": "Claude",
+          "date": "2026-10-02",
+          "note": "5 terminaux Claude dans cmux : analyste-veille, chercheur, stratège, contradicteur, designer. Claude orchestre.",
+          "etapes": [
+            {
+              "titre": "analyste-veille : extrait les preuves de la base validée",
+              "statut": "termine",
+              "qui": "agent"
+            },
+            {
+              "titre": "chercheur : comble les trous par recherche web, ajoute au pipeline",
+              "statut": "termine",
+              "qui": "agent"
+            },
+            {
+              "titre": "stratège : rédige les tableaux",
+              "statut": "termine",
+              "qui": "agent"
+            },
+            {
+              "titre": "contradicteur : attaque chaque case, vérifie les preuves",
+              "statut": "termine",
+              "qui": "agent"
+            },
+            {
+              "titre": "designer : met en page en HTML style suisse",
+              "statut": "termine",
+              "qui": "agent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P1",
+      "titre": "Phase 1 · Veille",
+      "taches": [
+        {
+          "titre": "Analyse comparative Apple Watch / Famileo",
+          "statut": "termine",
+          "qui": "Lucas",
+          "date": "2026-10-01",
+          "lien": "01-veille/apple-watch-vs-famileo.html",
+          "note": "Grille en six critères. Enseignement : la sécurité demande un effort au senior, le lien n'en demande aucun."
+        },
+        {
+          "titre": "Pipeline de veille automatisé",
+          "statut": "termine",
+          "qui": "Claude",
+          "date": "2026-10-01",
+          "lien": "01-veille/veille-silvertech/README.md",
+          "note": "Collecte RSS, avis App Store, recherche web ; filtre sans IA ; qualification par agents ; score de fiabilité par script ; revue humaine.",
+          "etapes": [
+            {
+              "titre": "Catalogue des 32 types d'information, sources, règles",
+              "statut": "termine",
+              "date": "2026-10-01"
+            },
+            {
+              "titre": "Scripts de collecte, filtre, qualification, score, revue, rapport, export",
+              "statut": "termine",
+              "date": "2026-10-01"
+            },
+            {
+              "titre": "Commandes /veille, /revue, /couverture, /export-fiche",
+              "statut": "termine",
+              "date": "2026-10-01"
+            },
+            {
+              "titre": "Tests automatiques (35)",
+              "statut": "termine",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Run 1 : 284 collectés, 89 filtrés, 195 qualifiés",
+              "statut": "termine",
+              "date": "2026-10-01"
+            },
+            {
+              "titre": "Annexe « dispositif de veille » pour la fiche",
+              "statut": "termine",
+              "date": "2026-10-01",
+              "lien": "01-veille/veille-silvertech/docs/dispositif-veille.md"
+            }
+          ]
+        },
+        {
+          "titre": "13 Google Alerts en flux RSS",
+          "statut": "termine",
+          "qui": "Claude",
+          "date": "2026-10-02",
+          "note": "Une alerte par information requise, sur ton compte Google. Les flux se remplissent avec les nouveaux contenus."
+        },
+        {
+          "titre": "Valider les subreddits aidants",
+          "statut": "termine",
+          "qui": "Lucas",
+          "date": "2026-10-02",
+          "note": "r/AgingParents et r/CaregiverSupport gardés : seule source qui donne la voix des aidants."
+        },
+        {
+          "titre": "Revues des éléments de veille",
+          "statut": "termine",
+          "qui": "Lucas",
+          "date": "2026-10-02",
+          "note": "164 éléments validés au total.",
+          "etapes": [
+            {
+              "titre": "Revue 1 : 180 éléments (130 validés, 50 rejetés)",
+              "statut": "termine",
+              "date": "2026-10-01"
+            },
+            {
+              "titre": "Revue 2 : #196 à #225 (28 validés, #208 et #212 rejetés)",
+              "statut": "termine",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Revue 3 : #226 à #231 (6 validés)",
+              "statut": "termine",
+              "date": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "titre": "Corriger les règles de score",
+          "statut": "termine",
+          "qui": "Claude",
+          "date": "2026-10-02",
+          "note": "ameli.fr, AP-HP, Assurance retraite… ajoutés comme officiels ; scores recalculés (script rescore.py)."
+        },
+        {
+          "titre": "Rapport de veille semaine 40",
+          "statut": "termine",
+          "qui": "Claude",
+          "date": "2026-10-01",
+          "lien": "01-veille/veille-silvertech/rapports/rapport-2026-S40.html",
+          "note": "La synthèse de l'agent décrit l'état d'avant la revue ; la prochaine sera faite au prochain /veille."
+        },
+        {
+          "titre": "Fiche de veille « Silver tech / marché & règles »",
+          "statut": "a_refaire",
+          "qui": "Claude",
+          "date": "2026-10-02",
+          "lien": "01-veille/fiche-veille-silvertech.html",
+          "note": "Construite sur 130 éléments ; la base en compte 164 et les scores ont changé. À régénérer et à relire (texte d'analyse)."
+        },
+        {
+          "titre": "Prochain /veille",
+          "statut": "a_faire",
+          "qui": "Équipe",
+          "date": "2026-10-05",
+          "note": "Lundi 5 octobre : lancer /veille depuis ~/Fil-rouge-1, puis revue."
+        }
+      ]
+    },
+    {
+      "id": "L21",
+      "titre": "Leçon 2.1 · Marché",
+      "taches": [
+        {
+          "titre": "Question 1 : qui utilise, qui paie, qui influence ?",
+          "statut": "a_valider",
+          "qui": "Équipe d'agents",
+          "date": "2026-10-02",
+          "lien": "02-marche/question-1-acteurs.html",
+          "note": "Tableau 5 rôles × 4 colonnes, renvois triés par fiabilité puis pertinence. Bilan : 9 cases solides, 15 partielles, 4 fragiles. À relire, surtout les cases en hypothèse.",
+          "etapes": [
+            {
+              "titre": "Preuves tirées de la veille validée",
+              "statut": "termine",
+              "qui": "analyste-veille",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Recherche web : 30 sources (aides, aidants, consentement, canaux)",
+              "statut": "termine",
+              "qui": "chercheur",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Tableau v1",
+              "statut": "termine",
+              "qui": "stratège",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Critique de la v1 (19 preuves vérifiées)",
+              "statut": "termine",
+              "qui": "contradicteur",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Tableau final et page HTML",
+              "statut": "termine",
+              "qui": "stratège + designer",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Tri par fiabilité : 13 cases fragiles repérées, 6 sources ajoutées",
+              "statut": "termine",
+              "qui": "chercheur + analyste",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Version triée v2 (tri appliqué à 70 %, statuts surévalués)",
+              "statut": "a_refaire",
+              "qui": "stratège",
+              "date": "2026-10-02",
+              "note": "Remplacée par la v3."
+            },
+            {
+              "titre": "Version v3 vérifiée et page mise à jour",
+              "statut": "termine",
+              "qui": "stratège + contradicteur + designer",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Relecture par Lucas",
+              "statut": "a_valider",
+              "qui": "Lucas"
+            }
+          ]
+        },
+        {
+          "titre": "Renforcer les 4 cases fragiles",
+          "statut": "a_faire",
+          "qui": "Équipe",
+          "note": "Payeur × Capteurs, Décideur de fait × Famileo et × Capteurs, Déclencheur × Famileo. Aucune source n'existe : 3 à 5 entretiens (médecin traitant, service social hospitalier, aidants)."
+        },
+        {
+          "titre": "Questions suivantes de la leçon 2.1",
+          "statut": "a_faire",
+          "qui": "Lucas",
+          "note": "En attente de l'énoncé (photo de la diapo)."
+        }
+      ]
+    },
+    {
+      "id": "OUT",
+      "titre": "Suivi",
+      "taches": [
+        {
+          "titre": "Page de suivi du projet",
+          "statut": "termine",
+          "qui": "Claude",
+          "date": "2026-10-02",
+          "lien": "suivi.html",
+          "note": "Mise à jour par Claude à chaque avancée (fichier suivi/taches.json, puis python3 suivi/build.py)."
+        }
+      ]
+    }
+  ]
+}
