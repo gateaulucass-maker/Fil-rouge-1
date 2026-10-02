@@ -93,7 +93,7 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
   <div class="sh"><span class="k">Le déroulé</span><h2>Ce que fait l'IA, étape par étape</h2></div>
   <div class="body"><ol class="steps">
     <li><div><h3>Préparer</h3><p>Lit la date de la dernière veille et la liste des fiches déjà en base, pour éviter les doublons.</p></div></li>
-    <li><div><h3>Collecter</h3><p>Lance les recherches par axe et par concurrent : 20 à 30 candidats.</p></div></li>
+    <li><div><h3>Collecter</h3><p>Lit d'abord les flux suivis (Google Alerts, médias, Reddit, App Store), puis complète par des recherches web par axe et par concurrent : 20 à 30 candidats.</p></div></li>
     <li><div><h3>Filtrer</h3><p>Écarte ce qui est trop ancien, sans date, en double, hors sujet ou issu d'une source à éviter. Chaque rejet est noté avec sa raison.</p></div></li>
     <li><div><h3>Relecture 1</h3><p>Ouvre chaque page source et vérifie la date, chaque chiffre mot pour mot et le résumé. Rédige la fiche.</p></div></li>
     <li><div><h3>Relecture 2</h3><p>Un second agent IA, qui n'a pas vu la fiche se faire, rouvre la source et confirme chaque point. Une fiche non confirmée n'entre jamais en base.</p></div></li>
@@ -120,7 +120,14 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 <section>
   <div class="sh"><span class="k">Sources</span><h2>Fiables d'abord</h2></div>
   <div class="body"><div>
-    <span class="k">Prioritaires</span>
+    <span class="k">Flux suivis en continu, lus en premier</span>
+    <div class="tags">
+      <span class="tag ok">13 Google Alerts</span><span class="tag ok">Silvereco</span><span class="tag ok">Maddyness</span><span class="tag ok">FrenchWeb</span>
+      <span class="tag ok">CNIL</span><span class="tag ok">r/AgingParents</span><span class="tag ok">r/CaregiverSupport</span><span class="tag ok">r/nocode</span>
+      <span class="tag ok">avis App Store : Famileo, Tous FAMiliés, Life360, Signia</span>
+    </div>
+    <p style="margin-top:10px;color:var(--muted);font-size:14.5px">Ce sont les mêmes flux que le pipeline de veille de l'équipe. Chaque élément y est daté. Les avis et les posts Reddit servent de témoignages, toujours anonymisés.</p>
+    <p style="margin-top:18px"><span class="k">Recherche web en complément, en priorité sur</span></p>
     <div class="tags">
       <span class="tag ok">insee.fr</span><span class="tag ok">drees</span><span class="tag ok">cnil.fr</span><span class="tag ok">ansm.sante.fr</span>
       <span class="tag ok">eur-lex.europa.eu</span><span class="tag ok">legifrance.gouv.fr</span><span class="tag ok">service-public.fr</span>
@@ -130,7 +137,7 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
     <p style="margin-top:18px"><span class="k">À éviter</span></p>
     <div class="tags">
       <span class="tag no">contenus sponsorisés</span><span class="tag no">comparateurs affiliés</span><span class="tag no">contenu généré en masse</span>
-      <span class="tag no">forums</span><span class="tag no">réseaux sociaux sans source</span>
+      <span class="tag no">autres forums</span><span class="tag no">réseaux sociaux sans source</span>
     </div>
     <p style="margin-top:22px"><span class="k">Concurrents suivis chaque semaine</span></p>
     <div class="tags">

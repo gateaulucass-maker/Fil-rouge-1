@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T12:34",
+  "mise_a_jour": "2026-10-02T12:41",
   "phases": [
     {
       "id": "P0",
@@ -235,6 +235,13 @@
               "qui": "Claude",
               "note": "chaîne validée, 0 fiche (réseau bloqué), email « non réalisée » envoyé à l'équipe",
               "date": "2026-10-02"
+            },
+            {
+              "titre": "Sources du pipeline ajoutées : 13 Google Alerts, Silvereco, Maddyness, FrenchWeb, CNIL, Reddit, App Store (script collecte_flux.py)",
+              "statut": "termine",
+              "qui": "Claude",
+              "date": "2026-10-02",
+              "note": "testé : 127 candidats datés sur 7 jours, aucune erreur"
             },
             {
               "titre": "Environnement cloud avec accès réseau complet",

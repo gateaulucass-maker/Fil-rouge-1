@@ -1,7 +1,7 @@
 # Veille hebdomadaire silver tech : PFR Générations Connectées
 
 > Prompt de la tâche planifiée Claude (routine cloud), chaque jeudi à 7h45 (heure de Paris).
-> Outils : connecteur Neon (base), connecteur Gmail (email), dépôt GitHub Fil-rouge-1 (page HTML), recherche web.
+> Outils : connecteur Neon (base), connecteur Gmail (email), dépôt GitHub Fil-rouge-1 (page HTML), flux de veille du pipeline (script de collecte), recherche web.
 
 ---
 
@@ -71,8 +71,15 @@ Famileo, Présence Verte, Vitaris, Filien (ADMR), Telegrafik (Otono-me), La Post
 Pour chacun : y a-t-il une nouveauté datée de la fenêtre de collecte (lancement, prix, levée de fonds, arrêt, partenariat, chiffre d'usage) ? Si non, écris « Rien de nouveau cette semaine ». La liste peut être enrichie : si un nouvel acteur revient au moins 2 semaines de suite, propose-le dans la synthèse sans l'ajouter toi-même.
 
 ### Sources
+- **Flux suivis en continu (source n° 1, toujours lus en premier)** : les mêmes flux que le pipeline de veille de l'équipe, définis dans `01-veille/veille-silvertech/config/sources.yaml` et lus par le script `automatisation/collecte_flux.py` :
+  - les **13 Google Alerts** (une par information requise du catalogue : marché, démographie, acteurs, prix, réussites et échecs, levées de fonds, promesses, abandon, détection de chute, CNIL, dispositif médical, AI Act, propriété intellectuelle) ;
+  - les médias **Silvereco, Maddyness, FrenchWeb** et l'actualité de la **CNIL** ;
+  - les communautés **Reddit** r/nocode, r/AgingParents, r/CaregiverSupport (témoignages d'aidants et retours no-code) ;
+  - les **avis App Store** de Famileo, Tous FAMiliés, Life360 et Signia.
+  Chaque élément de ces flux a une date de publication : c'est la base la plus sûre pour la règle de fraîcheur.
+- **Recherche web (complément)** : les mots-clés ci-dessus et les concurrents suivis, pour ce que les flux n'ont pas couvert.
 - **Prioritaires** : insee.fr, drees.solidarites-sante.gouv.fr, cnil.fr, ansm.sante.fr, eur-lex.europa.eu, legifrance.gouv.fr, service-public.fr, pour-les-personnes-agees.gouv.fr, silvereco.fr, senioractu.com, presse économique et tech reconnue, sites officiels des concurrents, App Store et Trustpilot pour les avis.
-- **À éviter** : contenus sponsorisés, comparateurs affiliés qui ne citent pas leurs sources, sites de contenu généré en masse, forums, réseaux sociaux sans source primaire.
+- **À éviter** : contenus sponsorisés, comparateurs affiliés qui ne citent pas leurs sources, sites de contenu généré en masse, forums et réseaux sociaux sans source primaire. **Exception** : les 3 communautés Reddit et les avis App Store des flux suivis sont gardés comme **témoignages** (vécu d'aidants et d'utilisateurs) : la fiche le dit clairement, cite un extrait anonymisé (aucun nom, pseudo, ville ni âge précis, 300 caractères maximum) et ne présente jamais un témoignage comme un chiffre ou un fait général.
 - Un chiffre repris d'un article doit, si possible, être rattaché à sa source primaire (étude, rapport officiel).
 
 ## 6. Déroulé d'une exécution
@@ -83,7 +90,9 @@ Pour chacun : y a-t-il une nouveauté datée de la fenêtre de collecte (lanceme
 3. Charge les URL et titres des fiches des 12 derniers mois (`veille_fiches`, et les `veille_items` validés), pour détecter les doublons.
 
 ### Étape 1 : collecter
-Lance les recherches par axe et par concurrent. Vise 20 à 30 candidats bruts.
+1. **Flux d'abord** : lance `python3 automatisation/collecte_flux.py --depuis AAAA-MM-JJ` (date de début de la fenêtre de collecte). Le script affiche une liste JSON de candidats datés (source, type, titre, URL, date, extrait) et la liste des flux en erreur, à noter dans le journal. Il n'écrit rien en base.
+2. **Puis recherche web** par axe et par concurrent, pour compléter ce que les flux n'ont pas couvert.
+3. Garde au total 20 à 30 candidats bruts, en privilégiant ceux des flux (déjà datés) et en équilibrant les axes. Les flux Reddit et médias contiennent beaucoup de hors-sujet : trie-les avant d'aller plus loin.
 
 ### Étape 2 : filtrer
 Rejette un candidat s'il est :
@@ -92,7 +101,7 @@ Rejette un candidat s'il est :
 - un doublon (même URL, ou même information déjà en base sous un autre titre) ;
 - hors sujet pour le projet ;
 - issu d'une source à éviter.
-Garde la raison de chaque rejet pour le journal.
+Garde la raison de chaque rejet pour le journal, avec le nombre de candidats venus des flux et de la recherche web.
 
 ### Étape 3 : relecture niveau 1 (toi)
 Pour chaque candidat restant, ouvre la page elle-même (jamais un simple extrait de résultat de recherche) et vérifie :
