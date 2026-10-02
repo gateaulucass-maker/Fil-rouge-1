@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T16:16",
+  "mise_a_jour": "2026-10-02T19:18",
   "phases": [
     {
       "id": "P0",
@@ -280,7 +280,7 @@
           "qui": "Claude",
           "date": "2026-10-02",
           "lien": "automatisation/process-veille.html",
-          "note": "Explique la veille du jeudi : 4 axes, 10 étapes, double relecture, fraîcheur, sources, format des fiches, sorties. En ligne sur GitHub Pages."
+          "note": "Explique la veille du jeudi : 4 axes, 10 étapes, double relecture, fraîcheur, sources, format des fiches, sorties. En ligne sur GitHub Pages. Mise à jour le 2 octobre : liste complète des sujets de veille par axe, prioritaires en avant (aussi dans l annexe)."
         },
         {
           "titre": "Prochain /veille",

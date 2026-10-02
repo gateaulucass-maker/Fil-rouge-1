@@ -26,6 +26,37 @@ répartis en 5 axes : marché (M1-M7), concurrence (C1-C7), usagers (U1-U5), tec
 | Recherche web ciblée | 2-3 requêtes par code (`config/sources.yaml`), priorité aux sites officiels : aidants.fr, pour-les-personnes-agees.gouv.fr, ansm.sante.fr, eur-lex.europa.eu, insee.fr, DREES | agent collecteur | hebdomadaire, sur les codes sous-couverts |
 | Données entreprises | pappers.fr, societe.com, crunchbase.com | consultation ciblée (C1, C4), jamais d'extraction massive | ponctuelle |
 
+### Sujets de la veille du jeudi (choisis par l'équipe le 2 octobre 2026)
+
+**Marché**
+- **Vie et charge des aidants** (prioritaire) : distance, temps passé, épuisement, ce qui les rassure
+- Moments déclencheurs d'achat : chute, sortie d'hôpital, veuvage, éloignement
+- Lien entre générations et isolement des seniors : gazettes, tablettes, cadres photo, appels
+- Chutes et prévention : chiffres officiels, plan antichute
+- Aides et financeurs : APA, caisses de retraite, mutuelles
+- Fracture numérique des seniors : équipement, usages, ergonomie
+
+**Concurrence**
+- **Acceptation et refus des objets par les seniors** (prioritaire) : non-port, stigmatisation, objets « au tiroir »
+- **Prix réels et abonnements** (prioritaire) : engagement, résiliation, frais cachés, reste à charge
+- **Réussites et faillites des entreprises du secteur** (prioritaire) : levées de fonds, rachats, liquidations, arrêts : section dédiée chaque semaine
+- Canaux de vente et prescripteurs : médecin, pharmacie, mutuelle, La Poste, CCAS
+- Les 8 concurrents suivis : Famileo, Présence Verte, Vitaris, Filien, Telegrafik, La Poste, Apple Watch, ElliQ
+
+**Techno**
+- Capteurs de domicile et détection de chute : avec ou sans objet porté
+- Objets compagnons : robots, assistants, objets de lien
+- Fin de la 2G et de la 3G : équipements à remplacer, coûts, calendrier
+- Autonomie, recharge, installation : ce qui complique la vie du senior et de l'aidant
+
+**Réglementaire**
+- **Consentement et vie privée** (prioritaire) : RGPD, CNIL, géolocalisation, accord du senior
+- Frontière bien-être / dispositif médical : ANSM
+- AI Act : sous l'angle réglementaire seulement
+- Hébergement de données de santé : HDS
+
+Hors périmètre : l'intelligence artificielle et les outils no-code comme sujets en eux-mêmes.
+
 ### Google Alerts de la veille du jeudi
 
 12 alertes, 3 par axe, réglées en **français, région France, meilleurs résultats, livraison par flux RSS**. Avec un flux RSS, Google impose la fréquence « Quand le cas se présente » : la veille relit les flux chaque jeudi sur les 7 derniers jours. Les adresses des flux sont dans `config/sources.yaml` et dans la base (`veille_config`, clé `flux_rss_google_alerts`).

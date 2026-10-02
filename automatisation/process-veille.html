@@ -60,6 +60,18 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
   .sh,.body{grid-template-columns:1fr}.body>*{grid-column:1}
   .rules,.outs{grid-template-columns:1fr}.out-c{margin-bottom:18px}
 }
+.axes{display:grid;grid-template-columns:1fr 1fr;gap:28px 32px;margin-top:20px}
+.axe{border-top:2px solid var(--fg);padding-top:10px;min-width:0}
+.axe h3{margin:0 0 6px;font-size:20px;letter-spacing:-.015em}
+.axe ul{list-style:none;margin:0;padding:0}
+.axe li{padding:9px 0 9px 14px;border-bottom:1px solid var(--hair);position:relative}
+.axe li::before{content:"";position:absolute;left:0;top:16px;width:6px;height:6px;background:var(--hair)}
+.axe li.p1::before{background:var(--orange)}
+.axe li b{font-size:15.5px}
+.axe li i{font-style:normal;font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--orange);margin-left:8px}
+.axe li span{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.hors{margin-top:18px;color:var(--muted);font-size:14.5px}
+@media (max-width:760px){.axes{grid-template-columns:1fr}}
 </style>
 </head><body><div class="wrap">
 
@@ -77,25 +89,11 @@ a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 </div>
 
 <section>
-  <div class="sh"><span class="k">Ce qu'on cherche</span><h2>Quatre axes, des sujets prioritaires</h2></div>
+  <div class="sh"><span class="k">Ce qu'on cherche</span><h2>Les sujets de veille</h2></div>
   <div class="body"><div>
-    <p>Une information est retenue si elle aide à comprendre ce qui marche auprès des seniors et de leurs enfants, ce qui échoue, ce que la loi autorise, ou quels outils permettent de construire le produit.</p>
-    <div class="rules">
-      <div class="rule"><b>Marché</b><span>Seniors, aidants, maintien à domicile, silver économie, aides publiques.</span></div>
-      <div class="rule"><b>Concurrence</b><span>Produits pour seniors et aidants : prix, lancements, levées de fonds, arrêts, avis.</span></div>
-      <div class="rule"><b>Techno</b><span>Capteurs de domicile, détection de chute, objets compagnons, connectivité (fin de la 2G), autonomie, installation. Sans IA ni no-code.</span></div>
-      <div class="rule"><b>Réglementaire</b><span>RGPD, CNIL, frontière bien-être / dispositif médical, AI Act, hébergement de données de santé.</span></div>
-    </div>
-    <p style="margin-top:22px"><span class="k">Sujets prioritaires (choisis par l'équipe)</span></p>
-    <div class="tags">
-      <span class="tag ok">Acceptation et refus des objets par les seniors</span><span class="tag ok">Vie et charge des aidants</span>
-      <span class="tag ok">Consentement et vie privée</span><span class="tag ok">Prix et abonnements</span><span class="tag ok">Réussites et faillites du secteur</span>
-    </div>
-    <div class="tags" style="margin-top:8px">
-      <span class="tag">Moments déclencheurs d'achat</span><span class="tag">Lien et isolement</span><span class="tag">Chutes et prévention</span>
-      <span class="tag">Aides et financeurs</span><span class="tag">Canaux de vente</span><span class="tag">Fracture numérique</span><span class="tag">Fin de la 2G</span>
-    </div>
-    <p style="margin-top:10px;color:var(--muted);font-size:14.5px">En bleu, le premier rang. Les réussites et faillites des entreprises (levées de fonds, rachats, liquidations, arrêts) ont leur propre section dans la page de chaque semaine. L'intelligence artificielle et les outils no-code sont hors périmètre.</p>
+    <p>Une information est retenue si elle aide à comprendre ce qui marche auprès des seniors et de leurs enfants, ce qui échoue, ou ce que la loi autorise. Les sujets sont rangés dans 4 axes ; ceux marqués <b style="color:var(--orange)">prioritaire</b> ont été choisis par l'équipe et passent en premier.</p>
+    <div class="axes"><div class="axe"><h3>Marché</h3><ul><li class="p1"><b>Vie et charge des aidants</b> <i>prioritaire</i><span>distance, temps passé, épuisement, ce qui les rassure</span></li><li class=""><b>Moments déclencheurs d'achat</b><span>chute, sortie d'hôpital, veuvage, éloignement</span></li><li class=""><b>Lien entre générations et isolement des seniors</b><span>gazettes, tablettes, cadres photo, appels</span></li><li class=""><b>Chutes et prévention</b><span>chiffres officiels, plan antichute</span></li><li class=""><b>Aides et financeurs</b><span>APA, caisses de retraite, mutuelles</span></li><li class=""><b>Fracture numérique des seniors</b><span>équipement, usages, ergonomie</span></li></ul></div><div class="axe"><h3>Concurrence</h3><ul><li class="p1"><b>Acceptation et refus des objets par les seniors</b> <i>prioritaire</i><span>non-port, stigmatisation, objets « au tiroir »</span></li><li class="p1"><b>Prix réels et abonnements</b> <i>prioritaire</i><span>engagement, résiliation, frais cachés, reste à charge</span></li><li class="p1"><b>Réussites et faillites des entreprises du secteur</b> <i>prioritaire</i><span>levées de fonds, rachats, liquidations, arrêts : section dédiée chaque semaine</span></li><li class=""><b>Canaux de vente et prescripteurs</b><span>médecin, pharmacie, mutuelle, La Poste, CCAS</span></li><li class=""><b>Les 8 concurrents suivis</b><span>Famileo, Présence Verte, Vitaris, Filien, Telegrafik, La Poste, Apple Watch, ElliQ</span></li></ul></div><div class="axe"><h3>Techno</h3><ul><li class=""><b>Capteurs de domicile et détection de chute</b><span>avec ou sans objet porté</span></li><li class=""><b>Objets compagnons</b><span>robots, assistants, objets de lien</span></li><li class=""><b>Fin de la 2G et de la 3G</b><span>équipements à remplacer, coûts, calendrier</span></li><li class=""><b>Autonomie, recharge, installation</b><span>ce qui complique la vie du senior et de l'aidant</span></li></ul></div><div class="axe"><h3>Réglementaire</h3><ul><li class="p1"><b>Consentement et vie privée</b> <i>prioritaire</i><span>RGPD, CNIL, géolocalisation, accord du senior</span></li><li class=""><b>Frontière bien-être / dispositif médical</b><span>ANSM</span></li><li class=""><b>AI Act</b><span>sous l'angle réglementaire seulement</span></li><li class=""><b>Hébergement de données de santé</b><span>HDS</span></li></ul></div></div>
+    <p class="hors">Hors périmètre : l'intelligence artificielle et les outils no-code comme sujets en eux-mêmes.</p>
   </div></div>
 </section>
 
