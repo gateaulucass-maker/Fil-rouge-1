@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS veille_config (
 
 ## Configuration de départ (à insérer dans `veille_config` à la première exécution)
 
-- `emails_equipe` : `gateau.lucass@gmail.com` (les adresses des 2 coéquipiers seront ajoutées par l'équipe dans cette table)
+- `emails_equipe` : les 3 adresses de l'équipe, données dans le message de la tâche planifiée (elles ne sont pas écrites dans ce dépôt public). Si la clé existe déjà dans `veille_config`, garde sa valeur.
 - `url_page` : `https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/`
 - `concurrents` : `Famileo, Présence Verte, Vitaris, Filien (ADMR), Telegrafik (Otono-me), La Poste, Apple Watch, ElliQ`
 - `derniere_execution` : vide au départ, la première collecte porte donc sur les 7 derniers jours.
