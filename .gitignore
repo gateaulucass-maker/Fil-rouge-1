@@ -1,1 +1,11 @@
 .DS_Store
+.build/
+# Secrets : jamais dans le dépôt public (voir CLAUDE.md, section 5)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Sorties locales des agents (non partagées)
+.tableau/
+.marche/
