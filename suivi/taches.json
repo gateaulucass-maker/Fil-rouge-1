@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T12:22",
+  "mise_a_jour": "2026-10-02T12:25",
   "phases": [
     {
       "id": "P0",
@@ -186,11 +186,11 @@
         },
         {
           "titre": "Veille automatique du jeudi (7h45)",
-          "statut": "bloque",
+          "statut": "a_valider",
           "qui": "Claude + Lucas",
           "date": "2026-10-02",
           "lien": "automatisation/veille-hebdo-prompt.md",
-          "note": "Tâche planifiée prête : jeudi 7h45 (1re le 8 octobre), connecteurs Neon et Gmail, emails de l'équipe, page à adresse fixe (gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/). Reste à autoriser GitHub (droit « workflow ») pour la publication automatique sur main.",
+          "note": "Tout est en place : jeudi 7h45 (1re le 8 octobre), Neon + Gmail, emails de l'équipe, page en ligne à adresse fixe (gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/), publication automatique sur main. Reste : décider d'un essai avant jeudi.",
           "etapes": [
             {
               "titre": "Prompt adapté à notre installation, enregistré dans le dépôt",
@@ -224,9 +224,10 @@
             },
             {
               "titre": "Action GitHub qui publie la page sur main",
-              "statut": "bloque",
-              "qui": "Lucas",
-              "note": "taper : ! gh auth refresh -h github.com -s workflow"
+              "statut": "termine",
+              "qui": "Claude",
+              "note": "ajoutée depuis le site GitHub",
+              "date": "2026-10-02"
             },
             {
               "titre": "Essai complet avant jeudi (« Exécuter maintenant »)",
