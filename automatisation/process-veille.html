@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Process de veille</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Grille suisse : étiquette à gauche, contenu à droite ; blanc, orange pour l'IA qui agit, bleu pour ce qui est produit */
+:root{--bg:#fff;--fg:#111418;--muted:#5d636b;--hair:#d5d7d9;--soft:#f5f5f3;--orange:#e8571c;--blue:#1f3fbf;
+--display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:clamp(16px,4vw,48px);padding-block:clamp(28px,6vw,72px) 56px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;font:11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-top:2px solid var(--fg);padding-top:12px}
+.meta b{color:var(--fg);font-weight:500}
+h1{font-weight:800;font-size:clamp(44px,8.5vw,104px);line-height:.92;letter-spacing:-.04em;margin:clamp(24px,4vw,44px) 0 0}
+h1 .o{color:var(--orange)} h1 .b{color:var(--blue)}
+.lede{margin-top:24px;font-size:clamp(18px,2vw,22px);font-weight:500;line-height:1.4;max-width:46ch}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(32px,5vw,48px);border-top:1px solid var(--fg)}
+.fact{padding:16px 16px 18px 0;min-width:0}
+.fact+.fact{padding-left:16px;border-left:1px solid var(--hair)}
+.fact b{display:block;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;line-height:1.1;margin-top:6px}
+section{margin-top:clamp(48px,7vw,80px)}
+.sh{display:grid;grid-template-columns:3fr 9fr;gap:0 24px;border-top:2px solid var(--fg);padding-top:14px}
+h2{margin:0;font-weight:800;font-size:clamp(26px,3.2vw,40px);letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
+.body{display:grid;grid-template-columns:3fr 9fr;gap:0 24px;margin-top:20px}
+.body>*{grid-column:2;min-width:0}
+p{margin:0 0 12px;max-width:66ch}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.steps li::before{content:counter(s,decimal-leading-zero);font:800 26px/1 var(--display);letter-spacing:-.03em;color:var(--orange)}
+.steps li.out::before{color:var(--blue)}
+.steps h3{margin:0;font-size:18px;letter-spacing:-.01em}
+.steps p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.rule{border-top:1px solid var(--fg);padding:12px 0 16px}
+.rule b{display:block;font-size:16px}
+.rule span{display:block;color:var(--muted);font-size:14.5px;margin-top:3px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.tag{font:12px var(--mono);border:1px solid var(--hair);padding:3px 8px}
+.tag.ok{border-color:var(--blue);color:var(--blue)}
+.tag.no{border-color:var(--orange);color:var(--orange);text-decoration:line-through}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:400;border-bottom:1px solid var(--fg)}
+td:first-child{font-weight:700;width:30%}
+.tbl{overflow-x:auto}
+.outs{display:grid;grid-template-columns:repeat(3,1fr);gap:0 24px}
+.out-c{border-top:3px solid var(--blue);padding-top:12px}
+.out-c b{display:block;font-size:18px}
+.out-c span{display:block;color:var(--muted);font-size:14.5px;margin-top:4px}
+.out-c a{color:var(--blue);font:13px var(--mono);overflow-wrap:anywhere}
+.note{border-left:3px solid var(--orange);background:var(--soft);padding:14px 18px;font-size:15px}
+footer{margin-top:72px;border-top:1px solid var(--hair);padding-top:14px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--fg)}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media (max-width:760px){
+  .facts{grid-template-columns:1fr 1fr}.fact{padding-left:0!important;border-left:0!important;border-bottom:1px solid var(--hair)}
+  .sh,.body{grid-template-columns:1fr}.body>*{grid-column:1}
+  .rules,.outs{grid-template-columns:1fr}.out-c{margin-bottom:18px}
+}
+</style>
+</head><body><div class="wrap">
+
+<div class="meta"><span><b>Ynov</b> B2 Product Builder No-Code</span><span>PFR Générations Connectées</span><span>Phase 1 · Veille</span><span>Octobre 2026</span></div>
+
+<h1><span class="o">Process</span><br>de <span class="b">veille</span></h1>
+
+<p class="lede">Chaque jeudi matin, une IA fait la veille du projet : elle cherche les nouveautés, vérifie chaque information deux fois, puis publie une page et prévient l'équipe par email.</p>
+
+<div class="facts">
+  <div class="fact"><span class="k">Quand</span><b>Jeudi 7h45</b></div>
+  <div class="fact"><span class="k">Combien</span><b>5 à 10 fiches</b></div>
+  <div class="fact"><span class="k">Fenêtre</span><b>Les 7 derniers jours</b></div>
+  <div class="fact"><span class="k">Zone</span><b>France + Europe</b></div>
+</div>
+
+<section>
+  <div class="sh"><span class="k">Ce qu'on cherche</span><h2>Quatre axes</h2></div>
+  <div class="body"><div>
+    <p>Une information est retenue si elle aide à comprendre ce qui marche auprès des seniors et de leurs enfants, ce qui échoue, ce que la loi autorise, ou quels outils permettent de construire le produit.</p>
+    <div class="rules">
+      <div class="rule"><b>Marché</b><span>Seniors, aidants, maintien à domicile, silver économie, aides publiques.</span></div>
+      <div class="rule"><b>Concurrence</b><span>Produits pour seniors et aidants : prix, lancements, levées de fonds, arrêts, avis.</span></div>
+      <div class="rule"><b>Techno</b><span>Capteurs, objets compagnons, IA, outils no-code (Glide, Softr, Make, n8n, Airtable…).</span></div>
+      <div class="rule"><b>Réglementaire</b><span>RGPD, CNIL, frontière bien-être / dispositif médical, AI Act, hébergement de données de santé.</span></div>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">Le déroulé</span><h2>Ce que fait l'IA, étape par étape</h2></div>
+  <div class="body"><ol class="steps">
+    <li><div><h3>Préparer</h3><p>Lit la date de la dernière veille et la liste des fiches déjà en base, pour éviter les doublons.</p></div></li>
+    <li><div><h3>Collecter</h3><p>Lance les recherches par axe et par concurrent : 20 à 30 candidats.</p></div></li>
+    <li><div><h3>Filtrer</h3><p>Écarte ce qui est trop ancien, sans date, en double, hors sujet ou issu d'une source à éviter. Chaque rejet est noté avec sa raison.</p></div></li>
+    <li><div><h3>Relecture 1</h3><p>Ouvre chaque page source et vérifie la date, chaque chiffre mot pour mot et le résumé. Rédige la fiche.</p></div></li>
+    <li><div><h3>Relecture 2</h3><p>Un second agent IA, qui n'a pas vu la fiche se faire, rouvre la source et confirme chaque point. Une fiche non confirmée n'entre jamais en base.</p></div></li>
+    <li><div><h3>Noter et choisir</h3><p>Pertinence de 1 à 3, puis sélection des 5 à 10 meilleures fiches, en équilibrant les axes.</p></div></li>
+    <li class="out"><div><h3>Enregistrer</h3><p>Fiches dans la base Neon ; les fiches de plus de 12 mois sont archivées, jamais effacées.</p></div></li>
+    <li class="out"><div><h3>Synthèse</h3><p>3 à 5 lignes : ce qui a bougé et ce que ça change pour le projet.</p></div></li>
+    <li class="out"><div><h3>Page et email</h3><p>Publie la page de la semaine et envoie le récapitulatif à l'équipe.</p></div></li>
+    <li class="out"><div><h3>Journal</h3><p>Note le bilan de l'exécution (candidats, rejets, fiches ajoutées, erreurs), même en cas de problème.</p></div></li>
+  </ol></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">Fraîcheur</span><h2>Moins de 12 mois, sauf deux cas</h2></div>
+  <div class="body"><div>
+    <div class="rules">
+      <div class="rule"><b>Règle générale</b><span>Rien de plus de 12 mois n'entre dans la base. Une source sans date est rejetée : jamais de date devinée.</span></div>
+      <div class="rule"><b>Chiffres officiels</b><span>Insee, Drees, ministères : on garde la dernière édition, même ancienne, car ils ne sortent que tous les 1 à 4 ans.</span></div>
+      <div class="rule"><b>Textes de loi</b><span>RGPD, CNIL, dispositifs médicaux, AI Act : le texte reste s'il est en vigueur ; les actualités qui en parlent ont moins de 12 mois.</span></div>
+      <div class="rule"><b>Contradiction</b><span>Entre deux sources, on garde la source primaire ou la plus récente, et l'écart est signalé.</span></div>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">Sources</span><h2>Fiables d'abord</h2></div>
+  <div class="body"><div>
+    <span class="k">Prioritaires</span>
+    <div class="tags">
+      <span class="tag ok">insee.fr</span><span class="tag ok">drees</span><span class="tag ok">cnil.fr</span><span class="tag ok">ansm.sante.fr</span>
+      <span class="tag ok">eur-lex.europa.eu</span><span class="tag ok">legifrance.gouv.fr</span><span class="tag ok">service-public.fr</span>
+      <span class="tag ok">silvereco.fr</span><span class="tag ok">senioractu.com</span><span class="tag ok">presse éco et tech</span>
+      <span class="tag ok">sites des concurrents</span><span class="tag ok">avis App Store</span>
+    </div>
+    <p style="margin-top:18px"><span class="k">À éviter</span></p>
+    <div class="tags">
+      <span class="tag no">contenus sponsorisés</span><span class="tag no">comparateurs affiliés</span><span class="tag no">contenu généré en masse</span>
+      <span class="tag no">forums</span><span class="tag no">réseaux sociaux sans source</span>
+    </div>
+    <p style="margin-top:22px"><span class="k">Concurrents suivis chaque semaine</span></p>
+    <div class="tags">
+      <span class="tag">Famileo</span><span class="tag">Présence Verte</span><span class="tag">Vitaris</span><span class="tag">Filien (ADMR)</span>
+      <span class="tag">Telegrafik</span><span class="tag">La Poste</span><span class="tag">Apple Watch</span><span class="tag">ElliQ</span>
+    </div>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">Une fiche</span><h2>Le format du professeur</h2></div>
+  <div class="body"><div class="tbl"><table>
+    <thead><tr><th>Champ</th><th>Contenu</th></tr></thead>
+    <tbody>
+      <tr><td>Titre</td><td>Titre court et factuel</td></tr>
+      <tr><td>Date</td><td>Date de publication de la source</td></tr>
+      <tr><td>Source et lien</td><td>Nom de la source et URL exacte</td></tr>
+      <tr><td>Axe</td><td>Marché, Concurrence, Techno ou Réglementaire</td></tr>
+      <tr><td>Résumé</td><td>3 lignes maximum, uniquement ce que dit la source</td></tr>
+      <tr><td>Pourquoi c'est important</td><td>1 à 2 phrases reliées au projet</td></tr>
+      <tr><td>Pertinence</td><td>1 contexte · 2 utile · 3 indispensable</td></tr>
+      <tr><td>Ajouté par</td><td>« Veille IA »</td></tr>
+    </tbody>
+  </table></div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">Ce qu'on reçoit</span><h2>Trois sorties</h2></div>
+  <div class="body"><div class="outs">
+    <div class="out-c"><b>La page de la semaine</b><span>Synthèse, nouvelles fiches, suivi des concurrents.</span>
+      <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/">gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/</a></div>
+    <div class="out-c"><b>Un email à l'équipe</b><span>La synthèse, les 3 fiches les plus pertinentes, les concurrents qui ont bougé et le lien vers la page.</span></div>
+    <div class="out-c"><b>La base Neon</b><span>Toutes les fiches, archivées après 12 mois, et le journal de chaque exécution.</span></div>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">Notre rôle</span><h2>L'IA cherche, l'équipe décide</h2></div>
+  <div class="body"><div>
+    <p>Chaque jeudi, l'équipe lit la page, garde ce qui sert la fiche de veille et les décisions du projet, et peut corriger les consignes de la veille dans le fichier <code>automatisation/veille-hebdo-prompt.md</code>.</p>
+    <div class="note">Usage de l'IA déclaré conformément à la charte IA Ynov : la veille est réalisée par Claude et vérifiée par une double relecture automatique. Aucun chiffre, aucune date ni aucune citation absents de la source ne sont acceptés.</div>
+  </div></div>
+</section>
+
+<footer><span>Process de veille · PFR Générations Connectées</span><a href="veille-hebdo-prompt.md">Consignes complètes de la veille</a></footer>
+</div></body></html>
