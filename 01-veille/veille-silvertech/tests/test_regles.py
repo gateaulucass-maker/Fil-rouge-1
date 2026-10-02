@@ -166,3 +166,10 @@ def test_retirer_pseudos_reddit():
     t = retirer_pseudos("Ma mère refuse le bracelet. submitted by /u/EdwardBliss [link] [comments]")
     assert t == "Ma mère refuse le bracelet."
     assert "Bob_12" not in retirer_pseudos("merci u/Bob_12 et @bob, écrire à bob@mail.fr")
+
+
+def test_organismes_publics_ajoutes():
+    assert autorite("ameli.fr", R) == 3
+    assert autorite("affairesjuridiques.aphp.fr", R) == 3
+    assert autorite("korii.slate.fr", R) == 2
+    assert autorite("bigmedia.bpifrance.fr", R) == 2

@@ -5,10 +5,14 @@ domaines:
   exclus: [facebook.com, instagram.com, tiktok.com, pinterest.com]
   # Niveau 3 : sources officielles. Un sous-domaine hérite du niveau (ex. drees.solidarites-sante.gouv.fr).
   officiels: [gouv.fr, europa.eu, cnil.fr, insee.fr, has-sante.fr, ansm.sante.fr, cnsa.fr,
-              santepubliquefrance.fr, service-public.fr, inpi.fr, legifrance.gouv.fr]
+              santepubliquefrance.fr, service-public.fr, inpi.fr, legifrance.gouv.fr,
+              # ajoutés le 2026-10-02 (organismes publics oubliés : ameli.fr notait 1/7)
+              ameli.fr, aphp.fr, sante.fr, lassuranceretraite.fr, agirc-arrco.fr, msa.fr, caf.fr, inserm.fr]
   # Niveau 2 : médias reconnus
   medias: [silvereco.fr, maddyness.com, frenchweb.fr, lesechos.fr, lemonde.fr, lefigaro.fr,
-           liberation.fr, francetvinfo.fr, usine-digitale.fr, numerama.com, aidants.fr]
+           liberation.fr, francetvinfo.fr, usine-digitale.fr, numerama.com, aidants.fr,
+           # ajoutés le 2026-10-02 : média national, institut d'études, banque publique, revue scientifique
+           slate.fr, xerfi.com, bpifrance.fr, sciencedirect.com]
 
 mots_cles_inclusion:
   - senior
