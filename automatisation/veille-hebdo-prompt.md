@@ -62,8 +62,32 @@ France pour le marché et les acteurs, Europe pour la réglementation.
 - **Techno** : capteurs de domicile, détection de chute, objets compagnons, connectivité (fin de la 2G et de la 3G), autonomie et recharge, installation, interopérabilité. Sans IA ni no-code (hors périmètre).
 - **Réglementaire** : RGPD et données de santé, CNIL, frontière bien-être et dispositif médical (ANSM), AI Act et Digital Omnibus, hébergement de données de santé.
 
+### Sujets prioritaires (décidés par l'équipe le 2 octobre 2026)
+
+La veille cherche en priorité les sujets ci-dessous, rangés dans les 4 axes. À pertinence égale, une fiche du **rang 1** passe devant une fiche du rang 2. Chaque semaine, vise au moins une fiche de rang 1 quand les sources le permettent.
+
+**Rang 1**
+1. **Acceptation et refus des objets par les seniors** : non-port, stigmatisation, objets abandonnés « au tiroir », ce que les seniors acceptent ou refusent. (Concurrence ou Marché)
+2. **Vie et charge des aidants** : distance, temps passé, épuisement, ce qui les rassure, ce qu'ils attendent d'un objet. (Marché)
+3. **Consentement et vie privée** : autonomie face à sécurité, accord du senior, géolocalisation, CNIL. (Réglementaire)
+4. **Prix réels et abonnements** : prix, engagement, résiliation, frais cachés, reste à charge, crédit d'impôt. (Concurrence)
+5. **Réussites et faillites des entreprises du secteur** : lancements, levées de fonds, rachats, partenariats, redressements, liquidations, arrêts de produit. Suivi dédié : voir ci-dessous. (Concurrence)
+
+**Rang 2**
+6. **Moments déclencheurs d'achat** : chute, sortie d'hôpital, veuvage, éloignement. (Marché)
+7. **Lien entre générations et isolement** : gazettes, tablettes, cadres photo, appels, isolement des seniors. (Marché)
+8. **Chutes et prévention** : chiffres officiels, plan antichute, détection sans bracelet. (Marché ou Techno)
+9. **Aides et financeurs** : APA, caisses de retraite, mutuelles, Commission des financeurs. (Marché)
+10. **Canaux de vente et prescripteurs** : médecin, pharmacie, mutuelle, La Poste, CCAS. (Concurrence)
+11. **Fracture numérique et ergonomie pour seniors** : équipement, usages, accessibilité. (Marché ou Techno)
+12. **Fin de la 2G et de la 3G** : équipements à remplacer, coûts, calendrier. (Techno)
+
+**Suivi dédié « Réussites et faillites »** : chaque semaine, cherche spécifiquement les entreprises de la silver économie et de la téléassistance qui lèvent des fonds, se font racheter, nouent un partenariat, lancent un produit, sont en redressement ou en liquidation, ou arrêtent un produit. Sources : presse économique, communiqués officiels, Bodacc (bodacc.fr, annonces légales officielles) et fiches Pappers ou Societe.com consultées une à une (jamais d'extraction en masse). Pour chaque événement : entreprise, nature de l'événement, date, source, et en une phrase ce que ça apprend au projet (pourquoi ça marche ou échoue). Un événement sans source datée n'est pas retenu. Une semaine sans événement se dit « Rien de nouveau cette semaine ».
+
 ### Mots-clés de recherche
 - Marché : silver économie, aidants familiaux, proches aidants, maintien à domicile, perte d'autonomie, téléassistance marché, Insee seniors, Drees aidants.
+- Réussites et faillites : silver économie levée de fonds, téléassistance rachat, startup seniors liquidation judiciaire, redressement judiciaire services seniors, arrêt produit objet connecté senior, bodacc téléassistance.
+- Aidants et acceptation : proches aidants charge, aidant à distance parent âgé, refus téléassistance senior, bracelet non porté, consentement personne âgée géolocalisation, prix abonnement téléassistance résiliation.
 - Concurrence : téléassistance, détecteur de chute, bouton d'appel senior, montre connectée senior, capteurs domicile personne âgée, pilulier connecté, cadre photo connecté senior, tablette senior, robot compagnon senior, lien familial senior application.
 - Techno : capteurs domicile personne âgée, détecteur de chute fiabilité, fin réseau 2G téléassistance, objets connectés maintien à domicile, robot compagnon senior.
 - Réglementaire : CNIL données de santé, CNIL objets connectés, ANSM logiciel dispositif médical, AI Act transparence, Digital Omnibus AI Act, hébergeur données de santé HDS.
@@ -122,7 +146,7 @@ Confie chaque fiche à un sous-agent (outil Agent) qui n'a pas vu ton travail, a
 - Pertinence 3 : indispensable pour la fiche de veille ou une décision du projet.
 - Pertinence 2 : utile, apporte un exemple ou un chiffre.
 - Pertinence 1 : contexte.
-Garde les 5 à 10 meilleures fiches, en équilibrant les axes autant que possible. S'il y a moins de 5 fiches valides, n'en invente pas : publie ce que tu as et dis-le.
+Garde les 5 à 10 meilleures fiches, en équilibrant les axes autant que possible et en privilégiant les sujets de rang 1 (voir « Sujets prioritaires »). Les événements « Réussites et faillites » sont des fiches comme les autres (axe Concurrence) et alimentent aussi la section dédiée de la page. S'il y a moins de 5 fiches valides, n'en invente pas : publie ce que tu as et dis-le.
 
 ### Étape 6 : enregistrer
 - Insère les fiches dans `veille_fiches`.
@@ -204,6 +228,7 @@ CREATE TABLE IF NOT EXISTS veille_config (
 - Section 1, **Synthèse de la semaine** : les 3 à 5 lignes de l'étape 7.
 - Section 2, **Nouveautés de la semaine** : une carte par fiche avec les 8 champs, l'axe et la pertinence en étiquettes, le lien vers la source. Triées par pertinence, puis par date.
 - Section 3, **Suivi des concurrents** : une ligne par concurrent de la liste, avec la nouveauté datée et son lien, ou « Rien de nouveau cette semaine ».
+- Section 4, **Réussites et faillites du secteur** : une ligne par événement (entreprise, type : levée, rachat, partenariat, lancement, redressement, liquidation, arrêt ; date ; source ; ce que ça apprend au projet), ou « Rien de nouveau cette semaine ».
 - Pied de page : « Veille réalisée par une IA (Claude), vérifiée par une double relecture automatique. Usage déclaré conformément à la charte IA Ynov. » et le nombre de candidats examinés et rejetés.
 
 ## 10. Email à l'équipe
@@ -213,6 +238,7 @@ CREATE TABLE IF NOT EXISTS veille_config (
   - la synthèse de la semaine ;
   - les 3 fiches les plus pertinentes (titre, une phrase, lien) ;
   - les concurrents qui ont bougé ;
+  - les réussites et faillites du secteur de la semaine ;
   - le lien vers la page HTML.
 - Pas de pièce jointe. Ton simple et direct.
 
