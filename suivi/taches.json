@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T12:13",
+  "mise_a_jour": "2026-10-02T12:22",
   "phases": [
     {
       "id": "P0",
@@ -190,7 +190,7 @@
           "qui": "Claude + Lucas",
           "date": "2026-10-02",
           "lien": "automatisation/veille-hebdo-prompt.md",
-          "note": "Tâche planifiée Claude créée (claude.ai/code/routines/trig_01AciQQkvWHeSduvaJURoosH), 1re exécution jeudi 8 octobre 7h45. En attente : connecteur Neon dans claude.ai, accord pour GitHub Pages, emails des coéquipiers.",
+          "note": "Tâche planifiée prête : jeudi 7h45 (1re le 8 octobre), connecteurs Neon et Gmail, emails de l'équipe, page à adresse fixe (gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/). Reste à autoriser GitHub (droit « workflow ») pour la publication automatique sur main.",
           "etapes": [
             {
               "titre": "Prompt adapté à notre installation, enregistré dans le dépôt",
@@ -199,31 +199,40 @@
               "date": "2026-10-02"
             },
             {
-              "titre": "Tâche planifiée chaque jeudi 7h45, avec Gmail",
+              "titre": "Tâche planifiée chaque jeudi 7h45",
               "statut": "termine",
               "qui": "Claude",
               "date": "2026-10-02"
             },
             {
-              "titre": "Page d'attente veille-hebdo/ dans le dépôt",
+              "titre": "Connecteurs Neon et Gmail attachés à la tâche",
+              "statut": "termine",
+              "qui": "Lucas + Claude",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Emails de l'équipe (Lucas, Clément, Camille), hors du dépôt public",
               "statut": "termine",
               "qui": "Claude",
               "date": "2026-10-02"
             },
             {
-              "titre": "Ajouter le connecteur Neon dans claude.ai",
+              "titre": "GitHub Pages activé, page d'attente en ligne",
+              "statut": "termine",
+              "qui": "Claude",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Action GitHub qui publie la page sur main",
               "statut": "bloque",
-              "qui": "Lucas"
+              "qui": "Lucas",
+              "note": "taper : ! gh auth refresh -h github.com -s workflow"
             },
             {
-              "titre": "Activer GitHub Pages (adresse fixe de la page)",
+              "titre": "Essai complet avant jeudi (« Exécuter maintenant »)",
               "statut": "a_valider",
-              "qui": "Lucas"
-            },
-            {
-              "titre": "Donner les emails des 2 coéquipiers",
-              "statut": "a_faire",
-              "qui": "Lucas"
+              "qui": "Lucas",
+              "note": "envoie un vrai email à l'équipe"
             }
           ]
         },

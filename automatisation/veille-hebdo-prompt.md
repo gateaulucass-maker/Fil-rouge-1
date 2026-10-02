@@ -11,7 +11,7 @@
 - **Base** : utilise les outils du connecteur **Neon**, sur le projet Neon nommé **« veille-silvertech »**, base **`neondb`**. Si plusieurs projets existent, prends celui-là ; si tu ne le trouves pas, applique la section 12 (« Neon indisponible »).
 - **Ne touche jamais** aux tables déjà présentes dans cette base (`veille_items`, `raw_items`, `catalogue`, `runs`) : elles appartiennent au pipeline de veille manuel de l'équipe. Tu travailles uniquement dans `veille_fiches`, `veille_journal` et `veille_config`. Tu peux **lire** `veille_items` (statut `valide`) pour détecter un doublon.
 - **Email** : envoie-le avec le connecteur **Gmail** (compte de Lucas).
-- **Page HTML** : fichier `veille-hebdo/index.html` du dépôt, publié en ligne par GitHub Pages à l'adresse fixe **https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/**. Tu le mets à jour, tu fais un commit, et tu pousses sur la branche `main`. Si le push sur `main` est refusé, pousse sur une branche `veille/AAAA-MM-JJ`, écris-le dans le journal et en tête de l'email.
+- **Page HTML** : fichier `veille-hebdo/index.html` du dépôt, publié en ligne par GitHub Pages à l'adresse fixe **https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/**. Tu le mets à jour, tu fais un commit, et tu pousses sur la branche de travail de ta session (souvent `claude/…`) ; si tu peux pousser directement sur `main`, fais-le. Une action GitHub du dépôt (`.github/workflows/publier-veille.yml`) recopie automatiquement `veille-hebdo/` sur `main` dès qu'une branche `claude/…` ou `veille/…` la modifie : la page en ligne est donc à jour quelques minutes après ton push. Si aucun push n'est possible, écris-le dans le journal et en tête de l'email.
 - **Relecture indépendante** (étape 4) : utilise l'outil **Agent** pour lancer un sous-agent par lot de fiches.
 - Tu n'as jamais besoin de mot de passe ni de chaîne de connexion : n'en écris aucun, nulle part.
 
@@ -122,7 +122,7 @@ Garde les 5 à 10 meilleures fiches, en équilibrant les axes autant que possibl
 3 à 5 lignes en français simple : ce qui a bougé cette semaine, et ce que ça change pour le projet. Pas de remplissage : une semaine calme se dit en une ligne.
 
 ### Étape 8 : page HTML
-Réécris `veille-hebdo/index.html` (contenu et style en section 9), fais un commit « Veille hebdo : semaine du JJ/MM/AAAA » et pousse sur `main`. Enregistre l'adresse de la page dans `veille_config` (clé `url_page`) si elle n'y est pas.
+Réécris `veille-hebdo/index.html` (contenu et style en section 9), fais un commit « Veille hebdo : semaine du JJ/MM/AAAA » et pousse (voir section 0). Enregistre l'adresse de la page dans `veille_config` (clé `url_page`) si elle n'y est pas.
 
 ### Étape 9 : email
 Envoie avec le connecteur Gmail un email aux adresses de `veille_config` (clé `emails_equipe`), format en section 10.
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS veille_config (
 - [ ] Toutes les fiches ont une date de publication de moins de 12 mois, ou une exception justifiée.
 - [ ] Chaque fiche a passé les deux relectures.
 - [ ] Aucun doublon avec la base.
-- [ ] La page HTML est poussée sur `main` et ne contient aucun identifiant.
+- [ ] La page HTML est poussée (branche de travail ou `main`) et ne contient aucun identifiant.
 - [ ] L'email est parti.
 - [ ] Le journal d'exécution est écrit.
 - [ ] Aucun tiret cadratin dans les textes produits.
