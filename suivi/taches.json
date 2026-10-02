@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T11:56",
+  "mise_a_jour": "2026-10-02T12:13",
   "phases": [
     {
       "id": "P0",
@@ -185,11 +185,54 @@
           "note": "Construite sur 130 éléments ; la base en compte 164 et les scores ont changé. À régénérer et à relire (texte d'analyse)."
         },
         {
+          "titre": "Veille automatique du jeudi (7h45)",
+          "statut": "bloque",
+          "qui": "Claude + Lucas",
+          "date": "2026-10-02",
+          "lien": "automatisation/veille-hebdo-prompt.md",
+          "note": "Tâche planifiée Claude créée (claude.ai/code/routines/trig_01AciQQkvWHeSduvaJURoosH), 1re exécution jeudi 8 octobre 7h45. En attente : connecteur Neon dans claude.ai, accord pour GitHub Pages, emails des coéquipiers.",
+          "etapes": [
+            {
+              "titre": "Prompt adapté à notre installation, enregistré dans le dépôt",
+              "statut": "termine",
+              "qui": "Claude",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Tâche planifiée chaque jeudi 7h45, avec Gmail",
+              "statut": "termine",
+              "qui": "Claude",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Page d'attente veille-hebdo/ dans le dépôt",
+              "statut": "termine",
+              "qui": "Claude",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Ajouter le connecteur Neon dans claude.ai",
+              "statut": "bloque",
+              "qui": "Lucas"
+            },
+            {
+              "titre": "Activer GitHub Pages (adresse fixe de la page)",
+              "statut": "a_valider",
+              "qui": "Lucas"
+            },
+            {
+              "titre": "Donner les emails des 2 coéquipiers",
+              "statut": "a_faire",
+              "qui": "Lucas"
+            }
+          ]
+        },
+        {
           "titre": "Prochain /veille",
           "statut": "a_faire",
           "qui": "Équipe",
           "date": "2026-10-05",
-          "note": "Lundi 5 octobre : lancer /veille depuis ~/Fil-rouge-1, puis revue."
+          "note": "La veille automatique du jeudi 8 octobre prend le relais ; /veille reste disponible pour un run manuel."
         }
       ]
     },
