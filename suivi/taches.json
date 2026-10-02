@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T12:27",
+  "mise_a_jour": "2026-10-02T12:34",
   "phases": [
     {
       "id": "P0",
@@ -186,11 +186,11 @@
         },
         {
           "titre": "Veille automatique du jeudi (7h45)",
-          "statut": "a_valider",
+          "statut": "bloque",
           "qui": "Claude + Lucas",
           "date": "2026-10-02",
           "lien": "automatisation/veille-hebdo-prompt.md",
-          "note": "Tout est en place : jeudi 7h45 (1re le 8 octobre), Neon + Gmail, emails de l'équipe, page en ligne à adresse fixe (gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/), publication automatique sur main. Reste : décider d'un essai avant jeudi.",
+          "note": "Essai du 2 octobre : Neon, page en ligne, action GitHub et email fonctionnent. Mais 0 fiche : l'environnement cloud bloque l'ouverture des sites sources. Il faut un environnement avec accès réseau complet.",
           "etapes": [
             {
               "titre": "Prompt adapté à notre installation, enregistré dans le dépôt",
@@ -231,9 +231,16 @@
             },
             {
               "titre": "Essai complet avant jeudi (« Exécuter maintenant »)",
-              "statut": "a_valider",
+              "statut": "termine",
+              "qui": "Claude",
+              "note": "chaîne validée, 0 fiche (réseau bloqué), email « non réalisée » envoyé à l'équipe",
+              "date": "2026-10-02"
+            },
+            {
+              "titre": "Environnement cloud avec accès réseau complet",
+              "statut": "bloque",
               "qui": "Lucas",
-              "note": "envoie un vrai email à l'équipe"
+              "note": "claude.ai/code › environnements : créer « Fil rouge » en accès complet"
             }
           ]
         },
