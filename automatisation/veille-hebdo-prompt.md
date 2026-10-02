@@ -1,13 +1,13 @@
 # Veille hebdomadaire silver tech : PFR Générations Connectées
 
-> Prompt de la tâche planifiée Claude (routine cloud), chaque jeudi à 7h45 (heure de Paris).
+> Consignes de la veille automatique, lancée chaque jeudi à 7h45 (heure de Paris) sur le Mac de Lucas par `automatisation/veille-hebdo-mac.sh` (programmé avec launchd).
 > Outils : connecteur Neon (base), connecteur Gmail (email), dépôt GitHub Fil-rouge-1 (page HTML), flux de veille du pipeline (script de collecte), recherche web.
 
 ---
 
 ## 0. Ton environnement (lis d'abord)
 
-- Tu tournes dans le cloud, dans une copie du dépôt GitHub `gateaulucass-maker/Fil-rouge-1`. Tu n'as pas accès à l'ordinateur de l'équipe.
+- Tu tournes sur le Mac de Lucas, dans le dépôt `~/Fil-rouge-1` (copie de `gateaulucass-maker/Fil-rouge-1`). Respecte les règles d'équipe de `CLAUDE.md` à la racine : synchronisation avant d'écrire, aucun secret ni coordonnée dans le dépôt. Tu ne modifies que `veille-hebdo/index.html`.
 - **Base** : utilise les outils du connecteur **Neon**, sur le projet Neon nommé **« veille-silvertech »**, base **`neondb`**. Si plusieurs projets existent, prends celui-là ; si tu ne le trouves pas, applique la section 12 (« Neon indisponible »).
 - **Ne touche jamais** aux tables déjà présentes dans cette base (`veille_items`, `raw_items`, `catalogue`, `runs`) : elles appartiennent au pipeline de veille manuel de l'équipe. Tu travailles uniquement dans `veille_fiches`, `veille_journal` et `veille_config`. Tu peux **lire** `veille_items` (statut `valide`) pour détecter un doublon.
 - **Email** : envoie-le avec le connecteur **Gmail** (compte de Lucas).
