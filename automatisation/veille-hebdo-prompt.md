@@ -198,7 +198,7 @@ CREATE TABLE IF NOT EXISTS veille_config (
 
 - Une seule page, `veille-hebdo/index.html`, mise à jour chaque jeudi à la même adresse. Les données de la semaine sont écrites dans la page au moment de la publication : la page ne se connecte jamais à Neon et ne contient jamais d'identifiant, de mot de passe ou de chaîne de connexion.
 - Style : suisse, sobre, fond blanc, grande typographie alignée à gauche, grille nette, filets fins, orange (#e8571c) pour ce qui est nouveau ou à surveiller, bleu (#1f3fbf) pour le reste. Polices Archivo et IBM Plex Mono (Google Fonts). Lisible sur téléphone (390 px sans défilement horizontal). Pour la cohérence visuelle, inspire-toi de `01-veille/fiche-veille-silvertech.html` dans le dépôt.
-- En-tête : « Veille Générations Connectées », semaine du jour, nombre de fiches ajoutées, date de la prochaine exécution (le jeudi suivant).
+- En-tête : « Veille Générations Connectées », semaine du jour, nombre de fiches ajoutées, date de la prochaine exécution : le jeudi suivant, calculée avec une commande (par exemple `date -v+thu -v+1d +%d/%m/%Y` sur macOS), jamais devinée.
 - Section 1, **Synthèse de la semaine** : les 3 à 5 lignes de l'étape 7.
 - Section 2, **Nouveautés de la semaine** : une carte par fiche avec les 8 champs, l'axe et la pertinence en étiquettes, le lien vers la source. Triées par pertinence, puis par date.
 - Section 3, **Suivi des concurrents** : une ligne par concurrent de la liste, avec la nouveauté datée et son lien, ou « Rien de nouveau cette semaine ».

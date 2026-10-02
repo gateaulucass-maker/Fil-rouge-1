@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T12:41",
+  "mise_a_jour": "2026-10-02T12:51",
   "phases": [
     {
       "id": "P0",
@@ -186,11 +186,11 @@
         },
         {
           "titre": "Veille automatique du jeudi (7h45)",
-          "statut": "bloque",
-          "qui": "Claude + Lucas",
+          "statut": "termine",
+          "qui": "Mac de Lucas",
           "date": "2026-10-02",
-          "lien": "automatisation/veille-hebdo-prompt.md",
-          "note": "Essai du 2 octobre : Neon, page en ligne, action GitHub et email fonctionnent. Mais 0 fiche : l'environnement cloud bloque l'ouverture des sites sources. Il faut un environnement avec accès réseau complet.",
+          "lien": "veille-hebdo/index.html",
+          "note": "Tourne sur le Mac de Lucas chaque jeudi à 7h45 (launchd). Essai du 2 octobre réussi : 127 candidats des flux, 4 fiches vérifiées deux fois, page en ligne, journal Neon, email (essai envoyé à Lucas seul). Si le Mac est éteint à 7h45, la semaine est sautée.",
           "etapes": [
             {
               "titre": "Prompt adapté à notre installation, enregistré dans le dépôt",
@@ -244,10 +244,17 @@
               "note": "testé : 127 candidats datés sur 7 jours, aucune erreur"
             },
             {
-              "titre": "Environnement cloud avec accès réseau complet",
-              "statut": "bloque",
-              "qui": "Lucas",
-              "note": "claude.ai/code › environnements : créer « Fil rouge » en accès complet"
+              "titre": "Exécution sur le Mac (launchd jeudi 7h45) au lieu du cloud",
+              "statut": "termine",
+              "qui": "Claude",
+              "date": "2026-10-02",
+              "note": "version cloud désactivée"
+            },
+            {
+              "titre": "Essai sur le Mac : 4 fiches, page, journal, email à Lucas",
+              "statut": "termine",
+              "qui": "Claude",
+              "date": "2026-10-02"
             }
           ]
         },
