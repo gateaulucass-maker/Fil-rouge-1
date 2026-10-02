@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T15:07",
+  "mise_a_jour": "2026-10-02T15:39",
   "phases": [
     {
       "id": "P0",
@@ -288,6 +288,14 @@
           "qui": "Équipe",
           "date": "2026-10-05",
           "note": "La veille automatique du jeudi 8 octobre prend le relais ; /veille reste disponible pour un run manuel."
+        },
+        {
+          "titre": "Prompt d'audit de la veille automatique",
+          "statut": "a_faire",
+          "qui": "Équipe",
+          "date": "2026-10-02",
+          "lien": "automatisation/audit-veille-prompt.md",
+          "note": "Prêt. À lancer après la veille du jeudi 8 octobre : contrôle collecte, filtrage, double relecture, sorties, et ce qui dépend du script ou de l'IA."
         }
       ]
     },
