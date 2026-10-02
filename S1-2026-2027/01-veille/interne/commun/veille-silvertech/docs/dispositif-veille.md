@@ -19,12 +19,35 @@ répartis en 5 axes : marché (M1-M7), concurrence (C1-C7), usagers (U1-U5), tec
 |---|---|---|---|
 | Médias spécialisés (RSS) | Silvereco, Maddyness, FrenchWeb | flux RSS testés | hebdomadaire |
 | Régulateur (RSS) | CNIL | flux RSS | hebdomadaire |
-| Google Alerts (RSS) | 13 alertes, 1 par code requis (créées le 01/10/2026) | flux RSS, français, tous les résultats | au fil de l'eau côté Google, relevé hebdomadaire |
+| Google Alerts (RSS) | 24 alertes : 13 du catalogue (01/10/2026) + 11 de la veille du jeudi (02/10/2026, 3 par axe) | flux RSS, français | au fil de l'eau côté Google, relevé chaque jeudi |
 | Communautés (RSS) | r/nocode ; r/AgingParents et r/CaregiverSupport (validés par l'équipe le 01/10/2026 : seule source donnant la voix des aidants) | flux RSS publics de Reddit | hebdomadaire |
 | Avis d'applications | App Store : Famileo, Tous FAMiliés, Life360, Signia | flux public d'avis Apple | hebdomadaire |
 | Avis Google Play | fiches Play Store | **saisie manuelle** (pas d'API gratuite, pas de scraping) | ponctuelle |
 | Recherche web ciblée | 2-3 requêtes par code (`config/sources.yaml`), priorité aux sites officiels : aidants.fr, pour-les-personnes-agees.gouv.fr, ansm.sante.fr, eur-lex.europa.eu, insee.fr, DREES | agent collecteur | hebdomadaire, sur les codes sous-couverts |
 | Données entreprises | pappers.fr, societe.com, crunchbase.com | consultation ciblée (C1, C4), jamais d'extraction massive | ponctuelle |
+
+### Google Alerts de la veille du jeudi
+
+12 alertes, 3 par axe, réglées en **français, région France, meilleurs résultats, livraison par flux RSS**. Avec un flux RSS, Google impose la fréquence « Quand le cas se présente » : la veille relit les flux chaque jeudi sur les 7 derniers jours. Les adresses des flux sont dans `config/sources.yaml` et dans la base (`veille_config`, clé `flux_rss_google_alerts`).
+
+| # | Axe | Requête | État |
+|---|---|---|---|
+| 1 | Marché | `"silver économie" OR "silver economy" France` | créée le 02/10/2026 |
+| 2 | Marché | `"proches aidants" OR "aidants familiaux"` | créée le 02/10/2026 |
+| 3 | Marché | `"maintien à domicile" seniors technologie` | créée le 02/10/2026 |
+| 4 | Concurrence | `téléassistance OR "détection de chute" seniors` | alerte existante réutilisée |
+| 5 | Concurrence | `"objet connecté" (senior OR "personne âgée") -emploi` | créée le 02/10/2026 |
+| 6 | Concurrence | `Famileo OR "Présence Verte" OR Vitaris OR Filien` | créée le 02/10/2026 |
+| 7 | Concurrence | `Telegrafik OR "Otono-me" OR "Veiller sur mes parents"` | créée le 02/10/2026 |
+| 8 | Techno | `"intelligence artificielle" (seniors OR "personnes âgées")` | créée le 02/10/2026 |
+| 9 | Techno | `"robot compagnon" OR "assistant vocal" senior` | créée le 02/10/2026 |
+| 10 | Réglementaire | `site:cnil.fr "données de santé"` | créée le 02/10/2026 |
+| 11 | Réglementaire | `"AI Act" OR "Digital Omnibus" obligations` | créée le 02/10/2026 |
+| 12 | Réglementaire | `"dispositif médical" logiciel OR application ANSM` | créée le 02/10/2026 |
+
+![Liste des alertes](captures/google-alerts-liste.png)
+
+![Réglages d'une alerte](captures/google-alerts-reglages.png)
 
 ## 3. Outils
 

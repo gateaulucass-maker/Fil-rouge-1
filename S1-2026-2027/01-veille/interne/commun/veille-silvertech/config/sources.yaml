@@ -18,6 +18,20 @@ google_alerts:
   - {nom: alerte-R3, code: R3, requete: "AI Act obligations transparence haut risque", url: "https://www.google.com/alerts/feeds/05656609586957326835/3917026912975807670"}
   - {nom: alerte-R4, code: R4, requete: "propriété intellectuelle application no-code marque INPI", url: "https://www.google.com/alerts/feeds/05656609586957326835/3029569646366295929"}
 
+  # 12 alertes de la veille du jeudi (créées le 2026-10-02 : français, région France, meilleurs résultats, flux RSS).
+  # La n° 4 réutilise l'alerte existante « téléassistance OR "détection de chute" seniors ». Liste de référence aussi dans Neon (veille_config, clé flux_rss_google_alerts).
+  - {nom: veille-01-marche, axe: Marché, requete: "\"silver économie\" OR \"silver economy\" France", url: "https://www.google.com/alerts/feeds/05656609586957326835/6301582114871639924"}
+  - {nom: veille-02-marche, axe: Marché, requete: "\"proches aidants\" OR \"aidants familiaux\"", url: "https://www.google.com/alerts/feeds/05656609586957326835/6661562466679119781"}
+  - {nom: veille-03-marche, axe: Marché, requete: "\"maintien à domicile\" seniors technologie", url: "https://www.google.com/alerts/feeds/05656609586957326835/2888846839839668552"}
+  - {nom: veille-05-concurrence, axe: Concurrence, requete: "\"objet connecté\" (senior OR \"personne âgée\") -emploi", url: "https://www.google.com/alerts/feeds/05656609586957326835/2888846839839667437"}
+  - {nom: veille-06-concurrence, axe: Concurrence, requete: "Famileo OR \"Présence Verte\" OR Vitaris OR Filien", url: "https://www.google.com/alerts/feeds/05656609586957326835/6692852535665548258"}
+  - {nom: veille-07-concurrence, axe: Concurrence, requete: "Telegrafik OR \"Otono-me\" OR \"Veiller sur mes parents\"", url: "https://www.google.com/alerts/feeds/05656609586957326835/15600973427689939751"}
+  - {nom: veille-08-techno, axe: Techno, requete: "\"intelligence artificielle\" (seniors OR \"personnes âgées\")", url: "https://www.google.com/alerts/feeds/05656609586957326835/1084358073911037420"}
+  - {nom: veille-09-techno, axe: Techno, requete: "\"robot compagnon\" OR \"assistant vocal\" senior", url: "https://www.google.com/alerts/feeds/05656609586957326835/4416711944315979370"}
+  - {nom: veille-10-reglementaire, axe: Réglementaire, requete: "site:cnil.fr \"données de santé\"", url: "https://www.google.com/alerts/feeds/05656609586957326835/6948831780850750409"}
+  - {nom: veille-11-reglementaire, axe: Réglementaire, requete: "\"AI Act\" OR \"Digital Omnibus\" obligations", url: "https://www.google.com/alerts/feeds/05656609586957326835/13541719525749793129"}
+  - {nom: veille-12-reglementaire, axe: Réglementaire, requete: "\"dispositif médical\" logiciel OR application ANSM", url: "https://www.google.com/alerts/feeds/05656609586957326835/8854747244791523651"}
+
 medias:
   # Testés le 2026-10-01 (HTTP 200 + entrées présentes)
   - {nom: maddyness, url: "https://www.maddyness.com/feed/"}

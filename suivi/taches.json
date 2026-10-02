@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T12:54",
+  "mise_a_jour": "2026-10-02T13:10",
   "phases": [
     {
       "id": "P0",
@@ -265,6 +265,14 @@
               "date": "2026-10-02"
             }
           ]
+        },
+        {
+          "titre": "12 Google Alerts de la veille du jeudi (3 par axe)",
+          "statut": "termine",
+          "qui": "Claude",
+          "date": "2026-10-02",
+          "lien": "S1-2026-2027/01-veille/interne/commun/veille-silvertech/docs/dispositif-veille.md",
+          "note": "11 créées (français, région France, meilleurs résultats, flux RSS), 1 réutilisée (quasi identique). Flux enregistrés dans Neon (veille_config, flux_rss_google_alerts) et lus par la veille. Captures dans l'annexe. Google impose « Quand le cas se présente » pour un flux RSS."
         },
         {
           "titre": "Page « Process de veille »",

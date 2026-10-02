@@ -72,11 +72,11 @@ Pour chacun : y a-t-il une nouveauté datée de la fenêtre de collecte (lanceme
 
 ### Sources
 - **Flux suivis en continu (source n° 1, toujours lus en premier)** : les mêmes flux que le pipeline de veille de l'équipe, définis dans `S1-2026-2027/01-veille/interne/commun/veille-silvertech/config/sources.yaml` et lus par le script `automatisation/collecte_flux.py` :
-  - les **13 Google Alerts** (une par information requise du catalogue : marché, démographie, acteurs, prix, réussites et échecs, levées de fonds, promesses, abandon, détection de chute, CNIL, dispositif médical, AI Act, propriété intellectuelle) ;
+  - les **Google Alerts** : 13 alertes du catalogue (marché, démographie, acteurs, prix, réussites et échecs, levées de fonds, promesses, abandon, détection de chute, CNIL, dispositif médical, AI Act, propriété intellectuelle) et les **12 alertes de la veille du jeudi** (3 par axe, région France ; liste de référence dans Neon, `veille_config`, clé `flux_rss_google_alerts`) ;
   - les médias **Silvereco, Maddyness, FrenchWeb** et l'actualité de la **CNIL** ;
   - les communautés **Reddit** r/nocode, r/AgingParents, r/CaregiverSupport (témoignages d'aidants et retours no-code) ;
   - les **avis App Store** de Famileo, Tous FAMiliés, Life360 et Signia.
-  Chaque élément de ces flux a une date de publication : c'est la base la plus sûre pour la règle de fraîcheur.
+  Chaque élément de ces flux a une date de publication : c'est la base la plus sûre pour la règle de fraîcheur. **Un article venu d'un flux est un candidat comme un autre** : fenêtre de 7 jours, 12 mois maximum, dédoublonnage et double relecture s'appliquent sans exception.
 - **Recherche web (complément)** : les mots-clés ci-dessus et les concurrents suivis, pour ce que les flux n'ont pas couvert.
 - **Prioritaires** : insee.fr, drees.solidarites-sante.gouv.fr, cnil.fr, ansm.sante.fr, eur-lex.europa.eu, legifrance.gouv.fr, service-public.fr, pour-les-personnes-agees.gouv.fr, silvereco.fr, senioractu.com, presse économique et tech reconnue, sites officiels des concurrents, App Store et Trustpilot pour les avis.
 - **À éviter** : contenus sponsorisés, comparateurs affiliés qui ne citent pas leurs sources, sites de contenu généré en masse, forums et réseaux sociaux sans source primaire. **Exception** : les 3 communautés Reddit et les avis App Store des flux suivis sont gardés comme **témoignages** (vécu d'aidants et d'utilisateurs) : la fiche le dit clairement, cite un extrait anonymisé (aucun nom, pseudo, ville ni âge précis, 300 caractères maximum) et ne présente jamais un témoignage comme un chiffre ou un fait général.
