@@ -39,7 +39,7 @@ répartis en 5 axes : marché (M1-M7), concurrence (C1-C7), usagers (U1-U5), tec
 | 5 | Concurrence | `"objet connecté" (senior OR "personne âgée") -emploi` | créée le 02/10/2026 |
 | 6 | Concurrence | `Famileo OR "Présence Verte" OR Vitaris OR Filien` | créée le 02/10/2026 |
 | 7 | Concurrence | `Telegrafik OR "Otono-me" OR "Veiller sur mes parents"` | créée le 02/10/2026 |
-| 8 | Techno | `"intelligence artificielle" (seniors OR "personnes âgées")` | créée le 02/10/2026 |
+| 8 | Techno | `"intelligence artificielle" (seniors OR "personnes âgées")` | créée le 02/10/2026, **plus lue** (IA hors périmètre) |
 | 9 | Techno | `"robot compagnon" OR "assistant vocal" senior` | créée le 02/10/2026 |
 | 10 | Réglementaire | `site:cnil.fr "données de santé"` | créée le 02/10/2026 |
 | 11 | Réglementaire | `"AI Act" OR "Digital Omnibus" obligations` | créée le 02/10/2026 |

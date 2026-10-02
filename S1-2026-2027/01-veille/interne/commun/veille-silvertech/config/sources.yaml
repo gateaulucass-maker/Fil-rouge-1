@@ -32,6 +32,10 @@ google_alerts:
   - {nom: veille-11-reglementaire, axe: Réglementaire, requete: "\"AI Act\" OR \"Digital Omnibus\" obligations", url: "https://www.google.com/alerts/feeds/05656609586957326835/13541719525749793129"}
   - {nom: veille-12-reglementaire, axe: Réglementaire, requete: "\"dispositif médical\" logiciel OR application ANSM", url: "https://www.google.com/alerts/feeds/05656609586957326835/8854747244791523651"}
 
+# Flux NON lus par la veille du jeudi (IA et no-code hors périmètre, décision de Lucas le 2026-10-02).
+# Le pipeline /veille, lui, continue de les lire.
+exclus_veille_jeudi: [veille-08-techno, r-nocode]
+
 medias:
   # Testés le 2026-10-01 (HTTP 200 + entrées présentes)
   - {nom: maddyness, url: "https://www.maddyness.com/feed/"}

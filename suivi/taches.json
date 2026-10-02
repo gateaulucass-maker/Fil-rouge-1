@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T15:39",
+  "mise_a_jour": "2026-10-02T16:12",
   "phases": [
     {
       "id": "P0",
@@ -296,6 +296,14 @@
           "date": "2026-10-02",
           "lien": "automatisation/audit-veille-prompt.md",
           "note": "Prêt. À lancer après la veille du jeudi 8 octobre : contrôle collecte, filtrage, double relecture, sorties, et ce qui dépend du script ou de l'IA."
+        },
+        {
+          "titre": "IA et no-code retirés de la veille du jeudi",
+          "statut": "termine",
+          "qui": "Claude",
+          "date": "2026-10-02",
+          "lien": "automatisation/veille-hebdo-prompt.md",
+          "note": "Décision de Lucas : hors périmètre. Axe Techno recentré (capteurs, chute, compagnons, 2G, installation), r/nocode et l'alerte IA n° 8 exclus de la collecte, Neon à 11 flux."
         }
       ]
     },

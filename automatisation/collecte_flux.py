@@ -97,10 +97,12 @@ def main():
     depuis = a.depuis or (date.today() - timedelta(days=7)).isoformat()
     s = yaml.safe_load((PIPELINE / "config" / "sources.yaml").read_text(encoding="utf-8"))
 
+    exclus = set(s.get("exclus_veille_jeudi") or [])  # IA et no-code : hors périmètre de la veille du jeudi
     flux = [(f["nom"], "alerte", f["url"]) for f in s.get("google_alerts") or []
             if f.get("url") and f["url"] != "REMPLACER"]
     flux += [(f["nom"], "media", f["url"]) for f in s.get("medias") or []]
     flux += [(f["nom"], "reddit", f["url"]) for f in s.get("reddit") or []]
+    flux = [f for f in flux if f[0] not in exclus]
 
     candidats, erreurs = [], []
     for nom, type_, url in flux:

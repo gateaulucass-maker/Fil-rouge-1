@@ -29,7 +29,9 @@ Projet fil rouge « Générations Connectées » : concevoir un service digital 
 - Familles d'objets possibles : sécurité et urgence, capteurs de domicile, santé du quotidien (bien-être, jamais médical), objets compagnons.
 - Règles : aucune donnée de santé réelle, positionnement bien-être et lien familial, jamais de dispositif médical.
 
-Une information est utile si elle aide l'équipe à comprendre ce qui marche vraiment auprès des seniors et de leurs enfants, ce qui échoue, ce que la loi autorise, ou quels outils no-code et IA permettent de construire le produit.
+Une information est utile si elle aide l'équipe à comprendre ce qui marche vraiment auprès des seniors et de leurs enfants, ce qui échoue, ou ce que la loi autorise.
+
+**Hors périmètre de cette veille** : l'intelligence artificielle et les outils no-code (actualités, outils, levées de fonds, tutoriels). Un article qui parle surtout d'IA ou de no-code est rejeté (raison : hors périmètre), même s'il concerne les seniors.
 
 ## 3. Ce que tu dois produire à chaque exécution
 
@@ -57,13 +59,13 @@ France pour le marché et les acteurs, Europe pour la réglementation.
 ### Axes (un seul par fiche)
 - **Marché** : chiffres sur les seniors, les aidants, le maintien à domicile, la silver économie, les aides publiques.
 - **Concurrence** : produits et services pour seniors et aidants, prix, lancements, levées de fonds, arrêts, avis clients.
-- **Techno** : capteurs, objets compagnons, IA (résumés, détection de routine, compagnons conversationnels), outils no-code utiles au projet (Glide, Softr, FlutterFlow, Make, n8n, Zapier, Airtable).
+- **Techno** : capteurs de domicile, détection de chute, objets compagnons, connectivité (fin de la 2G et de la 3G), autonomie et recharge, installation, interopérabilité. Sans IA ni no-code (hors périmètre).
 - **Réglementaire** : RGPD et données de santé, CNIL, frontière bien-être et dispositif médical (ANSM), AI Act et Digital Omnibus, hébergement de données de santé.
 
 ### Mots-clés de recherche
 - Marché : silver économie, aidants familiaux, proches aidants, maintien à domicile, perte d'autonomie, téléassistance marché, Insee seniors, Drees aidants.
 - Concurrence : téléassistance, détecteur de chute, bouton d'appel senior, montre connectée senior, capteurs domicile personne âgée, pilulier connecté, cadre photo connecté senior, tablette senior, robot compagnon senior, lien familial senior application.
-- Techno : IA personnes âgées, détection d'anomalie de routine, assistant vocal senior, no-code IA, objets connectés maintien à domicile.
+- Techno : capteurs domicile personne âgée, détecteur de chute fiabilité, fin réseau 2G téléassistance, objets connectés maintien à domicile, robot compagnon senior.
 - Réglementaire : CNIL données de santé, CNIL objets connectés, ANSM logiciel dispositif médical, AI Act transparence, Digital Omnibus AI Act, hébergeur données de santé HDS.
 
 ### Concurrents suivis à chaque exécution
@@ -74,7 +76,7 @@ Pour chacun : y a-t-il une nouveauté datée de la fenêtre de collecte (lanceme
 - **Flux suivis en continu (source n° 1, toujours lus en premier)** : les mêmes flux que le pipeline de veille de l'équipe, définis dans `S1-2026-2027/01-veille/interne/commun/veille-silvertech/config/sources.yaml` et lus par le script `automatisation/collecte_flux.py` :
   - les **Google Alerts** : 13 alertes du catalogue (marché, démographie, acteurs, prix, réussites et échecs, levées de fonds, promesses, abandon, détection de chute, CNIL, dispositif médical, AI Act, propriété intellectuelle) et les **12 alertes de la veille du jeudi** (3 par axe, région France ; liste de référence dans Neon, `veille_config`, clé `flux_rss_google_alerts`) ;
   - les médias **Silvereco, Maddyness, FrenchWeb** et l'actualité de la **CNIL** ;
-  - les communautés **Reddit** r/nocode, r/AgingParents, r/CaregiverSupport (témoignages d'aidants et retours no-code) ;
+  - les communautés **Reddit** r/AgingParents et r/CaregiverSupport (témoignages d'aidants) ;
   - les **avis App Store** de Famileo, Tous FAMiliés, Life360 et Signia.
   Chaque élément de ces flux a une date de publication : c'est la base la plus sûre pour la règle de fraîcheur. **Un article venu d'un flux est un candidat comme un autre** : fenêtre de 7 jours, 12 mois maximum, dédoublonnage et double relecture s'appliquent sans exception.
 - **Recherche web (complément)** : les mots-clés ci-dessus et les concurrents suivis, pour ce que les flux n'ont pas couvert.
