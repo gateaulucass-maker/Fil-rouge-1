@@ -2,7 +2,7 @@
 # Lance la veille hebdomadaire sur le Mac de Lucas (programmée par launchd chaque jeudi à 7h45).
 # Le message de la veille (avec les adresses de l'équipe) est privé : ~/.config/fil-rouge/veille-message.txt
 # Journal : ~/Library/Logs/veille-hebdo.log
-# Essai sans prévenir l'équipe : ESSAI=1 automatisation/veille-hebdo-mac.sh
+# Essai sans prévenir l'équipe : ESSAI=1 S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/veille-hebdo-mac.sh
 set -u
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 DEPOT="$HOME/Fil-rouge-1"

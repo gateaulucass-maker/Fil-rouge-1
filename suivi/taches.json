@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-02T19:18",
+  "mise_a_jour": "2026-10-04T18:47",
   "phases": [
     {
       "id": "P0",
@@ -87,7 +87,7 @@
           "statut": "termine",
           "qui": "Lucas",
           "date": "2026-10-01",
-          "lien": "S1-2026-2027/01-veille/rendus/apple-watch-vs-famileo.html",
+          "lien": "S1-2026-2027/01-veille/rendus/1-1-apple-watch-vs-famileo.html",
           "note": "Grille en six critères. Enseignement : la sécurité demande un effort au senior, le lien n'en demande aucun."
         },
         {
@@ -189,7 +189,7 @@
           "statut": "a_refaire",
           "qui": "Claude",
           "date": "2026-10-02",
-          "lien": "S1-2026-2027/01-veille/rendus/fiche-veille-silvertech.html",
+          "lien": "S1-2026-2027/01-veille/rendus/1-1-fiche-veille-silvertech.html",
           "note": "Construite sur 130 éléments ; la base en compte 164 et les scores ont changé. À régénérer et à relire (texte d'analyse)."
         },
         {
@@ -279,7 +279,7 @@
           "statut": "termine",
           "qui": "Claude",
           "date": "2026-10-02",
-          "lien": "automatisation/process-veille.html",
+          "lien": "S1-2026-2027/01-veille/rendus/1-1-process-veille.html",
           "note": "Explique la veille du jeudi : 4 axes, 10 étapes, double relecture, fraîcheur, sources, format des fiches, sorties. En ligne sur GitHub Pages. Mise à jour le 2 octobre : liste complète des sujets de veille par axe, prioritaires en avant (aussi dans l annexe)."
         },
         {
@@ -294,7 +294,7 @@
           "statut": "a_faire",
           "qui": "Équipe",
           "date": "2026-10-02",
-          "lien": "automatisation/audit-veille-prompt.md",
+          "lien": "S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/audit-veille-prompt.md",
           "note": "Prêt. À lancer après la veille du jeudi 8 octobre : contrôle collecte, filtrage, double relecture, sorties, et ce qui dépend du script ou de l'IA."
         },
         {
@@ -302,7 +302,7 @@
           "statut": "termine",
           "qui": "Claude",
           "date": "2026-10-02",
-          "lien": "automatisation/veille-hebdo-prompt.md",
+          "lien": "S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/veille-hebdo-prompt.md",
           "note": "Décision de Lucas : hors périmètre. Axe Techno recentré (capteurs, chute, compagnons, 2G, installation), r/nocode et l'alerte IA n° 8 exclus de la collecte, Neon à 11 flux."
         },
         {
@@ -310,7 +310,7 @@
           "statut": "termine",
           "qui": "Lucas + Claude",
           "date": "2026-10-02",
-          "lien": "automatisation/veille-hebdo-prompt.md",
+          "lien": "S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/veille-hebdo-prompt.md",
           "note": "12 sujets choisis par Lucas (rang 1 : acceptation, aidants, consentement, prix, réussites et faillites). Section dédiée « Réussites et faillites » dans la page et l email (Bodacc, presse, Pappers)."
         }
       ]
@@ -324,7 +324,7 @@
           "statut": "a_valider",
           "qui": "Équipe d'agents",
           "date": "2026-10-02",
-          "lien": "S1-2026-2027/02-marche/rendus/question-1-acteurs.html",
+          "lien": "S1-2026-2027/02-marche/rendus/2-1-question-1-acteurs.html",
           "note": "Tableau simple, une colonne pour tout le marché, comme l'exemple du prof. 7 sources officielles. La version détaillée par segment reste en annexe.",
           "etapes": [
             {
@@ -407,7 +407,7 @@
           "qui": "Clément + équipe d'agents",
           "note": "Page unique Q1 à Q5 + carte, guidée par une question clé (lien et santé entre enfant et parent). Veille du dépôt uniquement, 60 sources. Personas payeur et utilisateur dans la Q1. Grille du panorama des acteurs (slide 14) à faire après validation.",
           "date": "2026-10-02",
-          "lien": "S1-2026-2027/02-marche/rendus/analyse-marche-questions-1-5.html"
+          "lien": "S1-2026-2027/02-marche/rendus/2-1-analyse-marche-questions-1-5.html"
         }
       ]
     },

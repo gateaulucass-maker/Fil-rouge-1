@@ -15,9 +15,9 @@ Ne jamais commiter :
 - **Données personnelles de tiers** : noms, pseudos, villes, âges précis de seniors, d'aidants ou d'auteurs d'avis. Verbatims anonymisés, 300 caractères maximum.
 - **Documents de cours** (PDF du formateur) et **fichiers lourds** (plus de 2 Mo).
 
-**Garde-fous automatiques** (dans `automatisation/hooks/`) :
+**Garde-fous automatiques** (dans `.claude/hooks/`) :
 - Avant chaque commit, `verifier-commit.sh` lit ce qui va être commité et **bloque** : secret probable, e-mail, téléphone, `.env`, clé, PDF hors `rendus/`, fichier de plus de 2 Mo. Il ne modifie et ne supprime aucun fichier.
-- Il est activé automatiquement au démarrage de Claude Code. Pour un commit fait hors Claude Code, chaque membre l'active une fois sur son ordinateur : `git config core.hooksPath automatisation/hooks`.
+- Il est activé automatiquement au démarrage de Claude Code. Pour un commit fait hors Claude Code, chaque membre l'active une fois sur son ordinateur : `git config core.hooksPath .claude/hooks`.
 - `.gitignore` bloque `.env`, les clés et les PDF (sauf dans `rendus/`).
 
 Règles pour l'agent :
@@ -47,53 +47,78 @@ Tout le monde pousse sur `main`.
 | `interne/commun/` | tout le monde | Pull juste avant, modification courte, push juste après. Le message de commit dit ce qui a changé. |
 | `rendus/` | tout le monde, après accord | Un rendu se remplace seulement si l'équipe l'a validé. Le membre qui l'a produit est prévenu avant. |
 | `suivi/` | tout le monde | Modifier `suivi/taches.json`, puis relancer `python3 suivi/build.py`. Ne jamais éditer `suivi.html` à la main. |
-| `automatisation/`, `.claude/` | tout le monde | Même régime que `interne/commun/`. Ne pas casser la veille du jeudi : tester avant de pousser. |
+| `.claude/` (agents, commandes, hooks, réglages) | tout le monde | Même régime que `interne/commun/`. Tester avant de pousser : un hook cassé bloque tout le monde. |
+| `interne/commun/veille-du-jeudi/` | tout le monde | Ne pas casser la veille du jeudi : la tester (`ESSAI=1`) avant de pousser. |
 | `veille-hebdo/` | la veille automatique seulement | Personne ne l'édite à la main. |
 | `CLAUDE.md`, `AGENTS.md`, `README.md` | voir ci-dessous | |
 
-**Règles communes (`CLAUDE.md`, `AGENTS.md`)** : Camille valide les changements. Clément et Lucas sont prévenus avant le push, et le message de commit résume ce qui change. `README.md` : tout le monde peut y ajouter un lien de rendu (section 4).
+**Règles communes (`CLAUDE.md`, `AGENTS.md`)** : Camille valide les changements. Clément et Lucas sont prévenus avant le push, et le message de commit résume ce qui change. `README.md` : tout le monde peut y ajouter un lien de rendu (section 4, étape 7).
 
 - Avant de modifier un fichier hors de son propre dossier, l'agent regarde qui l'a modifié en dernier (`git log -1 --format='%an %ar' -- <fichier>`). Si c'est un autre membre il y a moins de 24 h, il demande avant.
 - Pour retravailler le rendu d'un autre, on crée une **nouvelle version** (`-v2`) dans son propre `interne/<prénom>/`, sans écraser l'original.
 - Chaque membre commite sous son prénom (`git config user.name "Camille"`), pour que la règle des 24 h fonctionne.
 - Un commit = un sujet. Message en français qui dit quoi et pourquoi (`Question 2 : TAM/SAM/SOM, méthode ascendante ajoutée`).
 
-## 4. Organisation et création de dossiers
+## 4. Où ranger un fichier
 
-Le dépôt est découpé par **semestre**, puis par **phase**. Chaque phase sépare le travail interne des rendus.
+### La racine : seulement les règles et l'outillage
+
+```
+CLAUDE.md  AGENTS.md  README.md
+.claude/        # agents/, commands/, hooks/, settings.json : l'outillage des agents IA
+.github/        # workflow de publication de la veille
+suivi/          # tâches et statuts de l'année (suivi.html généré à la racine)
+veille-hebdo/   # page publiée chaque jeudi (adresse fixe, voir plus bas)
+S1-2026-2027/   # TOUT le travail du semestre 1
+S2-2026-2027/   # TOUT le travail du semestre 2
+```
+
+Rien d'autre à la racine. Un nouvel agent, une commande ou un hook va dans `.claude/`. Tout le reste (rendus, brouillons, données, scripts, prompts de travail) va dans un semestre.
+`veille-hebdo/` reste à la racine parce que son adresse est publique et fixe : https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/
+
+### Dans un semestre : phase, puis rendu ou interne
 
 ```
 S1-2026-2027/
-  01-veille/
+  01-veille/                    # phase 01 = leçons 1.x
+    rendus/                     # versions finales validées
+      1-1-fiche-veille-silvertech.html
     interne/
-      clement/   lucas/   camille/   commun/
+      clement/  lucas/  camille/    # travail de chacun
+      commun/                       # outils et données partagés (pipeline, veille du jeudi…)
+  02-marche/                    # phase 02 = leçons 2.x
     rendus/
-  02-marche/
+      2-1-question-1-acteurs.html
     interne/ …
-    rendus/
-S2-2026-2027/
-suivi/          # tâches et statuts de l'année (suivi.html généré)
-automatisation/ # scripts, prompts et hooks partagés (veille hebdo, contrôle avant commit)
-veille-hebdo/   # page publiée chaque jeudi par la veille automatique
 ```
 
-- Seuls ces dossiers existent à la racine : `S*/`, `suivi/`, `automatisation/`, `veille-hebdo/` (plus `.claude/` et `.github/`). Tout autre dossier racine demande l'accord de l'équipe.
-- Nouveau semestre : `S<n>-2026-2027/`. Nouvelle phase : `NN-nom-court/`, numérotée dans l'ordre du semestre (`03-persona/`), créée **avec** `interne/clement/`, `interne/lucas/`, `interne/camille/`, `interne/commun/` et `rendus/`. Un `.gitkeep` dans chaque dossier vide.
-- Noms de fichiers et de dossiers : minuscules, sans accent ni espace, mots séparés par des tirets (`question-2-taille-marche.html`).
-- `rendus/` ne contient que des versions finales, avec un nom qui dit ce que c'est (`question-1-acteurs.html`). Brouillons, données et essais vont dans `interne/`.
-- Quand un rendu est ajouté : lien dans `README.md` (section du semestre et de la phase) et tâche mise à jour dans `suivi/taches.json`.
-- `veille-hebdo/` est publiée à l'adresse fixe https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/ ; c'est pour ça qu'elle reste à la racine.
+### La procédure, à appliquer à chaque fichier créé ou rendu
+
+Avant d'écrire un fichier (et de nouveau avant le commit), l'agent détermine sa place dans cet ordre :
+
+1. **Outillage IA ou règle commune ?** Agent, commande, hook, réglage → `.claude/`. Règle d'équipe → `CLAUDE.md`. Sinon, étape 2.
+2. **Semestre** : le semestre en cours (section 5), sauf si le membre en indique un autre.
+3. **Leçon** : l'agent cherche le numéro de leçon `X.Y` dans la demande du membre, puis dans le titre ou le contenu du fichier (« Leçon 2.1 », « 2.1 », sujet du cours). **S'il ne le trouve pas, il demande. Il ne devine jamais.**
+4. **Phase** : la leçon `X.Y` va dans la phase `0X-<nom>/` du semestre (leçon 2.1 → `02-marche/`, leçon 3.2 → `03-…/`). Si la phase n'existe pas, l'agent demande au membre son nom court, puis la crée avec `rendus/`, `interne/clement/`, `interne/lucas/`, `interne/camille/`, `interne/commun/` et un `.gitkeep` dans chaque dossier vide.
+5. **Rendu ou interne** :
+   - version finale validée par l'équipe → `rendus/` ;
+   - brouillon, essai, version de travail, annexe d'un membre → `interne/<prénom du membre>/` ;
+   - outil, script, prompt ou données utilisés par toute l'équipe → `interne/commun/<nom-de-l-outil>/`.
+6. **Nom** : `X-Y-<ce-que-c-est>.<ext>`, en minuscules, sans accent ni espace, mots séparés par des tirets (`2-1-question-2-taille-marche.html`). Une nouvelle version d'un rendu d'un autre : même nom suivi de `-v2`, dans son propre `interne/<prénom>/`. Les dossiers d'outils dans `interne/commun/` (`veille-silvertech/`, `veille-du-jeudi/`) ne prennent pas de préfixe : ils servent plusieurs leçons.
+7. **Après un rendu** : lien ajouté dans `README.md` (section de la phase), tâche mise à jour dans `suivi/taches.json`, puis `python3 suivi/build.py`.
+
+Si un fichier existant est mal rangé, l'agent le signale et propose de le déplacer avec `git mv` (l'historique est conservé), en corrigeant les liens qui pointent vers lui. Il ne déplace pas le fichier d'un autre membre sans le prévenir.
 
 ## 5. Le rythme de l'année
 
-- **S1 2026-2027** (en cours) : phase 01 veille, phase 02 marché (leçon 2.1). Les phases suivantes s'ajoutent au fil des cours.
+- **S1 2026-2027** (en cours) : phase 01 veille (leçon 1.1), phase 02 marché (leçon 2.1). Les phases suivantes s'ajoutent au fil des cours.
 - **S2 2026-2027** : à compléter.
 - Chaque phase suit la même boucle : travail dans `interne/`, validation par l'équipe, version finale dans `rendus/`, lien dans le README, tâche passée à `termine` dans `suivi/`.
 
 ## 6. Ce que fait l'agent, dans l'ordre
 
 1. Il se synchronise (section 2).
-2. Il écrit dans `interne/<prénom du membre>/` par défaut, ailleurs seulement selon la section 3, et ne crée des dossiers que selon la section 4.
+2. Il range chaque fichier avec la procédure de la section 4 (`interne/<prénom du membre>/` par défaut), respecte la section 3, et ne crée des dossiers que selon la section 4.
 3. Il commite (section 1 : diff relu, contrôle automatique jamais contourné).
 4. Il ne pousse que si le membre le demande, après `git pull --rebase`, et dit ce qu'il a poussé.
 

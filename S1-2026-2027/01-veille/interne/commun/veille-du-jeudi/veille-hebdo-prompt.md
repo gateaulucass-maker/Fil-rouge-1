@@ -1,6 +1,6 @@
 # Veille hebdomadaire silver tech : PFR Générations Connectées
 
-> Consignes de la veille automatique, lancée chaque jeudi à 7h45 (heure de Paris) sur le Mac de Lucas par `automatisation/veille-hebdo-mac.sh` (programmé avec launchd).
+> Consignes de la veille automatique, lancée chaque jeudi à 7h45 (heure de Paris) sur le Mac de Lucas par `S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/veille-hebdo-mac.sh` (programmé avec launchd).
 > Outils : connecteur Neon (base), connecteur Gmail (email), dépôt GitHub Fil-rouge-1 (page HTML), flux de veille du pipeline (script de collecte), recherche web.
 
 ---
@@ -97,7 +97,7 @@ Famileo, Présence Verte, Vitaris, Filien (ADMR), Telegrafik (Otono-me), La Post
 Pour chacun : y a-t-il une nouveauté datée de la fenêtre de collecte (lancement, prix, levée de fonds, arrêt, partenariat, chiffre d'usage) ? Si non, écris « Rien de nouveau cette semaine ». La liste peut être enrichie : si un nouvel acteur revient au moins 2 semaines de suite, propose-le dans la synthèse sans l'ajouter toi-même.
 
 ### Sources
-- **Flux suivis en continu (source n° 1, toujours lus en premier)** : les mêmes flux que le pipeline de veille de l'équipe, définis dans `S1-2026-2027/01-veille/interne/commun/veille-silvertech/config/sources.yaml` et lus par le script `automatisation/collecte_flux.py` :
+- **Flux suivis en continu (source n° 1, toujours lus en premier)** : les mêmes flux que le pipeline de veille de l'équipe, définis dans `S1-2026-2027/01-veille/interne/commun/veille-silvertech/config/sources.yaml` et lus par le script `S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/collecte_flux.py` :
   - les **Google Alerts** : 13 alertes du catalogue (marché, démographie, acteurs, prix, réussites et échecs, levées de fonds, promesses, abandon, détection de chute, CNIL, dispositif médical, AI Act, propriété intellectuelle) et les **12 alertes de la veille du jeudi** (3 par axe, région France ; liste de référence dans Neon, `veille_config`, clé `flux_rss_google_alerts`) ;
   - les médias **Silvereco, Maddyness, FrenchWeb** et l'actualité de la **CNIL** ;
   - les communautés **Reddit** r/AgingParents et r/CaregiverSupport (témoignages d'aidants) ;
@@ -116,7 +116,7 @@ Pour chacun : y a-t-il une nouveauté datée de la fenêtre de collecte (lanceme
 3. Charge les URL et titres des fiches des 12 derniers mois (`veille_fiches`, et les `veille_items` validés), pour détecter les doublons.
 
 ### Étape 1 : collecter
-1. **Flux d'abord** : lance `python3 automatisation/collecte_flux.py --depuis AAAA-MM-JJ` (date de début de la fenêtre de collecte). Le script affiche une liste JSON de candidats datés (source, type, titre, URL, date, extrait) et la liste des flux en erreur, à noter dans le journal. Il n'écrit rien en base.
+1. **Flux d'abord** : lance `python3 S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/collecte_flux.py --depuis AAAA-MM-JJ` (date de début de la fenêtre de collecte). Le script affiche une liste JSON de candidats datés (source, type, titre, URL, date, extrait) et la liste des flux en erreur, à noter dans le journal. Il n'écrit rien en base.
 2. **Puis recherche web** par axe et par concurrent, pour compléter ce que les flux n'ont pas couvert.
 3. Garde au total 20 à 30 candidats bruts, en privilégiant ceux des flux (déjà datés) et en équilibrant les axes. Les flux Reddit et médias contiennent beaucoup de hors-sujet : trie-les avant d'aller plus loin.
 
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS veille_config (
 ## 9. Page HTML de rendu
 
 - Une seule page, `veille-hebdo/index.html`, mise à jour chaque jeudi à la même adresse. Les données de la semaine sont écrites dans la page au moment de la publication : la page ne se connecte jamais à Neon et ne contient jamais d'identifiant, de mot de passe ou de chaîne de connexion.
-- Style : suisse, sobre, fond blanc, grande typographie alignée à gauche, grille nette, filets fins, orange (#e8571c) pour ce qui est nouveau ou à surveiller, bleu (#1f3fbf) pour le reste. Polices Archivo et IBM Plex Mono (Google Fonts). Lisible sur téléphone (390 px sans défilement horizontal). Pour la cohérence visuelle, inspire-toi de `S1-2026-2027/01-veille/rendus/fiche-veille-silvertech.html` dans le dépôt.
+- Style : suisse, sobre, fond blanc, grande typographie alignée à gauche, grille nette, filets fins, orange (#e8571c) pour ce qui est nouveau ou à surveiller, bleu (#1f3fbf) pour le reste. Polices Archivo et IBM Plex Mono (Google Fonts). Lisible sur téléphone (390 px sans défilement horizontal). Pour la cohérence visuelle, inspire-toi de `S1-2026-2027/01-veille/rendus/1-1-fiche-veille-silvertech.html` dans le dépôt.
 - En-tête : « Veille Générations Connectées », semaine du jour, nombre de fiches ajoutées, date de la prochaine exécution : le jeudi suivant, calculée avec une commande (par exemple `date -v+thu -v+1d +%d/%m/%Y` sur macOS), jamais devinée.
 - Section 1, **Synthèse de la semaine** : les 3 à 5 lignes de l'étape 7.
 - Section 2, **Nouveautés de la semaine** : une carte par fiche avec les 8 champs, l'axe et la pertinence en étiquettes, le lien vers la source. Triées par pertinence, puis par date.

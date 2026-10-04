@@ -36,7 +36,7 @@ for f in $fichiers; do
 
   # 2. Contenu ajouté (exemples et tests de l'anonymisation exclus)
   case "$f" in
-    *.env.example|*/tests/*|automatisation/hooks/*) continue ;;
+    *.env.example|*/tests/*|.claude/hooks/*) continue ;;
   esac
   ajouts=$(git diff --cached -U0 --no-color -- "$f" | grep '^+' | grep -v '^+++')
   [ -z "$ajouts" ] && continue

@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"$CLAUDE_PROJECT_DIR\" && git config core.hooksPath automatisation/hooks; (git pull --ff-only -q 2>&1 && echo \"Dépôt à jour : $(git log -1 --format='%h %an %ar : %s')\") || echo \"ATTENTION : git pull impossible (modifications locales ou divergence). Applique la section 1 de CLAUDE.md avant de travailler.\""
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && git config core.hooksPath .claude/hooks; (git pull --ff-only -q 2>&1 && echo \"Dépôt à jour : $(git log -1 --format='%h %an %ar : %s')\") || echo \"ATTENTION : git pull impossible (modifications locales ou divergence). Applique la section 2 de CLAUDE.md avant de travailler.\""
           }
         ]
       }
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh \"$CLAUDE_PROJECT_DIR/automatisation/hooks/claude-avant-commit.sh\""
+            "command": "f=\"$CLAUDE_PROJECT_DIR/.claude/hooks/claude-avant-commit.sh\"; [ ! -f \"$f\" ] || sh \"$f\""
           }
         ]
       }

@@ -4,7 +4,7 @@ Lit S1-2026-2027/01-veille/interne/commun/veille-silvertech/config/sources.yaml 
 Maddyness, FrenchWeb, CNIL), Reddit (3 communautés), avis App Store (4 applications).
 N'écrit rien en base : affiche une liste JSON de candidats datés sur la sortie standard.
 
-  python3 automatisation/collecte_flux.py --depuis 2026-09-25 > /tmp/candidats.json
+  python3 S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/collecte_flux.py --depuis 2026-09-25 > /tmp/candidats.json
 
 Chaque candidat : source, type (alerte, media, reddit, avis_app), titre, url, date (AAAA-MM-JJ
 ou null), extrait (sans pseudo ni e-mail). Les flux en erreur sont listés dans « erreurs ».
@@ -22,8 +22,8 @@ from datetime import date, datetime, timedelta
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
-RACINE = Path(__file__).resolve().parent.parent
-PIPELINE = RACINE / "S1-2026-2027" / "01-veille" / "interne" / "commun" / "veille-silvertech"
+# Ce script est dans interne/commun/veille-du-jeudi/, le pipeline dans interne/commun/veille-silvertech/
+PIPELINE = Path(__file__).resolve().parent.parent / "veille-silvertech"
 sys.path.insert(0, str(PIPELINE / "scripts"))
 
 try:

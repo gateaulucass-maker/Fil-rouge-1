@@ -15,5 +15,5 @@ case "$options" in
     exit 2 ;;
 esac
 cd "${CLAUDE_PROJECT_DIR:-.}" || exit 0
-sh automatisation/hooks/verifier-commit.sh || exit 2
+sh .claude/hooks/verifier-commit.sh || exit 2
 exit 0

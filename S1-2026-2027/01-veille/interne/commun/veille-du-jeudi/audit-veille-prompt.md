@@ -12,8 +12,8 @@ Tu es l'auditeur de la veille automatique de l'équipe (3 étudiants, Ynov B2 Pr
 ## Ce que tu dois lire d'abord
 
 1. `CLAUDE.md` (règles de l'équipe : dépôt public, aucune coordonnée ni secret).
-2. `automatisation/veille-hebdo-prompt.md` : les règles que la veille doit appliquer. C'est ton référentiel.
-3. `automatisation/collecte_flux.py` : ce que le script de collecte filtre lui-même (fenêtre, doublons d'URL, anonymisation).
+2. `S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/veille-hebdo-prompt.md` : les règles que la veille doit appliquer. C'est ton référentiel.
+3. `S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/collecte_flux.py` : ce que le script de collecte filtre lui-même (fenêtre, doublons d'URL, anonymisation).
 4. `S1-2026-2027/01-veille/interne/commun/veille-silvertech/config/sources.yaml` : les flux suivis.
 5. `veille-hebdo/index.html` : la page publiée.
 6. Dans Neon (connecteur Neon, projet « veille-silvertech », base `neondb`, en LECTURE SEULE) :
@@ -27,7 +27,7 @@ Tu ne modifies rien : ni la base, ni le dépôt, ni la tâche planifiée. Tu n'e
 ## Les contrôles
 
 ### A. Collecte
-1. Relance `python3 automatisation/collecte_flux.py --depuis <début de la fenêtre>` et compare le nombre de candidats avec celui du journal. Un écart important doit être expliqué.
+1. Relance `python3 S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/collecte_flux.py --depuis <début de la fenêtre>` et compare le nombre de candidats avec celui du journal. Un écart important doit être expliqué.
 2. Tous les flux de `sources.yaml` ont-ils répondu ? Liste ceux en erreur.
 3. La recherche web a-t-elle été utilisée en complément ? Le journal le dit-il ?
 4. Les 4 axes (Marché, Concurrence, Techno, Réglementaire) et les 8 concurrents suivis ont-ils tous été cherchés ?

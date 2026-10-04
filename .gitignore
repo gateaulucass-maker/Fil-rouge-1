@@ -13,3 +13,5 @@
 *.pdf
 *.PDF
 !**/rendus/*.pdf
+# Caches Python
+__pycache__/
