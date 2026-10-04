@@ -5,7 +5,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"$CLAUDE_PROJECT_DIR\" && (git pull --ff-only -q 2>&1 && echo \"Dépôt à jour : $(git log -1 --format='%h %an %ar : %s')\") || echo \"ATTENTION : git pull impossible (modifications locales ou divergence). Applique la section 1 de CLAUDE.md avant de travailler.\""
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && git config core.hooksPath automatisation/hooks; (git pull --ff-only -q 2>&1 && echo \"Dépôt à jour : $(git log -1 --format='%h %an %ar : %s')\") || echo \"ATTENTION : git pull impossible (modifications locales ou divergence). Applique la section 1 de CLAUDE.md avant de travailler.\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"$CLAUDE_PROJECT_DIR/automatisation/hooks/claude-avant-commit.sh\""
           }
         ]
       }

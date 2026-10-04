@@ -9,3 +9,7 @@
 # Sorties locales des agents (non partagées)
 .tableau/
 .marche/
+# PDF (cours, documents) : restent en local, sauf rendus finaux (voir CLAUDE.md, section 5)
+*.pdf
+*.PDF
+!**/rendus/*.pdf

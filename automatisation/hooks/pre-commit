@@ -1,0 +1,4 @@
+#!/bin/sh
+# Hook Git : lance le contrôle avant chaque commit, quel que soit l'outil (terminal, Claude, ChatGPT…).
+# Activé par : git config core.hooksPath automatisation/hooks (fait automatiquement au démarrage de Claude Code).
+exec sh "$(git rev-parse --show-toplevel)/automatisation/hooks/verifier-commit.sh"
