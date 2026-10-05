@@ -76,20 +76,20 @@ S2-2026-2027/   # TOUT le travail du semestre 2
 Rien d'autre à la racine. Un nouvel agent, une commande ou un hook va dans `.claude/`. Tout le reste (rendus, brouillons, données, scripts, prompts de travail) va dans un semestre.
 `veille-hebdo/` reste à la racine parce que son adresse est publique et fixe : https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/
 
-### Dans un semestre : phase, puis rendu ou interne
+### Dans un semestre : bloc du cours, puis rendu ou interne
+
+Un dossier `NN-nom/` = **un bloc du cours** (un module ouvert par le formateur). Un bloc contient **plusieurs leçons**, qui ne suivent pas forcément son numéro : le bloc 01 Veille contient la leçon 1.1 (veille) **et** la leçon 2.1 (marché). Les leçons ne créent pas de sous-dossier : c'est le **préfixe du nom de fichier** qui dit de quelle leçon il vient.
 
 ```
 S1-2026-2027/
-  01-veille/                    # phase 01 = leçons 1.x
-    rendus/                     # versions finales validées
+  01-veille/                    # bloc 01 : leçon 1.1 (veille), leçon 2.1 (marché)…
+    rendus/                     # versions finales validées, toutes leçons du bloc
       1-1-fiche-veille-silvertech.html
-    interne/
-      clement/  lucas/  camille/    # travail de chacun
-      commun/                       # outils et données partagés (pipeline, veille du jeudi…)
-  02-marche/                    # phase 02 = leçons 2.x
-    rendus/
       2-1-question-1-acteurs.html
-    interne/ …
+    interne/
+      clement/  lucas/  camille/    # travail de chacun (fichiers préfixés aussi)
+      commun/                       # outils et données partagés (pipeline, veille du jeudi…)
+  02-<bloc suivant>/            # créé quand le formateur ouvre un nouveau bloc
 ```
 
 ### La procédure, à appliquer à chaque fichier créé ou rendu
@@ -99,21 +99,21 @@ Avant d'écrire un fichier (et de nouveau avant le commit), l'agent détermine s
 1. **Outillage IA ou règle commune ?** Agent, commande, hook, réglage → `.claude/`. Règle d'équipe → `CLAUDE.md`. Sinon, étape 2.
 2. **Semestre** : le semestre en cours (section 5), sauf si le membre en indique un autre.
 3. **Leçon** : l'agent cherche le numéro de leçon `X.Y` dans la demande du membre, puis dans le titre ou le contenu du fichier (« Leçon 2.1 », « 2.1 », sujet du cours). **S'il ne le trouve pas, il demande. Il ne devine jamais.**
-4. **Phase** : la leçon `X.Y` va dans la phase `0X-<nom>/` du semestre (leçon 2.1 → `02-marche/`, leçon 3.2 → `03-…/`). Si la phase n'existe pas, l'agent demande au membre son nom court, puis la crée avec `rendus/`, `interne/clement/`, `interne/lucas/`, `interne/camille/`, `interne/commun/` et un `.gitkeep` dans chaque dossier vide.
+4. **Bloc** : la leçon va dans le bloc du cours auquel elle appartient, **pas** dans un dossier déduit de son numéro (la leçon 2.1 est dans `01-veille/`). Par défaut, c'est le dernier bloc ouvert du semestre. L'agent ne crée un nouveau bloc `NN-nom-court/` (numéro suivant) que si le membre dit que le formateur a ouvert un nouveau bloc ; il demande alors le nom court et crée `rendus/`, `interne/clement/`, `interne/lucas/`, `interne/camille/`, `interne/commun/` avec un `.gitkeep` dans chaque dossier vide. **Jamais de sous-dossier par leçon.**
 5. **Rendu ou interne** :
    - version finale validée par l'équipe → `rendus/` ;
    - brouillon, essai, version de travail, annexe d'un membre → `interne/<prénom du membre>/` ;
    - outil, script, prompt ou données utilisés par toute l'équipe → `interne/commun/<nom-de-l-outil>/`.
 6. **Nom** : `X-Y-<ce-que-c-est>.<ext>`, en minuscules, sans accent ni espace, mots séparés par des tirets (`2-1-question-2-taille-marche.html`). Une nouvelle version d'un rendu d'un autre : même nom suivi de `-v2`, dans son propre `interne/<prénom>/`. Les dossiers d'outils dans `interne/commun/` (`veille-silvertech/`, `veille-du-jeudi/`) ne prennent pas de préfixe : ils servent plusieurs leçons.
-7. **Après un rendu** : lien ajouté dans `README.md` (section de la phase), tâche mise à jour dans `suivi/taches.json`, puis `python3 suivi/build.py`.
+7. **Après un rendu** : lien ajouté dans `README.md` (section du bloc, sous la leçon), tâche mise à jour dans `suivi/taches.json`, puis `python3 suivi/build.py`.
 
 Si un fichier existant est mal rangé, l'agent le signale et propose de le déplacer avec `git mv` (l'historique est conservé), en corrigeant les liens qui pointent vers lui. Il ne déplace pas le fichier d'un autre membre sans le prévenir.
 
 ## 5. Le rythme de l'année
 
-- **S1 2026-2027** (en cours) : phase 01 veille (leçon 1.1), phase 02 marché (leçon 2.1). Les phases suivantes s'ajoutent au fil des cours.
+- **S1 2026-2027** (en cours) : bloc 01 veille (leçon 1.1 veille, leçon 2.1 marché). Les blocs suivants s'ajoutent quand le formateur les ouvre.
 - **S2 2026-2027** : à compléter.
-- Chaque phase suit la même boucle : travail dans `interne/`, validation par l'équipe, version finale dans `rendus/`, lien dans le README, tâche passée à `termine` dans `suivi/`.
+- Chaque leçon suit la même boucle : travail dans `interne/`, validation par l'équipe, version finale dans `rendus/`, lien dans le README, tâche passée à `termine` dans `suivi/`.
 
 ## 6. Ce que fait l'agent, dans l'ordre
 

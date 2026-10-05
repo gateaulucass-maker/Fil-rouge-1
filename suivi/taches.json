@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-04T18:47",
+  "mise_a_jour": "2026-10-05T06:23",
   "phases": [
     {
       "id": "P0",
@@ -324,7 +324,7 @@
           "statut": "a_valider",
           "qui": "Équipe d'agents",
           "date": "2026-10-02",
-          "lien": "S1-2026-2027/02-marche/rendus/2-1-question-1-acteurs.html",
+          "lien": "S1-2026-2027/01-veille/rendus/2-1-question-1-acteurs.html",
           "note": "Tableau simple, une colonne pour tout le marché, comme l'exemple du prof. 7 sources officielles. La version détaillée par segment reste en annexe.",
           "etapes": [
             {
@@ -407,7 +407,7 @@
           "qui": "Clément + équipe d'agents",
           "note": "Page unique Q1 à Q5 + carte, guidée par une question clé (lien et santé entre enfant et parent). Veille du dépôt uniquement, 60 sources. Personas payeur et utilisateur dans la Q1. Grille du panorama des acteurs (slide 14) à faire après validation.",
           "date": "2026-10-02",
-          "lien": "S1-2026-2027/02-marche/rendus/2-1-analyse-marche-questions-1-5.html"
+          "lien": "S1-2026-2027/01-veille/rendus/2-1-analyse-marche-questions-1-5.html"
         }
       ]
     },
