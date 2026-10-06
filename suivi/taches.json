@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-06T10:36",
+  "mise_a_jour": "2026-10-06T10:55",
   "phases": [
     {
       "id": "P0",
@@ -315,40 +315,45 @@
         },
         {
           "titre": "Fiche « Réussites et faillites de la silver tech »",
-          "statut": "en_cours",
+          "statut": "a_valider",
           "qui": "Équipe d'agents",
           "date": "2026-10-06",
-          "lien": "S1-2026-2027/01-veille/interne/lucas/reussites-faillites-silvertech.html",
-          "note": "15 à 20 entreprises (France + grands cas mondiaux), 4 familles, chiffres et sources. Page HTML cliquable, style suisse, d'abord dans interne/lucas pour validation par l'équipe.",
+          "lien": "S1-2026-2027/01-veille/interne/lucas/1-1-reussites-faillites-silvertech.html",
+          "note": "16 entreprises (5 réussites, 5 mitigés, 6 échecs) + Apple Watch en cas repère, 4 familles, 32 sources, 30 chiffres revérifiés. Page cliquable (filtres, tri, frise, fiches dépliables). À valider par l'équipe avant copie dans rendus/.",
           "etapes": [
             {
               "titre": "Preuves tirées de notre base de veille",
-              "statut": "en_cours",
-              "qui": "analyste-veille"
+              "statut": "termine",
+              "qui": "analyste-veille",
+              "date": "2026-10-06"
             },
             {
               "titre": "Recherche web sourcée (15 à 20 entreprises)",
-              "statut": "en_cours",
-              "qui": "chercheur"
+              "statut": "termine",
+              "qui": "chercheur",
+              "date": "2026-10-06"
             },
             {
               "titre": "Analyse : comment elles réussissent, pourquoi elles échouent",
-              "statut": "a_faire",
-              "qui": "stratège"
+              "statut": "termine",
+              "qui": "stratège",
+              "date": "2026-10-06"
             },
             {
               "titre": "Vérification des chiffres et des sources",
-              "statut": "a_faire",
-              "qui": "contradicteur"
+              "statut": "termine",
+              "qui": "contradicteur",
+              "date": "2026-10-06"
             },
             {
               "titre": "Page HTML cliquable, style suisse",
-              "statut": "a_faire",
-              "qui": "designer"
+              "statut": "termine",
+              "qui": "designer",
+              "date": "2026-10-06"
             },
             {
               "titre": "Validation par l'équipe, puis copie dans rendus/",
-              "statut": "a_faire",
+              "statut": "a_valider",
               "qui": "Lucas, Clément, Camille"
             }
           ]
