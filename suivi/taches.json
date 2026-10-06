@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-06T10:55",
+  "mise_a_jour": "2026-10-06T16:40",
   "phases": [
     {
       "id": "P0",
@@ -355,6 +355,44 @@
               "titre": "Validation par l'équipe, puis copie dans rendus/",
               "statut": "a_valider",
               "qui": "Lucas, Clément, Camille"
+            }
+          ]
+        },
+        {
+          "qui": "Équipe d'agents",
+          "date": "2026-10-06",
+          "titre": "Synthèse : ce qui marche et axe produit",
+          "statut": "a_valider",
+          "lien": "S1-2026-2027/01-veille/interne/lucas/1-1-synthese-axe-produit.html",
+          "note": "Synthèse de la fiche réussites et faillites : 4 règles des réussites, 4 pièges, chiffres du marché, espace libre « lien + réassurance, zéro effort, un objet » et piste de produit hardware. À discuter en équipe.",
+          "etapes": [
+            {
+              "titre": "Synthèse et piste produit",
+              "statut": "termine",
+              "date": "2026-10-06"
+            },
+            {
+              "titre": "Discussion en équipe",
+              "statut": "a_faire"
+            }
+          ]
+        },
+        {
+          "qui": "Équipe d'agents",
+          "date": "2026-10-06",
+          "titre": "Idée produit n° 1 : La Fenêtre",
+          "statut": "a_valider",
+          "lien": "S1-2026-2027/01-veille/interne/lucas/1-1-idee-produit-la-fenetre.html",
+          "note": "Idée de Lucas, inspirée de l'installation « The Portal » : un cadre chez le senior qui s'active à la voix (« Hugo, ouvre-toi sur Julie »), lumière de présence, live activable. Avantages, risques, points à vérifier.",
+          "etapes": [
+            {
+              "titre": "Fiche rapide",
+              "statut": "termine",
+              "date": "2026-10-06"
+            },
+            {
+              "titre": "Avis de l'équipe",
+              "statut": "a_faire"
             }
           ]
         }

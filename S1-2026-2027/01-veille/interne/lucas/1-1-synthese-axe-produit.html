@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Axe produit Générations Connectées</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Grille suisse : étiquette à gauche, contenu à droite. Fond blanc assumé (thème unique), orange = ce qui marche / l'opportunité, bleu = le lien */
+:root{
+  --bg:#ffffff; --fg:#111418; --muted:#5d636b; --hair:#d9dcdf; --soft:#f4f4f2;
+  --orange:#e8571c; --blue:#1f3fbf; --ok:#1d7a46; --ko:#c2381a;
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:clamp(16px,4vw,48px);padding-block:clamp(28px,6vw,72px) 64px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;border-top:2px solid var(--fg);padding-top:12px}
+h1{font-weight:800;font-size:clamp(40px,8vw,96px);line-height:.92;letter-spacing:-.04em;margin:clamp(24px,4vw,44px) 0 0;text-wrap:balance}
+h1 .o{color:var(--orange)} h1 .b{color:var(--blue)}
+.lede{display:grid;grid-template-columns:3fr 9fr;gap:0 24px;margin-top:28px}
+.lede p{grid-column:2;margin:0;font-size:clamp(19px,2vw,25px);line-height:1.32;font-weight:700;letter-spacing:-.012em;max-width:38ch;text-wrap:pretty}
+.lede .sub{grid-column:2;margin-top:14px;font-size:15px;font-weight:400;color:var(--muted);max-width:66ch}
+section{margin-top:clamp(52px,7vw,84px)}
+.sh{display:grid;grid-template-columns:3fr 9fr;gap:0 24px;border-top:2px solid var(--fg);padding-top:14px}
+h2{margin:0;font-weight:800;font-size:clamp(26px,3.2vw,40px);letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
+.body{display:grid;grid-template-columns:3fr 9fr;gap:0 24px;margin-top:20px}
+.body>*{grid-column:2;min-width:0}
+p{margin:0 0 12px;max-width:68ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);margin-top:16px}
+.tag{display:inline-block;font:500 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border:1.5px solid currentColor;vertical-align:1px}
+.fait{color:var(--blue)} .hyp{color:var(--orange);border-style:dashed}
+.rows{border-top:1px solid var(--fg)}
+.row{display:grid;grid-template-columns:44px 1fr;gap:6px 16px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.row .n{font:800 24px/1 var(--display);letter-spacing:-.03em}
+.ok .n{color:var(--ok)} .ko .n{color:var(--ko)}
+.row h3{margin:0;font-size:18px;letter-spacing:-.01em}
+.row p{margin:6px 0 0;font-size:15px}
+.row .proof{font-size:13.5px;color:var(--muted);margin-top:6px}
+.row .proof b{color:var(--fg);font-weight:500}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--fg)}
+.kpi{padding:16px 16px 18px 0;min-width:0}
+.kpi+.kpi{padding-left:16px;border-left:1px solid var(--hair)}
+.kpi b{display:block;font-weight:800;font-size:clamp(30px,3.6vw,44px);letter-spacing:-.035em;line-height:1;color:var(--orange)}
+.kpi span{display:block;margin-top:8px;font-size:14px}
+.kpi small{display:block;margin-top:6px;font:11px var(--mono);color:var(--muted)}
+.insight{margin-top:20px;border-left:4px solid var(--orange);background:var(--soft);padding:14px 18px}
+.insight p{margin:0;font-size:16px}
+.map{width:100%;height:auto;display:block;margin-top:8px}
+.map .frame{fill:none;stroke:var(--fg);stroke-width:1.5}
+.map .mid{stroke:var(--hair)}
+.map .lbl{font:700 13px var(--display);fill:var(--fg)}
+.map .sm{font:10.5px var(--mono);fill:var(--muted)}
+.map .ax{font:11px var(--mono);fill:var(--muted)}
+.map .pt-o{fill:var(--orange)} .map .pt-b{fill:var(--blue)} .map .pt-g{fill:var(--muted)}
+.map .zone{fill:var(--orange);fill-opacity:.08;stroke:var(--orange);stroke-width:1.5;stroke-dasharray:6 4}
+.map .zl{font:800 15px var(--display);fill:var(--orange)}
+.concept{margin-top:8px;border:2px solid var(--fg);padding:clamp(18px,3vw,28px)}
+.concept .k{color:var(--orange)}
+.concept h3{margin:6px 0 10px;font-size:clamp(24px,3vw,34px);letter-spacing:-.03em;line-height:1.05}
+.concept p{font-size:16px}
+.feats{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.feats li{padding:12px 0;border-top:1px solid var(--hair);min-width:0}
+.feats b{display:block;font-size:16px}
+.feats span{display:block;color:var(--muted);font-size:14px;margin-top:3px}
+.feats em{font-style:normal;font:11px var(--mono);color:var(--orange);letter-spacing:.04em}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:400;border-bottom:1px solid var(--fg)}
+td:first-child{font-weight:700}
+.tbl{overflow-x:auto}
+ol.next{margin:0;padding-left:20px}
+ol.next li{margin-bottom:10px;max-width:68ch}
+footer{margin-top:72px;border-top:1px solid var(--hair);padding-top:14px;font-size:12.5px;color:var(--muted)}
+a{color:var(--blue)} a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media (max-width:760px){
+  .lede,.sh,.body{grid-template-columns:1fr}.lede p,.lede .sub,.body>*{grid-column:1}
+  .kpis{grid-template-columns:1fr 1fr}.kpi{padding-left:0!important;border-left:0!important;border-bottom:1px solid var(--hair)}
+  .feats{grid-template-columns:1fr}
+}
+</style>
+</head><body>
+
+<div class="wrap">
+<div class="meta k"><span>Ynov B2 · PFR Générations Connectées</span><span>Synthèse de la fiche réussites et faillites</span><span>Octobre 2026</span></div>
+
+<h1><span class="o">Ce qui marche,</span><br>ce qui casse, <span class="b">et où aller</span></h1>
+
+<div class="lede">
+  <p>Les gagnants vendent un abonnement avec du service à ceux qui paient, sans rien demander au senior. Le coin « lien + réassurance, sans effort, avec un objet » est presque vide : c'est là que votre produit peut naître.</p>
+  <p class="sub">Synthèse des 16 entreprises étudiées (5 réussites, 5 mitigées, 6 échecs), toutes sourcées et revérifiées. Elle sépare ce que les sources prouvent de ce que l'équipe en déduit.</p>
+</div>
+<div class="legend" style="padding-left:calc(25% + 6px)"><span><span class="tag fait">Fait</span> prouvé par une source de la fiche</span><span><span class="tag hyp">Hypothèse</span> déduction de l'équipe, à tester</span></div>
+
+<section>
+  <div class="sh"><span class="k">01 · Ce qui fonctionne</span><h2>Quatre règles des réussites</h2></div>
+  <div class="body"><div class="rows">
+    <div class="row ok"><span class="n">1</span><div><h3>Le senior ne fait rien</h3>
+      <p>Famileo envoie une gazette papier : les enfants postent photos et messages depuis l'appli, la grand-mère reçoit sans écran ni manipulation. <span class="tag fait">Fait</span></p>
+      <p class="proof"><b>Preuve :</b> près de 14 M€ de chiffre d'affaires et 260 000 familles en 2024, rentable depuis 2020. C'est le seul produit de lien qui réussit vraiment dans la fiche.</p></div></div>
+    <div class="row ok"><span class="n">2</span><div><h3>Un abonnement, pas un objet vendu une fois</h3>
+      <p>Les réussites encaissent chaque mois : gazette Famileo, abonnés de téléassistance. Le revenu revient, la valeur se construit. <span class="tag fait">Fait</span></p>
+      <p class="proof"><b>Preuve :</b> GreatCall rachetée 800 M$ par Best Buy en 2018 pour ses 900 000 abonnés payants et son centre d'appel.</p></div></div>
+    <div class="row ok"><span class="n">3</span><div><h3>De l'humain derrière la machine</h3>
+      <p>Présence Verte, Filien, GreatCall : un centre d'écoute, des conseillers, un réseau d'aide à domicile. L'aidant achète une tranquillité, pas un gadget. <span class="tag fait">Fait</span></p>
+      <p class="proof"><b>Preuve :</b> Présence Verte, 150 000 à 160 000 abonnés, adossée à la MSA et à 25 associations.</p></div></div>
+    <div class="row ok"><span class="n">4</span><div><h3>Celui qui paie est clair et a les moyens</h3>
+      <p>L'enfant paie Famileo (avec une cagnotte possible entre frères et sœurs) ; l'État paie ElliQ aux États-Unis ; les aides (APA, crédit d'impôt) allègent la téléassistance. <span class="tag fait">Fait</span></p>
+      <p class="proof"><b>Preuve :</b> chez Famileo, les trois quarts des abonnés sont des familles, venues surtout par le bouche-à-oreille.</p></div></div>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">02 · Ce qui échoue</span><h2>Quatre pièges à éviter</h2></div>
+  <div class="body"><div class="rows">
+    <div class="row ko"><span class="n">1</span><div><h3>Manquer de trésorerie</h3>
+      <p>La première cause d'échec documentée. Myxyty ne boucle pas sa levée de 3 à 5 M€ ; Coyali se voit refuser un financement Bpifrance ; Ardoiz accumule 5 M€ de dette envers La Poste. <span class="tag fait">Fait</span></p></div></div>
+    <div class="row ko"><span class="n">2</span><div><h3>Affronter les géants sur leur terrain</h3>
+      <p>Myxyty (assistant vocal « George » avec La Poste) et Jibo (plus de 70 M$ levés) tombent face à Amazon, Google et Apple. La presse juge la bataille « intenable sans grand groupe ». <span class="tag fait">Fait</span></p></div></div>
+    <div class="row ko"><span class="n">3</span><div><h3>Un écran à apprendre, un canal qui disparaît</h3>
+      <p>Ardoiz, la tablette senior de La Poste : 110 000 seniors équipés, jusqu'à 200 tablettes par jour pendant le Covid, puis la demande retombe et la filiale ferme. <span class="tag fait">Fait</span> L'effort d'apprentissage d'une tablette a pu peser. <span class="tag hyp">Hypothèse</span></p></div></div>
+    <div class="row ko"><span class="n">4</span><div><h3>Faire payer le senior</h3>
+      <p>Chez Coyali, « les personnes âgées avec des revenus modestes n'avaient pas toujours les moyens de payer » (cause secondaire, après la trésorerie). <span class="tag fait">Fait</span></p></div></div>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">03 · Pourquoi c'est porteur</span><h2>Un marché ouvert, des besoins mal servis</h2></div>
+  <div class="body"><div>
+    <div class="kpis">
+      <div class="kpi"><b>10 %</b><span>des plus de 75 ans équipés en téléassistance en France, contre 36 % au Royaume-Uni</span><small>Silvereco, 2026</small></div>
+      <div class="kpi"><b>750 000</b><span>bénéficiaires de téléassistance, âge moyen 84 ans</span><small>AFRATA, 2025</small></div>
+      <div class="kpi"><b>2 %</b><span>seulement des 2 millions d'alertes de Présence Verte exigent les secours</span><small>Silvereco, 2026</small></div>
+      <div class="kpi"><b>87 %</b><span>des seniors voient la téléassistance comme un marqueur de dépendance</span><small>Senior Strategic, 2016 (ancien)</small></div>
+    </div>
+    <div class="insight"><p><b>Ce que ces chiffres disent ensemble :</b> le marché est loin d'être saturé, mais l'objet de sécurité fait peur au senior. Et l'immense majorité des appels ne sont pas des urgences : beaucoup de seniors appuient sans doute pour parler, être rassurés, garder un contact. <span class="tag hyp">Hypothèse</span> Le besoin réel est donc autant le <b>lien</b> que la <b>sécurité</b>.</p></div>
+    <p style="margin-top:16px">S'y ajoutent la fin des réseaux 2G et 3G, qui oblige à remplacer des équipements de téléassistance (une fenêtre pour un nouvel objet), et des aidants déjà épuisés (veille), qui veulent être rassurés sans avoir une tâche de plus.</p>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">04 · L'espace libre</span><h2>Lien et réassurance, sans effort, avec un objet</h2></div>
+  <div class="body"><div>
+    <svg class="map" viewBox="0 0 700 420" role="img" aria-label="Carte : en horizontal, du lien à la sécurité ; en vertical, de l'effort nul à l'effort élevé pour le senior. Le coin effort nul au centre, lien et réassurance avec un objet, est presque vide.">
+      <rect x="50" y="30" width="610" height="330" class="frame"/>
+      <line x1="355" y1="30" x2="355" y2="360" class="mid"/><line x1="50" y1="195" x2="660" y2="195" class="mid"/>
+      <ellipse cx="370" cy="318" rx="128" ry="34" class="zone"/>
+      <text x="370" y="314" text-anchor="middle" class="zl">Votre produit</text>
+      <text x="370" y="331" text-anchor="middle" class="sm">lien + réassurance, zéro effort, un objet</text>
+      <circle cx="600" cy="70" r="8" class="pt-o"/><text x="588" y="66" text-anchor="end" class="lbl">Apple Watch</text><text x="588" y="80" text-anchor="end" class="sm">porter, recharger</text>
+      <circle cx="560" cy="135" r="8" class="pt-o"/><text x="548" y="131" text-anchor="end" class="lbl">Bracelet téléassistance</text><text x="548" y="145" text-anchor="end" class="sm">stigmate, non-port</text>
+      <circle cx="130" cy="110" r="8" class="pt-g"/><text x="144" y="106" class="lbl">Tablette Ardoiz</text><text x="144" y="120" class="sm">écran à apprendre · échec</text>
+      <circle cx="220" cy="170" r="8" class="pt-g"/><text x="234" y="166" class="lbl">Robots, assistant vocal</text><text x="234" y="180" class="sm">Jibo, Myxyty · échecs</text>
+      <circle cx="110" cy="320" r="8" class="pt-b"/><text x="124" y="300" class="lbl">Famileo</text><text x="124" y="286" class="sm">papier, sans objet connecté</text>
+      <circle cx="610" cy="270" r="8" class="pt-o"/><text x="596" y="274" text-anchor="end" class="lbl">Capteurs ambiants</text><text x="596" y="260" text-anchor="end" class="sm">sécurité seule · Domalys échec</text>
+      <text x="50" y="385" class="ax">← Lien</text><text x="660" y="385" text-anchor="end" class="ax">Sécurité →</text>
+      <text x="50" y="20" class="ax">↑ Effort demandé au senior</text><text x="660" y="20" text-anchor="end" class="ax">en bas : effort nul</text>
+    </svg>
+    <p>Famileo a prouvé le lien sans effort, mais sans objet ni réponse du senior. La téléassistance a prouvé la réassurance, mais avec un objet stigmatisant. <b>Personne dans la fiche ne combine les deux dans un objet que le senior n'a pas à apprendre.</b> <span class="tag hyp">Hypothèse</span></p>
+    <p class="k" style="margin-top:4px">Placement qualitatif, établi par l'équipe à partir des cas étudiés.</p>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">05 · Axe proposé</span><h2>Un objet de lien qui rassure sans surveiller</h2></div>
+  <div class="body"><div>
+    <div class="concept">
+      <span class="k">Piste de produit, à tester</span>
+      <h3>Un objet posé chez le senior, qui reçoit la famille et renvoie un signe de vie d'un seul geste</h3>
+      <p>Un objet du quotidien (cadre, lampe, petit poste) branché au secteur et connecté en 4G, qui affiche ou imprime les photos et messages de la famille comme la gazette Famileo, et où le senior répond d'un geste. L'enfant reçoit chaque jour un résumé simple : « Maman a vu tes photos ce matin ». Il paie un abonnement familial partageable.</p>
+      <ul class="feats">
+        <li><b>Un seul geste pour répondre</b><span>Un gros bouton ou on tourne l'objet : « j'ai vu », « je pense à toi ». Le senior donne des nouvelles sans écran à apprendre.</span><em>Contre le piège 3</em></li>
+        <li><b>Le signe de vie vient du lien</b><span>Pas de caméra ni de capteur caché : l'enfant est rassuré parce que le senior a interagi avec les photos, pas parce qu'on le surveille.</span><em>Contre le stigmate des 87 %</em></li>
+        <li><b>Rien à recharger, rien à configurer</b><span>Branché au secteur, en 4G (pas en 2G), installé par la famille. Le senior n'a rien à porter ni à régler.</span><em>Règle 1, fin de la 2G</em></li>
+        <li><b>Une alerte douce, seulement si ça change</b><span>Si le geste habituel n'arrive pas, un simple message à l'enfant, pas une alarme. Option : passer le relais à un service d'écoute partenaire.</span><em>Règle 3 sans centre d'appel à soi</em></li>
+        <li><b>L'enfant paie, la fratrie partage</b><span>Abonnement mensuel avec cagnotte familiale, vendu aussi via mutuelles et services d'aide à domicile.</span><em>Règles 2 et 4</em></li>
+        <li><b>Le consentement visible</b><span>Le senior voit ce qui est partagé et peut le mettre en pause d'un geste. Il garde la main.</span><em>Éthique, sujet prioritaire</em></li>
+      </ul>
+    </div>
+    <p style="margin-top:16px"><b>Pourquoi cet axe colle aux leçons :</b> il garde le « zéro effort » de Famileo, il ajoute un objet (le hardware imposé par le projet) sans écran à apprendre, il évite la bataille des assistants vocaux, et il fait payer celui qui veut être rassuré.</p>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">06 · Avant d'aller plus loin</span><h2>Vérifier que ça n'existe pas déjà</h2></div>
+  <div class="body"><div>
+    <div class="tbl"><table>
+      <thead><tr><th>À vérifier</th><th>Pourquoi</th></tr></thead>
+      <tbody>
+        <tr><td>Écrans « un bouton » pour seniors</td><td>Des produits comme l'écran Komp (société norvégienne No Isolation) visent déjà le lien simplifié. Ils ne sont pas dans notre fiche : la veille doit les analyser (prix, ventes, limites).</td></tr>
+        <tr><td>Cadres photo connectés</td><td>Le marché grand public existe. Question : proposent-ils une réponse du senior et un signe de vie pour l'aidant ?</td></tr>
+        <tr><td>Offres « signe de vie » des opérateurs</td><td>La Poste (Veiller sur mes parents) et la téléassistance vendent déjà de la réassurance : qu'est-ce qui manque côté lien ?</td></tr>
+        <tr><td>Prix acceptable</td><td>Repères : Famileo de 5,99 à 17,99 € par mois, téléassistance de 20 à 50 € par mois. Combien l'enfant paierait-il pour un objet de lien ?</td></tr>
+      </tbody>
+    </table></div>
+    <p style="margin-top:20px" class="k">Prochaines étapes</p>
+    <ol class="next">
+      <li>Ajouter à la veille du jeudi les écrans « un bouton » et les cadres photo connectés pour seniors.</li>
+      <li>Mener 3 à 5 entretiens d'aidants : ce qui les rassurerait vraiment, combien ils paieraient, ce que leur parent refuserait.</li>
+      <li>Montrer la piste à 2 ou 3 seniors : un objet qui ne demande qu'un geste est-il accepté ? Le signe de vie est-il vécu comme du lien ou comme de la surveillance ?</li>
+      <li>Choisir l'objet (cadre, lampe, poste) selon ces retours, puis prototyper.</li>
+    </ol>
+  </div></div>
+</section>
+
+<footer>Synthèse de la fiche « Réussites et faillites de la silver tech » (16 entreprises, 32 sources revérifiées), PFR Générations Connectées. Les chiffres viennent de la fiche ; l'axe produit est une hypothèse de l'équipe, à valider par les entretiens.</footer>
+</div>
+</body></html>

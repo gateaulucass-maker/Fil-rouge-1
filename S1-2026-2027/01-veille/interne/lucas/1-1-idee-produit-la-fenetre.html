@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fiche produit La Fenêtre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Fiche courte, grille suisse : étiquette à gauche, contenu à droite. Thème blanc assumé ; orange = le produit, bleu = le lien */
+:root{--bg:#ffffff;--fg:#111418;--muted:#5d636b;--hair:#d9dcdf;--soft:#f4f4f2;--orange:#e8571c;--blue:#1f3fbf;--ok:#1d7a46;--ko:#c2381a;
+--display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding-inline:clamp(16px,4vw,44px);padding-block:clamp(28px,6vw,64px) 56px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 26px;border-top:2px solid var(--fg);padding-top:12px}
+.hero{display:grid;grid-template-columns:7fr 5fr;gap:24px 40px;align-items:center;margin-top:clamp(22px,4vw,40px)}
+.hero>*{min-width:0}
+h1{margin:0;font-weight:800;font-size:clamp(48px,9vw,104px);line-height:.9;letter-spacing:-.045em}
+h1 span{color:var(--orange)}
+.pitch{margin:18px 0 0;font-size:clamp(18px,2vw,23px);font-weight:700;line-height:1.3;letter-spacing:-.01em;max-width:30ch}
+.frame{position:relative;aspect-ratio:4/5;max-width:300px;width:100%;margin-left:auto;border:14px solid var(--fg);background:linear-gradient(160deg,#e9edf7,#f6efe9)}
+.frame .who{position:absolute;inset:18% 20% 30%;border-radius:50% 50% 42% 42%;background:#c9d1e6;filter:blur(10px);opacity:.9}
+.frame .light{position:absolute;bottom:-11px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--orange);box-shadow:0 0 14px var(--orange)}
+.frame .say{position:absolute;left:12px;right:12px;bottom:16px;font:12px var(--mono);color:var(--fg);background:rgba(255,255,255,.85);padding:6px 8px}
+section{margin-top:clamp(40px,6vw,64px)}
+.sh{display:grid;grid-template-columns:3fr 9fr;gap:0 24px;border-top:2px solid var(--fg);padding-top:12px}
+h2{margin:0;font-weight:800;font-size:clamp(24px,3vw,34px);letter-spacing:-.03em;line-height:1.05}
+.body{display:grid;grid-template-columns:3fr 9fr;gap:0 24px;margin-top:16px}
+.body>*{grid-column:2;min-width:0}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--hair)}
+.steps li::before{content:counter(s);font:800 24px/1 var(--display);color:var(--orange)}
+.steps b{display:block}
+.steps span{color:var(--muted);font-size:15px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.cols h3{margin:0 0 6px;font-size:15px;font:500 11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase}
+.pro h3{color:var(--ok)} .con h3{color:var(--ko)}
+.cols ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--fg)}
+.cols li{padding:10px 0;border-bottom:1px solid var(--hair);font-size:15px}
+.cols li b{display:block;font-size:15.5px}
+.cols li span{color:var(--muted)}
+.gains{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--fg)}
+.gain{padding:14px 16px 16px 0;min-width:0}
+.gain+.gain{padding-left:16px;border-left:1px solid var(--hair)}
+.gain b{display:block;font-size:20px;letter-spacing:-.02em;color:var(--blue)}
+.gain span{display:block;margin-top:6px;font-size:14.5px;color:var(--muted)}
+.next{border-left:4px solid var(--orange);background:var(--soft);padding:14px 18px;font-size:15px}
+.next p{margin:0 0 6px}.next p:last-child{margin:0}
+footer{margin-top:56px;border-top:1px solid var(--hair);padding-top:12px;font-size:12.5px;color:var(--muted)}
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr}.frame{margin:0 auto}
+  .sh,.body{grid-template-columns:1fr}.body>*{grid-column:1}
+  .cols{grid-template-columns:1fr}.cols .con{margin-top:22px}
+  .gains{grid-template-columns:1fr}.gain{padding-left:0!important;border-left:0!important;border-bottom:1px solid var(--hair)}
+}
+</style>
+</head><body>
+
+<div class="wrap">
+<div class="meta k"><span>PFR Générations Connectées</span><span>Idée produit · fiche rapide</span><span>Octobre 2026</span><span>Inspiration : l'installation « The Portal »</span></div>
+
+<div class="hero">
+  <div>
+    <h1>La <span>Fenêtre</span></h1>
+    <p class="pitch">Un cadre posé chez le senior qui devient une fenêtre vers sa famille : on l'appelle par son prénom, il s'ouvre, on se voit et on se parle.</p>
+  </div>
+  <div class="frame" role="img" aria-label="Illustration : un cadre noir montrant une silhouette floue, avec une petite lumière orange de présence en bas.">
+    <div class="who"></div>
+    <div class="say">« Hugo, ouvre-toi sur Julie »</div>
+    <div class="light"></div>
+  </div>
+</div>
+
+<section>
+  <div class="sh"><span class="k">Comment ça marche</span><h2>Trois gestes, aucun apprentissage</h2></div>
+  <div class="body"><ol class="steps">
+    <li><div><b>La lumière de présence</b><span>Une petite lumière s'allume quand un proche est disponible de l'autre côté. Le senior sait qu'on pense à lui, sans rien faire.</span></div></li>
+    <li><div><b>On l'appelle par son prénom</b><span>« Hugo, ouvre-toi sur Julie » : le cadre s'active à la voix. Pas de téléphone, pas de numéro, pas d'écran tactile.</span></div></li>
+    <li><div><b>Le live, puis on ferme</b><span>On se voit et on se parle comme si on était dans la pièce d'à côté. « Hugo, ferme-toi » : il redevient un simple cadre photo.</span></div></li>
+  </ol></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">Ce que ça apporte</span><h2>Du lien et de la sérénité</h2></div>
+  <div class="body"><div class="gains">
+    <div class="gain"><b>De la présence</b><span>Partager un café ou un repas sans raison particulière, pas seulement « prendre des nouvelles ».</span></div>
+    <div class="gain"><b>Zéro effort</b><span>Le senior n'a qu'à parler. C'est la règle n° 1 des réussites (Famileo).</span></div>
+    <div class="gain"><b>Une famille rassurée</b><span>La lumière et les échanges montrent que tout va bien, sans caméra qui surveille.</span></div>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">Le bilan</span><h2>Avantages et inconvénients</h2></div>
+  <div class="body"><div class="cols">
+    <div class="pro"><h3>Avantages</h3><ul>
+      <li><b>Naturel</b><span>Parler à un objet qu'on appelle par un prénom, c'est familier et rassurant.</span></li>
+      <li><b>Réciproque</b><span>On se voit des deux côtés : c'est du lien, pas de la surveillance.</span></li>
+      <li><b>Un vrai objet</b><span>Le hardware imposé par le projet, utile au quotidien même éteint (cadre photo).</span></li>
+      <li><b>Facile à comprendre</b><span>L'idée se pitche en une phrase et parle à l'émotion.</span></li>
+    </ul></div>
+    <div class="con"><h3>Inconvénients et risques</h3><ul>
+      <li><b>Micro et caméra chez le senior</b><span>Pour entendre son prénom, l'objet écoute en continu. Il faut une reconnaissance faite dans l'objet, une lumière d'écoute et un bouton « muet ». Sujet RGPD.</span></li>
+      <li><b>Les géants sont déjà là</b><span>Amazon Echo Show permet aux proches de se connecter, Meta a arrêté son Portal. À étudier avant d'aller plus loin.</span></li>
+      <li><b>La voix des seniors</b><span>Voix faible, accent, troubles de la parole : la reconnaissance doit marcher pour eux.</span></li>
+      <li><b>Le prix</b><span>Écran, caméra, micro et connexion : plus cher qu'un cadre photo. Prix et abonnement à tester.</span></li>
+    </ul></div>
+  </div></div>
+</section>
+
+<section>
+  <div class="sh"><span class="k">Pour aller plus loin</span><h2>Ce qu'il faut vérifier</h2></div>
+  <div class="body"><div class="next">
+    <p><b>Concurrence :</b> Echo Show d'Amazon, Portal de Meta (pourquoi arrêté ?) et Komp de No Isolation, à ajouter à la veille.</p>
+    <p><b>Acceptation :</b> un senior accepte-t-il un objet qui écoute son prénom ? La lumière suffit-elle à le rassurer ?</p>
+    <p><b>Prix :</b> combien une famille paierait-elle ? Repères : Famileo de 5,99 à 17,99 € par mois, téléassistance de 20 à 50 € par mois.</p>
+  </div></div>
+</section>
+
+<footer>Fiche rapide d'idée produit, PFR Générations Connectées. Les repères chiffrés viennent de la fiche « Réussites et faillites de la silver tech » ; le reste est une proposition de l'équipe, à valider par des entretiens.</footer>
+</div>
+</body></html>
