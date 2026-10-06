@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-05T06:23",
+  "mise_a_jour": "2026-10-06T10:36",
   "phases": [
     {
       "id": "P0",
@@ -312,6 +312,46 @@
           "date": "2026-10-02",
           "lien": "S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/veille-hebdo-prompt.md",
           "note": "12 sujets choisis par Lucas (rang 1 : acceptation, aidants, consentement, prix, réussites et faillites). Section dédiée « Réussites et faillites » dans la page et l email (Bodacc, presse, Pappers)."
+        },
+        {
+          "titre": "Fiche « Réussites et faillites de la silver tech »",
+          "statut": "en_cours",
+          "qui": "Équipe d'agents",
+          "date": "2026-10-06",
+          "lien": "S1-2026-2027/01-veille/interne/lucas/reussites-faillites-silvertech.html",
+          "note": "15 à 20 entreprises (France + grands cas mondiaux), 4 familles, chiffres et sources. Page HTML cliquable, style suisse, d'abord dans interne/lucas pour validation par l'équipe.",
+          "etapes": [
+            {
+              "titre": "Preuves tirées de notre base de veille",
+              "statut": "en_cours",
+              "qui": "analyste-veille"
+            },
+            {
+              "titre": "Recherche web sourcée (15 à 20 entreprises)",
+              "statut": "en_cours",
+              "qui": "chercheur"
+            },
+            {
+              "titre": "Analyse : comment elles réussissent, pourquoi elles échouent",
+              "statut": "a_faire",
+              "qui": "stratège"
+            },
+            {
+              "titre": "Vérification des chiffres et des sources",
+              "statut": "a_faire",
+              "qui": "contradicteur"
+            },
+            {
+              "titre": "Page HTML cliquable, style suisse",
+              "statut": "a_faire",
+              "qui": "designer"
+            },
+            {
+              "titre": "Validation par l'équipe, puis copie dans rendus/",
+              "statut": "a_faire",
+              "qui": "Lucas, Clément, Camille"
+            }
+          ]
         }
       ]
     },
