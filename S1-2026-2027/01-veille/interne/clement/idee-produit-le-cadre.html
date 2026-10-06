@@ -16,8 +16,8 @@
 html{scroll-behavior:smooth;scroll-padding-top:64px}
 body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
 main{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:48px 80px}
-a{color:var(--ink)}
-a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+a{color:var(--ink);overflow-wrap:anywhere}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 p{margin:0}
 ul,ol{margin:0;padding-left:1.2em}li{margin:.25em 0}
 
@@ -44,6 +44,7 @@ h1{font-weight:800;font-size:clamp(44px,8.5vw,112px);line-height:.92;letter-spac
 .rail{min-width:0}
 .qnum{display:block;font-weight:800;font-size:clamp(56px,8vw,104px);line-height:.85;letter-spacing:-.04em;color:var(--blue)}
 .qbody{min-width:0;display:grid;gap:22px}
+.qbody>*{min-width:0}
 @media (max-width:760px){.q{grid-template-columns:1fr;gap:12px}.qnum{font-size:56px}}
 .kicker{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 h2{font-size:clamp(30px,4.4vw,54px);font-weight:800;margin:0;line-height:1;letter-spacing:-.025em;text-wrap:balance}
@@ -60,6 +61,8 @@ h3{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color
 .col p,.col li{font-size:16px}
 .callout{border-left:6px solid var(--blue);padding:2px 0 2px 18px;max-width:75ch;font-size:15px}
 .callout.o{border-left-color:var(--orange)}
+.quote{border-left:6px solid var(--ink);background:var(--paper);padding:12px 16px;max-width:75ch;font-size:16px;font-weight:600}
+.quote small{display:block;font:500 12px var(--mono);color:var(--muted);margin-top:6px;font-weight:400}
 
 .tabs{display:flex;gap:8px;flex-wrap:wrap}
 .tab,.chip{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);background:transparent;border:1.5px solid var(--blue);padding:6px 12px;cursor:pointer}
@@ -70,11 +73,15 @@ h3{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color
 .steps li::before{content:counter(s);font:500 13px var(--mono);color:var(--blue);padding-top:3px}
 
 .tw{overflow-x:auto}
+.note+.tw{margin-top:10px}
 table{border-collapse:collapse;width:100%;min-width:560px}
 thead th{text-align:left;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 16px 10px 0;border-bottom:2px solid var(--ink)}
 td{padding:14px 16px 14px 0;vertical-align:top;border-bottom:1px solid var(--line);text-align:left;font-size:16px}
 td:first-child{font-weight:700}
+.tw.sm td{font-size:15px;padding:10px 14px 10px 0}
 .pri{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid;padding:1px 6px}
+.vd{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid;padding:1px 6px;white-space:nowrap;display:inline-block;margin:0 4px 4px 0}
+.vd.ok{color:var(--ok)}.vd.aj{color:var(--orange)}.vd.vg{color:var(--warn)}.vd.te{color:var(--blue)}
 .pri.must{color:var(--orange)}.pri.should{color:var(--warn)}.pri.could{color:var(--blue)}.pri.wont{color:var(--muted)}
 
 /* simulateur */
@@ -94,7 +101,8 @@ td:first-child{font-weight:700}
 .screen b{font-size:22px;line-height:1.15;letter-spacing:-.01em}
 .phone{border:2px solid var(--ink);background:var(--paper);padding:14px;min-height:240px}
 .stat{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:8px 10px;margin-bottom:10px;border-left:6px solid}
-.s0{border-color:var(--ok);color:var(--ok)}.s1{border-color:var(--blue);color:var(--blue)}.s2{border-color:var(--warn);color:var(--warn)}.s3{border-color:var(--orange);color:var(--orange)}
+.s1{border-color:var(--blue);color:var(--blue)}.s2{border-color:var(--warn);color:var(--warn)}.s3{border-color:var(--orange);color:var(--orange)}
+.ds{font-size:15px;font-weight:600;margin-bottom:8px}
 .notif{border-top:1px solid var(--line);padding:10px 0;font-size:15px}
 .btnrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .btn{font:500 11px var(--mono);border:1px solid var(--ink);padding:3px 8px}
@@ -105,17 +113,19 @@ td:first-child{font-weight:700}
 .levels{display:grid;gap:0}
 .lvl{display:grid;grid-template-columns:70px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
 .lvl .bd{font-weight:800;font-size:28px;letter-spacing:-.03em;line-height:1}
-.lvl.n0 .bd{color:var(--ok)}.lvl.n1 .bd{color:var(--blue)}.lvl.n2 .bd{color:var(--warn)}.lvl.n3 .bd{color:var(--orange)}
+.lvl.n0 .bd{color:var(--muted)}.lvl.n1 .bd{color:var(--blue)}.lvl.n2 .bd{color:var(--warn)}.lvl.n3 .bd{color:var(--orange)}
 
 details{border-top:1px solid var(--line);padding:12px 0}
 details:last-of-type{border-bottom:1px solid var(--line)}
 summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;gap:10px;align-items:baseline}
 summary::-webkit-details-marker{display:none}
-summary::before{content:"+";font:500 14px var(--mono);color:var(--blue);width:14px}
+summary::before{content:"+";font:500 14px var(--mono);color:var(--blue);width:14px;flex:none}
 details[open] summary::before{content:"−"}
 details>*:not(summary){margin-top:8px;font-size:16px;max-width:70ch}
+details>.tw,details>.cols{max-width:none}
 
-input[type=range]{width:100%;accent-color:var(--blue)}
+input[type=range]{width:100%;margin:0;accent-color:var(--blue)}
+select{font:500 13px var(--mono);padding:4px 8px;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink)}
 .bar{display:grid;grid-template-columns:200px 1fr 90px;gap:14px;align-items:center;padding:8px 0;border-top:1px solid var(--line);font-size:15px}
 .bar .t{height:14px;background:var(--line)}
 .bar .t i{display:block;height:100%;background:var(--ink);transition:width .25s}
@@ -126,11 +136,13 @@ label.chk{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 0;bo
 label.chk input{margin:4px 0 0;width:18px;height:18px;accent-color:var(--blue)}
 label.chk.done .tx{color:var(--muted);text-decoration:line-through}
 .ck{font:13px var(--mono);color:var(--muted)}
+.fl{display:grid;gap:8px}
+.fl .lead{font-size:12px}
 </style>
 </head>
 <body>
 
-<div class="keybar"><div class="keyin"><span>Le Cadre</span><p id="here">Un cadre photo qu'on offre à ses parents, qui veille en douceur sans surveiller.</p></div></div>
+<div class="keybar"><div class="keyin"><span>Le Cadre</span><p id="here">Un cadre photo qu'on offre à ses parents : un signe du matin et un filet lent.</p></div></div>
 
 <main>
 <header id="haut">
@@ -138,25 +150,30 @@ label.chk.done .tx{color:var(--muted);text-decoration:line-through}
   <h1>Le Cadre</h1>
   <div class="key">
     <span>L'idée</span>
-    <p>Un cadre photo connecté. La famille y envoie des photos, et le cadre repère en douceur quand la routine du jour change : sans caméra, sans bracelet, rien à recharger.</p>
+    <p>Un cadre photo connecté. La famille y envoie des photos. Chaque matin, un signe, et si le signe manque, un filet lent : sans caméra, sans micro, sans bracelet obligatoire.</p>
   </div>
   <ul class="toc" id="toc">
     <li><a href="#probleme">Problème</a></li>
     <li><a href="#personas">Personas</a></li>
     <li><a href="#valeur">Valeur</a></li>
     <li><a href="#faces">3 faces</a></li>
-    <li><a href="#chaine">Chaîne cœur</a></li>
+    <li><a href="#limites">Limites de détection</a></li>
+    <li><a href="#chaine">Simulateur</a></li>
     <li><a href="#alertes">Alertes</a></li>
     <li><a href="#perimetre">MVP</a></li>
     <li><a href="#modele">Modèle éco</a></li>
-    <li><a href="#donnees">Données</a></li>
+    <li><a href="#donnees">Données et éthique</a></li>
     <li><a href="#kpi">KPI</a></li>
+    <li><a href="#revue">Réussites et faillites</a></li>
+    <li><a href="#concurrents">Concurrents</a></li>
     <li><a href="#hypotheses">Hypothèses</a></li>
     <li><a href="#risques">Risques</a></li>
+    <li><a href="#problemes">Problèmes et réponses</a></li>
+    <li><a href="#nonresolu">Non résolu</a></li>
     <li><a href="#suite">Suite</a></li>
   </ul>
-  <p class="legend">Légende : <span class="b f">F</span> fait sourcé dans notre veille · <span class="b h">H</span> hypothèse à valider</p>
-  <p class="status"><b>Statut :</b> piste provisoire. Le brief place le choix de l'archétype en phase 3, après les entretiens de la phase 2. Cette fiche sert à en débattre à trois et à préparer les entretiens.</p>
+  <p class="legend">Légende : <span class="b f">F</span> fait sourcé dans notre veille ou sur une page lue · <span class="b h">H</span> hypothèse ou calcul de l'équipe, à valider</p>
+  <p class="status"><b>Statut :</b> piste provisoire. Le brief place le choix de l'archétype en phase 3, après les entretiens de la phase 2. Cette fiche sert à en débattre à trois et à préparer les entretiens. Cette version intègre la revue de tous les problèmes connus du produit (couverture, simulateur, usagers, éthique, économie, concurrents) et le contrôle d'un adversaire en trois passages. Aucun problème n'y est marqué « résolu » : voir les sections 16 et 17. L'objet est simulé et aucun parent réel n'a été interrogé. La section 12 reprend la <a href="../lucas/1-1-reussites-faillites-silvertech.html">fiche réussites et faillites de Lucas</a> (16 cas, en validation). <span class="b f">F</span></p>
 </header>
 
 <section class="q" id="probleme" data-title="Problème et positionnement">
@@ -165,23 +182,34 @@ label.chk.done .tx{color:var(--muted);text-decoration:line-through}
     <div class="kicker">Problème et positionnement</div>
     <h2>Entre la montre et la gazette</h2>
     <p class="sum">Question du brief : comment un objet connecté peut-il rassurer les enfants sans placer leurs parents sous surveillance ?</p>
+    <div class="callout">
+      <b>La promesse : un signe du matin et un filet lent.</b> Le lien d'abord : des photos, un bonjour. Ensuite, un filet : si le signe attendu n'arrive pas, la famille est prévenue au bout de plusieurs heures. Le Cadre repère un silence dans le champ de ses capteurs, quelle qu'en soit la cause. Il ne détecte pas les chutes.
+    </div>
+    <div class="callout o">
+      <b>Ce que Le Cadre n'est pas.</b> Pas une téléassistance : pas de centre d'écoute, aucun appel des secours. Il ne convient pas à un parent déjà tombé ou à fort risque : on l'oriente vers une vraie téléassistance (section 4). Aucun dispositif médical, aucun diagnostic, aucune donnée de santé. Il est fait pour une personne seule dans un logement.
+    </div>
     <div class="cols">
       <div class="col"><h3>Ce qui existe</h3>
         <ul>
           <li><b>Apple Watch, bracelets :</b> ils détectent, mais le parent doit les porter et les recharger. <span class="b f">F</span></li>
           <li><b>Famileo :</b> rien à faire pour le parent, mais aucune détection, et l'effort passe aux contributeurs. <span class="b f">F</span></li>
           <li><b>Téléassistance :</b> 87 % de l'entourage la voit comme un marqueur de dépendance (2016, source secondaire faible). <span class="b f">F</span></li>
+          <li><b>Capteurs de domicile :</b> Domalys liquidée en 2025, Vigilio arrêté en 2016. Un détecteur seul n'a pas trouvé son marché assez vite (cause réelle de Domalys inconnue, source unique pour Vigilio). <span class="b f">F</span></li>
+          <li><b>Cadres photo connectés :</b> Familink (France, lien sans détection), ViewClix et Memoryboard (États-Unis, lien seul), Livindi (États-Unis, cadre avec capteurs, kit lourd). <span class="b f">F</span> Détail en section 13.</li>
+          <li><b>Check-in gratuit :</b> Snug, un toucher par jour sur le téléphone du parent, SMS aux contacts s'il manque. <span class="b f">F</span></li>
+          <li><b>Un silence repéré a déjà été arrêté :</b> Alexa Together n'est plus disponible depuis le 21 mai 2025, cause non donnée. <span class="b f">F</span></li>
+          <li><b>Ce qui marche :</b> Famileo, près de 14 M€ de chiffre d'affaires en 2024, 260 000 familles, rentable depuis 2020, grâce à un enfant qui paie et un senior sans effort. <span class="b f">F</span></li>
         </ul>
       </div>
       <div class="col blue"><h3>Les 3 gaps visés</h3>
         <ol>
-          <li><b>Veiller sans effort du parent :</b> ni port, ni recharge, ni geste.</li>
-          <li><b>Alerter sans épuiser l'aidant :</b> alertes graduées, jamais de flot de notifications.</li>
-          <li><b>Garder le lien sans surveiller :</b> un récit de lien, pas de surveillance.</li>
+          <li><b>Un signe sans effort du parent :</b> ni port, ni recharge. Un toucher sur « Coucou » est possible, jamais exigé.</li>
+          <li><b>Alerter sans épuiser l'aidant :</b> le parent est interrogé d'abord, au plus 4 messages par alerte et par aidant, rien de nouveau la nuit. <span class="b h">H</span></li>
+          <li><b>Garder le lien sans surveiller :</b> les photos d'abord. L'enfant lit un fait daté, jamais une courbe ni une pièce.</li>
         </ol>
       </div>
     </div>
-    <p class="callout">Position sur la carte : « lien + sécurité discrète », une case peu occupée dans notre analyse de marché. Aucune source ne prouve qu'un capteur sans port se vende à domicile aux familles, et la demande pour le trio réuni n'est pas mesurée. <span class="b h">H</span></p>
+    <p class="callout">Position sur la carte : « lien + signe du jour discret ». En France, une case encore vide pour le particulier, mais voisine d'un acteur installé (Familink). En Europe, tenue seulement en établissement (Nobi). Aux États-Unis, déjà occupée (Livindi, Snug), sans acteur dominant visible. Aucune source ne prouve que cette case ait des acheteurs en France, et la demande pour le trio réuni n'est pas mesurée. <span class="b h">H</span></p>
   </div>
 </section>
 
@@ -199,14 +227,14 @@ label.chk.done .tx{color:var(--muted);text-decoration:line-through}
         <p><b>Elle refuse :</b> porter un objet, une caméra, tout ce qui dit « personne âgée ».</p>
       </div>
       <div class="col blue"><h3>Claire, 56 ans, l'aidante</h3>
-        <p><b>Situation :</b> en emploi, deux enfants, à 400 km de sa mère.</p>
-        <p><b>Déclencheur d'achat :</b> une chute dans l'entourage, une hospitalisation, un silence d'un week-end.</p>
+        <p><b>Situation :</b> en emploi, deux enfants, à 400 km de sa mère. <span class="b h">H</span></p>
+        <p><b>Déclencheur d'achat :</b> un événement dans l'entourage, un silence d'un week-end, un parent qui ne décroche plus.</p>
         <p><b>Phrase type :</b> « Je ne peux pas l'appeler cinq fois par jour. »</p>
         <p><b>Elle veut :</b> une réponse simple à « est-ce que ça va ? », et être prévenue seulement quand c'est utile.</p>
         <p><b>Elle craint :</b> la culpabilité de surveiller, les fausses alertes, l'abonnement dont on ne sort plus.</p>
       </div>
     </div>
-    <p class="note">Contexte chiffré : 73 % des 70 ans et plus ont un smartphone, mais 59,2 % des 75 ans et plus n'ont pas utilisé internet en 3 mois (2021). Les aidants ont surtout entre 55 et 64 ans. <span class="b f">F</span></p>
+    <p class="note">Contexte chiffré : 73 % des 70 ans et plus ont un smartphone, mais 59,2 % des 75 ans et plus n'ont pas utilisé internet en 3 mois (2021). Les aidants ont surtout entre 55 et 64 ans. <span class="b f">F</span> Autres parents imaginés pour les entretiens : un parent qui tremble, un parent qui dit « oui » pour ne pas vexer, un parent déjà tombé l'an dernier. <span class="b h">H</span></p>
   </div>
 </section>
 
@@ -218,10 +246,11 @@ label.chk.done .tx{color:var(--muted);text-decoration:line-through}
     <div class="tw"><table>
       <thead><tr><th></th><th>Le parent (utilisateur)</th><th>L'enfant (acheteur, aidant)</th></tr></thead>
       <tbody>
-        <tr><td>Gain</td><td>Les photos de sa famille, un message du jour, un moyen simple de dire « je vais bien ».</td><td>Un signe du jour lisible en 2 secondes, et une alerte seulement après que le parent a eu sa chance de répondre.</td></tr>
-        <tr><td>Effort</td><td>Aucun : pas de port, pas de recharge. Au pire un toucher.</td><td>Envoyer des photos quand il veut. Pas de tableau de bord à surveiller.</td></tr>
-        <tr><td>Contrôle</td><td>Il voit ce que voit l'enfant, et peut mettre en pause.</td><td>Il règle les seuils avec le parent, pas à sa place.</td></tr>
+        <tr><td>Gain</td><td>Les photos de sa famille, un message du jour, un moyen simple de dire bonjour.</td><td>Un fait daté (« Dernier signe reçu à 08:12 ») lisible en 2 secondes, et un message seulement si le signe du matin manque. <span class="b h">H</span></td></tr>
+        <tr><td>Effort</td><td>Aucun : pas de port, pas de recharge. Un toucher sur « Coucou » est possible, jamais exigé.</td><td>Envoyer des photos quand il veut, en moins de 2 minutes par mois. Pas de tableau de bord. <span class="b h">H</span></td></tr>
+        <tr><td>Contrôle</td><td>Il lit ce que reçoit l'enfant (sous « Ma famille voit », par un geste volontaire), met en pause, retire son accord.</td><td>Il règle les seuils avec le parent, jamais à sa place ni seul.</td></tr>
         <tr><td>Image</td><td>Un cadre photo, comme tout le monde en a.</td><td>Un cadeau qu'on peut offrir sans froisser.</td></tr>
+        <tr><td>Ce que ça ne donne pas</td><td>Aucun appel de secours, aucun bouton d'aide.</td><td>Pas de secours rapide : le délai se compte en heures (section 5).</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -239,57 +268,161 @@ label.chk.done .tx{color:var(--muted);text-decoration:line-through}
     </div>
 
     <div class="panel" id="achat">
-      <p class="lead">L'enfant découvre, comprend, choisit et achète en confiance, et le parent doit pouvoir dire oui.</p>
+      <p class="lead">L'enfant découvre, comprend, oriente, choisit et achète en confiance, et le parent doit pouvoir dire oui.</p>
       <ol class="steps" style="margin-top:12px">
-        <li><div><b>Découvrir.</b> Page centrée sur le cadeau et le lien (« Offrez-lui vos photos »), pas sur la peur de la chute.</div></li>
-        <li><div><b>Comprendre.</b> Une démo claire : ce que le cadre voit (une présence, jamais une personne), ce qu'il ne voit jamais, ce que reçoit l'enfant.</div></li>
-        <li><div><b>Choisir.</b> Une seule offre (kit + abonnement), prix total affiché, sans engagement. Le prix tout compris est notre argument face à l'opacité des offres actuelles. <span class="b f">F</span></div></li>
-        <li><div><b>Réassurance.</b> Reprise de l'appareil, résiliation en un clic, explication des données collectées.</div></li>
-        <li><div><b>Consentement.</b> Case obligatoire : « J'en ai parlé avec mon parent. » La CNIL demande l'accord de la personne, si possible. <span class="b f">F</span></div></li>
-        <li><div><b>Activation.</b> Au premier allumage, le parent voit un écran de bienvenue et valide lui-même (« Je suis d'accord »). Sans son accord, la détection reste éteinte.</div></li>
+        <li><div><b>Découvrir.</b> Page centrée sur le cadeau et le lien (« Offrez-lui vos photos »), pas sur la peur. La promesse tient en une ligne : un signe du matin et un filet lent. Aucun prix dans le texte de vente ni dans le bouton d'achat : le prix se teste d'abord (section 9).</div></li>
+        <li><div><b>Comprendre.</b> Une démo claire. Ce que le cadre remarque : si quelqu'un passe devant lui, si vous touchez l'écran. Il n'a ni caméra ni micro. Ce qu'il ne voit pas : une personne immobile, les autres pièces, la cave, le garage, le jardin. Ce que reçoit l'enfant : un fait daté.</div></li>
+        <li><div><b>Orienter.</b> Cinq questions sans mot médical, avant le paiement, pour repérer un parent à risque. Aucune réponse n'est enregistrée. Texte et calcul dans l'encadré ci-dessous.</div></li>
+        <li><div><b>Choisir.</b> Une seule offre : le kit A, c'est-à-dire le cadre avec « Coucou », un capteur de passage intégré et une SIM 4G. <span class="b h">H</span> Le kit B, avec capteurs satellites, est une option simulée, ni vendue ni chiffrée à l'acheteur. Questions de pose : « Où passe-t-elle le matin ? », « Vit-elle seule ? », « Animal ? », « Qui passe chez elle ? », « Réseau mobile à l'intérieur ? ». Test de couverture à l'adresse ; sans réseau mobile, pas de vente.</div></li>
+        <li><div><b>Contrat du matin, sous le bouton de paiement.</b> La phrase ci-dessous est recopiée telle quelle dans le parcours d'achat, l'application et les conditions, puis la case « J'ai lu » et la case « Je comprends que le délai se compte en heures ».
+          <div class="quote" style="margin-top:8px">« Chaque matin, un signe : une photo vue, un toucher, un passage devant le cadre. S'il n'arrive pas avant l'heure habituelle plus 1 h 30, votre famille est prévenue environ 30 minutes plus tard. Le soir, le filet peut aller jusqu'à 21 h, et aucun nouveau message ne part entre 21 h 30 et 7 h. Un animal ou une personne qui passe devant un capteur peut empêcher le silence d'être repéré. »<small>Suivie, seulement ici, de la phrase de limite : « Le Cadre ne détecte pas les chutes et ne remplace pas une téléassistance. En cas d'urgence, appelez le 15, le 18 ou le 112. » <span class="b h">H</span></small></div>
+          <p class="note" style="margin-top:6px">Phrase aussi écrite dans l'e-mail de confirmation, preuve de ce qui a été annoncé. Les délais exacts sont dans le tableau de la section 5, seule source. À écrire aussi : « Si votre proche l'éteint, vous ne recevrez plus rien. » et « Le cadre n'a pas besoin de votre box. »</p></div></li>
+        <li><div><b>Réassurance.</b> Reprise de l'appareil, résiliation en un clic, support par e-mail, explication des données collectées. Et une phrase honnête : Le Cadre n'est pas une téléassistance, il n'y a pas de centre d'écoute et aucun appel de secours.</div></li>
+        <li><div><b>Consentement de l'acheteur.</b> Case obligatoire : « Mon parent sait que ce cadre lui est offert et a compris ce qu'il fait. S'il a une mesure de protection, la personne qui le représente est d'accord. » La CNIL demande l'accord de la personne, si possible. <span class="b f">F</span> Cette case prépare le consentement du parent, elle ne le remplace pas.</div></li>
+        <li><div><b>Désigner les personnes.</b> Un responsable et un suppléant obligatoires. Un contact local, choisi par le parent : il reçoit un SMS (« Répondez OUI pour accepter, STOP pour vous retirer ») et n'est jamais contacté sans avoir répondu OUI.</div></li>
+        <li><div><b>Activation, par le parent seul, sur le cadre.</b> « Le cadre remarque si quelqu'un passe devant lui et si vous touchez l'écran. Il n'a ni caméra ni micro. » Deux boutons de même taille : « Oui, je veux bien » et « Non, juste les photos ». Rien n'est coché d'avance. Un enfant peut être dans la pièce, mais c'est le parent qui touche. Sans son choix, rien n'est activé et le cadre reste un cadre photo. Le parent désigne alors une personne de confiance qui pourra lui proposer, chaque année, de reconfirmer.</div></li>
       </ol>
+      <details style="margin-top:14px"><summary>Questionnaire d'orientation vers une téléassistance (5 questions, rien d'enregistré)</summary>
+        <p>Réponses possibles : Oui, Non, Je ne sais pas. Le calcul se fait dans la page de l'acheteur, puis la page est oubliée. Le logiciel du parcours d'achat ne doit pas journaliser ces champs : condition d'acceptation, à vérifier au choix de la stack (phase 5). <span class="b h">H</span></p>
+        <ol>
+          <li>« Votre proche est-il tombé au cours de l'année passée ? »</li>
+          <li>« Chez lui, a-t-il besoin d'une canne, d'un déambulateur ou de l'appui de quelqu'un pour se déplacer ? »</li>
+          <li>« Son logement a-t-il des marches ou un escalier à monter ou à descendre tous les jours (étage, cave, jardin) ? »</li>
+          <li>« Porte-t-il déjà un bracelet ou un médaillon d'alerte, ou a-t-il déjà une téléassistance ? »</li>
+          <li>« Si vous n'aviez aucune nouvelle de lui pendant une matinée, quelqu'un pourrait-il passer chez lui dans l'heure ? »</li>
+        </ol>
+        <p><b>Calcul</b> <span class="b h">H</span> Oui ou Je ne sais pas à la question 1 ou 2 : orientation forte. Oui à la 3, ou Non ou Je ne sais pas à la 5 : orientation douce. Oui à la 4 : « Le Cadre vient en plus de votre téléassistance, pas à la place ». La vente n'est jamais bloquée : le produit ne juge pas un parent et ne peut pas vérifier les réponses.</p>
+        <div class="quote"><b>Orientation forte.</b> Merci pour vos réponses. D'après ce que vous nous dites, une téléassistance serait le premier choix pour votre proche : un bracelet ou un médaillon, et quelqu'un qui répond à toute heure. Le Cadre ne fait pas cela. Le Cadre garde le lien avec des photos. « Chaque matin, un signe : une photo vue, un toucher, un passage devant le cadre. S'il n'arrive pas avant l'heure habituelle plus 1 h 30, votre famille est prévenue environ 30 minutes plus tard. Le soir, le filet peut aller jusqu'à 21 h, et aucun nouveau message ne part entre 21 h 30 et 7 h. Un animal ou une personne qui passe devant un capteur peut empêcher le silence d'être repéré. » Beaucoup de familles choisissent les deux : la téléassistance pour être joint à toute heure, Le Cadre pour les photos et le lien. <span class="b h">H</span> <a href="https://www.pour-les-personnes-agees.gouv.fr/facile-a-lire-et-a-comprendre/la-teleassistance-comment-ca-marche">Voir comment choisir une téléassistance</a> · Prendre Le Cadre en plus · Revenir</div>
+        <div class="quote"><b>Orientation douce.</b> Une téléassistance peut compléter Le Cadre si vous voulez que quelqu'un puisse répondre à toute heure. Le Cadre ne remplace pas cette aide : il garde le lien et repère un silence de plusieurs heures. En savoir plus sur la téléassistance · Continuer avec Le Cadre</div>
+        <p class="note">Preuve d'information sans garder les réponses : tous les acheteurs voient la même case obligatoire « J'ai lu : Le Cadre ne détecte pas les chutes et ne remplace pas une téléassistance. En cas d'urgence, appelez le 15, le 18 ou le 112. ». On garde la case cochée, la date et la version du texte, jamais le niveau d'orientation, qui serait une donnée de santé déduite. Limite : on ne prouve pas qu'un acheteur précis a lu le texte renforcé. Page du portail officiel lue le 6 octobre 2026 : elle décrit le principe de la téléassistance, pas un comparatif de prix. <span class="b f">F</span></p>
+      </details>
     </div>
 
     <div class="panel" id="senior" hidden>
-      <p class="lead">L'objet (simulé) et une interface minuscule. Il doit pouvoir rester muet toute une semaine sans que cela pose problème.</p>
+      <p class="lead">L'objet (simulé) et une interface minuscule. Le parent n'a jamais à répondre : un toucher est possible, jamais exigé.</p>
       <div class="cols" style="margin-top:12px">
         <div class="col"><h3>Ce que le parent voit</h3><ul>
-          <li>Un diaporama des photos envoyées par la famille.</li>
+          <li>Un diaporama des photos envoyées par la famille. Le cadre n'est jamais vide : il rejoue les photos déjà reçues.</li>
           <li>Un message du jour en gros caractères.</li>
-          <li>Un bouton « Coucou » (un toucher) pour répondre.</li>
-          <li>Un écran « Ce que ma famille voit » : les mêmes informations que l'enfant.</li></ul></div>
+          <li>Un bouton « Coucou » très grand, libellé « Dire bonjour à ma famille » : un toucher n'importe où sur sa zone.</li>
+          <li>Un bouton « Ma famille voit », derrière un geste volontaire (deux touchers, fermeture après 2 minutes) : les mots exacts reçus par la famille. <span class="b h">H</span></li>
+          <li>L'écran principal n'affiche jamais d'état d'alerte ni de nom d'enfant, car un visiteur le lirait.</li></ul></div>
         <div class="col blue"><h3>Ce que le parent contrôle</h3><ul>
-          <li><b>Pause intimité :</b> doigt maintenu 3 secondes, durée au choix (hypothèse : 24 h maximum).</li>
-          <li><b>Contact de secours :</b> il choisit lui-même la deuxième personne à prévenir.</li>
-          <li><b>Retrait :</b> il peut tout désactiver, l'enfant en est informé avec respect.</li></ul></div>
+          <li><b>Pause :</b> deux touchers, trois durées (« 1 heure », « Jusqu'à ce soir », « Jusqu'à demain »), sans plafond. Après 2 jours, le cadre propose au parent de la lever. L'enfant lit « en pause », sans durée ni motif. <span class="b h">H</span></li>
+          <li><b>Absence :</b> « Je pars », deux touchers au plus. Rien n'est repéré pendant ce temps.</li>
+          <li><b>Éteindre :</b> un bouton visible, sans justification. L'enfant lit « Maman a éteint le cadre ».</li>
+          <li><b>Qui voit :</b> la liste des personnes qui ont accès, qui a consulté, validation de chaque invitation sur le cadre, blocage d'un expéditeur, retrait en un geste.</li>
+          <li><b>Contact local et personne de confiance :</b> il les choisit lui-même.</li></ul></div>
       </div>
-      <p class="callout" style="margin-top:14px">Accessibilité renforcée : fort contraste, texte à partir de 24 pt, un seul geste (toucher), aucun menu, aucun son strident, aucun mot technique à l'écran.</p>
+      <p class="callout" style="margin-top:14px">Accessibilité : contraste d'au moins 4,5 pour 1 sur tout texte (repère WCAG 1.4.3). <span class="b f">F</span> Texte sur bandeau uni, jamais posé sur une photo. Grande cible « Coucou » d'au moins un quart de l'écran, validée au début du toucher. Ni appui long, ni glissement, ni double toucher. Aucun son. Aucun état porté par la couleur seule, jamais de vert ni de coche. La nuit l'écran s'assombrit mais garde le bouton visible. <span class="b h">H</span> Seuils à mesurer avec de vrais parents.</p>
+      <p class="note" style="margin-top:10px">Ton : le texte par défaut est « Touchez l'écran pour dire bonjour. » (et non « Un petit coucou ? », qui rapetisse). « Vous » par défaut, prénom au choix. Trois variantes à tester en entretien, du plus neutre au plus chaleureux. <span class="b h">H</span></p>
     </div>
 
     <div class="panel" id="aidant" hidden>
-      <p class="lead">Une application simple : une réponse d'abord, du détail seulement si besoin.</p>
+      <p class="lead">Une application simple : un fait daté d'abord, du détail seulement si besoin.</p>
       <div class="cols" style="margin-top:12px">
         <div class="col"><h3>Informations utiles</h3><ul>
-          <li><b>Signe du jour :</b> « Journée normale ✓ », « À surveiller » ou « À vérifier ».</li>
-          <li><b>Résumé de la semaine (IA) :</b> « La semaine de Maman en 3 lignes », sans diagnostic ni conseil médical.</li>
-          <li>Détail visible seulement en cas d'écart.</li></ul></div>
+          <li><b>Dernier signe :</b> « Dernier signe reçu : aujourd'hui à 08:12. Mis à jour à 14:05 », avec l'âge (« il y a 3 h »). Ni coche, ni vert, ni « normal ». Ni pièce, ni nature du signe, ni savoir si le parent a touché.</li>
+          <li><b>États factuels :</b> parent interrogé, famille prévenue, en pause, absence, apprentissage, panne. Chacun dit un fait ou une action (section 7).</li>
+          <li><b>Résumé de la semaine par IA :</b> hors MVP, testé en phase 5. Il compte des jours avec ou sans signe, jamais d'heure, jamais de touchers, jamais de photos, avec la mention « Résumé généré par IA » et sans conseil.</li>
+          <li><b>Page d'aide :</b> la phrase de limite et le contrat du matin, mot pour mot :
+            <div class="quote" style="margin-top:6px">« Chaque matin, un signe : une photo vue, un toucher, un passage devant le cadre. S'il n'arrive pas avant l'heure habituelle plus 1 h 30, votre famille est prévenue environ 30 minutes plus tard. Le soir, le filet peut aller jusqu'à 21 h, et aucun nouveau message ne part entre 21 h 30 et 7 h. Un animal ou une personne qui passe devant un capteur peut empêcher le silence d'être repéré. » <span class="b h">H</span></div></li></ul></div>
         <div class="col blue"><h3>Interactions à distance</h3><ul>
-          <li>Envoyer une photo ou un message vocal sur le cadre.</li>
-          <li>Réponses rapides : « J'ai appelé, c'est bon ».</li>
-          <li>Régler les seuils avec le parent (créneau de routine, délais).</li>
-          <li>Gérer les contacts de secours.</li></ul></div>
+          <li>Envoyer une photo, ou un message vocal doublé d'un texte écrit, sur le cadre.</li>
+          <li>Répondre à N2 par « Je m'en occupe », puis dire l'issue : « Elle m'a répondu », « Elle était absente », « Une autre personne l'a vue », « Panne du cadre ». Plus de bouton « C'est bon ».</li>
+          <li>« Signaler un contact » : « J'ai eu Maman à 12:10 » compte comme un signe daté et clôt l'alerte.</li>
+          <li>Régler les seuils avec le parent, jamais seul.</li>
+          <li>Gérer les personnes à prévenir ; un test de la liste tous les 3 mois. <span class="b h">H</span></li>
+          <li>La notice dit : « Ces informations servent à appeler, pas à contrôler. »</li></ul></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="q" id="chaine" data-title="Chaîne cœur">
+<section class="q" id="limites" data-title="Limites de détection">
   <div class="rail"><span class="qnum">5</span></div>
   <div class="qbody">
-    <div class="kicker">Chaîne cœur : du capteur simulé à l'alerte</div>
+    <div class="kicker">Limites de détection · couverture, délais, ce qui n'est pas couvert</div>
+    <h2>Ce que le silence repère, et ce qu'il rate</h2>
+    <p class="sum">Le Cadre ne détecte pas les chutes : il constate qu'aucun signe n'est arrivé. Le délai se compte en heures, et plus encore le soir.</p>
+
+    <div>
+      <h3>Niveaux de couverture</h3>
+      <p class="note">Valeurs de journée : dernier signe jusqu'à la première alerte à l'enfant (N2), pour un silence réel. Tous les délais sont des hypothèses de travail. Source unique des délais : le tableau plus bas. <span class="b h">H</span></p>
+      <div class="tw sm" data-b="H"><table>
+        <thead><tr><th style="width:17%">Niveau</th><th>Ce qui est capté</th><th>Ce qui est raté</th><th style="width:14%">Journée</th><th style="width:19%">Dans le projet</th></tr></thead>
+        <tbody>
+          <tr><td>A. Cadre seul</td><td>Le toucher « Coucou » et les passages devant le cadre, dans sa pièce.</td><td>Toutes les autres pièces. Une personne immobile devant le cadre. Un animal, un visiteur, un conjoint.</td><td>5 h 30</td><td><span class="vd te">Décrit et vendu (MVP)</span></td></tr>
+          <tr><td>B. Cadre, passerelle, 3 capteurs</td><td>En plus : un passage dans la pièce de vie, un passage dans le couloir, l'ouverture de la porte d'entrée.</td><td>Salle de bain, chambre, personne immobile, visiteurs. Trois piles à changer.</td><td>4 h</td><td><span class="vd vg">Option simulée, ni vendue ni chiffrée</span></td></tr>
+          <tr><td>C. Capteurs en zones à risque</td><td>Un passage ou une ouverture de porte, salle de bain ou chambre.</td><td>Rien sur la chute elle-même. Capteurs intimes, piles.</td><td>1 h 10 après un dernier signe en salle de bain</td><td><span class="vd vg">Option simulée, jamais par défaut</span></td></tr>
+          <tr><td>D. Appareil porté</td><td>Un bracelet repère une chute lourde suivie d'immobilité après 15 secondes. <span class="b f">F</span></td><td>Chutes molles, appareil non porté, déchargé ou hors réseau. <span class="b f">F</span></td><td>Minutes, si porté</td><td><span class="vd">Écarté : contredit « sans bracelet »</span></td></tr>
+          <tr><td>E. Radar par pièce</td><td>Une présence immobile, assise ou allongée (fiches de revente, résumé). <span class="b f">F</span></td><td>La chute elle-même. Les autres personnes.</td><td>1 à 3 h</td><td><span class="vd">Veille, hors MVP</span></td></tr>
+        </tbody>
+      </table></div>
+      <p class="note" style="margin-top:8px">Le kit B contient deux capteurs de passage et un capteur d'ouverture de porte, soit trois piles, plus une passerelle en boîtier séparé. Ni veilleuse ni prise connectée : la seule veilleuse identifiée ne détecte rien. Aucune passerelle du commerce marquée CE n'est identifiée, donc B n'est pas vendu.</p>
+    </div>
+
+    <div>
+      <h3>Logique des délais</h3>
+      <ul>
+        <li><b>Un seuil de silence, pas un chronomètre depuis une chute.</b> Délai total = seuil de silence + attente laissée au parent (30 minutes sur le cadre). Le produit ne sait pas quand la personne est tombée. <span class="b h">H</span></li>
+        <li><b>Le matin :</b> le cadre apprend l'heure du premier signe, médiane des 14 derniers jours, bornée entre 06:00 et 10:30. Sans signe avant cette heure plus 90 minutes, le parent est interrogé (N1), puis la famille prévenue environ 30 minutes plus tard (N2). <span class="b h">H</span></li>
+        <li><b>La journée :</b> seuil de 5 h avec le cadre seul, de 3 h 30 avec les capteurs du kit B. <span class="b h">H</span></li>
+        <li><b>Les 14 premiers jours :</b> les seuils sont plus larges et le message part environ 1 heure après. Texte : « Le Cadre apprend vos habitudes. Pendant 14 jours, il prévient plus tard et moins souvent. » Jamais « aucune alerte pour l'instant ». <span class="b h">H</span></li>
+        <li><b>La nuit :</b> aucune nouvelle alerte entre 21 h 30 et 7 h. Un N1 n'est émis que si son N2 peut partir avant 21 h 30. Une alerte déjà ouverte continue. <span class="b h">H</span></li>
+        <li><b>Règle unique des signes :</b> tout signe remet le compteur à zéro (toucher volontaire, passage devant le cadre, réveil de l'écran, cœur sur une photo, signe déclaré par un aidant). Aucune règle n'exige le toucher et aucun texte ne le révèle à l'enfant. Tout signe ferme un N1 ; après un N2, tout signe met la chaîne en pause, seul l'aidant ou un signe fort la ferme.</li>
+        <li><b>Compromis dit :</b> plus court, plus de fausses alertes (une sieste, une lecture immobile). Plus long, plus de temps au sol. Le produit ne sait pas faire mieux sans bracelet ni radar : il ne se vend pas comme un secours rapide.</li>
+      </ul>
+      <p class="note" style="margin:12px 0 8px">Maximum entre le dernier signe et le message à l'enfant. Les valeurs viennent du tableau de délais du simulateur, que cette fiche ne recalcule pas. <span class="b h">H</span></p>
+      <div class="tw sm" data-b="H"><table>
+        <thead><tr><th style="width:30%">Situation</th><th>Kit A (vendu)</th><th>Kit B (option)</th><th>14 premiers jours</th></tr></thead>
+        <tbody>
+          <tr><td>Journée, seuil franchi avant 21:00</td><td>5 h 30</td><td>4 h</td><td>7 h</td></tr>
+          <tr><td>Matin sans signe</td><td>N2 à l'heure apprise plus 2 h : 09:45 pour une heure apprise de 07:45, au plus 12:30</td><td>idem</td><td>N1 10:00, N2 11:00</td></tr>
+          <tr><td>Fin d'après-midi ou soirée : le pire cas, heure apprise 07:45</td><td>17 h 44</td><td>16 h 14</td><td>20 h 29</td></tr>
+          <tr><td>Même cas, heure apprise au plafond de 10:30</td><td>20 h 29</td><td>18 h 59</td><td>20 h 29</td></tr>
+          <tr><td>Nuit : dernier signe 21:10, personne à terre à 03:10</td><td>6 h 35 depuis 03:10, soit 12 h 35 depuis le dernier signe ; 9 h 20 depuis 03:10 au plafond</td><td>idem</td><td>7 h 50 depuis 03:10</td></tr>
+          <tr><td>Animal, visiteur, aide à domicile non déclarés</td><td>Non borné : dernier passage plus 5 h 30</td><td>Non borné : dernier passage plus 4 h</td><td>Non borné</td></tr>
+          <tr><td>Panne du service ou du cadre</td><td colspan="3">Durée de la panne plus 10 minutes, depuis le vrai dernier signe</td></tr>
+          <tr><td>Si personne ne répond</td><td colspan="3">N2 plus 90 minutes pour le contact local (bouton manuel dans le MVP)</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note" style="margin-top:8px">Il faut ajouter la période du moteur (5 minutes) et, en plan gratuit, 15 minutes au plus ; « jusqu'à 21 h » arrondit donc le maximum vers le haut. Le maximum d'un silence ordinaire est 20 h 29 avec le cadre seul. Aucun maximum chiffré ne vaut pour un chien ou une aide non déclarés : le masquage n'est pas borné. <span class="b h">H</span></p>
+      <details><summary>Règle du soir : V1 retenue, V2 en option désactivée</summary>
+        <p><b>V1 (retenue) :</b> rien entre 21 h 30 et 7 h. Un silence qui n'a pas pu aboutir à un N2 avant 21 h 30 attend le lendemain matin. <span class="b h">H</span></p>
+        <p><b>V2 (option, désactivée par défaut, jamais promise) :</b> un message silencieux à 21 h 30 pour un silence qui a franchi le seuil de journée. Elle gagne 30 minutes à 1 heure sur le pire cas seulement, coûte jusqu'à environ 30 messages silencieux par mois (non mesuré) et casse la promesse « aucun nouveau message avant 7 h ». À tester en entretien. <span class="b h">H</span></p>
+      </details>
+    </div>
+
+    <div>
+      <h3>Ce que Le Cadre ne couvre pas</h3>
+      <ol>
+        <li><b>Hors du logement :</b> jardin, cave, garage, escalier de l'immeuble, rue. Avec le kit A, aucune sortie n'est même signalée. Avec le kit B, le message est « Sorti à 14:10, pas revenu ».</li>
+        <li><b>Un toucher le matin, puis plus rien :</b> le toucher remet le compteur à zéro, le silence suivant n'est repéré qu'après plusieurs heures.</li>
+        <li><b>Un foyer à plusieurs, un visiteur ou une aide non déclarés :</b> leurs signes masquent le silence du parent. Le Cadre est fait pour une personne seule.</li>
+        <li><b>Une personne immobile ou couchée :</b> un capteur infrarouge réagit aux changements, pas à l'immobilité. <span class="b f">F</span> L'application écrit « dernier signe », jamais « présent ».</li>
+        <li><b>Le soir et la nuit :</b> l'alerte attend le matin. Aucun capteur du kit A n'éclaire ou n'interroge la nuit.</li>
+        <li><b>Une panne</b> de courant, de réseau, de capteur ou de pile : dite comme une panne, mais couverture nulle pendant ce temps.</li>
+        <li><b>Une pause, une absence, un voyage :</b> rien n'est repéré tant que le mode dure.</li>
+        <li><b>Un parent déjà tombé, fragile ou dépendant :</b> le produit n'est pas conçu pour lui, une téléassistance l'est.</li>
+        <li><b>Un incendie, une fuite, un cambriolage :</b> le cadre ne les voit pas. Il ne remplace pas un détecteur de fumée.</li>
+      </ol>
+    </div>
+
+    <div class="callout o">
+      <b>Recommandation MVP.</b> Décrire et simuler le kit A (cadre avec « Coucou », capteur de passage intégré, SIM 4G). Présenter le kit B et l'option C comme options simulées, non vendues, non chiffrées à l'acheteur. Règle du soir V1. Pas de règle de nuit au capteur du couloir, pas de V2, pas de SMS automatique au contact local : décrits ou simulés, jamais promis. À l'achat, écrire noir sur blanc la liste ci-dessus et le contrat du matin. <span class="b h">H</span>
+      <div class="quote" style="margin-top:8px">« Chaque matin, un signe : une photo vue, un toucher, un passage devant le cadre. S'il n'arrive pas avant l'heure habituelle plus 1 h 30, votre famille est prévenue environ 30 minutes plus tard. Le soir, le filet peut aller jusqu'à 21 h, et aucun nouveau message ne part entre 21 h 30 et 7 h. Un animal ou une personne qui passe devant un capteur peut empêcher le silence d'être repéré. » <span class="b h">H</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="q" id="chaine" data-title="Simulateur">
+  <div class="rail"><span class="qnum">6</span></div>
+  <div class="qbody">
+    <div class="kicker">Chaîne cœur : du signe simulé à l'alerte</div>
     <h2>Le simulateur, pas à pas</h2>
     <p class="sum">Condition du MVP dans le brief : un événement simulé côté objet déclenche une alerte visible et actionnable côté aidant.</p>
-    <p class="callout o">Les délais montrés (20 minutes avant l'étape suivante, par exemple) sont des hypothèses de travail, à régler avec les entretiens. <span class="b h">H</span></p>
+    <p class="callout o">Tout est simulé : Marie, Claire, Léa et Paul sont fictifs, l'objet est un générateur d'événements. Les heures et les durées montrées sont des hypothèses de travail (kit A, cadre seul), à régler avec les entretiens. Les délais de référence sont dans le tableau de la section 5. <span class="b h">H</span></p>
     <div class="tabs" id="scen"></div>
     <div class="progress"><i id="prog"></i></div>
     <div class="ctrl">
@@ -308,35 +441,95 @@ label.chk.done .tx{color:var(--muted);text-decoration:line-through}
         <div class="log" id="log"></div>
         <p class="why" id="why"></p></div>
     </div>
-    <details><summary>Flux de bout en bout (à préciser en phase 6)</summary>
-      <p>Simulateur d'objet → webhook → base de données → règles d'alerte → application de l'aidant, et écran du cadre en retour. Un outil d'automatisation reçoit le webhook et applique les règles. La stack exacte se décide en phase 5.</p>
-      <p><b>Événements simulés :</b> présence détectée, absence sur un créneau, toucher « Coucou », pause intimité, appareil hors ligne.</p>
+    <noscript><p class="callout">Le simulateur demande JavaScript. Sans lui, les délais et les textes de chaque état sont lisibles dans les sections 5 et 7.</p></noscript>
+    <details><summary>Flux de bout en bout et événements simulés</summary>
+      <p>Simulateur d'objet, puis webhook, puis base de données, puis règles d'alerte, puis application de l'aidant ; l'écran du cadre ne reçoit jamais d'état d'alerte. Chaque événement est signé avec un secret propre à l'appareil, horodaté et numéroté pour refuser le rejeu. L'IA n'est jamais dans la chaîne d'alerte : les messages sont des modèles fixes. La stack exacte se décide en phase 5. <span class="b h">H</span></p>
+      <p><b>Un événement n'est écrit qu'au changement d'état.</b> Le battement du cadre, toutes les 15 minutes, est vérifié sans écriture en base. <span class="b h">H</span></p>
+      <p><b>Événements, par source :</b> signe fort (toucher volontaire sur « Coucou », signe déclaré par un aidant) ; signes faibles (passage devant le cadre, réveil de l'écran, cœur sur une photo ; avec le kit B, passage devant un capteur ou ouverture de la porte). Puis : battement, capteur peu actif, capteur muet, pause, absence, absence prolongée, apprentissage, reconnexion, extinction volontaire. La zone d'un capteur sert au moteur seulement : elle n'est jamais affichée ni envoyée.</p>
+      <p><b>Dans le MVP, le moteur tourne à la demande</b> (bouton ou scénario de test), sans plan payant. Hors MVP : moteur planifié à 5 minutes, contrôleur indépendant, foyer témoin et astreinte, qui exigent un plan payant (section 9). <span class="b h">H</span></p>
+    </details>
+    <details><summary>Panne du service lui-même : qui surveille le surveillant (hors MVP)</summary>
+      <p>L'absence d'alerte est le message le plus dangereux d'un système d'alerte : si le moteur est mort, « aucune notification » ressemble à « aucun problème ». Conception retenue : un contrôleur dans un autre compte et un autre outil vérifie que le moteur a battu récemment ; sinon il prévient les responsables et une personne d'astreinte nommée. L'application de l'enfant se défend aussi seule : elle écrit « Mise à jour impossible depuis 14:05 » si l'écart avec l'heure du téléphone dépasse 20 minutes. Au redémarrage, le silence est recalculé depuis le vrai dernier signe, sans crédit. <span class="b h">H</span></p>
+      <p><b>Limite :</b> le moteur à 5 minutes exige un plan payant ; le plan gratuit de l'outil de scénarios ne permet pas 15 minutes non plus. Le service externe de surveillance n'est pas choisi et l'astreinte n'a pas de coût chiffré. Déploiement par paliers : un foyer pilote d'abord, aucune règle modifiée en production sans test préalable sur le simulateur. <span class="b h">H</span></p>
     </details>
   </div>
 </section>
 
 <section class="q" id="alertes" data-title="Alertes graduées">
-  <div class="rail"><span class="qnum">6</span></div>
+  <div class="rail"><span class="qnum">7</span></div>
   <div class="qbody">
-    <div class="kicker">Alertes graduées</div>
+    <div class="kicker">Alertes graduées · états affichés · textes</div>
     <h2>Le parent d'abord</h2>
-    <p class="sum">Le parent a toujours sa chance de répondre avant que l'enfant soit sollicité. Le produit n'appelle jamais les secours seul et ne promet aucune sécurité absolue.</p>
+    <p class="sum">Le parent a toujours sa chance de répondre avant que l'enfant soit sollicité, sauf quand il n'est pas là ou dort. Le produit n'appelle jamais les secours.</p>
     <div class="levels">
-      <div class="lvl n0"><span class="bd">N0</span><div><b>Routine normale.</b> Rien n'est envoyé. L'enfant voit « Journée normale ✓ ».</div></div>
-      <div class="lvl n1"><span class="bd">N1</span><div><b>Écart léger.</b> Le cadre dit « Un petit coucou ? ». Personne n'est prévenu. Un toucher du parent clôt le sujet.</div></div>
-      <div class="lvl n2"><span class="bd">N2</span><div><b>Pas de réponse.</b> L'enfant reçoit une notification douce : « Pas de nouvelles de Maman ce matin, à vérifier quand tu peux », avec les actions Appeler, Message vocal sur le cadre, « C'est bon ».</div></div>
-      <div class="lvl n3"><span class="bd">N3</span><div><b>Toujours rien, et l'enfant n'a pas réagi.</b> Relance, puis proposition de prévenir le contact de secours choisi par le parent. L'enfant décide d'appeler les secours, jamais le produit.</div></div>
+      <div class="lvl n0"><span class="bd">N0</span><div><b>Signe reçu, rien n'est envoyé.</b> L'enfant lit un fait daté : « Dernier signe reçu : aujourd'hui à 08:12. Mis à jour à 14:05. » avec l'âge du signe. Jamais « normal », jamais de coche ni de vert.</div></div>
+      <div class="lvl n1"><span class="bd">N1</span><div><b>Silence plus long que le seuil.</b> Le cadre dit « Bonjour Marie. Touchez l'écran pour dire bonjour à votre famille. » Personne n'est prévenu. Tout signe, un toucher ou un simple passage, ferme N1. Pas de N1 la nuit.</div></div>
+      <div class="lvl n2"><span class="bd">N2</span><div><b>Le signe attendu n'est pas venu.</b> Au responsable : « Aucun signe reçu depuis 08:12 », puis « Pouvez-vous appeler Maman ? ». Boutons : Je m'en occupe, Je préviens quelqu'un d'autre, Je ne peux pas maintenant. Un seul texte partout, sans pièce ni « sans réponse ».</div></div>
+      <div class="lvl n3"><span class="bd">N3</span><div><b>Personne ne s'en est occupé.</b> 60 minutes après N2, proposition « Prévenir Paul », la personne choisie par Marie. Dans le MVP, c'est un bouton manuel. L'enfant décide, le produit n'appelle jamais les secours. <span class="b h">H</span></div></div>
     </div>
-    <p class="note">Une panne (cadre hors ligne) est signalée comme telle, sur un ton neutre, et n'est jamais présentée comme un danger.</p>
+
+    <div>
+      <h3>La chaîne, pas à pas</h3>
+      <p class="note">Horloge en minutes depuis l'envoi de N2 (t0). Un seul responsable à la fois ; « Je m'en occupe » transfère la responsabilité et arrête les relances. Au plus 4 messages par aidant et par alerte, 2 pour le contact local ; au-delà, l'information reste dans l'application. <span class="b h">H</span></p>
+      <div class="tw sm" data-b="H"><table>
+        <thead><tr><th style="width:8%">Étape</th><th style="width:14%">Quand</th><th>Action</th><th style="width:26%">Dans le MVP</th></tr></thead>
+        <tbody>
+          <tr><td>E0</td><td>t0</td><td>N2 au responsable (Claire), notification prioritaire si elle l'a autorisée</td><td>Oui</td></tr>
+          <tr><td>E1</td><td>t0 + 15</td><td>Notification non ouverte : SMS de secours « Le Cadre : un message vous attend. Ouvrez l'appli, ou répondez 1 si vous vous en occupez, 2 si vous ne pouvez pas. »</td><td>Oui</td></tr>
+          <tr><td>E2</td><td>t0 + 30</td><td>Sans prise en charge : le suppléant (Léa) reçoit N2 ; le responsable lit « Le message a été transmis à la personne suivante. Vous pouvez reprendre la main. »</td><td>Oui</td></tr>
+          <tr><td>E3</td><td>t0 + 45</td><td>SMS au suppléant si sa notification n'est pas ouverte</td><td>Oui</td></tr>
+          <tr><td>E4</td><td>t0 + 60</td><td>N3 : « Aucune réponse pour le moment. Voulez-vous prévenir Paul, la personne choisie par Maman ? »</td><td>Oui, bouton manuel</td></tr>
+          <tr><td>E5</td><td>t0 + 90</td><td>SMS automatique à Paul, seulement s'il a répondu OUI : « Un proche vous demande de passer voir un voisin. Appelez [numéro de l'enfant responsable]. » Sans prénom du parent ni heure.</td><td><span class="vd vg">Simulé, hors MVP</span></td></tr>
+          <tr><td>E6</td><td>t0 + 120</td><td>État « non pris en charge » et un SMS aux aidants</td><td>Oui</td></tr>
+          <tr><td>E7</td><td>t0 + 240</td><td>Un dernier SMS aux aidants, puis plus rien : l'état reste affiché. Le produit n'a pas d'autre recours.</td><td>Oui</td></tr>
+        </tbody>
+      </table></div>
+      <ul style="margin-top:12px">
+        <li><b>Un signe arrive après N2 (règle retenue) :</b> tout signe, même faible, met la chaîne en pause automatique, plus aucun message au contact local. Seul l'aidant ou un signe fort ferme l'alerte. Texte à l'enfant : « Un signe est arrivé à 11:33. Appelez pour vérifier. » Sans cela, l'état de l'alerte révélerait qu'il n'y a pas eu de toucher.</li>
+        <li><b>Après « Je m'en occupe » :</b> rappel à 30 minutes (« Avez-vous joint Maman ? »), puis l'issue est demandée. Sans issue à 2 heures, la responsabilité est libérée et la chaîne reprend. <span class="b h">H</span></li>
+        <li><b>Heures calmes de l'enfant :</b> 22:00 à 07:00 par défaut. Elles retardent le début d'une alerte, jamais la suite d'une alerte déjà ouverte. Rien de ce qui part la nuit ne donne d'heure. <span class="b h">H</span></li>
+        <li><b>Contact local :</b> il doit avoir répondu OUI, peut répondre STOP, et un test de la liste est envoyé tous les 3 mois (« Le Cadre : test de la liste des personnes à prévenir. Répondez OK. »). La fiche d'urgence ne contient que son prénom et son numéro, ni clés, ni étage, ni code. <span class="b h">H</span></li>
+        <li><b>Rien n'est généré par une IA</b> dans ces messages : ce sont des modèles fixes, relus une fois.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>États affichés, mot pour mot</h3>
+      <p class="note">Aucun état n'est vert ni coché, aucun ne dit « normal » ou « va bien », aucun ne nomme une pièce. Chacun dit un fait daté ou une action. Textes proposés, tous à tester auprès de vrais parents et aidants : on montre le texte et on demande « qu'en concluez-vous ? ». <span class="b h">H</span></p>
+      <div class="tw sm" data-b="H"><table>
+        <thead><tr><th style="width:18%">État</th><th>Texte à l'enfant</th><th style="width:30%">Texte au parent (écran du cadre)</th></tr></thead>
+        <tbody>
+          <tr><td>Signe reçu (N0)</td><td>« Dernier signe reçu : aujourd'hui à 08:12. Mis à jour à 14:05. » Après un toucher, le même texte : l'enfant ne voit pas la différence.</td><td>Photo en cours. « Bonjour Marie. » ou « Merci, votre bonjour est parti. »</td></tr>
+          <tr><td>Parent interrogé (N1)</td><td>« Dernier signe reçu : hier à 19:40. Vous n'êtes pas prévenu pour l'instant. »</td><td>« Bonjour Marie. Touchez l'écran pour dire bonjour à votre famille. »</td></tr>
+          <tr><td>Famille prévenue (N2)</td><td>« Aucun signe reçu depuis 08:12 » · « Pouvez-vous appeler Maman ? »</td><td>Aucun changement. Sous « Ma famille voit » : « Votre famille a reçu un message à 09:45. »</td></tr>
+          <tr><td>Prise en charge</td><td>« Vous vous occupez de cette situation depuis 09:52. Les autres aidants le voient. » Clôture : « Situation du 12/10 clôturée par Claire à 10:05 : Maman m'a répondu. »</td><td>Aucun changement.</td></tr>
+          <tr><td>Contact local proposé (N3)</td><td>« Aucune réponse pour le moment. Dernier signe reçu à 08:12. Voulez-vous prévenir Paul, la personne choisie par Maman ? » Jamais « n'a pas répondu » avec un nom.</td><td>Aucun changement. Rien sur Paul sur l'écran principal.</td></tr>
+          <tr><td>Signe après l'alerte</td><td>« Un signe est arrivé à 11:33. Appelez pour vérifier. »</td><td>Aucun changement.</td></tr>
+          <tr><td>Signe déclaré</td><td>« Claire a eu Maman à 12:10. » Efface l'alerte en cours. Le texte dit « a eu », pas « va bien ».</td><td>Aucun changement.</td></tr>
+          <tr><td>Pause</td><td>« Cadre en pause (choix de Maman). Aucun signe n'est attendu pendant la pause. » Sans durée ni motif, sans notification.</td><td>« Pause jusqu'à 18 h. » Après 2 jours : « Le cadre est en pause depuis 2 jours. Le réactiver ? »</td></tr>
+          <tr><td>Cadre non joignable</td><td>« Le cadre de Maman n'est plus connecté depuis 10:00. Dernier signe reçu à 08:12. Cela peut être une panne ou un débranchement. Le plus sûr : appelez Maman. »</td><td>Écran éteint si débranché. Sinon : « Le cadre cherche internet. Rien à faire de votre côté. »</td></tr>
+          <tr><td>Éteint par le parent</td><td>« Maman a éteint le cadre le 12/10 à 19:40. Il n'envoie plus de signe. Vous pouvez en parler avec elle quand vous voulez. »</td><td>« Le cadre est éteint. Votre famille en sera informée, sans que vous ayez à vous expliquer. »</td></tr>
+          <tr><td>Photos seulement</td><td>« Maman a choisi de garder seulement les photos. Le cadre n'envoie aucun signe. »</td><td>« Le cadre affiche vos photos. Il n'envoie aucun signe à votre famille. Vous pouvez changer d'avis quand vous voulez. »</td></tr>
+          <tr><td>Apprentissage</td><td>« Le Cadre apprend les habitudes de Maman (jour 4 sur 14). Pendant 14 jours, il prévient plus tard et moins souvent. »</td><td>Aucun changement.</td></tr>
+          <tr><td>Absence prolongée</td><td>« Absence prolongée posée par Maman le 14/10. Aucun signe n'est attendu. » Posée par l'enfant : « Maman en a été informée sur le cadre. » Le mot « hospitalisation » n'existe pas, aucun motif n'est enregistré.</td><td>« Absence jusqu'au 18/10. Bon voyage. » Posée par la famille : « Votre famille a mis le cadre en absence prolongée. Touchez l'écran pour le remettre en marche. »</td></tr>
+          <tr><td>Service en panne</td><td>« Mise à jour impossible depuis 14:05. Appelez Maman si vous voulez de ses nouvelles. »</td><td>Aucun changement.</td></tr>
+          <tr><td>Chaîne non vérifiée</td><td>« La liste des personnes à prévenir n'a pas été vérifiée depuis 3 mois. Vérifier maintenant. »</td><td>Aucun changement.</td></tr>
+          <tr><td>Consentement à reconfirmer</td><td>« L'accord de Maman est à reconfirmer (anniversaire le 12/11). Le service continue en attendant. »</td><td>« Voulez-vous toujours que le cadre envoie un signe à votre famille ? » Oui, je veux bien · Non, juste les photos. Rien ne s'arrête.</td></tr>
+          <tr><td>Paiement échoué, fin de service, décès</td><td>« Le paiement du 12/10 a échoué. Sans paiement, le service de signe du jour s'arrêtera le 27/10. Le cadre gardera ses photos. » Après un décès : résiliation sans friction, sans prélèvement, photos exportables.</td><td>« Le cadre pourrait cesser d'envoyer un signe à votre famille le 27/10. Vos photos restent. » Jamais le mot « décès ».</td></tr>
+          <tr><td>Résumé de la semaine (hors MVP)</td><td>« Semaine du 29/09 au 05/10 : signe reçu 6 jours, aucun signe 1 jour. Résumé généré par IA. » Ni heure, ni nombre de touchers, ni adjectif.</td><td>Même texte, lisible sous « Ma famille voit ».</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note" style="margin-top:8px">Règles de rédaction : un fait, une heure, jamais d'adjectif sur la personne ; l'âge du signe se met à jour ; si l'application ne peut pas se mettre à jour, elle l'écrit ; le bouton « C'est bon » disparaît ; un message qui part la nuit ne donne pas l'heure ; textes neutres entre aidants. Un fait daté peut encore se lire « elle va bien » : le texte atténue ce risque, il ne l'élimine pas.</p>
+    </div>
   </div>
 </section>
 
 <section class="q" id="perimetre" data-title="Périmètre du MVP">
-  <div class="rail"><span class="qnum">7</span></div>
+  <div class="rail"><span class="qnum">8</span></div>
   <div class="qbody">
     <div class="kicker">Périmètre du MVP · priorisation MoSCoW</div>
     <h2>Ce qu'on construit d'abord</h2>
-    <p class="note">Proposition de départ, à discuter en phase 4. Filtrez par priorité.</p>
+    <p class="note">Proposition de départ, à discuter en phase 4. <span class="b h">H</span> Filtrez par priorité. Ce qui sort du MVP est décrit, simulé ou renvoyé plus tard, jamais promis.</p>
     <div class="tabs" id="moscow">
       <button class="chip on" type="button" data-k="all">Tout</button>
       <button class="chip" type="button" data-k="must">Must</button>
@@ -344,111 +537,327 @@ label.chk.done .tx{color:var(--muted);text-decoration:line-through}
       <button class="chip" type="button" data-k="could">Could</button>
       <button class="chip" type="button" data-k="wont">Won't</button>
     </div>
-    <div class="tw"><table id="mtable">
+    <div class="tw" data-b="H"><table id="mtable">
       <thead><tr><th style="width:14%">Face</th><th>Fonctionnalité</th><th style="width:16%">Priorité</th></tr></thead>
-      <tbody></tbody>
+      <tbody><tr data-k="must"><td>Achat</td><td style="font-weight:400">Page de présentation, offre unique (kit A), aucun prix dans le texte ni dans le bouton</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Achat</td><td style="font-weight:400">Contrat du matin sous le bouton de paiement, case « J'ai lu » et case « Je comprends que le délai se compte en heures »</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Achat</td><td style="font-weight:400">Questionnaire d'orientation vers une téléassistance (5 questions, rien d'enregistré) et ses deux textes</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Achat</td><td style="font-weight:400">Case « Mon parent sait que ce cadre lui est offert et a compris ce qu'il fait » avant paiement</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Achat</td><td style="font-weight:400">Paiement et confirmation de commande (simulés)</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Senior</td><td style="font-weight:400">Écran du cadre : photos rejouées (jamais vide), message du jour</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Senior</td><td style="font-weight:400">Bouton « Coucou » très grand, un seul toucher</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Senior</td><td style="font-weight:400">Activation par le parent seul : « Oui, je veux bien » ou « Non, juste les photos »</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Senior</td><td style="font-weight:400">Pause, absence et extinction en deux touchers, sans justification</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Senior</td><td style="font-weight:400">« Ma famille voit » derrière un geste volontaire, journal des accès, validation des invitations, avis de nouvel accès</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Aidant</td><td style="font-weight:400">Dernier signe daté, son âge et l'heure de mise à jour (jamais « normal », jamais de coche)</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Aidant</td><td style="font-weight:400">Message N2 « Aucun signe reçu depuis 08:12 » avec « Je m'en occupe » puis l'issue</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Aidant</td><td style="font-weight:400">États de panne neutres (cadre non joignable, service en panne)</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Aidant</td><td style="font-weight:400">Envoi de photos et de messages vers le cadre (le lien est le moteur d'adoption)</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Chaîne</td><td style="font-weight:400">Simulateur d'événements par source, horloge simulée, kit A</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Chaîne</td><td style="font-weight:400">Règles N1, N2, N3, chaîne E0 à E4, plafond de 4 messages, heures calmes</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Chaîne</td><td style="font-weight:400">Règle unique des signes, et pause de la chaîne quand un signe arrive après N2</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Chaîne</td><td style="font-weight:400">Apprentissage de 14 jours avec seuils larges</td><td><span class="pri must">Must</span></td></tr><tr data-k="must"><td>Chaîne</td><td style="font-weight:400">Moteur à la demande, sans plan payant ; événements signés avec un secret par appareil</td><td><span class="pri must">Must</span></td></tr><tr data-k="should"><td>Aidant</td><td style="font-weight:400">Responsable et suppléant, bouton manuel « Prévenir [nom] » pour le contact local qui a répondu OUI</td><td><span class="pri should">Should</span></td></tr><tr data-k="should"><td>Aidant</td><td style="font-weight:400">« Signaler un contact » : « J'ai eu Maman à 12:10 »</td><td><span class="pri should">Should</span></td></tr><tr data-k="should"><td>Aidant</td><td style="font-weight:400">Test de la liste des personnes à prévenir tous les 3 mois</td><td><span class="pri should">Should</span></td></tr><tr data-k="should"><td>Aidant</td><td style="font-weight:400">Plusieurs aidants (fratrie), fiche d'urgence réduite au prénom et au numéro du contact local</td><td><span class="pri should">Should</span></td></tr><tr data-k="should"><td>Senior</td><td style="font-weight:400">Reconfirmation annuelle du consentement par une personne de confiance, blocage d'un expéditeur</td><td><span class="pri should">Should</span></td></tr><tr data-k="should"><td>Chaîne</td><td style="font-weight:400">Auto-contrôle « capteur peu actif », états de paiement échoué, fin de service, décès</td><td><span class="pri should">Should</span></td></tr><tr data-k="should"><td>Achat</td><td style="font-weight:400">Rappel doux de photos au plus une fois par mois à la famille invitée</td><td><span class="pri should">Should</span></td></tr><tr data-k="could"><td>Aidant</td><td style="font-weight:400">Résumé de la semaine par IA : jours avec ou sans signe, mention « généré par IA », testé en phase 5</td><td><span class="pri could">Could</span></td></tr><tr data-k="could"><td>Chaîne</td><td style="font-weight:400">Capteurs du kit B (2 capteurs de passage, 1 porte) dans le modèle de données, simulés seulement</td><td><span class="pri could">Could</span></td></tr><tr data-k="could"><td>Chaîne</td><td style="font-weight:400">Option salle de bain et chambre (C), règle de nuit au capteur du couloir : désactivées par défaut</td><td><span class="pri could">Could</span></td></tr><tr data-k="could"><td>Chaîne</td><td style="font-weight:400">Règle du soir V2 (message silencieux à 21:30), désactivée par défaut, à tester</td><td><span class="pri could">Could</span></td></tr><tr data-k="could"><td>Chaîne</td><td style="font-weight:400">SMS automatique au contact local à t0 + 90 min : simulé, jamais promis</td><td><span class="pri could">Could</span></td></tr><tr data-k="could"><td>Chaîne</td><td style="font-weight:400">Moteur planifié à 5 minutes, contrôleur indépendant, foyer témoin, astreinte (plan payant)</td><td><span class="pri could">Could</span></td></tr><tr data-k="could"><td>Aidant</td><td style="font-weight:400">Absence prolongée posée par l'enfant avec information immédiate du parent (par le parent seul dans la démo)</td><td><span class="pri could">Could</span></td></tr><tr data-k="could"><td>Aidant</td><td style="font-weight:400">Réglage des seuils avec le parent ; messages vocaux doublés d'un texte</td><td><span class="pri could">Could</span></td></tr><tr data-k="could"><td>Achat</td><td style="font-weight:400">Offre cadeau avec message ; cagnotte entre proches ; album partagé importé</td><td><span class="pri could">Could</span></td></tr><tr data-k="wont"><td>Senior</td><td style="font-weight:400">Compagnon conversationnel</td><td><span class="pri wont">Won't</span></td></tr><tr data-k="wont"><td>Chaîne</td><td style="font-weight:400">Appel automatique des secours</td><td><span class="pri wont">Won't</span></td></tr><tr data-k="wont"><td>Chaîne</td><td style="font-weight:400">Indicateurs de santé ou de sommeil, suivi de tendance de la routine</td><td><span class="pri wont">Won't</span></td></tr><tr data-k="wont"><td>Chaîne</td><td style="font-weight:400">Fabrication réelle du matériel, passerelle fabriquée</td><td><span class="pri wont">Won't</span></td></tr><tr data-k="wont"><td>Chaîne</td><td style="font-weight:400">Appareil porté, radar, prise connectée sur un appareil de forte puissance</td><td><span class="pri wont">Won't</span></td></tr></tbody>
     </table></div>
   </div>
 </section>
 
 <section class="q" id="modele" data-title="Modèle économique">
-  <div class="rail"><span class="qnum">8</span></div>
+  <div class="rail"><span class="qnum">9</span></div>
   <div class="qbody">
-    <div class="kicker">Modèle économique</div>
-    <h2>Un prix tout compris</h2>
-    <p class="callout o">Tout est hypothèse : aucun prix de capteur ambiant dans notre veille. Les comparaisons viennent de pages commerciales (fiabilité 1/7), sauf Famileo (3/7). <span class="b h">H</span></p>
+    <div class="kicker">Modèle économique, distribution, support</div>
+    <h2>Un prix à tester, pas à annoncer</h2>
+    <p class="callout o"><b>Aucun prix n'est affiché à l'acheteur</b> : ni dans le texte de vente, ni dans le bouton d'achat. « 129 € + 8 €/mois » est une hypothèse de départ à tester en entretien, avec 5, 8 ou 12 €/mois. <b>La première hypothèse à valider est la valeur de 8 €/mois :</b> aucune source ne démontre qu'une famille paie pour un signe du matin quand Snug le fait gratuitement et qu'on peut appeler sa mère. <span class="b h">H</span></p>
     <div class="cols">
-      <div class="col"><h3>Kit</h3><p>Environ 129 €, une seule fois : cadre et capteur de présence intégré.</p></div>
-      <div class="col"><h3>Abonnement</h3><p>Environ 8 €/mois, sans engagement, tout compris (service, photos, résumé IA).</p></div>
-      <div class="col"><h3>Tiers payeur</h3><p>Crédit d'impôt de 50 %, sans condition de GIR, mais l'éligibilité d'un tel capteur est inconnue. Mutuelles : piste isolée.</p></div>
+      <div class="col"><h3>Kit</h3>
+        <p><b>Kit A, le seul vendu :</b> cadre avec « Coucou », capteur de passage intégré, SIM 4G. Coût de production ≈ 193 € (fourchette 150 à 245 €). <span class="b h">H</span></p>
+        <p style="margin-top:8px"><b>Kit B, option simulée :</b> A plus passerelle en boîtier séparé et trois capteurs. ≈ 343 € (280 à 445 €), non vendu : aucune passerelle du commerce marquée CE n'est identifiée. <span class="b h">H</span></p>
+        <p style="margin-top:8px">À 129 €, le kit A est vendu sous son coût. La perte se récupère avec la marge mensuelle en ≈ 11 mois pour A, ≈ 38 mois pour B. <span class="b h">H</span></p></div>
+      <div class="col"><h3>Abonnement</h3>
+        <p>Hypothèse : 8 €/mois, sans engagement. Coût de service ≈ 1,93 €/mois pour le kit A (paiement 0,37 · impayés 0,16 · IA, notifications, SMS 0,10 · support 0,50 · remplacement 0,20 · SIM 0,60), donc ≈ 6,07 € de marge à 8 €. <span class="b h">H</span></p>
+        <p style="margin-top:8px">Ce que paient ces 8 € : un service qui revient chaque mois (photos, signe du matin, application, support), pas la détection seule. Le reste couvre le matériel. <span class="b h">H</span></p></div>
+      <div class="col"><h3>Tiers payeur</h3>
+        <p><b>Aucun crédit d'impôt n'est annoncé.</b> L'éligibilité d'un tel capteur est inconnue, probablement non : les textes visent la détection d'un accident, ce que Le Cadre s'interdit (BOFiP §159). <span class="b f">F</span></p>
+        <p style="margin-top:8px">Mutuelles : piste isolée. Cagnotte entre proches, comme Famileo (5,99 à 17,99 €/mois), en Could. <span class="b f">F</span></p></div>
     </div>
+
+    <div>
+      <h3>Repères honnêtes : ce qui existe déjà</h3>
+      <div class="tw sm"><table>
+        <thead><tr><th style="width:28%">Offre</th><th>Ce que ça coûte</th><th style="width:30%">Ce que ça ne fait pas</th></tr></thead>
+        <tbody>
+          <tr><td>Snug, check-in gratuit</td><td>0 $ : un toucher par jour sur le téléphone du parent, SMS aux contacts s'il manque. <span class="b f">F</span></td><td>Rien de passif, rien pour le lien.</td></tr>
+          <tr><td>Familink, achat</td><td>219,90 € + 4G 5,90 €/mois + Plus 4,90 €/mois, soit 608,70 € à 36 mois. <span class="b h">H</span></td><td>Aucune alerte.</td></tr>
+          <tr><td>Familink, location</td><td>Dès 14,99 €/mois, Plus et 4G inclus, soit 539,64 € à 36 mois ; engagement non précisé. <span class="b f">F</span></td><td>Aucune alerte.</td></tr>
+          <tr><td>Famileo</td><td>5,99 €/mois (jusqu'à 17,99 €). <span class="b f">F</span></td><td>Aucune détection.</td></tr>
+          <tr><td>Téléassistance</td><td>≈ 25 €/mois (fourchette 20 à 30 €), installation 30 à 60 €. <span class="b f">F</span></td><td>Pas de lien familial ; on la voit comme un marqueur de dépendance.</td></tr>
+          <tr><td>Le Cadre, kit B à son prix minimal</td><td>≈ 550 à 603 € à 36 mois : autant ou plus que Familink. <span class="b h">H</span></td><td>La valeur qui justifie l'écart n'est pas démontrée.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note" style="margin-top:8px">« Prix tout compris » n'est pas un différenciateur : Memoryboard, Snug, ViewClix et Livindi le font. C'est une exigence minimale.</p>
+    </div>
+
     <div>
       <h3>Combien ça coûte sur la durée ?</h3>
       <label for="months" class="ck">Durée : <b id="mval">12</b> mois</label>
       <input type="range" id="months" min="3" max="36" value="12">
-      <label class="ck" style="display:block;margin:8px 0 12px"><input type="checkbox" id="credit"> Appliquer un crédit d'impôt de 50 % (éligibilité à vérifier)</label>
+      <label class="ck" for="px" style="display:block;margin:8px 0 12px">Abonnement testé pour Le Cadre : <select id="px"><option value="5">5 €/mois</option><option value="8" selected>8 €/mois</option><option value="12">12 €/mois</option></select> (kit A à 129 €, hypothèse)</label>
       <div id="bars"></div>
-      <p class="note" style="margin-top:10px">Hors frais d'installation de la téléassistance (30 à 60 €) et engagements éventuels. Téléassistance prise à 25 €/mois (fourchette 20-30 €). Famileo : 5,99 €/mois, mais sans aucune détection.</p>
+      <p class="note" style="margin-top:10px">Calcul de l'équipe à partir des prix lus. <span class="b h">H</span> Hors frais d'installation de la téléassistance. Famileo et Snug ne détectent rien : Famileo 5,99 €/mois, Snug gratuit. Aucun crédit d'impôt n'est appliqué.</p>
+    </div>
+
+    <div class="cols">
+      <div class="col"><h3>Coûts cachés</h3><ul>
+        <li><b>SIM :</b> plafond de 20 Mo de photos compressées et 10 Mo de mises à jour par mois, soit 0,60 €/mois. Sans plafond, un forfait de 1 Go à 6 à 7 €/mois ferait tomber la marge à zéro. La SIM d'un fournisseur d'objets connectés est une offre professionnelle : accès d'un projet étudiant non vérifié. <span class="b h">H</span></li>
+        <li><b>Frais ponctuels :</b> ≈ 4 750 € pour A (2 500 à 7 000 : relecture juridique et analyse d'impact, assurance), ≈ 9 750 € pour B (essais radio de la passerelle en plus). Aucun devis. <span class="b h">H</span></li>
+        <li><b>Avance de lancement</b> (matériel et frais ponctuels) : A ≈ 6,7 k€ pour 10 kits, 24 k€ pour 100, 198 k€ pour 1 000 ; B ≈ 13,2 k€, 44 k€, 353 k€. <span class="b h">H</span></li>
+        <li><b>Moteur planifié à 5 minutes :</b> plan payant. ≈ 25 €/mois pour un foyer témoin, ≈ 60 €/mois pour 100 foyers, 150 à 250 €/mois pour 1 000. Le moteur à la demande de la démo ne coûte rien. <span class="b h">H</span></li>
+        <li><b>Rien n'est fabriqué dans le projet :</b> la précommande est une liste d'attente sans encaissement.</li></ul></div>
+      <div class="col blue"><h3>Distribution</h3><ul>
+        <li><b>Départ :</b> le cadeau et le bouche-à-oreille des familles, comme Famileo (2 000 à 3 000 nouvelles familles par mois). <span class="b f">F</span> Dates : Noël, fête des grands-mères et grands-pères, anniversaire du parent.</li>
+        <li><b>Relais de confiance, à tester en entretien, sans engagement :</b> aide à domicile (41 % des 80 ans et plus en ont une, mais c'est un tiers dans le logement), mutuelle (piste isolée), CCAS. <span class="b f">F</span> Aucun n'est prouvé comme canal pour un cadre photo avec capteur.</li>
+        <li><b>Un seul canal tue :</b> Ardoiz a perdu son guichet de La Poste, Philips a négligé ses revendeurs. <span class="b f">F</span></li>
+        <li><b>Téléassistance :</b> on oriente vers elle un parent à risque, sans commission, sans transmettre de donnée. Les supports d'un partenaire suivent la même liste de mots que les nôtres.</li></ul></div>
+      <div class="col"><h3>Support et lassitude</h3><ul>
+        <li>L'enfant est le premier support : l'application dit quand le cadre n'est plus connecté.</li>
+        <li>Support par e-mail sous un jour ouvré, pas de téléphone, remplacement sous garantie. Les messages du contrôleur arrivent à une astreinte tournante des trois membres, sans coût chiffré. <span class="b h">H</span></li>
+        <li>Contre la lassitude : le cadre rejoue les photos, au plus un rappel doux par mois à la famille, effort visé de 2 minutes par mois au plus. Aucune donnée de rétention : à mesurer. <span class="b h">H</span></li></ul></div>
     </div>
   </div>
 </section>
 
 <section class="q" id="donnees" data-title="Données et éthique">
-  <div class="rail"><span class="qnum">9</span></div>
+  <div class="rail"><span class="qnum">10</span></div>
   <div class="qbody">
     <div class="kicker">Données et éthique</div>
     <h2>Peu de données, toutes visibles</h2>
-    <p class="sum">Tout est simulé : aucune donnée réelle de santé n'entre dans le produit.</p>
-    <div class="tw"><table>
-      <thead><tr><th>Donnée</th><th>Famille</th><th>Sensibilité</th><th>Qui la voit</th><th>Durée (hyp.)</th></tr></thead>
+    <p class="sum">Tout est simulé : aucune donnée réelle de santé n'entre dans le produit. Cela n'écarte pas l'analyse d'impact.</p>
+    <div class="tw sm" data-b="H"><table>
+      <thead><tr><th style="width:24%">Donnée</th><th style="width:18%">Sensibilité</th><th>Qui la voit</th><th style="width:22%">Durée (hyp.)</th></tr></thead>
       <tbody>
-        <tr><td>Présence par créneau (oui / non)</td><td>Événement de l'objet</td><td>Moyenne (vie quotidienne)</td><td>Parent et enfant</td><td>30 jours</td></tr>
-        <tr><td>Toucher « Coucou »</td><td>Événement de l'objet</td><td>Faible</td><td>Parent et enfant</td><td>30 jours</td></tr>
-        <tr><td>Photos et messages</td><td>Messages</td><td>Moyenne (données de tiers)</td><td>Parent et famille invitée</td><td>Tant que le service est actif</td></tr>
-        <tr><td>Profil (prénoms, contacts de secours)</td><td>Profil</td><td>Moyenne</td><td>Enfant, parent</td><td>Durée du contrat</td></tr>
-        <tr><td>Commande, paiement</td><td>Achat</td><td>Faible à moyenne</td><td>Enfant</td><td>Obligation légale</td></tr>
+        <tr><td>Dernier signe daté (la zone d'un capteur reste dans le moteur)</td><td>Moyenne : dit quand le logement est vide</td><td>Enfant et parent : l'heure du dernier signe, 7 jours de faits datés, ni pièce ni nature du signe</td><td>30 jours</td></tr>
+        <tr><td>État du cadre et des capteurs</td><td>Faible</td><td>Enfant et parent. Le battement n'est pas conservé</td><td>Dernier état seulement</td></tr>
+        <tr><td>Pause, absence (état, sans motif)</td><td>Moyenne</td><td>Parent et enfant</td><td>30 jours</td></tr>
+        <tr><td>Alertes et réponses</td><td>Moyenne</td><td>Aidants ; parent sous « Ma famille voit »</td><td>12 mois (preuve)</td></tr>
+        <tr><td>Journal des accès</td><td>Moyenne</td><td>Parent</td><td>12 mois</td></tr>
+        <tr><td>Photos et messages</td><td>Moyenne (données de tiers)</td><td>Parent et famille invitée</td><td>Service actif ; copie du serveur supprimée sous 30 jours après résiliation ; le cadre garde ses photos</td></tr>
+        <tr><td>Contact local (prénom, numéro, réponse OUI)</td><td>Moyenne (tiers non client)</td><td>Responsable, parent</td><td>Tant qu'il est contact</td></tr>
+        <tr><td>Profil (prénoms, aidants)</td><td>Moyenne</td><td>Enfant, parent</td><td>Durée du contrat</td></tr>
+        <tr><td>Résumé IA, hors MVP (comptes de jours)</td><td>Moyenne</td><td>Enfant, parent</td><td>90 jours</td></tr>
+        <tr><td>Commande, paiement</td><td>Faible à moyenne</td><td>Enfant</td><td>Obligation légale (10 ans ?)</td></tr>
+        <tr><td>Journaux de l'outil no-code</td><td>Variable</td><td>Équipe</td><td>30 jours, sans contenu si possible</td></tr>
       </tbody>
     </table></div>
     <div class="cols">
-      <div class="col"><h3>Jamais collecté</h3><ul><li>Aucune caméra, aucun micro.</li><li>Aucune localisation.</li><li>Aucune donnée de santé, aucun diagnostic.</li></ul></div>
+      <div class="col"><h3>Jamais collecté</h3><ul>
+        <li>Aucune caméra, aucun micro, aucune localisation.</li>
+        <li>Aucune donnée de santé, aucun diagnostic, aucun message de tendance.</li>
+        <li>Aucune réponse au questionnaire d'orientation, aucun motif d'absence.</li>
+        <li>Ni adresse, ni étage, ni code, ni « qui a un double des clés » dans l'application : l'adresse de livraison reste au dossier de commande, séparée. Les doubles restent sur papier chez le voisin.</li></ul></div>
       <div class="col blue"><h3>Garde-fous éthiques</h3><ul>
-        <li>Consentement du parent à l'activation, retrait possible.</li>
-        <li>Transparence : le parent voit ce que voit l'enfant.</li>
-        <li>Pause intimité, sans justification à donner.</li>
-        <li>Champ bien-être et lien familial : aucun dispositif médical, aucune promesse de sécurité absolue.</li>
-        <li>Résumé IA : jamais de conseil médical, et le texte dit qu'il vient d'une IA.</li></ul></div>
+        <li><b>Consentement :</b> le « oui » est donné par le parent seul sur le cadre ; « Non, juste les photos » est un vrai choix. Retrait possible à tout moment, sans justification.</li>
+        <li><b>Reconfirmation annuelle :</b> proposée par une personne de confiance désignée par le parent. Le service continue pendant l'attente : un silence n'est pas un refus. Le produit ne déduit jamais un déclin.</li>
+        <li><b>Contrôle d'accès :</b> le parent voit qui voit et qui a consulté, valide chaque invitation sur le cadre, bloque un expéditeur, retire un accès en un geste. Message sur le cadre à chaque nouvel accès.</li>
+        <li><b>Pas de contrôle par l'enfant :</b> il ne voit ni N1, ni touchers, ni heure fine ; il ne règle aucun seuil seul ; une absence posée par lui est montrée au parent.</li>
+        <li><b>Sécurité informatique :</b> événements signés avec un secret par appareil, double facteur ou lien à usage unique pour l'aidant, révocation et effacement d'un cadre volé. La signature n'est pas démontrée en no-code : à vérifier en phase 5.</li>
+        <li><b>Résumé IA :</b> hors MVP, opt-in, jamais dans la chaîne d'alerte, jamais d'heure, de zone, de photo ni de nom réel, filtre de sortie, mention « Résumé généré par IA ».</li></ul></div>
     </div>
+    <div class="callout">Conformité : le champ est bien-être et lien familial, aucun dispositif médical : la qualification dépend de ce que le produit annonce, donc des mots. <span class="b f">F</span> Une analyse d'impact est probablement requise (personnes vulnérables, suivi continu, solution innovante, critères de la CNIL) : on la fait en phase 5 même avec des données simulées. Hébergement dans l'UE, droits exercés par le parent lui-même. <span class="b h">H</span> Responsabilité : engagement de moyens, pas de résultat. Notice : Le Cadre ne remplace pas un détecteur de fumée.</div>
+    <details><summary>Mots autorisés et interdits</summary>
+      <p>Cette fiche est un document de conception : elle cite les mots interdits pour les interdire. Le filtre vaut pour tout texte du produit (page de vente, emballage, application, SMS, résumé IA, supports d'un partenaire) et il est testé automatiquement dans le simulateur.</p>
+      <div class="tw sm"><table>
+        <thead><tr><th style="width:42%">Mot ou idée</th><th style="width:16%">Statut</th><th>À la place</th></tr></thead>
+        <tbody>
+          <tr><td>« signe du jour », « nouvelles », « dernier signe reçu à 08:12 », « lien », « coucou », « silence », « pas de nouvelles »</td><td>Autorisé</td><td>Un fait daté, sans interprétation.</td></tr>
+          <tr><td>« routine », « habitudes », « veille », « rassurer », « alerte »</td><td>Avec prudence</td><td>Jamais pour évaluer la personne ni promettre un résultat : dire « le signe habituel n'est pas arrivé », jamais « 24 h/24 », « message » ou « notification » plutôt qu'« alerte ».</td></tr>
+          <tr><td>« signe de vie »</td><td>Interne seulement</td><td>Terme de conception. Au public : « signe du jour ».</td></tr>
+          <tr><td>« détecter », « détection » ; « sécurité », « protéger », « en sécurité »</td><td>Interdit</td><td>« Repère quand le signe attendu n'arrive pas. » « Sécurité des données » reste permis.</td></tr>
+          <tr><td>« chute », « malaise », « urgence », « accident »</td><td>Interdit, une seule exception</td><td>Seule phrase permise, à l'achat et dans l'application : « Le Cadre ne détecte pas les chutes et ne remplace pas une téléassistance. En cas d'urgence, appelez le 15, le 18 ou le 112. »</td></tr>
+          <tr><td>« santé », « médical », « diagnostic », « symptôme », « prévention », « dépendance », « hospitalisation », « malade »</td><td>Interdit</td><td>« Absence prolongée », sans motif.</td></tr>
+          <tr><td>« sommeil », « lever nocturne », « fatigue », « déclin », « baisse d'activité », « tendance », « dérive »</td><td>Interdit</td><td>Aucun message de tendance. Seule la fenêtre de routine s'élargit, sur proposition au parent.</td></tr>
+          <tr><td>« fiable à 100 % », « garanti », « tranquillité absolue », « dormez tranquille »</td><td>Interdit</td><td>Publicité trompeuse.</td></tr>
+          <tr><td>« Tout va bien », « Journée normale », une coche verte, « normal »</td><td>Interdit</td><td>Un fait daté.</td></tr>
+          <tr><td>« téléassistance », « centre d'écoute »</td><td>Interdit comme description du produit</td><td>Permis dans « n'est pas une téléassistance ».</td></tr>
+          <tr><td>« dans toute la maison », « partout », « chaque pièce », « on vous voit », « surveillance »</td><td>Interdit</td><td>« Dans le champ des capteurs posés. » « Remarque si quelqu'un passe devant lui ou si vous touchez l'écran. »</td></tr>
+          <tr><td>« chez Maman », « sans réponse », « [prénom] n'a pas répondu »</td><td>Interdit</td><td>« Aucun signe reçu depuis 08:12 », « Aucune réponse pour le moment ».</td></tr>
+        </tbody>
+      </table></div>
+    </details>
+    <details><summary>Clauses et textes à faire rédiger ou relire par un juriste</summary>
+      <ul>
+        <li><b>Conditions de vente :</b> description honnête du service et de ses limites ; prix total, résiliation en un clic, reprise de l'appareil, remboursement si le parent refuse l'activation ; le contrat du matin recopié tel quel près du paiement ; disponibilité sans garantie de continuité ; responsabilité limitée à ce qu'un consommateur peut accepter ; garanties légales et droit de rétractation.</li>
+        <li><b>Fin de service et paiement :</b> préavis avant l'arrêt, dernier message « le service de signe du jour s'arrête le… », export des photos ; paiement échoué : préavis de 15 jours puis arrêt du signe seulement, le cadre garde ses photos. <span class="b h">H</span></li>
+        <li><b>Décès :</b> résiliation sans friction, sans prélèvement, photos exportables par la famille, alertes closes.</li>
+        <li><b>Notice du parent, une page :</b> ce que le cadre remarque, ce qu'il ne voit ni n'entend jamais, qui reçoit quoi, comment dire non, mettre en pause, retirer.</li>
+        <li><b>Documents internes :</b> registre des traitements, analyse d'impact, contrats de sous-traitance, procédure de violation de données, protocole de gestion des alertes, registre des consentements, charte des promesses, liste de mots interdits.</li>
+        <li><b>Supports d'un tiers</b> (mutuelle, revendeur, aide à domicile) : même liste de mots, relecture avant publication, droit de retrait du logo. Un avis qui dit « il a sauvé ma mère » n'est pas republié.</li></ul>
+      <p><b>À faire relire avant toute vente :</b> la reconfirmation annuelle sans coupure, la base légale du contact local, la phrase du contrat du matin, la qualification « bien-être » au regard des mots, le cas d'un parent sous protection juridique. La page de vente est relue par un enseignant ou un juriste avant toute publication.</p>
+    </details>
   </div>
 </section>
 
 <section class="q" id="kpi" data-title="KPI">
-  <div class="rail"><span class="qnum">10</span></div>
+  <div class="rail"><span class="qnum">11</span></div>
   <div class="qbody">
-    <div class="kicker">KPI · premières propositions</div>
+    <div class="kicker">KPI · 8 au plus</div>
     <h2>Mesurer la promesse</h2>
-    <p class="note">Le brief demande 5 à 8 indicateurs, équilibrés entre les deux faces. Cibles à fixer en phase 4.</p>
-    <div class="cols">
+    <p class="note">Le brief demande 5 à 8 indicateurs, équilibrés entre les faces. Huit retenus. Cibles à fixer en phase 4. <span class="b h">H</span></p>
+    <div class="cols" data-b="H">
       <div class="col"><h3>Côté aidant</h3><ul>
-        <li><b>Activation :</b> part des acheteurs dont le parent a validé son accord et reçu sa première photo.</li>
-        <li><b>Alertes traitées :</b> part des alertes N2 vues puis marquées « traitées ».</li>
-        <li><b>Réassurance déclarée :</b> note de 1 à 5 chaque semaine.</li></ul></div>
+        <li><b>1 · Activation :</b> part des acheteurs dont le parent a répondu « Oui, je veux bien », « Non, juste les photos » ou rien, et reçu sa première photo.</li>
+        <li><b>2 · Alertes prises en charge :</b> délai entre N2 et « Je m'en occupe », part des N2 prises en charge en moins de 30 minutes, issues (« Elle m'a répondu », « absente », « panne »).</li>
+        <li><b>3 · Compréhension de l'état :</b> part des aidants qui lisent correctement un état, sans conclure « elle va bien ». Remplace « Réassurance déclarée », qui encourage la fausse réassurance.</li>
+        <li><b>4 · Recommandation et origine :</b> part des commandes venues d'un cadeau, d'un proche ou d'un relais. Absorbe le coût d'acquisition. <span class="b f">F</span> Famileo grandit par les familles.</li></ul></div>
       <div class="col blue"><h3>Côté parent</h3><ul>
-        <li><b>Simplicité perçue :</b> note de 1 à 5.</li>
-        <li><b>Fausses alertes :</b> nombre de N2 inutiles par mois (cible : zéro).</li>
-        <li><b>Sentiment de contrôle :</b> « Je décide de ce qui se sait », oui ou non.</li></ul></div>
+        <li><b>5 · Simplicité et contrôle perçus :</b> une note de 1 à 5 et « Je décide de ce qui se sait », oui ou non (deux KPI fusionnés).</li>
+        <li><b>6 · N2 inutiles par mois :</b> cible zéro. Une absence non déclarée est utile mais non évitable : elle n'est pas comptée comme fausse alerte.</li></ul>
+        <h3 style="margin-top:16px">Côté économique</h3><ul>
+        <li><b>7 · Résiliation mensuelle :</b> avec la part des cadres qui ont reçu une photo sur 30 jours (lassitude).</li>
+        <li><b>8 · Coût de support :</b> minutes par abonné et par mois.</li></ul></div>
     </div>
+    <p class="note">Contrôles de conception, mesurés en pilote et hors des 8 : délai entre le dernier signe et N2 par niveau de couverture, messages par alerte (plafond de 4), part des listes de personnes vérifiées depuis moins de 3 mois, capteurs « à vérifier » non traités sous 7 jours. <span class="b h">H</span></p>
+  </div>
+</section>
+
+<section class="q" id="revue" data-title="Réussites et faillites">
+  <div class="rail"><span class="qnum">12</span></div>
+  <div class="qbody">
+    <div class="kicker">Revue à la lumière de la fiche de Lucas</div>
+    <h2>Ce que 16 cas changent</h2>
+    <p class="sum">Le produit reste le même. Les gagnants vendent un abonnement avec du service à ceux qui paient ; les perdants manquent de trésorerie, ou vendent un objet face aux géants ou à des seniors sans moyens. Un silence repéré vendu au grand public a déjà été arrêté.</p>
+    <p class="note">Source : <a href="../lucas/1-1-reussites-faillites-silvertech.html">fiche réussites et faillites de Lucas</a> : 16 entreprises (5 réussites, 5 mitigées, 6 échecs), en validation, complétée par notre analyse des concurrents (section 13). Beaucoup de causes d'échec restent inconnues : les conclusions ci-dessous sont des hypothèses de notre équipe. <span class="b h">H</span></p>
+    <div class="tabs" id="rfilter">
+      <button class="chip on" type="button" data-v="all">Tout</button>
+      <button class="chip" type="button" data-v="ok">Conforté</button>
+      <button class="chip" type="button" data-v="aj">À ajuster</button>
+      <button class="chip" type="button" data-v="vg">Vigilance</button>
+    </div>
+    <div class="tw"><table id="rtable">
+      <thead><tr><th style="width:20%">Enseignement</th><th style="width:26%">Cas</th><th style="width:12%">Verdict</th><th>Ce qu'on garde ou ce qu'on ajuste</th></tr></thead>
+      <tbody>
+        <tr data-v="ok"><td>L'enfant paie, le senior reçoit sans effort</td><td>Famileo (réussite), Coyali (le senior payeur n'avait pas toujours les moyens), ElliQ (si le senior ne paie pas, il faut un autre payeur)</td><td><span class="vd ok">Conforté</span></td><td>L'enfant achète et paie, le parent n'a rien à apprendre. Cagnotte entre proches en option (Could), comme Famileo.</td></tr>
+        <tr data-v="aj"><td>Un abonnement avec du service, pas un objet seul</td><td>Présence Verte, Filien, GreatCall (centre d'écoute, humain derrière) ; Famileo (service sans humain mais qui revient chaque mois)</td><td><span class="vd aj">À ajuster</span></td><td>Notre abonnement paie un service qui revient (photos, signe du matin, application), pas la détection seule. Et on le dit : Le Cadre n'est pas une téléassistance, sans centre d'écoute. L'humain, c'est le cercle choisi par le parent (responsable, suppléant, contact local).</td></tr>
+        <tr data-v="aj"><td>Un détecteur seul ne suffit pas</td><td>Vigilio (arrêt en 2016, source unique), Domalys (liquidation en 2025, cause inconnue) <span class="b f">F</span></td><td><span class="vd aj">À ajuster</span></td><td>Le lien est le moteur d'adoption, le filet vient en plus. L'envoi de photos et de messages est en Must.</td></tr>
+        <tr data-v="vg"><td>Un silence repéré vendu au grand public a déjà été arrêté</td><td>Alexa Together (arrêté le 21 mai 2025, cause non donnée), Snug (gratuit) <span class="b f">F</span></td><td><span class="vd vg">Vigilance</span></td><td>Une demande payante pour le silence seul n'est pas prouvée, et son remplaçant vise la fumée, pas l'inactivité (résumé de recherche). La valeur de 8 €/mois est la première hypothèse à valider.</td></tr>
+        <tr data-v="aj"><td>Bouche-à-oreille des familles, puis relais de confiance</td><td>Famileo (croissance par les familles), Filien et Présence Verte (réseau local), Ardoiz (canal de vente fermé), Philips (revendeurs négligés)</td><td><span class="vd aj">À ajuster</span></td><td>Vendre comme un cadeau qui se recommande entre proches. Tester en entretien un relais de confiance, sans commission. KPI de recommandation. Familink a déjà l'objet et la distribution : un seul canal tue.</td></tr>
+        <tr data-v="aj"><td>Protéger la trésorerie avant de grandir</td><td>Myxyty (levée non bouclée), Coyali (financement refusé), Ardoiz (dette), Famileo (rentable depuis 2020)</td><td><span class="vd aj">À ajuster</span></td><td>Un objet physique avance de l'argent : le kit A coûte ≈ 193 € à produire, un kit à 129 € est sous le coût, l'avance est de ≈ 24 k€ pour 100 kits avec les frais ponctuels. Rien n'est fabriqué dans le projet : liste d'attente sans encaissement. <span class="b h">H</span></td></tr>
+        <tr data-v="vg"><td>Ne pas affronter les géants sur la technique</td><td>Myxyty (face à Amazon et Google), Jibo (70 M$ sans demande, cas grand public) <span class="b f">F</span></td><td><span class="vd vg">Vigilance</span></td><td>Pas de voix ni de compagnon (Won't). Des cadres photo connectés existent (Familink, ViewClix, Memoryboard : section 13). Skylight, Aura, Nixplay et Frameo restent à comparer sur leurs pages officielles en phase 5.</td></tr>
+        <tr data-v="ok"><td>Aucun effort ni apprentissage pour le senior</td><td>Apple Watch (cas repère : charger, porter, accepter), Ardoiz (une tablette à apprendre)</td><td><span class="vd ok">Conforté</span></td><td>Le parent n'apprend rien : il regarde des photos, et un toucher est possible, jamais exigé. Aucun cas ne prouve que tout effort mène à l'abandon.</td></tr>
+        <tr data-v="ok"><td>Une clientèle institutionnelle seule fragilise</td><td>Blue Frog, Kompaï, Domalys (le lien avec leurs difficultés n'est pas établi)</td><td><span class="vd ok">Conforté</span></td><td>Le Cadre vise les familles. Les établissements restent un relais possible plus tard, hors MVP.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="q" id="concurrents" data-title="Concurrents">
+  <div class="rail"><span class="qnum">13</span></div>
+  <div class="qbody">
+    <div class="kicker">Comparaison avec les concurrents · pages officielles lues le 6 octobre 2026</div>
+    <h2>Pas de différence technique, un assemblage</h2>
+    <p class="sum">Aucun concurrent trouvé ne réunit notre trio : cadre photo discret, silence repéré dans le champ des capteurs, parent interrogé avant l'enfant. Mais notre différence est copiable, et la vraie alternative de prix est gratuite.</p>
+    <div class="tw sm"><table>
+      <thead><tr><th style="width:16%">Offre</th><th style="width:16%">Lien et photos</th><th style="width:26%">Silence repéré</th><th>Prix lu</th></tr></thead>
+      <tbody>
+        <tr><td>Le Cadre (A)</td><td>Oui</td><td>Oui, dans la pièce du cadre seulement. Parent interrogé d'abord.</td><td>Aucun prix affiché : à tester (section 9).</td></tr>
+        <tr><td>Familink (France)</td><td>Oui, SIM incluse</td><td>Non : un bouton « J'aime », aucun capteur ni alerte annoncés.</td><td>Achat 219,90 €, ou location dès 14,99 €/mois ; Plus 4,90 €/mois ; 4G 5,90 €/mois. <span class="b f">F</span></td></tr>
+        <tr><td>Livindi (États-Unis)</td><td>Oui, avec tablette</td><td>Oui, par capteurs et appareil porté ; alerte au changement de motif. Kit lourd, cible : démence.</td><td>Matériel de 199 à 1 199 $, abonnement de 19 à 90 $/mois ; page non recoupée. <span class="b f">F</span></td></tr>
+        <tr><td>ViewClix (États-Unis)</td><td>Oui, avec appel vidéo</td><td>Non : un SMS « Call-Me » quand le senior demande un appel.</td><td>179 $ + 9,95 $/mois. <span class="b f">F</span></td></tr>
+        <tr><td>Memoryboard (États-Unis)</td><td>Oui, messages et rappels</td><td>Non, aucune alerte.</td><td>175 $ une fois, sans abonnement. <span class="b f">F</span></td></tr>
+        <tr><td>Snug (États-Unis)</td><td>Non</td><td>Oui, déclaré : le parent touche un bouton chaque jour ; rappels au parent, puis SMS aux contacts. Mode vacances.</td><td>Gratuit ; formule avec régulateur 12,50 $/mois. <span class="b f">F</span></td></tr>
+        <tr><td>SeniorAdom (France)</td><td>Non</td><td>Oui, capteurs de domicile avec centre d'appel : c'est une téléassistance.</td><td>Non affiché ; 29,90 €/mois lu en résumé seulement. <span class="b f">F</span></td></tr>
+        <tr><td>Alexa Together (États-Unis)</td><td>Non</td><td>Oui : alerte d'inactivité. Arrêté le 21 mai 2025, cause non donnée.</td><td>19,99 $/mois quand il existait. <span class="b f">F</span></td></tr>
+        <tr><td>Nobi (Belgique)</td><td>Non</td><td>Oui, lampe de plafond en établissement, pas pour le particulier.</td><td>Non affiché.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="cols">
+      <div class="col"><h3>Ce qui nous différencie, avec sa faiblesse</h3><ol>
+        <li><b>Un cadre sans caméra ni appareil à porter qui repère un silence, avec un délai annoncé honnêtement.</b> Faiblesse : Familink a l'objet, la SIM et la distribution ; il lui suffirait d'utiliser son bouton « J'aime » comme signe pour nous rattraper. <span class="b h">H</span></li>
+        <li><b>Le parent est interrogé d'abord, puis l'enfant, puis le contact local.</b> Faiblesse : Snug le fait déjà ; c'est nouveau seulement dans un cadre photo.</li>
+        <li><b>Le parent garde la main :</b> accord à l'écran, pause sans justification, vue identique à celle de l'enfant. Faiblesse : aucun concurrent ne l'annonce, ce qui peut aussi dire que personne n'en voit la valeur ; « inconnu » dans notre grille, pas « non ».</li></ol></div>
+      <div class="col blue"><h3>L'alternative gratuite, et ce qui vaut le prix</h3>
+        <p>Le vrai comparatif de prix est zéro : Snug gratuit (un toucher par jour sur un téléphone), Familink Basic (gratuit avec l'achat du cadre, 10 photos par jour), l'appel quotidien de l'enfant. <span class="b f">F</span></p>
+        <p style="margin-top:8px">Trois choses que la gratuité ne donne pas, à tester en entretien : un signe passif, pour un parent sans smartphone ; le lien dans le même objet, donc un abonnement qui revient pour une autre raison que la peur ; le parent interrogé sur son cadre et non sur un téléphone. Aucune source n'établit qu'un foyer paie pour cela. <span class="b h">H</span></p></div>
+      <div class="col"><h3>Ce qu'ils font mieux</h3><ul>
+        <li><b>Familink :</b> l'objet existe depuis 2016, avec SIM, un partenaire de service public et la distribution. <span class="b f">F</span></li>
+        <li><b>ViewClix :</b> l'appel vidéo en réponse automatique. Nous n'avons ni voix ni vidéo.</li>
+        <li><b>Livindi :</b> une chaîne complète, et des conditions d'usage honnêtes sur ses limites.</li>
+        <li><b>Memoryboard :</b> un seul achat, sans abonnement, plus simple à vendre.</li>
+        <li><b>Snug :</b> gratuit, et déjà le parent d'abord.</li></ul></div>
+    </div>
+    <p class="note">Texte repris de la carte de positionnement (section 1) : en France la case est encore vide pour le particulier mais voisine de Familink ; aucune source ne prouve qu'elle ait des acheteurs. À emprunter : la franchise de Familink (« c'est un cadre »), le parent qui choisit ses contacts et l'heure comme chez Snug, une alerte unique et lisible, et la mention « pas une téléassistance » que Livindi n'écrit que dans ses conditions : nous la mettons sur la page d'achat. Sources : pages officielles <a href="https://www.familinkframe.com/fr">Familink</a> et <a href="https://www.snugsafe.com">Snug</a>, lues le 6 octobre 2026. <span class="b f">F</span> Cadres Skylight, Aura, Nixplay et Frameo : vus en résumé seulement.</p>
   </div>
 </section>
 
 <section class="q" id="hypotheses" data-title="Hypothèses à valider">
-  <div class="rail"><span class="qnum">11</span></div>
+  <div class="rail"><span class="qnum">14</span></div>
   <div class="qbody">
     <div class="kicker">Hypothèses à valider en entretien</div>
     <h2>Ce qu'il faut vérifier</h2>
-    <p class="note">Cochez au fil des entretiens. La liste est sauvegardée dans votre navigateur seulement.</p>
-    <div id="hyp"></div>
+    <p class="note">La première est la plus importante. Cochez au fil des entretiens. La liste est sauvegardée dans votre navigateur seulement.</p>
+    <div id="hyp"><label class="chk"><input type="checkbox"><span class="tx">Un aidant paie 8 €/mois (ou 5, ou 12) pour « un signe du matin, et un message s'il manque », alors que Snug le fait gratuitement et qu'il peut appeler son parent. Valeur à valider en premier.</span></label><label class="chk"><input type="checkbox"><span class="tx">Un parent accepte un cadre qui remarque les passages devant lui, s'il peut le mettre en pause.</span></label><label class="chk"><input type="checkbox"><span class="tx">Les familles comprennent la phrase du contrat du matin : elles ne concluent ni « on me prévient la nuit » ni « on me prévient dans l'heure ».</span></label><label class="chk"><input type="checkbox"><span class="tx">Un filet de plusieurs heures, jusqu'à 21 h le soir, est acceptable pour l'enfant.</span></label><label class="chk"><input type="checkbox"><span class="tx">Un enfant préfère un signe du matin à des notifications en continu.</span></label><label class="chk"><input type="checkbox"><span class="tx">Au plus 4 messages par alerte et par aidant ne fatiguent pas l'aidant.</span></label><label class="chk"><input type="checkbox"><span class="tx">Les familles envoient des photos assez régulièrement pour faire vivre le cadre, avec 2 minutes par mois d'effort.</span></label><label class="chk"><input type="checkbox"><span class="tx">Le parent accepte de voir ce que voit l'enfant (« Ma famille voit ») et en est rassuré.</span></label><label class="chk"><input type="checkbox"><span class="tx">Un parent préfère « Touchez l'écran pour dire bonjour » à d'autres formulations, et trouve seul la pause en deux touchers.</span></label><label class="chk"><input type="checkbox"><span class="tx">Les N2 inutiles restent rares avec un seuil de plusieurs heures.</span></label><label class="chk"><input type="checkbox"><span class="tx">La chaîne responsable, suppléant, contact local est acceptable, et le contact local accepte d'être prévenu par SMS et répond OUI.</span></label><label class="chk"><input type="checkbox"><span class="tx">Un aidant accepte de laisser passer un N2 en mode « ne pas déranger ».</span></label><label class="chk"><input type="checkbox"><span class="tx">Un test de la liste des personnes à prévenir tous les 3 mois est supportable.</span></label><label class="chk"><input type="checkbox"><span class="tx">Les familles utilisent « Signaler un contact ».</span></label><label class="chk"><input type="checkbox"><span class="tx">Les cinq questions d'orientation sont comprises et ne vexent pas, et l'acheteur lit le texte d'orientation.</span></label><label class="chk"><input type="checkbox"><span class="tx">Les familles comprennent que ce n'est pas une téléassistance, et l'acceptent.</span></label><label class="chk"><input type="checkbox"><span class="tx">Le cadeau est un moment d'achat naturel (anniversaire, Noël).</span></label><label class="chk"><input type="checkbox"><span class="tx">Une recommandation entre proches ou un relais de confiance (aide à domicile, mutuelle, CCAS) suffit à vendre sans publicité.</span></label><label class="chk"><input type="checkbox"><span class="tx">La reconfirmation annuelle proposée par une personne de confiance est acceptée par le parent.</span></label><label class="chk"><input type="checkbox"><span class="tx">Le parent dispose d'un réseau mobile à l'intérieur, et un helper local pose le cadre.</span></label><label class="chk"><input type="checkbox"><span class="tx">Pour une option à capteurs (kit B) : le parent accepte un capteur dans le couloir et un capteur de porte, un par un.</span></label></div>
     <p class="ck" id="hcount"></p>
   </div>
 </section>
 
 <section class="q" id="risques" data-title="Risques et parades">
-  <div class="rail"><span class="qnum">12</span></div>
+  <div class="rail"><span class="qnum">15</span></div>
   <div class="qbody">
     <div class="kicker">Risques et parades</div>
     <h2>Ce qui peut mal tourner</h2>
-    <div>
-      <details><summary>Le parent rejette le détecteur de présence</summary><p>Il peut y voir une surveillance déguisée. <b>Parade :</b> transparence totale, pause intimité, consentement à l'activation. À tester en premier.</p></details>
-      <details><summary>Fausses alertes qui épuisent l'aidant</summary><p>Un parent qui sort au jardin crée un écart. <b>Parade :</b> le cadre interroge le parent avant l'enfant (N1), et les seuils s'ajustent.</p></details>
-      <details><summary>L'objet perd son côté cadeau</summary><p>Trop de détection fait du cadre un capteur déguisé. <b>Parade :</b> la photo et le lien restent la fonction principale, l'écran est pensé pour eux.</p></details>
-      <details><summary>Dérive vers le dispositif médical</summary><p>Une fonction d'analyse à visée médicale fait du logiciel un dispositif médical. <b>Parade :</b> aucun diagnostic, aucun indicateur de santé, aucune mention médicale. <span class="b f">F</span></p></details>
-      <details><summary>Le résumé IA invente ou déforme</summary><p>Il pourrait dramatiser ou rassurer à tort. <b>Parade :</b> il ne décrit que des faits observés (présence, réponses), porte la mention « résumé généré par IA » et ne donne aucun conseil.</p></details>
-      <details><summary>Le prix ou l'abonnement refroidit</summary><p>Les familles redoutent les abonnements opaques. <b>Parade :</b> prix tout compris et sans engagement, affichés dès le début.</p></details>
+    <div><details><summary>La valeur de 8 €/mois n'est pas démontrée</summary><p>Snug est gratuit, Familink en location tout compris coûte ≈ 540 € à 36 mois, le kit B à son prix minimal ≈ 550 à 603 €. <span class="b h">H</span> <b>Parade :</b> aucun prix affiché, test à 5, 8 et 12 €/mois en entretien ; vendre le lien et le matin d'abord.</p></details><details><summary>Le parent rejette le capteur de passage</summary><p>Il peut y voir une surveillance déguisée. <b>Parade :</b> « ni caméra ni micro », « Non, juste les photos », pause en deux touchers, consentement par le parent seul. À tester en premier.</p></details><details><summary>Fausse réassurance : un fait daté se lit « elle va bien »</summary><p>Un toucher le matin, une chute à 10 h : « Dernier signe reçu à 08:12 » reste affiché plusieurs heures. <b>Parade :</b> l'âge du signe, l'heure de mise à jour, aucun « normal », KPI de compréhension de l'état. La limite reste : le signe du matin ne dit rien de l'après-midi. <span class="b h">H</span></p></details><details><summary>Le délai du soir est long</summary><p>Jusqu'à 20 h 29 avec le cadre seul, et rien ne part entre 21 h 30 et 7 h. <span class="b h">H</span> <b>Parade :</b> le contrat du matin, sous le bouton de paiement, avec la case « Je comprends que le délai se compte en heures ». V2 reste une option désactivée.</p></details><details><summary>Chien, visiteur ou aide non déclarés masquent le silence</summary><p>Leurs passages remettent le compteur à zéro, sans limite de durée. <b>Parade partielle :</b> dit dans la phrase du contrat, visites régulières déclarables, produit fait pour une personne seule. Non résolu.</p></details><details><summary>Le parent se croit protégé hors du logement</summary><p>Cave, garage, jardin, sorties : aucun capteur. <b>Parade :</b> dit à l'achat en toutes lettres. Avec le kit B simulé : « Sorti à 14:10, pas revenu », sans autre mot. <span class="b h">H</span></p></details><details><summary>Fausses alertes qui épuisent l'aidant</summary><p>Un parent au jardin crée un écart. <b>Parade :</b> le cadre interroge le parent d'abord (N1), tout signe ferme N1, au plus 4 messages par alerte, heures calmes. <span class="b h">H</span></p></details><details><summary>Une notification ouverte n'est pas une prise en charge</summary><p>L'aidant ouvre et ne fait rien. <b>Parade :</b> « Je m'en occupe » est nommé et vérifié par un rappel à 30 minutes et une issue demandée ; sans issue, la responsabilité est libérée. <span class="b h">H</span></p></details><details><summary>Le service peut s'arrêter sans bruit</summary><p>Si le moteur meurt, « aucune notification » ressemble à « aucun problème ». <b>Parade :</b> contrôleur indépendant, astreinte, l'application dit « Mise à jour impossible ». Hors MVP : plan payant. Le moteur de la démo est à la demande.</p></details><details><summary>Une chaîne de contacts se périme sans bruit</summary><p>Un numéro change, un aidant disparaît. <b>Parade :</b> test tous les 3 mois, état « liste non vérifiée depuis 3 mois ». <span class="b h">H</span></p></details><details><summary>Panne de courant, cadre sans réseau mobile</summary><p>Couverture nulle pendant la coupure ; un cadre sans réseau mobile ne se règle pas à distance. <b>Parade :</b> SIM 4G, état neutre « non joignable », pas de vente sans réseau mobile à l'adresse. <span class="b h">H</span></p></details><details><summary>Consentement vicié ou parent sans capacité</summary><p>Un « oui » poli ou donné par un parent qui ne retient plus n'est pas un consentement. <b>Parade :</b> deux choix de même poids, le parent seul sur le cadre, personne de confiance, reconfirmation annuelle. Le produit ne peut pas évaluer la capacité.</p></details><details><summary>L'heure du dernier signe devient un outil de contrôle</summary><p>Une heure de lever chaque jour apprend à l'enfant les habitudes du parent. <b>Parade :</b> pas d'historique fin, pas de toucher révélé, résumé en jours, notice « pour appeler, pas pour contrôler ».</p></details><details><summary>L'absence est une donnée sensible</summary><p>Un tiers qui sait que le logement est vide. <b>Parade :</b> ni adresse, ni clés, ni code dans l'application ; accès réservé aux comptes autorisés ; jamais de page partageable.</p></details><details><summary>Promesse trompeuse, mots interdits</summary><p>Une publicité, un support de mutuelle ou un avis client peut promettre ce que le produit ne tient pas. <b>Parade :</b> charte de promesses, liste de mots, relecture avant publication, avis « il a sauvé… » non republiés.</p></details><details><summary>Dérive vers le dispositif médical</summary><p>Une fonction d'analyse à visée médicale fait du logiciel un dispositif médical. <b>Parade :</b> aucun diagnostic, aucun indicateur de santé, aucun message de tendance, aucune mention médicale. <span class="b f">F</span></p></details><details><summary>Le résumé IA invente ou déforme</summary><p>Il pourrait dramatiser ou rassurer à tort. <b>Parade :</b> hors MVP, jours avec ou sans signe seulement, jamais d'heure ni de touchers, filtre de sortie, mention « généré par IA ».</p></details><details><summary>L'objet perd son côté cadeau</summary><p>Un cadre sans photos devient un capteur, et Marie l'éteint. <b>Parade :</b> rejeu des photos, rappel doux mensuel, famille invitée, le lien reste la fonction principale.</p></details><details><summary>La trésorerie : le matériel avance de l'argent</summary><p>Le kit A coûte ≈ 193 €, vendu 129 € il est sous le coût ; avance ≈ 24 k€ pour 100 kits, frais ponctuels compris. <span class="b h">H</span> <b>Parade :</b> rien n'est fabriqué dans le projet ; précommande sans encaissement ; prix à décider après l'entretien.</p></details><details><summary>Familink ajoute un signe à son bouton « J'aime »</summary><p>Il a l'objet, la SIM, la distribution. <span class="b f">F</span> <b>Parade :</b> aucune différence technique à défendre ; miser sur le matin, le parent d'abord et la franchise des limites. Probabilité et impact à fixer. <span class="b h">H</span></p></details><details><summary>On nous prend pour une téléassistance</summary><p>Les familles peuvent croire à une veille 24 h sur 24. <b>Parade :</b> phrase de limite à l'achat et dans l'application, questionnaire d'orientation, « pas de centre d'écoute ». <span class="b h">H</span></p></details><details><summary>Une règle modifiée sans test envoie un flot de N2, ou plus aucun</summary><p><b>Parade :</b> déploiement par paliers, foyer pilote d'abord, test préalable sur le simulateur.</p></details><details><summary>Kit B : une pile morte réduit la couverture sans bruit</summary><p>Trois piles, durée réelle inconnue. <b>Parade :</b> signal de vie, état « capteur à vérifier » à 24 h, pas de N2 pour un capteur muet. Kit B non vendu. <span class="b h">H</span></p></details></div>
+  </div>
+</section>
+
+<section class="q" id="problemes" data-title="Problèmes et réponses">
+  <div class="rail"><span class="qnum">16</span></div>
+  <div class="qbody">
+    <div class="kicker">Problèmes et réponses · liste complète</div>
+    <h2>Chaque problème, chaque réponse, son statut</h2>
+    <p class="sum">Aucun problème n'est marqué résolu : aucun n'a reçu de validation complète. Les statuts viennent du contrôle de l'adversaire.</p>
+    <p class="note">Statuts : <b>atténué</b> (limite écrite) · <b>non résolu</b> (assumé ou ouvert) · <b>à tester en entretien</b>. Un problème peut porter deux statuts. Les valeurs chiffrées sont celles des sections 5 et 9, hypothèses de travail. <span class="b h">H</span> Filtrez par famille ou par statut. D : couverture · T : technique · R : fausse réassurance · P : parent · A : aidant · L : légal et éthique · E : économie · X : problèmes trouvés en cours de revue (séries X, Y et Z).</p>
+    <div class="fl">
+      <p class="lead">Famille</p>
+      <div class="tabs" id="pfam">
+        <button class="chip on" type="button" data-f="all">Toutes</button>
+        <button class="chip" type="button" data-f="D">D Couverture</button>
+        <button class="chip" type="button" data-f="T">T Technique</button>
+        <button class="chip" type="button" data-f="R">R Réassurance</button>
+        <button class="chip" type="button" data-f="P">P Parent</button>
+        <button class="chip" type="button" data-f="A">A Aidant</button>
+        <button class="chip" type="button" data-f="L">L Légal</button>
+        <button class="chip" type="button" data-f="E">E Économie</button>
+        <button class="chip" type="button" data-f="X">X Hors liste</button>
+      </div>
+      <p class="lead">Statut</p>
+      <div class="tabs" id="pst">
+        <button class="chip on" type="button" data-s="all">Tous</button>
+        <button class="chip" type="button" data-s="att">Atténué</button>
+        <button class="chip" type="button" data-s="nr">Non résolu</button>
+        <button class="chip" type="button" data-s="te">À tester en entretien</button>
+      </div>
+    </div>
+    <p class="ck" id="pcount"></p>
+    <div class="tw sm" data-b="H"><table id="ptable">
+      <thead><tr><th style="width:22%">Problème</th><th>Réponse retenue</th><th style="width:19%">Statut</th><th style="width:9%">Voir</th></tr></thead>
+      <tbody><tr data-f="D" data-s="att nr"><td><b>D1</b> Chute dans une autre pièce</td><td style="font-weight:400">Le cadre ne cherche pas où : il constate l'absence de tout signe. Cadre seul : 5 h 30 après le dernier signe ; avec les capteurs de l'option B : 4 h. Aucune pièce dans le message.</td><td><span class="vd vg">atténué</span><span class="vd aj">non résolu</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="D" data-s="att"><td><b>D2</b> Chute la nuit</td><td style="font-weight:400">Aucune alerte entre 21 h 30 et 7 h ; règle du matin (6 h 35 après 03:10). Capteur du couloir facultatif, désactivé par défaut, message sans heure.</td><td><span class="vd vg">atténué</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="D" data-s="att"><td><b>D3</b> Délai trop long</td><td style="font-weight:400">Seuil de silence plus attente du parent ; un seul tableau de délais ; contrat du matin recopié partout. Pas de secours rapide : il faut une téléassistance.</td><td><span class="vd vg">atténué</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="D" data-s="att"><td><b>D4</b> Capteur qui ne voit pas l'immobile</td><td style="font-weight:400">On compte des signes, jamais une présence : « Dernier signe ». Seuil de plusieurs heures. Radar hors MVP.</td><td><span class="vd vg">atténué</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="D" data-s="nr"><td><b>D5</b> Animal, visiteur, aide, conjoint</td><td style="font-weight:400">Tout signe remet le compteur à zéro : le masquage n'est pas borné et le contrat le dit. Visites régulières déclarables. Fait pour une personne seule.</td><td><span class="vd aj">non résolu</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="D" data-s="att"><td><b>D6</b> Parent absent</td><td style="font-weight:400">Absence posée en deux touchers (voyage) ou absence prolongée de 7 jours, par le parent. À la fin : N1 si aucun signe dans l'heure.</td><td><span class="vd vg">atténué</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="D" data-s="nr"><td><b>D7</b> Chute hors du logement</td><td style="font-weight:400">Non couvert, écrit à l'achat : cave, garage, jardin, sorties. Option B : « Sorti à 14:10, pas revenu ».</td><td><span class="vd aj">non résolu</span></td><td><a href="#nonresolu">§ 17</a></td></tr><tr data-f="D" data-s="att"><td><b>D8</b> Faux négatifs matériels</td><td style="font-weight:400">État « capteur peu actif » à l'enfant, aide à la pose. Un cadre tourné au mur reste invisible.</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="D" data-s="att te"><td><b>D9</b> Apprentissage et dérive</td><td style="font-weight:400">14 jours de seuils larges, texte « prévient plus tard et moins souvent », plafond du premier signe à 10:30, aucun message de tendance.</td><td><span class="vd vg">atténué</span><span class="vd te">à tester en entretien</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="D" data-s="te"><td><b>D10</b> Où poser le cadre</td><td style="font-weight:400">Questions de pose à l'achat, guide en 3 images, test de passage sans voyant.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="T" data-s="att nr"><td><b>T1</b> Courant, box, Wi-Fi, SIM</td><td style="font-weight:400">SIM 4G, « le cadre n'a pas besoin de votre box », jamais de 2G ; état neutre « non joignable ». Sans réseau mobile : pas de vente.</td><td><span class="vd vg">atténué</span><span class="vd aj">non résolu</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="T" data-s="att"><td><b>T2</b> Panne du service lui-même</td><td style="font-weight:400">Contrôleur indépendant, astreinte, foyer témoin : hors MVP, plan payant dit. Le moteur de la démo tourne à la demande.</td><td><span class="vd vg">atténué</span></td><td><a href="#chaine">§ 6</a></td></tr><tr data-f="T" data-s="att"><td><b>T3</b> Le parent débranche le cadre</td><td style="font-weight:400">Geste respecté : pause en deux touchers, « Éteindre » sans justification, aucune relance.</td><td><span class="vd vg">atténué</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="T" data-s="att"><td><b>T4</b> Piles des capteurs</td><td style="font-weight:400">Kit A sans pile. Option B : trois piles, signal de vie, état « capteur à vérifier ». Durée réelle inconnue.</td><td><span class="vd vg">atténué</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="T" data-s="te"><td><b>T5</b> Installation à distance</td><td style="font-weight:400">Kit prêt à l'emploi, un helper local, test à distance ; 60 à 90 € de coût pour nous.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="T" data-s="att"><td><b>T6</b> Zone rurale, mauvais réseau</td><td style="font-weight:400">Test de couverture à l'adresse, SIM d'abord, plafond de données. Vente refusée sans réseau mobile.</td><td><span class="vd vg">atténué</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="T" data-s="att"><td><b>T7</b> Notification non reçue</td><td style="font-weight:400">Chaîne E0 à E7, au plus 4 messages, SMS de secours, « Je m'en occupe » vérifié ; un signe après N2 met la chaîne en pause.</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="T" data-s="att"><td><b>T8</b> Sécurité informatique</td><td style="font-weight:400">Secret par appareil, événements signés, numéro de séquence, double facteur, révocation d'un cadre volé. À vérifier en no-code en phase 5.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="R" data-s="att te"><td><b>R1</b> Fausse réassurance affichée</td><td style="font-weight:400">Textes de chaque état (section 7) : faits datés, âge du signe, jamais « normal » ni coche. Un fait daté peut encore se lire « elle va bien ».</td><td><span class="vd vg">atténué</span><span class="vd te">à tester en entretien</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="R" data-s="att"><td><b>R2</b> Promesse trompeuse à la vente</td><td style="font-weight:400">Charte de promesses, liste de mots, contrat du matin sous le bouton, supports de tiers relus.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="P" data-s="te"><td><b>P1</b> Il se sent espionné</td><td style="font-weight:400">« Ma famille voit » derrière un geste volontaire, aucun état d'alerte sur l'écran du salon, « ni caméra ni micro ».</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="P" data-s="te"><td><b>P2</b> Il refuse la détection</td><td style="font-weight:400">« Non, juste les photos » : un cadre photo sans signe. Coût : l'enfant a payé pour un cadre photo.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="P" data-s="nr"><td><b>P3</b> Troubles cognitifs, consentement</td><td style="font-weight:400">Le « oui » du parent seul sur le cadre, personne de confiance, reconfirmation annuelle sans coupure. La capacité de consentir est une question de droit, pas de produit.</td><td><span class="vd aj">non résolu</span></td><td><a href="#nonresolu">§ 17</a></td></tr><tr data-f="P" data-s="att te"><td><b>P4</b> Parent déjà tombé ou à fort risque</td><td style="font-weight:400">Cinq questions, orientation vers une téléassistance, rien d'enregistré, vente jamais bloquée.</td><td><span class="vd vg">atténué</span><span class="vd te">à tester en entretien</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="P" data-s="te"><td><b>P5</b> Ton infantilisant</td><td style="font-weight:400">« Touchez l'écran pour dire bonjour », vouvoiement, trois variantes à tester.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="P" data-s="te"><td><b>P6</b> Vue, dextérité, tremblements</td><td style="font-weight:400">12 mesures : « Coucou » très grand, pause en deux touchers, texte sur bandeau uni, rien porté par la couleur seule.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="A" data-s="te"><td><b>A1</b> Fatigue d'alertes</td><td style="font-weight:400">Chaîne E0 à E7, au plus 4 messages, heures calmes. La variante V2 n'est pas mesurée.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="A" data-s="att"><td><b>A2</b> Harcèlement par les données</td><td style="font-weight:400">L'enfant ne voit que le dernier signe, jamais de toucher ni de tendance ; résumé en jours seulement.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="A" data-s="att"><td><b>A3</b> Trop loin pour agir</td><td style="font-weight:400">Fiche d'urgence réduite au prénom et au numéro du contact local ; ni clés, ni adresse.</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="A" data-s="te"><td><b>A4</b> Fratrie : qui répond</td><td style="font-weight:400">Un responsable et un suppléant, « Je m'en occupe » nommé, rappel, relais.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="A" data-s="te"><td><b>A5</b> Cadre vide</td><td style="font-weight:400">Rejeu des photos, rappel doux au plus une fois par mois, famille invitée.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="L" data-s="att"><td><b>L1</b> Frontière avec le dispositif médical</td><td style="font-weight:400">Bien-être et lien familial, liste de mots, « dernier signe », aucun message de tendance, résumé IA hors MVP.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="L" data-s="att"><td><b>L2</b> RGPD, analyse d'impact</td><td style="font-weight:400">Minimisation, hébergement UE, durées, contact local avec son accord, analyse d'impact en phase 5. Bases légales à faire relire.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="L" data-s="att"><td><b>L3</b> Abus de contrôle</td><td style="font-weight:400">Le parent voit qui voit, valide, retire ; l'enfant sans heure fine ; aucune activation à distance. Un parent sous emprise : aucun logiciel ne le voit.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="L" data-s="att"><td><b>L4</b> Responsabilité si l'alerte échoue</td><td style="font-weight:400">Engagement de moyens, délai dit avant l'achat, fin de service, décès, assurance à chiffrer.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="L" data-s="att"><td><b>L5</b> Résumé par IA</td><td style="font-weight:400">Hors MVP, opt-in, jours seuls, filtre de sortie, hors chaîne d'alerte, mention « généré par IA ».</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="L" data-s="att"><td><b>L6</b> Consentement, retrait, tutelle</td><td style="font-weight:400">Parent seul sur le cadre, retrait sans justification, reconfirmation annuelle, question de protection juridique à l'achat. À valider en droit.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="E" data-s="att"><td><b>E1</b> Trésorerie</td><td style="font-weight:400">Kit A ≈ 193 € de coût, B ≈ 343 € ; frais ponctuels dans les totaux ; précommande sans encaissement. Passerelle non identifiée.</td><td><span class="vd vg">atténué</span></td><td><a href="#modele">§ 9</a></td></tr><tr data-f="E" data-s="att"><td><b>E2</b> Le concurrent existe</td><td style="font-weight:400">Pas de différence technique ; l'alternative gratuite (Snug, Familink Basic) ; un assemblage copiable.</td><td><span class="vd vg">atténué</span></td><td><a href="#concurrents">§ 13</a></td></tr><tr data-f="E" data-s="att"><td><b>E3</b> Support client</td><td style="font-weight:400">E-mail sous un jour ouvré, astreinte tournante, remplacement ; état « non connecté » daté.</td><td><span class="vd vg">atténué</span></td><td><a href="#modele">§ 9</a></td></tr><tr data-f="E" data-s="te"><td><b>E4</b> Lassitude</td><td style="font-weight:400">Rejeu des photos, rappel mensuel, effort de 2 minutes par mois au plus.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#modele">§ 9</a></td></tr><tr data-f="E" data-s="att nr"><td><b>E5</b> Prix et crédit d'impôt</td><td style="font-weight:400">Aucun prix affiché ; comparaison à 36 mois dont la location Familink ; aucun crédit d'impôt annoncé (éligibilité probablement non).</td><td><span class="vd vg">atténué</span><span class="vd aj">non résolu</span></td><td><a href="#modele">§ 9</a></td></tr><tr data-f="E" data-s="te"><td><b>E6</b> Distribution</td><td style="font-weight:400">Cadeau et bouche-à-oreille ; relais testés en entretien ; orientation vers une téléassistance sans commission.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#modele">§ 9</a></td></tr><tr data-f="X" data-s="att"><td><b>X1 à X3</b> Cave, plusieurs logements, déménagement</td><td style="font-weight:400">Dit à l'achat ; « Je pars » ; nouvelle activation en cas de déménagement ; fausse alerte possible si on oublie.</td><td><span class="vd vg">atténué</span></td><td><a href="#nonresolu">§ 17</a></td></tr><tr data-f="X" data-s="att"><td><b>X4</b> Décès</td><td style="font-weight:400">Résiliation sans friction, sans prélèvement, photos exportables ; le cadre garde ses photos.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="X" data-s="att"><td><b>X5</b> Aidant perdu, paiement échoué</td><td style="font-weight:400">Test de la liste tous les 3 mois ; préavis de 15 jours, puis arrêt du signe seulement.</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="X" data-s="att"><td><b>X6</b> Chaîne de contacts périmée</td><td style="font-weight:400">Test tous les 3 mois, état « liste non vérifiée depuis 3 mois ».</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="X" data-s="nr"><td><b>X7</b> Conflit de famille</td><td style="font-weight:400">Le payeur n'est pas le responsable ; tout changement est affiché au parent. Aucun logiciel ne règle un conflit.</td><td><span class="vd aj">non résolu</span></td><td><a href="#nonresolu">§ 17</a></td></tr><tr data-f="X" data-s="att"><td><b>X8</b> Cadre volé ou perdu</td><td style="font-weight:400">Révocation, effacement à la prochaine connexion. Un cadre hors ligne ne s'efface pas.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="X" data-s="att"><td><b>X9</b> Cambriolage</td><td style="font-weight:400">Ni clés, ni adresse, ni code dans l'application ; l'absence n'est visible que des comptes autorisés.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="X" data-s="att"><td><b>X10</b> Sécurité électrique</td><td style="font-weight:400">Aucune prise connectée sur un appareil de forte puissance ; marquage CE à vérifier.</td><td><span class="vd vg">atténué</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="X" data-s="att"><td><b>X11</b> Changement de box</td><td style="font-weight:400">SIM 4G : le cadre n'a pas besoin de la box.</td><td><span class="vd vg">atténué</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="X" data-s="att"><td><b>X12</b> Mise à jour</td><td style="font-weight:400">Déploiement par paliers, foyer pilote, test sur le simulateur. Retour arrière en no-code non vérifié.</td><td><span class="vd vg">atténué</span></td><td><a href="#chaine">§ 6</a></td></tr><tr data-f="X" data-s="att"><td><b>X13</b> Fin de service</td><td style="font-weight:400">Préavis, dernier message, export des photos, provision.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="X" data-s="att"><td><b>X14</b> Signe déclaré par l'aidant</td><td style="font-weight:400">« J'ai eu Maman à 12:10 » : signe daté, clôt l'alerte. Une déclaration, pas une preuve.</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="X" data-s="att"><td><b>X15, X16</b> Tromper ou contrôler</td><td style="font-weight:400">Le toucher n'est jamais exigé ni révélé ; l'enfant ne voit ni N1 ni touchers.</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="X" data-s="att"><td><b>X17</b> Ton entre aidants</td><td style="font-weight:400">Textes neutres : « Aucune réponse pour le moment ».</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="X" data-s="te"><td><b>X18</b> Bruit lumineux la nuit</td><td style="font-weight:400">Aucun voyant, aucune veilleuse dans le kit, écran assombri la nuit.</td><td><span class="vd te">à tester en entretien</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="X" data-s="att"><td><b>X19</b> Cadre vide après résiliation</td><td style="font-weight:400">Le cadre garde ses photos.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="X" data-s="nr"><td><b>X20</b> Maladie évolutive</td><td style="font-weight:400">Reconfirmation proposée par une personne de confiance ; le produit ne déduit jamais un déclin. Personne ne peut arrêter à la place du parent.</td><td><span class="vd aj">non résolu</span></td><td><a href="#nonresolu">§ 17</a></td></tr><tr data-f="X" data-s="att"><td><b>X21</b> Données de présence</td><td style="font-weight:400">SMS sans prénom ni heure, journaux de 30 jours, aperçu masqué.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="X" data-s="att"><td><b>X22</b> Publicité et supports de tiers</td><td style="font-weight:400">Liste blanche, charte, supports relus avant publication.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="X" data-s="att"><td><b>X23</b> Qui est la passerelle</td><td style="font-weight:400">Boîtier séparé ; produit non identifié, donc kit B non vendu.</td><td><span class="vd vg">atténué</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="X" data-s="att"><td><b>X24</b> Volumes de données</td><td style="font-weight:400">Un événement au changement d'état ; moteur à la demande ; plan payant dit et chiffré.</td><td><span class="vd vg">atténué</span></td><td><a href="#modele">§ 9</a></td></tr><tr data-f="X" data-s="att"><td><b>X25</b> 4G et photos</td><td style="font-weight:400">30 Mo par mois : photos compressées et plafonnées.</td><td><span class="vd vg">atténué</span></td><td><a href="#modele">§ 9</a></td></tr><tr data-f="X" data-s="nr"><td><b>X26</b> Visiteur, aide à domicile</td><td style="font-weight:400">Signes faibles, masquage non borné, dit à l'achat.</td><td><span class="vd aj">non résolu</span></td><td><a href="#nonresolu">§ 17</a></td></tr><tr data-f="X" data-s="att"><td><b>X27</b> Écran visible des tiers</td><td style="font-weight:400">Aucun état d'alerte ni nom d'enfant sur l'écran du salon.</td><td><span class="vd vg">atténué</span></td><td><a href="#faces">§ 4</a></td></tr><tr data-f="X" data-s="att"><td><b>X28</b> Contact local</td><td style="font-weight:400">Il répond OUI, peut répondre STOP ; SMS minimal. Base légale à faire relire.</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="X" data-s="att"><td><b>X29</b> Consentement expiré</td><td style="font-weight:400">Reconfirmation annuelle ; le service continue pendant l'attente.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="X" data-s="att"><td><b>X30</b> Santé d'un tiers dans les mots</td><td style="font-weight:400">Le mot « hospitalisation » est supprimé ; le questionnaire ne stocke rien.</td><td><span class="vd vg">atténué</span></td><td><a href="#donnees">§ 10</a></td></tr><tr data-f="X" data-s="att"><td><b>X31</b> Changement d'heure</td><td style="font-weight:400">Heures stockées avec le fuseau, lues en heure locale.</td><td><span class="vd vg">atténué</span></td><td><a href="#chaine">§ 6</a></td></tr><tr data-f="X" data-s="att"><td><b>Y1</b> Pire délai</td><td style="font-weight:400">Le tableau de la section 5 est le seul ; « jusqu'à 21 h » arrondit vers le haut ; l'ancien « 14 h » est annulé.</td><td><span class="vd vg">atténué</span></td><td><a href="#limites">§ 5</a></td></tr><tr data-f="X" data-s="att"><td><b>Y2, Y3</b> Le toucher, le texte de N2</td><td style="font-weight:400">Aucune règle n'exige le toucher ; N2 dit partout « Aucun signe reçu depuis 08:12 ».</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="X" data-s="att"><td><b>Y5</b> Nuit : l'heure d'un message</td><td style="font-weight:400">Aucun message de nuit ne donne l'heure.</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="X" data-s="att"><td><b>Y8</b> Moteur à 5 minutes et plan payant</td><td style="font-weight:400">Dit et chiffré ; le moteur de la démo est à la demande.</td><td><span class="vd vg">atténué</span></td><td><a href="#modele">§ 9</a></td></tr><tr data-f="X" data-s="att"><td><b>Y10</b> Passerelle à fabriquer</td><td style="font-weight:400">Frais ponctuels dans les totaux ; fabriquer n'a de sens qu'à partir d'une centaine de kits.</td><td><span class="vd vg">atténué</span></td><td><a href="#modele">§ 9</a></td></tr><tr data-f="X" data-s="att"><td><b>Z11</b> Un signe arrive après le message à l'enfant</td><td style="font-weight:400">Tout signe met la chaîne en pause ; seul l'aidant ou un signe fort ferme. Décision à valider en entretien.</td><td><span class="vd vg">atténué</span></td><td><a href="#alertes">§ 7</a></td></tr><tr data-f="X" data-s="att nr"><td><b>Z12</b> Le masquage touche la promesse du matin</td><td style="font-weight:400">Dit dans la phrase du contrat. Le masquage reste non borné.</td><td><span class="vd vg">atténué</span><span class="vd aj">non résolu</span></td><td><a href="#nonresolu">§ 17</a></td></tr></tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="q" id="nonresolu" data-title="Ce qui reste non résolu">
+  <div class="rail"><span class="qnum">17</span></div>
+  <div class="qbody">
+    <div class="kicker">Ce qui reste non résolu et ce qu'on dit à l'acheteur</div>
+    <h2>Ce qu'un texte ne corrige pas</h2>
+    <p class="sum">Ces points ne se règlent pas par une phrase. On les dit à l'acheteur avant le paiement, avec les mots ci-dessous.</p>
+    <div class="tw sm"><table>
+      <thead><tr><th style="width:24%">Ce qui reste ouvert</th><th>Pourquoi</th><th style="width:34%">Ce qu'on dit à l'acheteur</th></tr></thead>
+      <tbody>
+        <tr><td>Hors du logement : cave, garage, jardin</td><td>Aucun capteur n'y est, par construction ; aucune localisation.</td><td>« Il ne couvre ni la cave, ni le garage, ni le jardin, ni les sorties, ni les voyages. »</td></tr>
+        <tr><td>Chien, visiteur, aide à domicile non déclarés</td><td>Leurs passages masquent le silence, sans limite de durée ; sans radar, pas de parade complète.</td><td>« Un animal ou une personne qui passe devant un capteur peut empêcher le silence d'être repéré. » Et : « Il est fait pour une personne seule. »</td></tr>
+        <tr><td>Le soir et la nuit</td><td>Le maximum est de 20 h 29 avec le cadre seul, aucune alerte de nuit. La règle V2 ne gagne que 30 minutes à 1 heure sur le pire cas. <span class="b h">H</span></td><td>« Le soir, le filet peut aller jusqu'à 21 h, et aucun nouveau message ne part entre 21 h 30 et 7 h. »</td></tr>
+        <tr><td>La valeur de 8 €/mois</td><td>Aucune source. Snug gratuit ; Familink en location ≈ 540 € à 36 mois ; le kit B à son prix minimal ≈ 550 à 603 €. <span class="b h">H</span></td><td>Aucun prix n'est affiché avant l'entretien (5, 8 ou 12 €/mois à tester).</td></tr>
+        <tr><td>Capacité de consentir d'un parent qui ne retient plus</td><td>C'est le droit, pas le produit. Un service qui continue sans nouvel accord est fragile en droit.</td><td>« Mon parent sait que ce cadre lui est offert et a compris ce qu'il fait. S'il a une mesure de protection, la personne qui le représente est d'accord. »</td></tr>
+        <tr><td>Cadre sans réseau mobile, passerelle non identifiée</td><td>Produit à fabriquer, essais radio ≈ 5 000 €. <span class="b h">H</span></td><td>« Le cadre n'a pas besoin de votre box. » Test de couverture à l'adresse ; sans réseau mobile, pas de vente ; le kit à capteurs n'est pas vendu.</td></tr>
+        <tr><td>Base légale du contact local et du consentement du parent</td><td>Hypothèses : relecture juridique avant toute vente.</td><td>Le contact local n'est prévenu que s'il a répondu OUI, et peut répondre STOP.</td></tr>
+        <tr><td>Crédit d'impôt</td><td>Éligibilité inconnue, probablement non ; question à poser à l'administration.</td><td>Aucun crédit d'impôt n'est annoncé.</td></tr>
+        <tr><td>Conflit de famille, parent sous emprise</td><td>Aucun logiciel ne le règle.</td><td>« Ces informations servent à appeler, pas à contrôler. » Qui paie n'est pas forcément qui est prévenu.</td></tr>
+        <tr><td>Un message de nuit apprend que le parent s'est levé</td><td>Inévitable pour toute alerte de nuit : option désactivée par défaut.</td><td>Aucun message de nuit par défaut.</td></tr>
+        <tr><td>Un signe arrive après l'alerte</td><td>Tranché : la chaîne se met en pause, seul l'aidant ou un signe fort ferme. À valider en entretien.</td><td>« Un signe est arrivé à 11:33. Appelez pour vérifier. »</td></tr>
+        <tr><td>Aucun test avec de vrais parents ni de vrais aidants</td><td>Toutes les réactions d'usagers de cette fiche sont des hypothèses.</td><td>Sans objet : c'est la phase 2.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout o">
+      <b>La question que le jury posera.</b> « Votre filet est de plusieurs heures, il peut atteindre 20 heures le soir, rien ne part la nuit, la cave et le jardin ne sont pas couverts, un chien ou une aide à domicile le rendent muet. Et le message dit seulement “Aucun signe reçu depuis 08:12”. En quoi est-ce mieux qu'un appel de la fille chaque matin, ou que Snug, qui repère déjà le silence gratuitement ? »<br>
+      <b>Réponse honnête :</b> la seule valeur défendable est le matin (« un signe avant 9 h 15, sinon ma famille est prévenue vers 9 h 45 »), pas le filet. D'où la promesse « un signe du matin et un filet lent », le masquage dit dans la phrase du contrat, et un seul test qui compte : l'enfant paie-t-il pour « un signe du matin, et un message s'il manque », quand Snug le fait gratuitement ? <span class="b h">H</span>
     </div>
   </div>
 </section>
 
 <section class="q" id="suite" data-title="Suite">
-  <div class="rail"><span class="qnum">13</span></div>
+  <div class="rail"><span class="qnum">18</span></div>
   <div class="qbody">
     <div class="kicker">Prochaines étapes</div>
     <h2>Et maintenant</h2>
@@ -456,14 +865,26 @@ label.chk.done .tx{color:var(--muted);text-decoration:line-through}
       <div class="col"><h3>À décider à trois</h3><ul>
         <li>Valide-t-on Le Cadre comme direction provisoire ?</li>
         <li>Quel nom définitif ?</li>
-        <li>Qui prépare le guide d'entretien de la phase 2 ?</li></ul></div>
+        <li>Qui prépare le guide d'entretien de la phase 2 ?</li>
+        <li>Confirme-t-on les décisions ci-dessous, réversibles ?</li></ul></div>
       <div class="col blue"><h3>Dans l'ordre du brief</h3><ol>
-        <li>Phase 2 : entretiens parents et aidants, tester les hypothèses.</li>
+        <li>Phase 2 : entretiens parents et aidants, tester les hypothèses, d'abord la valeur de 8 €/mois. <span class="b h">H</span></li>
         <li>Phase 3 : cahier des charges, archétype confirmé.</li>
         <li>Phase 4 : backlog, MVP, KPI.</li>
-        <li>Phase 5 : stack no-code.</li>
+        <li>Phase 5 : stack no-code, résumé IA testé, analyse d'impact.</li>
         <li>Phase 6 : données et simulateur.</li></ol></div>
     </div>
+    <details><summary>Décisions prises pour cette version (réversibles par Clément)</summary>
+      <ol>
+        <li><b>Kit :</b> le MVP décrit le kit A. Le kit B est une option simulée, non vendue, non chiffrée à l'acheteur.</li>
+        <li><b>Règle du soir :</b> V1. V2 est une option désactivée par défaut, à tester, jamais promise. <span class="b h">H</span></li>
+        <li><b>Prix :</b> aucun prix dans le texte de vente ni dans le bouton ; « 129 € + 8 €/mois » est une hypothèse à tester (5, 8 ou 12 €/mois). <span class="b h">H</span></li>
+        <li><b>Contrat du matin :</b> une seule phrase, recopiée telle quelle partout.</li>
+        <li><b>Après un N2 :</b> tout signe met la chaîne en pause ; seul l'aidant ou un signe fort la ferme.</li>
+        <li><b>Hors MVP, jamais promis :</b> passerelle fabriquée, option salle de bain et chambre, règle de nuit au couloir, V2, SMS automatique au contact local (le bouton manuel reste), moteur planifié et contrôleur, absence prolongée posée par l'enfant, résumé IA (testé en phase 5).</li>
+        <li><b>À faire relire avant toute vente :</b> reconfirmation annuelle sans coupure, base légale du contact local, phrase du contrat.</li>
+        <li><b>Promesse de vente :</b> le lien et le matin d'abord, le filet ensuite.</li></ol>
+    </details>
   </div>
 </section>
 </main>
@@ -478,34 +899,92 @@ ft.forEach(function(b){
   });
 });
 
-/* simulateur */
+/* simulateur : kit A (cadre seul), tous les textes viennent des sections 5 et 7 */
+var BT=["Je m'en occupe","Je préviens quelqu'un d'autre","Je ne peux pas maintenant"];
+function n2(d){return {m:"<b>Aucun signe reçu depuis "+d+"</b><br>Pouvez-vous appeler Maman ?",b:BT};}
+var HELLO=["Bonjour Marie.","Touchez l'écran pour dire bonjour à votre famille."];
+var PHOTO=["Bonjour Marie.","Voici les photos du jour."];
 var SC=[
- {n:"Matinée normale",steps:[
-  {t:"07:45",scr:["Bonjour Marie","Léa t'a envoyé une photo"],cls:"",lv:0,ph:[],log:"presence=oui créneau=matin",why:"Présence détectée dans la routine habituelle : aucun message n'est envoyé."},
-  {t:"09:10",scr:["Un message de Claire","« Bonne journée maman ! »"],cls:"soft",lv:0,ph:[],log:"affichage message_du_jour",why:"Le cadre fait d'abord son travail de lien."},
-  {t:"09:12",scr:["Merci !","Coucou envoyé"],cls:"soft",lv:0,ph:[{m:"Maman a dit coucou.",b:[]}],log:"touch_coucou=oui → statut=normal",why:"Le parent touche l'écran, l'enfant voit un signe positif. C'est le rituel de lien."}
+ {n:"Matin avec signe",steps:[
+  {t:"07:45",scr:["Bonjour Marie.","Une photo de Léa est arrivée."],cls:"",lv:0,ds:"Dernier signe reçu : aujourd'hui à 07:45. Mis à jour à 07:50.",ph:[],log:"signe faible : passage devant le cadre",why:"Un passage devant le cadre est un signe. Rien n'est envoyé, aucune coche : l'enfant lit un fait daté."},
+  {t:"09:12",scr:["Merci, votre bonjour est parti.",""],cls:"soft",lv:0,ds:"Dernier signe reçu : aujourd'hui à 09:12. Mis à jour à 09:15.",ph:[],log:"signe fort : toucher volontaire sur « Coucou »",why:"Le toucher remet le compteur à zéro. L'enfant lit la même chose qu'après un simple passage : il ne sait pas s'il y a eu un toucher."},
+  {t:"14:05",scr:["Bonjour Marie.","Une photo de Claire est arrivée."],cls:"",lv:0,ds:"Dernier signe reçu : aujourd'hui à 09:12 (il y a 4 h 53). Mis à jour à 14:05.",ph:[],log:"seuil de journée, cadre seul : 5 h",why:"L'âge du dernier signe se met à jour. Le texte ne dit jamais « normal »."}
  ]},
- {n:"Matinée silencieuse",steps:[
-  {t:"09:30",scr:["Bonjour Marie",""],cls:"",lv:0,ph:[],log:"routine_attendue=avant 09:30",why:"Fin du créneau habituel de présence matinale."},
-  {t:"10:30",scr:["Un petit coucou ?","Touchez pour dire bonjour"],cls:"soft",lv:1,ph:[],log:"presence=non créneau=matin → N1",why:"N1 : le cadre interroge doucement le parent. Claire n'est pas encore sollicitée."},
-  {t:"10:50",scr:["Un petit coucou ?",""],cls:"soft",lv:2,ph:[{m:"Pas de nouvelles de Maman ce matin, à vérifier quand tu peux.",b:["Appeler","Message vocal sur le cadre","C'est bon"]}],log:"touch_coucou=non délai=20min → N2",why:"N2 : aucune réponse du parent. Notification douce, avec des actions concrètes."},
-  {t:"11:20",scr:["Un petit coucou ?",""],cls:"soft",lv:3,ph:[{m:"Pas de nouvelles de Maman ce matin, à vérifier quand tu peux.",b:["Appeler","Message vocal sur le cadre","C'est bon"]},{m:"Toujours rien. Prévenir Tonton Paul, le contact choisi par Maman ?",b:["Prévenir Tonton Paul","Je m'en occupe"]}],log:"aidant_reponse=non délai=30min → N3",why:"N3 : on propose le contact de secours choisi par le parent. L'enfant décide, rien n'appelle les secours automatiquement."}
+ {n:"Matin sans signe",steps:[
+  {t:"09:15",scr:HELLO,cls:"soft",lv:1,ds:"Dernier signe reçu : hier à 19:40. Vous n'êtes pas prévenu pour l'instant.",ph:[],log:"heure apprise 07:45 + 90 min : N1",why:"Le parent est interrogé d'abord. Claire n'est pas prévenue, et l'écran du cadre n'affiche aucun nom d'enfant."},
+  {t:"09:45",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis hier 19:40.",ph:[n2("hier 19:40")],log:"N2 → responsable (E0), attente du parent : 30 min",why:"N2 part 14 h 05 après le dernier signe, nuit comprise. Ce n'est pas le maximum : voir le tableau de la section 5."},
+  {t:"09:52",scr:HELLO,cls:"soft",lv:2,ds:"Vous vous occupez de cette situation depuis 09:52.",ph:[{m:"Vous vous occupez de cette situation depuis 09:52. Les autres aidants le voient.",b:[]}],log:"« Je m'en occupe » : responsable = Claire, relances arrêtées",why:"On sait qui s'en occupe et depuis quand. Les autres aidants lisent « Claire s'en occupe depuis 09:52 », jamais qui n'a pas répondu."},
+  {t:"10:30",scr:HELLO,cls:"soft",lv:0,ds:"Situation du 12/10 clôturée par Claire à 10:30 : Maman m'a répondu.",ph:[{m:"Avez-vous joint Maman ?",b:["J'ai joint Maman","Je n'ai pas pu la joindre","Je passe le relais"]},{m:"Situation du 12/10 clôturée par Claire à 10:30 : Maman m'a répondu.",b:[]}],log:"issue : « Elle m'a répondu »",why:"L'issue est demandée : appeler n'est pas atteindre. Le bouton « C'est bon » n'existe plus."}
  ]},
- {n:"Fausse alerte (jardin)",steps:[
-  {t:"10:30",scr:["Un petit coucou ?","Touchez pour dire bonjour"],cls:"soft",lv:1,ph:[],log:"presence=non créneau=matin → N1",why:"Marie est au jardin : le capteur ne la voit pas."},
-  {t:"10:42",scr:["Merci !","Content de vous voir"],cls:"soft",lv:0,ph:[{m:"Journée normale ✓",b:[]}],log:"touch_coucou=oui (+12 min) → N1 annulé",why:"Elle rentre et touche l'écran : l'alerte s'annule, Claire n'a rien reçu. C'est l'objectif de la gradation."},
-  {t:"Fin de journée",scr:["Bonsoir Marie",""],cls:"",lv:0,ph:[{m:"Journée normale ✓",b:[]}],log:"ajustement_routine: fenêtre élargie (proposition)",why:"Le service propose d'élargir la fenêtre de routine, à valider avec le parent. Hypothèse à tester."}
+ {n:"Jardin",steps:[
+  {t:"13:00",scr:HELLO,cls:"soft",lv:1,ds:"Dernier signe reçu : aujourd'hui à 08:00. Vous n'êtes pas prévenu pour l'instant.",ph:[],log:"silence de 5 h, cadre seul : N1",why:"Marie est au jardin : aucun capteur ne la voit."},
+  {t:"13:12",scr:PHOTO,cls:"",lv:0,ds:"Dernier signe reçu : aujourd'hui à 13:12.",ph:[],log:"signe faible : passage devant le cadre, sans toucher → N1 fermé",why:"Tout signe ferme un N1, même sans toucher : aucune règle n'exige le toucher. Claire n'a rien reçu."},
+  {t:"20:00",scr:["Bonsoir Marie.",""],cls:"",lv:0,ds:"Dernier signe reçu : aujourd'hui à 19:40.",ph:[],log:"proposition au parent : élargir la fenêtre de routine",why:"Aucun message de tendance. Seule la fenêtre de routine peut s'élargir, sur proposition faite au parent."}
  ]},
- {n:"Pause intimité",steps:[
-  {t:"14:00",scr:["Maintenez 3 s pour une pause",""],cls:"soft",lv:0,ph:[],log:"geste=appui_long",why:"Le parent choisit lui-même."},
-  {t:"14:00",scr:["Pause jusqu'à 18 h","Le cadre ne regarde plus"],cls:"off",lv:0,ph:[{m:"Maman a mis le cadre en pause jusqu'à 18 h.",b:[]}],log:"mode=pause jusqu'à=18:00",why:"L'enfant est informé du fait, sans motif et sans alerte. Pas de pression."},
-  {t:"18:00",scr:["Bonsoir Marie","Le cadre veille de nouveau"],cls:"",lv:0,ph:[],log:"mode=actif",why:"Reprise automatique à l'heure choisie. Durée maximale de pause à définir (hypothèse : 24 h)."}
+ {n:"Pause",steps:[
+  {t:"14:00",scr:["Pause jusqu'à 18 h.","Votre famille ne reçoit rien pendant ce temps."],cls:"soft",lv:5,ds:"Cadre en pause (choix de Maman). Aucun signe n'est attendu pendant la pause.",ph:[],log:"mode=pause fin=18:00",why:"Deux touchers, trois durées. Aucune notification, ni durée ni motif côté enfant : pas de question « pourquoi ? »."},
+  {t:"18:00",scr:["Fin de la pause.","Le cadre envoie de nouveau des signes à votre famille."],cls:"",lv:0,ds:"Fin de pause. Dernier signe reçu à 13:55.",ph:[],log:"mode=actif",why:"Pendant la pause aucun signe n'était compté. Si aucun signe n'arrive dans l'heure, N1."},
+  {t:"Autre cas : jour 3, 14:00",scr:["Le cadre est en pause depuis 2 jours.","Le réactiver ?"],cls:"soft",lv:5,ds:"Cadre en pause (choix de Maman). Aucun signe n'est attendu pendant la pause.",ph:[],log:"pause de plus de 48 h : rappel au parent seulement",why:"Sans plafond, mais un rappel doux au parent après 2 jours. L'enfant ne voit ni durée ni motif. Une pause longue est un trou de couverture, comme une absence."}
  ]},
- {n:"Panne du cadre",steps:[
-  {t:"08:00",scr:["",""],cls:"off",lv:0,ph:[],log:"heartbeat=absent",why:"Plus de signal du cadre."},
-  {t:"10:00",scr:["",""],cls:"off",lv:0,ph:[{m:"Le cadre de Maman est hors ligne depuis 2 h. Vérifier la box internet ?",b:["Voir l'aide"]}],log:"statut=hors_ligne délai=2h",why:"Une panne n'est pas une alerte de danger : le message est neutre, et distinct de N2."}
+ {n:"Coupure",steps:[
+  {t:"08:30",scr:["",""],cls:"off",lv:4,ds:"Le cadre de Maman n'est plus connecté depuis 08:00. Dernier signe reçu à 07:50.",ph:[],log:"battement absent : 2 battements manqués",why:"Dès 30 minutes, l'état est affiché. Aucun N1 ni N2 : le silence ne peut pas être constaté pendant une coupure."},
+  {t:"10:00",scr:["",""],cls:"off",lv:4,ds:"Le cadre de Maman n'est plus connecté depuis 08:00. Dernier signe reçu à 07:50.",ph:[{m:"Le cadre de Maman n'est plus connecté depuis 08:00. Dernier signe reçu à 07:50. Cela peut être une panne ou un débranchement. Le plus sûr : appelez Maman.",b:["Je l'appelle","Voir l'aide"]}],log:"statut=non_joignable, 2 h : une notification",why:"Le texte ne dit pas pourquoi, car on ne le sait pas, et il n'envoie pas vérifier la box. Couverture nulle pendant la coupure."},
+  {t:"15:20",scr:["Bonjour Marie.","Vos photos reviennent."],cls:"",lv:4,ds:"Le cadre est de nouveau connecté depuis 15:20. Dernier signe reçu : 15:00.",ph:[{m:"Le cadre est de nouveau connecté depuis 15:20. Dernier signe reçu : 15:00.",b:[]}],log:"reconnexion : 14 événements rejoués avec leur heure d'origine",why:"L'heure du dernier signe est celle du signe, pas celle de la reconnexion. Le cadre n'a pas besoin de la box : sa SIM 4G prend le relais."}
+ ]},
+ {n:"Chute dans une autre pièce",steps:[
+  {t:"14:05",scr:["Bonjour Marie.","Une photo de Léa est arrivée."],cls:"",lv:0,ds:"Dernier signe reçu : aujourd'hui à 14:05.",ph:[],log:"signe faible : passage devant le cadre, zone = pièce du cadre",why:"À 14:20, Marie tombe dans la cuisine. Le cadre ne le sait pas : il ne voit que sa pièce. Le produit ne constate qu'une chose : plus aucun signe."},
+  {t:"19:05",scr:HELLO,cls:"soft",lv:1,ds:"Dernier signe reçu : aujourd'hui à 14:05 (il y a 5 h). Vous n'êtes pas prévenu pour l'instant.",ph:[],log:"silence de 5 h, cadre seul : N1",why:"Le cadre interroge Marie, qui ne peut pas répondre. Avec le kit B simulé, le message viendrait 1 h 30 plus tôt."},
+  {t:"19:35",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis 14:05.",ph:[n2("14:05")],log:"N2 → responsable (E0)",why:"5 h 30 après le dernier signe, 5 h 15 après la chute. Le message ne dit ni où ni pourquoi : ni pièce, ni le mot chute. Si Marie a besoin de secours rapides, il faut une téléassistance."}
+ ]},
+ {n:"Nuit",steps:[
+  {t:"21:10",scr:["Bonsoir Marie.",""],cls:"",lv:0,ds:"Dernier signe reçu : aujourd'hui à 21:10.",ph:[],log:"signe faible : passage devant le cadre",why:"Dernier signe de la soirée."},
+  {t:"03:10",scr:["",""],cls:"off",lv:0,ds:"Dernier signe reçu : hier à 21:10.",ph:[],log:"créneau de nuit 21:30 à 07:00 : aucune alerte ne naît",why:"Marie tombe à 03:10. Entre 21 h 30 et 7 h, aucun nouveau message ne part : le cadre ne peut pas interroger quelqu'un qui dort ou qui est à terre. L'écran s'assombrit, le bouton « Coucou » reste visible."},
+  {t:"09:15",scr:HELLO,cls:"soft",lv:1,ds:"Dernier signe reçu : hier à 21:10. Vous n'êtes pas prévenu pour l'instant.",ph:[],log:"heure apprise 07:45 + 90 min : N1",why:"La règle du matin s'applique : le parent est interrogé d'abord."},
+  {t:"09:45",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis hier 21:10.",ph:[n2("hier 21:10")],log:"N2 → responsable (E0)",why:"6 h 35 après 03:10, 12 h 35 après le dernier signe (9 h 20 après 03:10 si l'heure apprise du matin est tardive). Une option du kit B, désactivée par défaut, enverrait un message silencieux sans heure : jamais dans le kit A."}
+ ]},
+ {n:"Absence",steps:[
+  {t:"14/10, 09:30",scr:["Absence jusqu'au 18/10.","Bon voyage."],cls:"soft",lv:5,ds:"Maman a indiqué une absence du 14/10 au 18/10. Aucun signe n'est attendu pendant ce temps.",ph:[{m:"Maman a indiqué une absence du 14/10 au 18/10. Aucun signe n'est attendu pendant ce temps.",b:[]}],log:"mode_absence : retour prévu 18/10",why:"Deux touchers au plus. Trou de couverture assumé : rien n'est repéré pendant l'absence, aucun motif n'est enregistré."},
+  {t:"19/10, 08:00",scr:["Bonjour Marie.",""],cls:"",lv:0,ds:"Le mode absence a pris fin le 19/10 à 08:00. Dernier signe reçu le 14/10 à 09:30.",ph:[{m:"Le mode absence a pris fin le 19/10 à 08:00. Dernier signe reçu le 14/10 à 09:30. Maman est-elle rentrée ?",b:[]}],log:"fin du mode absence (retour + 24 h)",why:"Le retour est une période fragile : sans signe dans l'heure, N1."},
+  {t:"Autre cas : absence non prévue, 19:35",scr:["Votre famille a indiqué que vous êtes absente.","Touchez l'écran si ce n'est pas le cas."],cls:"soft",lv:5,ds:"Absence prolongée posée par vous. Maman en a été informée sur le cadre.",ph:[n2("14:05"),{m:"Vous avez clôturé : « Elle était absente (séjour) ». Absence prolongée posée par vous. Maman en a été informée sur le cadre.",b:[]}],log:"N2 clos, issue « absente », absence prolongée de 7 jours",why:"Un séjour chez un proche sans mode absence donne un N2 réel mais non évitable : pas une fausse alerte. Posée par l'enfant, l'absence est montrée aussitôt au parent, qui la lève d'un toucher. Hors MVP : dans la démo, seul le parent la pose."}
+ ]},
+ {n:"Animal ou visiteur",steps:[
+  {t:"13:00",scr:PHOTO,cls:"",lv:0,ds:"Dernier signe reçu : aujourd'hui à 13:00.",ph:[],log:"signe faible : passage devant le cadre (le chien)",why:"Marie est immobile depuis 12:40 dans la pièce voisine. Le chien passe devant le cadre : chaque passage remet le compteur à zéro."},
+  {t:"17:30",scr:PHOTO,cls:"",lv:0,ds:"Dernier signe reçu : aujourd'hui à 17:30.",ph:[],log:"dernier passage du chien : 17:30",why:"Le fait est exact, la lecture « elle est là » est fausse. L'enfant ne voit pas la nature du signe : le masquage est invisible."},
+  {t:"Lendemain, 09:45",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis hier 17:30.",ph:[n2("hier 17:30")],log:"seuil de 5 h franchi dans la nuit : règle du matin, N2",why:"21 h 05 après le début du silence de Marie, si le chien ne passe plus devant le capteur dès 06:00 ; sinon le masquage continue sans limite. Aucune parade complète sans radar : c'est dit dans le contrat du matin."}
+ ]},
+ {n:"Faux réconfort",steps:[
+  {t:"08:12",scr:["Merci, votre bonjour est parti.",""],cls:"soft",lv:0,ds:"Dernier signe reçu : aujourd'hui à 08:12. Mis à jour à 08:15.",ph:[],log:"signe fort : toucher volontaire",why:"Marie touche « Coucou » et le signe est reçu."},
+  {t:"11:00",scr:["Bonjour Marie.",""],cls:"",lv:0,ds:"Dernier signe reçu : aujourd'hui à 08:12 (il y a 2 h 48). Mis à jour à 11:00.",ph:[],log:"aucun événement depuis 08:12",why:"Marie est tombée à 10:00 dans la cuisine, le cadre ne le sait pas. Le signe du matin ne dit rien de l'après-midi : l'âge et l'heure de mise à jour corrigent un peu la lecture « elle va bien », pas tout."},
+  {t:"13:42",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis 08:12 (il y a 5 h 30).",ph:[n2("08:12")],log:"N1 13:12, N2 13:42",why:"5 h 30 après le dernier signe, 3 h 42 après la chute. Aucun « normal » n'a été affiché, mais le texte du matin a pu rassurer pendant des heures : limite écrite."}
+ ]},
+ {n:"Aidants injoignables",steps:[
+  {t:"09:45",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis hier 19:40.",ph:[n2("hier 19:40")],log:"N2 → Claire, notification non ouverte",why:"Claire est en réunion, téléphone éteint."},
+  {t:"10:00",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis hier 19:40.",ph:[n2("hier 19:40"),{m:"SMS : « Le Cadre : un message vous attend. Ouvrez l'appli, ou répondez 1 si vous vous en occupez, 2 si vous ne pouvez pas. »",b:[]}],log:"E1 : SMS de secours (message 2 sur 4)",why:"Le SMS ne contient ni prénom ni heure : il s'affiche sur l'écran verrouillé."},
+  {t:"10:15",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis hier 19:40.",ph:[{m:"Le message a été transmis à la personne suivante à 10:15. Vous pouvez reprendre la main.",b:["Reprendre la main"]}],log:"E2 : responsable = Léa",why:"Un seul responsable à la fois. Aucun texte ne dit qui n'a pas répondu."},
+  {t:"10:45",scr:HELLO,cls:"soft",lv:3,ds:"Toujours aucun signe reçu depuis hier 19:40.",ph:[{m:"Chez Léa : <b>Aucune réponse pour le moment.</b><br>Dernier signe reçu hier à 19:40. Voulez-vous prévenir Paul, la personne choisie par Maman ?",b:["Prévenir Paul","Je m'en occupe","Je ne peux pas maintenant"]}],log:"E4 : N3, bouton manuel",why:"Dans le MVP, « Prévenir Paul » est un bouton manuel. Rien n'appelle les secours."},
+  {t:"11:15",scr:HELLO,cls:"soft",lv:3,ds:"Toujours aucun signe reçu depuis hier 19:40.",ph:[{m:"Simulé, hors MVP : SMS à Paul, s'il a répondu OUI : « Un proche vous demande de passer voir un voisin. Appelez [numéro de l'enfant responsable]. »",b:[]}],log:"E5 : SMS automatique à t0 + 90 (simulé)",why:"Sans prénom du parent ni heure. Paul peut ignorer un message qui ne dit pas qui aller voir : compromis à tester."},
+  {t:"11:45",scr:HELLO,cls:"soft",lv:4,ds:"Toujours aucun signe reçu depuis hier 19:40.",ph:[{m:"Le Cadre : la situation du 12/10 n'a été prise en charge par personne. Ouvrez l'appli.",b:[]}],log:"E6 : état « non pris en charge »",why:"Au plus 4 messages par aidant. À 13:45 un dernier SMS, puis plus rien : l'alerte reste ouverte et affichée. Le produit n'a pas d'autre recours et le dit à l'achat."}
+ ]},
+ {n:"Signe après l'alerte",steps:[
+  {t:"09:45",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis 08:12.",ph:[n2("08:12")],log:"N2 → Claire, qui ne répond pas",why:"Marie était sortie sans le dire."},
+  {t:"11:33",scr:PHOTO,cls:"",lv:6,ds:"Un signe est arrivé à 11:33. Appelez pour vérifier.",ph:[{m:"<b>Un signe est arrivé à 11:33.</b><br>Appelez pour vérifier.",b:["Je m'en occupe"]}],log:"signe faible après N2 : chaîne en pause, plus de SMS au contact local",why:"Un passage peut venir de Marie, d'un animal, d'une visite. La chaîne est en pause et l'enfant ne sait pas s'il y a eu un toucher. Seul l'aidant ou un signe fort ferme l'alerte."},
+  {t:"12:14",scr:PHOTO,cls:"",lv:0,ds:"Claire a eu Maman à 12:10.",ph:[{m:"Claire a eu Maman à 12:10.",b:[]}],log:"signe_declare (fort, daté 12:10) : alerte clôturée",why:"« Signaler un contact » crée un signe daté. Le texte dit « a eu Maman », pas « va bien » : c'est une déclaration, pas une preuve."}
+ ]},
+ {n:"Panne du service",steps:[
+  {t:"14:05",scr:["Bonjour Marie.",""],cls:"",lv:0,ds:"Dernier signe reçu : aujourd'hui à 09:50. Mis à jour à 14:05.",ph:[],log:"dernier pouls du moteur : 14:05",why:"Hors MVP. Marie est à terre depuis 13:00, puis le moteur s'arrête. Sans contrôleur, « aucune notification » ressemblerait à « aucun problème »."},
+  {t:"14:25",scr:["Bonjour Marie.",""],cls:"",lv:4,ds:"Mise à jour impossible depuis 14:05. Appelez Maman si vous voulez de ses nouvelles.",ph:[{m:"Mise à jour impossible depuis 14:05. Appelez Maman si vous voulez de ses nouvelles.",b:["Je l'appelle"]}],log:"contrôleur : pouls de plus de 15 min, service silencieux, astreinte prévenue",why:"Un contrôleur, dans un autre compte, voit le moteur muet. L'application se défend aussi seule en comparant son heure de mise à jour à celle du téléphone."},
+  {t:"15:20",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis 09:50.",ph:[{m:"<b>Aucun signe reçu depuis 09:50</b><br>Pouvez-vous appeler Maman ? Le service a été interrompu de 14:05 à 15:10.",b:BT}],log:"redémarrage 15:10 : recalcul depuis le dernier signe, sans crédit",why:"Le seuil de 5 h est franchi pendant la panne : N1 à 15:10, N2 à 15:20. Le contrôleur indépendant exige un plan payant : hors MVP."}
+ ]},
+ {n:"Apprentissage",steps:[
+  {t:"Jour 4, 10:00",scr:HELLO,cls:"soft",lv:1,ds:"Le Cadre apprend les habitudes de Maman (jour 4 sur 14). Pendant 14 jours, il prévient plus tard et moins souvent.",ph:[],log:"apprentissage : matin sans signe avant 10:00 → N1",why:"Seuils larges pendant 14 jours : N1 à 10:00, attente de 60 minutes. Le texte ne dit jamais « aucune alerte »."},
+  {t:"Jour 4, 11:00",scr:HELLO,cls:"soft",lv:2,ds:"Aucun signe reçu depuis hier 19:40.",ph:[n2("hier 19:40")],log:"N2 à 11:00 (attente de 60 min)",why:"Les alertes existent, mais plus tard : le produit est le moins bon pendant l'apprentissage."}
+ ]},
+ {n:"Parent qui refuse",steps:[
+  {t:"Activation",scr:["Oui, je veux bien","Non, juste les photos"],cls:"soft",lv:5,ds:"Le cadre de Maman n'a pas encore été activé. Aucune alerte n'est possible pour l'instant.",ph:[],log:"activation en attente : le parent choisit seul, sur le cadre",why:"Deux boutons de même taille, rien n'est coché. Un enfant peut être dans la pièce, mais c'est le parent qui touche."},
+  {t:"Plus tard",scr:PHOTO,cls:"",lv:5,ds:"Maman a choisi de garder seulement les photos. Le cadre n'envoie aucun signe.",ph:[{m:"Maman a choisi de garder seulement les photos. Le cadre n'envoie aucun signe. Elle garde ses photos.",b:[]}],log:"activation = photos_seulement : aucun signe émis ni compté",why:"Aucun N1 ni N2, jamais. Le cadre reste un cadre photo agréable. Coût : l'enfant a payé pour un cadre photo et peut résilier : à dire à l'achat."}
  ]}
 ];
+var LVM=[["s1","Dernier signe reçu"],["s2","Le parent est interrogé"],["s3","Famille prévenue"],["s3","Contact local proposé"],["s2","État du service"],["s1","État choisi par Maman"],["s2","Chaîne en pause"]];
 var si=0,st=0;
 var scenEl=document.getElementById('scen');
 SC.forEach(function(s,i){
@@ -514,14 +993,13 @@ SC.forEach(function(s,i){
   b.addEventListener('click',function(){si=i;st=0;render();});
   scenEl.appendChild(b);
 });
-var LV=["Journée normale ✓","Écart léger : le cadre demande","À vérifier","Relance"];
 function render(){
-  var s=SC[si],x=s.steps[st];
+  var s=SC[si],x=s.steps[st],l=LVM[x.lv];
   Array.prototype.forEach.call(scenEl.children,function(b,i){b.setAttribute('aria-selected',i===si)});
   document.getElementById('screen').className='screen '+x.cls;
   document.getElementById('screen').innerHTML='<b>'+x.scr[0]+'</b><span>'+x.scr[1]+'</span>';
   document.getElementById('clock').textContent='Heure simulée : '+x.t;
-  var ph='<div class="stat s'+x.lv+'">'+LV[x.lv]+'</div>';
+  var ph='<div class="stat '+l[0]+'">'+l[1]+'</div><p class="ds">'+x.ds+'</p>';
   if(!x.ph.length)ph+='<p class="note">Aucune notification.</p>';
   x.ph.forEach(function(n){
     ph+='<div class="notif">'+n.m+(n.b.length?'<div class="btnrow">'+n.b.map(function(t){return '<span class="btn">'+t+'</span>'}).join('')+'</div>':'')+'</div>';
@@ -541,59 +1019,38 @@ document.getElementById('prev').onclick=function(){st--;render();};
 document.getElementById('reset').onclick=function(){st=0;render();};
 render();
 
-/* MoSCoW */
-var M=[
- ["Achat","Page de présentation et choix de l'offre unique","must"],
- ["Achat","Consentement « j'en ai parlé à mon parent » avant paiement","must"],
- ["Achat","Paiement et confirmation de commande (simulés)","must"],
- ["Senior","Écran du cadre : photos, message du jour","must"],
- ["Senior","Bouton « Coucou »","must"],
- ["Senior","Validation de l'accord au premier allumage","must"],
- ["Aidant","Signe du jour (normal, à surveiller, à vérifier)","must"],
- ["Aidant","Notification N2 avec actions","must"],
- ["Chaîne","Simulateur d'événements (présence, absence, toucher)","must"],
- ["Chaîne","Règles d'alerte N1, N2, N3","must"],
- ["Senior","Pause intimité","should"],
- ["Senior","Écran « ce que ma famille voit »","should"],
- ["Aidant","Envoi de photos et messages vocaux vers le cadre","should"],
- ["Aidant","Résumé de la semaine par IA","should"],
- ["Aidant","Contact de secours choisi par le parent","should"],
- ["Chaîne","Gestion de la panne (hors ligne)","should"],
- ["Aidant","Réglage des seuils avec le parent","could"],
- ["Achat","Offre cadeau avec message personnalisé","could"],
- ["Aidant","Plusieurs aidants (fratrie)","could"],
- ["Senior","Compagnon conversationnel","wont"],
- ["Chaîne","Appel automatique des secours","wont"],
- ["Chaîne","Indicateurs de santé ou de sommeil","wont"],
- ["Chaîne","Fabrication réelle du matériel","wont"]
-];
-var LAB={must:"Must",should:"Should",could:"Could",wont:"Won't"};
-function mrender(k){
-  var tb=document.querySelector('#mtable tbody');tb.innerHTML='';
-  M.forEach(function(r){
-    if(k!=='all'&&r[2]!==k)return;
-    var tr=document.createElement('tr');
-    tr.innerHTML='<td>'+r[0]+'</td><td style="font-weight:400">'+r[1]+'</td><td><span class="pri '+r[2]+'">'+LAB[r[2]]+'</span></td>';
-    tb.appendChild(tr);
-  });
-}
+/* MoSCoW : les lignes sont dans la page, le filtre les masque */
 document.querySelectorAll('#moscow .chip').forEach(function(c){
   c.addEventListener('click',function(){
     document.querySelectorAll('#moscow .chip').forEach(function(x){x.classList.toggle('on',x===c)});
-    mrender(c.dataset.k);
+    document.querySelectorAll('#mtable tbody tr').forEach(function(r){
+      r.hidden=(c.dataset.k!=='all'&&r.dataset.k!==c.dataset.k);
+    });
   });
 });
-mrender('all');
 
-/* coût sur la durée */
+/* revue : filtre par verdict */
+document.querySelectorAll('#rfilter .chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('#rfilter .chip').forEach(function(x){x.classList.toggle('on',x===c)});
+    document.querySelectorAll('#rtable tbody tr').forEach(function(r){
+      r.hidden=(c.dataset.v!=='all'&&r.dataset.v!==c.dataset.v);
+    });
+  });
+});
+
+/* coût sur la durée : hypothèses de prix, aucun crédit d'impôt */
 function calc(){
   var m=+document.getElementById('months').value;
-  var cr=document.getElementById('credit').checked?0.5:1;
+  var px=+document.getElementById('px').value;
   document.getElementById('mval').textContent=m;
   var items=[
-    {n:"Le Cadre",v:(129+8*m)*cr,me:true},
-    {n:"Téléassistance",v:25*m*cr},
-    {n:"Famileo (sans détection)",v:5.99*m*cr}
+    {n:"Le Cadre (hypothèse)",v:129+px*m,me:true},
+    {n:"Familink, location",v:14.99*m},
+    {n:"Familink, achat avec 4G et Plus",v:219.9+10.8*m},
+    {n:"Téléassistance",v:25*m},
+    {n:"Famileo (sans détection)",v:5.99*m},
+    {n:"Snug (gratuit)",v:0}
   ];
   var max=Math.max.apply(null,items.map(function(i){return i.v}));
   document.getElementById('bars').innerHTML=items.map(function(i){
@@ -601,40 +1058,53 @@ function calc(){
   }).join('');
 }
 document.getElementById('months').oninput=calc;
-document.getElementById('credit').onchange=calc;
+document.getElementById('px').onchange=calc;
 calc();
 
-/* hypothèses */
-var HY=[
- "Un parent accepte un détecteur de présence dans un cadre photo, s'il peut le mettre en pause.",
- "Un parent préfère répondre d'un toucher plutôt que d'être appelé.",
- "Un enfant aidant paie 129 € + 8 €/mois pour ce service.",
- "Un enfant préfère un signe du jour à des notifications en continu.",
- "Un délai de 20 minutes avant d'alerter l'enfant est supportable des deux côtés.",
- "Les familles envoient des photos assez régulièrement pour faire vivre le cadre.",
- "Le cadeau est un moment d'achat naturel (anniversaire, Noël, retour d'hospitalisation).",
- "Le parent accepte de voir ce que voit l'enfant, et en est rassuré.",
- "Les fausses alertes restent rares avec une détection par créneau de routine."
-];
-var KEY='lecadre-hypotheses',saved=[];
+/* hypothèses : cases sauvegardées dans le navigateur seulement */
+var KEY='lecadre-hypotheses-v2',saved=[];
 try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
 var hw=document.getElementById('hyp');
-HY.forEach(function(t,i){
-  var l=document.createElement('label');l.className='chk'+(saved.indexOf(i)>-1?' done':'');
-  l.innerHTML='<input type="checkbox"'+(saved.indexOf(i)>-1?' checked':'')+'><span class="tx">'+t+'</span>';
-  l.querySelector('input').addEventListener('change',function(e){
+hw.querySelectorAll('label.chk').forEach(function(l,i){
+  var c=l.querySelector('input');
+  if(saved.indexOf(i)>-1){c.checked=true;l.classList.add('done');}
+  c.addEventListener('change',function(e){
     l.classList.toggle('done',e.target.checked);
-    var a=[];hw.querySelectorAll('input').forEach(function(c,j){if(c.checked)a.push(j)});
+    var a=[];hw.querySelectorAll('input').forEach(function(x,j){if(x.checked)a.push(j)});
     try{localStorage.setItem(KEY,JSON.stringify(a))}catch(x){}
     hcount();
   });
-  hw.appendChild(l);
 });
 function hcount(){
+  var all=hw.querySelectorAll('input').length;
   var n=hw.querySelectorAll('input:checked').length;
-  document.getElementById('hcount').textContent=n+' hypothèse(s) validée(s) sur '+HY.length;
+  document.getElementById('hcount').textContent=n+' hypothèse(s) validée(s) sur '+all;
 }
 hcount();
+
+/* problèmes : filtre par famille et par statut */
+var pf='all',ps='all';
+function pfilter(){
+  var n=0,rows=document.querySelectorAll('#ptable tbody tr');
+  rows.forEach(function(r){
+    var ok=(pf==='all'||r.dataset.f===pf)&&(ps==='all'||(' '+r.dataset.s+' ').indexOf(' '+ps+' ')>-1);
+    r.hidden=!ok;if(ok)n++;
+  });
+  document.getElementById('pcount').textContent=n+' ligne(s) affichée(s) sur '+rows.length;
+}
+document.querySelectorAll('#pfam .chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('#pfam .chip').forEach(function(x){x.classList.toggle('on',x===c)});
+    pf=c.dataset.f;pfilter();
+  });
+});
+document.querySelectorAll('#pst .chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('#pst .chip').forEach(function(x){x.classList.toggle('on',x===c)});
+    ps=c.dataset.s;pfilter();
+  });
+});
+pfilter();
 
 /* la barre du haut indique la section en cours */
 var here=document.getElementById('here'),first=here.textContent;
