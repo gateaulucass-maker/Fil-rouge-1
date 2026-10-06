@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le Cadre — fiche produit</title>
+<style>
+:root{
+  --bg:#fffcf8; --card:#ffffff; --ink:#23201c; --muted:#6b645b; --line:#e7e0d5;
+  --accent:#fe6d2c; --accent-soft:#ffe9dd; --blue:#3653d4; --blue-soft:#e6ebfb;
+  --green:#568920; --green-soft:#e9f2dc; --amber:#b7791f; --amber-soft:#fbefd5; --red:#c0392b; --red-soft:#f9e1de;
+  --shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#16140f; --card:#1f1c16; --ink:#f1ece3; --muted:#a39b8e; --line:#343027;
+    --accent:#ff8a52; --accent-soft:#3a2418; --blue:#8ea2ff; --blue-soft:#222a4d;
+    --green:#9bc65a; --green-soft:#26301a; --amber:#e3b25a; --amber-soft:#3a2e15; --red:#ff7b6b; --red-soft:#3d1f1b;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16140f; --card:#1f1c16; --ink:#f1ece3; --muted:#a39b8e; --line:#343027;
+  --accent:#ff8a52; --accent-soft:#3a2418; --blue:#8ea2ff; --blue-soft:#222a4d;
+  --green:#9bc65a; --green-soft:#26301a; --amber:#e3b25a; --amber-soft:#3a2e15; --red:#ff7b6b; --red-soft:#3d1f1b;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{line-height:1.25;margin:0 0 .5em}
+h1{font-size:clamp(2rem,5vw,3rem);letter-spacing:-.02em}
+h2{font-size:1.6rem;margin-top:0}
+h3{font-size:1.1rem}
+p{margin:.4em 0 .8em}
+a{color:var(--blue)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:32px;max-width:1180px;margin:0 auto;padding:0 16px}
+nav.side{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;padding:24px 0}
+nav.side b{display:block;font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+nav.side a{display:block;padding:6px 10px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:.95rem}
+nav.side a:hover{background:var(--accent-soft);color:var(--ink)}
+nav.side a.on{background:var(--accent-soft);color:var(--ink);font-weight:600;box-shadow:inset 3px 0 var(--accent)}
+.theme{margin-top:16px;font-size:.85rem;background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:6px 10px;cursor:pointer}
+main{padding:24px 0 80px}
+section{padding:36px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.hero{padding:30px 0 20px}
+.tag{display:inline-block;font-size:.78rem;font-weight:600;padding:2px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent);margin-right:6px}
+.lead{font-size:1.2rem;color:var(--muted);max-width:60ch}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.card h3{margin-bottom:.3em}
+.muted{color:var(--muted)}
+.small{font-size:.88rem}
+.pill{display:inline-block;font-size:.75rem;font-weight:700;padding:1px 9px;border-radius:99px;margin-right:4px}
+.f{background:var(--green-soft);color:var(--green)}
+.h{background:var(--amber-soft);color:var(--amber)}
+.must{background:var(--red-soft);color:var(--red)}
+.should{background:var(--amber-soft);color:var(--amber)}
+.could{background:var(--blue-soft);color:var(--blue)}
+.wont{background:var(--line);color:var(--muted)}
+.callout{border-left:4px solid var(--accent);background:var(--accent-soft);padding:12px 16px;border-radius:0 12px 12px 0;margin:14px 0}
+.callout.blue{border-color:var(--blue);background:var(--blue-soft)}
+ul{padding-left:1.2em;margin:.4em 0}
+li{margin:.2em 0}
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab,.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 16px;cursor:pointer;font:inherit;font-size:.92rem}
+.tab[aria-selected="true"],.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel[hidden]{display:none}
+/* steps */
+.steps{counter-reset:s;display:grid;gap:10px}
+.step{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start}
+.step::before{counter-increment:s;content:counter(s);width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700}
+/* sim */
+.sim{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+@media(max-width:960px){.sim{grid-template-columns:1fr}}
+.frame{background:#2a2118;border-radius:18px;padding:14px;box-shadow:var(--shadow)}
+.frame .screen{background:linear-gradient(135deg,#f4c98d,#e68f5c 55%,#7a8fcf);border-radius:8px;min-height:190px;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.45);transition:.3s}
+.frame .screen.soft{background:linear-gradient(135deg,#f9e2bc,#f4b98e)}
+.frame .screen.off{background:#4a4036;color:#cfc6b8;text-shadow:none}
+.frame .screen b{font-size:1.15rem}
+.phone{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:14px;min-height:240px}
+.status{display:flex;align-items:center;gap:8px;font-weight:700;padding:8px 12px;border-radius:12px;margin-bottom:10px}
+.s0{background:var(--green-soft);color:var(--green)}
+.s1{background:var(--blue-soft);color:var(--blue)}
+.s2{background:var(--amber-soft);color:var(--amber)}
+.s3{background:var(--red-soft);color:var(--red)}
+.notif{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;background:var(--bg);font-size:.92rem}
+.btnrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:5px 10px;font:inherit;font-size:.82rem;cursor:default}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.ctrl button.main{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 18px;font:inherit;font-weight:600;cursor:pointer}
+.ctrl button.sec{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:9px 14px;font:inherit;cursor:pointer}
+.ctrl button:disabled{opacity:.4;cursor:not-allowed}
+.progress{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+.progress i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.log{font:.82rem/1.5 ui-monospace,Menlo,monospace;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;max-height:150px;overflow:auto}
+/* levels */
+.levels{display:grid;gap:10px}
+.lvl{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+.lvl .badge{font-weight:800;padding:4px 12px;border-radius:10px}
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:.92rem;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--accent-soft);font-size:.85rem}
+tr:last-child td{border-bottom:0}
+.tw{overflow-x:auto}
+/* details */
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+details[open] summary{margin-bottom:6px}
+/* calc */
+input[type=range]{width:100%;accent-color:var(--accent)}
+.bar{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;margin:6px 0;font-size:.9rem}
+.bar div.t{background:var(--line);border-radius:99px;height:16px;overflow:hidden}
+.bar div.t i{display:block;height:100%;background:var(--blue);border-radius:99px;transition:width .25s}
+.bar.me div.t i{background:var(--accent)}
+label.chk{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);margin:6px 0;cursor:pointer}
+label.chk input{margin-top:5px;accent-color:var(--accent);width:18px;height:18px}
+label.chk.done{opacity:.6}
+label.chk.done span.tx{text-decoration:line-through}
+@media(max-width:820px){
+  .layout{grid-template-columns:1fr}
+  nav.side{position:sticky;top:0;z-index:5;height:auto;background:var(--bg);display:flex;gap:4px;overflow-x:auto;padding:8px 0;border-bottom:1px solid var(--line)}
+  nav.side b,.theme{display:none}
+  nav.side a{white-space:nowrap}
+  .bar{grid-template-columns:100px 1fr 70px}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="side" id="nav">
+  <div style="width:100%">
+  <b>Le Cadre</b>
+  <a href="#resume">Résumé</a>
+  <a href="#probleme">Problème et positionnement</a>
+  <a href="#personas">Personas</a>
+  <a href="#valeur">Proposition de valeur</a>
+  <a href="#faces">Les 3 faces</a>
+  <a href="#chaine">Chaîne cœur (simulateur)</a>
+  <a href="#alertes">Alertes graduées</a>
+  <a href="#perimetre">Périmètre MVP</a>
+  <a href="#modele">Modèle économique</a>
+  <a href="#donnees">Données et éthique</a>
+  <a href="#kpi">KPI</a>
+  <a href="#hypotheses">Hypothèses à valider</a>
+  <a href="#risques">Risques</a>
+  <a href="#suite">Prochaines étapes</a>
+  <button class="theme" id="themeBtn" type="button">Clair / sombre</button>
+  </div>
+</nav>
+
+<main>
+<section class="hero" id="resume">
+  <span class="tag">Proposition de produit</span><span class="tag">Nom de travail</span>
+  <h1>Le Cadre</h1>
+  <p class="lead">Un cadre photo connecté qu'on offre à ses parents. La famille y envoie des photos, et le cadre repère en douceur quand la routine du jour change, sans caméra, sans bracelet et sans rien à recharger.</p>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card"><h3>Pour l'enfant</h3><p class="small">Savoir que tout va bien sans appeler trois fois par jour, et être prévenu avec mesure quand quelque chose cloche.</p></div>
+    <div class="card"><h3>Pour le parent</h3><p class="small">Un beau cadre avec les photos de ses proches. Il garde la main : un toucher répond, un geste met en pause.</p></div>
+    <div class="card"><h3>Le choix de design</h3><p class="small">Le lien est la raison d'être de l'objet. La sécurité est discrète et passe toujours par le parent avant d'atteindre l'enfant.</p></div>
+  </div>
+  <div class="callout blue small"><b>Statut.</b> Piste provisoire. Le brief place le choix d'archétype en phase 3, après les entretiens de la phase 2. Cette fiche sert à en débattre à trois et à préparer les entretiens. <span class="pill f">F</span> = fait sourcé dans notre veille, <span class="pill h">H</span> = hypothèse à valider.</div>
+</section>
+
+<section id="probleme">
+  <h2>Problème et positionnement</h2>
+  <p><b>La question du brief :</b> comment un objet connecté peut-il rassurer les enfants sans placer leurs parents sous surveillance ?</p>
+  <div class="grid g2">
+    <div class="card"><h3>Ce qui existe déjà</h3>
+      <ul class="small">
+        <li><b>Apple Watch / bracelets :</b> ils détectent, mais le parent doit les porter et les recharger. Ils s'arrêtent dès qu'il oublie. <span class="pill f">F</span></li>
+        <li><b>Famileo :</b> ne demande rien au parent, mais ne détecte aucun danger, et l'effort passe aux contributeurs. <span class="pill f">F</span></li>
+        <li><b>Téléassistance :</b> 87 % de l'entourage la voit comme un marqueur de dépendance (2016, source secondaire faible). <span class="pill f">F</span></li>
+      </ul>
+    </div>
+    <div class="card"><h3>Les 3 gaps que Le Cadre vise</h3>
+      <ol class="small">
+        <li><b>Veiller sans effort du parent.</b> Aucun port, aucune recharge, aucun geste.</li>
+        <li><b>Alerter sans épuiser l'aidant.</b> Alertes graduées, jamais de flot de notifications.</li>
+        <li><b>Garder le lien sans surveiller.</b> Un récit de lien, pas de surveillance.</li>
+      </ol>
+      <p class="small muted">Preuves surtout faibles (pages à 1/7 et avis) : la demande pour le trio réuni n'est pas mesurée. <span class="pill h">H</span></p>
+    </div>
+  </div>
+  <div class="callout small"><b>Position sur la carte :</b> « lien + sécurité discrète », une case peu occupée selon notre analyse de marché. Aucune source ne prouve qu'un capteur sans port se vende à domicile aux familles, il faut le tester. <span class="pill h">H</span></div>
+</section>
+
+<section id="personas">
+  <h2>Personas <span class="muted small">(fictifs et provisoires, à refaire après les entretiens)</span></h2>
+  <div class="grid g2">
+    <div class="card"><h3>Marie, 78 ans, la parent</h3>
+      <p class="small"><b>Situation :</b> veuve, vit seule en appartement, autonome, aidée ponctuellement.<br>
+      <b>Numérique :</b> un smartphone qu'elle utilise peu, plus à l'aise avec ce qui se touche qu'avec les menus.<br>
+      <b>Phrase type :</b> « Je ne suis pas malade. »</p>
+      <p class="small"><b>Elle veut :</b> voir ses petits-enfants, ne pas être « suivie », décider de ce qui se sait.<br>
+      <b>Elle refuse :</b> porter un truc, une caméra, un objet qui dit « personne âgée ».</p>
+    </div>
+    <div class="card"><h3>Claire, 56 ans, l'aidante</h3>
+      <p class="small"><b>Situation :</b> en emploi, deux enfants, habite à 400 km de sa mère.<br>
+      <b>Déclencheur d'achat :</b> une chute d'une voisine, une hospitalisation, ou un silence d'un week-end.<br>
+      <b>Phrase type :</b> « Je ne peux pas l'appeler cinq fois par jour. »</p>
+      <p class="small"><b>Elle veut :</b> une réponse simple à « est-ce que ça va ? » et être prévenue seulement quand c'est utile.<br>
+      <b>Elle craint :</b> la culpabilité de surveiller, les fausses alertes, l'abonnement qu'on ne peut plus arrêter.</p>
+    </div>
+  </div>
+  <p class="small muted">Contexte chiffré : 73 % des 70 ans et plus ont un smartphone, mais 59,2 % des 75 ans et plus n'ont pas utilisé internet en 3 mois (2021). Les aidants ont surtout entre 55 et 64 ans. <span class="pill f">F</span></p>
+</section>
+
+<section id="valeur">
+  <h2>Proposition de valeur</h2>
+  <div class="tw"><table>
+    <tr><th></th><th>Le parent (utilisateur)</th><th>L'enfant (acheteur et aidant)</th></tr>
+    <tr><td><b>Gain</b></td><td>Les photos de sa famille, un message du jour, un moyen simple de dire « je vais bien ».</td><td>Un « signe du jour » lisible en 2 secondes, et une alerte seulement après que le parent a eu sa chance de répondre.</td></tr>
+    <tr><td><b>Effort</b></td><td>Aucun : pas de port, pas de recharge. Au pire un toucher.</td><td>Envoyer des photos quand il le souhaite. Pas de tableau de bord à surveiller.</td></tr>
+    <tr><td><b>Contrôle</b></td><td>Il voit ce que l'enfant voit, et peut mettre en pause.</td><td>Il règle les seuils d'alerte avec le parent, pas à sa place.</td></tr>
+    <tr><td><b>Image</b></td><td>Un cadre photo : un cadeau, pas un appareil « de senior ».</td><td>Un cadeau qu'on peut offrir sans froisser.</td></tr>
+  </table></div>
+</section>
+
+<section id="faces">
+  <h2>Les 3 faces du produit</h2>
+  <div class="tabs" role="tablist" data-tabs="faces">
+    <button class="tab" role="tab" aria-selected="true" data-p="achat">1. Parcours d'achat</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="senior">2. Face senior</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="aidant">3. Face aidant</button>
+  </div>
+
+  <div class="panel" id="achat">
+    <p>L'enfant découvre, comprend, choisit et achète en confiance, et le parent doit pouvoir dire oui.</p>
+    <div class="steps">
+      <div class="step"><div><b>Découvrir.</b> Page d'accueil centrée sur le cadeau et le lien (« Offrez-lui vos photos »), pas sur la peur de la chute.</div></div>
+      <div class="step"><div><b>Comprendre.</b> Une démo claire : ce que le cadre voit (une présence, pas de personne), ce qu'il ne voit jamais, et ce que reçoit l'enfant.</div></div>
+      <div class="step"><div><b>Choisir.</b> Une seule offre (kit + abonnement), prix total affiché, sans engagement. Le prix tout compris est notre argument face à l'opacité des offres actuelles. <span class="pill f">F</span></div></div>
+      <div class="step"><div><b>Réassurance.</b> Garantie de reprise, résiliation en un clic, explication des données collectées.</div></div>
+      <div class="step"><div><b>Consentement.</b> Case obligatoire : « J'en ai parlé avec mon parent. » La CNIL demande l'accord de la personne si possible. <span class="pill f">F</span></div></div>
+      <div class="step"><div><b>Activation.</b> Au premier allumage, le parent voit un écran de bienvenue et valide lui-même (« Je suis d'accord »). Sans son accord, la détection reste éteinte.</div></div>
+    </div>
+  </div>
+
+  <div class="panel" id="senior" hidden>
+    <p>L'objet (simulé) et une interface minuscule. Il doit pouvoir rester muet toute une semaine sans que cela pose problème.</p>
+    <div class="grid g2">
+      <div class="card"><h3>Ce que le parent voit</h3><ul class="small">
+        <li>Un diaporama des photos envoyées par la famille.</li>
+        <li>Un message du jour en gros caractères.</li>
+        <li>Un bouton « Coucou » (un toucher) pour répondre.</li>
+        <li>Un écran « Ce que ma famille voit » : les mêmes informations que l'enfant.</li></ul></div>
+      <div class="card"><h3>Ce que le parent contrôle</h3><ul class="small">
+        <li><b>Pause intimité :</b> doigt maintenu 3 secondes, avec choix de la durée (hypothèse : jusqu'à 24 h).</li>
+        <li><b>Contact de secours :</b> il choisit lui-même la 2e personne à prévenir.</li>
+        <li><b>Retrait :</b> il peut tout désactiver, l'enfant en est informé avec respect.</li></ul></div>
+    </div>
+    <div class="callout small"><b>Exigences d'accessibilité renforcées :</b> contraste élevé, texte à partir de 24 pt, un seul geste (toucher), aucun menu, aucun son strident, aucun mot technique à l'écran.</div>
+  </div>
+
+  <div class="panel" id="aidant" hidden>
+    <p>Une application simple : une réponse d'abord, du détail seulement si besoin.</p>
+    <div class="grid g2">
+      <div class="card"><h3>Informations utiles</h3><ul class="small">
+        <li><b>Signe du jour :</b> « Journée normale ✓ », « À surveiller » ou « À vérifier ».</li>
+        <li><b>Résumé de la semaine (IA) :</b> « La semaine de Maman en 3 lignes ». Pas de diagnostic, pas de conseil médical.</li>
+        <li>Détail visible seulement en cas d'écart.</li></ul></div>
+      <div class="card"><h3>Interactions à distance</h3><ul class="small">
+        <li>Envoyer une photo ou un message vocal sur le cadre.</li>
+        <li>Réponses rapides : « J'ai appelé, c'est bon ».</li>
+        <li>Régler les seuils avec le parent (créneau de routine, délais).</li>
+        <li>Gérer les contacts de secours.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="chaine">
+  <h2>Chaîne cœur : du capteur simulé à l'alerte</h2>
+  <p>C'est la condition du MVP dans le brief : un événement simulé côté objet qui déclenche une alerte visible et actionnable chez l'aidant. Choisissez un scénario et avancez pas à pas.</p>
+  <div class="callout small">Les délais montrés (par exemple 20 minutes avant l'étape suivante) sont des <b>hypothèses de travail</b>, à régler avec les entretiens. <span class="pill h">H</span></div>
+  <div class="tabs" id="scen" role="tablist"></div>
+  <div class="progress"><i id="prog"></i></div>
+  <div class="ctrl">
+    <button class="sec" id="prev" type="button">← Précédent</button>
+    <button class="main" id="next" type="button">Étape suivante →</button>
+    <button class="sec" id="reset" type="button">Recommencer</button>
+    <span class="muted small" id="stepinfo"></span>
+  </div>
+  <div class="sim">
+    <div>
+      <b class="small muted">LE CADRE (chez Marie)</b>
+      <div class="frame"><div class="screen" id="screen"></div></div>
+      <p class="small muted" id="clock" style="margin-top:8px"></p>
+    </div>
+    <div>
+      <b class="small muted">TÉLÉPHONE DE CLAIRE</b>
+      <div class="phone" id="phone"></div>
+    </div>
+    <div>
+      <b class="small muted">JOURNAL DE LA BASE</b>
+      <div class="log" id="log"></div>
+      <p class="small muted" style="margin-top:8px" id="why"></p>
+    </div>
+  </div>
+  <details><summary>Flux de bout en bout (à raffiner en phase 6)</summary>
+    <p class="small">Simulateur d'objet → webhook → base de données → règles d'alerte → application de l'aidant (et écran du cadre en retour). Une plateforme d'automatisation reçoit le webhook et applique les règles. La stack exacte se décide en phase 5.</p>
+    <p class="small"><b>Événements simulés :</b> présence détectée, absence sur un créneau, toucher « Coucou », pause intimité, appareil hors ligne.</p>
+  </details>
+</section>
+
+<section id="alertes">
+  <h2>Alertes graduées</h2>
+  <p>Le parent a toujours sa chance de répondre avant que l'enfant soit sollicité. Le produit n'appelle jamais les secours de lui-même et ne promet aucune sécurité absolue.</p>
+  <div class="levels">
+    <div class="lvl"><span class="badge s0">N0</span><div><b>Routine normale.</b> Rien n'est envoyé. L'enfant voit « Journée normale ✓ ».</div></div>
+    <div class="lvl"><span class="badge s1">N1</span><div><b>Écart léger.</b> Le cadre dit « Un petit coucou ? ». Personne n'est prévenu. Un toucher du parent ferme le sujet.</div></div>
+    <div class="lvl"><span class="badge s2">N2</span><div><b>Pas de réponse.</b> L'enfant reçoit une notification douce : « Pas de nouvelles de Maman ce matin, à vérifier quand tu peux », avec les actions Appeler, Message vocal sur le cadre, « C'est bon ».</div></div>
+    <div class="lvl"><span class="badge s3">N3</span><div><b>Toujours rien, et l'enfant n'a pas réagi.</b> Relance, puis proposition de prévenir le contact de secours choisi par le parent. L'enfant décide d'appeler les secours : jamais automatique.</div></div>
+  </div>
+  <p class="small muted">Les pannes (cadre hors ligne) sont signalées comme telles, avec un ton neutre, et ne sont jamais présentées comme un danger.</p>
+</section>
+
+<section id="perimetre">
+  <h2>Périmètre du MVP (priorisation MoSCoW)</h2>
+  <p>Proposition de départ, à discuter en phase 4. Filtrez par priorité.</p>
+  <div class="tabs" id="moscow">
+    <button class="chip on" data-k="all">Tout</button>
+    <button class="chip" data-k="must">Must</button>
+    <button class="chip" data-k="should">Should</button>
+    <button class="chip" data-k="could">Could</button>
+    <button class="chip" data-k="wont">Won't</button>
+  </div>
+  <div class="tw"><table id="mtable">
+    <thead><tr><th>Face</th><th>Fonctionnalité</th><th>Priorité</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+</section>
+
+<section id="modele">
+  <h2>Modèle économique</h2>
+  <div class="callout small">Tout est <b>hypothèse</b> : aucun prix de capteur ambiant dans notre veille. Les comparaisons viennent de pages commerciales (fiabilité 1/7), sauf Famileo (3/7). <span class="pill h">H</span></div>
+  <div class="grid g3">
+    <div class="card"><h3>Kit</h3><p class="small">Environ 129 € une seule fois : cadre + capteur de présence intégré.</p></div>
+    <div class="card"><h3>Abonnement</h3><p class="small">Environ 8 €/mois, sans engagement, tout compris (service, photos, résumé IA).</p></div>
+    <div class="card"><h3>Tiers payeur</h3><p class="small">Crédit d'impôt de 50 % : sans condition de GIR, mais l'éligibilité d'un tel capteur est inconnue. Mutuelles : piste isolée.</p></div>
+  </div>
+  <h3 style="margin-top:18px">Combien ça coûte sur la durée ?</h3>
+  <label class="small">Durée : <b id="mval">12</b> mois
+    <input type="range" id="months" min="3" max="36" value="12"></label>
+  <label class="small"><input type="checkbox" id="credit"> Appliquer un crédit d'impôt de 50 % <span class="muted">(éligibilité à vérifier)</span></label>
+  <div id="bars" style="margin-top:10px"></div>
+  <p class="small muted">Hors frais d'installation de la téléassistance (30 à 60 €) et engagements éventuels. Téléassistance prise à 25 €/mois (fourchette 20-30 €). Famileo : 5,99 €/mois, mais sans aucune détection.</p>
+</section>
+
+<section id="donnees">
+  <h2>Données et éthique</h2>
+  <p>Tout est simulé : aucune donnée réelle de santé n'entre dans le produit.</p>
+  <div class="tw"><table>
+    <tr><th>Donnée</th><th>Famille</th><th>Sensibilité</th><th>Qui la voit</th><th>Durée (hyp.)</th></tr>
+    <tr><td>Présence par créneau (oui/non)</td><td>Événement de l'objet</td><td>Moyenne (vie quotidienne)</td><td>Parent et enfant</td><td>30 jours</td></tr>
+    <tr><td>Toucher « Coucou »</td><td>Événement de l'objet</td><td>Faible</td><td>Parent et enfant</td><td>30 jours</td></tr>
+    <tr><td>Photos et messages</td><td>Messages</td><td>Moyenne (données de tiers)</td><td>Parent et famille invitée</td><td>Tant que le service est actif</td></tr>
+    <tr><td>Profil (prénoms, contacts de secours)</td><td>Profil</td><td>Moyenne</td><td>Enfant, parent</td><td>Durée du contrat</td></tr>
+    <tr><td>Commande, paiement</td><td>Achat</td><td>Faible à moyenne</td><td>Enfant</td><td>Obligation légale</td></tr>
+  </table></div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3>Ce que Le Cadre ne collecte jamais</h3><ul class="small"><li>Aucune caméra ni micro.</li><li>Aucune localisation.</li><li>Aucune donnée de santé ni de diagnostic.</li></ul></div>
+    <div class="card"><h3>Garde-fous éthiques</h3><ul class="small">
+      <li>Consentement du parent à l'activation, et retrait possible.</li>
+      <li>Transparence : le parent voit ce que voit l'enfant.</li>
+      <li>Pause intimité, sans justification à donner.</li>
+      <li>Positionnement bien-être et lien familial : aucun dispositif médical, aucune promesse de sécurité absolue.</li>
+      <li>Résumé IA : jamais de conseil médical, et le texte dit qu'il vient d'une IA.</li></ul></div>
+  </div>
+</section>
+
+<section id="kpi">
+  <h2>KPI (premières propositions)</h2>
+  <p>Brief : 5 à 8 indicateurs, équilibrés entre les deux faces. Cibles à fixer en phase 4.</p>
+  <div class="grid g2">
+    <div class="card"><h3>Côté aidant</h3><ul class="small"><li><b>Activation :</b> part des acheteurs dont le parent a validé l'accord et reçu sa première photo.</li><li><b>Alertes traitées :</b> part des alertes N2 vues puis marquées « traitées ».</li><li><b>Réassurance déclarée :</b> note de 1 à 5 chaque semaine.</li></ul></div>
+    <div class="card"><h3>Côté parent</h3><ul class="small"><li><b>Simplicité perçue :</b> note de 1 à 5.</li><li><b>Fausses alertes :</b> nombre de N2 inutiles par mois (cible à zéro).</li><li><b>Sentiment de contrôle :</b> « Je décide de ce qui se sait », oui/non.</li></ul></div>
+  </div>
+</section>
+
+<section id="hypotheses">
+  <h2>Hypothèses à valider en entretien</h2>
+  <p>Cochez au fil des entretiens (sauvegardé dans votre navigateur seulement).</p>
+  <div id="hyp"></div>
+  <p class="small muted" id="hcount"></p>
+</section>
+
+<section id="risques">
+  <h2>Risques et parades</h2>
+  <details><summary>Le parent rejette le détecteur de présence</summary><p class="small">Il peut le voir comme une surveillance déguisée. <b>Parade :</b> transparence totale, pause intimité, consentement à l'activation. À tester en premier.</p></details>
+  <details><summary>Fausses alertes qui épuisent l'aidant</summary><p class="small">Un parent qui sort au jardin déclenche un écart. <b>Parade :</b> le cadre interroge le parent avant l'enfant (N1), les seuils s'ajustent.</p></details>
+  <details><summary>L'objet perd son côté « cadeau »</summary><p class="small">Trop de détection fait du cadre un capteur déguisé. <b>Parade :</b> le photo et le lien restent la fonction principale, tout l'écran est pensé pour eux.</p></details>
+  <details><summary>Dérive vers le dispositif médical</summary><p class="small">Une fonction d'analyse à visée médicale fait du logiciel un dispositif médical. <b>Parade :</b> aucun diagnostic, aucun indicateur de santé, aucune mention médicale. <span class="pill f">F</span></p></details>
+  <details><summary>Le résumé IA invente ou déforme</summary><p class="small">Il pourrait dramatiser ou rassurer à tort. <b>Parade :</b> il ne décrit que les faits observés (présence, réponses), mention « résumé généré par IA », aucun conseil.</p></details>
+  <details><summary>Le prix ou l'abonnement refroidit</summary><p class="small">Les familles redoutent les abonnements opaques. <b>Parade :</b> prix tout compris et sans engagement affichés d'emblée.</p></details>
+</section>
+
+<section id="suite">
+  <h2>Prochaines étapes</h2>
+  <div class="grid g2">
+    <div class="card"><h3>À décider à trois</h3><ul class="small"><li>Valide-t-on Le Cadre comme direction provisoire ?</li><li>Quel nom définitif ?</li><li>Qui prépare le guide d'entretien (phase 2) ?</li></ul></div>
+    <div class="card"><h3>Dans l'ordre du brief</h3><ol class="small"><li>Phase 2 : entretiens parents et aidants, tester les hypothèses ci-dessus.</li><li>Phase 3 : cahier des charges, archétype confirmé.</li><li>Phase 4 : backlog, MVP, KPI.</li><li>Phase 5 : stack no-code.</li><li>Phase 6 : données, simulateur.</li></ol></div>
+  </div>
+</section>
+</main>
+</div>
+
+<script>
+/* tabs (faces) */
+document.querySelectorAll('[data-tabs="faces"] .tab').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('[data-tabs="faces"] .tab').forEach(function(x){x.setAttribute('aria-selected',x===b)});
+    ['achat','senior','aidant'].forEach(function(id){document.getElementById(id).hidden=(id!==b.dataset.p)});
+  });
+});
+
+/* simulateur */
+var SC=[
+ {n:"Matinée normale",steps:[
+  {t:"07:45",scr:["Bonjour Marie","Léa t'a envoyé une photo"],cls:"",lv:0,ph:[],log:"presence=oui créneau=matin",why:"Présence détectée dans la routine habituelle : aucun message n'est envoyé."},
+  {t:"09:10",scr:["Un message de Claire","« Bonne journée maman ! »"],cls:"soft",lv:0,ph:[],log:"affichage message_du_jour",why:"Le cadre fait d'abord son travail de lien."},
+  {t:"09:12",scr:["Merci ! 💛","Coucou envoyé"],cls:"soft",lv:0,ph:[{m:"Maman a dit coucou",b:[]}],log:"touch_coucou=oui → statut=normal",why:"Le parent touche l'écran, l'enfant voit un signe positif. C'est le rituel de lien."}
+ ]},
+ {n:"Matinée silencieuse",steps:[
+  {t:"09:30",scr:["Bonjour Marie",""],cls:"",lv:0,ph:[],log:"routine_attendue=avant 09:30",why:"Fin du créneau habituel de présence matinale."},
+  {t:"10:30",scr:["Un petit coucou ?","Touchez pour dire bonjour"],cls:"soft",lv:1,ph:[],log:"presence=non créneau=matin → N1",why:"N1 : le cadre interroge doucement le parent. Claire n'est pas encore sollicitée."},
+  {t:"10:50",scr:["Un petit coucou ?",""],cls:"soft",lv:2,ph:[{m:"Pas de nouvelles de Maman ce matin, à vérifier quand tu peux.",b:["Appeler","Message vocal sur le cadre","C'est bon"]}],log:"touch_coucou=non délai=20min → N2",why:"N2 : aucune réponse du parent. Notification douce, avec des actions concrètes."},
+  {t:"11:20",scr:["Un petit coucou ?",""],cls:"soft",lv:3,ph:[{m:"Pas de nouvelles de Maman ce matin, à vérifier quand tu peux.",b:["Appeler","Message vocal sur le cadre","C'est bon"]},{m:"Toujours rien. Prévenir Tonton Paul, le contact choisi par Maman ?",b:["Prévenir Tonton Paul","Je m'en occupe"]}],log:"aidant_reponse=non délai=30min → N3",why:"N3 : on propose le contact de secours choisi par le parent. L'enfant décide, rien n'appelle les secours automatiquement."}
+ ]},
+ {n:"Fausse alerte (jardin)",steps:[
+  {t:"10:30",scr:["Un petit coucou ?","Touchez pour dire bonjour"],cls:"soft",lv:1,ph:[],log:"presence=non créneau=matin → N1",why:"Marie est au jardin : le capteur ne la voit pas."},
+  {t:"10:42",scr:["Merci ! 💛","Content de vous voir"],cls:"soft",lv:0,ph:[{m:"Journée normale ✓",b:[]}],log:"touch_coucou=oui (+12min) → N1 annulé",why:"Elle rentre et touche l'écran : l'alerte s'annule, Claire n'a rien reçu. C'est exactement l'objectif de la gradation."},
+  {t:"Fin de journée",scr:["Bonsoir Marie",""],cls:"",lv:0,ph:[{m:"Journée normale ✓",b:[]}],log:"ajustement_routine: fenêtre élargie (proposition)",why:"Le service propose d'élargir la fenêtre de routine, à valider avec le parent. Hypothèse à tester."}
+ ]},
+ {n:"Pause intimité",steps:[
+  {t:"14:00",scr:["Maintenez 3 s pour une pause",""],cls:"soft",lv:0,ph:[],log:"geste=appui_long",why:"Le parent choisit lui-même."},
+  {t:"14:00",scr:["Pause jusqu'à 18h","Le cadre ne regarde plus"],cls:"off",lv:0,ph:[{m:"Maman a mis le cadre en pause jusqu'à 18h.",b:[]}],log:"mode=pause jusqu'à=18:00",why:"L'enfant est informé du fait, sans motif et sans alerte. Pas de pression."},
+  {t:"18:00",scr:["Bonsoir Marie","Le cadre veille de nouveau"],cls:"",lv:0,ph:[],log:"mode=actif",why:"Reprise automatique à l'heure choisie. Pause maximale à définir (hypothèse : 24 h)."}
+ ]},
+ {n:"Panne du cadre",steps:[
+  {t:"08:00",scr:["",""],cls:"off",lv:0,ph:[],log:"heartbeat=absent",why:"Plus de signal du cadre."},
+  {t:"10:00",scr:["",""],cls:"off",lv:0,ph:[{m:"Le cadre de Maman est hors ligne depuis 2 h. Vérifier la box internet ?",b:["Voir l'aide"]}],log:"statut=hors_ligne délai=2h",why:"Une panne n'est pas une alerte de danger : le message est neutre, et distinct de N2."}
+ ]}
+];
+var si=0,st=0;
+var scenEl=document.getElementById('scen');
+SC.forEach(function(s,i){
+  var b=document.createElement('button');b.className='tab';b.type='button';b.textContent=s.n;
+  b.setAttribute('aria-selected',i===0);
+  b.addEventListener('click',function(){si=i;st=0;render();});
+  scenEl.appendChild(b);
+});
+var LV=["Journée normale ✓","Écart léger : le cadre demande","À vérifier","Relance"];
+function render(){
+  var s=SC[si],x=s.steps[st];
+  Array.prototype.forEach.call(scenEl.children,function(b,i){b.setAttribute('aria-selected',i===si)});
+  document.getElementById('screen').className='screen '+x.cls;
+  document.getElementById('screen').innerHTML='<b>'+x.scr[0]+'</b><span>'+x.scr[1]+'</span>';
+  document.getElementById('clock').textContent='Heure simulée : '+x.t;
+  var ph='<div class="status s'+x.lv+'">'+(LV[x.lv])+'</div>';
+  if(!x.ph.length)ph+='<p class="small muted">Aucune notification.</p>';
+  x.ph.forEach(function(n){
+    ph+='<div class="notif">'+n.m+(n.b.length?'<div class="btnrow">'+n.b.map(function(t){return '<span class="btn">'+t+'</span>'}).join('')+'</div>':'')+'</div>';
+  });
+  document.getElementById('phone').innerHTML=ph;
+  var lg='';
+  for(var k=0;k<=st;k++)lg+='['+s.steps[k].t+'] '+s.steps[k].log+'<br>';
+  var le=document.getElementById('log');le.innerHTML=lg;le.scrollTop=le.scrollHeight;
+  document.getElementById('why').textContent=x.why;
+  document.getElementById('prog').style.width=((st+1)/s.steps.length*100)+'%';
+  document.getElementById('stepinfo').textContent='Étape '+(st+1)+' sur '+s.steps.length;
+  document.getElementById('prev').disabled=st===0;
+  document.getElementById('next').disabled=st===s.steps.length-1;
+}
+document.getElementById('next').onclick=function(){st++;render();};
+document.getElementById('prev').onclick=function(){st--;render();};
+document.getElementById('reset').onclick=function(){st=0;render();};
+render();
+
+/* MoSCoW */
+var M=[
+ ["Achat","Page de présentation et choix de l'offre unique","must"],
+ ["Achat","Consentement « j'en ai parlé à mon parent » avant paiement","must"],
+ ["Achat","Paiement et confirmation de commande (simulés)","must"],
+ ["Senior","Écran du cadre : photos, message du jour","must"],
+ ["Senior","Bouton « Coucou »","must"],
+ ["Senior","Validation de l'accord au premier allumage","must"],
+ ["Aidant","Signe du jour (normal / à surveiller / à vérifier)","must"],
+ ["Aidant","Notification N2 avec actions","must"],
+ ["Chaîne","Simulateur d'événements (présence, absence, toucher)","must"],
+ ["Chaîne","Règles d'alerte N1 → N2 → N3","must"],
+ ["Senior","Pause intimité","should"],
+ ["Senior","Écran « ce que ma famille voit »","should"],
+ ["Aidant","Envoi de photos et messages vocaux vers le cadre","should"],
+ ["Aidant","Résumé de la semaine par IA","should"],
+ ["Aidant","Contact de secours choisi par le parent","should"],
+ ["Chaîne","Gestion de la panne (hors ligne)","should"],
+ ["Aidant","Réglage des seuils avec le parent","could"],
+ ["Achat","Offre cadeau avec message personnalisé","could"],
+ ["Aidant","Plusieurs aidants (fratrie)","could"],
+ ["Senior","Compagnon conversationnel","wont"],
+ ["Chaîne","Appel automatique des secours","wont"],
+ ["Chaîne","Indicateurs de santé ou de sommeil","wont"],
+ ["Chaîne","Vraie fabrication du matériel","wont"]
+];
+var LAB={must:"Must",should:"Should",could:"Could",wont:"Won't"};
+function mrender(k){
+  var tb=document.querySelector('#mtable tbody');tb.innerHTML='';
+  M.forEach(function(r){
+    if(k!=='all'&&r[2]!==k)return;
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td>'+r[0]+'</td><td>'+r[1]+'</td><td><span class="pill '+r[2]+'">'+LAB[r[2]]+'</span></td>';
+    tb.appendChild(tr);
+  });
+}
+document.querySelectorAll('#moscow .chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('#moscow .chip').forEach(function(x){x.classList.toggle('on',x===c)});
+    mrender(c.dataset.k);
+  });
+});
+mrender('all');
+
+/* calcul des coûts */
+function calc(){
+  var m=+document.getElementById('months').value;
+  var cr=document.getElementById('credit').checked?0.5:1;
+  document.getElementById('mval').textContent=m;
+  var items=[
+    {n:"Le Cadre",v:(129+8*m)*cr,me:true},
+    {n:"Téléassistance",v:25*m*cr},
+    {n:"Famileo (sans détection)",v:5.99*m*cr}
+  ];
+  var max=Math.max.apply(null,items.map(function(i){return i.v}));
+  document.getElementById('bars').innerHTML=items.map(function(i){
+    return '<div class="bar'+(i.me?' me':'')+'"><span>'+i.n+'</span><div class="t"><i style="width:'+(i.v/max*100)+'%"></i></div><b>'+Math.round(i.v)+' €</b></div>';
+  }).join('');
+}
+document.getElementById('months').oninput=calc;
+document.getElementById('credit').onchange=calc;
+calc();
+
+/* hypothèses */
+var HY=[
+ "Un parent accepte un détecteur de présence dans un cadre photo, s'il peut le mettre en pause.",
+ "Un parent préfère répondre d'un toucher plutôt que d'être appelé.",
+ "Un enfant aidant paie 129 € + 8 €/mois pour ce service.",
+ "Un enfant préfère un signe du jour à des notifications en continu.",
+ "Un délai de 20 minutes avant d'alerter l'enfant est supportable des deux côtés.",
+ "Les familles envoient des photos régulièrement, assez pour faire vivre le cadre.",
+ "Le cadeau est un moment d'achat naturel (anniversaire, Noël, retour d'hospitalisation).",
+ "Le parent accepte de voir ce que voit l'enfant, et en est rassuré.",
+ "Les fausses alertes restent rares avec une détection par créneau de routine."
+];
+var KEY='lecadre-hypotheses',saved=[];
+try{saved=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){}
+var hw=document.getElementById('hyp');
+HY.forEach(function(t,i){
+  var l=document.createElement('label');l.className='chk'+(saved.indexOf(i)>-1?' done':'');
+  l.innerHTML='<input type="checkbox"'+(saved.indexOf(i)>-1?' checked':'')+'><span class="tx">'+t+'</span>';
+  l.querySelector('input').addEventListener('change',function(e){
+    l.classList.toggle('done',e.target.checked);
+    var a=[];hw.querySelectorAll('input').forEach(function(c,j){if(c.checked)a.push(j)});
+    try{localStorage.setItem(KEY,JSON.stringify(a))}catch(x){}
+    hcount();
+  });
+  hw.appendChild(l);
+});
+function hcount(){
+  var n=hw.querySelectorAll('input:checked').length;
+  document.getElementById('hcount').textContent=n+' hypothèse(s) validée(s) sur '+HY.length;
+}
+hcount();
+
+/* navigation active */
+var links=[].slice.call(document.querySelectorAll('nav.side a'));
+var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)});
+    }
+  });
+},{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(function(s){if(s)io.observe(s)});
+
+/* thème */
+document.getElementById('themeBtn').onclick=function(){
+  var r=document.documentElement,cur=r.getAttribute('data-theme');
+  var dark=cur?cur==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+  r.setAttribute('data-theme',dark?'light':'dark');
+};
+</script>
+</body>
+</html>
