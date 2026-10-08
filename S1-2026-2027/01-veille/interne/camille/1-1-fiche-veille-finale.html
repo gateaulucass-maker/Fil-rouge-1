@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Fiche de veille finale</title>
+<meta name="description" content="Fiche de veille Marché et réglementation silver tech, phase 1 du PFR Générations Connectées (Ynov B2 Product Builder No-Code, 2026-2027).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --cream:#f4eee1;--paper:#faf6ec;--blue-soft:#dfe3f2;
+  --ink:#111526;--muted:#5d6172;--blue:#1d3bc1;--blue-deep:#14298a;
+  --line:#d3ccba;--rule:#8c8574;
+  --ok:#1b6b3e;--ok-bg:#e3eee4;--test:#8a5200;--test-bg:#f6e9d2;--open:#5d6172;--risk:#a3301c;--risk-bg:#f6e1da;
+  --orange:#e8571c;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --fs-mega:clamp(52px,11vw,148px);--fs-num:clamp(64px,10vw,128px);--fs-h2:clamp(32px,4.6vw,58px);
+  --fs-h3:clamp(22px,2.4vw,28px);--fs-lead:clamp(20px,2.2vw,27px);--fs-kv:clamp(36px,4.2vw,56px);
+  --fs-body:17px;--fs-small:15px;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;--s10:144px;
+  --gutter:clamp(16px,4vw,48px);--section-gap:clamp(64px,9vw,var(--s10));
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:64px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 var(--fs-body)/1.55 var(--sans);hyphens:auto;overflow-wrap:break-word}
+p,li,dd{max-width:68ch}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+a{color:var(--ink);text-decoration-thickness:1px;text-underline-offset:3px;text-decoration-color:var(--rule);transition:color 120ms linear}
+a:hover{color:var(--blue);text-decoration-color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-9999px;top:8px;z-index:30;background:var(--blue);color:#fff;padding:8px 12px;font:500 13px var(--mono)}
+.skip:focus{left:8px;color:#fff}
+.mono,.label{font-family:var(--mono)}
+.label{font:500 13px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+.av,.nv{font:400 11.5px/1.3 var(--mono);color:var(--muted);letter-spacing:.02em;white-space:nowrap}
+.av::before,.nv::before{content:"["}.av::after,.nv::after{content:"]"}
+
+/* grille */
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--s5)}
+.grid>*{min-width:0}
+.rail{grid-column:1 / span 3}
+.body{grid-column:4 / span 9;min-width:0}
+.full{grid-column:1 / -1}
+
+/* nav */
+.topnav{position:sticky;top:0;z-index:20;background:var(--cream);border-bottom:3px solid var(--blue)}
+.topnav-in{display:flex;align-items:center;gap:var(--s4);padding:0 var(--gutter);max-width:1240px;margin-inline:auto}
+.topnav ol{display:flex;gap:var(--s5);margin:0;padding:8px 0;list-style:none;overflow-x:auto;scrollbar-width:none;white-space:nowrap;flex:1;min-width:0}
+.topnav ol::-webkit-scrollbar{display:none}
+.topnav a{font:500 13px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:15px 0;display:inline-block}
+.topnav a span{color:var(--blue);margin-right:6px}
+.topnav a[aria-current="true"]{color:var(--blue);box-shadow:inset 0 -3px 0 var(--blue)}
+.topnav .progress{position:absolute;left:0;bottom:-3px;height:3px;width:100%;background:var(--ink);transform-origin:0 50%;transform:scaleX(var(--p,0))}
+@supports (animation-timeline:scroll()){.topnav .progress{animation:grow linear both;animation-timeline:scroll(root)}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.present-toggle{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--blue);border:1.5px solid var(--blue);min-height:44px;padding:0 12px;cursor:pointer;white-space:nowrap}
+.present-toggle[aria-pressed="true"],.present-toggle:hover{background:var(--blue);color:#fff}
+.present-toggle:focus-visible{outline-color:var(--ink)}
+
+/* couverture */
+.cover{min-height:min(100svh,980px);display:grid;align-content:space-between;row-gap:var(--s7);padding-block:var(--s8) var(--s7)}
+.meta{grid-column:1/-1;border-top:2px solid var(--ink);padding-top:var(--s3);font:500 13px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0;max-width:none}
+.cover-title{grid-column:1/-1;font:800 var(--fs-mega)/.9 var(--sans);letter-spacing:-.04em;max-width:12ch}
+.cover-title .pre{display:block;font:500 clamp(14px,1.6vw,18px)/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:var(--s5)}
+.hl{color:var(--blue)}
+.cover-qs{grid-column:4/-1;display:grid;gap:var(--s6)}
+.key{border-top:6px solid var(--blue);padding-top:var(--s3)}
+.key .label{color:var(--blue)}
+.key p.q{font:700 var(--fs-lead)/1.25 var(--sans);letter-spacing:-.01em;margin:var(--s2) 0 0;text-wrap:pretty}
+.cover-facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:var(--s4) var(--s5);margin:0;border-top:1px solid var(--line);padding-top:var(--s4)}
+.cover-facts dt{font:500 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cover-facts dd{margin:4px 0 0;font-weight:700}
+
+/* intro / thèse */
+.intro{border-top:3px solid var(--ink);padding-top:var(--s5)}
+.thesis{list-style:none;margin:var(--s4) 0 var(--s7);padding:0;counter-reset:t}
+.thesis li{counter-increment:t;font:700 var(--fs-lead)/1.25 var(--sans);letter-spacing:-.01em;padding:var(--s3) 0 var(--s3) 3.2em;border-bottom:1px solid var(--line);position:relative;max-width:none;text-wrap:pretty}
+.thesis li::before{content:counter(t);position:absolute;left:0;top:var(--s3);font:500 13px/2.2 var(--mono);color:var(--blue);letter-spacing:.1em}
+.thesis li span{color:var(--blue)}
+.intro h2{font:800 var(--fs-h3)/1.15 var(--sans);letter-spacing:-.015em}
+
+/* chiffres clés */
+.kfs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));border-top:2px solid var(--ink);margin:var(--s4) 0 0}
+.kf{margin:0;padding:var(--s4) var(--s5) var(--s5) 0;border-bottom:1px solid var(--line)}
+.kv{font:800 var(--fs-kv)/1 var(--sans);letter-spacing:-.035em;color:var(--blue);font-variant-numeric:tabular-nums;margin:0 0 var(--s2)}
+.kv small{font-size:.45em;letter-spacing:0}
+.kt{font-size:var(--fs-small);line-height:1.45}
+.src-note{font:400 12.5px/1.45 var(--mono);letter-spacing:.02em;color:var(--muted);border-top:1px solid var(--line);margin:var(--s3) 0 0;padding-top:var(--s2)}
+.src-note a{color:var(--muted)}
+.src-note a:hover{color:var(--blue)}
+sup.refs{font:400 10.5px var(--mono);line-height:0;margin-left:1px}
+sup.refs a{color:var(--muted);text-decoration:none;padding:0 1px}
+sup.refs a:hover{color:var(--blue)}
+:target{outline:3px solid var(--blue);outline-offset:4px;background:var(--blue-soft)}
+
+/* sommaire */
+.toc{border-top:3px solid var(--ink);padding-top:var(--s5);margin-top:var(--section-gap)}
+.toc h2{font:500 13px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li{border-bottom:1px solid var(--line);max-width:none}
+.toc a{display:grid;grid-template-columns:4ch 1fr auto;gap:var(--s4);align-items:baseline;padding:var(--s3) var(--s2);text-decoration:none;min-height:44px}
+.toc a:hover,.toc a:focus-visible{background:var(--blue-soft)}
+.toc a:hover .t{color:var(--blue)}
+.toc .n{font:500 14px var(--mono);color:var(--blue)}
+.toc .t{font:700 var(--fs-h3)/1.15 var(--sans);letter-spacing:-.015em}
+.toc .l{font:400 12.5px var(--mono);color:var(--muted)}
+.legend{font:400 13px/1.6 var(--mono);color:var(--muted);margin-top:var(--s4)}
+
+/* sections */
+.sec{border-top:3px solid var(--ink);padding-top:var(--s5);margin-top:var(--section-gap);scroll-margin-top:64px}
+.sec-num{display:block;font:800 var(--fs-num)/.85 var(--sans);letter-spacing:-.05em;color:var(--blue);position:sticky;top:72px}
+.kicker{font:500 13px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:var(--s3)}
+.sec h2{font:800 var(--fs-h2)/1 var(--sans);letter-spacing:-.03em}
+.chapeau{font:700 var(--fs-lead)/1.25 var(--sans);letter-spacing:-.01em;max-width:34em;padding-left:var(--s5);border-left:6px solid var(--blue);margin-block:var(--s5) var(--s7);text-wrap:pretty}
+.body h3{font:800 var(--fs-h3)/1.15 var(--sans);letter-spacing:-.015em;border-top:2px solid var(--ink);padding-top:var(--s3);margin-top:var(--s8);margin-bottom:var(--s4)}
+.body h3 .label{display:block;margin-bottom:6px;color:var(--blue)}
+h4{font:800 20px/1.2 var(--sans);letter-spacing:-.01em;margin:var(--s2) 0 var(--s3)}
+.implique{background:var(--blue-soft);padding:var(--s4) var(--s5);font-weight:700;border-left:6px solid var(--blue);margin-top:var(--s7);max-width:none}
+.implique strong{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:var(--s2)}
+.cols3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:var(--s5);border-top:2px solid var(--ink);padding-top:var(--s4)}
+.cols3>div{min-width:0}
+.cols3 p{margin:var(--s2) 0 0;font-size:var(--fs-small)}
+.pipe{list-style:none;margin:var(--s4) 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:var(--s3)}
+.pipe li{border-top:2px solid var(--ink);padding-top:var(--s2);font-size:var(--fs-small);line-height:1.4}
+.pipe b{display:block;font:800 26px/1 var(--sans);color:var(--blue);font-variant-numeric:tabular-nums;margin-bottom:4px}
+.note{font-size:var(--fs-small);color:var(--ink);background:var(--paper);border-left:3px solid var(--rule);padding:var(--s3) var(--s4);margin-top:var(--s4)}
+
+/* tableaux */
+.tbl{overflow-x:auto;overscroll-behavior-x:contain;border-top:2px solid var(--ink);margin-top:var(--s3)}
+.tbl:focus-visible{outline-offset:2px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:var(--fs-small);line-height:1.45}
+table.wide{min-width:820px}
+caption{caption-side:top;text-align:left;font:500 13px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:var(--s3) 0}
+thead th{font:500 12px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:2px solid var(--ink);padding:var(--s2) var(--s3) var(--s2) 0;vertical-align:bottom;background:var(--cream)}
+tbody th[scope=row]{font:800 16px/1.3 var(--sans);text-align:left}
+tbody th,tbody td{border-bottom:1px solid var(--line);padding:var(--s3) var(--s3) var(--s3) 0;vertical-align:top;text-align:left}
+td.num{font-variant-numeric:tabular-nums}
+tbody tr:hover{background:rgba(223,227,242,.5)}
+.fam{display:inline-block;font:500 11px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--rule);padding:2px 6px;color:var(--ink)}
+.tbl-hint{display:none;font:400 12px var(--mono);color:var(--muted);margin:var(--s2) 0 0}
+.filters{display:flex;flex-wrap:wrap;gap:var(--s2);margin-top:var(--s4)}
+.filters[hidden]{display:none}
+.filters button{font:500 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--ink);border:1.5px solid var(--rule);min-height:44px;padding:0 12px;cursor:pointer;transition:background-color 120ms linear}
+.filters button:hover{border-color:var(--blue);color:var(--blue)}
+.filters button[aria-pressed="true"]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.filters button[aria-pressed="true"]:focus-visible{outline-color:var(--ink)}
+.filter-status{font:400 12.5px var(--mono);color:var(--muted);margin:var(--s2) 0 0;min-height:1.4em}
+tr[hidden]{display:none}
+
+/* statuts */
+.st{display:inline-flex;align-items:center;gap:6px;font:500 11.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border:1.5px solid currentColor;white-space:nowrap;margin:2px 4px 2px 0}
+.st::before{font-size:10px}
+.st--proved{color:var(--ok);background:var(--ok-bg)}.st--proved::before{content:"●"}
+.st--test{color:var(--test);background:var(--test-bg)}.st--test::before{content:"◐"}
+.st--open{color:var(--open);border-style:dashed}.st--open::before{content:"○"}
+.st--stop{color:var(--risk);background:var(--risk-bg)}.st--stop::before{content:"■"}
+.b{font:500 10px/1.4 var(--mono);border:1px solid;padding:0 4px;margin-left:4px;vertical-align:2px;text-decoration:none}
+.b.f{color:var(--blue)}.b.h{color:var(--muted)}
+abbr.b{text-decoration:none;cursor:help}
+
+/* cas */
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:var(--s5);margin-top:var(--s4)}
+.case{background:var(--paper);border-top:6px solid var(--ok);padding:var(--s5);min-width:0;margin:0}
+.case--fail{border-top-color:var(--risk)}
+.case-tag{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ok);margin:0}
+.case--fail .case-tag{color:var(--risk)}
+.case dl{margin:0;font-size:var(--fs-small)}
+.case dt{font:500 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:var(--s3)}
+.case dd{margin:4px 0 0}
+
+/* réglementaire */
+.reg{margin-top:var(--s7)}
+.reg-grid{display:grid;grid-template-columns:5fr 3fr 4fr;border-top:2px solid var(--ink)}
+.reg-cell{padding:var(--s4) var(--s5) var(--s5) 0;font-size:var(--fs-small);min-width:0}
+.reg-cell+.reg-cell{border-left:1px solid var(--line);padding-left:var(--s5)}
+.reg-cell p{margin:0 0 var(--s2)}
+.reg-cell ul{margin:0;padding-left:1.1em}
+.reg-l{font:500 12px/1.3 var(--mono)!important;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:var(--s2)!important}
+.reg-cell--impl{background:var(--blue-soft)}
+.reg-cell--impl .reg-l{color:var(--blue)}
+.src-ref{font:400 13px/1.5 var(--mono)}
+.src-ref li{margin-bottom:6px}
+.reg-trap{border-top:1px solid var(--line);border-left:6px solid var(--risk);background:var(--risk-bg);padding:var(--s3) var(--s5);font-size:var(--fs-small);margin:0;max-width:none}
+.reg-trap b{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--risk);margin-right:6px}
+.real{background:var(--paper);border:1.5px solid var(--ink);border-left-width:6px;padding:var(--s5) var(--s6);margin-top:var(--s8)}
+.real>.label{color:var(--blue)}
+.real h3{border:0!important;margin-top:var(--s2)!important;padding:0!important}
+.real h4{font:500 12px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:var(--s5)}
+.real ul{padding-left:1.1em;font-size:var(--fs-small)}
+.unverified{font:400 13px/1.5 var(--mono);border-left:2px dashed var(--open);padding-left:var(--s3);margin:var(--s3) 0}
+.lesson{background:var(--blue-soft);padding:var(--s4) var(--s5);margin-top:var(--s4);font-weight:500}
+
+/* opportunités / menaces */
+.om-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 var(--s6);margin-top:var(--s4)}
+.om-col{min-width:0}
+.om{border-top:2px solid var(--ink);padding-block:var(--s4) var(--s6)}
+.om-tag{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;margin:0}
+.om--opp .om-tag{color:var(--ok)}.om--opp .om-tag::before{content:"+ "}
+.om--men .om-tag{color:var(--risk)}.om--men .om-tag::before{content:"− "}
+.om p{font-size:var(--fs-small);margin:0 0 var(--s2)}
+.om-fact{font:400 13px/1.5 var(--mono)!important;background:var(--paper);padding:var(--s2) var(--s3)}
+.om-fact span{color:var(--muted)}
+.back{font:400 12px var(--mono);color:var(--muted);margin-left:6px}
+
+/* pistes */
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:var(--s6);margin-top:var(--s4)}
+.track{border-top:6px solid var(--blue);padding-top:var(--s4);min-width:0}
+.track .label{color:var(--blue)}
+.track h4{font:800 var(--fs-h3)/1.15 var(--sans)}
+.track dl{margin:0;font-size:var(--fs-small)}
+.track dt{font:500 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:var(--s3)}
+.track dd{margin:4px 0 0}
+
+/* chaîne */
+.chain{margin:var(--s5) 0 0}
+.chain-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s6);list-style:none;padding:0;margin:0}
+.step{border-top:2px solid var(--ink);padding-top:var(--s3);position:relative;min-width:0}
+.step--end{border-top:6px solid var(--blue)}
+.step:not(:last-child)::after{content:"→";content:"→" / "";position:absolute;right:calc(-1 * var(--s6) + 4px);top:var(--s3);font:800 24px/1 var(--sans);color:var(--blue)}
+.step p{margin:0;font-size:var(--fs-small)}
+.step-l{font:500 12px/1.3 var(--mono)!important;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.step-t{font:800 19px/1.2 var(--sans)!important;margin:6px 0!important}
+.chain figcaption{font:400 13px/1.5 var(--mono);color:var(--muted);margin-top:var(--s4);border-top:1px solid var(--line);padding-top:var(--s2);max-width:none}
+.faces{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:var(--s5);margin-top:var(--s4)}
+.face{border-top:2px solid var(--ink);padding-top:var(--s3);font-size:var(--fs-small);min-width:0}
+.face p{margin:0 0 var(--s2)}
+.face .g{color:var(--muted);border-top:1px dashed var(--rule);padding-top:var(--s2)}
+.promise{font:800 clamp(24px,3vw,36px)/1.15 var(--sans);letter-spacing:-.02em;border-top:6px solid var(--blue);padding-top:var(--s4);margin:var(--s4) 0 0;max-width:30em;text-wrap:pretty}
+.status-hyp{display:inline-block;font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;border:1.5px dashed var(--rule);color:var(--muted);padding:6px 10px;margin-bottom:var(--s3)}
+
+/* détails */
+details.more{margin-top:var(--s5)}
+details.more>summary{display:inline-flex;gap:8px;min-height:44px;align-items:center;font:500 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);border:1.5px solid var(--blue);padding:6px 12px;cursor:pointer;list-style:none;transition:background-color 120ms linear}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::before{content:"+";font-weight:500}
+details.more[open]>summary::before{content:"−"}
+details.more>summary:hover,details.more>summary:focus-visible{background:var(--blue);color:#fff}
+details.more>summary:focus-visible{outline-color:var(--ink)}
+.more-c{margin-top:var(--s3);background:var(--paper);border-left:6px solid var(--blue);padding:var(--s5);font-size:var(--fs-small)}
+.more-c>*:first-child{margin-top:0}
+.more-c ol,.more-c ul{padding-left:1.2em}
+.more-c li{margin-bottom:6px}
+
+/* annexes */
+.ann h3{scroll-margin-top:64px}
+.qa details{border-top:1px solid var(--line)}
+.qa details:last-child{border-bottom:1px solid var(--line)}
+.qa summary{cursor:pointer;padding:var(--s3) 0;font-weight:700;min-height:44px;list-style:none;display:flex;gap:var(--s3)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::before{content:"+";font:500 15px var(--mono);color:var(--blue);flex:none;width:1em}
+.qa details[open] summary::before{content:"−"}
+.qa summary .label{flex:none;font-size:11px;padding-top:4px;color:var(--blue)}
+.qa .a{padding:0 0 var(--s4) 1.75em;font-size:var(--fs-small);margin:0}
+.who{border:2px solid var(--ink);padding:var(--s5);margin-top:var(--s4)}
+.placeholder{border:2px dashed var(--rule);padding:var(--s6);min-height:200px;display:flex;flex-direction:column;justify-content:center;gap:var(--s2);margin-top:var(--s4)}
+.placeholder p{margin:0}
+.gaps{padding-left:1.2em;font-size:var(--fs-small)}
+.gaps li{margin-bottom:var(--s3)}
+.gaps b{font-weight:700}
+ol.bib{columns:2 320px;column-gap:var(--s6);font:400 12.5px/1.45 var(--mono);padding-left:3.2em;margin-top:var(--s4)}
+ol.bib li{break-inside:avoid;margin-bottom:6px;overflow-wrap:anywhere;padding:2px 4px}
+ol.bib li:target{background:var(--blue-soft)}
+ul.docs{font-size:var(--fs-small);padding-left:1.1em}
+a.doc::after{content:" ↗ rendu";font:400 11px var(--mono);color:var(--muted)}
+a.ext::after{content:" ↗";color:var(--muted)}
+
+/* pied */
+.foot{border-top:1px solid var(--line);margin-top:var(--section-gap);padding-block:var(--s5) var(--s7);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s3) var(--s5);font:400 12.5px/1.45 var(--mono);color:var(--muted)}
+.foot a{color:var(--muted)}
+
+/* responsive */
+@media (max-width:900px){
+  .rail{grid-column:1 / span 2}.body{grid-column:3 / -1}
+  .cover-qs{grid-column:1/-1}
+  .reg-grid{grid-template-columns:1fr}
+  .reg-cell+.reg-cell{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .reg-cell--impl{padding-left:var(--s5)!important}
+  .chain-steps{grid-template-columns:1fr 1fr}
+  .step:nth-child(2)::after{content:none}
+}
+@media (max-width:680px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .rail,.body,.full,.cover-qs,.meta,.cover-title,.cover-facts{grid-column:1}
+  .sec-num{position:static;font-size:64px}
+  .om-grid,.tracks,.chain-steps{grid-template-columns:minmax(0,1fr)}
+  .step:not(:last-child)::after{content:"↓";position:static;display:block;margin-top:var(--s2)}
+  .step:nth-child(2)::after{content:"↓"}
+  .tbl-hint{display:block}
+  .present-toggle{display:none}
+  .toc a{grid-template-columns:3ch 1fr}
+  .toc .l{display:none}
+  .real{padding:var(--s4)}
+  .thesis li{padding-left:2.2em}
+}
+
+/* mode présentation */
+html.present{font-size:125%;scroll-snap-type:y proximity}
+html.present body{--fs-body:21px;--fs-small:18px}
+html.present .sec{min-height:100svh;scroll-snap-align:start;margin-top:0;padding-top:var(--s7)}
+html.present details.more{display:none}
+html.present .src-note,html.present sup.refs{opacity:.6}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* impression */
+@page{size:A4;margin:16mm 14mm 18mm}
+@page :first{margin:0}
+@media print{
+  :root{--fs-body:10.5pt;--fs-small:9.5pt;--fs-num:56pt;--fs-h2:24pt;--fs-mega:54pt;--fs-lead:13pt;--fs-kv:24pt;--fs-h3:15pt;--section-gap:0}
+  html,body{background:#fff;overflow:visible}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .topnav,.skip,.filters,.filter-status,.present-toggle,.progress,.back,.tbl-hint{display:none!important}
+  .cover{min-height:auto;height:267mm;break-after:page;padding:20mm 16mm}
+  .toc{break-after:page;margin-top:var(--s6)}
+  .sec{break-before:page;margin-top:0}
+  .sec-num{position:static}
+  h2,h3,h4,.chapeau{break-after:avoid}
+  .kf,.case,.reg,.real,.om,.track,.step,.who,tr,figure,.face{break-inside:avoid}
+  p{orphans:3;widows:3}
+  .tbl{overflow:visible;border-top-width:1pt}
+  table,table.wide{min-width:0;font-size:8.5pt}
+  thead{display:table-header-group}
+  thead th{background:#fff}
+  tr[hidden]{display:table-row!important}
+  details.more>summary{display:none}
+  details.more::details-content{content-visibility:visible;display:block}
+  .more-c{border-left-width:3pt}
+  a{text-decoration:none;color:inherit}
+  .body a.ext::after{content:" (" attr(href) ")";font:7pt var(--mono);color:var(--muted);overflow-wrap:anywhere}
+  .body a.doc::after{content:" (" attr(href) ")";font:7pt var(--mono);color:var(--muted)}
+  ol.bib a.ext::after{content:none}
+  sup.refs a::after,.toc a::after,a[href^="#"]::after{content:none}
+  .placeholder{border-color:#999}
+  .chapeau{margin-block:var(--s3) var(--s5)}
+  .body h3{margin-top:var(--s6)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<nav class="topnav" aria-label="Sections du dossier">
+  <div class="topnav-in">
+    <ol>
+      <li><a href="#sommaire">Sommaire</a></li>
+      <li><a href="#s01-methode"><span>01</span>Méthode</a></li>
+      <li><a href="#s02-marche"><span>02</span>Marché</a></li>
+      <li><a href="#s03-reglementaire"><span>03</span>Règles</a></li>
+      <li><a href="#s04-synthese"><span>04</span>Synthèse</a></li>
+      <li><a href="#s05-produit"><span>05</span>Produit</a></li>
+      <li><a href="#annexes"><span>A</span>Annexes</a></li>
+    </ol>
+    <button type="button" class="present-toggle" aria-pressed="false" hidden>Mode présentation (P)</button>
+  </div>
+  <span class="progress" aria-hidden="true"></span>
+</nav>
+
+<!-- ============ COUVERTURE ============ -->
+<header class="cover wrap grid" id="couverture">
+  <p class="meta">Ynov · B2 Product Builder No-Code · 2026-2027 · PFR Générations Connectées · Phase 1 · Leçon 1.1 · 8 octobre 2026</p>
+  <h1 class="cover-title"><span class="pre">Fiche de veille ·</span>Marché &amp; réglementation <span class="hl">silver tech</span></h1>
+  <div class="cover-qs">
+    <div class="key">
+      <p class="label">Question centrale de la phase</p>
+      <p class="q">« Que nous apprend le marché de la silver tech sur ce qui fonctionne réellement auprès des seniors et de leurs enfants ? »</p>
+    </div>
+    <div class="key">
+      <p class="label">Question du projet</p>
+      <p class="q">« Comment un objet connecté peut-il rassurer les enfants sans placer leurs parents sous surveillance ? »</p>
+    </div>
+  </div>
+  <dl class="cover-facts">
+    <div><dt>Équipe</dt><dd>Clément · Lucas · Camille</dd></div>
+    <div><dt>Formation</dt><dd>B2 Product Builder No-Code, Ynov 2026-2027</dd></div>
+    <div><dt>Leçon</dt><dd>1.1 · Veille</dd></div>
+    <div><dt>Date</dt><dd>8 octobre 2026</dd></div>
+  </dl>
+</header>
+
+<main id="contenu">
+
+<!-- ============ RÉPONSE EN 3 LIGNES ============ -->
+<section class="wrap grid" aria-labelledby="rep-t" id="reponse">
+  <div class="rail"><p class="kicker">Réponse courte</p></div>
+  <div class="body intro">
+    <h2 id="rep-t">La réponse en 3 lignes</h2>
+    <ol class="thesis">
+      <li><span>Ce qui marche :</span> le lien sans effort pour le senior, payé et alimenté par l'enfant (Famileo, GreatCall).</li>
+      <li><span>Ce qui échoue :</span> ce qu'il faut porter, recharger ou apprendre, et les écrans sans confiance ni canal de vente (Ardoiz, Meta Portal).</li>
+      <li><span>Notre piste :</span> un objet de lien posé chez le parent, qui prévient avec douceur sur l'usage, jamais sur la santé. Une hypothèse à tester.</li>
+    </ol>
+    <h2 id="kf-t">Six chiffres pour situer le marché</h2>
+    <div class="kfs">
+      <figure class="kf"><p class="kv">2,8 M</p><figcaption class="kt">seniors de 60 ans et plus en perte d'autonomie dans les années 2050, contre plus de 2 M en 2021.</figcaption><p class="src-note">Drees / Insee <a href="#src-1">[1]</a> · <a href="#fait-autonomie">détail ↓</a></p></figure>
+      <figure class="kf"><p class="kv">750 000</p><figcaption class="kt">abonnés à la téléassistance en 2024, soit 10 % des 75 ans et plus.</figcaption><p class="src-note">AFRATA <a href="#src-4">[4]</a> · autres valeurs : <a href="#ann-g">annexe G</a></p></figure>
+      <figure class="kf"><p class="kv">41 %</p><figcaption class="kt">des seniors citent le manque d'intérêt comme premier frein aux objets connectés, devant le prix (29 %).</figcaption><p class="src-note">Linexio, ≈ 250 seniors <a href="#src-8">[8]</a></p></figure>
+      <figure class="kf"><p class="kv">36 %</p><figcaption class="kt">des aidants à la vie quotidienne déclarent un besoin de répit, soit 2,1 M de personnes.</figcaption><p class="src-note">Drees 2022, veille du jeudi <a href="#src-75">[75]</a></p></figure>
+      <figure class="kf"><p class="kv">260 000</p><figcaption class="kt">familles abonnées à Famileo, près de 14 M€ de chiffre d'affaires en 2024, rentable depuis 2020.</figcaption><p class="src-note">Bretagne Économique <a href="#src-29">[29]</a></p></figure>
+      <figure class="kf"><p class="kv">110 000</p><figcaption class="kt">seniors équipés de la tablette Ardoiz (La Poste) avant son arrêt en 2026.</figcaption><p class="src-note">Clubic <a href="#src-35">[35]</a>, 24matins <a href="#src-37">[37]</a></p></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOMMAIRE ============ -->
+<nav class="toc wrap grid" aria-labelledby="toc-t" id="sommaire">
+  <div class="rail"><h2 id="toc-t">Sommaire</h2></div>
+  <div class="body">
+    <ol>
+      <li><a href="#s01-methode"><span class="n">01</span><span class="t">Méthode et périmètre</span><span class="l">½ p.</span></a></li>
+      <li><a href="#s02-marche"><span class="n">02</span><span class="t">Panorama du marché</span><span class="l">2 p.</span></a></li>
+      <li><a href="#s03-reglementaire"><span class="n">03</span><span class="t">Cadre réglementaire</span><span class="l">1,5 p.</span></a></li>
+      <li><a href="#s04-synthese"><span class="n">04</span><span class="t">Synthèse pour le projet</span><span class="l">1 p.</span></a></li>
+      <li><a href="#s05-produit"><span class="n">05</span><span class="t">Notre produit et nos prévisions</span><span class="l">1 p.</span></a></li>
+      <li><a href="#annexes"><span class="n">A</span><span class="t">Annexes A à H</span><span class="l">dispositif, IA, oral, sources</span></a></li>
+    </ol>
+    <p class="legend">Légende : <abbr class="b f" title="Fait sourcé">F</abbr> fait sourcé · <abbr class="b h" title="Hypothèse de l'équipe">H</abbr> hypothèse de l'équipe · [à vérifier] point non relu sur la source primaire · [n] source numérotée en <a href="#ann-h">annexe H</a> · « fiche réf. n » = bibliographie de la fiche de veille.</p>
+  </div>
+</nav>
+
+<!-- ============ 01 MÉTHODE ============ -->
+<section class="sec wrap grid" id="s01-methode" aria-labelledby="s01-t">
+  <div class="rail"><span class="sec-num" aria-hidden="true">01</span><p class="kicker">Méthode et périmètre</p></div>
+  <div class="body">
+    <h2 id="s01-t"><span class="vh">01. </span>Une semaine de veille outillée, décidée par des humains</h2>
+    <p class="chapeau">Du 1er au 8 octobre 2026, nous avons observé les objets connectés pour seniors achetés par leurs enfants, sur quatre axes : marché, concurrence, technologie, réglementaire.</p>
+
+    <div class="cols3">
+      <div><p class="label">Ce qu'on a observé</p><p>Le marché des objets connectés pour seniors, vu du côté de l'enfant aidant qui achète. La fiche ajoute les usagers et les signaux faibles.</p></div>
+      <div><p class="label">Comment</p><p>Un pipeline lancé à la main le 1er octobre, puis une veille automatique chaque jeudi à 7h45 avec double relecture par un second agent IA. Un humain valide avant publication.</p></div>
+      <div><p class="label">Sur quelle période</p><p>Du 1er au 8 octobre 2026. Chaque information a moins de 12 mois, sauf la dernière statistique officielle (Insee, Drees) et les textes de loi en vigueur.</p></div>
+    </div>
+
+    <h3>Ce que le pipeline a produit</h3>
+    <ol class="pipe" aria-label="Étapes du premier passage du pipeline, 1er octobre 2026">
+      <li><b>284</b>éléments collectés (RSS, avis App Store, recherche web)</li>
+      <li><b>89</b>écartés sans IA (hors sujet, doublon, plus de 36 mois)</li>
+      <li><b>180</b>qualifiés par un agent IA, notés sur 7 par un script</li>
+      <li><b>130</b>sources validées et numérotées dans la fiche</li>
+    </ol>
+    <p class="note"><strong>Deux mesures différentes, pas une contradiction.</strong> Les 130 sources sont celles <em>citées dans la fiche</em>. Le pipeline compte, lui, 164 éléments validés sur 231 qualifiés : ce chiffre inclut les ajouts de la revue de rattrapage, après la publication de la fiche.</p>
+    <p class="src-note">Sources : <a class="doc" href="../../rendus/1-1-fiche-veille-silvertech.html">Fiche de veille, « Méthode et limites »</a> · <a class="doc" href="../lucas/1-1-fiche-automatisation-veille.html">Fiche d'automatisation</a> · <a class="doc" href="../lucas/1-1-retour-pipeline-veille.html">Retour pipeline</a></p>
+
+    <h3>Ce qu'on suit en continu : 40 sources</h3>
+    <p>24 Google Alerts, 4 médias (Silvereco, Maddyness, FrenchWeb, CNIL), 3 communautés Reddit, les avis de 4 applications (Famileo, Tous FAMiliés, Life360, Signia) et 5 sites officiels prioritaires. La veille du jeudi a produit 15 fiches en 3 exécutions. Le détail est en <a href="#ann-a">annexe A</a>.</p>
+    <p>Deux garde-fous : le score de fiabilité est calculé par un script (autorité, fraîcheur, source primaire), jamais par l'IA ; un script retélécharge la page et retire tout chiffre absent de la source (5 chiffres retirés au premier passage).</p>
+
+    <details class="more">
+      <summary>Aller plus loin : nos 7 limites</summary>
+      <div class="more-c">
+        <ol>
+          <li><strong>Concurrence peu fiable :</strong> surtout des pages commerciales ou éditoriales (fiabilité 1 à 3 sur 7) ; les prix sont des ordres de grandeur.</li>
+          <li><strong>Chiffres anciens :</strong> abandon des objets connectés (2014), perception de la téléassistance (2016), équipement des seniors (2019).</li>
+          <li><strong>Avis d'usagers non représentatifs :</strong> 4 applications et 3 communautés Reddit anglophones. Ils éclairent des irritants, sans en mesurer la fréquence.</li>
+          <li><strong>Trous prioritaires :</strong> peu de données solides sur les aidants familiaux et sur le consentement des majeurs vulnérables.</li>
+          <li><strong>Le score mesure la source, pas la vérité.</strong> Un résumé IA peut mal lire une page.</li>
+          <li><strong>Dépendance technique :</strong> la veille du jeudi tourne sur un Mac personnel ; certaines pages bloquent la lecture automatique.</li>
+          <li><strong>Aucun entretien terrain</strong> à ce stade : notre positionnement reste une hypothèse documentaire.</li>
+        </ol>
+        <p class="src-note">Fiche de veille, limites · <a href="../commun/veille-silvertech/docs/dispositif-veille.md">dispositif-veille.md</a>, section 6 · fiche d'automatisation, section 09.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 02 MARCHÉ ============ -->
+<section class="sec wrap grid" id="s02-marche" aria-labelledby="s02-t">
+  <div class="rail"><span class="sec-num" aria-hidden="true">02</span><p class="kicker">Panorama du marché</p></div>
+  <div class="body">
+    <h2 id="s02-t"><span class="vh">02. </span>Le lien se vend à petit prix, la sécurité plus cher, presque toujours par abonnement</h2>
+    <p class="chapeau">Le besoin grandit, mais les seniors boudent ce qui demande un effort. Les seuls succès chiffrés font payer l'enfant et ne demandent rien au parent.</p>
+
+    <h3 id="s02-contexte"><span class="label">Le contexte</span>Un besoin qui grandit, un intérêt qui manque</h3>
+    <div class="kfs">
+      <figure class="kf" id="fait-autonomie"><p class="kv">+700 000</p><figcaption class="kt">seniors en perte d'autonomie d'ici les années 2050 (de plus de 2 M en 2021 à près de 2,8 M). Source la plus solide du lot. <abbr class="b f" title="Fait sourcé">F</abbr></figcaption><p class="src-note">Drees / Insee <a href="#src-1">[1]</a> · <a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-7">fiche réf. 7</a></p></figure>
+      <figure class="kf" id="fait-aidants"><p class="kv">725 000</p><figcaption class="kt">« aidants pivots » aident un parent âgé tout en ayant des enfants à charge ; 39 % sont seuls dans leur fratrie (données 2015).</figcaption><p class="src-note">Drees <a href="#src-2">[2]</a> <a href="#src-3">[3]</a></p></figure>
+      <figure class="kf" id="fait-repit"><p class="kv">36 %</p><figcaption class="kt">des aidants déclarent un besoin de répit (2,1 M de personnes), 65 % chez ceux qui aident 5 heures par jour ou plus.</figcaption><p class="src-note">Drees 2022 via Le Media Social, veille du jeudi <a href="#src-75">[75]</a></p></figure>
+      <figure class="kf" id="fait-interet"><p class="kv">41 %</p><figcaption class="kt">des seniors : le manque d'intérêt est le premier frein aux objets connectés, devant le prix (29 %). Petit échantillon (≈ 250).</figcaption><p class="src-note">Linexio <a href="#src-8">[8]</a> · <a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-48">fiche réf. 48</a></p></figure>
+      <figure class="kf" id="fait-stigmate"><p class="kv">87 %</p><figcaption class="kt">des seniors voient la téléassistance comme un marqueur de dépendance. Étude de 2016, fiabilité 1/7.</figcaption><p class="src-note">Senior Strategic <a href="#src-11">[11]</a> · <a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-19">fiche réf. 19</a></p></figure>
+      <figure class="kf" id="fait-teleassistance"><p class="kv">750 000</p><figcaption class="kt">abonnés à la téléassistance en 2024, âge moyen 84 ans ; un segment d'environ 250 M€ par an qui stagne en valeur.</figcaption><p class="src-note">AFRATA <a href="#src-4">[4]</a> (source intéressée) · Xerfi <a href="#src-5">[5]</a> · DGE <a href="#src-6">[6]</a></p></figure>
+    </div>
+    <details class="more">
+      <summary>Aller plus loin : isolement et équipement numérique</summary>
+      <div class="more-c">
+        <ul>
+          <li><strong>Isolement.</strong> 750 000 personnes de 60 ans et plus sans aucun contact (« mort sociale ») ; 2 millions isolées de leurs cercles familiaux et amicaux <a href="#src-74">[74]</a> <a href="#src-9">[9]</a>. 40 % des personnes âgées dépendantes vivent seules <a href="#src-10">[10]</a>. Chiffres de seconde main : des ordres de grandeur.</li>
+          <li><strong>Équipement.</strong> 9 % des 60-69 ans et 5 % des 70 ans et plus ont un objet connecté de santé (Crédoc 2019) <a href="#src-7">[7]</a>. 70 % des 70 ans et plus auraient un smartphone (Baromètre du numérique 2026) <span class="nv">non vérifié</span> <a href="#src-73">[73]</a>. Équipement en tablette et usage de la visio des 70 ans et plus : non trouvé. C'est un trou à combler si l'on garde la tablette.</li>
+          <li><strong>Taille du marché.</strong> De 60 à 130 Md€ pour la « silver économie » selon le périmètre (<a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-3">fiche réf. 3</a>, <a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-6">6</a>) ; environ 250 M€ pour la seule téléassistance <a href="#src-5">[5]</a>.</li>
+        </ul>
+      </div>
+    </details>
+
+    <h3 id="s02-acteurs"><span class="label">Les acteurs</span>Quatre familles, une seule nous concerne directement</h3>
+    <p>Notre famille, les objets compagnons, est documentée en creux : des tablettes et écrans arrêtés, des géants cités, aucun chiffre de marché. Ce n'est pas un espace vide, c'est un espace non mesuré.</p>
+    <div class="filters" role="group" aria-label="Filtrer par famille" hidden>
+      <button type="button" aria-pressed="true" data-f="all">Toutes</button>
+      <button type="button" aria-pressed="false" data-f="securite">Sécurité et urgence</button>
+      <button type="button" aria-pressed="false" data-f="capteurs">Capteurs de domicile</button>
+      <button type="button" aria-pressed="false" data-f="sante">Santé du quotidien</button>
+      <button type="button" aria-pressed="false" data-f="compagnons">Objets compagnons</button>
+    </div>
+    <p class="filter-status" aria-live="polite"></p>
+    <div class="tbl" role="region" aria-labelledby="cap-acteurs" tabindex="0">
+      <table class="data wide" id="t-acteurs">
+        <caption id="cap-acteurs">Acteurs par famille : promesse, prix, cible (prix = ordres de grandeur relevés, pas des tarifs vérifiés)</caption>
+        <thead><tr><th scope="col">Acteur</th><th scope="col">Famille</th><th scope="col">Promesse</th><th scope="col">Prix</th><th scope="col">Cible</th></tr></thead>
+        <tbody>
+          <tr data-famille="securite"><th scope="row">Filien ADMR<sup class="refs"><a href="#src-12">12</a></sup></th><td><span class="fam">Sécurité</span></td><td>Bracelet détecteur de chute relié à un centre d'écoute ; reconnaît que les chutes « molles » ne sont pas détectées.</td><td class="num">≈ 1 € par jour</td><td>Senior abonné, enfant aidant, APA ou crédit d'impôt en appui</td></tr>
+          <tr data-famille="securite"><th scope="row">Présence Verte<sup class="refs"><a href="#src-13">13</a></sup></th><td><span class="fam">Sécurité</span></td><td>Proximité humaine, centre d'écoute ; 150 000 à 160 000 abonnés ; 2 M d'alertes en 2025, dont 2 % exigent les secours.</td><td>Non trouvé (repère 20-30 €/mois<sup class="refs"><a href="#src-17">17</a></sup>)</td><td>Seniors à domicile, réseau MSA</td></tr>
+          <tr data-famille="securite"><th scope="row">Tunstall Vitaris<sup class="refs"><a href="#src-14">14</a></sup></th><td><span class="fam">Sécurité</span></td><td>Téléassistance, consolidateur du secteur ; plus de 15 M€ de CA en 2018.</td><td>Non trouvé</td><td>Seniors et familles</td></tr>
+          <tr data-famille="securite"><th scope="row">Allovie<sup class="refs"><a href="#src-15">15</a></sup></th><td><span class="fam">Sécurité</span></td><td>Bracelet détecteur de chute en option, assistance 24 h/24.</td><td class="num">6 €/mois en option</td><td>Abonnés téléassistance</td></tr>
+          <tr data-famille="securite"><th scope="row">Bracelets 4G (catégorie)<sup class="refs"><a href="#src-16">16</a></sup></th><td><span class="fam">Sécurité</span></td><td>Détection automatique, GPS en option, rattachés à une téléassistance.</td><td class="num">80-300 € ou 10-40 €/mois</td><td>Seniors et aidants</td></tr>
+          <tr data-famille="sante"><th scope="row">Apple Watch<sup class="refs"><a href="#src-18">18</a> <a href="#src-19">19</a></sup></th><td><span class="fam">Santé du quotidien</span></td><td>Détecte une chute dure et prévient secours et proches ; activée par défaut dès 55 ans.</td><td class="num">SE 3 dès 269 € + forfait cellulaire</td><td>Seniors à l'aise avec la tech, iPhone requis</td></tr>
+          <tr data-famille="sante"><th scope="row">Montres senior (Navigil, Attentive…)<sup class="refs"><a href="#src-20">20</a> <a href="#src-21">21</a></sup></th><td><span class="fam">Santé du quotidien</span></td><td>Détection de chute qui alerte une équipe d'assistance ; échec en B2C, pivot vers les résidences.</td><td>Non trouvé</td><td>Seniors, puis Ehpad et résidences</td></tr>
+          <tr data-famille="sante"><th scope="row">Life360<sup class="refs"><a href="#src-22">22</a></sup></th><td><span class="fam">Santé du quotidien</span></td><td>Localisation de la famille en temps réel ; avis négatifs sur la batterie et les bugs.</td><td>Gratuit + formule payante</td><td>Familles, grand public</td></tr>
+          <tr data-famille="capteurs"><th scope="row">Domalys<sup class="refs"><a href="#src-24">24</a> <a href="#src-25">25</a></sup> <span class="st st--stop">Liquidé</span></th><td><span class="fam">Capteurs</span></td><td>Détecteur de chute fixe, sans caméra ni bracelet ; liquidation en janvier 2025, cause inconnue.</td><td>Non trouvé</td><td>Établissements de santé surtout</td></tr>
+          <tr data-famille="capteurs"><th scope="row">Orme<sup class="refs"><a href="#src-26">26</a></sup></th><td><span class="fam">Capteurs</span></td><td>Capteur de profondeur qui détecte les chutes sans produire d'images.</td><td>Non trouvé</td><td>Soignants, Ehpad</td></tr>
+          <tr data-famille="capteurs"><th scope="row">SeniorAdom, Vitalbase, Telegrafik<sup class="refs"><a href="#src-27">27</a></sup></th><td><span class="fam">Capteurs</span></td><td>Actimétrie sans caméra, détecteurs automatiques, plateforme de capteurs.</td><td>Non trouvé</td><td>Seniors à domicile, aidants</td></tr>
+          <tr data-famille="capteurs"><th scope="row">Start-up wi-fi<sup class="refs"><a href="#src-28">28</a></sup></th><td><span class="fam">Capteurs</span></td><td>Détecte les chutes par l'analyse des ondes, sans capteur porté.</td><td>Non trouvé</td><td>Seniors</td></tr>
+          <tr data-famille="compagnons" id="fait-famileo"><th scope="row">Famileo<sup class="refs"><a href="#src-29">29</a> <a href="#src-32">32</a></sup></th><td><span class="fam">Compagnons</span></td><td>La famille poste photos et messages, une gazette papier est imprimée et envoyée au senior. 4,8/5 sur 5 300 avis App Store.</td><td class="num">dès 5,99 €/mois<sup class="refs"><a href="#src-30">30</a> <a href="#ann-g">G</a></sup></td><td>La famille paie et alimente, le senior reçoit ; 2 700 établissements partenaires</td></tr>
+          <tr data-famille="compagnons"><th scope="row">Tous FAMiliés<sup class="refs"><a href="#src-34">34</a></sup></th><td><span class="fam">Compagnons</span></td><td>Journal familial mensuel tiré d'une application.</td><td>Non trouvé</td><td>Familles, petits-enfants</td></tr>
+          <tr data-famille="compagnons" id="fait-ardoiz"><th scope="row">Ardoiz (La Poste)<sup class="refs"><a href="#src-35">35</a> <a href="#src-37">37</a> <a href="#src-39">39</a></sup> <span class="st st--stop">Arrêté</span></th><td><span class="fam">Compagnons</span></td><td>Tablette simplifiée vendue en bureau de poste ; ≈ 110 000 exemplaires ; fin de commercialisation en juin 2026. Reprise sous conditions annoncée par Domisanté (Archos) <span class="nv">non vérifié</span><sup class="refs"><a href="#src-38">38</a></sup>.</td><td class="num">Tablette 230-529 € ; forfait 19,90 €/mois ; service 9,90 €/mois</td><td>Seniors débutants, achat au guichet</td></tr>
+          <tr data-famille="compagnons" id="fait-portal"><th scope="row">Meta Portal<sup class="refs"><a href="#src-45">45</a> <a href="#src-46">46</a></sup> <span class="st st--stop">Arrêté</span></th><td><span class="fam">Compagnons</span></td><td>Appel vidéo en un geste, écran intelligent, mode photos. Arrêt annoncé en novembre 2022.</td><td><span class="nv">non vérifié</span></td><td>Grand public</td></tr>
+          <tr data-famille="compagnons"><th scope="row">Familink<sup class="refs"><a href="#src-43">43</a></sup></th><td><span class="fam">Compagnons</span></td><td>Cadre photo avec SIM 4G intégrée : la famille envoie photos et messages, sans wi-fi ni installation.</td><td class="num">99,90-219,90 € ; abonnement après 3 mois <span class="nv">non vérifié</span></td><td>Parent âgé, enfants à distance</td></tr>
+          <tr data-famille="compagnons"><th scope="row">Komp (No Isolation)<sup class="refs"><a href="#src-44">44</a></sup></th><td><span class="fam">Compagnons</span></td><td>Écran simple pour le parent, piloté par la famille via une appli : appel vidéo et photos.</td><td>Abonnement obligatoire, prix non affiché</td><td>Seniors isolés, familles</td></tr>
+          <tr data-famille="compagnons"><th scope="row">Amazon Echo Show 8<sup class="refs"><a href="#src-47">47</a></sup></th><td><span class="fam">Compagnons</span></td><td>Écran-enceinte : appels vidéo, Drop In, diaporama photo.</td><td class="num">≈ 169 € <span class="nv">non vérifié</span></td><td>Grand public, pas senior</td></tr>
+          <tr data-famille="compagnons"><th scope="row">Aura, Nixplay, Frameo<sup class="refs"><a href="#src-48">48</a> <a href="#src-49">49</a> <a href="#src-50">50</a></sup></th><td><span class="fam">Compagnons</span></td><td>Cadres photo wi-fi, photos envoyées par une appli.</td><td>Aura ≈ 178-205 €, sans abonnement <span class="nv">non vérifié</span></td><td>Grand public, cadeau</td></tr>
+          <tr data-famille="compagnons"><th scope="row">Livindi, Facilotab<sup class="refs"><a href="#src-51">51</a> <a href="#src-52">52</a></sup></th><td><span class="fam">Compagnons</span></td><td>Tablettes simplifiées pour seniors (bouton d'appel, interface adaptée).</td><td>Facilotab ≈ 265-465 € <span class="nv">non vérifié</span></td><td>Seniors ; Livindi : marché US</td></tr>
+          <tr data-famille="compagnons"><th scope="row">Doro<sup class="refs"><a href="#src-23">23</a></sup></th><td><span class="fam">Compagnons</span></td><td>Téléphone à clapet simplifié ; 1 clapet vendu sur 5 en France au 4e trimestre 2024.</td><td>Non trouvé</td><td>Seniors</td></tr>
+          <tr data-famille="compagnons"><th scope="row">ElliQ, Cutii, Buddy<sup class="refs"><a href="#src-40">40</a> <a href="#src-41">41</a> <a href="#src-42">42</a></sup></th><td><span class="fam">Compagnons</span></td><td>Robots et compagnons IA. Buddy est en redressement judiciaire.</td><td>ElliQ payé par l'État (US) ; Cutii 90 €/mois</td><td>Seniors, souvent via des institutions</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-hint" aria-hidden="true">Faire défiler le tableau →</p>
+    <p class="src-note">Familles du sujet : sécurité et urgence ; capteurs de domicile ; santé du quotidien (bien-être, jamais dispositif médical) ; objets compagnons. Aucun acteur « bien-être » (balance, tensiomètre) n'est analysé dans la veille. Tableau détaillé : <a class="doc" href="../../rendus/2-1-question-1-acteurs.html">Question 1, acteurs</a>.</p>
+
+    <h3 id="s02-modeles"><span class="label">Les modèles économiques</span>L'abonnement domine ; le tiers payeur ne finance que la sécurité</h3>
+    <div class="tbl" role="region" aria-labelledby="cap-modeles" tabindex="0">
+      <table class="data" id="t-modeles">
+        <caption id="cap-modeles">Modèles économiques observés : exemples, avantages, limites</caption>
+        <thead><tr><th scope="col">Modèle</th><th scope="col">Exemples</th><th scope="col">Avantages</th><th scope="col">Limites</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Achat unique</th><td>Apple Watch SE 3 dès 269 €<sup class="refs"><a href="#src-18">18</a></sup> ; bracelets 80-300 €<sup class="refs"><a href="#src-16">16</a></sup></td><td>Simple, sans engagement</td><td>Pas de revenu récurrent ; le « sans abonnement » cache souvent une SIM et une mise en service lourde pour les proches<sup class="refs"><a href="#src-59">59</a></sup></td></tr>
+          <tr><th scope="row">Abonnement</th><td>Famileo dès 5,99 €/mois ; téléassistance 20-30 €/mois<sup class="refs"><a href="#src-17">17</a></sup> ; Cutii 90 €/mois ; GreatCall : 900 000 abonnés<sup class="refs"><a href="#src-54">54</a></sup></td><td>Revenu qui revient ; l'enfant peut payer et partager</td><td>Résiliation ; engagements de 12 mois courants en téléassistance ; le senior à petit revenu ne peut pas toujours payer (Coyali)</td></tr>
+          <tr><th scope="row">Hybride</th><td>Bracelet 4G : 10-40 €/mois + 30-60 € d'installation<sup class="refs"><a href="#src-16">16</a></sup> ; Ardoiz : tablette + forfait<sup class="refs"><a href="#src-39">39</a></sup></td><td>Revenus immédiats et réguliers</td><td>Prix total opaque pour la famille ; matériel à fabriquer, stocker, installer</td></tr>
+          <tr><th scope="row">Tiers payeur</th><td>APA (GIR 1 à 4) ; crédit d'impôt de 50 % pour la téléassistance ; mutuelles ; ElliQ payé par l'État<sup class="refs"><a href="#src-40">40</a></sup></td><td>Lève le frein du prix</td><td>Le parent autonome (GIR 5-6) est hors APA ; le payeur décide sans l'utilisateur ; dépendance aux budgets publics</td></tr>
+          <tr><th scope="row">Freemium</th><td>Life360<sup class="refs"><a href="#src-22">22</a></sup></td><td>Adoption rapide</td><td>Peu de payants ; avis négatifs sur la fiabilité</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-note">Synthèse : <a class="doc" href="../../rendus/2-1-analyse-marche-questions-1-5.html">Analyse de marché, Q4</a> · <a class="doc" href="../../rendus/1-1-apple-watch-vs-famileo.html">Apple Watch vs Famileo</a>. Aucun prix de référence pour une tablette familiale avec visio ; « environ 8 €/mois » (Le Cadre) est une hypothèse de l'équipe. <abbr class="b h" title="Hypothèse de l'équipe">H</abbr></p>
+
+    <h3 id="s02-cas"><span class="label">Réussites et échecs</span>Ceux qui réussissent ne demandent rien au senior</h3>
+    <div class="cases">
+      <article class="case case--win" id="cas-famileo">
+        <p class="case-tag">Réussite · France</p><h4>Famileo</h4>
+        <dl>
+          <dt>Ce qui s'est passé <abbr class="b f" title="Fait sourcé">F</abbr></dt><dd>Créée en 2014. 2024 : près de 14 M€ de CA, 260 000 familles, rentable depuis 2020. Les enfants envoient photos et messages, une gazette papier est postée au senior.</dd>
+          <dt>Hypothèse d'explication <abbr class="b h" title="Hypothèse de l'équipe">H</abbr></dt><dd>Le senior n'a aucun effort à fournir ; l'enfant paie et alimente : rien à rejeter. Limite : le senior ne répond pas, et l'appli devient parfois « une corvée » pour l'aidant (<a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-77">fiche réf. 77</a>).</dd>
+        </dl>
+        <p class="src-note">Journal des Entreprises <a href="#src-33">[33]</a> · Bretagne Économique <a href="#src-29">[29]</a> · Pôle Éco-industries <a href="#src-31">[31]</a></p>
+      </article>
+      <article class="case case--win" id="cas-greatcall">
+        <p class="case-tag">Réussite · États-Unis</p><h4>GreatCall / Lively</h4>
+        <dl>
+          <dt>Ce qui s'est passé <abbr class="b f" title="Fait sourcé">F</abbr></dt><dd>Téléphone simplifié, bouton d'urgence, centre d'appel et lien avec les aidants. En 2018, Best Buy l'achète 800 M$ : plus de 900 000 abonnés payants, plus de 300 M$ de CA annuel.</dd>
+          <dt>Hypothèse d'explication <abbr class="b h" title="Hypothèse de l'équipe">H</abbr></dt><dd>C'est l'abonnement récurrent, adossé à un service humain, qui vaut 800 M$, pas le téléphone. Cas américain : transposition en France non démontrée.</dd>
+        </dl>
+        <p class="src-note">Communiqué Best Buy <a href="#src-54">[54]</a> · Wikipédia <a href="#src-55">[55]</a></p>
+      </article>
+      <article class="case case--fail" id="cas-portal">
+        <p class="case-tag">Échec · Grand public</p><h4>Meta Portal</h4>
+        <dl>
+          <dt>Ce qui s'est passé</dt><dd>Écran d'appel vidéo en un geste. Ventes estimées à 600 000 unités en 2020 et 800 000 en 2021 <span class="nv">non vérifié</span>, moins de 1 % du marché. Arrêt annoncé en novembre 2022.</dd>
+          <dt>Hypothèse d'explication <abbr class="b h" title="Hypothèse de l'équipe">H</abbr></dt><dd>Défiance liée à la vie privée et à la marque, aucun canal vers les seniors, priorités de Meta ailleurs. Leçon : l'appel vidéo en un geste ne suffit pas sans confiance, canal de vente et modèle économique.</dd>
+        </dl>
+        <p class="src-note">Siècle Digital <a href="#src-45">[45]</a> · Mac4ever <a href="#src-46">[46]</a> (secondaires)</p>
+      </article>
+      <article class="case case--fail" id="cas-ardoiz">
+        <p class="case-tag">Échec · France</p><h4>Ardoiz, la tablette de La Poste</h4>
+        <dl>
+          <dt>Ce qui s'est passé</dt><dd>Environ dix ans de vente au guichet, ≈ 110 000 seniors équipés, jusqu'à 200 tablettes par jour au pic du Covid. CA de plus de 9 M€ en 2020, 5 M€ en 2025 ; dette de 5 M€ ; arrêt annoncé en mai 2026.</dd>
+          <dt>Hypothèse d'explication <abbr class="b h" title="Hypothèse de l'équipe">H</abbr></dt><dd>Une demande de crise qui retombe, un canal (les bureaux de poste) qui se réduit, un écran à apprendre. Les faits ne prouvent pas que la tablette elle-même ait été rejetée. C'est le cas le plus proche du nôtre.</dd>
+        </dl>
+        <p class="src-note">Clubic <a href="#src-35">[35]</a> (un seul média pour le détail) · Hub La Poste <a href="#src-36">[36]</a> · 24matins <a href="#src-37">[37]</a> · Que Choisir <a href="#src-39">[39]</a></p>
+      </article>
+    </div>
+    <details class="more">
+      <summary>Aller plus loin : Myxyty, l'assistant vocal face aux géants</summary>
+      <div class="more-c">
+        <p><strong>Faits.</strong> Assistant vocal fondé en 2008, repris sous le nom « George » avec La Poste pour les seniors. Liquidation judiciaire en mai 2018 : dette d'environ 3 M€, CA 2017 d'environ 2 M€, levée non aboutie, face à Amazon Echo et Google Home <a href="#src-56">[56]</a> <a href="#src-57">[57]</a>.</p>
+        <p><strong>Hypothèse.</strong> Un assistant pour seniors n'est pas un marché en soi face aux géants : il faut un service et un payeur. Jibo, robot social grand public (plus de 70 M$ levés, arrêt en 2018), confirme la leçon <a href="#src-58">[58]</a>. Pour nous : la visio sur écran est le terrain d'Amazon.</p>
+        <p>Autres cas non retenus : Coyali (trésorerie), Domalys (cause inconnue). Seuls Famileo et GreatCall ont un CA et une rentabilité sourcés. Fiche complète : <a class="doc" href="../lucas/1-1-reussites-faillites-silvertech.html">Réussites et faillites</a>.</p>
+      </div>
+    </details>
+
+    <p class="implique"><strong>Ce que ça implique pour nous</strong>Le lien se vend à petit prix à l'enfant qui paie, sans effort pour le parent ; les écrans échouent quand l'apprentissage, le canal ou les géants s'en mêlent. Notre objet doit rester à effort nul, se payer par un abonnement partageable et prévoir une alerte douce plutôt qu'un capteur de sécurité. <abbr class="b h" title="Hypothèse de l'équipe">H</abbr></p>
+  </div>
+</section>
+
+<!-- ============ 03 RÉGLEMENTAIRE ============ -->
+<section class="sec wrap grid" id="s03-reglementaire" aria-labelledby="s03-t">
+  <div class="rail"><span class="sec-num" aria-hidden="true">03</span><p class="kicker">Cadre réglementaire</p></div>
+  <div class="body">
+    <h2 id="s03-t"><span class="vh">03. </span>Rester du côté du lien : pas de santé, pas d'IA inutile, tout exportable</h2>
+    <p class="chapeau">Trois textes encadrent notre produit. Le risque ne vient pas de la technique, mais d'une fonction ou d'une phrase de trop.</p>
+    <p class="src-note">Fiche d'étudiants, pas un avis juridique. Les mentions [à vérifier] signalent ce qui n'a pas été relu sur la source primaire.</p>
+
+    <article class="reg" id="reg-rgpd">
+      <h3><span class="label">Règle 1</span>RGPD : données de santé et de vie quotidienne</h3>
+      <div class="reg-grid">
+        <div class="reg-cell"><p class="reg-l">La règle</p><p>Photos, voix, messages et horaires d'usage sont des données personnelles. Les données de santé sont interdites par principe (art. 9), sauf consentement explicite. Protection dès la conception (art. 25) ; analyse d'impact (AIPD) si le risque est élevé (art. 35). Héberger des données de santé impose un hébergeur certifié HDS.</p></div>
+        <div class="reg-cell"><p class="reg-l">Source primaire</p><ul class="src-ref"><li>RGPD, art. 4, 9, 12, 15, 20, 25, 35 <a href="#src-60">[60]</a></li><li>Code de la santé publique, art. L1111-8 <a href="#src-61">[61]</a> <span class="av">lien à vérifier</span> ; HDS <a href="#src-62">[62]</a></li><li>CNIL, applis santé <a href="#src-63">[63]</a></li></ul></div>
+        <div class="reg-cell reg-cell--impl"><p class="reg-l">Pour notre produit</p><p>On traite des données de relation, pas de santé : registre, minimisation, durées de conservation, export et suppression. AIPD quand même, car le public est vulnérable et l'alerte douce est une forme de suivi. Le senior consent lui-même : l'enfant qui achète ne consent pas à sa place.</p></div>
+      </div>
+      <p class="reg-trap"><b>Piège</b>Croire que « sans données de santé, pas de souci ». Une seule fonction maladroite (humeur, rappel de médicament, analyse d'image) fait basculer en données sensibles.</p>
+      <details class="more">
+        <summary>Aller plus loin : photos des petits-enfants, droit à l'image</summary>
+        <div class="more-c">
+          <ul>
+            <li>Les photos de petits-enfants sont des données de mineurs. Le partage familial relève de l'usage personnel, mais pas notre service, qui reste responsable de l'hébergement <span class="av">considérant 18 à vérifier</span>. Galerie fermée au cercle invité, aucune réutilisation ; c'est le parent du mineur qui dépose la photo.</li>
+            <li>Droit à l'image (art. 9 du Code civil) <span class="av">à vérifier</span> : prévoir un bouton « retirer » simple.</li>
+            <li>Une donnée banale peut révéler indirectement la santé (CJUE, 1er août 2022, C-184/20) <span class="av">à vérifier</span> : on n'exploite, n'indexe ni ne classe les contenus déposés.</li>
+            <li>Parent sous tutelle ou curatelle : les règles de la mesure s'appliquent <span class="av">modalités à vérifier</span>.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="reg" id="reg-dm">
+      <h3><span class="label">Règle 2</span>Frontière bien-être / dispositif médical</h3>
+      <div class="reg-grid">
+        <div class="reg-cell"><p class="reg-l">La règle</p><p id="fait-ansm">Un logiciel est un dispositif médical s'il cumule trois critères : finalité médicale, résultat propre à un patient, action sur les données. Stocker ou transmettre ne suffit pas. C'est la destination déclarée (notice, site, publicité) qui compte. S'il bascule : classe IIa ou plus (règle 11), organisme notifié et marquage CE.</p></div>
+        <div class="reg-cell"><p class="reg-l">Source primaire</p><ul class="src-ref"><li>Règlement (UE) 2017/745, art. 2, considérant 19, annexe VIII règle 11 <a href="#src-64">[64]</a></li><li>Guide MDCG 2019-11 rév. 1 <a href="#src-65">[65]</a></li><li>ANSM <a href="#src-66">[66]</a> · <a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-64">fiche réf. 64</a></li></ul></div>
+        <div class="reg-cell reg-cell--impl"><p class="reg-l">Pour notre produit</p><p>Destination relationnelle, écrite partout pareil : « garder le lien entre un parent et ses enfants ». L'objet stocke et transmet des photos et des messages. L'alerte porte sur l'usage de l'objet, jamais sur l'état de la personne. Pas de rappel de médicament en V1.</p></div>
+      </div>
+      <p class="reg-trap"><b>Piège</b>Le marketing. Une phrase comme « détecte quand votre mère ne va pas bien » revendique une finalité médicale, sans qu'une ligne de code ait changé. Mots interdits : surveiller la santé, détecter, prévenir les chutes, déclin cognitif.</p>
+    </article>
+
+    <article class="reg" id="reg-ia">
+      <h3><span class="label">Règle 3</span>AI Act (règlement (UE) 2024/1689)</h3>
+      <div class="reg-grid">
+        <div class="reg-cell"><p class="reg-l">La règle</p><p>Interdit : exploiter les vulnérabilités liées à l'âge pour altérer le comportement (art. 5). Haut risque : IA composant d'un dispositif médical, ou listée à l'annexe III (dont la reconnaissance des émotions). Transparence : une IA qui dialogue doit se présenter comme telle, en vigueur depuis le 2 août 2026 (art. 50).</p></div>
+        <div class="reg-cell"><p class="reg-l">Source primaire</p><ul class="src-ref"><li>AI Act, art. 5, 6, 50, 99, 113 <a href="#src-67">[67]</a></li><li>Règlement (UE) 2026/1744, « Digital Omnibus » <a href="#src-68">[68]</a>, lu via <a href="#src-69">[69]</a> <a href="#src-70">[70]</a></li></ul></div>
+        <div class="reg-cell reg-cell--impl"><p class="reg-l">Pour notre produit</p><p>La V1 n'a pas besoin d'IA : galerie, visio et messages fonctionnent sans. Si on en ajoute, on l'annonce, on marque les contenus générés et on n'en fait jamais un levier de pression sur le senior. Jamais de reconnaissance des émotions.</p></div>
+      </div>
+      <p class="reg-trap"><b>Piège</b>Ajouter « un peu d'IA » pour faire moderne (compagnon conversationnel, détection d'humeur) : on passe d'un produit simple à un produit soumis à la transparence, voire au haut risque.</p>
+      <details class="more">
+        <summary>Aller plus loin : le calendrier de l'AI Act au 8 octobre 2026</summary>
+        <div class="more-c">
+          <div class="tbl" role="region" aria-labelledby="cap-aiact" tabindex="0">
+            <table id="t-aiact">
+              <caption id="cap-aiact">AI Act : dates d'application</caption>
+              <thead><tr><th scope="col">Date</th><th scope="col">Ce qui s'applique</th><th scope="col">Statut</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">1er août 2024</th><td>Entrée en vigueur</td><td>Confirmé</td></tr>
+                <tr><th scope="row">2 février 2025</th><td>Pratiques interdites (art. 5), maîtrise de l'IA (art. 4)</td><td>Confirmé ; allègement de l'art. 4 <span class="av">à vérifier</span></td></tr>
+                <tr><th scope="row">2 août 2025</th><td>IA à usage général, gouvernance, sanctions (art. 99)</td><td>Confirmé (art. 113)</td></tr>
+                <tr><th scope="row">2 août 2026</th><td>Application générale, dont la transparence (art. 50)</td><td>Confirmé ; maintien de l'art. 50-1 <span class="av">à vérifier</span></td></tr>
+                <tr><th scope="row">2 déc. 2026</th><td>Nouvelles interdictions de l'Omnibus ; délai de grâce du marquage</td><td>Adopté (2026/1744), texte non officiel</td></tr>
+                <tr><th scope="row">2 déc. 2027</th><td>Haut risque annexe III (au lieu du 2 août 2026)</td><td>Adopté (2026/1744)</td></tr>
+                <tr><th scope="row">2 août 2028</th><td>Haut risque annexe I, dont IA intégrée à un DM</td><td>Adopté (2026/1744)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Sanctions jusqu'à 15 M€ ou 3 % du CA (<a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-68">fiche réf. 68</a>, <a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-70">70</a>). Deux corrections à reporter dans la fiche : le report du haut risque est adopté, ce n'est plus une hypothèse ; le chapitre des sanctions s'applique depuis le 2 août 2025, pas 2026.</p>
+        </div>
+      </details>
+    </article>
+
+    <aside class="real" aria-labelledby="real-t" id="cas-abbott">
+      <p class="label">Cas réel</p>
+      <h3 id="real-t">L'historique qu'on ne peut pas récupérer</h3>
+      <h4>Ce qu'on a constaté</h4>
+      <p>Un médecin récupère les données d'un capteur de glycémie Abbott FreeStyle Libre via LibreView, mais seuls les derniers jours d'historique sont téléchargeables. Le partage est décidé par le patient (invitation ou identifiant de cabinet) <span class="av">mécanisme à vérifier</span>.</p>
+      <h4>Ce que dit le texte (RGPD <a href="#src-60">[60]</a>)</h4>
+      <ul>
+        <li><strong>Art. 15, droit d'accès :</strong> une copie des données traitées, sans limite de période fixée par le texte.</li>
+        <li><strong>Art. 20, portabilité :</strong> un format structuré, couramment utilisé et lisible par machine.</li>
+        <li><strong>Art. 12, délai :</strong> une réponse sous un mois, prolongeable de deux mois si la demande est complexe.</li>
+      </ul>
+      <p>Vérifié chez Abbott France <a href="#src-71">[71]</a> : données conservées au moins 90 jours dans les applications, téléchargement possible depuis LibreView, export CSV sur demande ; aucune durée chiffrée pour LibreView.</p>
+      <p class="unverified">Non vérifié : la limite exacte de jours téléchargeables par le médecin ; les CGU et la politique de confidentialité LibreView pour la France <a href="#src-72">[72]</a> ; les dates du Data Act (règlement (UE) 2023/2854).</p>
+      <p class="lesson"><strong>Leçon pour nous :</strong> l'historique appartient à la famille, pas à la plateforme. Un bouton « tout télécharger » dès la conception : toutes les photos (JPEG), tous les messages (MP4, textes et dates en JSON ou CSV), sans limite de période ; un export proposé avant toute suppression.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 04 SYNTHÈSE ============ -->
+<section class="sec wrap grid" id="s04-synthese" aria-labelledby="s04-t">
+  <div class="rail"><span class="sec-num" aria-hidden="true">04</span><p class="kicker">Synthèse pour le projet</p></div>
+  <div class="body">
+    <h2 id="s04-t"><span class="vh">04. </span>Un coin du marché presque vide : le lien qui rassure sans effort</h2>
+    <p class="chapeau">La sécurité demande un effort au senior ; le lien ne demande rien mais ne rassure pas l'enfant. Entre les deux, peu d'offres, et aucune mesurée.</p>
+
+    <h3><span class="label">Opportunités et menaces</span>Chacune repose sur un fait de la veille</h3>
+    <div class="om-grid">
+      <div class="om-col">
+        <article class="om om--opp" id="opp-1"><p class="om-tag">Opportunité 1</p><h4>Un besoin qui grandit</h4><p>700 000 seniors en perte d'autonomie de plus d'ici les années 2050.</p><p class="om-fact"><span>Fait :</span> <a href="#fait-autonomie">Drees / Insee ↗ partie 02</a></p></article>
+        <article class="om om--opp" id="opp-2"><p class="om-tag">Opportunité 2</p><h4>Le lien sans effort se vend</h4><p>Famileo : près de 14 M€ de CA, 260 000 familles ; l'enfant paie, le senior reçoit sans rien faire.</p><p class="om-fact"><span>Fait :</span> <a href="#cas-famileo">Famileo ↗ partie 02</a></p></article>
+        <article class="om om--opp" id="opp-3"><p class="om-tag">Opportunité 3</p><h4>Des aidants qui demandent à souffler</h4><p>36 % des aidants déclarent un besoin de répit, 65 % chez les plus impliqués. Un produit qui allège leur charge mentale a sa place.</p><p class="om-fact"><span>Fait :</span> <a href="#fait-repit">Drees 2022 ↗ partie 02</a></p></article>
+      </div>
+      <div class="om-col">
+        <article class="om om--men" id="men-1"><p class="om-tag">Menace 1</p><h4>Le senior se désintéresse de ce qui demande un effort</h4><p>41 % citent le manque d'intérêt comme premier frein. Petit échantillon, à nuancer.</p><p class="om-fact"><span>Fait :</span> <a href="#fait-interet">Linexio ↗ partie 02</a></p></article>
+        <article class="om om--men" id="men-2"><p class="om-tag">Menace 2</p><h4>Devenir dispositif médical sans le vouloir</h4><p>Trois critères cumulatifs suffisent, et une phrase marketing peut les déclencher : classe IIa ou plus.</p><p class="om-fact"><span>Fait :</span> <a href="#reg-dm">ANSM ↗ partie 03</a></p></article>
+        <article class="om om--men" id="men-3"><p class="om-tag">Menace 3</p><h4>La tablette senior a déjà échoué</h4><p>Ardoiz : 110 000 seniors équipés puis arrêt ; Meta Portal arrêté. La cause « écran à apprendre » reste notre hypothèse.</p><p class="om-fact"><span>Fait :</span> <a href="#cas-ardoiz">Ardoiz ↗ partie 02</a> · <a href="#cas-portal">Portal</a></p></article>
+      </div>
+    </div>
+    <details class="more">
+      <summary>Aller plus loin : le trou du marché et deux signaux à garder en tête</summary>
+      <div class="more-c">
+        <p>La carte de positionnement de l'analyse de marché (Q4) place la sécurité du côté de l'effort (porter, recharger, stigmate : <a href="#fait-stigmate">87 %</a>) et le lien du côté du zéro effort sans détection. Le coin « lien + réassurance, sans effort » est presque vide ; seuls quelques capteurs ambiants occupent le coin sécurité sans effort, vendus surtout aux Ehpad. Placement qualitatif, non mesuré. <abbr class="b h" title="Hypothèse de l'équipe">H</abbr></p>
+        <p>À surveiller : 5 à 15 % de fausses alertes pour les capteurs de chute (<a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-51">fiche réf. 51</a>, source faible) ; la transparence de l'AI Act s'applique depuis le 2 août 2026 (<a href="#reg-ia">partie 03</a>).</p>
+        <p class="src-note"><a class="doc" href="../../rendus/2-1-analyse-marche-questions-1-5.html">Analyse de marché, Q4 et Q5</a></p>
+      </div>
+    </details>
+
+    <h3><span class="label">Positionnement</span>Deux pistes, même poids, à départager en entretien</h3>
+    <div class="tracks">
+      <article class="track" id="piste-a">
+        <p class="label">Piste A</p><h4>La tablette relationnelle</h4>
+        <dl>
+          <dt>Premier archétype</dt><dd><span class="fam">Objets compagnons</span> Une tablette posée chez le parent : galerie photo alimentée par les enfants, visio en un geste, petits messages vidéo, trace des échanges.</dd>
+          <dt>Ce qui la rend crédible</dt><dd>Le lien sans effort de Famileo (<a href="#opp-2">O2</a>), plus la réponse du senior et l'image ; hors frontière médicale (<a href="#men-2">M2</a>).</dd>
+          <dt>Ce qui reste à tester</dt><dd><span class="st st--test">À tester</span> L'écran à apprendre (<a href="#men-3">M3</a>) : une interface à un ou deux gestes, installée par la famille.</dd>
+        </dl>
+      </article>
+      <article class="track" id="piste-b">
+        <p class="label">Piste B</p><h4>L'objet à un seul geste</h4>
+        <dl>
+          <dt>Premier archétype</dt><dd><span class="fam">Objets compagnons</span> Un objet du quotidien (cadre, lampe), branché et connecté en 4G, qui affiche photos et messages ; le senior répond d'un geste ; l'enfant reçoit une alerte douce si le geste habituel n'arrive pas.</dd>
+          <dt>Ce qui la rend crédible</dt><dd>Rien à apprendre, rien à porter : répond à <a href="#men-1">M1</a> et <a href="#men-3">M3</a>.</dd>
+          <dt>Ce qui reste à tester</dt><dd><span class="st st--test">À tester</span> Moins de valeur perçue (pas de visio), donc un prix à justifier ; concurrents à documenter (Komp, Familink).</dd>
+        </dl>
+      </article>
+    </div>
+    <p class="src-note">Écartée : les capteurs ambiants sans port, proches de la frontière médicale et vendus surtout en Ehpad. Source : <a class="doc" href="../lucas/1-1-synthese-axe-produit.html">Synthèse axe produit</a>.</p>
+
+    <h3 id="s04-convergence"><span class="label">Convergence</span>Trois idées de l'équipe, une même colonne vertébrale</h3>
+    <div class="tbl" role="region" aria-labelledby="cap-conv" tabindex="0">
+      <table class="data" id="t-convergence">
+        <caption id="cap-conv">La tablette, Le Cadre (Clément) et La Fenêtre (Lucas) comparés</caption>
+        <thead><tr><th scope="col">Point commun</th><th scope="col">Tablette</th><th scope="col">Le Cadre (Clément)</th><th scope="col">La Fenêtre (Lucas)</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Objet posé, rien à porter ni recharger</th><td>Oui</td><td>Oui (cadre photo)</td><td>Oui (cadre)</td></tr>
+          <tr><th scope="row">La famille alimente, le senior reçoit</th><td>Galerie partagée</td><td>Photos de la famille</td><td>Présence et direct</td></tr>
+          <tr><th scope="row">Rien à apprendre</th><td>À prouver (risque Ardoiz)</td><td>Un toucher pour dire bonjour</td><td>À la voix, sans écran tactile</td></tr>
+          <tr><th scope="row">Lien, pas surveillance</th><td>Trace des échanges</td><td>Ni caméra ni micro</td><td>Caméra et micro : point RGPD</td></tr>
+          <tr><th scope="row">Le senior garde la main</th><td>À concevoir</td><td>Accepte à l'allumage, pause</td><td>Bouton « muet », lumière d'écoute</td></tr>
+          <tr><th scope="row">Payeur</th><td>L'enfant</td><td>L'enfant, ≈ 8 €/mois <abbr class="b h" title="Hypothèse de l'équipe">H</abbr></td><td>L'enfant, repère Famileo</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="implique"><strong>Lecture</strong>Trois variantes d'une même famille : objet de lien, zéro effort, enfant payeur. Le Cadre est la plus légère, La Fenêtre ajoute la voix et le direct, la tablette est la plus riche. Le dossier ne tranche pas : le choix revient à l'équipe, après entretiens.</p>
+    <p class="src-note"><a class="doc" href="../clement/idee-produit-le-cadre.html">Le Cadre</a> · <a class="doc" href="../lucas/1-1-idee-produit-la-fenetre.html">La Fenêtre</a></p>
+  </div>
+</section>
+
+<!-- ============ 05 PRODUIT ============ -->
+<section class="sec wrap grid" id="s05-produit" aria-labelledby="s05-t">
+  <div class="rail"><span class="sec-num" aria-hidden="true">05</span><p class="kicker">Notre produit et nos prévisions</p></div>
+  <div class="body">
+    <h2 id="s05-t"><span class="vh">05. </span>Notre hypothèse : un objet qui garde la famille présente</h2>
+    <p class="chapeau">Ce chapitre décrit ce que l'équipe envisage, pas ce qu'elle a décidé. Chaque choix répond à un problème relevé dans la veille.</p>
+
+    <p class="status-hyp">Statut : hypothèse de l'équipe, non décidée</p>
+    <p class="promise">« Un objet posé chez votre parent qui garde la famille présente chaque jour par les photos et les messages, et qui vous prévient avec douceur quand le lien se distend, sans rien surveiller de sa santé. »</p>
+
+    <h3><span class="label">Les trois faces</span>Un acheteur, un utilisateur, un aidant</h3>
+    <div class="faces">
+      <div class="face"><p class="label">Face achat · l'enfant qui offre</p><p>Comprendre ce que l'objet fait et ne fait pas, choisir l'abonnement, inviter la fratrie, configurer les proches autorisés.</p><p class="g">Garde-fou : ce que le produit ne fait pas est dit avant l'achat (bien-être et lien, aucun dispositif médical, aucune sécurité absolue).</p></div>
+      <div class="face"><p class="label">Face senior · le parent</p><p>Voit les photos, répond d'un geste, appelle en visio, reçoit et envoie de petits messages.</p><p class="g">Garde-fou : il accepte lui-même à l'allumage, voit ce qui est partagé, met en pause quand il veut.</p></div>
+      <div class="face"><p class="label">Face aidant · l'enfant référent</p><p>Reçoit un résumé simple et rare, voit la trace des échanges, reçoit une alerte douce actionnable, exporte tout.</p><p class="g">Garde-fou : notifications rares, un seul responsable alerté à la fois.</p></div>
+    </div>
+
+    <h3 id="s05-chaine"><span class="label">Règle du MVP</span>Un événement simulé, une alerte douce</h3>
+    <p>Le sujet impose qu'un événement simulé côté objet déclenche une alerte visible et actionnable côté aidant. Notre chaîne ne produit qu'un fait daté, jamais un état.</p>
+    <figure class="chain" aria-labelledby="chain-cap">
+      <ol class="chain-steps">
+        <li class="step"><p class="step-l">1 · Côté objet (simulé)</p><p class="step-t">Événement</p><p class="step-d">« Tablette non ouverte depuis X jours », « aucun geste de réponse », « message sans réponse ».</p></li>
+        <li class="step"><p class="step-l">2 · Règle</p><p class="step-t">Seuil X dépassé</p><p class="step-d">Si le senior n'a pas mis le signe en pause, une alerte est créée. X sera fixé après entretiens.</p></li>
+        <li class="step"><p class="step-l">3 · Côté parent</p><p class="step-t">Relance douce</p><p class="step-d">« Touchez l'écran pour dire bonjour à votre famille. »</p></li>
+        <li class="step step--end"><p class="step-l">4 · Côté aidant</p><p class="step-t">Alerte visible et actionnable</p><p class="step-d">« Aucune ouverture depuis 3 jours. Pouvez-vous l'appeler ? » Appeler ou écrire en un geste.</p></li>
+      </ol>
+      <figcaption id="chain-cap">Chaîne événement → alerte douce. À défaut de réponse : un contact local choisi par le parent ; jamais les secours, jamais un mot sur la santé. Tout est journalisé et exportable. Limite : un silence ne prouve rien, et un faux positif fatigue l'aidant.</figcaption>
+    </figure>
+
+    <h3 id="s05-problemes"><span class="label">Problème → réponse → statut</span>Ce qui est prouvé, ce qui reste à tester</h3>
+    <p class="legend"><span class="st st--proved">Prouvé</span> fait sourcé · <span class="st st--test">À tester</span> hypothèse à vérifier · <span class="st st--open">Ouvert</span> pas de réponse arrêtée</p>
+    <div class="tbl" role="region" aria-labelledby="cap-prt" tabindex="0">
+      <table class="data prt wide" id="t-prt">
+        <caption id="cap-prt">Problèmes identifiés dans la veille et réponses envisagées</caption>
+        <thead><tr><th scope="col">Problème identifié</th><th scope="col">Réponse du produit</th><th scope="col">Statut</th><th scope="col">Prochaine étape</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Le senior n'adopte pas ce qui demande un effort (<a href="#fait-interet">41 %</a>, <a href="#cas-ardoiz">Ardoiz</a>)</th><td>Rien à porter ni recharger, branché au secteur, un ou deux gestes, installé par la famille</td><td><span class="st st--proved">Problème</span><span class="st st--test">Réponse</span></td><td>Maquette face à 2 ou 3 seniors</td></tr>
+          <tr><th scope="row">La téléassistance stigmatise (<a href="#fait-stigmate">87 %</a>, 2016)</th><td>Un objet de lien familial, offert, sans vocabulaire de surveillance</td><td><span class="st st--test">À tester</span></td><td>Confirmer en entretien</td></tr>
+          <tr><th scope="row">Le lien sans effort marche, mais sans objet ni réponse (<a href="#cas-famileo">Famileo</a>)</th><td>Galerie alimentée par les enfants, réponse d'un geste, visio, messages</td><td><span class="st st--proved">Principe</span><span class="st st--test">Objet</span></td><td>Tester la version objet</td></tr>
+          <tr><th scope="row">L'aidant est épuisé (<a href="#fait-repit">36 %</a>)</th><td>Résumé rare plutôt que flux, une alerte à la fois, action en un geste</td><td><span class="st st--proved">Problème</span><span class="st st--test">Réponse</span></td><td>Mesurer le nombre d'alertes acceptable</td></tr>
+          <tr><th scope="row">Les fausses alertes détruisent la confiance (5 à 15 %, <a href="../../rendus/1-1-fiche-veille-silvertech.html#ref-51">fiche réf. 51</a>)</th><td>Fait daté, seuil réglable, relance du senior avant l'aidant, pause</td><td><span class="st st--test">À tester</span><span class="st st--open">Seuil X</span></td><td>Simulateur d'événements</td></tr>
+          <tr><th scope="row">Frontière dispositif médical (<a href="#reg-dm">3 critères</a>)</th><td>Aucune donnée de santé, aucune analyse de patient</td><td><span class="st st--proved">Règle</span></td><td>Relire à chaque évolution</td></tr>
+          <tr><th scope="row">Photos et messages sont des données personnelles (<a href="#reg-rgpd">RGPD</a>, <a href="#cas-abbott">cas Abbott</a>)</th><td>Consentement du senior à l'allumage, pause, export complet dès la conception</td><td><span class="st st--proved">Obligation</span><span class="st st--test">Mise en œuvre</span></td><td>AIPD, registre des données</td></tr>
+          <tr><th scope="row">Qui paie, combien (<a href="#s02-modeles">repères</a>)</th><td>Abonnement payé par l'enfant, partageable ; mutuelles et services d'aide à domicile en option</td><td><span class="st st--open">Ouvert</span></td><td>Prix et canaux en entretien</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-hint" aria-hidden="true">Faire défiler le tableau →</p>
+
+    <h3 id="s05-etapes"><span class="label">Prochaines étapes</span>Ce que les phases 2 à 6 vont trancher</h3>
+    <div class="tbl" role="region" aria-labelledby="cap-phases" tabindex="0">
+      <table class="data" id="t-phases">
+        <caption id="cap-phases">Le semestre, appliqué à notre produit</caption>
+        <thead><tr><th scope="col">Phase</th><th scope="col">Ce qu'on fait pour ce produit</th><th scope="col">Ce qu'on en attend</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">2 · Besoins &amp; personas</th><td>3 à 5 entretiens d'aidants ; 2 ou 3 seniors face à une maquette ; ajouter cadres photo et écrans « un bouton » à la veille</td><td>Verbatims anonymisés, choix piste A ou B</td></tr>
+          <tr><th scope="row">3 · Cahier des charges trois faces</th><td>Choisir l'objet ; parcours achat, senior, aidant ; textes des alertes ; ce que le produit ne fait pas</td><td>Parcours et maquettes des trois faces</td></tr>
+          <tr><th scope="row">4 · Backlog + roadmap + KPI</th><td>Prioriser autour de la règle du MVP (événement simulé → alerte) ; indicateurs : charge pour l'aidant, seuil X</td><td>Backlog priorisé, feuille de route</td></tr>
+          <tr><th scope="row">5 · Benchmark de stack + boîte à outils IA</th><td>Choisir les outils no-code ; garder la V1 sans IA, ou l'annoncer (AI Act)</td><td>Stack justifiée</td></tr>
+          <tr><th scope="row">6 · Cartographie des données &amp; simulateur</th><td>Registre des données, export complet, générateur d'événements</td><td>Événement simulé → alerte visible et actionnable</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="src-note">Contenu des phases tiré des prochaines étapes écrites par l'équipe : <a class="doc" href="../lucas/1-1-synthese-axe-produit.html">Synthèse axe produit</a> · <a class="doc" href="../clement/idee-produit-le-cadre.html">Le Cadre</a>.</p>
+  </div>
+</section>
+
+<!-- ============ ANNEXES ============ -->
+<section class="sec sec--annexes wrap grid ann" id="annexes" aria-labelledby="ann-t">
+  <div class="rail"><span class="sec-num" aria-hidden="true">A</span><p class="kicker">Annexes</p></div>
+  <div class="body">
+    <h2 id="ann-t"><span class="vh">Annexes. </span>Annexes</h2>
+    <p class="chapeau">Comment on a travaillé, qui a fait quoi, ce qui reste à arbitrer, et toutes les sources.</p>
+
+    <!-- A -->
+    <h3 id="ann-a"><span class="label">Annexe A</span>Dispositif de veille</h3>
+    <div class="tbl" role="region" aria-labelledby="cap-disp" tabindex="0">
+      <table class="data" id="t-dispositif">
+        <caption id="cap-disp">Sources suivies, mode et fréquence</caption>
+        <thead><tr><th scope="col">Famille</th><th scope="col">Sources</th><th scope="col">Mode</th><th scope="col">Fréquence</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Google Alerts</th><td>24 alertes en français, région France (13 du catalogue, 11 de la veille du jeudi)</td><td>Flux RSS</td><td>Chaque jeudi, sur 7 jours</td></tr>
+          <tr><th scope="row">Médias et régulateur</th><td>Silvereco, Maddyness, FrenchWeb, CNIL</td><td>Flux RSS</td><td>Hebdomadaire</td></tr>
+          <tr><th scope="row">Communautés</th><td>r/AgingParents, r/CaregiverSupport (anglophones) ; r/nocode au pipeline seulement</td><td>RSS publics, verbatims anonymisés</td><td>Hebdomadaire</td></tr>
+          <tr><th scope="row">Avis d'applications</th><td>App Store : Famileo, Tous FAMiliés, Life360, Signia ; Google Play à la main</td><td>Flux public Apple</td><td>Hebdomadaire</td></tr>
+          <tr><th scope="row">Sites officiels</th><td>Insee, Drees, CNIL, ANSM, EUR-Lex, Légifrance, service-public.fr</td><td>Agent collecteur</td><td>Hebdomadaire, sur les trous</td></tr>
+          <tr><th scope="row">Entreprises</th><td>pappers.fr, societe.com, crunchbase.com</td><td>Consultation ciblée</td><td>Ponctuelle</td></tr>
+          <tr><th scope="row">Concurrents (jeudi)</th><td>Famileo, Présence Verte, Vitaris, Filien, Telegrafik, La Poste, Apple Watch, ElliQ</td><td>Recherche web</td><td>Chaque jeudi</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Outils :</strong> Claude Code (orchestrateur, 3 sous-agents, 4 commandes), Python (collecte, filtre, score, aucune API payante), Neon (base partagée), launchd (déclenchement du jeudi), GitHub Pages et e-mail (publication). <strong>Rythme :</strong> pipeline de base le 1er octobre (32 types d'information sur 5 axes) ; veille automatique chaque jeudi à 7h45 (5 à 10 fiches) ; revue humaine d'environ 20 minutes par personne ; contrôle des trous avant chaque rendu. <strong>Écartés :</strong> réseaux sociaux grand public, contenus sponsorisés, comparateurs sans sources.</p>
+    <p class="src-note"><a href="../commun/veille-silvertech/docs/dispositif-veille.md">dispositif-veille.md</a> · <a class="doc" href="../../rendus/1-1-process-veille.html">Process de veille</a> · <a href="../../../../veille-hebdo/index.html">Page de la veille du jeudi</a></p>
+
+    <!-- B -->
+    <h3 id="ann-b"><span class="label">Annexe B</span>Fiche d'automatisation (Lucas)</h3>
+    <ol>
+      <li>Deux machines, une méthode : le pipeline (à la main, 1er octobre) fait la base ; la veille du jeudi (7h45) la tient à jour.</li>
+      <li>Collecter (script), filtrer sans IA (script), qualifier (IA), noter (script, jamais l'IA), relire par un second agent indépendant (IA), décider (équipe).</li>
+      <li>Quatre master prompts écrits et versionnés pilotent chaque étape.</li>
+      <li>Résultats : 284 collectés, 231 qualifiés, 164 validés au pipeline ; 15 fiches en 3 exécutions du jeudi (330 candidats, moins de 5 % deviennent une fiche).</li>
+      <li>Limites : Mac à garder allumé, pages bloquées, peu de fiches sur les prix et le consentement, revue humaine encore légère.</li>
+    </ol>
+    <p><a class="doc" href="../lucas/1-1-fiche-automatisation-veille.html">Lire la fiche d'automatisation complète</a></p>
+
+    <!-- C -->
+    <h3 id="ann-c"><span class="label">Annexe C</span>Notre méthode de travail avec l'IA</h3>
+    <p>Chaque membre travaille avec un agent IA (Claude Code). Le fichier <code>CLAUDE.md</code>, lu au début de chaque session, fixe les règles ; <code>AGENTS.md</code> y renvoie les autres agents.</p>
+    <ul>
+      <li><strong>Dépôt public :</strong> jamais de secret, de coordonnées, de données de tiers, de document de cours ni de fichier de plus de 2 Mo.</li>
+      <li><strong>Contrôle avant commit :</strong> un script bloque secret, e-mail, téléphone, clé, fichier lourd ; l'agent ne le contourne jamais.</li>
+      <li><strong>Anti-écrasement :</strong> synchronisation au démarrage, jamais de push forcé ; en cas de conflit, l'agent s'arrête et demande.</li>
+      <li><strong>Qui modifie quoi :</strong> chacun écrit dans son dossier ; les rendus après accord de l'équipe ; les règles communes validées par Camille.</li>
+      <li><strong>L'humain pousse :</strong> l'agent ne publie que sur demande du membre.</li>
+    </ul>
+    <p><strong>Garde-fous de la veille :</strong> l'IA ne note jamais la fiabilité, ne fabrique ni URL, ni chiffre, ni date ; un script retire les chiffres absents de la source ; rien n'entre sans relecture.</p>
+    <p class="note"><strong>Déclaration d'usage de l'IA.</strong> Claude (Claude Code) a servi à construire le pipeline, collecter, qualifier, résumer, faire la double relecture et assister la rédaction. Les scores sont calculés par script, la validation est humaine. Ce dossier a été assemblé avec l'aide de l'IA à partir des seules sources du dépôt ; les choix de positionnement restent ceux de l'équipe. <span class="av">à confirmer par l'équipe avant remise</span></p>
+    <p class="src-note"><a href="../../../../CLAUDE.md">CLAUDE.md</a> · <a href="../../../../.claude/">.claude/</a></p>
+
+    <!-- D -->
+    <h3 id="ann-d"><span class="label">Annexe D</span>Carte mentale</h3>
+    <div class="placeholder" role="note">
+      <p class="label">Emplacement prévu : carte mentale · à venir</p>
+      <p>Aucune carte mentale n'existe encore dans le dépôt. Elle sera ajoutée ici par l'équipe. La carte de positionnement de l'analyse de marché (Q4) n'est pas une carte mentale.</p>
+    </div>
+
+    <!-- E -->
+    <h3 id="ann-e"><span class="label">Annexe E</span>Qui a fait quoi <span class="av">à confirmer par l'équipe</span></h3>
+    <aside class="who" aria-labelledby="who-t" id="qui-a-fait-quoi">
+      <p class="label" id="who-t">Qui a fait quoi</p>
+      <div class="tbl" role="region" aria-labelledby="cap-who" tabindex="0">
+        <table id="t-who">
+          <caption id="cap-who">Contributions repérées dans le dépôt, du 1er au 8 octobre 2026</caption>
+          <thead><tr><th scope="col">Membre</th><th scope="col">Contributions</th><th scope="col">Traces</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Clément</th><td>Première version des règles d'équipe et hook de synchronisation ; analyse de marché (questions 1 à 5, carte de positionnement) ; idée produit « Le Cadre »</td><td><a class="doc" href="../clement/idee-produit-le-cadre.html">Le Cadre</a>, <a class="doc" href="../../rendus/2-1-analyse-marche-questions-1-5.html">Analyse Q1-5</a></td></tr>
+            <tr><th scope="row">Lucas</th><td>Pipeline de veille, Google Alerts, base, veille du jeudi et son audit ; process de veille ; fiche de veille (130 sources) ; Apple Watch / Famileo ; réussites et faillites ; synthèse axe produit ; idée « La Fenêtre » ; fiche d'automatisation</td><td><a class="doc" href="../lucas/1-1-fiche-automatisation-veille.html">Automatisation</a>, <a class="doc" href="../../rendus/1-1-fiche-veille-silvertech.html">Fiche de veille</a></td></tr>
+            <tr><th scope="row">Camille</th><td>Validation des règles communes (CLAUDE.md, AGENTS.md) ; ce dossier final (brief, plan, contenus). Contributions antérieures éventuelles à renseigner.</td><td>Ce document</td></tr>
+            <tr><th scope="row">Usage de l'IA</th><td>Sessions d'agents lancées par les membres (commits « Claude », publication automatique de la veille)</td><td><a href="#ann-c">Annexe C</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src-note">D'après l'historique du dépôt et les dossiers personnels. Un commit ne dit pas qui a eu l'idée : chacun valide sa ligne.</p>
+    </aside>
+
+    <!-- F -->
+    <h3 id="ann-f"><span class="label">Annexe F</span>Préparer l'oral : questions probables du jury</h3>
+    <div class="qa">
+      <details><summary><span class="label">Marché</span>Le marché est-il assez grand ?</summary><p class="a">Ça dépend du périmètre : 60 à 130 Md€ pour la silver économie, environ 250 M€ pour la seule téléassistance, qui stagne <a href="#src-5">[5]</a> <a href="#src-6">[6]</a>. Le besoin grandit (<a href="#fait-autonomie">+700 000 seniors</a>). Nous ne chiffrons pas notre part : ce serait inventer.</p></details>
+      <details><summary><span class="label">Marché</span>Pourquoi réussir là où d'autres ont échoué ?</summary><p class="a">Nous évitons les causes d'échec documentées : porter et recharger (montres senior), faire payer le senior (Coyali), affronter les géants (Myxyty, Jibo). Nous reprenons ce qui marche : le senior ne fait rien, l'enfant paie (<a href="#cas-famileo">Famileo</a>). Risque nommé : Ardoiz.</p></details>
+      <details><summary><span class="label">Produit</span>Pourquoi une tablette, alors que La Poste a fermé Ardoiz ?</summary><p class="a">Ce n'est pas tranché : piste A contre piste B. La cause « écran à apprendre » est notre hypothèse, pas un fait. Réponse : une interface à un ou deux gestes, installée par la famille, testée sur 2 ou 3 seniors avant de choisir.</p></details>
+      <details><summary><span class="label">Produit</span>En quoi êtes-vous différents de Famileo, Echo Show ou Familink ?</summary><p class="a">Famileo prouve le lien sans effort, sans objet ni réponse du senior ; Echo Show permet déjà la visio ; Meta a arrêté Portal ; Familink et Komp existent. Notre différence est un parti pris (lien, zéro effort, alerte douce), pas une technologie : à prouver en entretien.</p></details>
+      <details><summary><span class="label">Produit</span>Si le parent ne répond pas, appelez-vous les secours ?</summary><p class="a">Non. On relance d'abord le parent, puis on prévient un seul responsable avec un fait daté. Jamais les secours, aucune promesse de sécurité absolue. Un silence ne prouve rien ; d'où une alerte douce et un seuil à tester.</p></details>
+      <details><summary><span class="label">Éthique</span>Une alerte si le parent n'ouvre pas la tablette, ce n'est pas de la surveillance ?</summary><p class="a">Non, tant que l'alerte décrit un usage (« pas ouverte depuis 3 jours ») et pas un état (« il va mal »), sans score. Le parent accepte à l'allumage, voit ce qui est partagé, peut couper. On le documente dans l'AIPD. La Fenêtre, avec micro et caméra, est le point sensible.</p></details>
+      <details><summary><span class="label">Droit</span>Êtes-vous un dispositif médical ? Pourquoi pas d'hébergeur HDS ?</summary><p class="a">Aucun des <a href="#reg-dm">trois critères de l'ANSM</a> n'est rempli. Nous ne collectons ni ne déduisons de données de santé : pas de HDS. Si une fonction santé était ajoutée, HDS et consentement explicite deviendraient obligatoires.</p></details>
+      <details><summary><span class="label">Droit</span>Qui consent : l'enfant qui paie ou le parent ?</summary><p class="a">Le parent, pour ses propres données. Pour les photos de petits-enfants, c'est le titulaire de l'autorité parentale qui les dépose, dans un cercle familial fermé.</p></details>
+      <details><summary><span class="label">IA</span>Et l'IA, vous en faites quoi ?</summary><p class="a">Aucune dans la V1. Si on en ajoute, on l'annonce (art. 50, en vigueur depuis le 2 août 2026) et on exclut la reconnaissance des émotions et toute finalité médicale.</p></details>
+      <details><summary><span class="label">Droit</span>Qu'est-ce que le cas Abbott change pour vous ?</summary><p class="a">Un service peut respecter la forme (un export existe) et rendre l'historique difficile à récupérer. Nous prévoyons un export complet, sans limite de durée, en formats ouverts, dès la V1 (<a href="#cas-abbott">encadré</a>).</p></details>
+      <details><summary><span class="label">Modèle</span>Qui paie, combien, et qu'est-ce qui pourrait vous empêcher de gagner de l'argent ?</summary><p class="a">L'enfant, par abonnement partageable. Repères : Famileo dès 5,99 €/mois, téléassistance 20 à 50 €/mois. Les 8 €/mois du Cadre sont une hypothèse ; prix et coût matériel restent ouverts. Risques : la trésorerie (Myxyty, Coyali, Ardoiz) et faire payer le senior.</p></details>
+    </div>
+
+    <!-- G -->
+    <h3 id="ann-g"><span class="label">Annexe G</span>Points à arbitrer avant le rendu</h3>
+    <ul class="gaps">
+      <li><b>Téléassistance :</b> on retient 750 000 abonnés en 2024 (AFRATA). La fiche affiche 900 000 (Silver Valley, 2024) ; 797 000 date de 2016.</li>
+      <li><b>Famileo, prix :</b> on retient 5,99 €/mois. Les autres tarifs dépendent de la fréquence de parution (9,99 € toutes les 2 semaines, 17,99 € en hebdo), parfois présentés à tort comme une fourchette mensuelle ; Famileo Box dès 39 € <span class="nv">non vérifié</span> <a href="#src-53">[53]</a>.</li>
+      <li><b>Sources :</b> 130 citées dans la fiche ; 164 validées sur 231 qualifiées par le pipeline (après rattrapage). Deux mesures, à citer avec leur date.</li>
+      <li><b>Google Alerts :</b> 24 retenu ; le process de veille en annonce 23.</li>
+      <li><b>Ardoiz :</b> arrêt annoncé le 27 mai 2026 (Clubic), fin de commercialisation le 5 juin 2026 (24matins) ; 40 000 abonnés restants (Clubic) contre plus de 22 000 à la reprise (Domisanté) <span class="nv">non vérifié</span>.</li>
+      <li><b>« 2 % » :</b> 2 % des 7 M d'appels de téléassistance (AFRATA) ou 2 % des 2 M d'alertes de Présence Verte : préciser la base.</li>
+      <li><b>« 2,1 millions » :</b> enfants aidants de seniors (Drees 2015) ou aidants en besoin de répit (Drees 2022) : ne pas mélanger.</li>
+      <li><b>Famileo, canal :</b> familles majoritaires en 2022, établissements importants en 2025 : à vérifier.</li>
+      <li><b>Linexio (41 %) :</b> fiabilité notée moyenne dans un fichier, environ 2/7 dans un autre.</li>
+      <li><b>Numérotation :</b> les références réglementaires de la veille ne correspondent pas à la bibliographie de la fiche (ANSM = réf. 64, règlement DM = réf. 66) : vérifier avant de citer.</li>
+      <li><b>Fiche de veille :</b> deux corrections AI Act à reporter (report du haut risque adopté ; sanctions depuis le 2 août 2025).</li>
+      <li><b>Trous :</b> aucun chiffre vérifié sur l'équipement en tablette et l'usage de la visio des 70 ans et plus ; aucune réussite chiffrée de cadre ou tablette (Komp, Familink).</li>
+    </ul>
+
+    <!-- H -->
+    <h3 id="ann-h"><span class="label">Annexe H</span>Sources</h3>
+    <p class="src-note">Liens consultés par l'équipe entre le 1er et le 8 octobre 2026. [nv] = non vérifié sur la source primaire.</p>
+    <ol class="bib">
+      <li id="src-1">Drees, 700 000 seniors en perte d'autonomie supplémentaires d'ici 2050. <a class="ext" href="https://drees.solidarites-sante.gouv.fr/publications/700-000-seniors-en-perte-dautonomie-supplementaires-dici-2050">drees.solidarites-sante.gouv.fr</a></li>
+      <li id="src-2">Drees, 725 000 aidants pivots. <a class="ext" href="https://drees.solidarites-sante.gouv.fr/communique-de-presse/725-000-aidants-pivots-soutiennent-leur-parent-age-tout-en-ayant-des-enfants">drees.solidarites-sante.gouv.fr</a></li>
+      <li id="src-3">Drees, Dossier 83, enquête CARE 2015. <a class="ext" href="https://drees.solidarites-sante.gouv.fr/sites/default/files/2021-10/DD83.pdf">drees.solidarites-sante.gouv.fr</a></li>
+      <li id="src-4">AFRATA, étude 2024. <a class="ext" href="https://www.afrata.fr/wp-content/uploads/2026/02/E%CC%81tude-AFRATA-2024.pdf">afrata.fr</a> [nv]</li>
+      <li id="src-5">Xerfi, marché de la téléassistance à l'horizon 2030. <a class="ext" href="https://www.xerfi.com/presentationetude/le-marche-de-la-teleassistance_sme125">xerfi.com</a> (résumé, étude payante)</li>
+      <li id="src-6">DGE / PIPAME, l'avenir du marché de la téléassistance. <a class="ext" href="https://www.entreprises.gouv.fr/la-dge/publications/lavenir-du-marche-de-la-teleassistance-et-des-services-associes">entreprises.gouv.fr</a> [nv]</li>
+      <li id="src-7">Objets connectés de santé chez les seniors (Crédoc 2019). <a class="ext" href="https://www.revuepharma.fr/2020/07/les-objets-connectes-un-atout-pour-la-sante-des-seniors/">revuepharma.fr</a></li>
+      <li id="src-8">Linexio, seniors et objets connectés. <a class="ext" href="https://www.objetconnecte.com/etude-seniors-objets-connectes-1708/">objetconnecte.com</a></li>
+      <li id="src-9">Prescription sociale et bien vieillir. <a class="ext" href="https://www.silvereco.fr/prescription-sociale-et-bien-vieillir-un-evenement-a-paris-pour-explorer-une-autre-approche-de-la-sante/">silvereco.fr</a></li>
+      <li id="src-10">Compan'IA, robots compagnons. <a class="ext" href="https://www.bisqi.fr/compania-robots-compagnons-ia/">bisqi.fr</a></li>
+      <li id="src-11">797 000 personnes équipées d'une téléassistance (Senior Strategic 2016). <a class="ext" href="https://www.fredericserriere.com/797-000-personnes-equipees-dune-teleassistance-en-france/">fredericserriere.com</a></li>
+      <li id="src-12">Filien, détecteur de chute. <a class="ext" href="https://www.filien.com/infos-conseils/faq-produits-personnes-agees/detecteur-de-chute/">filien.com</a></li>
+      <li id="src-13">Présence Verte, reprise stratégique. <a class="ext" href="https://www.silvereco.fr/teleassistance-presence-verte-frappe-fort-avec-une-reprise-strategique-majeure/">silvereco.fr</a></li>
+      <li id="src-14">Tunstall Vitaris, acquisition. <a class="ext" href="https://www.silvereco.fr/tunstall-vitaris-annonce-lacquisition-de-la-societe-la-tourangelle-de-teleassistance/">silvereco.fr</a></li>
+      <li id="src-15">Allovie, détecteur de chute. <a class="ext" href="https://teleassistance-allovie.com/solutions-allovie/detecteur-de-chute/">teleassistance-allovie.com</a></li>
+      <li id="src-16">Bracelets anti-chute en 2025. <a class="ext" href="https://www.capretraite.fr/blog/maintien-a-domicile/bracelet-anti-chute-le-point-sur-loffre-en-2025/">capretraite.fr</a></li>
+      <li id="src-17">SMATIS, coût de la téléassistance. <a class="ext" href="https://www.smatis.fr/particuliers/teleassistance-pour-maintien-a-domicile/teleassistance-cout-et-remboursement/">smatis.fr</a></li>
+      <li id="src-18">Apple France, Apple Watch SE 3. <a class="ext" href="https://www.apple.com/fr/shop/buy-watch/apple-watch-se">apple.com</a></li>
+      <li id="src-19">Apple, détection de chute. <a class="ext" href="https://support.apple.com/en-us/108896">support.apple.com</a> [nv]</li>
+      <li id="src-20">Panorama de la détection de chute. <a class="ext" href="https://www.silvereco.fr/detection-des-chutes/">silvereco.fr</a></li>
+      <li id="src-21">Montres connectées senior : échec du B2C. <a class="ext" href="https://www.longevite.xyz/p/comment-les-montres-connectees-ont">longevite.xyz</a> [nv]</li>
+      <li id="src-22">Life360, avis App Store. <a class="ext" href="https://apps.apple.com/fr/app/id384830320#avis-14573237948">apps.apple.com</a></li>
+      <li id="src-23">Doro, résultats 2024. <a class="ext" href="https://www.marketscreener.com/quote/stock/DORO-AB-6500479/news/Doro-reports-fourth-quarter-and-full-year-results-2024-49043828/">marketscreener.com</a></li>
+      <li id="src-24">Domalys, fiche légale. <a class="ext" href="https://www.pappers.fr/entreprise/840577241">pappers.fr</a></li>
+      <li id="src-25">Domalys, détecteur de chute. <a class="ext" href="https://www.domalys.com/blog/actualites-5/detecteur-chute-personne-agee-121">domalys.com</a></li>
+      <li id="src-26">Orme, capteur de profondeur. <a class="ext" href="https://www.silvereco.fr/orme-un-capteur-de-chute-destine-aux-personnes-fragiles/">silvereco.fr</a></li>
+      <li id="src-27">Six start-up françaises contre les chutes. <a class="ext" href="https://www.marchedesseniors.com/chute-des-personnes-agees-6-start-up-francaises/21249">marchedesseniors.com</a></li>
+      <li id="src-28">Détection des chutes par le wi-fi. <a class="ext" href="https://korii.slate.fr/tech/start-up-francaise-detecte-chutes-personnes-agees-surveillance-wi-fi-ondes-seniors-dispositif-alerte-ia-zoe-care">korii.slate.fr</a> (extrait seul)</li>
+      <li id="src-29">Famileo : 260 000 familles abonnées. <a class="ext" href="https://www.bretagne-economique.com/portraits/famileo-260-000-familles-abonnees-et-des-horizons-europeens/">bretagne-economique.com</a></li>
+      <li id="src-30">Famileo, offres. <a class="ext" href="https://touteslesbox.fr/famileo/">touteslesbox.fr</a></li>
+      <li id="src-31">Famileo, gazette familiale. <a class="ext" href="https://www.pole-ecoindustries.fr/famileo-service-en-ligne-de-gazette-familiale-pour-maintenir-le-lien-entre-generations-et-rompre-lisolement-des-proches/">pole-ecoindustries.fr</a></li>
+      <li id="src-32">Famileo, App Store. <a class="ext" href="https://apps.apple.com/fr/app/famileo-journal-familial/id1018182135">apps.apple.com</a></li>
+      <li id="src-33">Famileo entretient le lien des familles. <a class="ext" href="https://www.lejournaldesentreprises.com/article/famileo-entretient-le-lien-des-familles-et-part-conquerir-le-monde-1900107">lejournaldesentreprises.com</a></li>
+      <li id="src-34">Tous FAMiliés, avis App Store. <a class="ext" href="https://apps.apple.com/fr/app/id6447434484#avis-11752051949">apps.apple.com</a></li>
+      <li id="src-35">La Poste arrête Ardoiz. <a class="ext" href="https://www.clubic.com/actualite-614452-la-poste-arrete-ardoiz-sa-tablette-pour-seniors-qui-n-a-pas-survecu-a-l-apres-covid.html">clubic.com</a></li>
+      <li id="src-36">100 000 tablettes Ardoiz distribuées. <a class="ext" href="https://lehub.laposte.fr/100000-tablettes-ardoiz-distribuees-seniors">lehub.laposte.fr</a> [nv]</li>
+      <li id="src-37">Ardoiz s'éteint après dix ans. <a class="ext" href="https://www.24matins.fr/ardoiz-seteint-apres-dix-ans-dinitiation-numerique-des-seniors-1408320">24matins.fr</a></li>
+      <li id="src-38">Une filiale d'Archos s'engage à reprendre Ardoiz. <a class="ext" href="https://www.optionfinance.fr/info-financiere-en-continu/d/2026-09-21-une-filiale-darchos-sengage-sous-conditions-a-reprendre-ardoiz.html">optionfinance.fr</a> [nv]</li>
+      <li id="src-39">Que Choisir, tablettes pour seniors. <a class="ext" href="https://www.quechoisir.org/guide-d-achat-tablettes-tactiles-pour-seniors-n47948">quechoisir.org</a></li>
+      <li id="src-40">Intuition Robotics (ElliQ) lève 25 M$. <a class="ext" href="https://www.intuitionrobotics.com/post/intuition-robotics-raises-25m">intuitionrobotics.com</a></li>
+      <li id="src-41">Cutii, robot compagnon. <a class="ext" href="https://www.enaco.fr/actualites/cutii-compagnon-seniors/">enaco.fr</a></li>
+      <li id="src-42">Blue Frog Robotics (Buddy). <a class="ext" href="https://www.salon-services-personne.com/blog/blue-frog-robotics-startup-francaise-cree-robots-for-good-pour-seniors-sante-education.html">salon-services-personne.com</a></li>
+      <li id="src-43">Familink, boutique. <a class="ext" href="https://shop.familinkframe.com/en/">shop.familinkframe.com</a></li>
+      <li id="src-44">Komp, abonnement. <a class="ext" href="https://help.komp.family/knowledge/komp-subscription">help.komp.family</a></li>
+      <li id="src-45">Meta met fin à Portal. <a class="ext" href="https://siecledigital.fr/2022/11/14/meta-met-fin-a-portal-et-a-ses-projets-de-montres-connectees/">siecledigital.fr</a></li>
+      <li id="src-46">Meta arrête de vendre Portal au grand public. <a class="ext" href="https://www.mac4ever.com/domotique/171440-face-aux-ventes-decevantes-meta-va-arreter-de-vendre-ses-portal-au-grand-public">mac4ever.com</a> [nv]</li>
+      <li id="src-47">Echo Show 8, prix. <a class="ext" href="https://www.comparateur-gamer.fr/prix/amazon-amazon-echo-show-8-3e-generation-modele-2023-ecran-840268929176">comparateur-gamer.fr</a> [nv]</li>
+      <li id="src-48">Aura Carver, prix. <a class="ext" href="https://www.achatmoinscher.com/comparateur-de-prix-Cadre-photo-numerique/cadre-photo-numerique-aura-carver-wifi-gris-ecran-10-1-pouces.html">achatmoinscher.com</a> [nv]</li>
+      <li id="src-49">Nixplay, comparatif. <a class="ext" href="https://www.pix-star.com/blog/?p=3308">pix-star.com</a> [nv]</li>
+      <li id="src-50">Équivalent Frameo. <a class="ext" href="https://linuxfr.org/forums/general-cherche-logiciel/posts/equivalent-frameo-cadre-photo-connecte">linuxfr.org</a> [nv]</li>
+      <li id="src-51">Livindi. <a class="ext" href="https://www.trustradius.com/products/livindi/details">trustradius.com</a> [nv]</li>
+      <li id="src-52">Facilotab Rubis. <a class="ext" href="https://meilleure-innovation.com/facilotab-rubis-tablette-facile-utilisation-seniors/">meilleure-innovation.com</a> [nv]</li>
+      <li id="src-53">Famileo, codes promo. <a class="ext" href="https://fr.igraal.com/codes-promo/famileo">fr.igraal.com</a> [nv]</li>
+      <li id="src-54">Best Buy rachète GreatCall (communiqué SEC). <a class="ext" href="https://www.sec.gov/Archives/edgar/data/0000764478/000076447818000038/exhibit9981518.htm">sec.gov</a></li>
+      <li id="src-55">Lively (company). <a class="ext" href="https://en.wikipedia.org/wiki/Lively_(company)">wikipedia.org</a></li>
+      <li id="src-56">Myxyty en liquidation. <a class="ext" href="https://www.objetconnecte.com/myxyty-liquidation/">objetconnecte.com</a></li>
+      <li id="src-57">Myxyty en liquidation judiciaire. <a class="ext" href="https://www.webtimemedias.com/article/sophia-champion-de-la-french-tech-myxyty-en-liquidation-judiciaire">webtimemedias.com</a></li>
+      <li id="src-58">Jibo calls it quits. <a class="ext" href="https://www.mediapost.com/publications/article/328607/social-robot-maker-jibo-calls-it-quits.html">mediapost.com</a></li>
+      <li id="src-59">Bracelet anti-chute sans abonnement : pièges. <a class="ext" href="https://www.seniors-en-mission.org/bracelet-anti-chute-senior-sans-abonnement-erreurs-frequentes-qui-limitent-lefficacite/">seniors-en-mission.org</a></li>
+      <li id="src-60">Règlement (UE) 2016/679 (RGPD). <a class="ext" href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32016R0679">eur-lex.europa.eu</a></li>
+      <li id="src-61">Code de la santé publique, art. L1111-8. <a class="ext" href="https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006170991">legifrance.gouv.fr</a> [nv]</li>
+      <li id="src-62">Agence du numérique en santé, certification HDS. <a class="ext" href="https://esante.gouv.fr/labels-certifications/hebergement-des-donnees-de-sante">esante.gouv.fr</a></li>
+      <li id="src-63">CNIL, applications mobiles en santé. <a class="ext" href="https://www.cnil.fr/fr/applications-mobiles-en-sante-et-protection-des-donnees-personnelles-les-questions-se-poser">cnil.fr</a></li>
+      <li id="src-64">Règlement (UE) 2017/745 (dispositifs médicaux). <a class="ext" href="https://eur-lex.europa.eu/eli/reg/2017/745/oj?locale=fr">eur-lex.europa.eu</a></li>
+      <li id="src-65">MDCG 2019-11 rév. 1. <a class="ext" href="https://health.ec.europa.eu/latest-updates/update-mdcg-2019-11-rev1-qualification-and-classification-software-regulation-eu-2017745-and-2025-06-17_en">health.ec.europa.eu</a></li>
+      <li id="src-66">ANSM, logiciel et dispositif médical. <a class="ext" href="https://ansm.sante.fr/documents/reference/le-logiciel-ou-lapplication-sante-que-je-vais-mettre-sur-le-marche-releve-t-il-du-statut-de-dispositif-medical-dm-ou-de-dispositif-medical-de-diagnostic-in-vitro-dm-div">ansm.sante.fr</a></li>
+      <li id="src-67">Règlement (UE) 2024/1689 (AI Act). <a class="ext" href="https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32024R1689">eur-lex.europa.eu</a></li>
+      <li id="src-68">Règlement (UE) 2026/1744 (Digital Omnibus). <a class="ext" href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202601744">eur-lex.europa.eu</a> [nv]</li>
+      <li id="src-69">AI Act Explorer, Digital Omnibus. <a class="ext" href="https://artificialintelligenceact.eu/ai-act-explorer/digital-omnibus/">artificialintelligenceact.eu</a></li>
+      <li id="src-70">White &amp; Case, EU AI Omnibus. <a class="ext" href="https://www.whitecase.com/insight-alert/eu-ai-omnibus-enters-force-amending-ai-act">whitecase.com</a></li>
+      <li id="src-71">Abbott France, avis Data Act. <a class="ext" href="https://www.freestyle.abbott/fr-fr/legal/data-act-notice.html">freestyle.abbott</a></li>
+      <li id="src-72">LibreView, confidentialité. <a class="ext" href="https://www.libreview.com/privacy">libreview.com</a> (illisible sans connexion)</li>
+      <li id="src-73">Baromètre du numérique 2026. <a class="ext" href="https://www.arcep.fr/uploads/tx_gspublication/barometre-du-numerique-edition-2026_RAPPORT.pdf">arcep.fr</a> [nv]</li>
+      <li id="src-74">Petits Frères des Pauvres, baromètre 2025. <a class="ext" href="https://www.conseildependance.fr/isolement-des-aines-les-10-chiffres-cles-du-barometre-2025-des-petits-freres-des-pauvres/">conseildependance.fr</a></li>
+      <li id="src-75">Veille du jeudi, 8 octobre 2026 (Drees 2022 via Le Media Social). <a href="../../../../veille-hebdo/index.html">page de la veille</a></li>
+    </ol>
+    <p class="label" style="margin-top:var(--s6)">Documents de l'équipe</p>
+    <ul class="docs">
+      <li><a class="doc" href="../../rendus/1-1-fiche-veille-silvertech.html">Fiche de veille silver tech (130 sources)</a></li>
+      <li><a class="doc" href="../../rendus/2-1-analyse-marche-questions-1-5.html">Analyse de marché, questions 1 à 5</a> · <a class="doc" href="../../rendus/2-1-question-1-acteurs.html">Question 1, acteurs</a></li>
+      <li><a class="doc" href="../../rendus/1-1-apple-watch-vs-famileo.html">Apple Watch vs Famileo</a> · <a class="doc" href="../../rendus/1-1-process-veille.html">Process de veille</a></li>
+      <li><a class="doc" href="../lucas/1-1-reussites-faillites-silvertech.html">Réussites et faillites</a> · <a class="doc" href="../lucas/1-1-synthese-axe-produit.html">Synthèse axe produit</a> · <a class="doc" href="../lucas/2-1-question-1-detail-par-segment.html">Détail par segment</a></li>
+      <li><a class="doc" href="../lucas/1-1-idee-produit-la-fenetre.html">La Fenêtre</a> · <a class="doc" href="../clement/idee-produit-le-cadre.html">Le Cadre</a> · <a class="doc" href="../lucas/1-1-retour-pipeline-veille.html">Retour pipeline</a></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot wrap">
+  <span>Fiche de veille · Marché &amp; réglementation silver tech</span>
+  <span>Clément · Lucas · Camille</span>
+  <a href="#ann-c">Usage de l'IA : annexe C</a>
+  <a href="#ann-e">Qui a fait quoi : annexe E</a>
+  <span>Version du 8 octobre 2026</span>
+  <a href="#couverture">Haut de page ↑</a>
+</footer>
+
+<script>
+(function(){
+  var d=document,root=d.documentElement;
+  /* filtre */
+  var f=d.querySelector('.filters'),tb=d.getElementById('t-acteurs'),st=d.querySelector('.filter-status');
+  if(f&&tb){
+    f.hidden=false;
+    var rows=[].slice.call(tb.tBodies[0].rows),btns=[].slice.call(f.querySelectorAll('button'));
+    f.addEventListener('click',function(e){
+      var b=e.target.closest('button');if(!b)return;
+      var v=b.getAttribute('data-f'),n=0;
+      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      rows.forEach(function(r){var show=v==='all'||r.getAttribute('data-famille')===v;r.hidden=!show;if(show)n++});
+      st.textContent=n+' acteurs affichés sur '+rows.length;
+    });
+  }
+  /* section active */
+  var links=[].slice.call(d.querySelectorAll('.topnav ol a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var id=e.target.id;links.forEach(function(a){if(a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')})}})},{rootMargin:'-40% 0px -55% 0px'});
+    d.querySelectorAll('main .sec, #sommaire').forEach(function(s){io.observe(s)});
+  }
+  /* progression (repli) */
+  var pr=d.querySelector('.progress');
+  if(pr&&!(window.CSS&&CSS.supports&&CSS.supports('animation-timeline','scroll()'))){
+    var tick=false;
+    window.addEventListener('scroll',function(){if(tick)return;tick=true;requestAnimationFrame(function(){var h=root.scrollHeight-innerHeight;pr.style.setProperty('--p',h>0?(scrollY/h).toFixed(4):0);tick=false})},{passive:true});
+  }
+  /* mode présentation */
+  var tg=d.querySelector('.present-toggle'),secs=[].slice.call(d.querySelectorAll('main .sec'));
+  function setP(on){root.classList.toggle('present',on);if(tg)tg.setAttribute('aria-pressed',on?'true':'false');try{sessionStorage.setItem('present',on?'1':'0')}catch(e){}}
+  if(tg){tg.hidden=false;tg.addEventListener('click',function(){setP(!root.classList.contains('present'))})}
+  try{if(sessionStorage.getItem('present')==='1')setP(true)}catch(e){}
+  var smooth=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+  d.addEventListener('keydown',function(e){
+    if(e.ctrlKey||e.metaKey||e.altKey)return;
+    var t=e.target;if(t&&t.closest&&t.closest('input,textarea,select,[contenteditable]'))return;
+    if(e.key==='p'||e.key==='P'){setP(!root.classList.contains('present'));e.preventDefault();return}
+    if(!root.classList.contains('present'))return;
+    if(e.key==='Escape'){setP(false);return}
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+      var y=scrollY+80,i=0;secs.forEach(function(s,k){if(s.offsetTop<=y)i=k});
+      var cur=secs[i];if(cur&&cur.offsetTop>y&&e.key==='ArrowRight')i=i-1;
+      var nx=e.key==='ArrowRight'?Math.min(i+1,secs.length-1):Math.max(i-1,0);
+      if(secs[0].offsetTop>y&&e.key==='ArrowRight')nx=0;
+      secs[nx].scrollIntoView({behavior:smooth?'smooth':'auto',block:'start'});e.preventDefault();
+    }
+  });
+  /* impression : ouvrir les détails */
+  var opened=[];
+  window.addEventListener('beforeprint',function(){opened=[];d.querySelectorAll('details').forEach(function(x){if(!x.open){opened.push(x);x.open=true}})});
+  window.addEventListener('afterprint',function(){opened.forEach(function(x){x.open=false})});
+})();
+</script>
+</body>
+</html>
