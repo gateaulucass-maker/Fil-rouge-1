@@ -1,0 +1,1076 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dispositif de veille</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Grille suisse : étiquette à gauche (3/12), contenu à droite (9/12). Thème blanc assumé.
+   Orange = ce que fait l'IA / ce qui est automatique ; bleu = ce que fait l'humain. */
+:root{--bg:#ffffff;--fg:#111418;--muted:#5d636b;--hair:#d9dcdf;--soft:#f4f4f2;--orange:#e8571c;--blue:#1f3fbf;--ok:#1d7a46;--ko:#c2381a;
+--display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,48px);padding-block:clamp(28px,6vw,72px) 64px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;border-top:2px solid var(--fg);padding-top:12px}
+.meta b{color:var(--fg);font-weight:500}
+h1{font-weight:800;font-size:clamp(44px,8.5vw,108px);line-height:.9;letter-spacing:-.045em;margin:clamp(24px,4vw,44px) 0 0;text-wrap:balance}
+h1 .o{color:var(--orange)} h1 .b{color:var(--blue)}
+.grid{display:grid;grid-template-columns:3fr 9fr;gap:0 24px}
+.grid>.c{grid-column:2;min-width:0}
+.lede{margin-top:30px}
+.lede p.big{margin:0;font-size:clamp(20px,2.1vw,26px);line-height:1.3;font-weight:700;letter-spacing:-.012em;max-width:36ch;text-wrap:pretty}
+.lede p{max-width:66ch}
+nav.toc{margin-top:28px;border-top:1px solid var(--hair);padding-top:14px}
+nav.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px}
+nav.toc a{color:var(--fg);text-decoration:none;font-weight:700;font-size:15px}
+nav.toc a span{font:11px var(--mono);color:var(--orange);margin-right:6px}
+nav.toc a:hover{color:var(--orange)}
+section{margin-top:clamp(56px,7vw,88px);scroll-margin-top:16px}
+.sh{border-top:2px solid var(--fg);padding-top:14px}
+h2{margin:0;font-weight:800;font-size:clamp(27px,3.3vw,42px);letter-spacing:-.03em;line-height:1.04;text-wrap:balance}
+h3{margin:0 0 6px;font-size:18px;letter-spacing:-.01em}
+.body{margin-top:20px}
+p{margin:0 0 12px;max-width:68ch}
+.intro{color:var(--muted);max-width:66ch}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--fg);margin-top:34px}
+.kpi{padding:16px 16px 18px 0;min-width:0}
+.kpi+.kpi{padding-left:16px;border-left:1px solid var(--hair)}
+.kpi b{display:block;font-weight:800;font-size:clamp(32px,4vw,50px);letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.kpi span{display:block;margin-top:8px;font-size:14px}
+.kpi small{display:block;margin-top:6px;font:11px var(--mono);color:var(--muted)}
+.o{color:var(--orange)} .b{color:var(--blue)}
+.tag{display:inline-block;font:500 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border:1.5px solid currentColor;vertical-align:1px;white-space:nowrap}
+.tag.ia{color:var(--orange)} .tag.hu{color:var(--blue)} .tag.sc{color:var(--fg)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.duo>div{min-width:0;border-top:1px solid var(--fg);padding-top:14px}
+.duo dl{margin:10px 0 0;display:grid;grid-template-columns:110px 1fr;gap:8px 14px;font-size:14.5px}
+.duo dt{font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.duo dd{margin:0}
+/* Schéma du flux */
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);border:1.5px solid var(--fg)}
+.flow li{padding:14px 12px 16px;min-width:0;position:relative}
+.flow li+li{border-left:1px solid var(--hair)}
+.flow .n{font:800 30px/1 var(--display);letter-spacing:-.03em}
+.flow b{display:block;margin-top:8px;font-size:15.5px;line-height:1.2}
+.flow p{margin:6px 0 8px;font-size:13.5px;color:var(--muted)}
+.flow li.ia .n{color:var(--orange)} .flow li.hu .n{color:var(--blue)} .flow li.sc .n{color:var(--fg)}
+.flow li.hu{background:#eef1fb}
+.flowfoot{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;font-size:13px;color:var(--muted)}
+.outs{display:grid;grid-template-columns:repeat(3,1fr);gap:0 24px;margin-top:22px}
+.outs div{border-top:1px solid var(--hair);padding-top:10px;min-width:0;font-size:14.5px}
+.outs b{display:block}
+/* Tableaux */
+.tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:10px 14px 10px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font:11px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:400;border-bottom:1px solid var(--fg)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;padding-right:18px}
+td:first-child{font-weight:700}
+tr.tot td{border-top:1px solid var(--fg);font-weight:700}
+.rules{counter-reset:r;list-style:none;margin:0;padding:0;border-top:1px solid var(--fg)}
+.rules li{counter-increment:r;display:grid;grid-template-columns:36px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid var(--hair);font-size:15px}
+.rules li::before{content:counter(r);font:800 20px/1.1 var(--display);color:var(--orange)}
+.score{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--fg);margin-top:8px}
+.score>div{padding:14px;min-width:0}
+.score>div+div{border-left:1px solid var(--hair)}
+.score b{display:block;font-size:26px;font-weight:800;letter-spacing:-.03em}
+.score span{font-size:14px}
+.score ul{margin:8px 0 0;padding-left:18px;font-size:13.5px;color:var(--muted)}
+.note{border-left:4px solid var(--orange);background:var(--soft);padding:13px 17px;margin-top:18px;font-size:15px}
+.note p{margin:0}
+.note.bl{border-left-color:var(--blue)}
+.prio{display:grid;grid-template-columns:1fr 1fr;gap:0 28px;margin-top:22px}
+.prio>div{min-width:0}
+.prio ol{margin:8px 0 0;padding-left:22px;font-size:14.5px}
+.prio li{padding:3px 0}
+/* Prompts */
+.prompts{display:grid;gap:0;border-top:1px solid var(--fg)}
+.prompt{display:grid;grid-template-columns:200px 1fr;gap:6px 24px;padding:18px 0;border-bottom:1px solid var(--hair)}
+.prompt>div{min-width:0}
+.prompt .when{font:11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.prompt ul{margin:6px 0 0;padding-left:18px;font-size:14.5px}
+.prompt li{padding:2px 0}
+details{margin-top:10px}
+summary{cursor:pointer;font:500 12px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--blue);padding:6px 0;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";font-weight:700}
+details[open] summary::before{content:"– "}
+summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+pre{margin:8px 0 0;max-height:520px;overflow:auto;background:var(--soft);border:1px solid var(--hair);padding:16px;font:12.5px/1.55 var(--mono);white-space:pre-wrap;word-break:break-word}
+/* Funnel */
+.funnel{margin-top:6px}
+.bar{display:grid;grid-template-columns:170px 1fr 56px;gap:12px;align-items:center;padding:7px 0;font-size:14px}
+.bar .t{height:22px;background:var(--soft);position:relative}
+.bar .t i{position:absolute;inset:0 auto 0 0;background:var(--orange)}
+.bar .t i.b{background:var(--blue)} .bar .t i.g{background:#9aa0a7}
+.bar .v{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.fiche{border:2px solid var(--fg);margin-top:8px}
+.fiche table{font-size:14.5px}
+.fiche th{width:180px;border-bottom:1px solid var(--hair);padding-left:14px;vertical-align:top;color:var(--muted)}
+.fiche td{font-weight:400!important;padding-right:14px}
+/* Frise */
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--fg);margin-left:6px}
+.tl li{position:relative;padding:0 0 18px 22px}
+.tl li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:var(--bg);border:2px solid var(--fg);border-radius:50%}
+.tl li.ko::before{border-color:var(--ko);background:var(--ko)}
+.tl li.ok::before{border-color:var(--orange);background:var(--orange)}
+.tl .d{font:11.5px var(--mono);letter-spacing:.05em;color:var(--muted)}
+.tl b{display:block;font-size:16px;margin-top:2px}
+.tl p{margin:3px 0 0;font-size:14.5px}
+.lim{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.lim>div{min-width:0}
+.lim h3{font:500 11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;margin-bottom:0;padding-bottom:8px;border-bottom:1px solid var(--fg)}
+.lim .l h3{color:var(--ko)} .lim .a h3{color:var(--ok)}
+.lim ul{list-style:none;margin:0;padding:0}
+.lim li{padding:10px 0;border-bottom:1px solid var(--hair);font-size:14.5px}
+.lim li b{display:block;font-size:15.5px}
+.lim li span{color:var(--muted)}
+.links{list-style:none;margin:0;padding:0;border-top:1px solid var(--fg)}
+.links li{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 0;border-bottom:1px solid var(--hair);font-size:15px}
+.links li>*{min-width:0}
+.links code{font:12px var(--mono);color:var(--muted);word-break:break-all}
+a{color:var(--blue);text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+footer{margin-top:72px;border-top:1px solid var(--hair);padding-top:14px;font-size:12.5px;color:var(--muted)}
+footer p{max-width:none}
+@media (max-width:860px){
+  .flow{grid-template-columns:1fr 1fr 1fr}
+  .flow li:nth-child(4){border-left:0}
+  .flow li:nth-child(n+4){border-top:1px solid var(--hair)}
+}
+@media (max-width:760px){
+  .grid{grid-template-columns:1fr}.grid>.c{grid-column:1}
+  .sh .k{display:block;margin-bottom:6px}
+  .kpis{grid-template-columns:1fr 1fr}.kpi{padding-left:0!important;border-left:0!important;border-bottom:1px solid var(--hair)}
+  .duo,.prio,.lim,.outs{grid-template-columns:1fr}.duo>div+div{margin-top:22px}.lim .a{margin-top:22px}
+  .flow{grid-template-columns:1fr 1fr}.flow li{border-left:0!important;border-top:1px solid var(--hair)}.flow li:nth-child(even){border-left:1px solid var(--hair)!important}.flow li:nth-child(-n+2){border-top:0}
+  .score{grid-template-columns:1fr}.score>div+div{border-left:0;border-top:1px solid var(--hair)}
+  .prompt{grid-template-columns:1fr}
+  .bar{grid-template-columns:120px 1fr 44px;font-size:13px}
+  .fiche th{width:110px}
+  .tbl>table{min-width:640px}.fiche.tbl>table{min-width:0}
+}
+</style></head><body>
+<div class="wrap">
+
+<div class="meta k"><span><b>Ynov</b> B2 Product Builder No-Code</span><span>PFR Générations Connectées</span><span>Bloc 01 · Leçon 1.1 Veille</span><span>Compétence RNCP C.1.1.1</span><span>Octobre 2026</span></div>
+
+<h1><span class="o">La veille</span>,<br>comment elle <span class="b">marche</span></h1>
+
+<div class="grid lede">
+  <span class="k">Chapeau<br>Ce qu'il faut retenir</span>
+  <div class="c">
+    <p class="big">Beaucoup d'entrées, peu de sorties : on collecte large, des règles fixes trient, l'IA résume et vérifie, l'humain décide.</p>
+    <p style="margin-top:16px">Notre veille repose sur deux machines construites avec Claude Code à partir de nos <b>master prompts</b>. Le <b>pipeline</b>, lancé à la main, a constitué la base de départ (231 éléments qualifiés, 164 validés). La <b>veille du jeudi</b>, automatique, ajoute chaque semaine de 5 à 10 fiches vérifiées, publie une page et prévient l'équipe par email.</p>
+    <p class="intro">Cette fiche explique comment les deux fonctionnent, d'où viennent les informations, comment elles sont triées, ce que fait l'IA et ce que fait l'équipe, avec les chiffres réels des exécutions.</p>
+  </div>
+</div>
+
+<div class="grid"><div class="c">
+  <div class="kpis">
+    <div class="kpi"><b>40</b><span>sources suivies en continu</span><small>24 alertes, 4 médias, 3 Reddit, 4 apps, 5 sites</small></div>
+    <div class="kpi"><b class="o">231</b><span>éléments qualifiés par l'IA au premier run du pipeline</span><small>Neon, table veille_items</small></div>
+    <div class="kpi"><b class="b">164</b><span>validés par l'équipe à la revue</span><small>52 rejetés, 15 hors sujet</small></div>
+    <div class="kpi"><b>7h45</b><span>chaque jeudi, sans intervention</span><small>15 fiches ajoutées en 3 exécutions</small></div>
+  </div>
+</div></div>
+
+<nav class="toc grid" aria-label="Sommaire"><span class="k">Sommaire</span><ol class="c">
+  <li><a href="#systemes"><span>01</span>Deux machines</a></li>
+  <li><a href="#flux"><span>02</span>Le flux</a></li>
+  <li><a href="#sources"><span>03</span>Les sources</a></li>
+  <li><a href="#tri"><span>04</span>Les règles de tri</a></li>
+  <li><a href="#prompts"><span>05</span>Les master prompts</a></li>
+  <li><a href="#humain"><span>06</span>IA et humain</a></li>
+  <li><a href="#resultats"><span>07</span>Résultats réels</a></li>
+  <li><a href="#evolution"><span>08</span>Évolution</a></li>
+  <li><a href="#limites"><span>09</span>Limites</a></li>
+  <li><a href="#ou"><span>10</span>Où trouver quoi</a></li>
+</ol></nav>
+
+
+<section id="systemes">
+  <div class="grid sh"><span class="k">01 · Vue d'ensemble</span><h2 class="c">Deux machines, une même méthode</h2></div>
+  <div class="grid body"><div class="c">
+<p class="intro">Le pipeline sert à constituer une base large et notée. La veille du jeudi sert à la tenir à jour sans effort. Elles partagent la même base Neon et les mêmes flux.</p>
+<div class="duo">
+  <div>
+    <span class="tag sc">Lancé à la main</span>
+    <h3 style="margin-top:10px">Le pipeline de veille</h3>
+    <p style="font-size:15px">Construit le 1er octobre à partir du master prompt. Il collecte, filtre, qualifie et note des centaines d'éléments, puis l'équipe les passe en revue.</p>
+    <dl>
+      <dt>Déclenchement</dt><dd>Commande <code>/veille</code> dans Claude Code, quand l'équipe en a besoin</dd>
+      <dt>Volume</dt><dd>Jusqu'à 100 éléments qualifiés par run (200 pour le premier rattrapage)</dd>
+      <dt>Classement</dt><dd>Catalogue de 32 types d'information (13 requis, 19 bonus) sur 5 axes</dd>
+      <dt>Fiabilité</dt><dd>Score de 0 à 7 <b>calculé par un script</b>, jamais par l'IA</dd>
+      <dt>Sortie</dt><dd>Rapport HTML, revue <code>/revue</code>, export vers la fiche de veille</dd>
+      <dt>Outils</dt><dd>Python, base Neon (PostgreSQL), 3 sous-agents Claude</dd>
+    </dl>
+  </div>
+  <div>
+    <span class="tag ia">Automatique</span>
+    <h3 style="margin-top:10px">La veille du jeudi</h3>
+    <p style="font-size:15px">Mise en place le 2 octobre. Chaque jeudi, elle cherche ce qui est nouveau depuis la dernière fois, vérifie chaque fiche deux fois et publie le résultat.</p>
+    <dl>
+      <dt>Déclenchement</dt><dd>Programmé sur le Mac de Lucas (launchd), chaque jeudi à 7h45</dd>
+      <dt>Volume</dt><dd>De 5 à 10 fiches par semaine, au format du professeur</dd>
+      <dt>Classement</dt><dd>4 axes, 12 sujets prioritaires choisis par l'équipe</dd>
+      <dt>Fiabilité</dt><dd>Double relecture : Claude, puis un agent indépendant qui rouvre la source</dd>
+      <dt>Sortie</dt><dd>Page web à adresse fixe, email à l'équipe, journal dans Neon</dd>
+      <dt>Outils</dt><dd>Claude Code (Sonnet), connecteurs Neon et Gmail, GitHub Pages</dd>
+    </dl>
+  </div>
+</div></div></div>
+</section>
+<section id="flux">
+  <div class="grid sh"><span class="k">02 · Le flux</span><h2 class="c">De la source à la décision, en six étapes</h2></div>
+  <div class="grid body"><div class="c">
+<ol class="flow">
+  <li class="sc"><span class="n">1</span><b>Collecter</b><p>Lecture des flux RSS, des avis App Store et recherche web ciblée.</p><span class="tag sc">Script</span></li>
+  <li class="sc"><span class="n">2</span><b>Filtrer sans IA</b><p>Règles fixes : domaine exclu, mots-clés absents, doublon, trop ancien.</p><span class="tag sc">Script</span></li>
+  <li class="ia"><span class="n">3</span><b>Qualifier</b><p>L'IA lit la page, classe, résume en 3 lignes et dit pourquoi c'est utile.</p><span class="tag ia">IA</span></li>
+  <li class="sc"><span class="n">4</span><b>Noter</b><p>Score de fiabilité calculé : autorité, fraîcheur, source primaire.</p><span class="tag sc">Script</span></li>
+  <li class="ia"><span class="n">5</span><b>Relire</b><p>Un second agent, qui n'a rien vu, rouvre la source et confirme date, chiffres et résumé.</p><span class="tag ia">IA</span></li>
+  <li class="hu"><span class="n">6</span><b>Décider</b><p>L'équipe valide ou rejette, fixe la pertinence et choisit ce qui va dans la fiche.</p><span class="tag hu">Équipe</span></li>
+</ol>
+<div class="flowfoot"><span><span class="tag sc">Script</span> règle fixe, toujours la même</span><span><span class="tag ia">IA</span> Claude, encadré par les master prompts</span><span><span class="tag hu">Équipe</span> décision humaine</span></div>
+<div class="outs">
+  <div><b>Base Neon</b>Tout est stocké et daté : le brut, les rejets avec leur motif, les fiches, le journal de chaque exécution.</div>
+  <div><b>Page du jeudi</b>Synthèse, nouveautés, suivi de 8 concurrents, réussites et faillites du secteur. <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/">Voir la page</a></div>
+  <div><b>Email à l'équipe</b>Chaque jeudi : la synthèse, les 3 fiches les plus utiles, le lien vers la page.</div>
+</div></div></div>
+</section>
+<section id="sources">
+  <div class="grid sh"><span class="k">03 · Les sources</span><h2 class="c">Quarante sources suivies, choisies une à une</h2></div>
+  <div class="grid body"><div class="c">
+<p class="intro">Les flux sont la source n° 1 : chaque élément y a une date de publication fiable, ce qui rend la règle de fraîcheur vérifiable. La recherche web vient en complément.</p>
+<div class="tbl"><table>
+<thead><tr><th>Source</th><th class="num">Nombre</th><th>Ce qu'elle apporte</th><th>Exemples</th></tr></thead>
+<tbody>
+<tr><td>Google Alerts (flux RSS)</td><td class="num">24</td><td>Une alerte par type d'information requis (13), puis 3 par axe pour le jeudi (11). L'alerte IA est exclue du jeudi.</td><td>« téléassistance prix abonnement », « proches aidants », « CNIL données de santé objets connectés »</td></tr>
+<tr><td>Médias spécialisés</td><td class="num">4</td><td>Actualité du secteur et de la régulation</td><td>Silvereco, Maddyness, FrenchWeb, CNIL</td></tr>
+<tr><td>Communautés Reddit</td><td class="num">3</td><td>Témoignages d'aidants, gardés comme signaux et anonymisés. r/nocode est exclu du jeudi.</td><td>r/AgingParents, r/CaregiverSupport</td></tr>
+<tr><td>Avis App Store</td><td class="num">4</td><td>Ce que les utilisateurs aiment ou reprochent (flux public d'Apple)</td><td>Famileo, Tous FAMiliés, Life360, Signia</td></tr>
+<tr><td>Sites officiels prioritaires</td><td class="num">5+</td><td>Chiffres et textes de référence, visés par la recherche web</td><td>Insee, Drees, CNIL, ANSM, EUR-Lex, Légifrance, service-public.fr</td></tr>
+<tr><td>Recherche web</td><td class="num">68</td><td>Requêtes préparées, 2 ou 3 par type d'information, plus les 8 concurrents suivis le jeudi</td><td>Requêtes rangées dans <code>sources.yaml</code></td></tr>
+</tbody></table></div>
+<div class="note"><p><b>Écartés volontairement :</b> Facebook, Instagram, TikTok, Pinterest (pas de scraping de réseaux sociaux), Google Play (aucune API gratuite, collecte manuelle si besoin), les contenus sponsorisés et les comparateurs qui ne citent pas leurs sources. Aucun service payant.</p></div></div></div>
+</section>
+<section id="tri">
+  <div class="grid sh"><span class="k">04 · Les règles de tri</span><h2 class="c">Ce qui entre, ce qui sort, et pourquoi</h2></div>
+  <div class="grid body"><div class="c">
+<h3>Le filtre sans IA (pipeline)</h3>
+<p class="intro">Quatre règles écrites dans <code>regles.yaml</code>. Chaque rejet garde son motif en base, on peut donc toujours expliquer pourquoi un article a été écarté.</p>
+<ol class="rules">
+  <li><div><b>Domaine exclu</b> : réseaux sociaux listés ci-dessus.</div></li>
+  <li><div><b>Aucun mot-clé du sujet</b> dans le titre et l'extrait (senior, aidant, téléassistance, chute, maintien à domicile, CNIL, RGPD…). 89 éléments écartés ainsi au premier run.</div></li>
+  <li><div><b>Doublon</b> : même titre déjà vu dans les 30 derniers jours (reprise d'une même dépêche).</div></li>
+  <li><div><b>Trop ancien</b> : plus de 36 mois, sauf textes réglementaires et sites officiels.</div></li>
+</ol>
+
+<h3 style="margin-top:30px">Le score de fiabilité, de 0 à 7 (pipeline)</h3>
+<p class="intro">Calculé par un script, jamais par l'IA : la même source reçoit toujours la même note.</p>
+<div class="score">
+  <div><b>0 à 3</b><span>Autorité du site</span><ul><li>3 : officiel (gouv.fr, CNIL, Insee, HAS, europa.eu…)</li><li>2 : média reconnu (Silvereco, Les Échos, Le Monde…)</li><li>1 : autre · 0 : exclu</li></ul></div>
+  <div><b>0 à 2</b><span>Fraîcheur</span><ul><li>2 : moins de 12 mois</li><li>1 : moins de 24 mois</li><li>0 : plus ancien ou non daté</li></ul></div>
+  <div><b>0 à 2</b><span>Source primaire citée</span><ul><li>2 : renvoie à un site officiel</li><li>1 : renvoie à une autre source</li><li>0 : aucune</li></ul></div>
+</div>
+<p style="margin-top:12px;font-size:14.5px"><b>5 et plus</b> : prioritaire · <b>3 à 4</b> : à vérifier · <b>moins de 3</b> : en fin de rapport. Les témoignages (Reddit, avis) ne sont pas notés : ils comptent par leur répétition.</p>
+
+<h3 style="margin-top:30px">Les règles du jeudi</h3>
+<ol class="rules">
+  <li><div><b>Seulement le nouveau</b> : ce qui est publié depuis la dernière exécution réussie (7 jours par défaut).</div></li>
+  <li><div><b>12 mois maximum</b>, sauf deux exceptions : la dernière édition d'une statistique officielle (Insee, Drees) et un texte encore en vigueur (RGPD, AI Act).</div></li>
+  <li><div><b>Pas de date, pas de fiche</b> : une date introuvable fait rejeter l'article. Jamais de date devinée.</div></li>
+  <li><div><b>Rien d'inventé</b> : chaque chiffre doit figurer mot pour mot dans la source ouverte.</div></li>
+  <li><div><b>Hors périmètre</b> : l'IA et le no-code, décidés par l'équipe le 2 octobre (ils relèvent d'autres blocs du cours).</div></li>
+</ol>
+
+<div class="prio">
+  <div><span class="k o">Sujets prioritaires · rang 1</span><ol>
+    <li>Acceptation et refus des objets par les seniors</li>
+    <li>Vie et charge des aidants</li>
+    <li>Consentement et vie privée</li>
+    <li>Prix réels et abonnements</li>
+    <li>Réussites et faillites des entreprises du secteur</li>
+  </ol></div>
+  <div><span class="k b">Sujets prioritaires · rang 2</span><ol start="6">
+    <li>Moments déclencheurs d'achat</li>
+    <li>Lien entre générations et isolement</li>
+    <li>Chutes et prévention</li>
+    <li>Aides et financeurs</li>
+    <li>Canaux de vente et prescripteurs</li>
+    <li>Fracture numérique et ergonomie</li>
+    <li>Fin de la 2G et de la 3G</li>
+  </ol></div>
+</div></div></div>
+</section>
+<section id="prompts">
+  <div class="grid sh"><span class="k">05 · Les master prompts</span><h2 class="c">Quatre consignes écrites, qui pilotent tout</h2></div>
+  <div class="grid body"><div class="c">
+<p class="intro">L'IA ne décide pas seule de sa méthode : chaque étape suit une consigne écrite et versionnée dans le dépôt. Le texte complet de chaque prompt est dépliable ci-dessous. Les adresses de l'équipe sont masquées : elles ne sont jamais publiées.</p>
+<div class="prompts">
+  <div class="prompt">
+    <div><span class="tag sc">Construction</span><h3 style="margin-top:8px">Master prompt du pipeline</h3><div class="when">Utilisé une fois, le 1er octobre</div></div>
+    <div><p style="font-size:15px">Demande à Claude Code de <b>construire</b> tout le pipeline : base Neon, scripts Python, catalogue, sous-agents et commandes.</p><ul>
+      <li>Principe : collecter large, filtrer sans IA, qualifier avec IA, l'humain décide.</li>
+      <li>Catalogue de 32 types d'information sur 5 axes (marché, concurrence, usagers, techno, réglementaire).</li>
+      <li>Score de fiabilité calculé par script ; l'IA ne note jamais la fiabilité.</li>
+      <li>Ne jamais inventer une URL, un chiffre ou une date ; verbatims anonymisés, 300 caractères au plus.</li>
+      <li>Tests automatiques et critères d'acceptation ; s'arrêter et demander avant toute action sensible.</li>
+    </ul>
+    <details><summary>Lire le texte complet</summary><pre># MASTERPROMPT — Pipeline de veille « Silver tech » (PFR Générations Connectées, Phase 1)
+
+Tu es l&#x27;architecte et le développeur principal de ce projet. Tu construis un pipeline de veille automatisé, orchestré par toi (Claude Code) via des sous-agents et des commandes slash, avec une base Neon (PostgreSQL).
+
+**Avant d&#x27;écrire la moindre ligne de code** : lis tout ce document, puis présente-moi un plan d&#x27;implémentation en 10 lignes maximum et attends ma validation.
+
+---
+
+## 1. Contexte
+
+- Projet étudiant (Bachelor 2 Product Builder No-Code, Ynov). Phase 1 du projet fil rouge : fiche de veille « Marché &amp; réglementation silver tech » (objets connectés pour seniors, achetés par leurs enfants aidants).
+- Le dispositif de veille lui-même est évalué (compétence RNCP C.1.1.1 « Mettre en place un système de veille ») et sera présenté en annexe de la fiche.
+- Principe directeur : **beaucoup d&#x27;entrées, peu de sorties**. On collecte large, on filtre sans IA, on qualifie avec IA, l&#x27;humain décide.
+- Équipe de 2 à 3 étudiants : chacun doit pouvoir lancer la revue et comprendre le système.
+
+## 2. Stack imposée
+
+- Python 3.11+, `psycopg[binary]` v3, `feedparser`, `pyyaml`, `python-dotenv`, `pytest`.
+- Base : Neon (PostgreSQL), connexion via `DATABASE_URL` dans `.env`.
+- Orchestration : Claude Code (commandes dans `.claude/commands/`, sous-agents dans `.claude/agents/`).
+- Aucune API payante, aucun service tiers en plus. Pas de framework web : le rendu visuel est un HTML statique généré.
+
+## 3. Architecture
+
+```
+veille-silvertech/
+├── CLAUDE.md                     # règles permanentes du projet (tu le rédiges)
+├── README.md                     # installation + usage pour l&#x27;équipe
+├── .env.example
+├── requirements.txt
+├── config/
+│   ├── catalogue.yaml            # les 35 types d&#x27;information (section 5)
+│   ├── sources.yaml              # flux RSS, apps, requêtes par code
+│   └── regles.yaml               # autorité des domaines, mots-clés, seuils
+├── sql/schema.sql
+├── scripts/
+│   ├── common.py                 # config, connexion, normalisation
+│   ├── init_db.py                # crée le schéma + seed du catalogue
+│   ├── collect_rss.py            # Google Alerts, médias, Reddit (RSS)
+│   ├── collect_app_reviews.py    # avis App Store (flux public Apple)
+│   ├── add_items.py              # stdin JSON → raw_items (utilisé par l&#x27;agent collecteur)
+│   ├── prefilter.py              # filtrage SANS IA
+│   ├── pending.py                # éléments à qualifier → JSON
+│   ├── save_qualified.py         # stdin JSON → veille_items + score calculé
+│   ├── review.py                 # décision humaine en CLI
+│   ├── coverage.py               # couverture du catalogue
+│   ├── report.py                 # rapport HTML hebdomadaire
+│   └── export_fiche.py           # export Markdown des éléments validés
+├── tests/                        # pytest, sans base de données
+├── docs/dispositif-veille.md     # annexe de la fiche (sources, outils, fréquence, méthode)
+├── rapports/                     # HTML générés (gitignore)
+└── .claude/
+    ├── commands/  veille.md, revue.md, couverture.md, export-fiche.md
+    └── agents/    collecteur.md, qualificateur.md, rapporteur.md
+```
+
+### Flux de bout en bout
+
+```
+COLLECTE (scripts + agent collecteur)
+  → raw_items (brut, immuable, dédoublonné par URL)
+FILTRAGE SANS IA (prefilter.py)
+  → rejet : domaine exclu, hors mots-clés, doublon de titre, &gt; 36 mois
+QUALIFICATION (agent qualificateur → save_qualified.py)
+  → veille_items : champs remplis par l&#x27;IA + score de fiabilité calculé par script
+REVUE HUMAINE (rapport HTML + review.py)
+  → statut validé / rejeté, pertinence finale, validé par
+EXPORT (export_fiche.py) → alimente la fiche de veille
+```
+
+## 4. Schéma de données (Neon)
+
+### `catalogue`
+`code` (PK, ex. M1), `axe`, `libelle`, `statut` (requis | bonus), `phase_cible` (texte libre, ex. « phase 2 »).
+
+### `raw_items`
+`id`, `url` (unique), `domaine`, `source_nom`, `titre`, `extrait`, `origine` (rss:&lt;nom&gt; | web_search | avis_app | reddit), `code_vise` (code du catalogue ciblé par la requête, nullable), `publie_le` (date), `collecte_le`, `etat` (nouveau | filtre | a_qualifier | qualifie), `motif_filtre`.
+
+### `veille_items` — champs de la base de veille du cours, puis champs du pipeline
+**Champs du cours :**
+- `titre` — titre court de l&#x27;information
+- `publie_le` — date de publication
+- `source_nom`, `url` — source et lien
+- `axe` — marche | concurrence | usagers | techno | reglementaire
+- `resume` — 3 lignes maximum, reformulé (jamais copié)
+- `pourquoi_important` — 1 à 2 phrases sur l&#x27;apport pour notre projet
+- `pertinence_proposee` (1-3, par l&#x27;IA) et `pertinence` (1-3, décision humaine)
+- `ajoute_par` — « agent » par défaut
+
+**Champs du pipeline :**
+- `raw_id` (FK unique), `code_info` (FK catalogue), `flux` (fait | signal)
+- `score_fiabilite` (0-7, calculé par script, jamais par l&#x27;IA) avec `autorite`, `fraicheur`, `bonus_source_primaire`
+- `source_primaire_url`, `chiffres` (jsonb : `[{valeur, contexte, source_citee}]`)
+- `archetype` (securite | capteurs | sante_quotidien | compagnon | transverse)
+- `ethique` (bool : touche la tension autonomie / surveillance), `sensible` (bool)
+- `irritant` et `verbatim` (signaux uniquement)
+- `statut` (a_revoir | valide | rejete | hors_sujet), `valide_par`, `commentaire`, `revu_le`
+
+### `runs`
+Journal de chaque exécution : date, nb collectés par origine, nb filtrés, nb qualifiés, nb hors sujet, modèle utilisé, durée. Sert de preuve du dispositif et de déclaration d&#x27;usage IA.
+
+Contraintes CHECK sur toutes les énumérations, index sur `(statut, axe)` et `etat`.
+
+## 5. Catalogue des informations (à seeder dans `catalogue.yaml` et la table)
+
+**Marché**
+- M1 Taille et croissance du marché silver tech — requis
+- M2 Démographie : seniors à domicile, projections — requis
+- M3 Aidants familiaux : nombre, profil, distance, charge — bonus (phase 2)
+- M4 Moments déclencheurs d&#x27;achat — bonus (phase 2)
+- M5 Aides publiques et prises en charge — bonus (modèle économique)
+- M6 Canaux de distribution — bonus (parcours d&#x27;achat, phase 3)
+- M7 Politiques publiques de maintien à domicile — bonus
+
+**Concurrence**
+- C1 Acteurs par famille (téléassistance, wearables, capteurs, compagnons) — requis
+- C2 Offres et prix réels (engagement, frais cachés) — requis
+- C3 Réussites et échecs + hypothèse d&#x27;explication — requis
+- C4 Levées de fonds, rachats, faillites — requis
+- C5 Promesses marketing vs réalité — requis
+- C6 Discours de marque (stigmatisant ou non) — bonus
+- C7 Nouveaux lancements — bonus
+
+**Usagers**
+- U1 Irritants côté seniors — bonus (phase 2)
+- U2 Irritants côté aidants — bonus (phase 2)
+- U3 Raisons d&#x27;abandon (« le tiroir ») — requis
+- U4 Fracture numérique : équipement et usages — bonus (phase 3)
+- U5 Ce que les utilisateurs apprécient — bonus
+
+**Techno**
+- T1 Technologies de détection et leurs limites — requis
+- T2 IA appliquée (résumé d&#x27;activité, anomalie de routine, compagnon) — bonus (phase 5)
+- T3 Outils no-code et IA adaptés — bonus (phase 5)
+- T4 Connectivité, autonomie, installation — bonus (phase 6)
+- T5 Standards et interopérabilité — bonus
+
+**Réglementaire**
+- R1 RGPD : données de santé et de vie quotidienne, consentement — requis
+- R2 Frontière dispositif médical / bien-être — requis
+- R3 AI Act : transparence, niveaux de risque — requis
+- R4 Propriété intellectuelle — requis
+- R5 Consentement des majeurs vulnérables — bonus (éthique)
+- R6 Accessibilité numérique (RGAA, European Accessibility Act) — bonus
+- R7 Droit des abonnements et résiliation — bonus
+- R8 Hébergement de données de santé — bonus (applicabilité à vérifier)
+
+## 6. Sources (`sources.yaml`)
+
+- **Google Alerts** : une alerte par code requis minimum, en flux RSS. URLs fournies par l&#x27;utilisateur → laisse des placeholders `REMPLACER` et demande-les-moi.
+- **Médias (RSS)** : maddyness.com, frenchweb.fr, silvereco.fr, cnil.fr. Ne devine aucune URL de flux : teste-la, et si elle ne répond pas, signale-le au lieu d&#x27;inventer.
+- **Reddit (RSS public `/r/&lt;sub&gt;/.rss`)** : r/nocode, plus 1 ou 2 subreddits aidants ou seniors que tu proposes et que je valide.
+- **App Store** : flux public d&#x27;avis Apple, liste d&#x27;`app_id` en placeholder.
+- **Google Play** : pas d&#x27;API publique gratuite. Pas de scraping. Collecte manuelle documentée.
+- **Recherche web (agent collecteur)** : 2 à 3 requêtes par code du catalogue, stockées dans `sources.yaml`. Cibler aussi aidants.fr, pour-les-personnes-agees.gouv.fr, ansm.sante.fr, eur-lex.europa.eu, insee.fr, drees.
+- **Données entreprises** (pappers.fr, societe.com, crunchbase.com) : consultation ciblée par l&#x27;agent pour C1 et C4 uniquement, jamais d&#x27;extraction massive.
+
+## 7. Filtrage sans IA (`prefilter.py`, dans `regles.yaml`)
+
+1. Domaine dans `exclus` (facebook.com, instagram.com, tiktok.com, pinterest.com) → rejet.
+2. Aucun mot-clé d&#x27;inclusion dans titre + extrait (senior, âgé, personne âgée, aidant, téléassistance, chute, maintien à domicile, silver, EHPAD, autonomie, objet connecté, CNIL, RGPD, dispositif médical, AI Act, accessibilité…) → rejet, sauf pour `origine = avis_app`.
+3. Titre normalisé déjà présent sur les 30 derniers jours → rejet (doublon de reprise).
+4. Publication &gt; 36 mois → rejet, sauf axe réglementaire (textes de loi).
+Chaque rejet stocke son `motif_filtre`.
+
+## 8. Score de fiabilité (calculé par script, jamais par l&#x27;IA)
+
+**FAIT (0 à 7)** = autorité (0-3) + fraîcheur (0-2) + source primaire (0-2)
+- Autorité : niveau 3 = officiel (gouv.fr et sous-domaines, europa.eu, cnil.fr, insee.fr, has-sante.fr, ansm.sante.fr, cnsa.fr, santepubliquefrance.fr, service-public.fr, inpi.fr) ; niveau 2 = médias reconnus (silvereco.fr, maddyness.com, frenchweb.fr, lesechos.fr, lemonde.fr, lefigaro.fr, liberation.fr, francetvinfo.fr, usine-digitale.fr, numerama.com, aidants.fr) ; autre = 1 ; exclu = 0.
+- Fraîcheur : ≤ 12 mois = 2, ≤ 24 mois = 1, sinon ou non daté = 0. Pour l&#x27;axe réglementaire, un texte en vigueur vaut 2.
+- Source primaire citée et vérifiée : domaine niveau 3 = 2, autre = 1, absente = 0.
+
+**SIGNAL** : pas de score de fiabilité ; jugé sur sa récurrence (nombre d&#x27;occurrences du même `irritant`).
+
+Seuils : ≥ 5 prioritaire, 3-4 à vérifier, &lt; 3 affiché en fin de rapport.
+
+## 9. Sous-agents
+
+### `collecteur` (outils : WebSearch, Bash, Read)
+Pour chaque code du catalogue sous-couvert (moins de 3 éléments validés), lance les requêtes de `sources.yaml`, garde les 5 meilleurs résultats par requête, envoie le JSON à `add_items.py` avec `code_vise`. Ne résume rien, ne juge rien.
+
+### `qualificateur` (outils : WebFetch, Bash, Read)
+Traite les éléments `a_qualifier` par lots de 10. Pour chacun : lit la page (WebFetch ; si échec, travaille sur l&#x27;extrait et le signale), puis produit un JSON strict par élément :
+`raw_id, pertinent, flux, axe, code_info, titre, resume, pourquoi_important, pertinence_proposee, source_primaire_url, chiffres, archetype, ethique, sensible, irritant, verbatim`.
+Règles :
+- **Ne jamais inventer** une URL, un chiffre, une date ou une source. Un chiffre n&#x27;est retenu que si l&#x27;article l&#x27;affirme ET cite son origine ; sinon `chiffres` reste vide.
+- `source_primaire_url` uniquement si un lien explicite figure dans l&#x27;article.
+- `resume` reformulé, 3 lignes max, aucune phrase copiée.
+- `verbatim` : 300 caractères max, anonymisé (aucun nom, prénom, ville, âge précis, pseudo).
+- `irritant` parmi : stigmatisation, complexite, fausses_alertes, prix_abonnement, intrusion_vie_privee, fiabilite_technique, service_client, autre.
+- `sensible = true` si l&#x27;élément touche des données de santé ou une allégation médicale.
+- `ethique = true` si l&#x27;élément touche la tension autonomie / surveillance ou le consentement.
+- Hors sujet → `pertinent: false`.
+
+### `rapporteur` (outils : Bash, Read, Write)
+Rédige `rapports/synthese-AAAA-Sxx.md` : les 10 éléments prioritaires de la semaine, les irritants les plus récurrents, et les **trous de couverture** (codes requis sans élément validé). Chaque affirmation cite l&#x27;id de l&#x27;élément. Puis lance `report.py`.
+
+## 10. Commandes slash
+
+- **`/veille`** : pipeline complet → collect_rss, collect_app_reviews, collecteur, prefilter, qualificateur (boucle jusqu&#x27;à épuisement, plafond 100 éléments par run), rapporteur, écriture dans `runs`, bilan chiffré final.
+- **`/revue`** : liste les éléments `a_revoir` par axe et score, puis aide l&#x27;utilisateur à valider ou rejeter (via `review.py`, avec pertinence finale et prénom).
+- **`/couverture`** : tableau code × nb validés, trous en évidence.
+- **`/export-fiche`** : export Markdown des éléments validés, regroupés par axe puis par code, avec bibliographie numérotée.
+
+## 11. Rendu visuel (`report.py`)
+
+HTML statique, autonome, responsive, lisible sur mobile. Sections : synthèse de l&#x27;agent (marquée « à vérifier »), faits par axe avec badge de score coloré, badges « sensible » et « éthique », signaux groupés par irritant et triés par récurrence, tableau de couverture du catalogue. Tout le contenu est échappé.
+
+## 12. Règles permanentes (à écrire dans `CLAUDE.md`)
+
+- Aucune donnée personnelle stockée : pas d&#x27;auteur d&#x27;avis, pas de pseudo, verbatims anonymisés.
+- Pas de scraping de réseaux sociaux ni de sites qui l&#x27;interdisent.
+- Pas de reproduction d&#x27;articles : résumés reformulés uniquement.
+- Le score est calculé par script ; l&#x27;IA classe et résume, elle ne note pas la fiabilité.
+- Toute exécution est journalisée dans `runs`.
+- Toute modification de règles passe par les fichiers de `config/`, jamais en dur dans le code.
+
+## 13. Ordre de construction
+
+1. Plan → validation par moi.
+2. Arborescence, `requirements.txt`, `.env.example`, `.gitignore`.
+3. `schema.sql`, `catalogue.yaml`, `init_db.py` (idempotent).
+4. Scripts de collecte, filtrage, qualification, score.
+5. Tests pytest (sans base) : score, fraîcheur, correspondance de domaines, dé-redirection des liens Google Alerts (`google.com/url?url=`), préfiltre, échappement HTML.
+6. Sous-agents et commandes slash.
+7. `report.py`, `coverage.py`, `export_fiche.py`.
+8. Test réel : demande-moi `DATABASE_URL` et au moins une URL Google Alerts, lance `/veille` avec un plafond de 10 éléments, montre-moi le rapport.
+9. `README.md` (installation en moins de 10 étapes, usage hebdomadaire, qui fait quoi) et `docs/dispositif-veille.md` (annexe de la fiche : sources, outils, fréquence, méthode de filtrage et de scoring, limites, usage de l&#x27;IA).
+
+## 14. Critères d&#x27;acceptation
+
+- `pytest` passe intégralement.
+- `init_db.py` peut être relancé sans erreur ni doublon.
+- Un run complet produit un rapport HTML lisible sur téléphone et une ligne dans `runs`.
+- Aucun élément qualifié ne contient d&#x27;URL ou de chiffre absent de la page source.
+- Un coéquipier sans expérience en code peut lancer `/revue` en suivant le README.
+
+## 15. Quand t&#x27;arrêter et me demander
+
+- Avant de créer quoi que ce soit dans Neon.
+- Si une source ne répond pas ou si son URL est incertaine.
+- Si une règle de ce document est ambiguë ou contradictoire.
+- Si une étape nécessite un service payant.
+</pre></details></div>
+  </div>
+  <div class="prompt">
+    <div><span class="tag ia">Chaque jeudi</span><h3 style="margin-top:8px">Consigne de la veille du jeudi</h3><div class="when">Relue à chaque exécution</div></div>
+    <div><p style="font-size:15px">La consigne complète du veilleur automatique : rôle, projet, règles de fraîcheur, périmètre, déroulé en 10 étapes, format des fiches, page et email.</p><ul>
+      <li>De 5 à 10 fiches par semaine, au format du professeur (8 champs).</li>
+      <li>Fenêtre de collecte, 12 mois au plus, deux exceptions encadrées.</li>
+      <li>Double relecture obligatoire ; une fiche non confirmée n'entre jamais en base.</li>
+      <li>Conduite à tenir en cas de panne (base, recherche, email) : ne rien inventer, le dire.</li>
+      <li>Liste de vérification finale avant de terminer.</li>
+    </ul>
+    <details><summary>Lire le texte complet</summary><pre># Veille hebdomadaire silver tech : PFR Générations Connectées
+
+&gt; Consignes de la veille automatique, lancée chaque jeudi à 7h45 (heure de Paris) sur le Mac de Lucas par `S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/veille-hebdo-mac.sh` (programmé avec launchd).
+&gt; Outils : connecteur Neon (base), connecteur Gmail (email), dépôt GitHub Fil-rouge-1 (page HTML), flux de veille du pipeline (script de collecte), recherche web.
+
+---
+
+## 0. Ton environnement (lis d&#x27;abord)
+
+- Tu tournes sur le Mac de Lucas, dans le dépôt `~/Fil-rouge-1` (copie de `gateaulucass-maker/Fil-rouge-1`). Respecte les règles d&#x27;équipe de `CLAUDE.md` à la racine : synchronisation avant d&#x27;écrire, aucun secret ni coordonnée dans le dépôt. Tu ne modifies que `veille-hebdo/index.html`.
+- **Base** : utilise les outils du connecteur **Neon**, sur le projet Neon nommé **« veille-silvertech »**, base **`neondb`**. Si plusieurs projets existent, prends celui-là ; si tu ne le trouves pas, applique la section 12 (« Neon indisponible »).
+- **Ne touche jamais** aux tables déjà présentes dans cette base (`veille_items`, `raw_items`, `catalogue`, `runs`) : elles appartiennent au pipeline de veille manuel de l&#x27;équipe. Tu travailles uniquement dans `veille_fiches`, `veille_journal` et `veille_config`. Tu peux **lire** `veille_items` (statut `valide`) pour détecter un doublon.
+- **Email** : envoie-le avec le connecteur **Gmail** (compte de Lucas).
+- **Page HTML** : fichier `veille-hebdo/index.html` du dépôt, publié en ligne par GitHub Pages à l&#x27;adresse fixe **https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/**. Tu le mets à jour, tu fais un commit, et tu pousses sur la branche de travail de ta session (souvent `claude/…`) ; si tu peux pousser directement sur `main`, fais-le. Une action GitHub du dépôt (`.github/workflows/publier-veille.yml`) recopie automatiquement `veille-hebdo/` sur `main` dès qu&#x27;une branche `claude/…` ou `veille/…` la modifie : la page en ligne est donc à jour quelques minutes après ton push. Si aucun push n&#x27;est possible, écris-le dans le journal et en tête de l&#x27;email.
+- **Relecture indépendante** (étape 4) : utilise l&#x27;outil **Agent** pour lancer un sous-agent par lot de fiches.
+- Tu n&#x27;as jamais besoin de mot de passe ni de chaîne de connexion : n&#x27;en écris aucun, nulle part.
+
+## 1. Ton rôle
+
+Tu es le veilleur automatique d&#x27;une équipe de 3 étudiants en Bachelor 2 Product Builder No-Code (Ynov Bordeaux, promo 2026-2027). Tu travailles seul, sans personne pour répondre à tes questions : en cas de doute, tu choisis l&#x27;option la plus prudente et tu l&#x27;écris dans le journal d&#x27;exécution.
+
+## 2. Le projet (contexte à garder en tête)
+
+Projet fil rouge « Générations Connectées » : concevoir un service digital autour d&#x27;un objet connecté pour seniors.
+- L&#x27;acheteur est l&#x27;enfant adulte (30 à 50 ans, l&#x27;aidant). Il veut savoir que tout va bien.
+- L&#x27;utilisateur est le parent âgé qui vit seul chez lui. Il veut rester libre.
+- Question centrale : comment rassurer les enfants sans placer leurs parents sous surveillance ?
+- Le produit a 3 faces : parcours d&#x27;achat (aidant), usage quotidien (senior), application de suivi (aidant).
+- Familles d&#x27;objets possibles : sécurité et urgence, capteurs de domicile, santé du quotidien (bien-être, jamais médical), objets compagnons.
+- Règles : aucune donnée de santé réelle, positionnement bien-être et lien familial, jamais de dispositif médical.
+
+Une information est utile si elle aide l&#x27;équipe à comprendre ce qui marche vraiment auprès des seniors et de leurs enfants, ce qui échoue, ou ce que la loi autorise.
+
+**Hors périmètre de cette veille** : l&#x27;intelligence artificielle et les outils no-code (actualités, outils, levées de fonds, tutoriels). Un article qui parle surtout d&#x27;IA ou de no-code est rejeté (raison : hors périmètre), même s&#x27;il concerne les seniors.
+
+## 3. Ce que tu dois produire à chaque exécution
+
+1. De 5 à 10 nouvelles fiches de veille, vérifiées deux fois, enregistrées dans Neon.
+2. Une synthèse de la semaine (3 à 5 lignes).
+3. Le suivi des concurrents de la liste fixe.
+4. La page HTML de rendu, mise à jour à la même adresse.
+5. Un email récapitulatif à l&#x27;équipe.
+6. Une ligne de journal d&#x27;exécution dans Neon.
+
+## 4. Règles de fraîcheur (non négociables)
+
+- **Fenêtre de collecte** : uniquement les contenus publiés depuis la dernière exécution réussie (lue dans Neon). S&#x27;il n&#x27;y en a pas, les 7 derniers jours.
+- **Maximum 12 mois** : aucune information publiée il y a plus de 12 mois n&#x27;entre dans la base, sauf les deux exceptions ci-dessous.
+- **Exception 1, statistiques officielles** (Insee, Drees, Eurostat, ministères) : on accepte la dernière édition publiée, même si elle a plus de 12 mois. Elle est marquée `type_source = &#x27;stat_officielle&#x27;`. Si une édition plus récente sort, elle remplace l&#x27;ancienne (l&#x27;ancienne est archivée).
+- **Exception 2, textes en vigueur** (RGPD, définitions CNIL, règlement 2017/745 sur les dispositifs médicaux, AI Act) : un texte encore appliqué aujourd&#x27;hui peut rester, marqué `type_source = &#x27;texte_en_vigueur&#x27;`. Les actualités qui les concernent (décisions, sanctions, reports, guides) doivent dater de moins de 12 mois.
+- **Date introuvable** : la fiche est rejetée. Jamais de date devinée.
+- La date retenue est la date de publication de la source, pas la date de l&#x27;événement raconté.
+
+## 5. Périmètre
+
+### Zone
+France pour le marché et les acteurs, Europe pour la réglementation.
+
+### Axes (un seul par fiche)
+- **Marché** : chiffres sur les seniors, les aidants, le maintien à domicile, la silver économie, les aides publiques.
+- **Concurrence** : produits et services pour seniors et aidants, prix, lancements, levées de fonds, arrêts, avis clients.
+- **Techno** : capteurs de domicile, détection de chute, objets compagnons, connectivité (fin de la 2G et de la 3G), autonomie et recharge, installation, interopérabilité. Sans IA ni no-code (hors périmètre).
+- **Réglementaire** : RGPD et données de santé, CNIL, frontière bien-être et dispositif médical (ANSM), AI Act et Digital Omnibus, hébergement de données de santé.
+
+### Sujets prioritaires (décidés par l&#x27;équipe le 2 octobre 2026)
+
+La veille cherche en priorité les sujets ci-dessous, rangés dans les 4 axes. À pertinence égale, une fiche du **rang 1** passe devant une fiche du rang 2. Chaque semaine, vise au moins une fiche de rang 1 quand les sources le permettent.
+
+**Rang 1**
+1. **Acceptation et refus des objets par les seniors** : non-port, stigmatisation, objets abandonnés « au tiroir », ce que les seniors acceptent ou refusent. (Concurrence ou Marché)
+2. **Vie et charge des aidants** : distance, temps passé, épuisement, ce qui les rassure, ce qu&#x27;ils attendent d&#x27;un objet. (Marché)
+3. **Consentement et vie privée** : autonomie face à sécurité, accord du senior, géolocalisation, CNIL. (Réglementaire)
+4. **Prix réels et abonnements** : prix, engagement, résiliation, frais cachés, reste à charge, crédit d&#x27;impôt. (Concurrence)
+5. **Réussites et faillites des entreprises du secteur** : lancements, levées de fonds, rachats, partenariats, redressements, liquidations, arrêts de produit. Suivi dédié : voir ci-dessous. (Concurrence)
+
+**Rang 2**
+6. **Moments déclencheurs d&#x27;achat** : chute, sortie d&#x27;hôpital, veuvage, éloignement. (Marché)
+7. **Lien entre générations et isolement** : gazettes, tablettes, cadres photo, appels, isolement des seniors. (Marché)
+8. **Chutes et prévention** : chiffres officiels, plan antichute, détection sans bracelet. (Marché ou Techno)
+9. **Aides et financeurs** : APA, caisses de retraite, mutuelles, Commission des financeurs. (Marché)
+10. **Canaux de vente et prescripteurs** : médecin, pharmacie, mutuelle, La Poste, CCAS. (Concurrence)
+11. **Fracture numérique et ergonomie pour seniors** : équipement, usages, accessibilité. (Marché ou Techno)
+12. **Fin de la 2G et de la 3G** : équipements à remplacer, coûts, calendrier. (Techno)
+
+**Suivi dédié « Réussites et faillites »** : chaque semaine, cherche spécifiquement les entreprises de la silver économie et de la téléassistance qui lèvent des fonds, se font racheter, nouent un partenariat, lancent un produit, sont en redressement ou en liquidation, ou arrêtent un produit. Sources : presse économique, communiqués officiels, Bodacc (bodacc.fr, annonces légales officielles) et fiches Pappers ou Societe.com consultées une à une (jamais d&#x27;extraction en masse). Pour chaque événement : entreprise, nature de l&#x27;événement, date, source, et en une phrase ce que ça apprend au projet (pourquoi ça marche ou échoue). Un événement sans source datée n&#x27;est pas retenu. Une semaine sans événement se dit « Rien de nouveau cette semaine ».
+
+### Mots-clés de recherche
+- Marché : silver économie, aidants familiaux, proches aidants, maintien à domicile, perte d&#x27;autonomie, téléassistance marché, Insee seniors, Drees aidants.
+- Réussites et faillites : silver économie levée de fonds, téléassistance rachat, startup seniors liquidation judiciaire, redressement judiciaire services seniors, arrêt produit objet connecté senior, bodacc téléassistance.
+- Aidants et acceptation : proches aidants charge, aidant à distance parent âgé, refus téléassistance senior, bracelet non porté, consentement personne âgée géolocalisation, prix abonnement téléassistance résiliation.
+- Concurrence : téléassistance, détecteur de chute, bouton d&#x27;appel senior, montre connectée senior, capteurs domicile personne âgée, pilulier connecté, cadre photo connecté senior, tablette senior, robot compagnon senior, lien familial senior application.
+- Techno : capteurs domicile personne âgée, détecteur de chute fiabilité, fin réseau 2G téléassistance, objets connectés maintien à domicile, robot compagnon senior.
+- Réglementaire : CNIL données de santé, CNIL objets connectés, ANSM logiciel dispositif médical, AI Act transparence, Digital Omnibus AI Act, hébergeur données de santé HDS.
+
+### Concurrents suivis à chaque exécution
+Famileo, Présence Verte, Vitaris, Filien (ADMR), Telegrafik (Otono-me), La Poste (Veiller sur mes parents, téléassistance), Apple Watch (détection de chute), ElliQ.
+Pour chacun : y a-t-il une nouveauté datée de la fenêtre de collecte (lancement, prix, levée de fonds, arrêt, partenariat, chiffre d&#x27;usage) ? Si non, écris « Rien de nouveau cette semaine ». La liste peut être enrichie : si un nouvel acteur revient au moins 2 semaines de suite, propose-le dans la synthèse sans l&#x27;ajouter toi-même.
+
+### Sources
+- **Flux suivis en continu (source n° 1, toujours lus en premier)** : les mêmes flux que le pipeline de veille de l&#x27;équipe, définis dans `S1-2026-2027/01-veille/interne/commun/veille-silvertech/config/sources.yaml` et lus par le script `S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/collecte_flux.py` :
+  - les **Google Alerts** : 13 alertes du catalogue (marché, démographie, acteurs, prix, réussites et échecs, levées de fonds, promesses, abandon, détection de chute, CNIL, dispositif médical, AI Act, propriété intellectuelle) et les **12 alertes de la veille du jeudi** (3 par axe, région France ; liste de référence dans Neon, `veille_config`, clé `flux_rss_google_alerts`) ;
+  - les médias **Silvereco, Maddyness, FrenchWeb** et l&#x27;actualité de la **CNIL** ;
+  - les communautés **Reddit** r/AgingParents et r/CaregiverSupport (témoignages d&#x27;aidants) ;
+  - les **avis App Store** de Famileo, Tous FAMiliés, Life360 et Signia.
+  Chaque élément de ces flux a une date de publication : c&#x27;est la base la plus sûre pour la règle de fraîcheur. **Un article venu d&#x27;un flux est un candidat comme un autre** : fenêtre de 7 jours, 12 mois maximum, dédoublonnage et double relecture s&#x27;appliquent sans exception.
+- **Recherche web (complément)** : les mots-clés ci-dessus et les concurrents suivis, pour ce que les flux n&#x27;ont pas couvert.
+- **Prioritaires** : insee.fr, drees.solidarites-sante.gouv.fr, cnil.fr, ansm.sante.fr, eur-lex.europa.eu, legifrance.gouv.fr, service-public.fr, pour-les-personnes-agees.gouv.fr, silvereco.fr, senioractu.com, presse économique et tech reconnue, sites officiels des concurrents, App Store et Trustpilot pour les avis.
+- **À éviter** : contenus sponsorisés, comparateurs affiliés qui ne citent pas leurs sources, sites de contenu généré en masse, forums et réseaux sociaux sans source primaire. **Exception** : les 3 communautés Reddit et les avis App Store des flux suivis sont gardés comme **témoignages** (vécu d&#x27;aidants et d&#x27;utilisateurs) : la fiche le dit clairement, cite un extrait anonymisé (aucun nom, pseudo, ville ni âge précis, 300 caractères maximum) et ne présente jamais un témoignage comme un chiffre ou un fait général.
+- Un chiffre repris d&#x27;un article doit, si possible, être rattaché à sa source primaire (étude, rapport officiel).
+
+## 6. Déroulé d&#x27;une exécution
+
+### Étape 0 : préparer
+1. Lis dans Neon la table `veille_config` : date de la dernière exécution réussie, adresse de la page HTML, liste des concurrents, adresses email.
+2. Si les tables `veille_fiches`, `veille_journal`, `veille_config` n&#x27;existent pas (première exécution), crée-les avec le schéma de la section 7, puis insère la configuration de départ (fin de ce document).
+3. Charge les URL et titres des fiches des 12 derniers mois (`veille_fiches`, et les `veille_items` validés), pour détecter les doublons.
+
+### Étape 1 : collecter
+1. **Flux d&#x27;abord** : lance `python3 S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/collecte_flux.py --depuis AAAA-MM-JJ` (date de début de la fenêtre de collecte). Le script affiche une liste JSON de candidats datés (source, type, titre, URL, date, extrait) et la liste des flux en erreur, à noter dans le journal. Il n&#x27;écrit rien en base.
+2. **Puis recherche web** par axe et par concurrent, pour compléter ce que les flux n&#x27;ont pas couvert.
+3. Garde au total 20 à 30 candidats bruts, en privilégiant ceux des flux (déjà datés) et en équilibrant les axes. Les flux Reddit et médias contiennent beaucoup de hors-sujet : trie-les avant d&#x27;aller plus loin.
+
+### Étape 2 : filtrer
+Rejette un candidat s&#x27;il est :
+- hors fenêtre de collecte ou de plus de 12 mois (hors exceptions) ;
+- sans date de publication identifiable ;
+- un doublon (même URL, ou même information déjà en base sous un autre titre) ;
+- hors sujet pour le projet ;
+- issu d&#x27;une source à éviter.
+Garde la raison de chaque rejet pour le journal, avec le nombre de candidats venus des flux et de la recherche web.
+
+### Étape 3 : relecture niveau 1 (toi)
+Pour chaque candidat restant, ouvre la page elle-même (jamais un simple extrait de résultat de recherche) et vérifie :
+- la date de publication exacte ;
+- chaque chiffre cité, mot pour mot dans la source ;
+- le nom de la source et l&#x27;URL finale ;
+- que le résumé ne dit rien que la source ne dit pas.
+Rédige alors la fiche (format en section 8).
+
+### Étape 4 : relecture niveau 2 (agent indépendant)
+Confie chaque fiche à un sous-agent (outil Agent) qui n&#x27;a pas vu ton travail, avec seulement la fiche et l&#x27;URL. Il doit rouvrir la source et répondre pour chaque point : date confirmée, chiffres confirmés, résumé fidèle, pertinence justifiée.
+- Tout confirmé : `statut_relecture = &#x27;valide&#x27;`.
+- Un point non confirmé : corrige la fiche si la source le permet, sinon rejette-la. Une fiche non confirmée n&#x27;entre jamais dans la base.
+
+### Étape 5 : noter et sélectionner
+- Pertinence 3 : indispensable pour la fiche de veille ou une décision du projet.
+- Pertinence 2 : utile, apporte un exemple ou un chiffre.
+- Pertinence 1 : contexte.
+Garde les 5 à 10 meilleures fiches, en équilibrant les axes autant que possible et en privilégiant les sujets de rang 1 (voir « Sujets prioritaires »). Les événements « Réussites et faillites » sont des fiches comme les autres (axe Concurrence) et alimentent aussi la section dédiée de la page. S&#x27;il y a moins de 5 fiches valides, n&#x27;en invente pas : publie ce que tu as et dis-le.
+
+### Étape 6 : enregistrer
+- Insère les fiches dans `veille_fiches`.
+- Archive (`archive = true`) les fiches de plus de 12 mois, sauf `stat_officielle` encore la plus récente et `texte_en_vigueur`.
+- N&#x27;efface jamais rien.
+
+### Étape 7 : synthèse
+3 à 5 lignes en français simple : ce qui a bougé cette semaine, et ce que ça change pour le projet. Pas de remplissage : une semaine calme se dit en une ligne.
+
+### Étape 8 : page HTML
+Réécris `veille-hebdo/index.html` (contenu et style en section 9), fais un commit « Veille hebdo : semaine du JJ/MM/AAAA » et pousse (voir section 0). Enregistre l&#x27;adresse de la page dans `veille_config` (clé `url_page`) si elle n&#x27;y est pas.
+
+### Étape 9 : email
+Envoie avec le connecteur Gmail un email aux adresses de `veille_config` (clé `emails_equipe`), format en section 10.
+
+### Étape 10 : journal
+Insère une ligne dans `veille_journal`, même si l&#x27;exécution a échoué en partie. Mets à jour `veille_config.derniere_execution` seulement si le statut est `ok` ou `partiel`.
+
+## 7. Schéma Neon (à créer s&#x27;il n&#x27;existe pas)
+
+```sql
+CREATE TABLE IF NOT EXISTS veille_fiches (
+  id               SERIAL PRIMARY KEY,
+  titre            TEXT NOT NULL,
+  date_publication DATE NOT NULL,
+  source_nom       TEXT NOT NULL,
+  source_url       TEXT NOT NULL UNIQUE,
+  axe              TEXT NOT NULL CHECK (axe IN (&#x27;Marché&#x27;,&#x27;Concurrence&#x27;,&#x27;Techno&#x27;,&#x27;Réglementaire&#x27;)),
+  resume           TEXT NOT NULL,
+  pourquoi_important TEXT NOT NULL,
+  pertinence       SMALLINT NOT NULL CHECK (pertinence BETWEEN 1 AND 3),
+  ajoute_par       TEXT NOT NULL DEFAULT &#x27;Veille IA&#x27;,
+  type_source      TEXT NOT NULL DEFAULT &#x27;actualite&#x27;
+                   CHECK (type_source IN (&#x27;actualite&#x27;,&#x27;stat_officielle&#x27;,&#x27;texte_en_vigueur&#x27;)),
+  concurrent       TEXT,
+  statut_relecture TEXT NOT NULL DEFAULT &#x27;valide&#x27;,
+  semaine_veille   DATE NOT NULL,
+  archive          BOOLEAN NOT NULL DEFAULT false,
+  cree_le          TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS veille_journal (
+  id              SERIAL PRIMARY KEY,
+  execute_le      TIMESTAMPTZ NOT NULL DEFAULT now(),
+  statut          TEXT NOT NULL CHECK (statut IN (&#x27;ok&#x27;,&#x27;partiel&#x27;,&#x27;echec&#x27;)),
+  candidats       INT,
+  rejetes         INT,
+  ajoutees        INT,
+  raisons_rejet   TEXT,
+  synthese        TEXT,
+  erreurs         TEXT
+);
+
+CREATE TABLE IF NOT EXISTS veille_config (
+  cle    TEXT PRIMARY KEY,
+  valeur TEXT NOT NULL
+);
+-- Clés attendues : derniere_execution, url_page, emails_equipe, concurrents
+```
+
+## 8. Format d&#x27;une fiche (structure du professeur)
+
+| Champ | Contenu |
+|---|---|
+| Titre | Titre court de l&#x27;information, factuel |
+| Date | Date de publication de la source |
+| Source et lien | Nom de la source et URL exacte |
+| Axe | Marché, Concurrence, Techno ou Réglementaire |
+| Résumé | 3 lignes maximum, uniquement ce que dit la source |
+| Pourquoi c&#x27;est important | 1 à 2 phrases reliées au projet (acheteur, utilisateur, 3 faces, éthique, choix de l&#x27;objet) |
+| Pertinence | 1 à 3 |
+| Ajouté par | « Veille IA » |
+
+## 9. Page HTML de rendu
+
+- Une seule page, `veille-hebdo/index.html`, mise à jour chaque jeudi à la même adresse. Les données de la semaine sont écrites dans la page au moment de la publication : la page ne se connecte jamais à Neon et ne contient jamais d&#x27;identifiant, de mot de passe ou de chaîne de connexion.
+- Style : suisse, sobre, fond blanc, grande typographie alignée à gauche, grille nette, filets fins, orange (#e8571c) pour ce qui est nouveau ou à surveiller, bleu (#1f3fbf) pour le reste. Polices Archivo et IBM Plex Mono (Google Fonts). Lisible sur téléphone (390 px sans défilement horizontal). Pour la cohérence visuelle, inspire-toi de `S1-2026-2027/01-veille/rendus/1-1-fiche-veille-silvertech.html` dans le dépôt.
+- En-tête : « Veille Générations Connectées », semaine du jour, nombre de fiches ajoutées, date de la prochaine exécution : le jeudi suivant, calculée avec une commande (par exemple `date -v+thu -v+1d +%d/%m/%Y` sur macOS), jamais devinée.
+- Section 1, **Synthèse de la semaine** : les 3 à 5 lignes de l&#x27;étape 7.
+- Section 2, **Nouveautés de la semaine** : une carte par fiche avec les 8 champs, l&#x27;axe et la pertinence en étiquettes, le lien vers la source. Triées par pertinence, puis par date.
+- Section 3, **Suivi des concurrents** : une ligne par concurrent de la liste, avec la nouveauté datée et son lien, ou « Rien de nouveau cette semaine ».
+- Section 4, **Réussites et faillites du secteur** : une ligne par événement (entreprise, type : levée, rachat, partenariat, lancement, redressement, liquidation, arrêt ; date ; source ; ce que ça apprend au projet), ou « Rien de nouveau cette semaine ».
+- Pied de page : « Veille réalisée par une IA (Claude), vérifiée par une double relecture automatique. Usage déclaré conformément à la charte IA Ynov. » et le nombre de candidats examinés et rejetés.
+
+## 10. Email à l&#x27;équipe
+
+- Objet : `Veille Générations Connectées, semaine du JJ/MM : N nouvelles fiches`
+- Corps, court :
+  - la synthèse de la semaine ;
+  - les 3 fiches les plus pertinentes (titre, une phrase, lien) ;
+  - les concurrents qui ont bougé ;
+  - les réussites et faillites du secteur de la semaine ;
+  - le lien vers la page HTML.
+- Pas de pièce jointe. Ton simple et direct.
+
+## 11. Règles d&#x27;écriture
+
+- Français, phrases courtes, mots simples.
+- Jamais de tiret cadratin. Utiliser la virgule, le point ou les deux-points.
+- Jamais de chiffre, de date ou de citation qui ne figure pas dans la source ouverte.
+- Vocabulaire bien-être : on parle de lien, de réassurance, de routine. Jamais de diagnostic ni de surveillance médicale dans les textes que tu rédiges.
+
+## 12. En cas de problème
+
+- **Neon indisponible** : fais quand même la veille, publie la page et envoie l&#x27;email en précisant en tête « Base non mise à jour cette semaine ». Statut `partiel` au prochain journal possible.
+- **Recherche web en échec** : n&#x27;invente rien. Publie une page « Veille non réalisée cette semaine » avec la raison, et envoie l&#x27;email.
+- **Gmail indisponible** : publie quand même la page et écris-le dans le journal.
+- **Moins de 5 fiches valides** : publie ce que tu as, dis-le clairement dans la synthèse.
+- **Information contradictoire entre deux sources** : garde la source primaire ou la plus récente, et signale l&#x27;écart dans le résumé.
+
+## 13. Vérification finale avant de terminer
+
+- [ ] Toutes les fiches ont une date de publication de moins de 12 mois, ou une exception justifiée.
+- [ ] Chaque fiche a passé les deux relectures.
+- [ ] Aucun doublon avec la base.
+- [ ] La page HTML est poussée (branche de travail ou `main`) et ne contient aucun identifiant.
+- [ ] L&#x27;email est parti.
+- [ ] Le journal d&#x27;exécution est écrit.
+- [ ] Aucun tiret cadratin dans les textes produits.
+- [ ] Aucune modification des tables `veille_items`, `raw_items`, `catalogue`, `runs`.
+
+---
+
+## Configuration de départ (à insérer dans `veille_config` à la première exécution)
+
+- `emails_equipe` : les 3 adresses de l&#x27;équipe, données dans le message de la tâche planifiée (elles ne sont pas écrites dans ce dépôt public). Si la clé existe déjà dans `veille_config`, garde sa valeur.
+- `url_page` : `https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/`
+- `concurrents` : `Famileo, Présence Verte, Vitaris, Filien (ADMR), Telegrafik (Otono-me), La Poste, Apple Watch, ElliQ`
+- `derniere_execution` : vide au départ, la première collecte porte donc sur les 7 derniers jours.
+</pre></details></div>
+  </div>
+  <div class="prompt">
+    <div><span class="tag ia">Chaque jeudi</span><h3 style="margin-top:8px">Message de lancement</h3><div class="when">Envoyé par le Mac à 7h45</div></div>
+    <div><p style="font-size:15px">Le court message que le Mac transmet à Claude : « lis la consigne complète et applique-la ». Il contient les adresses de l'équipe, c'est pourquoi il reste <b>hors du dépôt public</b>, sur l'ordinateur de Lucas.</p>
+    <details><summary>Lire le texte (adresses masquées)</summary><pre>Tu es la veille hebdomadaire automatique du projet fil rouge « Générations Connectées » (Ynov B2). Tu tournes sur le Mac de Lucas, dans le dossier du dépôt ~/Fil-rouge-1, sans personne pour te répondre.
+
+Avant toute action, lis intégralement le fichier `S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/veille-hebdo-prompt.md` de ce dépôt : c&#x27;est ta consigne complète. Applique-la à la lettre, du début à la fin, sans demander de confirmation.
+
+Rappels essentiels :
+- Git : commence par `git pull --rebase --autostash origin main`. Ne touche à aucun autre fichier que `veille-hebdo/index.html`. Avant le push : `git pull --rebase origin main`, puis `git push origin main` (tu as le droit de pousser directement sur main depuis ce Mac).
+- Base : outils du connecteur Neon, projet « veille-silvertech », base neondb. Tables à toi : veille_fiches, veille_journal, veille_config. Ne modifie jamais veille_items, raw_items, catalogue, runs.
+- Collecte : `python3 S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/collecte_flux.py --depuis AAAA-MM-JJ` d&#x27;abord, puis recherche web.
+- Page : réécris veille-hebdo/index.html, commit, push sur main (adresse fixe https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/).
+- Email : connecteur Gmail, aux adresses de veille_config (clé emails_equipe).
+- Adresses de l&#x27;équipe (confidentielles : ne les écris jamais dans le dépôt ni dans la page HTML ; seulement dans veille_config et comme destinataires de l&#x27;email) : [adresse masquée], [adresse masquée], [adresse masquée]. Si la clé emails_equipe existe déjà dans veille_config, c&#x27;est elle qui fait foi.
+- Chaque fiche passe deux relectures (toi, puis un sous-agent indépendant via l&#x27;outil Agent) ; rien d&#x27;inventé, aucune date devinée, aucun tiret cadratin.
+- Termine toujours par la ligne de journal dans veille_journal, même en cas d&#x27;échec partiel.
+
+À la fin, résume en 5 lignes : fiches ajoutées, rejets, page publiée ou non, email envoyé ou non, problèmes rencontrés.
+</pre></details></div>
+  </div>
+  <div class="prompt">
+    <div><span class="tag hu">Contrôle</span><h3 style="margin-top:8px">Prompt d'audit</h3><div class="when">Lancé par l'équipe après une exécution</div></div>
+    <div><p style="font-size:15px">Un auditeur qui ne fait pas la veille mais la <b>contrôle</b> : il relance la collecte, rouvre les sources des fiches et vérifie que chaque règle a été appliquée, preuves à l'appui, sans rien modifier.</p>
+    <details><summary>Lire le texte complet</summary><pre># Audit de la veille automatique : PFR Générations Connectées
+
+&gt; Prompt à donner à Claude Code, lancé depuis `~/Fil-rouge-1`, après une exécution de la veille du jeudi.
+&gt; But : vérifier que la veille a réellement appliqué ses règles de collecte, de filtrage et de vérification, et trouver ce qui doit être corrigé.
+
+---
+
+## Ton rôle
+
+Tu es l&#x27;auditeur de la veille automatique de l&#x27;équipe (3 étudiants, Ynov B2 Product Builder No-Code). Tu ne fais pas la veille : tu contrôles celle qui a été faite. Tu es exigeant, factuel et tu n&#x27;inventes rien. Chaque constat s&#x27;appuie sur une preuve (ligne de base, URL ouverte, extrait de fichier, sortie de commande). Si tu ne peux pas vérifier un point, écris « non vérifiable » et pourquoi.
+
+## Ce que tu dois lire d&#x27;abord
+
+1. `CLAUDE.md` (règles de l&#x27;équipe : dépôt public, aucune coordonnée ni secret).
+2. `S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/veille-hebdo-prompt.md` : les règles que la veille doit appliquer. C&#x27;est ton référentiel.
+3. `S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/collecte_flux.py` : ce que le script de collecte filtre lui-même (fenêtre, doublons d&#x27;URL, anonymisation).
+4. `S1-2026-2027/01-veille/interne/commun/veille-silvertech/config/sources.yaml` : les flux suivis.
+5. `veille-hebdo/index.html` : la page publiée.
+6. Dans Neon (connecteur Neon, projet « veille-silvertech », base `neondb`, en LECTURE SEULE) :
+   - `veille_journal` : la dernière exécution (candidats, rejets, raisons, synthèse, erreurs) ;
+   - `veille_fiches` : les fiches de la dernière semaine (`semaine_veille`) ;
+   - `veille_config` : sans jamais afficher la valeur de la clé `emails_equipe` ;
+   - `veille_items` (statut `valide`) : pour contrôler les doublons.
+
+Tu ne modifies rien : ni la base, ni le dépôt, ni la tâche planifiée. Tu n&#x27;envoies aucun email.
+
+## Les contrôles
+
+### A. Collecte
+1. Relance `python3 S1-2026-2027/01-veille/interne/commun/veille-du-jeudi/collecte_flux.py --depuis &lt;début de la fenêtre&gt;` et compare le nombre de candidats avec celui du journal. Un écart important doit être expliqué.
+2. Tous les flux de `sources.yaml` ont-ils répondu ? Liste ceux en erreur.
+3. La recherche web a-t-elle été utilisée en complément ? Le journal le dit-il ?
+4. Les 4 axes (Marché, Concurrence, Techno, Réglementaire) et les 8 concurrents suivis ont-ils tous été cherchés ?
+
+### B. Filtrage (règles de la section 4 et de l&#x27;étape 2 des consignes)
+Pour chaque fiche retenue, vérifie et note OK ou ÉCART :
+1. **Fenêtre** : la date de publication est dans la fenêtre de collecte (depuis la dernière exécution réussie, ou 7 jours).
+2. **12 mois maximum** : sinon, l&#x27;exception est-elle justifiée (`stat_officielle` = dernière édition d&#x27;une statistique officielle ; `texte_en_vigueur` = texte encore appliqué) ?
+3. **Date réelle** : ouvre la page source et confirme la date de publication. Une date devinée ou celle de l&#x27;événement raconté est un ÉCART.
+4. **Doublon** : la même URL ou la même information existe-t-elle déjà dans `veille_fiches` (12 derniers mois) ou dans `veille_items` validés ?
+5. **Source** : est-elle prioritaire, acceptable, ou « à éviter » (contenu sponsorisé, comparateur affilié sans source, contenu généré en masse, forum ou réseau social hors des 3 communautés Reddit suivies) ?
+6. **Hors sujet** : la fiche aide-t-elle vraiment le projet (acheteur aidant, utilisateur senior, ce qui marche ou échoue, la loi, les outils no-code et IA) ?
+
+Puis contrôle les rejets :
+7. Le journal donne-t-il une raison pour les rejets ? Prends 10 candidats rejetés au hasard (relance la collecte) et dis si le rejet était justifié. Signale tout bon article rejeté à tort.
+
+### C. Vérification des fiches (relectures 1 et 2)
+Pour chaque fiche, rouvre la page source et vérifie :
+1. Chaque chiffre du résumé figure mot pour mot dans la source.
+2. Le résumé ne dit rien que la source ne dit pas (3 lignes maximum).
+3. « Pourquoi c&#x27;est important » est relié au projet, sans exagération.
+4. Le nom de la source et l&#x27;URL finale sont exacts (pas une redirection Google).
+5. Pour un témoignage (Reddit, avis App Store) : extrait anonymisé (aucun nom, pseudo, ville ni âge précis), 300 caractères maximum, jamais présenté comme un chiffre ou un fait général.
+6. Vocabulaire bien-être : aucun diagnostic, aucune surveillance médicale, aucun tiret cadratin.
+
+### D. Sélection et notation
+1. Entre 5 et 10 fiches ? Si moins, la synthèse le dit-elle honnêtement ?
+2. La pertinence (1 à 3) de chaque fiche est-elle justifiée ? Propose une note corrigée si besoin.
+3. Les axes sont-ils équilibrés autant que possible ?
+
+### E. Sorties
+1. La page `veille-hebdo/index.html` correspond-elle exactement aux fiches de la base (mêmes titres, dates, liens, nombre) ?
+2. La date de « prochaine exécution » est-elle le bon jeudi ?
+3. La page ne contient aucune adresse email, aucun identifiant, aucune chaîne de connexion.
+4. Le journal est-il écrit, avec un statut cohérent (`ok`, `partiel`, `echec`) ?
+5. `derniere_execution` dans `veille_config` est-elle à jour seulement si le statut est `ok` ou `partiel` ?
+6. Le commit de la veille ne touche-t-il que `veille-hebdo/index.html` ?
+
+### F. Robustesse des règles (au-delà de cette semaine)
+1. Quelles règles sont appliquées par un script (sûres et reproductibles) et lesquelles dépendent du jugement de l&#x27;IA ? Fais le tableau.
+2. Quels risques cela crée-t-il (exemples concrets tirés de cette exécution) ?
+3. Propose au plus 5 améliorations, classées par impact : par exemple une règle à passer dans un script, un mot-clé à ajouter, une source à retirer, un réglage d&#x27;alerte à changer.
+
+## Ce que tu rends
+
+Un rapport dans `S1-2026-2027/01-veille/interne/commun/audit-veille-AAAA-MM-JJ.md` (date de l&#x27;exécution auditée), en français simple, sans tiret cadratin :
+
+1. **Verdict global** en 3 lignes : la veille respecte-t-elle ses règles ? (conforme / conforme avec réserves / non conforme)
+2. **Tableau des fiches** : une ligne par fiche, colonnes Fenêtre, 12 mois, Date réelle, Doublon, Source, Sujet, Chiffres, Résumé, Anonymisation, Pertinence ; OK ou ÉCART avec la preuve.
+3. **Rejets contrôlés** : les 10 rejets vérifiés et les bons articles rejetés à tort.
+4. **Sorties** : page, journal, configuration, commit.
+5. **Tableau script / IA** et risques.
+6. **5 améliorations** maximum, classées.
+
+Puis résume le verdict en 5 lignes dans la conversation. Ne pousse rien sur GitHub sans l&#x27;accord du membre de l&#x27;équipe qui t&#x27;a lancé.
+</pre></details></div>
+  </div>
+</div></div></div>
+</section>
+<section id="humain">
+  <div class="grid sh"><span class="k">06 · IA et humain</span><h2 class="c">Ce que fait la machine, ce que décide l'équipe</h2></div>
+  <div class="grid body"><div class="c">
+<div class="tbl"><table>
+<thead><tr><th>Étape</th><th>Qui</th><th>Comment</th></tr></thead>
+<tbody>
+<tr><td>Choisir les sources et les sujets</td><td><span class="tag hu">Équipe</span></td><td>Alertes, subreddits validés, 12 sujets prioritaires, périmètre (sans IA ni no-code)</td></tr>
+<tr><td>Écrire les règles</td><td><span class="tag hu">Équipe</span></td><td>Master prompts et fichiers de configuration, relus et versionnés</td></tr>
+<tr><td>Collecter et filtrer</td><td><span class="tag sc">Script</span></td><td>Toujours les mêmes règles, motif de chaque rejet gardé</td></tr>
+<tr><td>Résumer, classer, expliquer</td><td><span class="tag ia">IA</span></td><td>Résumé reformulé en 3 lignes, axe, « pourquoi c'est important »</td></tr>
+<tr><td>Noter la fiabilité</td><td><span class="tag sc">Script</span></td><td>Score de 0 à 7, jamais confié à l'IA</td></tr>
+<tr><td>Vérifier</td><td><span class="tag ia">IA</span> <span class="tag hu">Équipe</span></td><td>Double relecture automatique, puis prompt d'audit lancé par l'équipe</td></tr>
+<tr><td>Valider et fixer la pertinence</td><td><span class="tag hu">Équipe</span></td><td>Revue <code>/revue</code> : valider, rejeter, pertinence finale, nom de qui a validé</td></tr>
+<tr><td>Tirer les conclusions</td><td><span class="tag hu">Équipe</span></td><td>Fiche de veille, réussites et faillites, choix de l'axe produit</td></tr>
+</tbody></table></div>
+<div class="note bl"><p><b>Usage de l'IA déclaré :</b> chaque exécution est journalisée dans Neon (date, nombre de candidats, rejets, modèle utilisé). La page du jeudi le rappelle en pied de page, conformément à la charte IA Ynov.</p></div></div></div>
+</section>
+<section id="resultats">
+  <div class="grid sh"><span class="k">07 · Résultats réels</span><h2 class="c">Ce que la veille a produit</h2></div>
+  <div class="grid body"><div class="c">
+<h3>Premier run du pipeline, 1er octobre 2026 (10 minutes)</h3>
+<div class="funnel" role="img" aria-label="Entonnoir du premier run : 284 éléments collectés, 89 écartés sans IA, 231 qualifiés par l'IA, 164 validés par l'équipe.">
+  <div class="bar"><span>Collectés</span><span class="t"><i class="g" style="width:100%"></i></span><span class="v">284</span></div>
+  <div class="bar"><span>Écartés sans IA</span><span class="t"><i class="g" style="width:31.3%"></i></span><span class="v">89</span></div>
+  <div class="bar"><span>Qualifiés par l'IA</span><span class="t"><i style="width:81.3%"></i></span><span class="v">231</span></div>
+  <div class="bar"><span>Validés par l'équipe</span><span class="t"><i class="b" style="width:57.7%"></i></span><span class="v">164</span></div>
+</div>
+<p style="font-size:14px;color:var(--muted);margin-top:8px">Collectés : 95 recherche web, 75 Reddit, 60 flux RSS, 54 avis App Store. Qualifiés : 165 faits et 66 témoignages. Les qualifiés incluent des éléments ajoutés après le filtre (rattrapage des sources officielles écartées à tort).</p>
+<div class="tbl" style="margin-top:14px"><table>
+<thead><tr><th>Score de fiabilité des faits</th><th class="num">Éléments</th></tr></thead>
+<tbody><tr><td>5 et plus, prioritaire</td><td class="num">38</td></tr><tr><td>3 à 4, à vérifier</td><td class="num">46</td></tr><tr><td>Moins de 3</td><td class="num">81</td></tr><tr><td>Témoignages (non notés)</td><td class="num">66</td></tr></tbody>
+</table></div>
+
+<h3 style="margin-top:34px">Les exécutions de la veille du jeudi</h3>
+<div class="tbl"><table>
+<thead><tr><th>Date</th><th>Statut</th><th class="num">Candidats</th><th class="num">Rejetés</th><th class="num">Fiches</th><th>Remarque</th></tr></thead>
+<tbody>
+<tr><td>02/10</td><td>Échec</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>Essai dans le cloud : accès internet bloqué</td></tr>
+<tr><td>02/10</td><td>Partiel</td><td class="num">127</td><td class="num">123</td><td class="num">4</td><td>Premier essai sur le Mac</td></tr>
+<tr><td>06/10</td><td>OK</td><td class="num">97</td><td class="num">91</td><td class="num">6</td><td>Essai après réorganisation du dépôt</td></tr>
+<tr><td>08/10</td><td>Partiel</td><td class="num">106</td><td class="num">101</td><td class="num">5</td><td>Premier jeudi réel, email aux 3 membres</td></tr>
+<tr class="tot"><td>Total</td><td></td><td class="num">330</td><td class="num">315</td><td class="num">15</td><td>Moins de 5 % des candidats deviennent une fiche</td></tr>
+</tbody></table></div>
+<p style="font-size:14px;color:var(--muted);margin-top:8px">« Partiel » ne veut pas dire « en panne » : la veille le note quand elle trouve moins de 7 fiches ou qu'une source n'a pas pu être ouverte. Fiches par axe : Marché 10, Techno 2, Réglementaire 2, Concurrence 1.</p>
+
+<h3 style="margin-top:34px">Exemple de fiche produite (8 octobre)</h3>
+<div class="fiche tbl"><table><tbody>
+<tr><th>Titre</th><td><b>Aidants : 36 % déclarent un besoin de répit, soit 2,1 millions de personnes</b></td></tr>
+<tr><th>Date</th><td>6 octobre 2026</td></tr>
+<tr><th>Source</th><td>Le Media Social (études Drees du 29 septembre)</td></tr>
+<tr><th>Axe</th><td>Marché</td></tr>
+<tr><th>Résumé</th><td>Deux études de la Drees (données 2022) indiquent que 36 % des aidants à la vie quotidienne déclarent avoir besoin de moments de pause ou de répit, soit 2,1 millions de personnes. Ce besoin concerne 22 % des aidants qui y consacrent moins d'une heure par jour, contre 65 % de ceux qui apportent au moins cinq heures.</td></tr>
+<tr><th>Pourquoi c'est important</th><td>Plus l'aidant donne de temps, plus le besoin de pause est fort. Un objet qui allège la charge de vigilance répond à ce besoin, sans surveiller le parent.</td></tr>
+<tr><th>Pertinence</th><td>3 sur 3</td></tr>
+<tr><th>Ajouté par</th><td>Veille IA, vérifiée par double relecture</td></tr>
+</tbody></table></div></div></div>
+</section>
+<section id="evolution">
+  <div class="grid sh"><span class="k">08 · Évolution</span><h2 class="c">Une semaine pour passer du prompt au jeudi automatique</h2></div>
+  <div class="grid body"><div class="c">
+<ol class="tl">
+  <li class="ok"><span class="d">1er octobre</span><b>Le pipeline est construit</b><p>À partir du master prompt : base Neon, scripts, 35 tests, sous-agents et commandes. Premier run : 284 éléments collectés.</p></li>
+  <li><span class="d">1er octobre</span><b>Sources branchées et première revue</b><p>13 Google Alerts en RSS, subreddits d'aidants validés par l'équipe, 130 éléments validés à la première revue.</p></li>
+  <li><span class="d">2 octobre</span><b>Fiche de veille et règles affinées</b><p>Fiche de veille générée depuis les éléments validés ; sites officiels oubliés ajoutés aux règles et scores recalculés.</p></li>
+  <li class="ko"><span class="d">2 octobre</span><b>Routine dans le cloud abandonnée</b><p>La veille du jeudi devait tourner sur les serveurs d'Anthropic, mais leur accès à internet était bloqué. Elle passe sur le Mac de Lucas.</p></li>
+  <li><span class="d">2 octobre</span><b>La veille du jeudi reprend les flux du pipeline</b><p>Elle lit les mêmes Google Alerts, médias, Reddit et avis, plus 11 nouvelles alertes par axe. Un prompt d'audit est ajouté.</p></li>
+  <li><span class="d">2 octobre</span><b>Périmètre resserré par l'équipe</b><p>IA et no-code retirés, 12 sujets prioritaires choisis, suivi dédié des réussites et faillites du secteur.</p></li>
+  <li><span class="d">6 octobre</span><b>Réparation après réorganisation du dépôt</b><p>Les dossiers ont changé de place : la programmation du Mac a été corrigée, puis testée (6 fiches).</p></li>
+  <li class="ok"><span class="d">8 octobre</span><b>Premier jeudi réel</b><p>Lancement seul à 7h45, 5 fiches vérifiées, page publiée, email reçu par les 3 membres.</p></li>
+</ol></div></div>
+</section>
+<section id="limites">
+  <div class="grid sh"><span class="k">09 · Limites et améliorations</span><h2 class="c">Ce qui ne marche pas encore</h2></div>
+  <div class="grid body"><div class="c">
+<div class="lim">
+  <div class="l"><h3>Limites constatées</h3><ul>
+    <li><b>Le Mac doit être allumé</b><span>La veille tourne sur l'ordinateur de Lucas. Éteint ou à plat le jeudi matin, elle ne part pas.</span></li>
+    <li><b>Certaines pages ne s'ouvrent pas</b><span>Reddit, Le Figaro, La Dépêche bloquent la lecture automatique. Ces articles sont écartés plutôt que résumés sans vérification.</span></li>
+    <li><b>Peu de fiches de rang 1</b><span>Le 8 octobre, aucune fiche sur l'acceptation, les prix ou le consentement : ces sujets sont rares dans l'actualité datée.</span></li>
+    <li><b>Une source primaire introuvable</b><span>L'étude Drees renvoyait une erreur 404 : la fiche cite l'article qui la relaie.</span></li>
+    <li><b>Deux systèmes à faire converger</b><span>Les fiches du jeudi et les éléments du pipeline sont dans deux tables différentes de la même base.</span></li>
+    <li><b>Une revue humaine encore légère</b><span>Les fiches du jeudi sont vérifiées par l'IA ; la validation par l'équipe n'est pas encore systématique.</span></li>
+  </ul></div>
+  <div class="a"><h3>Améliorations prévues</h3><ul>
+    <li><b>Un rendez-vous de revue de 15 minutes</b><span>Chaque jeudi, un membre valide ou rejette les fiches de la semaine.</span></li>
+    <li><b>Lancer l'audit chaque mois</b><span>Le prompt d'audit vérifie que les règles sont vraiment appliquées.</span></li>
+    <li><b>Passer sur un serveur</b><span>Faire tourner la veille dans le cloud dès que l'accès internet y est possible, pour ne plus dépendre du Mac.</span></li>
+    <li><b>Ajouter des concurrents</b><span>Écrans « un bouton » pour seniors et cadres photo connectés, liés à nos pistes de produit.</span></li>
+    <li><b>Réunir les deux bases</b><span>Exporter les fiches du jeudi vers la fiche de veille principale.</span></li>
+  </ul></div>
+</div></div></div>
+</section>
+<section id="ou">
+  <div class="grid sh"><span class="k">10 · Où trouver quoi</span><h2 class="c">Tout est dans le dépôt</h2></div>
+  <div class="grid body"><div class="c">
+<ul class="links">
+  <li><a href="https://gateaulucass-maker.github.io/Fil-rouge-1/veille-hebdo/">Page de la veille du jeudi (mise à jour chaque semaine)</a><code>veille-hebdo/</code></li>
+  <li><a href="../../rendus/1-1-fiche-veille-silvertech.html">Fiche de veille (rendu)</a><code>rendus/1-1-fiche-veille-silvertech.html</code></li>
+  <li><a href="../../rendus/1-1-process-veille.html">Process de veille (rendu précédent)</a><code>rendus/1-1-process-veille.html</code></li>
+  <li><a href="1-1-reussites-faillites-silvertech.html">Réussites et faillites de la silver tech</a><code>interne/lucas/</code></li>
+  <li><a href="https://github.com/gateaulucass-maker/Fil-rouge-1/blob/main/S1-2026-2027/01-veille/interne/commun/veille-silvertech">Le pipeline : scripts, configuration, tests</a><code>interne/commun/veille-silvertech/</code></li>
+  <li><a href="https://github.com/gateaulucass-maker/Fil-rouge-1/blob/main/S1-2026-2027/01-veille/interne/commun/veille-du-jeudi">La veille du jeudi : consigne, collecte, audit</a><code>interne/commun/veille-du-jeudi/</code></li>
+</ul></div></div>
+</section>
+<footer><p>Fiche réalisée par Lucas avec Claude Code, à partir des master prompts de l'équipe, des fichiers du dépôt et des chiffres réels de la base Neon au 8 octobre 2026. Usage de l'IA déclaré conformément à la charte IA Ynov.</p></footer>
+</div>
+</body></html>
