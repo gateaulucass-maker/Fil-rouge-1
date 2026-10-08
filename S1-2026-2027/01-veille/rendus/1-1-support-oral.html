@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rassurer sans surveiller</title>
+<meta name="description" content="Support d'oral, leçon 1.1 Veille, groupe G1 (Clément, Lucas, Camille), 8 octobre 2026. 10 diapositives, notes d'orateur (touche N).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --cream:#f4eee1;--ink:#111526;--blue:#1d3bc1;--ok:#1b6b3e;--ko:#a3301c;
+  --muted:#6a6c78;--line:#cfc7b4;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#d9d2c2}
+body{font:400 20px/1.35 var(--sans);color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,p{text-wrap:balance}
+
+/* ---------- Diapositive 1280 x 720, grille 12 colonnes ---------- */
+.slide{position:relative;width:1280px;height:720px;overflow:hidden;background:var(--cream);margin:24px auto;padding:0 80px}
+.top{position:absolute;left:80px;right:80px;top:40px;display:flex;justify-content:space-between;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.top b{font-weight:500;color:var(--ink)}
+.foot{position:absolute;left:80px;right:80px;bottom:34px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding-top:12px;border-top:1px solid var(--ink);font:400 11.5px/1.45 var(--mono);color:var(--muted)}
+.foot .n{color:var(--ink);font-weight:500;white-space:nowrap}
+h2{position:absolute;left:80px;top:92px;width:1120px;font:800 76px/.98 var(--sans);letter-spacing:-.035em}
+h2 em{font-style:normal;color:var(--acc,var(--blue))}
+.body{position:absolute;left:80px;right:80px;top:330px;bottom:96px}
+.g{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px}
+.lbl{font:500 12px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.big{font:800 96px/.88 var(--sans);letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.t{font:500 19px/1.32 var(--sans)}
+.s{font:400 16px/1.38 var(--sans);color:var(--muted)}
+.rule{border-top:1px solid var(--ink)}
+.blue{color:var(--blue)}.okc{color:var(--ok)}.koc{color:var(--ko)}
+
+/* 1 · ouverture */
+.cover h1{position:absolute;left:80px;top:110px;font:800 168px/.84 var(--sans);letter-spacing:-.05em}
+.cover h1 span{color:var(--blue)}
+.cover .q{position:absolute;left:80px;top:430px;width:780px;font:500 26px/1.3 var(--sans)}
+.plan{position:absolute;left:80px;right:80px;bottom:104px;display:flex;gap:6px}
+.plan div{border-top:3px solid var(--ink);padding-top:10px;font:500 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.plan div b{display:block;font:800 18px/1.1 var(--sans);letter-spacing:-.01em;text-transform:none;color:var(--ink)}
+.plan div.d{border-top-color:var(--blue)}
+
+/* 2 · échelle de prix */
+.scale{position:relative;height:120px}
+.scale .axis{position:absolute;left:0;right:0;top:70px;border-top:1px solid var(--ink)}
+.scale .tick{position:absolute;top:64px;height:12px;border-left:1px solid var(--ink)}
+.scale .tick span{position:absolute;top:18px;left:-4px;font:400 11.5px var(--mono);color:var(--muted);white-space:nowrap}
+.scale .dot{position:absolute;top:60px;width:20px;height:20px;border-radius:50%;background:var(--blue);margin-left:-10px}
+.scale .bar{position:absolute;top:62px;height:16px;background:var(--ink)}
+.scale .tag{position:absolute;top:0;font:800 30px/1 var(--sans);letter-spacing:-.02em;white-space:nowrap}
+.scale .tag small{display:block;font:400 13px/1.3 var(--mono);letter-spacing:.02em;color:var(--muted);margin-top:6px}
+.fam{margin-top:44px}
+.fam>div{grid-column:span 3;border-top:1px solid var(--line);padding-top:10px}
+.fam p.t{font-size:16px;margin-top:5px}
+
+/* 3 · réussite / échec */
+.case{grid-column:span 6;border-top:6px solid var(--ok);padding-top:16px}
+.case.ko{border-top-color:var(--ko)}
+.case .head{display:flex;justify-content:space-between;align-items:baseline}
+.case .head b{font:800 30px/1 var(--sans);letter-spacing:-.02em}
+.case .big{margin-top:22px;font-size:100px}
+.case .t{margin-top:8px;max-width:480px}
+.case .s{margin-top:14px;max-width:460px}
+
+/* 4 · réglementaire */
+.reg>div{grid-column:span 4;border-top:1px solid var(--ink);padding-top:14px}
+.reg .tok{font:800 54px/1 var(--sans);letter-spacing:-.03em;color:var(--blue);margin-top:8px}
+.reg .t{margin-top:10px;font-size:18px}
+.tl{position:relative;margin-top:44px;height:78px}
+.tl .line{position:absolute;left:0;right:0;top:8px;border-top:1px solid var(--ink)}
+.tl .ev{position:absolute;top:0;width:190px}
+.tl .ev i{display:block;width:16px;height:16px;border:1.5px solid var(--ink);background:var(--cream)}
+.tl .ev.on i{background:var(--ink)}
+.tl .ev b{display:block;font:500 12px/1.2 var(--mono);margin-top:10px}
+.tl .ev span{display:block;font:400 14px/1.3 var(--sans);color:var(--muted);margin-top:3px}
+.tl .now{position:absolute;top:-14px;height:46px;border-left:2px solid var(--blue)}
+.tl .now span{position:absolute;top:-14px;left:6px;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);white-space:nowrap}
+
+/* 5 · matrice */
+.mx{display:grid;grid-template-columns:130px repeat(3,1fr);column-gap:24px}
+.mx .rh{font:500 12px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;padding-top:16px}
+.mx .c{border-top:1px solid var(--ink);padding:14px 0 22px}
+.mx .c .big{font-size:60px}
+.mx .c .t{font-size:17px;margin-top:8px;max-width:300px}
+
+/* 6 · carte de positionnement */
+.map{grid-column:1 / span 6;position:relative;height:300px;border-left:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.map .ax{position:absolute;font:500 11px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.map .pt{position:absolute;display:flex;align-items:center;gap:12px;font:500 16px/1.2 var(--sans)}
+.map .pt i{flex:none;width:16px;height:16px;border-radius:50%;background:var(--ink)}
+.map .pt i.h{background:transparent;border:1.5px solid var(--ink)}
+.map .pt.us{font:800 22px/1.1 var(--sans);color:var(--blue)}
+.map .pt.us i{width:24px;height:24px;border-radius:0;background:var(--blue)}
+.map .pt small{display:block;font:400 12px/1.3 var(--mono);color:var(--muted);margin-top:2px}
+.alert{grid-column:8 / span 5}
+.alert q{display:block;font:800 32px/1.1 var(--sans);letter-spacing:-.02em;quotes:"«\00a0" "\00a0»";margin-top:12px}
+.alert .s{margin-top:14px;font-size:15px}
+.price{margin-top:26px;border-top:1px solid var(--ink);padding-top:12px;display:flex;gap:28px}
+.price b{display:block;font:800 28px/1 var(--sans);letter-spacing:-.02em}
+.price span{font:400 12px var(--mono);color:var(--muted)}
+
+/* 7 · flux */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);column-gap:24px}
+.flow>div{position:relative;border-top:1px solid var(--ink);padding-top:14px}
+.flow>div::after{content:"";position:absolute;right:-17px;top:-6px;width:10px;height:10px;border-top:1px solid var(--ink);border-right:1px solid var(--ink);transform:rotate(45deg)}
+.flow>div:last-child::after{display:none}
+.flow>div.d{border-top:3px solid var(--blue);margin-top:-2px}
+.flow .big{font-size:84px;margin-top:10px}
+.flow .t{font-size:17px;margin-top:8px}
+.flow .s{font-size:14px;margin-top:4px}
+.band{margin-top:34px;display:flex;gap:16px;align-items:baseline;font:500 19px/1.3 var(--sans)}
+
+/* 8 · frise des exécutions */
+.runs{grid-column:1 / span 7;position:relative;height:300px}
+.runs .base{position:absolute;left:0;right:0;bottom:30px;border-top:1px solid var(--ink)}
+.runs .col{position:absolute;bottom:30px;width:44px;margin-left:-22px;background:var(--blue)}
+.runs .col.p{background:var(--ink)}
+.runs .v{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);padding-bottom:6px;font:800 20px/1 var(--sans);text-align:center;white-space:nowrap}
+.runs .v small{display:block;font:400 11px/1.3 var(--mono);color:var(--muted);margin-top:3px}
+.runs .ko{position:absolute;bottom:30px;margin-left:-22px;width:44px;border-top:3px solid var(--ko)}
+.runs .ko span{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ko);white-space:nowrap}
+.runs .d{position:absolute;bottom:0;white-space:nowrap;font:400 11.5px var(--mono);color:var(--muted);transform:translateX(-50%)}
+.runs .leg{position:absolute;right:0;top:0;font:400 11.5px/1.6 var(--mono);color:var(--muted);text-align:right}
+.runs .leg i{display:inline-block;width:10px;height:10px;margin:0 6px -1px 0}
+.steps{grid-column:9 / span 4;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:14px;align-items:baseline;border-top:1px solid var(--line);padding:9px 0;font:500 17px/1.25 var(--sans)}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 12px var(--mono);color:var(--muted)}
+.steps li.you{border-top:3px solid var(--blue);color:var(--blue);font-weight:800}
+.steps li.you::before{color:var(--blue)}
+
+/* 9 · esprit critique */
+.rej{grid-column:1 / span 7;border-top:6px solid var(--ko);padding-top:14px}
+.rej q{display:block;font:800 30px/1.15 var(--sans);letter-spacing:-.02em;quotes:"«\00a0" "\00a0»";margin-top:14px;text-decoration:line-through;text-decoration-color:var(--ko);text-decoration-thickness:3px}
+.rej .t{margin-top:16px;font-size:18px}
+.rej .t b{color:var(--ok)}
+.rej .s{margin-top:12px;font-size:15px}
+.lim{grid-column:9 / span 4;list-style:none;counter-reset:l}
+.lim li{counter-increment:l;display:flex;gap:14px;align-items:baseline;border-top:1px solid var(--ink);padding:12px 0 14px;font:500 18px/1.28 var(--sans)}
+.lim li::before{content:counter(l);font:800 22px/1 var(--sans);color:var(--blue);min-width:16px}
+
+/* 10 · fermeture */
+.close h2{font-size:84px;width:1000px}
+.close .sub{position:absolute;left:80px;top:290px;width:820px;font:500 22px/1.35 var(--sans);color:var(--muted)}
+.who{position:absolute;left:80px;right:80px;top:410px}
+.who>div{grid-column:span 4;border-top:1px solid var(--ink);padding-top:12px}
+.who b{display:block;font:800 30px/1 var(--sans);letter-spacing:-.02em}
+.who .lbl{margin-top:8px;color:var(--blue)}
+.who p.t{font-size:16px;margin-top:10px}
+.close .all{position:absolute;left:80px;bottom:104px;font:400 13px var(--mono);color:var(--muted)}
+
+/* ---------- Notes d'orateur ---------- */
+aside.notes{display:none}
+#notes{display:none;position:fixed;left:0;right:0;bottom:0;max-height:44vh;overflow:auto;background:#fffdf7;color:var(--ink);border-top:3px solid var(--blue);padding:16px 28px 22px;font:400 15px/1.5 var(--sans);z-index:9}
+html.show-notes #notes{display:block}
+#notes .meta{font:500 14px var(--mono);color:var(--blue)}
+#notes h4{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:10px 0 2px}
+#notes ul{margin-left:18px}
+
+/* ---------- Mode présentation ---------- */
+html.js,html.js body{height:100%;overflow:hidden;background:#15182a}
+html.js .deck{position:fixed;left:50%;top:50%;width:1280px;height:720px}
+html.js .slide{display:none;position:absolute;left:0;top:0;margin:0}
+html.js .slide.on{display:block}
+
+/* ---------- Impression : une diapositive par page ---------- */
+@page{size:1280px 720px;margin:0}
+@media print{
+  html,body,html.js,html.js body{background:none!important;height:auto!important;overflow:visible!important}
+  html.js .deck,.deck{position:static!important;transform:none!important;width:auto;height:auto}
+  .slide,html.js .slide{display:block!important;position:relative!important;margin:0!important;break-after:page;page-break-after:always}
+  .slide:last-child{break-after:auto;page-break-after:auto}
+  #notes{display:none!important}
+}
+</style>
+</head>
+<body>
+<main class="deck" id="deck">
+
+<!-- 1 · OUVERTURE -->
+<section class="slide cover">
+  <p class="top"><span><b>Leçon 1.1</b> · Veille · Oral G1</span><span>8 octobre 2026 · 45 min</span></p>
+  <h1>Rassurer<br><span>sans surveiller.</span></h1>
+  <p class="q">Comment un objet connecté peut-il rassurer les enfants sans placer leurs parents sous surveillance&nbsp;?</p>
+  <div class="plan">
+    <div style="flex:10"><b>Marché</b>10 min · Clément</div>
+    <div style="flex:10"><b>Réglementaire</b>10 min · Camille</div>
+    <div style="flex:5"><b>Synthèse</b>5 min</div>
+    <div style="flex:15" class="d"><b>Démonstration live</b>15 min · Lucas</div>
+    <div style="flex:5"><b>Questions</b>5 min</div>
+  </div>
+  <footer class="foot"><p>Source · Fiche de veille finale, groupe G1, 08/10/2026 · question de la phase&nbsp;: ce qui fonctionne réellement auprès des seniors et de leurs enfants</p><p class="n">01 / 10</p></footer>
+  <aside class="notes">
+    <p class="meta">Camille · 1 min</p>
+    <h4>Phrases clés</h4>
+    <ul><li>Notre question&nbsp;: comment rassurer les enfants sans placer leurs parents sous surveillance&nbsp;?</li>
+    <li>Une semaine de veille, du 1er au 8 octobre, avec une veille automatique qui tourne chaque jeudi.</li>
+    <li>Chacun présente ce qu'il a construit&nbsp;: Clément le marché, moi le réglementaire, Lucas la démonstration.</li></ul>
+    <h4>Question piège</h4>
+    <p>«&nbsp;Qui a fait le travail, l'IA ou vous&nbsp;?&nbsp;» → L'IA collecte et résume&nbsp;; les sujets, les règles, la validation et les décisions sont à nous. Chaque source citée a été vérifiée par un humain.</p>
+  </aside>
+</section>
+
+<!-- 2 · MARCHÉ -->
+<section class="slide">
+  <p class="top"><span><b>01</b> · Marché · 10 min</span><span>Clément · 5 min</span></p>
+  <h2>Le lien coûte peu, la sécurité <em>trois à cinq fois plus.</em></h2>
+  <div class="body">
+    <div class="scale">
+      <span class="tag" style="left:20%"><span class="blue">Lien</span><small>Famileo · dès 5,99&nbsp;€/mois</small></span>
+      <span class="tag" style="left:66.7%">Sécurité<small>Téléassistance · 20 à 30&nbsp;€/mois</small></span>
+      <div class="axis"></div>
+      <span class="tick" style="left:0"><span>0&nbsp;€</span></span>
+      <span class="tick" style="left:33.33%"><span>10&nbsp;€</span></span>
+      <span class="tick" style="left:66.67%"><span>20&nbsp;€</span></span>
+      <span class="tick" style="left:calc(100% - 1px)"><span style="left:-64px">30&nbsp;€ / mois</span></span>
+      <div class="bar" style="left:66.67%;right:0"></div>
+      <span class="dot" style="left:19.97%"></span>
+    </div>
+    <div class="g fam">
+      <div><p class="lbl">Sécurité</p><p class="t">Présence Verte, Filien ADMR&nbsp;: 750&nbsp;000 abonnés</p></div>
+      <div><p class="lbl">Wearables</p><p class="t">Apple Watch dès 269&nbsp;€, Life360</p></div>
+      <div><p class="lbl">Capteurs</p><p class="t">Orme, SeniorAdom&nbsp;: vendus aux établissements</p></div>
+      <div><p class="lbl blue">Compagnons</p><p class="t">Famileo, Familink, Komp&nbsp;: payés par la famille</p></div>
+    </div>
+  </div>
+  <footer class="foot"><p>Sources · AFRATA, étude 2024 · SMATIS (prix téléassistance) · Apple France · Bretagne Économique, 12/12/2025 · boutique Familink, 08/10/2026 · Fiche de veille finale, A2</p><p class="n">02 / 10</p></footer>
+  <aside class="notes">
+    <p class="meta">Clément · 5 min (marché, acteurs et modèles économiques)</p>
+    <h4>Phrases clés</h4>
+    <ul><li>Quatre familles d'acteurs&nbsp;: sécurité, wearables, capteurs, objets compagnons. Presque tout se vend par abonnement.</li>
+    <li>Deux prix&nbsp;: le lien dès 5,99&nbsp;€ par mois, la sécurité 20 à 30&nbsp;€. C'est l'enfant qui paie.</li>
+    <li>Le tiers payeur (APA, crédit d'impôt) ne finance que la sécurité&nbsp;: le lien doit être payé par la famille.</li></ul>
+    <h4>Question piège</h4>
+    <p>«&nbsp;900&nbsp;000 abonnés à la téléassistance selon Silver Valley, pourquoi 750&nbsp;000&nbsp;?&nbsp;» → Deux chiffres circulent&nbsp;; nous retenons AFRATA 2024 (10&nbsp;% des 75 ans et plus), en signalant que c'est une association d'opérateurs, donc une source intéressée.</p>
+  </aside>
+</section>
+
+<!-- 3 · RÉUSSITE / ÉCHEC -->
+<section class="slide">
+  <p class="top"><span><b>01</b> · Marché · 10 min</span><span>Clément · 4 min</span></p>
+  <h2>Ce qui réussit ne demande rien au senior.</h2>
+  <div class="body g">
+    <article class="case">
+      <p class="head"><b>Famileo</b><span class="lbl okc">Réussite</span></p>
+      <p class="big okc">260&nbsp;000</p>
+      <p class="t">familles abonnées · ≈&nbsp;14&nbsp;M€ de CA en 2024 · rentable depuis 2020</p>
+      <p class="s">L'enfant paie et poste, le senior reçoit une gazette papier.</p>
+    </article>
+    <article class="case ko">
+      <p class="head"><b>Ardoiz · La Poste</b><span class="lbl koc">Échec</span></p>
+      <p class="big koc">110&nbsp;000</p>
+      <p class="t">seniors équipés, puis arrêt annoncé le 27 mai 2026</p>
+      <p class="s">Une demande de crise qui retombe, un canal qui se réduit.</p>
+    </article>
+  </div>
+  <footer class="foot"><p>Sources · Bretagne Économique, 12/12/2025 (Famileo) · Journal des Entreprises, 22/04/2022 · Clubic, 27/05/2026 (Ardoiz)</p><p class="n">03 / 10</p></footer>
+  <aside class="notes">
+    <p class="meta">Clément · 4 min</p>
+    <h4>Phrases clés</h4>
+    <ul><li>Famileo réussit sans technologie&nbsp;: c'est un modèle. L'enfant paie et alimente, le senior n'a rien à faire. Sa limite&nbsp;: le senior ne répond pas.</li>
+    <li>Ardoiz a équipé 110&nbsp;000 seniors&nbsp;: l'adoption a existé. CA passé de plus de 9&nbsp;M€ (2020) à 5&nbsp;M€ (2025).</li>
+    <li>Notre lecture, c'est une hypothèse&nbsp;: rien ne prouve que la tablette elle-même ait été rejetée.</li></ul>
+    <h4>Question piège</h4>
+    <p>«&nbsp;Et Meta Portal&nbsp;?&nbsp;» → Arrêt annoncé en novembre 2022&nbsp;; hypothèses&nbsp;: défiance envers la marque, aucun canal vers les seniors. En réserve&nbsp;: GreatCall, racheté 800&nbsp;M$ par Best Buy en 2018 (plus de 900&nbsp;000 abonnés payants)&nbsp;: la valeur tient au service humain sous abonnement.</p>
+  </aside>
+</section>
+
+<!-- 4 · RÉGLEMENTAIRE -->
+<section class="slide">
+  <p class="top"><span><b>02</b> · Réglementaire · 10 min</span><span>Camille · 10 min</span></p>
+  <h2>C'est la promesse qui fixe <em>la règle.</em></h2>
+  <div class="body">
+    <div class="g reg">
+      <div><p class="lbl">Santé · RGPD</p><p class="tok">Art.&nbsp;9</p><p class="t">Aucune donnée de santé, ni collectée ni déduite.</p></div>
+      <div><p class="lbl">Dispositif médical</p><p class="tok">Classe IIa</p><p class="t">Aucun mot de santé&nbsp;: l'alerte dit un fait.</p></div>
+      <div><p class="lbl">AI Act</p><p class="tok">Art.&nbsp;50</p><p class="t">Première version sans IA, jamais d'émotions.</p></div>
+    </div>
+    <div class="tl">
+      <div class="line"></div>
+      <div class="ev on" style="left:0"><i></i><b>2 fév. 2025</b><span>Pratiques interdites</span></div>
+      <div class="ev on" style="left:22%"><i></i><b>2 août 2025</b><span>Sanctions</span></div>
+      <div class="ev on" style="left:44%"><i></i><b>2 août 2026</b><span>Transparence</span></div>
+      <div class="now" style="left:61%"><span>Aujourd'hui</span></div>
+      <div class="ev" style="left:66%"><i></i><b>2 déc. 2027</b><span>Haut risque, reporté</span></div>
+      <div class="ev" style="left:calc(100% - 150px);width:150px"><i></i><b>2 août 2028</b><span>IA dans un DM</span></div>
+    </div>
+  </div>
+  <footer class="foot"><p>Sources · EUR-Lex&nbsp;: RGPD 2016/679 · règlement DM 2017/745, règle 11 · AI Act 2024/1689, art. 5, 50, 99, 113 · règlement 2026/1744 («&nbsp;Digital Omnibus&nbsp;») · ANSM, statut du logiciel</p><p class="n">04 / 10</p></footer>
+  <aside class="notes">
+    <p class="meta">Camille · 10 min (3 min par règle, 1 min pour le calendrier)</p>
+    <h4>Phrases clés</h4>
+    <ul><li>RGPD&nbsp;: photos, voix, messages sont des données personnelles&nbsp;; la santé est interdite par principe (art. 9). C'est le senior qui consent, pas l'enfant qui achète.</li>
+    <li>Dispositif médical&nbsp;: c'est la destination déclarée qui compte. «&nbsp;Détecte quand votre mère ne va pas bien&nbsp;» suffit à basculer en classe IIa, sans changer une ligne de code.</li>
+    <li>AI Act&nbsp;: la transparence s'applique depuis le 2 août 2026&nbsp;; le haut risque est reporté à 2027 et 2028 par le règlement 2026/1744.</li></ul>
+    <h4>Question piège</h4>
+    <p>«&nbsp;"Pas de réponse depuis 3 jours", ce n'est pas de la surveillance de santé&nbsp;?&nbsp;» → Non tant que l'alerte décrit un échange daté, sans score ni interprétation. Une donnée banale peut révéler la santé (CJUE C-184/20)&nbsp;: d'où une analyse d'impact, et un parent qui choisit la règle et peut la suspendre.</p>
+  </aside>
+</section>
+
+<!-- 5 · SYNTHÈSE -->
+<section class="slide">
+  <p class="top"><span><b>03</b> · Synthèse · 5 min</span><span>Clément · 3 min</span></p>
+  <h2>Un besoin réel, <em>trois pièges</em> connus.</h2>
+  <div class="body" style="top:290px">
+    <div class="mx">
+      <p class="rh okc">+ Opportunités</p>
+      <div class="c"><p class="big">+700&nbsp;k</p><p class="t">seniors en perte d'autonomie d'ici les années 2050</p></div>
+      <div class="c"><p class="big">260&nbsp;k</p><p class="t">familles paient déjà un lien sans effort</p></div>
+      <div class="c"><p class="big">36&nbsp;%</p><p class="t">des aidants déclarent un besoin de répit</p></div>
+      <p class="rh koc">− Menaces</p>
+      <div class="c"><p class="big koc">41&nbsp;%</p><p class="t">des seniors&nbsp;: le manque d'intérêt, premier frein</p></div>
+      <div class="c"><p class="big koc">1 phrase</p><p class="t">de marketing suffit à devenir dispositif médical</p></div>
+      <div class="c"><p class="big koc">2 écrans</p><p class="t">pour seniors arrêtés&nbsp;: Ardoiz, Meta Portal</p></div>
+    </div>
+  </div>
+  <footer class="foot"><p>Sources · DREES (projections Insee-Drees) · Bretagne Économique, 12/12/2025 · Le Media Social / Drees, 06/10/2026 · Linexio pour Senior Compagnie · ANSM · Clubic, 27/05/2026</p><p class="n">05 / 10</p></footer>
+  <aside class="notes">
+    <p class="meta">Clément · 3 min</p>
+    <h4>Phrases clés</h4>
+    <ul><li>Chaque opportunité et chaque menace repose sur un fait sourcé.</li>
+    <li>Deux mondes&nbsp;: la sécurité rassure l'enfant mais stigmatise le senior&nbsp;; le lien ne demande rien au senior mais ne rassure pas l'enfant.</li>
+    <li>Les trois menaces dessinent le cahier des charges&nbsp;: zéro effort, zéro santé, un modèle qui tient.</li></ul>
+    <h4>Question piège</h4>
+    <p>«&nbsp;41&nbsp;% sur 250 personnes, c'est solide&nbsp;?&nbsp;» → Non, petit échantillon, on l'affiche comme tel. Et 2,8 millions mesure la dépendance, pas les parents encore autonomes. Le chiffre qui manque&nbsp;: l'usage de la tablette et de la visio après 70 ans, priorité de la prochaine veille.</p>
+  </aside>
+</section>
+
+<!-- 6 · POSITIONNEMENT -->
+<section class="slide">
+  <p class="top"><span><b>03</b> · Synthèse · positionnement</span><span>Camille · 2 min</span></p>
+  <h2>Le modèle Famileo, avec un objet <em>qui répond.</em></h2>
+  <div class="body g" style="top:300px">
+    <div class="map">
+      <span class="ax" style="left:-1px;top:-22px">↑ Rassure l'enfant</span>
+      <span class="ax" style="right:0;bottom:-22px">Effort pour le senior →</span>
+      <span class="pt us" style="left:28px;top:22px"><i></i><span>Notre piste<small>sans effort, rassure par le lien</small></span></span>
+      <span class="pt" style="left:330px;top:40px"><i></i><span>Sécurité<small>téléassistance</small></span></span>
+      <span class="pt" style="left:28px;top:226px"><i></i><span>Lien<small>Famileo</small></span></span>
+      <span class="pt" style="left:200px;top:132px"><i class="h"></i><span>Familink, Komp<small>peu mesurés</small></span></span>
+    </div>
+    <div class="alert">
+      <p class="lbl">Une seule alerte, douce</p>
+      <q>Pas de réponse à vos messages depuis&nbsp;3&nbsp;jours.</q>
+      <p class="s">Un fait daté, jamais la santé. Règle choisie par le parent.</p>
+      <div class="price"><div><b>100–200&nbsp;€</b><span>l'objet · à tester</span></div><div><b>8–18&nbsp;€</b><span>par mois, la famille · à tester</span></div></div>
+    </div>
+  </div>
+  <footer class="foot"><p>Sources · Fiche de veille finale, A4-A5 (synthèse de l'équipe, 08/10/2026) · Famileo, grille tarifaire · SMATIS · Familink, 99,90-219,90&nbsp;€ · Komp, centre d'aide</p><p class="n">06 / 10</p></footer>
+  <aside class="notes">
+    <p class="meta">Camille · 2 min</p>
+    <h4>Phrases clés</h4>
+    <ul><li>Une seule piste, qui réunit nos trois idées (la tablette, Le Cadre, La Fenêtre)&nbsp;: un objet posé chez le parent, que les enfants font vivre.</li>
+    <li>Ce qui manque au marché&nbsp;: la réponse du parent. Il répond d'un geste, il appelle en visio d'un geste.</li>
+    <li>La réassurance vient des signes positifs&nbsp;; l'alerte n'est que l'exception. Les prix sont des hypothèses, bornées par la veille.</li></ul>
+    <h4>Question piège</h4>
+    <p>«&nbsp;Komp fait déjà ça.&nbsp;» → Notre différence est un assemblage, pas une technologie&nbsp;: le parent répond d'un geste, l'alerte porte sur un échange qu'il a choisi, tout s'exporte. Documenter l'adoption et le prix de Komp et Familink est notre première tâche en phase 2.</p>
+  </aside>
+</section>
+
+<!-- 7 · DISPOSITIF -->
+<section class="slide">
+  <p class="top"><span><b>04</b> · Démonstration · 15 min</span><span>Lucas · 4 min</span></p>
+  <h2>On collecte large, <em>l'équipe décide.</em></h2>
+  <div class="body" style="top:300px">
+    <div class="flow">
+      <div><p class="lbl">Questions</p><p class="big">12</p><p class="t">sujets prioritaires</p><p class="s">2 questions, 4 axes</p></div>
+      <div><p class="lbl">Sources</p><p class="big">40</p><p class="t">sources suivies</p><p class="s">Alertes, médias, Reddit, App Store</p></div>
+      <div><p class="lbl">Outils</p><p class="big">3</p><p class="t">Python, Claude Code, Neon</p><p class="s">+ 4 master prompts</p></div>
+      <div><p class="lbl">Résultats</p><p class="big">164</p><p class="t">validés sur 284 collectés</p><p class="s">1er octobre</p></div>
+      <div class="d"><p class="lbl blue">Décisions</p><p class="big blue">1</p><p class="t">piste retenue</p><p class="s">IA et no-code hors périmètre</p></div>
+    </div>
+    <p class="band"><span class="lbl">Hors de l'IA</span>Le score de fiabilité, calculé par script. La décision finale, humaine.</p>
+  </div>
+  <footer class="foot"><p>Sources · Fiche «&nbsp;Dispositif de veille&nbsp;», Lucas, 08/10/2026 · base Neon (runs, veille_journal) au 08/10/2026 · master prompt du pipeline, 01/10/2026</p><p class="n">07 / 10</p></footer>
+  <aside class="notes">
+    <p class="meta">Lucas · 4 min</p>
+    <h4>Phrases clés</h4>
+    <ul><li>Le fil&nbsp;: questions, sources, outils, résultats, décisions. 2 questions, 4 axes, 12 sujets prioritaires choisis par l'équipe le 2 octobre.</li>
+    <li>Un script filtre sans IA (89 écartés, motif gardé), Claude résume et classe, un script note la fiabilité sur 7, un second agent rouvre la source, l'équipe valide.</li>
+    <li>Deux machines&nbsp;: le pipeline lancé à la main le 1er octobre, la veille du jeudi automatique à 7h45.</li></ul>
+    <h4>Question piège</h4>
+    <p>«&nbsp;164 validés, mais votre fiche en cite 130&nbsp;?&nbsp;» → Deux instantanés&nbsp;: 130 à la première revue, 164 après la revue de rattrapage des sources officielles écartées à tort. «&nbsp;Pourquoi pas Make ou n8n&nbsp;?&nbsp;» → Aucun service payant, des règles versionnées dans le dépôt, des scripts qui écrivent directement dans Neon.</p>
+  </aside>
+</section>
+
+<!-- 8 · DÉMO LIVE -->
+<section class="slide">
+  <p class="top"><span><b>04</b> · Démonstration · 15 min</span><span>Lucas · 9 min</span></p>
+  <h2>Une semaine, <em>cinq exécutions</em> datées.</h2>
+  <div class="body g" style="top:300px">
+    <div class="runs">
+      <p class="leg"><i style="background:var(--ink)"></i>pipeline, éléments collectés<br><i style="background:var(--blue)"></i>veille du jeudi, candidats</p>
+      <div class="base"></div>
+      <div class="col p" style="left:6%;height:170px"><p class="v">284<small>164 validés</small></p></div>
+      <div class="ko" style="left:22%"><span>Échec</span></div>
+      <div class="col" style="left:33%;height:76px"><p class="v">127<small>4 fiches</small></p></div>
+      <div class="col" style="left:70%;height:58px"><p class="v">97<small>6 fiches</small></p></div>
+      <div class="col" style="left:94%;height:63px"><p class="v">106<small>5 fiches</small></p></div>
+      <span class="d" style="left:6%">1 oct.</span>
+      <span class="d" style="left:27.5%">2 oct.</span>
+      <span class="d" style="left:70%">6 oct.</span>
+      <span class="d" style="left:94%">8 oct.</span>
+    </div>
+    <ol class="steps">
+      <li>Le master prompt</li>
+      <li>Une exécution d'essai</li>
+      <li>La base Neon</li>
+      <li>La page du jeudi, l'e-mail</li>
+      <li class="you">Votre modification, en direct</li>
+    </ol>
+  </div>
+  <footer class="foot"><p>Sources · Journal des exécutions (Neon) au 08/10/2026 · historique du dépôt, 1er, 2, 6 et 8 oct. 2026 · page publique veille-hebdo</p><p class="n">08 / 10</p></footer>
+  <aside class="notes">
+    <p class="meta">Lucas · 9 min (onglets ouverts avant l'oral&nbsp;: master prompt, terminal, Neon, page du jeudi, e-mail)</p>
+    <h4>Phrases clés</h4>
+    <ul><li>Voici la consigne que lit la veille chaque jeudi&nbsp;: rôle, contexte, fraîcheur, règles anti-invention, format. Pas de date, pas de fiche.</li>
+    <li>Sur 330 candidats du jeudi, 15 deviennent une fiche&nbsp;: moins de 5&nbsp;%. «&nbsp;Partiel&nbsp;» veut dire moins de 7 fiches ou une source fermée, pas «&nbsp;en panne&nbsp;».</li>
+    <li>Votre modification (sujet, source, fenêtre, score minimum, champ de fiche) passe par la consigne ou la configuration, et je relance en mode essai.</li></ul>
+    <h4>Question piège</h4>
+    <p>«&nbsp;Et si ça plante devant nous&nbsp;?&nbsp;» → On montre la dernière exécution réelle du 8 octobre&nbsp;: page publiée, journal Neon, e-mail reçu. «&nbsp;Pourquoi un échec le 2&nbsp;?&nbsp;» → L'exécution dans le cloud n'avait pas accès à internet&nbsp;; elle est passée sur le Mac de Lucas le jour même.</p>
+  </aside>
+</section>
+
+<!-- 9 · ESPRIT CRITIQUE -->
+<section class="slide">
+  <p class="top"><span><b>04</b> · Démonstration · limites</span><span>Clément · 2 min</span></p>
+  <h2>Sourcée ne veut pas dire <em>vraie.</em></h2>
+  <div class="body g" style="top:240px">
+    <article class="rej">
+      <p class="lbl koc">Rejetée après vérification</p>
+      <q>Les sanctions de l'AI Act s'activent le 2&nbsp;août&nbsp;2026.</q>
+      <p class="t">Texte officiel&nbsp;: elles s'appliquent depuis le <b>2 août 2025</b> (art. 113). Corrigé.</p>
+      <p class="s">Aussi&nbsp;: 5 chiffres absents de leur page source, retirés par script le 1er octobre.</p>
+    </article>
+    <ol class="lim">
+      <li>Le score note la source, pas la vérité.</li>
+      <li>Un résumé IA peut mal lire une page.</li>
+      <li>Des pages bloquent la lecture automatique.</li>
+    </ol>
+  </div>
+  <footer class="foot"><p>Sources · EUR-Lex, AI Act 2024/1689, art. 99 et 113 · fiche de veille initiale, source n°&nbsp;125 · retour du pipeline, 01/10/2026</p><p class="n">09 / 10</p></footer>
+  <aside class="notes">
+    <p class="meta">Clément · 2 min</p>
+    <h4>Phrases clés</h4>
+    <ul><li>Une source citée, datée et liée peut quand même être fausse&nbsp;: notre première fiche reprenait une date erronée de l'AI Act.</li>
+    <li>Le garde-fou n'est pas l'IA&nbsp;: c'est la relecture sur la source primaire, ici EUR-Lex.</li>
+    <li>Autres limites assumées&nbsp;: la veille tourne sur un Mac personnel, et la validation humaine du jeudi n'est pas encore systématique.</li></ul>
+    <h4>Question piège</h4>
+    <p>«&nbsp;Comment savez-vous que l'IA n'a pas inventé le reste&nbsp;?&nbsp;» → Un script retélécharge chaque page et retire tout chiffre absent&nbsp;; un second agent rouvre la source&nbsp;; l'équipe valide. Exemple aussi&nbsp;: «&nbsp;11 millions d'aidants&nbsp;», chiffre de troisième main, écarté.</p>
+  </aside>
+</section>
+
+<!-- 10 · FERMETURE -->
+<section class="slide close">
+  <p class="top"><span><b>05</b> · Questions · 5 min</span><span>Tous</span></p>
+  <h2>Un objet que les enfants <em>font vivre.</em></h2>
+  <p class="sub">Posé chez le parent, il rassure par le lien, sans effort pour le senior, sans finalité médicale.</p>
+  <div class="who g">
+    <div><b>Lucas</b><p class="lbl">Automatisation</p><p class="t">Pipeline, base Neon, veille du jeudi, master prompts, preuves d'exécution.</p></div>
+    <div><b>Clément</b><p class="lbl">Marché</p><p class="t">Analyse du marché (questions 1 à 5), carte de positionnement, règles d'équipe.</p></div>
+    <div><b>Camille</b><p class="lbl">Réglementaire</p><p class="t">RGPD, dispositif médical, AI Act&nbsp;; piste de positionnement, fiche finale.</p></div>
+  </div>
+  <p class="all">À trois&nbsp;: choix des sujets, relecture des sources, synthèse, oral. IA&nbsp;: Claude via Claude Code, chaque production relue.</p>
+  <footer class="foot"><p>Source · Fiche de veille finale, «&nbsp;Qui a fait quoi&nbsp;» et déclaration d'usage de l'IA, 08/10/2026</p><p class="n">10 / 10</p></footer>
+  <aside class="notes">
+    <p class="meta">Tous · 5 min de questions (chacun répond sur sa partie)</p>
+    <h4>Phrases clés</h4>
+    <ul><li>Camille&nbsp;: notre piste en une phrase, un objet de lien posé chez le parent, que les enfants font vivre.</li>
+    <li>Chacun a porté une partie&nbsp;; sujets, relecture et synthèse ont été faits à trois.</li>
+    <li>Prochaine veille&nbsp;: l'usage de la tablette et de la visio après 70 ans, l'adoption et le prix de Komp et Familink.</li></ul>
+    <h4>Question piège</h4>
+    <p>«&nbsp;Un parent qui reçoit un cadeau peut-il refuser&nbsp;?&nbsp;» → Il consent lui-même, voit ce qui est partagé et peut couper&nbsp;; en pause, l'enfant voit «&nbsp;pause choisie&nbsp;», jamais un silence. «&nbsp;Et si le service ferme&nbsp;?&nbsp;» → Export complet des photos et messages en formats ouverts dès la première version.</p>
+  </aside>
+</section>
+
+</main>
+<div id="notes" aria-live="polite"></div>
+
+<script>
+(function(){
+  var root=document.documentElement; root.classList.add('js');
+  var deck=document.getElementById('deck'), panel=document.getElementById('notes');
+  var slides=[].slice.call(deck.querySelectorAll('.slide')), cur=0;
+  function fit(){
+    var h=window.innerHeight*(root.classList.contains('show-notes')?0.56:1), w=window.innerWidth;
+    var s=Math.min(w/1280,h/720);
+    deck.style.top=(h/2)+'px';
+    deck.style.transform='translate(-50%,-50%) scale('+s+')';
+  }
+  function go(i){
+    if(i<0||i>=slides.length)return;
+    slides[cur].classList.remove('on'); cur=i; slides[cur].classList.add('on');
+    var n=slides[cur].querySelector('aside.notes'); panel.innerHTML=n?n.innerHTML:'';
+    try{history.replaceState(null,'','#'+(cur+1));}catch(e){}
+  }
+  document.addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    var k=e.key;
+    if(k==='ArrowRight'||k==='ArrowDown'||k===' '||k==='PageDown'){e.preventDefault();go(cur+1);}
+    else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'){e.preventDefault();go(cur-1);}
+    else if(k==='Home')go(0); else if(k==='End')go(slides.length-1);
+    else if(k==='n'||k==='N'){root.classList.toggle('show-notes');fit();}
+    else if(/^[0-9]$/.test(k)){go(k==='0'?9:parseInt(k,10)-1);}
+  });
+  deck.addEventListener('click',function(e){
+    var r=deck.getBoundingClientRect();
+    if(e.clientX<r.left+r.width*0.25)go(cur-1); else go(cur+1);
+  });
+  window.addEventListener('resize',fit);
+  window.addEventListener('beforeprint',function(){deck.style.transform='none';});
+  window.addEventListener('afterprint',fit);
+  var q=/[?&]s=(\d+)/.exec(location.search), start=q?+q[1]:parseInt((location.hash||'#1').slice(1),10);
+  if(!(start>=1&&start<=slides.length))start=1;
+  if(/[?&]notes/.test(location.search))root.classList.add('show-notes');
+  slides[0].classList.add('on'); go(start-1); fit();
+})();
+</script>
+</body>
+</html>

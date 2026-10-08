@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-08T13:55",
+  "mise_a_jour": "2026-10-08T14:40",
   "phases": [
     {
       "id": "P0",
@@ -199,6 +199,14 @@
           "date": "2026-10-08",
           "lien": "S1-2026-2027/01-veille/rendus/1-1-fiche-veille-finale.html",
           "note": "Fichier HTML unique au plan du sujet d'examen (parties A, B, C), avec la fiche dispositif de Lucas, les preuves et l'analyse de marché intégrées en vues. Validée par Camille le 8 octobre."
+        },
+        {
+          "titre": "Support de soutenance orale et texte d'oral",
+          "statut": "termine",
+          "qui": "Camille",
+          "date": "2026-10-08",
+          "lien": "S1-2026-2027/01-veille/rendus/1-1-support-oral.html",
+          "note": "10 slides au déroulé du sujet d'examen (oral G1, 15h30). Texte d'oral par personne, format téléphone, dans interne/camille/1-1-fiches-oral.html."
         },
         {
           "titre": "Veille automatique du jeudi (7h45)",
