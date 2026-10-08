@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-08T10:58",
+  "mise_a_jour": "2026-10-08T12:05",
   "phases": [
     {
       "id": "P0",
@@ -510,6 +510,14 @@
           "note": "Page unique Q1 à Q5 + carte, guidée par une question clé (lien et santé entre enfant et parent). Veille du dépôt uniquement, 60 sources. Personas payeur et utilisateur dans la Q1. Grille du panorama des acteurs (slide 14) à faire après validation.",
           "date": "2026-10-02",
           "lien": "S1-2026-2027/01-veille/rendus/2-1-analyse-marche-questions-1-5.html"
+        },
+        {
+          "titre": "Fiche marché rédigée : questions 1 à 5 et positionnement",
+          "statut": "a_valider",
+          "qui": "Clément",
+          "note": "Réponses écrites aux 5 questions, carte et place visée (Le Cadre), un « En bref » par partie, personas à déplier, 49 sources de la veille validée.",
+          "date": "2026-10-08",
+          "lien": "S1-2026-2027/01-veille/rendus/2-1-fiche-marche-redigee.html"
         }
       ]
     },
