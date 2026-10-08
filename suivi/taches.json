@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-08T12:17",
+  "mise_a_jour": "2026-10-08T13:55",
   "phases": [
     {
       "id": "P0",
@@ -191,6 +191,14 @@
           "date": "2026-10-02",
           "lien": "S1-2026-2027/01-veille/rendus/1-1-fiche-veille-silvertech.html",
           "note": "Construite sur 130 éléments ; la base en compte 164 et les scores ont changé. À régénérer et à relire (texte d'analyse)."
+        },
+        {
+          "titre": "Fiche de veille finale (rendu de la leçon 1.1)",
+          "statut": "termine",
+          "qui": "Camille",
+          "date": "2026-10-08",
+          "lien": "S1-2026-2027/01-veille/rendus/1-1-fiche-veille-finale.html",
+          "note": "Fichier HTML unique au plan du sujet d'examen (parties A, B, C), avec la fiche dispositif de Lucas, les preuves et l'analyse de marché intégrées en vues. Validée par Camille le 8 octobre."
         },
         {
           "titre": "Veille automatique du jeudi (7h45)",

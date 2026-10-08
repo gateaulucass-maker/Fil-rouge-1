@@ -22,7 +22,8 @@ Les fichiers d'une leçon portent son numéro en préfixe : `2-1-question-1-acte
 
 #### Leçon 1.1 · Veille
 
-- **[Fiche de veille « Silver tech / marché & règles »](S1-2026-2027/01-veille/rendus/1-1-fiche-veille-silvertech.html)** (HTML) — **le livrable** : thèse, chiffres clés, 5 axes, signaux usagers, positionnement, 5 principes pour le produit, méthode et 130 sources.
+- **[Fiche de veille finale « Marché & réglementation silver tech »](S1-2026-2027/01-veille/rendus/1-1-fiche-veille-finale.html)** (HTML, fichier unique) — **le rendu final de la leçon 1.1**, au plan du sujet d'examen : partie A (méthode, panorama des 4 familles, cadre réglementaire, synthèse, notre piste), partie B (dispositif de veille et master prompts complets, tableau de bord interactif), partie C (preuves d'exécution datées), qui a fait quoi, déclaration d'usage de l'IA, sources. Tout s'ouvre au clic dans le même fichier.
+- [Fiche de veille « Silver tech / marché & règles »](S1-2026-2027/01-veille/rendus/1-1-fiche-veille-silvertech.html) (HTML) — première version, générée depuis la base : thèse, chiffres clés, 5 axes, signaux usagers, positionnement, 5 principes pour le produit, méthode et 130 sources.
 - [Apple Watch / Famileo](S1-2026-2027/01-veille/rendus/1-1-apple-watch-vs-famileo.html) — grille comparative en six critères (promesse, acheteur/utilisateur, modèle éco, adoption, rejet, hypothèse business).
   Enseignement : l'Apple Watch rassure l'enfant mais demande un effort au senior ; Famileo ne demande rien au senior mais ne détecte aucun danger. Notre produit se joue entre les deux.
 - **[Process de veille](S1-2026-2027/01-veille/rendus/1-1-process-veille.html)** (HTML) — comment marche la veille automatique du jeudi : axes, étapes, double relecture, règles de fraîcheur, sources, format des fiches, sorties. En ligne : https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/1-1-process-veille.html
