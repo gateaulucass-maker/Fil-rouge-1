@@ -13,7 +13,7 @@
 html{scroll-behavior:smooth;scroll-padding-top:64px;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--cream);color:var(--ink);font:19px/1.6 var(--sans)}
 nav{position:sticky;top:0;z-index:5;background:var(--cream);border-bottom:3px solid var(--blue);display:flex;gap:6px;padding:10px 16px;padding-top:max(10px,env(safe-area-inset-top))}
-nav a{flex:1;text-align:center;font:500 13px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:12px 4px;border:1px solid var(--ink)}
+nav a{flex:1;min-width:0;text-align:center;font:500 13px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:12px 0;border:1px solid var(--ink)}
 nav a:active,nav a:focus-visible{background:var(--blue);color:#fff;border-color:var(--blue)}
 main{max-width:640px;margin:0 auto;padding:24px 16px 80px}
 .k{font:500 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
@@ -22,7 +22,8 @@ h1{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em;margin:8px
 .ordre{list-style:none;padding:0;margin:16px 0 0;font-size:15px;border-top:1px solid var(--ink)}
 .ordre li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
 .ordre span{font-family:var(--mono);font-size:13px;color:var(--grey);white-space:nowrap}
-.pers{margin-top:48px}
+.flow{margin-top:28px}
+.s .k span:first-child{font-size:14px;color:var(--ink)}
 .pers>h2{font-weight:800;font-size:44px;line-height:1;letter-spacing:-.02em;margin:6px 0 4px}
 .pers>.tot{font:500 13px var(--mono);color:var(--grey);margin:0 0 8px}
 .s{background:var(--paper);border-top:5px solid var(--blue);padding:20px 18px 8px;margin-top:20px}
@@ -35,13 +36,13 @@ h1{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em;margin:8px
 </style>
 </head>
 <body>
-<nav aria-label="Aller à">
-  <a href="#camille">Camille</a><a href="#clement">Clément</a><a href="#lucas">Lucas</a>
+<nav aria-label="Aller à la slide">
+  <a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a><a href="#s7">7</a><a href="#s8">8</a><a href="#s9">9</a><a href="#s10">10</a>
 </nav>
 <main>
   <p class="k">Oral G1 · 8 octobre · 15h30</p>
   <h1>Texte d'oral</h1>
-  <p class="intro">Le texte à dire, slide par slide, dans l'ordre de passage. Tous les chiffres viennent de la fiche de veille finale.</p>
+  <p class="intro">Tout le texte, dans l'ordre de passage, avec les enchaînements. Chaque bloc indique qui parle. Tous les chiffres viennent de la fiche de veille finale.</p>
   <ol class="ordre">
     <li>1 · Ouverture — Camille<span>1 min</span></li>
     <li>2 · Le marché — Clément<span>5 min</span></li>
@@ -56,12 +57,8 @@ h1{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em;margin:8px
   </ol>
 
   <!-- CAMILLE -->
-  <section class="pers" id="camille">
-    <p class="k">Slides 1, 4, 6, 10</p>
-    <h2>Camille</h2>
-    <p class="tot">Environ 13 minutes</p>
-
-    <article class="s"><p class="k"><span>Slide 1</span><span>1 min</span></p>
+  <section class="flow">
+    <article class="s" id="s1"><p class="k"><span>1 · Camille</span><span>1 min</span></p>
       <h3>Rassurer sans surveiller.</h3>
       <p>Bonjour. Notre sujet tient en une question : comment un objet connecté peut-il rassurer les enfants sans placer leurs parents sous surveillance ?</p>
       <p>Pour y répondre, nous avons d'abord regardé le marché. Pendant une semaine, du 1er au 8 octobre, nous avons fait tourner une veille : un premier passage lancé à la main le 1er octobre, puis une veille automatique qui se déclenche chaque jeudi matin.</p>
@@ -70,7 +67,23 @@ h1{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em;margin:8px
       <p class="passe">Clément, je te laisse nous montrer comment le marché s'organise.</p>
     </article>
 
-    <article class="s"><p class="k"><span>Slide 4</span><span>10 min</span></p>
+    <article class="s" id="s2"><p class="k"><span>2 · Clément</span><span>5 min</span></p>
+      <h3>Le lien coûte peu, la sécurité trois à cinq fois plus.</h3>
+      <p>Le marché se divise en quatre familles d'acteurs : la sécurité et l'urgence, avec la téléassistance ; les wearables et la santé du quotidien ; les capteurs de domicile ; et les objets compagnons, comme les cadres photo et les messageries familiales.</p>
+      <p>Presque tout se vend par abonnement. Et deux niveaux de prix apparaissent très nettement. Le lien familial coûte peu : Famileo démarre à 5,99 euros par mois. La sécurité coûte trois à cinq fois plus : une téléassistance, c'est 20 à 30 euros par mois.</p>
+      <p>Dans les deux cas, c'est l'enfant qui paie. Et l'aide publique, comme l'APA ou le crédit d'impôt, ne finance que la sécurité. Le lien, lui, doit être payé par la famille. C'est une contrainte forte pour tout produit relationnel.</p>
+      <p>Pour donner un ordre de grandeur, la téléassistance compte environ 750 000 abonnés en France selon l'AFRATA, en 2024. D'autres sources citent 900 000 : nous avons retenu le chiffre le plus récent, en sachant que l'AFRATA représente les opérateurs.</p>
+    </article>
+
+    <article class="s" id="s3"><p class="k"><span>3 · Clément</span><span>4 min</span></p>
+      <h3>Ce qui réussit ne demande rien au senior.</h3>
+      <p><b>Notre réussite, c'est Famileo.</b> Le principe est simple : les enfants envoient des photos et des messages, et le parent reçoit une gazette papier. Le senior n'a rien à apprendre et rien à faire. L'enfant paie et alimente. Sa limite : le parent ne peut pas répondre.</p>
+      <p><b>Notre échec, c'est Ardoiz.</b> Cette tablette pour seniors a équipé environ 110 000 personnes : l'adoption a donc existé. Mais son chiffre d'affaires est passé de plus de 9 millions d'euros en 2020 à 5 millions en 2025, et la vente s'est arrêtée en juin 2026. Notre lecture est une hypothèse : le problème n'est pas forcément la tablette elle-même, mais le prix et le canal de vente, avec une tablette, un forfait et un service empilés.</p>
+      <p>Un autre échec nous a marqués : Meta Portal, arrêté fin 2022. Là, le frein était la confiance envers la marque, et l'absence de canal vers les seniors.</p>
+      <p class="passe">Camille va vous expliquer dans quel cadre légal ces produits évoluent.</p>
+    </article>
+
+    <article class="s" id="s4"><p class="k"><span>4 · Camille</span><span>10 min</span></p>
       <h3>C'est la promesse qui fixe la règle.</h3>
       <p>Trois règles encadrent un objet comme le nôtre. Et à chaque fois, ce n'est pas la technique qui décide : c'est ce que l'on promet.</p>
       <p><b>Première règle, le RGPD.</b> Les photos, la voix, les messages échangés avec un parent sont des données personnelles. Les données de santé, elles, sont interdites par principe : c'est l'article 9. On ne peut les traiter que dans des cas précis, avec des garanties fortes. Autre point important : c'est le senior qui consent, pas l'enfant qui achète. L'objet est payé par l'un et utilisé par l'autre, mais les données sont celles du parent.</p>
@@ -80,48 +93,7 @@ h1{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em;margin:8px
       <p class="passe">Clément va maintenant résumer ce que tout cela nous apprend.</p>
     </article>
 
-    <article class="s"><p class="k"><span>Slide 6</span><span>2 min</span></p>
-      <h3>Le modèle Famileo, avec un objet qui répond.</h3>
-      <p>De tout ce que nous avons vu, nous retenons une seule piste. Elle réunit nos trois idées de départ : la tablette, Le Cadre et La Fenêtre.</p>
-      <p>C'est un objet posé chez le parent, que les enfants font vivre. Ils y déposent des photos et de petits messages au fil de la journée, comme sur Famileo. Mais il manque au marché une chose : la réponse du parent. Avec notre objet, il répond d'un geste et lance un appel vidéo d'un geste.</p>
-      <p>La réassurance de l'enfant vient d'abord des signes positifs : une photo vue, un message lu, un appel passé, si le parent l'accepte. L'alerte n'est que l'exception, et elle porte sur un échange, jamais sur la santé.</p>
-      <p>Nos prix sont encore des hypothèses, bornées par ce que la veille a observé : un objet entre 100 et 200 euros, puis un abonnement famille partagé par la fratrie.</p>
-      <p class="passe">Lucas va vous montrer comment nous avons obtenu ces informations.</p>
-    </article>
-
-    <article class="s"><p class="k"><span>Slide 10</span><span>5 min</span></p>
-      <h3>Un objet que les enfants font vivre.</h3>
-      <p>Pour conclure : le marché nous a montré que ce qui marche ne demande rien au senior, et que ce qui échoue lui demande d'apprendre, de porter ou de faire confiance à un inconnu.</p>
-      <p>Notre piste en une phrase : un objet de lien posé chez le parent, que les enfants font vivre et auquel le parent peut répondre d'un geste.</p>
-      <p>Chacun de nous a porté une partie, mais les sujets de veille, la relecture des sources et la synthèse ont été faits à trois.</p>
-      <p>Notre prochaine veille portera sur ce qui nous manque encore : l'usage de la tablette et de la visio après 70 ans, et l'adoption et le prix de Komp et de Familink.</p>
-      <p>Merci. Nous sommes prêts pour vos questions.</p>
-    </article>
-  </section>
-
-  <!-- CLÉMENT -->
-  <section class="pers" id="clement">
-    <p class="k">Slides 2, 3, 5, 9</p>
-    <h2>Clément</h2>
-    <p class="tot">Environ 14 minutes</p>
-
-    <article class="s"><p class="k"><span>Slide 2</span><span>5 min</span></p>
-      <h3>Le lien coûte peu, la sécurité trois à cinq fois plus.</h3>
-      <p>Le marché se divise en quatre familles d'acteurs : la sécurité et l'urgence, avec la téléassistance ; les wearables et la santé du quotidien ; les capteurs de domicile ; et les objets compagnons, comme les cadres photo et les messageries familiales.</p>
-      <p>Presque tout se vend par abonnement. Et deux niveaux de prix apparaissent très nettement. Le lien familial coûte peu : Famileo démarre à 5,99 euros par mois. La sécurité coûte trois à cinq fois plus : une téléassistance, c'est 20 à 30 euros par mois.</p>
-      <p>Dans les deux cas, c'est l'enfant qui paie. Et l'aide publique, comme l'APA ou le crédit d'impôt, ne finance que la sécurité. Le lien, lui, doit être payé par la famille. C'est une contrainte forte pour tout produit relationnel.</p>
-      <p>Pour donner un ordre de grandeur, la téléassistance compte environ 750 000 abonnés en France selon l'AFRATA, en 2024. D'autres sources citent 900 000 : nous avons retenu le chiffre le plus récent, en sachant que l'AFRATA représente les opérateurs.</p>
-    </article>
-
-    <article class="s"><p class="k"><span>Slide 3</span><span>4 min</span></p>
-      <h3>Ce qui réussit ne demande rien au senior.</h3>
-      <p><b>Notre réussite, c'est Famileo.</b> Le principe est simple : les enfants envoient des photos et des messages, et le parent reçoit une gazette papier. Le senior n'a rien à apprendre et rien à faire. L'enfant paie et alimente. Sa limite : le parent ne peut pas répondre.</p>
-      <p><b>Notre échec, c'est Ardoiz.</b> Cette tablette pour seniors a équipé environ 110 000 personnes : l'adoption a donc existé. Mais son chiffre d'affaires est passé de plus de 9 millions d'euros en 2020 à 5 millions en 2025, et la vente s'est arrêtée en juin 2026. Notre lecture est une hypothèse : le problème n'est pas forcément la tablette elle-même, mais le prix et le canal de vente, avec une tablette, un forfait et un service empilés.</p>
-      <p>Un autre échec nous a marqués : Meta Portal, arrêté fin 2022. Là, le frein était la confiance envers la marque, et l'absence de canal vers les seniors.</p>
-      <p class="passe">Camille va vous expliquer dans quel cadre légal ces produits évoluent.</p>
-    </article>
-
-    <article class="s"><p class="k"><span>Slide 5</span><span>3 min</span></p>
+    <article class="s" id="s5"><p class="k"><span>5 · Clément</span><span>3 min</span></p>
       <h3>Un besoin réel, trois pièges connus.</h3>
       <p>Chaque opportunité et chaque menace que nous présentons repose sur un fait sourcé de la veille.</p>
       <p>Le constat de fond, c'est que le marché est coupé en deux mondes. La sécurité rassure l'enfant, mais elle stigmatise le senior. Le lien ne demande rien au senior, mais il ne rassure pas vraiment l'enfant. Entre les deux, il y a de la place.</p>
@@ -130,23 +102,16 @@ h1{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em;margin:8px
       <p class="passe">Camille va vous présenter la piste que nous en tirons.</p>
     </article>
 
-    <article class="s"><p class="k"><span>Slide 9</span><span>2 min</span></p>
-      <h3>Sourcée ne veut pas dire vraie.</h3>
-      <p>Une leçon importante de cette veille : une information citée, datée et accompagnée d'un lien peut quand même être fausse.</p>
-      <p>Notre première fiche reprenait une source qui datait les sanctions de l'AI Act au 2 août 2026. En relisant le texte officiel sur EUR-Lex, nous avons vu que c'était le 2 août 2025. Nous avons corrigé. Autre exemple : le chiffre de « 11 millions d'aidants » circulait partout, mais de troisième main, sans source primaire. Nous l'avons écarté.</p>
-      <p>Le garde-fou, ce n'est pas l'IA : c'est la relecture sur la source primaire. Notre dispositif retélécharge chaque page et retire tout chiffre absent, puis un second agent rouvre la source, et c'est l'équipe qui valide.</p>
-      <p>Nous assumons aussi deux limites : la veille tourne sur un ordinateur personnel, et la validation humaine du jeudi n'est pas encore systématique.</p>
-      <p class="passe">Camille va conclure.</p>
+    <article class="s" id="s6"><p class="k"><span>6 · Camille</span><span>2 min</span></p>
+      <h3>Le modèle Famileo, avec un objet qui répond.</h3>
+      <p>De tout ce que nous avons vu, nous retenons une seule piste. Elle réunit nos trois idées de départ : la tablette, Le Cadre et La Fenêtre.</p>
+      <p>C'est un objet posé chez le parent, que les enfants font vivre. Ils y déposent des photos et de petits messages au fil de la journée, comme sur Famileo. Mais il manque au marché une chose : la réponse du parent. Avec notre objet, il répond d'un geste et lance un appel vidéo d'un geste.</p>
+      <p>La réassurance de l'enfant vient d'abord des signes positifs : une photo vue, un message lu, un appel passé, si le parent l'accepte. L'alerte n'est que l'exception, et elle porte sur un échange, jamais sur la santé.</p>
+      <p>Nos prix sont encore des hypothèses, bornées par ce que la veille a observé : un objet entre 100 et 200 euros, puis un abonnement famille partagé par la fratrie.</p>
+      <p class="passe">Lucas va vous montrer comment nous avons obtenu ces informations.</p>
     </article>
-  </section>
 
-  <!-- LUCAS -->
-  <section class="pers" id="lucas">
-    <p class="k">Slides 7, 8</p>
-    <h2>Lucas</h2>
-    <p class="tot">Environ 13 minutes</p>
-
-    <article class="s"><p class="k"><span>Slide 7</span><span>4 min</span></p>
+    <article class="s" id="s7"><p class="k"><span>7 · Lucas</span><span>4 min</span></p>
       <h3>On collecte large, l'équipe décide.</h3>
       <p>Je vais vous montrer le chemin complet de notre veille : des questions aux sources, des sources aux outils, puis aux résultats et aux décisions.</p>
       <p>Tout part de deux questions de veille, découpées en quatre axes. Le 2 octobre, nous avons choisi ensemble douze sujets prioritaires.</p>
@@ -154,7 +119,7 @@ h1{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em;margin:8px
       <p>Nous avons deux machines : le pipeline complet, lancé à la main le 1er octobre, et la veille automatique du jeudi, qui se déclenche toute seule à 7h45. Tout est stocké dans une base Neon.</p>
     </article>
 
-    <article class="s"><p class="k"><span>Slide 8</span><span>9 min · démo</span></p>
+    <article class="s" id="s8"><p class="k"><span>8 · Lucas</span><span>9 min · démo</span></p>
       <h3>Une semaine, cinq exécutions datées.</h3>
       <p class="demo">Ouvrir avant l'oral : le master prompt, le terminal, la base Neon, la page du jeudi et l'e-mail reçu.</p>
       <p>Voici la consigne que lit la veille chaque jeudi : c'est notre master prompt. Il définit le rôle, le contexte, la règle de fraîcheur, les règles contre l'invention et le format de sortie. Une règle simple : pas de date, pas de fiche.</p>
@@ -162,6 +127,24 @@ h1{font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em;margin:8px
       <p>Voici la dernière exécution réelle, celle de ce matin, le 8 octobre : la page publiée, le journal dans la base, et l'e-mail reçu par l'équipe.</p>
       <p>Si vous voulez une modification, un sujet, une source, une fenêtre de temps, un score minimum ou un champ de fiche, elle passe par la consigne ou la configuration. Je la fais devant vous et je relance en mode essai.</p>
       <p class="passe">Clément va vous montrer les limites de ce dispositif.</p>
+    </article>
+
+    <article class="s" id="s9"><p class="k"><span>9 · Clément</span><span>2 min</span></p>
+      <h3>Sourcée ne veut pas dire vraie.</h3>
+      <p>Une leçon importante de cette veille : une information citée, datée et accompagnée d'un lien peut quand même être fausse.</p>
+      <p>Notre première fiche reprenait une source qui datait les sanctions de l'AI Act au 2 août 2026. En relisant le texte officiel sur EUR-Lex, nous avons vu que c'était le 2 août 2025. Nous avons corrigé. Autre exemple : le chiffre de « 11 millions d'aidants » circulait partout, mais de troisième main, sans source primaire. Nous l'avons écarté.</p>
+      <p>Le garde-fou, ce n'est pas l'IA : c'est la relecture sur la source primaire. Notre dispositif retélécharge chaque page et retire tout chiffre absent, puis un second agent rouvre la source, et c'est l'équipe qui valide.</p>
+      <p>Nous assumons aussi deux limites : la veille tourne sur un ordinateur personnel, et la validation humaine du jeudi n'est pas encore systématique.</p>
+      <p class="passe">Camille va conclure.</p>
+    </article>
+
+    <article class="s" id="s10"><p class="k"><span>10 · Camille</span><span>5 min</span></p>
+      <h3>Un objet que les enfants font vivre.</h3>
+      <p>Pour conclure : le marché nous a montré que ce qui marche ne demande rien au senior, et que ce qui échoue lui demande d'apprendre, de porter ou de faire confiance à un inconnu.</p>
+      <p>Notre piste en une phrase : un objet de lien posé chez le parent, que les enfants font vivre et auquel le parent peut répondre d'un geste.</p>
+      <p>Chacun de nous a porté une partie, mais les sujets de veille, la relecture des sources et la synthèse ont été faits à trois.</p>
+      <p>Notre prochaine veille portera sur ce qui nous manque encore : l'usage de la tablette et de la visio après 70 ans, et l'adoption et le prix de Komp et de Familink.</p>
+      <p>Merci. Nous sommes prêts pour vos questions.</p>
     </article>
   </section>
 </main>

@@ -18,6 +18,12 @@ Les fichiers d'une leçon portent son numéro en préfixe : `2-1-question-1-acte
 
 ## Livrables
 
+### Bloc 02 · Besoins utilisateurs
+
+#### Leçon 2.1 · Ce que disent vraiment les clients
+
+- [20 avis clients sur le bracelet détecteur de chute](S1-2026-2027/02-besoins/interne/camille/2-1-avis-bracelet-chute.html) (HTML, brouillon de Camille) — avis Trustpilot et Amazon.fr notés par critère comportemental, intérêt et émotion, verbatim marquant par carte, et hypothèse à vérifier en entretien.
+
 ### Bloc 01 · Veille
 
 #### Leçon 1.1 · Veille

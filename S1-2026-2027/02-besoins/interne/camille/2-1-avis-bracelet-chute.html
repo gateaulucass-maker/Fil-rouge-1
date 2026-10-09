@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Avis bracelet chute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#f4eee1;--paper:#faf6ec;--ink:#111526;--grey:#5d6172;--blue:#1d3bc1;--blue-l:#dfe3f2;--line:#d3ccba;--ok:#1b6b3e;--ko:#a3301c;--amber:#8a5200;--mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"Archivo",system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.55 var(--sans)}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 24px 96px}
+.k{font:500 12px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+h1{font-weight:800;font-size:clamp(40px,7vw,76px);line-height:.95;letter-spacing:-.025em;margin:12px 0 18px;text-wrap:balance}
+.lead{font-size:20px;max-width:62ch;margin:0 0 28px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0;border-top:2px solid var(--ink);margin:0 0 20px}
+.facts div{padding:14px 16px 14px 0;border-bottom:1px solid var(--line)}
+.facts b{display:block;font-weight:800;font-size:34px;line-height:1}
+.facts span{font:500 12px var(--mono);color:var(--grey);text-transform:uppercase;letter-spacing:.05em}
+.method{background:var(--paper);border-left:4px solid var(--blue);padding:16px 20px;margin:0 0 32px;font-size:15px;max-width:78ch}
+.method p{margin:0 0 8px}.method p:last-child{margin:0}
+.bar{background:var(--cream);border-bottom:2px solid var(--ink);padding:10px 0;margin-bottom:24px;display:flex;flex-direction:column;gap:6px}
+.bar .lab{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin-right:4px}
+.bar button{font:500 13px var(--mono);background:transparent;color:var(--ink);border:1px solid var(--ink);padding:9px 12px;min-height:40px;cursor:pointer}
+.bar button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.bar button:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.bar .count{font:500 13px var(--mono);color:var(--grey)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,480px),1fr));gap:20px;align-items:start}
+.card{background:var(--paper);border-top:5px solid var(--ink);padding:18px 20px 16px}
+.card[data-star="1"],.card[data-star="2"]{border-top-color:var(--ko)}
+.card[data-star="5"]{border-top-color:var(--ok)}
+.ch{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.num{font:800 28px/1 var(--sans);color:var(--blue)}
+.stars{font-size:18px;letter-spacing:2px;white-space:nowrap}
+.stars b{font:500 12px var(--mono);letter-spacing:0;margin-left:6px}
+.stars.ko{color:var(--ko)}.stars.ok{color:var(--ok)}
+.int{display:inline-flex;align-items:center;gap:4px;margin-left:auto;white-space:nowrap}
+.int .lab{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin-right:4px}
+.int i{width:10px;height:10px;border:1.5px solid var(--blue);border-radius:50%;display:inline-block}
+.int i.on{background:var(--blue)}
+.int b{font:500 12px var(--mono);margin-left:6px;color:var(--blue)}
+.crit{font:500 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin:14px 0 6px}
+.vb{margin:0 0 14px;font-weight:800;font-size:20px;line-height:1.3;letter-spacing:-.005em;border-left:4px solid var(--ink);padding-left:12px}
+.card[data-star="1"] .vb,.card[data-star="2"] .vb{border-left-color:var(--ko)}.card[data-star="5"] .vb{border-left-color:var(--ok)}
+.emo{display:inline-block;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:2px;color:#fff;margin-right:4px}
+.emo-colere{background:#a3301c}.emo-frustration{background:#8a5200}.emo-soulagement{background:#1b6b3e}.emo-confiance{background:#1d3bc1}
+.full p{margin:0 0 8px;font-size:15px}.full{border-left:3px solid var(--line);padding-left:14px;margin-top:8px}.src{font:500 12px var(--mono)}.src a{color:var(--blue)}
+.bar .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;width:100%}
+.hyp{margin-top:64px;background:var(--ink);color:var(--cream);padding:40px 32px}
+.hyp .k{color:#9fb0ff}.hyp h2{font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-.02em;margin:10px 0 18px;text-wrap:balance}
+.hyp p{max-width:68ch}.hyp h3{font-weight:800;font-size:20px;margin:28px 0 10px}
+.hyp ol,.hyp ul{padding-left:20px;max-width:72ch}.hyp li{margin-bottom:8px}
+.hyp a{color:#9fb0ff}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:8px}
+.three div{border-top:3px solid #9fb0ff;padding-top:10px}.three b{display:block;font-size:18px;margin-bottom:4px}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin:0 0 14px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.meta dt{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--grey)}
+.meta dd{margin:2px 0 0;font-size:15px;font-weight:600}
+.who-senior{color:var(--amber)}.who-aidant{color:var(--blue)}
+.usage{margin:0 0 12px;font-size:16px}
+.usage span{display:block;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--grey);margin-bottom:2px}
+details{border-top:1px dashed var(--line);padding-top:8px}
+summary{cursor:pointer;font:500 13px var(--mono);color:var(--blue);padding:6px 0;list-style:none}
+summary::before{content:"+ "}details[open] summary::before{content:"− "}
+summary::-webkit-details-marker{display:none}
+blockquote{margin:8px 0 4px;padding:4px 0 0 16px;border-left:3px solid var(--ink);font-size:15px;color:#2a2e3f}
+blockquote p{margin:0 0 8px}
+.card[hidden]{display:none}
+footer{margin-top:48px;padding-top:16px;border-top:2px solid var(--ink);font-size:14px;color:var(--grey)}
+footer a{color:var(--blue)}
+@media (max-width:560px){.meta{grid-template-columns:1fr}.int{margin-left:0}}
+@media print{.bar{display:none}body{background:#fff}.card{break-inside:avoid}details>*{display:block}details:not([open])>blockquote{display:block}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="k">Besoins utilisateurs · Séance 1 · Exercice « Ce que disent vraiment les clients »</p>
+  <h1>Bracelet détecteur de chute : 20 avis clients</h1>
+  <p class="lead">Vingt avis, uniquement sur des bracelets d'alerte et de détection de chute, choisis pour ce qu'ils révèlent du comportement : qui porte le bracelet et quand, ce qui se passe au moment de la chute, qui est prévenu, et ce qui fait abandonner l'objet.</p>
+  <div class="facts">
+    <div><b>20</b><span>avis bracelet</span></div>
+    <div><b style="color:var(--ko)">7</b><span>à 1 étoile</span></div>
+    <div><b style="color:var(--ko)">5</b><span>à 2 étoiles</span></div>
+    <div><b style="color:var(--ok)">8</b><span>à 5 étoiles</span></div>
+    <div><b>6</b><span>Trustpilot</span></div>
+    <div><b>14</b><span>Amazon.fr</span></div>
+  </div>
+  <div class="method">
+    <p><b>Sources.</b> Trustpilot, page SeniorAdom (téléassistance avec bracelet d'alerte et détecteur de chute) et Amazon.fr, pages de six bracelets d'alerte pour personnes âgées. Avis en français, lus le 9 octobre 2026, recopiés mot pour mot et coupés à 300 caractères (règle du dépôt public) ; noms des auteurs retirés.</p>
+    <p><b>Deux notes.</b> Les <b>étoiles</b> sont celles du client. L'<b>intérêt</b> (1 à 5) est notre note : ce que l'avis apprend sur le comportement face au bracelet (5 = comportement inattendu, utile pour l'entretien ; 3 = confirme un problème connu).</p>
+    <p><b>Critère comportemental.</b> Chaque avis est rangé dans un critère : port au quotidien, réaction à la chute, déclenchement et fausses alertes, qui est prévenu et comment, mise en route, coût et abonnement.</p>
+  </div>
+  <div class="bar" role="group" aria-label="Filtrer les avis">
+    <div class="row"><span class="lab">Critère</span><button type="button" data-f="crit" data-v="all" aria-pressed="true">Tous</button><button type="button" data-f="crit" data-v="reaction-la-chute" aria-pressed="false">Réaction à la chute (4)</button><button type="button" data-f="crit" data-v="port-au-quotidien" aria-pressed="false">Port au quotidien (5)</button><button type="button" data-f="crit" data-v="qui-est-prevenu-et-comment" aria-pressed="false">Qui est prévenu et comment (4)</button><button type="button" data-f="crit" data-v="declenchement-et-fausses-alertes" aria-pressed="false">Déclenchement et fausses alertes (3)</button><button type="button" data-f="crit" data-v="mise-en-route" aria-pressed="false">Mise en route (3)</button><button type="button" data-f="crit" data-v="co-t-et-abonnement" aria-pressed="false">Coût et abonnement (1)</button></div>
+    <div class="row"><span class="lab">Intérêt</span><button type="button" data-f="int" data-v="all" aria-pressed="true">Tous</button><button type="button" data-f="int" data-v="5" aria-pressed="false">5 seulement</button><button type="button" data-f="int" data-v="4+" aria-pressed="false">4 et plus</button><button type="button" data-f="int" data-v="3" aria-pressed="false">3</button></div>
+    <div class="row"><span class="lab">Émotion</span><button type="button" data-f="emo" data-v="all" aria-pressed="true">Toutes</button><button type="button" data-f="emo" data-v="colere" aria-pressed="false">Colère (6)</button><button type="button" data-f="emo" data-v="frustration" aria-pressed="false">Frustration (6)</button><button type="button" data-f="emo" data-v="soulagement" aria-pressed="false">Soulagement (5)</button><button type="button" data-f="emo" data-v="confiance" aria-pressed="false">Confiance (3)</button></div>
+    <div class="row"><span class="lab">Étoiles</span><button type="button" data-f="star" data-v="all" aria-pressed="true">Toutes</button><button type="button" data-f="star" data-v="1" aria-pressed="false">1 ★</button><button type="button" data-f="star" data-v="2" aria-pressed="false">2 ★</button><button type="button" data-f="star" data-v="5" aria-pressed="false">5 ★</button><span class="count" aria-live="polite" style="margin-left:auto"><span id="n">20</span> avis</span></div>
+  </div>
+  <section class="grid" id="cards">
+<article class="card" data-star="1" data-who="aidant" data-crit="reaction-la-chute" data-int="5" data-emo="colere">
+  <header class="ch"><span class="num">01</span><span class="stars ko" aria-label="1 sur 5">★☆☆☆☆<b>1/5</b></span><span class="int" aria-label="Intérêt 5 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><b>5/5</b></span></header>
+  <p class="crit">Réaction à la chute</p>
+  <blockquote class="vb">« Entretemps, ma mère n&#x27;arrêtait pas de tomber. Je n&#x27;ai jamais pu l&#x27;aider au bon moment, faute d&#x27;avoir été prévenue. »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-colere">Colère</span> Colère, culpabilité</dd></div>
+    <div><dt>Problème</dt><dd>Bracelet défectueux remplacé en plus d&#x27;un mois</dd></div>
+    <div><dt>Produit · source</dt><dd>SeniorAdom, bracelet d&#x27;alerte (téléassistance), 11 févr. 2026</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Sans bracelet qui marche, l&#x27;aidante n&#x27;est jamais prévenue : le produit n&#x27;a de valeur que s&#x27;il est porté et fonctionnel au moment de la chute.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « A fuir ! »</summary><div class="full"><p>Plus d&#x27;un mois pour remplacer un bracelet alarme (par un qui ne marchait pas !). Entretemps, ma mère n&#x27;arrêtait pas de tomber. Je n&#x27;ai jamais pu l&#x27;aider au bon moment, faute d&#x27;avoir été prévenue. Elle est morte sans que ce problème d&#x27;alerte chute ne soit résolu… Mais soit, l&#x27;erreur est […]</p><p class="src"><a href="https://fr.trustpilot.com/review/senioradom.com">Trustpilot</a></p></div></details>
+</article>
+<article class="card" data-star="1" data-who="aidant" data-crit="reaction-la-chute" data-int="5" data-emo="colere">
+  <header class="ch"><span class="num">02</span><span class="stars ko" aria-label="1 sur 5">★☆☆☆☆<b>1/5</b></span><span class="int" aria-label="Intérêt 5 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><b>5/5</b></span></header>
+  <p class="crit">Réaction à la chute</p>
+  <blockquote class="vb">« Détecteur de chute qui n&#x27;a pas déclenché d&#x27;appel, ce qui a valu une nuit passée au sol pour le bénéficiaire... »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-colere">Colère</span> Colère, sentiment d&#x27;abus</dd></div>
+    <div><dt>Problème</dt><dd>Détecteur de chute qui n&#x27;appelle pas</dd></div>
+    <div><dt>Produit · source</dt><dd>SeniorAdom, bracelet d&#x27;alerte (téléassistance), 3 mars 2021</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Deux semaines après l&#x27;installation, une nuit au sol : la promesse « détection automatique » est jugée sur un seul incident.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Si j&#x27;avais pu mettre 0 étoile »</summary><div class="full"><p>Si j&#x27;avais pu mettre 0 étoile, je l&#x27;aurais fait.</p><p>Installation faite fin décembre et jusqu&#x27;au 13 janvier seulement (soit 2 semaines), date de l&#x27;hospitalisation du bénéficiaire. Très mauvaise expérience... Détecteur de chute qui n&#x27;a pas déclenché d&#x27;appel, ce qui a valu une nuit passée au […]</p><p class="src"><a href="https://fr.trustpilot.com/review/senioradom.com">Trustpilot</a></p></div></details>
+</article>
+<article class="card" data-star="1" data-who="aidant" data-crit="reaction-la-chute" data-int="5" data-emo="colere">
+  <header class="ch"><span class="num">03</span><span class="stars ko" aria-label="1 sur 5">★☆☆☆☆<b>1/5</b></span><span class="int" aria-label="Intérêt 5 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><b>5/5</b></span></header>
+  <p class="crit">Réaction à la chute</p>
+  <blockquote class="vb">« 2 chute en pleine nuits obliger de se trainer jusqu&#x27;au telephonne pour m appeler »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-colere">Colère</span> Colère, épuisement</dd></div>
+    <div><dt>Problème</dt><dd>Détecteurs qui ne fonctionnent pas</dd></div>
+    <div><dt>Produit · source</dt><dd>SeniorAdom, bracelet d&#x27;alerte (téléassistance), 28 août 2021</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>En cas de chute, la mère de 91 ans se traîne jusqu&#x27;au téléphone pour appeler sa fille : le réflexe reste l&#x27;appel au proche, pas le bracelet.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « a éviter »</summary><div class="full"><p>bonjour</p><p>abonner depuis un nombre d année assez important</p><p>j ai voulu ettofé l offre en posant un détecteur de lit pour ma mère et la tout pars en vrille ,je reçois l appareil qui était sale des cheveux ou des poils matériel en mauvais état prise mal connecter je rappelle en pleine […]</p><p class="src"><a href="https://fr.trustpilot.com/review/senioradom.com">Trustpilot</a></p></div></details>
+</article>
+<article class="card" data-star="1" data-who="aidant" data-crit="port-au-quotidien" data-int="5" data-emo="frustration">
+  <header class="ch"><span class="num">04</span><span class="stars ko" aria-label="1 sur 5">★☆☆☆☆<b>1/5</b></span><span class="int" aria-label="Intérêt 5 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><b>5/5</b></span></header>
+  <p class="crit">Port au quotidien</p>
+  <blockquote class="vb">« Look horrible. Personne n’aimerait avoir ça au poignet… mais ce n’est pas le pire … »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-frustration">Frustration</span> Rejet</dd></div>
+    <div><dt>Problème</dt><dd>Objet laid et trop complexe</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet SOS GPS 4G (Amazon), 1 nov. 2025</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>L&#x27;aidant renvoie le bracelet avant même de le donner : l&#x27;apparence au poignet et la mise en route (appli, SIM) sont rédhibitoires.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Difficile à mettre en œuvre. Inadapté »</summary><div class="full"><p>Look horrible. Personne n’aimerait avoir ça au poignet… mais ce n’est pas le pire … Très difficile à mettre en œuvre pour une personne âgée. Pas de notice en français. Obligation de télécharger une appli , d’acheter une carte SIM… bref un cauchemar . Fait par des geeks pour des geeks… […]</p><p class="src"><a href="https://www.amazon.fr/dp/B09H7PQTMW">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="2" data-who="aidant" data-crit="port-au-quotidien" data-int="5" data-emo="frustration">
+  <header class="ch"><span class="num">05</span><span class="stars ko" aria-label="2 sur 5">★★☆☆☆<b>2/5</b></span><span class="int" aria-label="Intérêt 5 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><b>5/5</b></span></header>
+  <p class="crit">Port au quotidien</p>
+  <blockquote class="vb">« Votre maman dort avec son bracelet, elle doit se cogner (elle se cogne toujours à la même heure) »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-frustration">Frustration</span> Exaspération</dd></div>
+    <div><dt>Problème</dt><dd>Alarme qui sonne chaque nuit à minuit</dd></div>
+    <div><dt>Produit · source</dt><dd>SeniorAdom, bracelet d&#x27;alerte (téléassistance), 7 sept. 2021</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>La senior garde le bracelet la nuit ; l&#x27;appareil sonne à heure fixe et le service accuse son geste plutôt que le réglage.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Où est le service technique »</summary><div class="full"><p>J&#x27;ai souscrit un abonnement pour ma maman depuis 1 mois. Approche commerciale très bien. par contre au niveau du service technique déplorable. régulièrement, l&#x27;appareil se met à sonner à minuit, désagréable pour une personne agée seule: Florilège des réponses:</p><p>1. Votre maman dort avec son […]</p><p class="src"><a href="https://fr.trustpilot.com/review/senioradom.com">Trustpilot</a></p></div></details>
+</article>
+<article class="card" data-star="5" data-who="aidant" data-crit="port-au-quotidien" data-int="5" data-emo="soulagement">
+  <header class="ch"><span class="num">06</span><span class="stars ok" aria-label="5 sur 5">★★★★★<b>5/5</b></span><span class="int" aria-label="Intérêt 5 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><b>5/5</b></span></header>
+  <p class="crit">Port au quotidien</p>
+  <blockquote class="vb">« sans contrainte particulière (le port du bracelet/pendentif d&#x27;alarme n&#x27;est pas indispensable) »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-soulagement">Soulagement</span> Satisfaction</dd></div>
+    <div><dt>Problème</dt><dd>Aucun</dd></div>
+    <div><dt>Produit · source</dt><dd>SeniorAdom, bracelet d&#x27;alerte (téléassistance), 7 mai 2019</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Ce que la famille apprécie, c&#x27;est de ne pas dépendre du port du bracelet : porter l&#x27;objet est vécu comme une contrainte.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Recommandation pour SeniorAdom »</summary><div class="full"><p>Client pour ma mère depuis 3 ans chez SeniorAdom, nous apprécions la qualité des relations avec les différents intervenants (assistance technique, administratif) tant au plan de l&#x27;écoute que de l&#x27;efficacité.</p><p>Cette solution correspond parfaitement à ce que nous recherchions : alerte en cas […]</p><p class="src"><a href="https://fr.trustpilot.com/review/senioradom.com">Trustpilot</a></p></div></details>
+</article>
+<article class="card" data-star="5" data-who="aidant" data-crit="port-au-quotidien" data-int="5" data-emo="confiance">
+  <header class="ch"><span class="num">07</span><span class="stars ok" aria-label="5 sur 5">★★★★★<b>5/5</b></span><span class="int" aria-label="Intérêt 5 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><b>5/5</b></span></header>
+  <p class="crit">Port au quotidien</p>
+  <blockquote class="vb">« on branche l’émetteur sur une prise et le bracelet autour du cou de la personne. »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-confiance">Confiance</span> Satisfaction</dd></div>
+    <div><dt>Problème</dt><dd>Aucun</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet alarme sans fil ChunHee (Amazon), 23 août 2026</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Le « bracelet » est porté autour du cou : la famille adapte l&#x27;objet à l&#x27;usage. Et l&#x27;alerte doit réveiller l&#x27;aidant la nuit.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Efficacité »</summary><div class="full"><p>Facile à installer, plusieurs tonalités, comme le téléphone. Efficace! On choisit la tonalité , on branche l’émetteur sur une prise et le bracelet autour du cou de la personne. Perso, la chambre était en bas et l’émetteur dans la chambre du 1 et étage. Ça sonne assez fort ! Ca vous […]</p><p class="src"><a href="https://www.amazon.fr/dp/B08BJXYXH6">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="5" data-who="aidant" data-crit="qui-est-prevenu-et-comment" data-int="5" data-emo="soulagement">
+  <header class="ch"><span class="num">08</span><span class="stars ok" aria-label="5 sur 5">★★★★★<b>5/5</b></span><span class="int" aria-label="Intérêt 5 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><b>5/5</b></span></header>
+  <p class="crit">Qui est prévenu et comment</p>
+  <blockquote class="vb">« le portable se met directement à sonner comme une véritable sirène. 🚨📱 C’est très rassurant, car l’alerte est difficile à manquer »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-soulagement">Soulagement</span> Tranquillité</dd></div>
+    <div><dt>Problème</dt><dd>Aucun</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet alarme Wi-Fi, appli Tuya (Amazon), 17 sept. 2026</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>L&#x27;aidant ne veut pas une notification mais une alerte impossible à manquer sur son propre téléphone : c&#x27;est lui, pas un centre, qui répond.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Bracelet d’alarme très rassurant pour personnes âgées👌 »</summary><div class="full"><p>Très pratique et simple à utiliser au quotidien. Le gros avantage, c’est que lorsque la personne âgée appuie sur le bouton SOS de la montre, on ne reçoit pas simplement une notification sur le téléphone : le portable se met directement à sonner comme une véritable sirène. 🚨📱 C’est très […]</p><p class="src"><a href="https://www.amazon.fr/dp/B0GRVWPVT9">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="1" data-who="aidant" data-crit="qui-est-prevenu-et-comment" data-int="4" data-emo="frustration">
+  <header class="ch"><span class="num">09</span><span class="stars ko" aria-label="1 sur 5">★☆☆☆☆<b>1/5</b></span><span class="int" aria-label="Intérêt 4 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><b>4/5</b></span></header>
+  <p class="crit">Qui est prévenu et comment</p>
+  <blockquote class="vb">« Impossible d’obtenir une sonnerie d’alerte si l’iPhone est en mode “locked screen”. Uniquement une alerte silencieuse dans l’app. »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-frustration">Frustration</span> </dd></div>
+    <div><dt>Problème</dt><dd>Alerte silencieuse sur iPhone verrouillé</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet alarme Wi-Fi, appli Tuya (Amazon), 25 janv. 2026</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Une alerte que l&#x27;aidant ne perçoit pas rend le bouton « inutile » : la chaîne d&#x27;alerte vaut ce que vaut son dernier maillon.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Ne marche pas correctement sur iPhone »</summary><div class="full"><p>Impossible d’obtenir une sonnerie d’alerte si l’iPhone est en mode “locked screen”. Uniquement une alerte silencieuse dans l’app. Nous avons essayé sur 2 iPhones différents, et avec les 2 apps (Smart Life et Tuya). Ce bouton d’alerte est donc inutile/inutilisable. Nous avons vérifié tous […]</p><p class="src"><a href="https://www.amazon.fr/dp/B0GRVWPVT9">Amazon</a> · Belgique</p></div></details>
+</article>
+<article class="card" data-star="1" data-who="aidant" data-crit="declenchement-et-fausses-alertes" data-int="4" data-emo="colere">
+  <header class="ch"><span class="num">10</span><span class="stars ko" aria-label="1 sur 5">★☆☆☆☆<b>1/5</b></span><span class="int" aria-label="Intérêt 4 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><b>4/5</b></span></header>
+  <p class="crit">Déclenchement et fausses alertes</p>
+  <blockquote class="vb">« Elle sonne toute seul de temps en temps régulièrement la nuit le jour … poubelle »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-colere">Colère</span> Rejet</dd></div>
+    <div><dt>Problème</dt><dd>Sonne tout seul, jour et nuit</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet alarme sans fil ChunHee (Amazon), 4 avr. 2026</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Des alarmes sans raison suffisent à faire jeter l&#x27;objet : la confiance se perd vite et ne revient pas.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Défectueux »</summary><div class="full"><p>Elle sonne toute seul de temps en temps régulièrement la nuit le jour … poubelle</p><p class="src"><a href="https://www.amazon.fr/dp/B08BJXYXH6">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="1" data-who="autre" data-crit="mise-en-route" data-int="4" data-emo="colere">
+  <header class="ch"><span class="num">11</span><span class="stars ko" aria-label="1 sur 5">★☆☆☆☆<b>1/5</b></span><span class="int" aria-label="Intérêt 4 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><b>4/5</b></span></header>
+  <p class="crit">Mise en route</p>
+  <blockquote class="vb">« Il m&#x27;a été impossible d&#x27;activer et connecter le bracelet a mon GSM. Mon abonnement data est payé et je ne sais pas l&#x27;utiliser. 😡 »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-autre">Indéterminé</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-colere">Colère</span> Colère, impuissance</dd></div>
+    <div><dt>Problème</dt><dd>Impossible d&#x27;activer le bracelet</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet SOS GPS 4G (Amazon), 15 juin 2026</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>La mise en route (SIM, appli, téléphone) bloque avant le premier usage ; l&#x27;acheteur paie déjà un abonnement inutilisé.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Déception »</summary><div class="full"><p>Il m&#x27;a été impossible d&#x27;activer et connecter le bracelet a mon GSM. Mon abonnement data est payé et je ne sais pas l&#x27;utiliser. 😡</p><p class="src"><a href="https://www.amazon.fr/dp/B09H7PQTMW">Amazon</a> · Belgique</p></div></details>
+</article>
+<article class="card" data-star="2" data-who="aidant" data-crit="declenchement-et-fausses-alertes" data-int="4" data-emo="frustration">
+  <header class="ch"><span class="num">12</span><span class="stars ko" aria-label="2 sur 5">★★☆☆☆<b>2/5</b></span><span class="int" aria-label="Intérêt 4 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><b>4/5</b></span></header>
+  <p class="crit">Déclenchement et fausses alertes</p>
+  <blockquote class="vb">« Captation GPS aléatoire. détection des gestes trop sensible. »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-frustration">Frustration</span> Agacement</dd></div>
+    <div><dt>Problème</dt><dd>Détection des gestes trop sensible</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet alarme GPS, détection de chute (Amazon), 10 oct. 2025</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Les gestes du quotidien déclenchent l&#x27;alerte : un bracelet trop sensible est vécu comme peu fiable.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « captation gps aleatoire »</summary><div class="full"><p>Captation GPS aléatoire. détection des gestes trop sensible.</p><p class="src"><a href="https://www.amazon.fr/dp/B0DNB41C6K">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="2" data-who="aidant" data-crit="port-au-quotidien" data-int="4" data-emo="frustration">
+  <header class="ch"><span class="num">13</span><span class="stars ko" aria-label="2 sur 5">★★☆☆☆<b>2/5</b></span><span class="int" aria-label="Intérêt 4 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><b>4/5</b></span></header>
+  <p class="crit">Port au quotidien</p>
+  <blockquote class="vb">« L&#x27;épaisseur est vraiment trop importante pour un poignet. »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-frustration">Frustration</span> Déception</dd></div>
+    <div><dt>Problème</dt><dd>Bracelet trop épais</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet SOS GPS 4G (Amazon), 12 mars 2025</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Renvoyé avant même d&#x27;être testé : le confort au poignet est jugé à la sortie du carton.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Beaucoup trop épais »</summary><div class="full"><p>L&#x27;épaisseur est vraiment trop importante pour un poignet. Je ne sais pas si ça fonctionne car je l&#x27;ai retourné avant même d&#x27;y installer une cart SIM.</p><p class="src"><a href="https://www.amazon.fr/dp/B09H7PQTMW">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="5" data-who="aidant" data-crit="qui-est-prevenu-et-comment" data-int="4" data-emo="soulagement">
+  <header class="ch"><span class="num">14</span><span class="stars ok" aria-label="5 sur 5">★★★★★<b>5/5</b></span><span class="int" aria-label="Intérêt 4 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><b>4/5</b></span></header>
+  <p class="crit">Qui est prévenu et comment</p>
+  <blockquote class="vb">« Je dors à l&#x27;étage et ma mère en bas, dans un lit médicalisé, c&#x27;est donc exactement ce qu&#x27;il nous fallait pour m&#x27;avertir »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-soulagement">Soulagement</span> </dd></div>
+    <div><dt>Problème</dt><dd>Aucun</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet alarme et récepteur sans fil (Amazon), 5 sept. 2023</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Aidant qui vit sous le même toit : le bracelet sert d&#x27;abord d&#x27;appel la nuit, pas de détecteur de chute.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « PARFAIT ! »</summary><div class="full"><p>Absolument parfait pour ma mère âgée et dépendante qui ne peut plus se déplacer. Je dors à l&#x27;étage et ma mère en bas, dans un lit médicalisé, c&#x27;est donc exactement ce qu&#x27;il nous fallait pour m&#x27;avertir lorsqu&#x27;elle a besoin d&#x27;aide. Fonctionne parfaitement, très pratique, installation très […]</p><p class="src"><a href="https://www.amazon.fr/dp/B0BRN4444Q">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="5" data-who="aidant" data-crit="qui-est-prevenu-et-comment" data-int="4" data-emo="soulagement">
+  <header class="ch"><span class="num">15</span><span class="stars ok" aria-label="5 sur 5">★★★★★<b>5/5</b></span><span class="int" aria-label="Intérêt 4 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><b>4/5</b></span></header>
+  <p class="crit">Qui est prévenu et comment</p>
+  <blockquote class="vb">« je suis tranquilisee, mon papa malade peux m&#x27;appeler en cas de besoin 24/24... »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-soulagement">Soulagement</span> Tranquillité</dd></div>
+    <div><dt>Problème</dt><dd>Aucun</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet alarme sans fil ChunHee (Amazon), 12 févr. 2026</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Le bénéfice décrit est la tranquillité de l&#x27;aidante : le bracelet lui permet d&#x27;être appelée directement, à toute heure.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Sonnette sécurité »</summary><div class="full"><p>Sonnette super pratique, je suis tranquilisee, mon papa malade peux m&#x27;appeler en cas de besoin 24/24...</p><p class="src"><a href="https://www.amazon.fr/dp/B08BJXYXH6">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="5" data-who="aidant" data-crit="declenchement-et-fausses-alertes" data-int="4" data-emo="soulagement">
+  <header class="ch"><span class="num">16</span><span class="stars ok" aria-label="5 sur 5">★★★★★<b>5/5</b></span><span class="int" aria-label="Intérêt 4 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><b>4/5</b></span></header>
+  <p class="crit">Déclenchement et fausses alertes</p>
+  <blockquote class="vb">« Je me sens plus tranquille, le moindre choc déclenche l&#x27;alarme. »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-soulagement">Soulagement</span> Tranquillité</dd></div>
+    <div><dt>Problème</dt><dd>Aucun</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet alarme et récepteur sans fil (Amazon), 9 juin 2025</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Ici la sensibilité rassure ; dans d&#x27;autres avis, elle agace. Le bon seuil de déclenchement est perçu différemment selon l&#x27;aidant.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Rassurant et efficace »</summary><div class="full"><p>Acheté pour ma mère âgée qui habite au dessus de chez moi. La sonnerie est réglable et passe bien d&#x27;un étage à l&#x27;autre. Elle s&#x27;entend dans toutes les pièces de mon appartement sans problème d&#x27;interférence. Je me sens plus tranquille, le moindre choc déclenche l&#x27;alarme.</p><p class="src"><a href="https://www.amazon.fr/dp/B0BRN4444Q">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="2" data-who="aidant" data-crit="mise-en-route" data-int="3" data-emo="frustration">
+  <header class="ch"><span class="num">17</span><span class="stars ko" aria-label="2 sur 5">★★☆☆☆<b>2/5</b></span><span class="int" aria-label="Intérêt 3 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><b>3/5</b></span></header>
+  <p class="crit">Mise en route</p>
+  <blockquote class="vb">« Maisons anciennes les murs sont trop épais . »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-frustration">Frustration</span> Déception</dd></div>
+    <div><dt>Problème</dt><dd>Portée insuffisante (murs épais)</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet Daytech, détecteur de chute (Amazon), 29 oct. 2023</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Usage entre deux maisons voisines : la portée réelle dépend du logement, rarement testée avant l&#x27;achat.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Murs trop épais »</summary><div class="full"><p>l&#x27;appareil fonctionne très bien. Sauf d&#x27;une maison a une autre . Maisons anciennes les murs sont trop épais . l&#x27;appareil fonctionne a l&#x27;extérieur de la maison , mais pas a l&#x27;intérieur de l&#x27;une de maison .</p><p class="src"><a href="https://www.amazon.fr/dp/B0BWF92NB1">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="2" data-who="aidant" data-crit="co-t-et-abonnement" data-int="3" data-emo="colere">
+  <header class="ch"><span class="num">18</span><span class="stars ko" aria-label="2 sur 5">★★☆☆☆<b>2/5</b></span><span class="int" aria-label="Intérêt 3 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><b>3/5</b></span></header>
+  <p class="crit">Coût et abonnement</p>
+  <blockquote class="vb">« l&#x27;application nécessite un abonnement payant pour l&#x27;envoi de SMS ou des appels, chose qui n&#x27;est pas précisé dans la description. »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-colere">Colère</span> Sentiment d&#x27;arnaque</dd></div>
+    <div><dt>Problème</dt><dd>Abonnement payant non annoncé</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet alarme Wi-Fi, appli Tuya (Amazon), 14 août 2026</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Acheté comme « sans abonnement », le bracelet en exige un pour alerter : le coût caché casse la confiance.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Pas chère, mais abonnement payant&amp;nbsp;! »</summary><div class="full"><p>Si le concept de cette montre est intéressant et sa configuration aisée, l&#x27;application nécessite un abonnement payant pour l&#x27;envoi de SMS ou des appels, chose qui n&#x27;est pas précisé dans la description. À 70 € l&#x27;abonnement SMS pour un an, c&#x27;est du vol.</p><p class="src"><a href="https://www.amazon.fr/dp/B0GRVWPVT9">Amazon</a> · France</p></div></details>
+</article>
+<article class="card" data-star="5" data-who="aidant" data-crit="reaction-la-chute" data-int="3" data-emo="confiance">
+  <header class="ch"><span class="num">19</span><span class="stars ok" aria-label="5 sur 5">★★★★★<b>5/5</b></span><span class="int" aria-label="Intérêt 3 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><b>3/5</b></span></header>
+  <p class="crit">Réaction à la chute</p>
+  <blockquote class="vb">« ma maman a chuté plusieurs fois et j’ai toujours été averti »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-confiance">Confiance</span> </dd></div>
+    <div><dt>Problème</dt><dd>Aucun</dd></div>
+    <div><dt>Produit · source</dt><dd>SeniorAdom, bracelet d&#x27;alerte (téléassistance), 1 oct. 2021</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Quand ça marche, ce que l&#x27;aidant retient, c&#x27;est d&#x27;avoir été prévenu à chaque chute.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Très satisfait de Senioadom »</summary><div class="full"><p>Très satisfait de Senioadom, ma maman a chuté plusieurs fois et j’ai toujours été averti avec des personnes très sympathiques et rassurantes. Le système de détecteurs de mouvements et le bracelet d’alerte fonctionne parfaitement.</p><p class="src"><a href="https://fr.trustpilot.com/review/senioradom.com">Trustpilot</a></p></div></details>
+</article>
+<article class="card" data-star="5" data-who="aidant" data-crit="mise-en-route" data-int="3" data-emo="confiance">
+  <header class="ch"><span class="num">20</span><span class="stars ok" aria-label="5 sur 5">★★★★★<b>5/5</b></span><span class="int" aria-label="Intérêt 3 sur 5"><span class="lab">Intérêt</span><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><b>3/5</b></span></header>
+  <p class="crit">Mise en route</p>
+  <blockquote class="vb">« Avant de mettre votre puce dans la montre, retirer la fonction code PIN de la sim. »</blockquote>
+  <dl class="meta">
+    <div><dt>Qui écrit</dt><dd class="who-aidant">Aidant</dd></div>
+    <div><dt>Émotion</dt><dd><span class="emo emo-confiance">Confiance</span> Satisfaction</dd></div>
+    <div><dt>Problème</dt><dd>Code PIN de la SIM à retirer</dd></div>
+    <div><dt>Produit · source</dt><dd>Bracelet SOS GPS 4G (Amazon), 21 mai 2026</dd></div>
+  </dl>
+  <p class="usage"><span>Ce que ça dit du comportement</span>Satisfaite, mais seulement après avoir trouvé une manipulation technique : l&#x27;aidant devient le technicien.</p>
+  <details><summary>Avis, mot pour mot (300 caractères max) : « Urgent !!!! »</summary><div class="full"><p>Je suis satisfaite. Avant de mettre votre puce dans la montre, retirer la fonction code PIN de la sim. Si vous faite pas cette étape, il n&#x27;y aura pas de connexion avec l&#x27;application. Parce que quand vous mettez la puce nouvelle dans un téléphone c&#x27;est 0000 mais la montre ne permet pas de […]</p><p class="src"><a href="https://www.amazon.fr/dp/B09H7PQTMW">Amazon</a> · France</p></div></details>
+</article>
+  </section>
+
+  <section class="hyp" id="hypothese">
+    <p class="k">Dernière page · À vérifier en entretien</p>
+    <h2>Le bracelet n'est pas sur le poignet quand la chute arrive.</h2>
+    <p><b>Notre hypothèse :</b> le senior ne porte pas son bracelet en continu (nuit, toilette, inconfort, apparence) et, quand il tombe, son premier réflexe est d'appeler un proche, pas d'appuyer sur le bouton. L'aidant, lui, juge le produit sur une seule chose : être prévenu, lui, à coup sûr.</p>
+    <h3>Ce qui nous y fait penser dans les avis</h3>
+    <ul>
+      <li>Une mère de 91 ans tombe la nuit et se traîne jusqu'au téléphone pour appeler sa fille (avis Trustpilot, 1 étoile).</li>
+      <li>« Personne n'aimerait avoir ça au poignet » ; « L'épaisseur est vraiment trop importante » : des bracelets renvoyés avant même d'être portés (Amazon, 1 et 2 étoiles).</li>
+      <li>Une famille porte le bracelet autour du cou ; une autre apprécie de ne pas dépendre du port du bracelet (Amazon et Trustpilot, 5 étoiles).</li>
+      <li>Les avis positifs parlent d'abord de l'aidant prévenu : « le portable se met directement à sonner comme une véritable sirène » (Amazon, 5 étoiles).</li>
+    </ul>
+    <h3>Les 3 frustrations qui reviennent</h3>
+    <div class="three">
+      <div><b>L'alerte n'arrive pas</b>Détecteur muet, bracelet en panne, alerte silencieuse sur iPhone, murs trop épais.</div>
+      <div><b>L'alerte arrive pour rien</b>Sonneries la nuit, gestes du quotidien qui déclenchent, « poubelle ».</div>
+      <div><b>La mise en route décourage</b>Carte SIM, code PIN, appli, abonnement caché : l'aidant devient technicien.</div>
+    </div>
+    <h3>Questions à poser en entretien</h3>
+    <ol>
+      <li>Au senior : « Racontez-moi votre dernière journée : à quels moments avez-vous enlevé votre bracelet, et pourquoi ? »</li>
+      <li>Au senior : « Si vous tombiez ce soir, que feriez-vous en premier ? »</li>
+      <li>Au senior : « Que pensez-vous de l'allure du bracelet ? Le porteriez-vous devant des invités ? »</li>
+      <li>À l'aidant : « Comment savez-vous si votre parent porte vraiment son bracelet ? »</li>
+      <li>À l'aidant : « Après une chute, qui vous a prévenu, et combien de temps après ? »</li>
+    </ol>
+    <p><b>Ce qui la confirmerait :</b> une majorité de seniors qui retirent le bracelet au moins une fois par jour, et qui citent le téléphone ou un proche comme premier réflexe. <b>Ce qui l'infirmerait :</b> un port continu, y compris la nuit, et un usage spontané du bouton.</p>
+  </section>
+
+  <footer>
+    <p>Sources : <a href="https://fr.trustpilot.com/review/senioradom.com">Trustpilot, SeniorAdom</a> · Amazon.fr, pages produit des bracelets cités dans chaque carte. Consultés le 9 octobre 2026. Les avis Trustpilot ne sont pas tous vérifiés ; les avis Amazon retenus sont publiés en France ou en Belgique. Avis classés par intérêt décroissant.</p>
+  </footer>
+</main>
+<script>
+(function(){
+  var f={crit:"all",int:"all",emo:"all",star:"all"},cards=[].slice.call(document.querySelectorAll(".card")),n=document.getElementById("n");
+  function ok(k){return (f.crit==="all"||k.dataset.crit===f.crit)&&(f.emo==="all"||k.dataset.emo===f.emo)&&(f.star==="all"||k.dataset.star===f.star)&&(f.int==="all"||(f.int==="4+"?+k.dataset.int>=4:k.dataset.int===f.int))}
+  document.querySelectorAll(".bar button").forEach(function(b){
+    b.addEventListener("click",function(){
+      f[b.dataset.f]=b.dataset.v;
+      document.querySelectorAll('.bar button[data-f="'+b.dataset.f+'"]').forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+      var c=0;cards.forEach(function(k){var s=ok(k);k.hidden=!s;if(s)c++});n.textContent=c;
+    });
+  });
+  window.addEventListener("beforeprint",function(){document.querySelectorAll("details").forEach(function(d){d.open=true})});
+})();
+</script>
+
+</body>
+</html>
