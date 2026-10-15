@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-15T14:41",
+  "mise_a_jour": "2026-10-15T14:51",
   "phases": [
     {
       "id": "P0",
@@ -537,11 +537,11 @@
         },
         {
           "titre": "Synthèse des questions techniques du cadre",
-          "statut": "en_cours",
+          "statut": "termine",
           "qui": "Lucas",
           "date": "2026-10-15",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-synthese-questions-techniques.html",
-          "note": "Fiche produit, 8 points de vigilance à trancher (dont appel auto aux secours et micro), 11 propositions à valider, prix mensuel proposé (7,90 € et 14,90 €)."
+          "note": "Validée par l'équipe le 15/10 : 11 propositions de Claude et 8 décisions (pas d'appel auto aux secours, lumière et bouton micro, batterie, boutons physiques, mises à jour de sécurité auto). Volet de caméra refusé. Reste : taille d'écran (10 ou 13 pouces) et calcul de rentabilité."
         }
       ]
     },
@@ -559,11 +559,11 @@
         },
         {
           "titre": "Synthèse des questions techniques du cadre",
-          "statut": "en_cours",
+          "statut": "termine",
           "qui": "Lucas",
           "date": "2026-10-15",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-synthese-questions-techniques.html",
-          "note": "Fiche produit, 8 points de vigilance à trancher (dont appel auto aux secours et micro), 11 propositions à valider, prix mensuel proposé (7,90 € et 14,90 €)."
+          "note": "Validée par l'équipe le 15/10 : 11 propositions de Claude et 8 décisions (pas d'appel auto aux secours, lumière et bouton micro, batterie, boutons physiques, mises à jour de sécurité auto). Volet de caméra refusé. Reste : taille d'écran (10 ou 13 pouces) et calcul de rentabilité."
         }
       ]
     },
