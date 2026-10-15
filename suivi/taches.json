@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-08T14:40",
+  "mise_a_jour": "2026-10-15T12:36",
   "phases": [
     {
       "id": "P0",
@@ -534,6 +534,20 @@
           "note": "Réponses écrites aux 5 questions, carte et place visée (Le Cadre), un « En bref » par partie, personas à déplier, 49 sources de la veille validée.",
           "date": "2026-10-08",
           "lien": "S1-2026-2027/01-veille/rendus/2-1-fiche-marche-redigee.html"
+        }
+      ]
+    },
+    {
+      "id": "L21",
+      "titre": "Bloc 03 · Outils no-code et IA",
+      "taches": [
+        {
+          "titre": "Questions techniques du cadre connecté (14 questions)",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-15",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-questions-techniques-cadre.html",
+          "note": "Page de suivi des 14 questions techniques (connexion, photos et données, appels et voix, matériel, installation). Priorités, statut et réponse modifiables, filtres, export CSV. Urgences : questions 1, 2 et 13."
         }
       ]
     },
