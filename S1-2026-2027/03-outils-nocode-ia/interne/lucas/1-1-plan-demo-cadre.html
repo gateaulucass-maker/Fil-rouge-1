@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plan de la démo du cadre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+pre.code { font: 12.5px/1.6 var(--mono); background: var(--soft); border-left: 3px solid var(--blue); padding: 12px 14px; margin: 10px 0 18px; overflow-x: auto; white-space: pre; max-width: 100%; }
+pre.code::before { content: attr(data-lang); display: block; font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: 6px; }
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.scene { display:grid; grid-template-columns: repeat(7, 1fr); gap: 0; margin-top: 20px; border-top: 3px solid var(--blue); }
+.scene > div { padding: 10px 10px 12px 0; border-right: 1px solid var(--hair); }
+.scene > div:last-child { border-right: 0; }
+.scene b { display:block; font: 500 12px var(--mono); color: var(--blue); }
+.scene p { margin: 4px 0 0; font-size: 14px; }
+.screens { display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
+.screens > div { border: 1px solid var(--fg); padding: 12px 14px; }
+.screens h3 { margin: 0 0 6px; font-size: 16px; }
+.screens p { margin: 0; font-size: 14px; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+td b { font-weight: 700; }
+@media (max-width: 760px) { .scene { grid-template-columns: 1fr 1fr; } .screens { grid-template-columns: 1fr; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span>
+  <span>Bloc 03 · Outils no-code et IA</span>
+  <span>Leçon 1.1</span>
+  <span>Équipe Clément, Camille, Lucas</span>
+  <span>15 octobre 2026</span>
+</div>
+<h1>Plan de la démo : <span>construire le cadre en 4 semaines</span></h1>
+<p class="lead">Le matériel à acheter, l'installation de la tablette, la base de données, l'appel vidéo, la voix, l'interface, le planning à trois et la checklist du jour de l'oral.</p>
+<div class="stats">
+  <div><span class="k">Matériel</span><b>≈ 360 €</b></div>
+  <div><span class="k">Semaines</span><b class="b">4</b></div>
+  <div><span class="k">Écrans du cadre</span><b>6</b></div>
+  <div><span class="k">Durée de la démo</span><b class="o">5 min</b></div>
+</div>
+<nav class="toc"><a href="#s01">01 Le scénario</a><a href="#s02">02 Matériel</a><a href="#s03">03 Architecture</a><a href="#s04">04 La tablette</a><a href="#s05">05 Les données</a><a href="#s06">06 L'appel vidéo</a><a href="#s07">07 La voix</a><a href="#s08">08 L'interface</a><a href="#s09">09 Le planning</a><a href="#s10">10 Les risques</a><a href="#s11">11 Le jour J</a><a href="#s12">12 Open source</a><a href="#src">Sources</a></nav>
+<section id="s01">
+<div class="grid">
+  <div class="k"><span class="num">01</span> · Le scénario</div>
+  <div>
+    <h2>5 minutes pour tout montrer</h2>
+<p>La démo raconte une journée en 5 minutes. Chaque étape montre une fonction et la promesse « rassurer sans surveiller ».</p><div class="scene"><div><b>0:00</b><p>La famille envoie une photo depuis l'appli, avec une légende.</p></div><div><b>0:30</b><p>La photo arrive sur le cadre, le prénom en gros. Le senior touche le cœur.</p></div><div><b>1:00</b><p>Le téléphone de la famille reçoit « Mamie a aimé ta photo ».</p></div><div><b>1:30</b><p>Un proche appelle : sonnerie, photo, « C'est Lucas ». Le senior appuie sur Décrocher.</p></div><div><b>2:30</b><p>Le senior sort l'écran du socle et l'emporte, l'appel continue.</p></div><div><b>3:30</b><p>Bouton « parler » : « Appelle Sophie ». Le cadre demande confirmation.</p></div><div><b>4:30</b><p>Mode pause. L'aidant voit seulement « en pause » et « connecté il y a 1 min ».</p></div></div><p class="note" style="margin-top:14px">Bonus si le temps le permet : montrer un deuxième cadre pas encore installé, et l'appairer en direct en scannant son QR code.</p>
+  </div>
+</div>
+</section><section id="s02">
+<div class="grid">
+  <div class="k"><span class="num">02</span> · Matériel</div>
+  <div>
+    <h2>La liste de courses</h2>
+<div class="tablewrap"><table class=""><thead><tr><th>Article</th><th>Pourquoi</th><th>Prix</th><th>Où</th></tr></thead><tbody>
+<tr><td><b>Samsung Galaxy Tab A11+</b> Wi-Fi 128 Go</td><td>Android 16, mises à jour jusqu'en 2032, mode kiosque standard, caméra 5 MP</td><td>279 à 330 €</td><td>Fnac, Darty, Boulanger</td></tr>
+<tr><td>Adaptateur USB-C aimanté 24 broches, coudé à 90°</td><td>L'écran se pose sur le socle et se recharge</td><td>11 à 19 €</td><td>Amazon.fr, ManoMano</td></tr>
+<tr><td>Aimants néodyme N52, disques 10 × 3 mm (lot de 10)</td><td>Tenir l'écran sur le socle</td><td>12 €</td><td>Amazon.fr</td></tr>
+<tr><td>Filament PLA effet bois, 1 kg</td><td>Imprimer le socle (look meuble, pas médical)</td><td>12 à 21 €</td><td>Atome3D, Amazon.fr</td></tr>
+<tr><td>Cache webcam coulissant (lot de 3)</td><td>Le volet de caméra</td><td>5 €</td><td>Amazon.fr</td></tr>
+<tr><td>Feutre adhésif antidérapant</td><td>Dessous du socle</td><td>environ 5 € (estimation)</td><td>Magasin de bricolage</td></tr>
+<tr><td>Lest (rondelles en acier)</td><td>Socle au moins aussi lourd que l'écran</td><td>environ 5 € (estimation)</td><td>Magasin de bricolage</td></tr>
+<tr><td>Téléphone ou routeur 4G dédié</td><td>Ne pas dépendre du wifi de l'école</td><td>déjà possédé</td><td>-</td></tr>
+</tbody></table></div><p style="margin-top:14px"><b>Total :</b> environ 330 à 390 € de matériel. Logiciels : FlutterFlow Growth (80 $ par mois, nécessaire pour le code de l'appel vidéo) pendant 1 à 2 mois ; Supabase, LiveKit et Mistral restent gratuits pour la démo.</p>
+<p><b>Autres tablettes possibles :</b> Lenovo Tab M11 (223 à 259 €, meilleure caméra 8 MP, mises à jour jusqu'en 2028), Galaxy Tab A9+ (à partir de 133 €, petit budget). Option « waouh » : une Pixel Tablet d'occasion avec son socle d'origine si elle passe sous 300 €. À éviter : les tablettes Amazon Fire.</p>
+<p><b>À vérifier en magasin :</b> la caméra avant doit être sur le grand côté, pour un cadre posé en paysage.</p>
+<p class="note"><b>À dire à l'oral :</b> sur une tablette du commerce, le bouton micro est logiciel et l'adaptateur aimanté n'est pas certifiable. Dans le produit final, ce seront une vraie coupure électrique et des contacts à ressort.</p>
+  </div>
+</div>
+</section><section id="s03">
+<div class="grid">
+  <div class="k"><span class="num">03</span> · Architecture</div>
+  <div>
+    <h2>Les briques et leurs solutions de secours</h2>
+<div class="flow-wrap"><pre class="code" data-lang="schéma">CADRE  Galaxy Tab A11+ verrouillée par FreeKiosk, appli FlutterFlow
+  ├─ diaporama  ◄──── Supabase Storage (Paris, bucket privé)
+  ├─ « merci »   ────► table reactions ──► Realtime ──► appli famille
+  ├─ appel       ◄───► LiveKit Cloud (jeton créé par une Edge Function)
+  ├─ « parler »  ────► Edge Function voix : Voxtral (transcription) + Mistral Small (intention)
+  └─ ping 60 s   ────► fonction ping_cadre : « connecté il y a X min »
+
+APPLI FAMILLE  FlutterFlow (téléphone)
+  envoyer photos et vocaux, appeler, valider les proches (aidant), scanner le QR du cadre
+
+n8n : cadre hors ligne depuis 30 min ──► message à l&#x27;aidant</pre></div><div class="tablewrap"><table class=""><thead><tr><th>Brique</th><th>Choix</th><th>Solution de secours</th></tr></thead><tbody>
+<tr><td>Verrouillage de la tablette</td><td><b>FreeKiosk</b> (gratuit, MIT) en mode propriétaire de l'appareil</td><td>Fully Kiosk PLUS (8,90 €). Pas d'Android Management API : réservée aux éditeurs commerciaux</td></tr>
+<tr><td>Applis</td><td><b>FlutterFlow</b> : une appli cadre, une appli famille</td><td>Export du code Flutter si FlutterFlow bloque</td></tr>
+<tr><td>Données</td><td><b>Supabase</b> région Paris : comptes, base, photos, temps réel</td><td>-</td></tr>
+<tr><td>Appel vidéo</td><td><b>LiveKit</b> : widget sur mesure avec livekit_client</td><td>Page LiveKit Meet dans une WebView. Pas Jitsi : il impose une connexion Google ou Facebook</td></tr>
+<tr><td>Voix</td><td><b>Bouton « parler »</b>, Voxtral puis Mistral Small</td><td>speech_to_text (gratuit, Android) pour une version sans frais</td></tr>
+<tr><td>Écran allumé et nuit</td><td><b>wakelock_plus</b> et <b>screen_brightness</b></td><td>Réglages de FreeKiosk ou Fully Kiosk</td></tr>
+<tr><td>Automatisations</td><td><b>n8n</b></td><td>-</td></tr>
+<tr><td>Paiement</td><td><b>Stripe</b> en mode test</td><td>-</td></tr>
+</tbody></table></div><p class="note" style="margin-top:12px">Point RGPD à dire à l'oral : l'offre gratuite de LiveKit ne permet pas de choisir le pays des serveurs. Les appels sont chiffrés de bout en bout ; en version réelle, LiveKit sera installé chez un hébergeur européen (Scaleway).</p>
+  </div>
+</div>
+</section><section id="s04">
+<div class="grid">
+  <div class="k"><span class="num">04</span> · La tablette</div>
+  <div>
+    <h2>Verrouiller la tablette sur notre appli</h2>
+<p>Le mode « propriétaire de l'appareil » empêche de sortir de l'appli : pas de barre de notifications, pas de bouton Accueil. Seul l'aidant, avec un code, peut en sortir.</p><pre class="code" data-lang="terminal"># 1. Réinitialiser la tablette, et NE PAS ajouter de compte Google à l&#x27;assistant
+# 2. Activer les options développeur et le débogage USB, brancher au Mac
+adb install freekiosk.apk
+adb install cadre-flutterflow.apk
+adb shell dpm set-device-owner com.freekiosk/.DeviceAdminReceiver
+# 3. Dans FreeKiosk : application externe = notre appli cadre,
+#    démarrage automatique, écran toujours allumé, code PIN pour l&#x27;aidant</pre><p><b>Permissions à ajouter dans FlutterFlow</b> (réglages Android, fichier AndroidManifest) :</p><pre class="code" data-lang="AndroidManifest.xml">&lt;uses-permission android:name=&quot;android.permission.CAMERA&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.RECORD_AUDIO&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.MODIFY_AUDIO_SETTINGS&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_CONNECT&quot;/&gt;</pre><ol class="next"><li>Les fonctions de kiosque, de luminosité et d'écran allumé ne marchent pas dans l'aperçu web de FlutterFlow : il faut tester directement sur la tablette (APK).</li><li>La nuit, on n'éteint pas l'écran : on baisse la luminosité à 5 % et on met le diaporama en pause, pour qu'un appel reste visible.</li><li>Sortie aidant : 5 appuis dans un coin, puis le code PIN (idée reprise du projet open source memory-link).</li></ol>
+  </div>
+</div>
+</section><section id="s05">
+<div class="grid">
+  <div class="k"><span class="num">05</span> · Les données</div>
+  <div>
+    <h2>La base Supabase et l'appairage</h2>
+<p>Chaque cadre est lui-même un utilisateur Supabase, rattaché à une famille. Les règles de sécurité (RLS) sont écrites dès la semaine 1 : une famille ne voit jamais les données d'une autre.</p><div class="tablewrap"><table class=""><thead><tr><th>Table</th><th>Contenu</th></tr></thead><tbody>
+<tr><td>familles</td><td>Une famille, son nom</td></tr>
+<tr><td>membres</td><td>Qui fait partie de la famille, avec le rôle aidant ou proche</td></tr>
+<tr><td>cadres</td><td>Le cadre : famille, en pause, horaires de nuit, dernier signal, batterie</td></tr>
+<tr><td>contacts_autorises</td><td>La liste blanche : qui peut appeler, validé par l'aidant (date de validation)</td></tr>
+<tr><td>photos</td><td>Chemin dans le stockage, auteur, légende</td></tr>
+<tr><td>reactions</td><td>Les « merci » du senior</td></tr>
+<tr><td>messages_vocaux</td><td>Dans les deux sens, lu ou non</td></tr>
+<tr><td>appels</td><td>Qui appelle qui, salle LiveKit, statut : sonne, décroché, plus tard, terminé</td></tr>
+<tr><td>appairages</td><td>Code QR à usage unique, valable 10 minutes</td></tr>
+</tbody></table></div><h3 class="sub">Les règles de sécurité clés</h3><pre class="code" data-lang="sql">-- Une personne ne voit que les photos de ses familles
+create policy photos_select on photos for select to authenticated
+  using (famille_id in (select priv.mes_familles()));
+
+-- Seul l&#x27;aidant peut modifier la liste blanche
+create policy ca_write on contacts_autorises for all to authenticated
+  using (priv.est_aidant((select famille_id from cadres where id = cadre_id)))
+  with check (priv.est_aidant((select famille_id from cadres where id = cadre_id)));
+
+-- On ne peut appeler le cadre que si on est dans la liste blanche validée
+create policy appels_insert on appels for insert to authenticated with check (
+  appelant_id = (select auth.uid()) and (
+    cadre_id = priv.mon_cadre()
+    or exists (select 1 from contacts_autorises ca
+               where ca.cadre_id = appels.cadre_id
+                 and ca.membre_user_id = (select auth.uid())
+                 and ca.valide_at is not null)));</pre><h3 class="sub">L'appairage par QR code</h3><ol class="next"><li>Au premier démarrage, le cadre se connecte de façon anonyme et crée sa ligne dans <b>cadres</b>, avec un code de 8 caractères valable 10 minutes.</li><li>Il affiche le QR en grand : « Demandez à votre proche de scanner ».</li><li>L'aidant scanne avec l'appli famille, qui appelle la fonction ci-dessous.</li><li>Le cadre voit sa famille arriver en temps réel et passe au diaporama.</li></ol><pre class="code" data-lang="sql">create function public.revendiquer_cadre(p_code text, p_famille uuid) returns uuid
+language plpgsql security definer set search_path = &#x27;&#x27; as $$
+declare c uuid;
+begin
+  if not priv.est_aidant(p_famille) then raise exception &#x27;non autorisé&#x27;; end if;
+  update public.appairages set utilise_at = now(), utilise_par = auth.uid()
+   where code = p_code and utilise_at is null and expires_at &gt; now()
+   returning cadre_id into c;
+  if c is null then raise exception &#x27;code invalide ou expiré&#x27;; end if;
+  update public.cadres set famille_id = p_famille where id = c and famille_id is null;
+  return c;
+end $$;</pre><h3 class="sub">« Connecté il y a X minutes »</h3><p>Le cadre envoie un signal toutes les 60 secondes. L'aidant voit seulement l'état technique, jamais l'activité du senior.</p><pre class="code" data-lang="sql">create function public.ping_cadre(v text, bat int) returns void
+language sql security definer set search_path = &#x27;&#x27; as $$
+  update public.cadres set last_seen_at = now(), app_version = v, batterie = bat
+  where device_user_id = (select auth.uid()) $$;</pre>
+  </div>
+</div>
+</section><section id="s06">
+<div class="grid">
+  <div class="k"><span class="num">06</span> · L'appel vidéo</div>
+  <div>
+    <h2>LiveKit dans FlutterFlow</h2>
+<ol class="next"><li><b>Appel entrant sur le cadre :</b> le cadre écoute la table <b>appels</b> en temps réel. Quand une ligne « sonne » arrive, il affiche l'écran plein écran avec Décrocher et Plus tard. Pas besoin de notification : l'appli est toujours ouverte.</li><li><b>Appel entrant sur le téléphone de la famille :</b> notification push et le paquet <b>flutter_callkit_incoming</b>. Optionnel pour la démo : l'appli ouverte écoute le temps réel comme le cadre.</li><li><b>Pas de décroché automatique</b> en version 1 : le senior appuie toujours sur Décrocher.</li></ol><pre class="code" data-lang="dart">// Widget sur mesure FlutterFlow « AppelVideo » (paramètres : url, token, cleE2ee)
+import &#x27;package:livekit_client/livekit_client.dart&#x27;;
+import &#x27;package:livekit_components/livekit_components.dart&#x27;;
+
+Future&lt;Room&gt; rejoindre(String url, String token, String? cle) async {
+  E2EEOptions? e2ee;
+  if (cle != null) {
+    final kp = await BaseKeyProvider.create();
+    await kp.setKey(cle);
+    e2ee = E2EEOptions(keyProvider: kp);
+  }
+  final room = Room(roomOptions: RoomOptions(
+      adaptiveStream: true, dynacast: true, e2eeOptions: e2ee));
+  await room.connect(url, token);
+  await room.localParticipant?.setCameraEnabled(true);
+  await room.localParticipant?.setMicrophoneEnabled(true);
+  return room;
+}</pre><pre class="code" data-lang="typescript">// Edge Function Supabase : crée le jeton LiveKit après avoir vérifié la liste blanche
+import { AccessToken } from &quot;npm:livekit-server-sdk&quot;;
+const at = new AccessToken(Deno.env.get(&quot;LK_KEY&quot;)!, Deno.env.get(&quot;LK_SECRET&quot;)!,
+  { identity: userId });
+at.addGrant({ room: appel.room_name, roomJoin: true, canPublish: true, canSubscribe: true });
+at.ttl = 3600;
+return Response.json({ token: await at.toJwt(), url: Deno.env.get(&quot;LK_URL&quot;) });</pre><p class="note">Les noms exacts des paramètres changent selon les versions de livekit_client (v2.13 en octobre 2026) : vérifier dans l'exemple officiel du dépôt client-sdk-flutter. Décision le jour 5 : si le widget ne compile pas, on passe à la page LiveKit Meet dans une WebView.</p>
+  </div>
+</div>
+</section><section id="s07">
+<div class="grid">
+  <div class="k"><span class="num">07</span> · La voix</div>
+  <div>
+    <h2>Du bouton « parler » à l'action</h2>
+<ol class="next"><li>Le senior appuie sur <b>Parler</b> et dit sa phrase (2 à 6 secondes).</li><li>L'Edge Function <b>voix</b> envoie l'audio à <b>Voxtral</b> (0,003 $ la minute, français, avec les prénoms de la liste pour mieux les reconnaître), puis le texte à <b>Mistral Small</b> avec le prompt ci-dessous.</li><li>L'appli vérifie que le contact est bien dans la liste blanche (on ne fait jamais confiance à l'IA seule), puis demande confirmation : « J'appelle Sophie ? Oui / Non ».</li><li>Au premier usage, le cadre dit : « Je suis un assistant automatique » (AI Act, article 50).</li><li>Version gratuite possible : le paquet <b>speech_to_text</b> d'Android en français, mais il coupe vite quand on fait une pause.</li></ol><pre class="code" data-lang="prompt système Mistral">Tu es le module de commande vocale d&#x27;un cadre photo pour une personne âgée.
+Tu reçois la transcription (parfois imparfaite) d&#x27;une phrase en français.
+Réponds UNIQUEMENT avec un objet JSON :
+{&quot;intention&quot;: ..., &quot;contact&quot;: &lt;libellé exact de la liste ou null&gt;, &quot;valeur&quot;: &lt;nombre ou null&gt;,
+ &quot;confiance&quot;: &lt;0 à 1&gt;, &quot;reponse_vocale&quot;: &lt;phrase courte, vouvoiement&gt;}
+Intentions : appeler | photo_suivante | photo_precedente | lire_legende | dire_merci
+             | ecouter_messages | enregistrer_message | pause | reprendre | volume | inconnu
+Règles : n&#x27;invente jamais de contact ; « ma fille » → le contact marqué fille ;
+si deux contacts possibles ou confiance &lt; 0.6 → &quot;inconnu&quot; et demander de répéter ;
+jamais de conseil médical ; pas d&#x27;appel aux secours.
+LISTE DES CONTACTS : {{contacts_json}}
+Exemples :
+« appelle ma fille » → {&quot;intention&quot;:&quot;appeler&quot;,&quot;contact&quot;:&quot;Sophie&quot;,&quot;confiance&quot;:0.95,
+                         &quot;reponse_vocale&quot;:&quot;J&#x27;appelle Sophie ?&quot;}
+« laisse-moi tranquille » → {&quot;intention&quot;:&quot;pause&quot;,&quot;reponse_vocale&quot;:&quot;D&#x27;accord, je me mets en pause.&quot;}
+« appelle Bernard » (absent) → {&quot;intention&quot;:&quot;inconnu&quot;,
+   &quot;reponse_vocale&quot;:&quot;Je ne connais pas Bernard. Voulez-vous appeler Sophie ou Lucas ?&quot;}</pre><p class="note">Mesurer en semaine 2 le temps de réponse sur 20 phrases. Les études montrent que les voix âgées sont moins bien reconnues : chaque commande vocale a toujours un bouton équivalent à l'écran.</p>
+  </div>
+</div>
+</section><section id="s08">
+<div class="grid">
+  <div class="k"><span class="num">08</span> · L'interface</div>
+  <div>
+    <h2>Six écrans, des règles strictes</h2>
+<div class="screens"><div><h3>Accueil : diaporama</h3><p>Photo plein écran, prénom de l'expéditeur, légende. En bas : cœur « Merci » et « Appeler [prénom] ». Date et heure en grand.</p></div><div><h3>Appel entrant</h3><p>Photo et prénom, annoncé à voix haute. Deux boutons énormes : Décrocher (vert) et Plus tard. Aucun délai qui fait disparaître l'écran.</p></div><div><h3>Mes proches</h3><p>Grille de 4 à 8 visages avec prénom. Un appui = appel, après confirmation.</p></div><div><h3>Messages</h3><p>Les vocaux de la famille, lus d'un appui. Bouton « Répondre » qui enregistre.</p></div><div><h3>Pause</h3><p>Un écran calme : « En pause, appuyez pour reprendre ». Ni appels ni photos.</p></div><div><h3>Installation</h3><p>Un grand QR code et une phrase : « Demandez à votre proche de scanner ».</p></div></div><h3 class="sub">Les règles de l'interface</h3><ol class="next"><li>Boutons de 16 à 20 mm minimum (environ 118 pixels), espacés d'au moins 3 mm, les principaux en haut ou à droite.</li><li>Texte lisible à 80 cm : au moins deux fois la taille d'une tablette tenue en main.</li><li>Contraste de 7 pour 1, jamais une information donnée par la couleur seule.</li><li>Seulement l'appui simple : ni glisser, ni pincer, ni appui long. Un double appui compte pour un seul.</li><li>Un son et un retour visuel à chaque action, sonnerie grave.</li><li>Aucun menu, aucun réglage côté senior : tout se règle dans l'appli de l'aidant.</li></ol>
+  </div>
+</div>
+</section><section id="s09">
+<div class="grid">
+  <div class="k"><span class="num">09</span> · Le planning</div>
+  <div>
+    <h2>4 semaines, 3 personnes</h2>
+<p><b>A</b> = appli du cadre et tablette. <b>B</b> = base de données et appli famille. <b>C</b> = appel vidéo, voix et automatisations. Environ 20 jours de travail chacun.</p><div class="tablewrap"><table class=""><thead><tr><th>Quand</th><th>A · Cadre</th><th>B · Données et famille</th><th>C · Vidéo, voix, n8n</th></tr></thead><tbody>
+<tr><td>Semaine 1</td><td>Acheter la tablette, installer FreeKiosk. Maquettes des écrans. Diaporama depuis Supabase.</td><td>Projet Supabase Paris, tables et règles de sécurité testées. Comptes famille. Connexion à FlutterFlow.</td><td>Essai LiveKit dans FlutterFlow sur la tablette. <b>Décision le jour 5</b> : widget ou WebView. Fonction du jeton.</td></tr>
+<tr><td>Semaine 2</td><td>Appairage QR côté cadre. Bouton « Merci ». Pause, nuit, écran allumé.</td><td>Appli famille : envoi de photos, fil des « merci », liste blanche gérée par l'aidant. Fonction d'appairage.</td><td>Appel sortant et entrant avec Décrocher / Plus tard. Chiffrement. Mesure du temps de réponse de la voix.</td></tr>
+<tr><td>Semaine 3</td><td>Messages vocaux sur le cadre. Écran d'appel entrant fini.</td><td>Messages vocaux côté famille. Signal « connecté il y a X min ». Notifications d'appel (optionnel).</td><td>Fonction voix (Voxtral et Mistral). Branchement des commandes. n8n : alerte hors ligne et résumé hebdo.</td></tr>
+<tr><td>Semaine 4</td><td>Finitions, test avec un vrai senior de l'entourage, accessibilité. <b>Plus de nouvelle fonction après le jour 17.</b></td><td>Stripe en mode test. Données de démo. Relecture des règles de sécurité.</td><td>Répétitions, vidéo de secours, plan B réseau. Slides.</td></tr>
+<tr><td>Socle (en parallèle)</td><td>Dessin et impression 3D du socle, aimants, lest, feutre, volet de caméra. Tester le geste « reposer l'écran sans viser ».</td><td></td><td></td></tr>
+</tbody></table></div>
+  </div>
+</div>
+</section><section id="s10">
+<div class="grid">
+  <div class="k"><span class="num">10</span> · Les risques</div>
+  <div>
+    <h2>Ce qui peut casser, et le plan B</h2>
+<div class="tablewrap"><table class=""><thead><tr><th>Risque</th><th>Probabilité</th><th>Solution de secours</th></tr></thead><tbody>
+<tr><td>Le widget LiveKit ne compile pas dans FlutterFlow</td><td>Moyenne</td><td>Page LiveKit Meet dans une WebView, ou exporter le code et finir en Flutter</td></tr>
+<tr><td>Le wifi de l'école bloque les appels vidéo</td><td><b>Élevée</b></td><td>Partage de connexion 4G dédié</td></tr>
+<tr><td>Coût de FlutterFlow (code sur mesure au plan Growth)</td><td>Élevée</td><td>Un seul compte Growth pour la personne qui code ; demander une offre éducation</td></tr>
+<tr><td>Impossible de verrouiller la tablette (compte Google déjà lié)</td><td>Moyenne</td><td>Réinitialiser sans compte ; sinon Fully Kiosk (8,90 €)</td></tr>
+<tr><td>Caméra ou micro refusés dans la WebView</td><td>Moyenne</td><td>Tester dès le jour 1</td></tr>
+<tr><td>Voix mal reconnue</td><td>Moyenne</td><td>Chaque commande a son bouton, la voix est un bonus</td></tr>
+<tr><td>Règles de sécurité mal écrites, une famille voit les données d'une autre</td><td>Moyenne</td><td>Test avec 2 familles et 3 rôles avant la semaine 4</td></tr>
+</tbody></table></div>
+  </div>
+</div>
+</section><section id="s11">
+<div class="grid">
+  <div class="k"><span class="num">11</span> · Le jour J</div>
+  <div>
+    <h2>La checklist de la démo</h2>
+<ol class="next"><li><b>Réseau :</b> téléphone 4G dédié, pas le wifi invité. Un appel test 30 minutes avant. Vidéo de secours enregistrée.</li><li><b>Matériel :</b> tablette sur secteur dans son socle, téléphone « famille » chargé, câble USB, code PIN de l'aidant noté.</li><li><b>Comptes :</b> une aidante (Sophie), un proche (Lucas), un cadre « Mamie Jeanne » déjà installé, et un second cadre pas installé pour montrer le QR.</li><li><b>Données :</b> 25 photos avec légendes, 2 messages vocaux non lus, 3 proches validés et 1 en attente.</li><li><b>Stripe :</b> carte de test 4242 4242 4242 4242, webhook vérifié.</li><li><b>Quotas :</b> LiveKit (5 000 minutes), Scaleway et Mistral vérifiés la veille.</li></ol>
+  </div>
+</div>
+</section><section id="s12">
+<div class="grid">
+  <div class="k"><span class="num">12</span> · Open source</div>
+  <div>
+    <h2>Ce qu'on peut réutiliser</h2>
+<div class="tablewrap"><table class=""><thead><tr><th>Projet</th><th>Licence</th><th>Ce qu'il fait</th><th>Usage pour nous</th></tr></thead><tbody>
+<tr><td><b>Memolio</b></td><td>GPL-3.0</td><td>Le plus proche : QR affiché sur le cadre, veille programmée, démarrage auto</td><td>Idées d'interface (licence contaminante)</td></tr>
+<tr><td><b>memory-link</b></td><td>MIT</td><td>Verrouillage par adb, mode nuit, sortie aidant 5 appuis et PIN, contraste élevé</td><td>Réutilisable</td></tr>
+<tr><td><b>samtalsvan</b></td><td>MIT</td><td>Appels vidéo simples pour seniors, sans appli ni compte, cartes en gros caractères</td><td>Réutilisable</td></tr>
+<tr><td><b>LiveKit Meet</b></td><td>Apache 2.0</td><td>Page d'appel prête à déployer</td><td>Solution de secours vidéo</td></tr>
+<tr><td><b>agent-starter-flutter</b></td><td>MIT</td><td>Projet Flutter et LiveKit qui compile</td><td>Base du widget</td></tr>
+<tr><td><b>FreeKiosk</b></td><td>MIT</td><td>Verrouillage de la tablette</td><td>Utilisé tel quel</td></tr>
+<tr><td><b>ImmichFrame</b></td><td>GPL-3.0</td><td>Diaporama soigné (fondus, horloge, météo)</td><td>Inspiration seulement</td></tr>
+</tbody></table></div>
+  </div>
+</div>
+</section>
+<section id="src"><div class="grid"><div class="k">Sources</div><div class="src-list">
+<p class="note">Docs officielles, pub.dev et GitHub, consultés le 15 octobre 2026. Les extraits de code sont des bases de travail à vérifier sur les versions installées.</p>
+<a href="https://github.com/livekit/client-sdk-flutter">github.com/livekit/client-sdk-flutter</a><br><a href="https://pub.dev/packages/livekit_client">pub.dev/packages/livekit_client</a><br><a href="https://github.com/livekit/components-flutter">github.com/livekit/components-flutter</a><br><a href="https://github.com/livekit-examples/meet">github.com/livekit-examples/meet</a><br><a href="https://github.com/livekit-examples/agent-starter-flutter">github.com/livekit-examples/agent-starter-flutter</a><br><a href="https://livekit.com/pricing">livekit.com/pricing</a><br><a href="https://www.flutterflow.io/pricing">flutterflow.io/pricing</a><br><a href="https://docs.flutterflow.io/concepts/custom-code/">docs.flutterflow.io/concepts/custom-code/</a><br><a href="https://docs.flutterflow.io/integrations/supabase/setup">docs.flutterflow.io/integrations/supabase/setup</a><br><a href="https://supabase.com/docs/guides/database/postgres/row-level-security">supabase.com/docs/guides/database/postgres/row-level-security</a><br><a href="https://supabase.com/docs/guides/realtime/postgres-changes">supabase.com/docs/guides/realtime/postgres-changes</a><br><a href="https://developers.google.com/android/management/permissible-usage">developers.google.com/android/management/permissible-usage</a><br><a href="https://developer.android.com/work/dpc/dedicated-devices/lock-task-mode">developer.android.com/work/dpc/dedicated-devices/lock-task-mode</a><br><a href="https://github.com/RushB-fr/freekiosk">github.com/RushB-fr/freekiosk</a><br><a href="https://www.fully-kiosk.com/">fully-kiosk.com/</a><br><a href="https://pub.dev/packages/wakelock_plus">pub.dev/packages/wakelock_plus</a><br><a href="https://pub.dev/packages/screen_brightness">pub.dev/packages/screen_brightness</a><br><a href="https://github.com/hiennguyen92/flutter_callkit_incoming">github.com/hiennguyen92/flutter_callkit_incoming</a><br><a href="https://jitsi.org/blog/authentication-on-meet-jit-si/">jitsi.org/blog/authentication-on-meet-jit-si/</a><br><a href="https://docs.mistral.ai/capabilities/audio/">docs.mistral.ai/capabilities/audio/</a><br><a href="https://mistral.ai/news/voxtral-transcribe-2">mistral.ai/news/voxtral-transcribe-2</a><br><a href="https://www.scaleway.com/en/pricing/model-as-a-service/">scaleway.com/en/pricing/model-as-a-service/</a><br><a href="https://pub.dev/packages/speech_to_text">pub.dev/packages/speech_to_text</a><br><a href="https://github.com/IT-BAER/memolio-android">github.com/IT-BAER/memolio-android</a><br><a href="https://github.com/steveKit/memory-link">github.com/steveKit/memory-link</a><br><a href="https://github.com/AbdirahmanNomad/samtalsvan">github.com/AbdirahmanNomad/samtalsvan</a><br><a href="https://github.com/immichFrame/ImmichFrame">github.com/immichFrame/ImmichFrame</a><br><a href="https://en.wikipedia.org/wiki/Samsung_Galaxy_Tab_A11">en.wikipedia.org/wiki/Samsung_Galaxy_Tab_A11</a><br><a href="https://www.fnac.com/Samsung-Galaxy-Tab-A11-A11/Samsung-Galaxy-Tab-A/nsh567893/w-4">fnac.com/Samsung-Galaxy-Tab-A11-A11/Samsung-Galaxy-Tab-A/nsh567893/w-4</a><br><a href="https://www.printables.com/model/784297-magnetic-usb-c-tablet-charging-dock">printables.com/model/784297-magnetic-usb-c-tablet-charging-dock</a>
+</div></div></section>
+<footer class="k">Vient de la <a href="1-1-veille-fonctionnalites-stack-faisabilite.html" style="color:var(--blue)">veille du cadre connecté</a>.</footer>
+</div>
+</body>
+</html>

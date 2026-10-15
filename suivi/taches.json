@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-15T16:19",
+  "mise_a_jour": "2026-10-15T16:48",
   "phases": [
     {
       "id": "P0",
@@ -544,12 +544,20 @@
           "note": "Validée par l'équipe le 15/10 : 11 propositions de Claude et 8 décisions (pas d'appel auto aux secours, lumière et bouton micro, volet de caméra, batterie, boutons physiques, mises à jour de sécurité auto). Reste : taille d'écran (10 ou 13 pouces) et calcul de rentabilité."
         },
         {
-          "titre": "Veille du cadre : fonctionnalités, stack, faisabilité",
+          "titre": "Veille du cadre v2 : besoin, fonctionnalités, stack, faisabilité, business",
           "statut": "en_cours",
           "qui": "Lucas",
           "date": "2026-10-15",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-fonctionnalites-stack-faisabilite.html",
-          "note": "17 concurrents, 41 fonctionnalités (18 en v1), stack matérielle et logicielle, coût cloud ~3 €/cadre/mois, feux de faisabilité, feuille de route en 3 étapes. À décider : prix de l'offre 4G, écran 10 pouces, base de la démo."
+          "note": "Deuxième vague : chiffres et études (isolement, aidants, surveillance), format écran + socle (tous arrêtés chez les géants), design seniors chiffré, voix et IA (garde-fous), crédit d'impôt 50 % et location à 19,90 €, marché et compte de résultat 3 ans, canaux de vente. Corrections : FreeKiosk à la place de l'Android Management API, bouton « parler » à la place d'openWakeWord."
+        },
+        {
+          "titre": "Plan de la démo du cadre (4 semaines)",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-15",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html",
+          "note": "Galaxy Tab A11+ et FreeKiosk, socle 3D, FlutterFlow + Supabase Paris + LiveKit + Mistral, schéma SQL et QR, prompt vocal, 6 écrans, planning A/B/C, risques, checklist du jour J."
         }
       ]
     },
@@ -574,12 +582,20 @@
           "note": "Validée par l'équipe le 15/10 : 11 propositions de Claude et 8 décisions (pas d'appel auto aux secours, lumière et bouton micro, volet de caméra, batterie, boutons physiques, mises à jour de sécurité auto). Reste : taille d'écran (10 ou 13 pouces) et calcul de rentabilité."
         },
         {
-          "titre": "Veille du cadre : fonctionnalités, stack, faisabilité",
+          "titre": "Veille du cadre v2 : besoin, fonctionnalités, stack, faisabilité, business",
           "statut": "en_cours",
           "qui": "Lucas",
           "date": "2026-10-15",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-fonctionnalites-stack-faisabilite.html",
-          "note": "17 concurrents, 41 fonctionnalités (18 en v1), stack matérielle et logicielle, coût cloud ~3 €/cadre/mois, feux de faisabilité, feuille de route en 3 étapes. À décider : prix de l'offre 4G, écran 10 pouces, base de la démo."
+          "note": "Deuxième vague : chiffres et études (isolement, aidants, surveillance), format écran + socle (tous arrêtés chez les géants), design seniors chiffré, voix et IA (garde-fous), crédit d'impôt 50 % et location à 19,90 €, marché et compte de résultat 3 ans, canaux de vente. Corrections : FreeKiosk à la place de l'Android Management API, bouton « parler » à la place d'openWakeWord."
+        },
+        {
+          "titre": "Plan de la démo du cadre (4 semaines)",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-15",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html",
+          "note": "Galaxy Tab A11+ et FreeKiosk, socle 3D, FlutterFlow + Supabase Paris + LiveKit + Mistral, schéma SQL et QR, prompt vocal, 6 écrans, planning A/B/C, risques, checklist du jour J."
         }
       ]
     },

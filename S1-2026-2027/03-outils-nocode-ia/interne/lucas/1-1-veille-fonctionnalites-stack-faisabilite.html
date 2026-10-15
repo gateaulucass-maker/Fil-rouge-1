@@ -167,7 +167,7 @@ td b { font-weight: 700; }
 table.feat td:first-child { width: 3ch; }
 .src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
 @media (max-width: 760px) { .cards, .arch { grid-template-columns: 1fr; } }
-</style>
+.cards.two { grid-template-columns: repeat(2, 1fr); } @media (max-width: 760px) { .cards.two { grid-template-columns: 1fr; } }</style>
 
 </head>
 <body>
@@ -177,17 +177,17 @@ table.feat td:first-child { width: 3ch; }
   <span>Bloc 03 · Outils no-code et IA</span>
   <span>Leçon 1.1</span>
   <span>Équipe Clément, Camille, Lucas</span>
-  <span>15 octobre 2026</span>
+  <span>Version 2 · 15 octobre 2026</span>
 </div>
 <h1>Veille du cadre : <span>fonctions, stack, faisabilité</span></h1>
-<p class="lead">Ce que font les 17 produits concurrents, les 41 fonctions à donner à notre cadre, le matériel et le logiciel pour le construire, ce que ça coûte et comment le réaliser concrètement.</p>
+<p class="lead">Le besoin et les preuves, 17 concurrents, 41 fonctions, le matériel, le logiciel, la voix et l'IA, les coûts, le modèle économique, la distribution et le chemin concret de la démo à la vente.</p>
 <div class="stats">
-  <div><span class="k">Produits étudiés</span><b>17</b></div>
+  <div><span class="k">Produits étudiés</span><b>22</b></div>
   <div><span class="k">Fonctionnalités</span><b class="b">41</b></div>
-  <div><span class="k">Cloud par cadre et par mois</span><b>3 €</b></div>
-  <div><span class="k">Recherches et lectures web</span><b class="o">150+</b></div>
+  <div><span class="k">Études et sources</span><b>200+</b></div>
+  <div><span class="k">Recherches et lectures web</span><b class="o">600+</b></div>
 </div>
-<nav class="toc"><a href="#s00">00 En bref</a><a href="#s01">01 Concurrents</a><a href="#s02">02 Fonctionnalités</a><a href="#s03">03 Matériel</a><a href="#s04">04 Logiciel</a><a href="#s05">05 Coûts</a><a href="#s06">06 Faisabilité</a><a href="#s07">07 Mise en œuvre</a><a href="#s08">08 À décider</a><a href="#src">Sources</a></nav>
+<nav class="toc"><a href="#s00">00 En bref</a><a href="#s01">01 Le besoin</a><a href="#s02">02 Veille concurrentielle</a><a href="#s03">03 Le format</a><a href="#s04">04 Fonctionnalités</a><a href="#s05">05 Design pour seniors</a><a href="#s06">06 Stack matérielle</a><a href="#s07">07 Stack logicielle</a><a href="#s08">08 Voix et IA</a><a href="#s09">09 Coûts</a><a href="#s10">10 Modèle économique</a><a href="#s11">11 Distribution</a><a href="#s12">12 Faisabilité</a><a href="#s13">13 Mise en œuvre</a><a href="#s14">14 À décider en équipe</a><a href="#src">Sources</a></nav>
 <section id="s00">
 <div class="grid">
   <div class="k"><span class="num">00</span> · En bref</div>
@@ -195,21 +195,53 @@ table.feat td:first-child { width: 3ch; }
     <h2>Les six choses à retenir</h2>
 
     <div class="cards">
-      <div><span class="k">Format</span><h3>Personne ne fait un écran portatif avec socle</h3><p>Les cadres (Familink, Aura) n'appellent pas. Les écrans d'appel (Komp, LiNote) sont fixes. GrandPad a un socle, mais c'est une tablette de 8 pouces.</p></div>
-      <div class="o"><span class="k">Prix</span><h3>L'offre 4G à 14,90 € ne tient pas</h3><p>14,90 € TTC font 12,42 € HT. Un forfait data de 10 Go coûte 8 à 11,90 € HT. Une heure de visio consomme environ 1 Go. Il faut monter à 19,90 € ou limiter la vidéo en 4G.</p></div>
-      <div class="g"><span class="k">Stratégie</span><h3>Ne pas concevoir l'électronique</h3><p>Partir d'une tablette Android déjà marquée CE (113 à 117 $ en marque blanche). Notre valeur : le logiciel, le socle aimanté et le service.</p></div>
-      <div><span class="k">Coût cloud</span><h3>2,60 à 3,40 € par cadre et par mois</h3><p>Avec 30 min de visio, 10 photos et 20 commandes vocales par jour. La vidéo pèse 60 à 70 % du coût.</p></div>
-      <div class="o"><span class="k">Loi</span><h3>Trois textes déjà en vigueur</h3><p>Cybersécurité radio (EN 18031, août 2025), signalement des failles (CRA, septembre 2026), information « vous parlez à une IA » (AI Act, août 2026).</p></div>
-      <div class="g"><span class="k">Démo</span><h3>Faisable en 3 à 6 semaines</h3><p>Tablette Android en mode kiosque dans un cadre imprimé en 3D, appli famille FlutterFlow, Supabase et LiveKit.</p></div>
+      <div><span class="k">Besoin</span><h3>48 % des 80 ans et plus vivent seuls</h3><p>750 000 aînés en « mort sociale » (+42 % en 4 ans), 1,5 million ne voient presque jamais leurs enfants. 9,3 millions d'aidants, dont 6 sur 10 travaillent.</p></div>
+      <div class="o"><span class="k">Preuves</span><h3>Promettre du lien, pas la fin de la solitude</h3><p>L'effet des appels vidéo sur la solitude est mal prouvé (Cochrane 2020, méta-analyse 2026). Ce qui marche : le numérique qui prépare les visites en vrai.</p></div>
+      <div class="g"><span class="k">Acceptation</span><h3>Le senior doit garder la main</h3><p>Les enfants veulent plus de surveillance que leurs parents (Berridge 2020). Ce qui fait accepter un objet, c'est le contrôle perçu. Notre promesse est la bonne.</p></div>
+      <div><span class="k">Format</span><h3>Le créneau écran + socle est vide</h3><p>Pixel Tablet, Portal Go, Fire Show Mode, Lenovo Smart Tab : tous arrêtés. Personne ne le fait pour les seniors.</p></div>
+      <div class="o"><span class="k">Prix</span><h3>La location à 19,90 € change tout</h3><p>Avec le crédit d'impôt de 50 %, elle revient à 9,95 € par mois si le senior paie : moins que Familink (14,99 €) et LiNote (18,99 €). L'offre 4G à 14,90 € ne tient pas.</p></div>
+      <div class="g"><span class="k">Démo</span><h3>Galaxy Tab A11+ et FreeKiosk</h3><p>Environ 330 à 390 € de matériel. FlutterFlow, Supabase Paris, LiveKit. 4 semaines à trois. Voir la <a href="1-1-plan-demo-cadre.html" style="color:var(--blue)">page de réalisation</a>.</p></div>
     </div>
-    <p class="note" style="margin-top:16px">Les choix de l'équipe du 15 octobre (volet de caméra, bouton micro, pas d'appel automatique aux secours, cadre fixe et écran portatif) sont confirmés par la veille. Recommandation sur la taille : <b>10 pouces</b>. Le 13 pouces pèse plus d'un kilo avec son boîtier et demande une batterie deux fois plus grosse.</p>
+    <p class="note" style="margin-top:16px">Les choix de l'équipe du 15 octobre (volet de caméra, bouton micro, pas d'appel automatique aux secours, cadre fixe et écran portatif) sont confirmés par la veille. Recommandation sur la taille : <b>10 pouces</b> et moins de 500 g pour l'écran.</p>
 
   </div>
 </div>
 </section>
 <section id="s01">
 <div class="grid">
-  <div class="k"><span class="num">01</span> · Veille concurrentielle</div>
+  <div class="k"><span class="num">01</span> · Le besoin</div>
+  <div>
+    <h2>Le besoin en chiffres, et ce que disent les études</h2>
+<div class="tablewrap"><table class=""><thead><tr><th>Indicateur</th><th>Valeur</th><th>Année</th><th>Source</th></tr></thead><tbody>
+<tr><td>80 ans et plus vivant seuls</td><td>48,4 % (femmes 61,3 %)</td><td>2023</td><td>INSEE</td></tr>
+<tr><td>65 ans et plus vivant seuls</td><td>32,4 %</td><td>2021</td><td>INSEE</td></tr>
+<tr><td>Population de 75 ans et plus</td><td>7,7 millions</td><td>2026</td><td>INSEE</td></tr>
+<tr><td>Aînés en « mort sociale »</td><td>750 000 (+42 % en 4 ans)</td><td>2025</td><td>Petits Frères des Pauvres</td></tr>
+<tr><td>Ne voient presque jamais enfants ou petits-enfants</td><td>1,5 million</td><td>2025</td><td>Petits Frères des Pauvres</td></tr>
+<tr><td>Se sentent seuls tous les jours</td><td>2,5 millions</td><td>2025</td><td>Petits Frères des Pauvres</td></tr>
+<tr><td>60 ans et plus qui n'utilisent jamais Internet</td><td>au moins 5 millions</td><td>2025</td><td>Petits Frères des Pauvres</td></tr>
+<tr><td>Difficultés avec le numérique, 75 ans et plus</td><td>61,9 %</td><td>2021</td><td>INSEE</td></tr>
+<tr><td>Smartphone chez les 70 ans et plus</td><td>73 %</td><td>2025</td><td>Arcep, Baromètre du numérique</td></tr>
+<tr><td>Proches aidants</td><td>9,3 millions</td><td>2021</td><td>DREES</td></tr>
+<tr><td>Aidants qui travaillent</td><td>58 à 61 %</td><td>2021-2022</td><td>DREES, OCIRP</td></tr>
+<tr><td>Aidants en fatigue mentale</td><td>40 %</td><td>2024</td><td>BVA, Je t'Aide</td></tr>
+<tr><td>Adultes qui voient leurs parents chaque jour</td><td>7 % (32 % chaque semaine)</td><td>2024</td><td>INED</td></tr>
+<tr><td>Personnes en téléassistance</td><td>750 000, soit 10 % des 75 ans et plus</td><td>2024</td><td>AFRATA</td></tr>
+</tbody></table></div><h3 class="sub">Ce que disent les études</h3><div class="tablewrap"><table class=""><thead><tr><th>Sujet</th><th>Résultat</th><th>Ce qu'on en fait</th></tr></thead><tbody>
+<tr><td>Appels vidéo contre la solitude</td><td>Cochrane 2020 : 3 essais, 201 personnes en EHPAD, certitude très faible. Méta-analyse JMIR 2026 : 7 essais, effet non significatif.</td><td>Ne pas promettre de guérir la solitude. Mettre en avant le lien et la préparation des visites.</td></tr>
+<tr><td>Numérique et présence</td><td>Revue BMC 2026 (79 études) : le mélange numérique et activités en vrai marche mieux que le numérique seul. Japon 2024 : seuls les contacts en personne améliorent la santé mentale.</td><td>Fonction « planifier la prochaine visite » pour la fratrie.</td></tr>
+<tr><td>Komp à domicile</td><td>Essai 2026 sur 1 099 personnes de 84 ans en moyenne : seules 150 machines livrées sur 516 proposées.</td><td>Le vrai défi est l'adoption : accompagner l'installation.</td></tr>
+<tr><td>Surveillance perçue</td><td>Berridge 2020 : les enfants préfèrent la surveillance plus que leurs mères et pensent pouvoir les convaincre. Risque d'« emprise de l'aidant ».</td><td>Aucune donnée d'activité. Le senior choisit ses réglages.</td></tr>
+<tr><td>Acceptation</td><td>Revue 2026 (41 études) : 4 facteurs décident, dont le contrôle perçu et la stigmatisation. Modèle STAM : la confiance en soi et l'anxiété comptent plus que l'utilité.</td><td>Objet de déco, zéro réglage pour le senior.</td></tr>
+<tr><td>Abandon</td><td>Revue JMIR Aging 2025 (95 études) : vie privée, coût, besoin non ressenti, stigmatisation, manque d'humain.</td><td>Un service humain derrière l'objet.</td></tr>
+<tr><td>Photos et souvenirs</td><td>Cochrane 2018 sur la réminiscence : effet faible, un peu meilleur en EHPAD. Aucun essai sur le partage de photos à domicile.</td><td>La photo sert à lancer une conversation : bouton « Appeler » sous chaque photo.</td></tr>
+</tbody></table></div><p class="note" style="margin-top:12px">Non trouvé : nombre exact de 75 ans et plus vivant seuls, propension à payer pour un cadre en France, taux d'équipement en tablette des 70 ans et plus.</p>
+  </div>
+</div>
+</section>
+<section id="s02">
+<div class="grid">
+  <div class="k"><span class="num">02</span> · Veille concurrentielle</div>
   <div>
     <h2>17 produits passés au crible</h2>
 <div class="tablewrap"><table class=""><thead><tr><th>Produit</th><th>Type</th><th>Achat</th><th>Abonnement</th><th>Ce qui plaît</th><th>Ce qui est critiqué</th><th>Statut</th></tr></thead><tbody>
@@ -229,14 +261,29 @@ table.feat td:first-child { width: 3ch; }
 <tr><td><b>Meta Portal</b></td><td>Écran d'appel</td><td>-</td><td>-</td><td>Caméra qui cadre seule</td><td>Méfiance envers Facebook</td><td>Arrêté (2022)</td></tr>
 <tr><td><b>ElliQ</b></td><td>Compagnon IA</td><td>249 $ de frais</td><td>39 à 59 $/mois</td><td>Prend l'initiative, rappels</td><td>Pas de propriété</td><td>Actif (USA)</td></tr>
 <tr><td><b>Ardoiz</b> (La Poste)</td><td>Tablette</td><td>229 € + 11,99 €/mois</td><td>Inclus</td><td>Tablette simplifiée</td><td>Engagement, demande retombée après le Covid</td><td>Fermeture annoncée en mai 2026</td></tr>
-<tr><td><b>Famileo</b> (FR)</td><td>Gazette papier</td><td>-</td><td>5,99 à 9,99 €/mois</td><td>Pas d'écran pour le senior</td><td>Aucun retour du senior</td><td>Actif, 260 000 familles</td></tr>
+<tr><td><b>Famileo</b> (FR)</td><td>Gazette papier</td><td>-</td><td>5,99 à 9,99 €/mois</td><td>Pas d'écran pour le senior</td><td>Aucun retour du senior</td><td>Actif, 280 000 familles</td></tr>
 </tbody></table></div><h3 class="sub">Ce que la concurrence nous apprend</h3><ol class="next"><li><b>Le décroché automatique marche, mais c'est toujours la famille qui le règle.</b> Chez nous, c'est le senior qui le donne, contact par contact.</li><li><b>Changer l'abonnement après la vente déclenche la colère</b> (Nixplay, Skylight, Komp). Il faut promettre des prix stables.</li><li><b>Les arrêts sont fréquents</b> : Portal, Alexa Together, Call Home de Google, Meural, Ardoiz. Une garantie écrite de durée et d'export des photos devient un argument.</li><li><b>Le « j'aime » qui revient à l'expéditeur est validé</b> par Aura, Skylight et Familink.</li><li><b>Le contrôle physique du micro est ce qui rassure le plus</b> (étude USENIX 2023, 489 personnes), à condition que la coupure soit réelle et visible.</li><li><b>Le crédit d'impôt de 50 % « service à la personne »</b> est utilisé par Emotivi, Visioframe et LiNote. À étudier pour notre abonnement.</li><li><b>À éviter absolument</b> : fil d'activité passif, détection de présence, alerte « rappel non lu ». C'est ce que font Alexa Together et LiNote, et c'est l'inverse de notre promesse.</li></ol>
   </div>
 </div>
 </section>
-<section id="s02">
+<section id="s03">
 <div class="grid">
-  <div class="k"><span class="num">02</span> · Fonctionnalités</div>
+  <div class="k"><span class="num">03</span> · Le format</div>
+  <div>
+    <h2>Écran portatif et socle : qui l'a déjà fait</h2>
+<p>Le format « écran portatif + socle de charge » a déjà existé chez les géants. Tous ces produits sont arrêtés, et aucun ne visait les seniors : le créneau est libre, mais la demande reste à prouver.</p><div class="tablewrap"><table class=""><thead><tr><th>Produit</th><th>Prix</th><th>Socle</th><th>Écran</th><th>Avis</th><th>Statut</th></tr></thead><tbody>
+<tr><td><b>Google Pixel Tablet</b></td><td>399 $ ; 499 $ avec socle</td><td>Aimants et 4 contacts à ressort, socle haut-parleur de 460 g</td><td>493 g, caméra 8 MP</td><td>« Le socle fait toute la différence » ; contacts qui accrochent mal parfois</td><td>Arrêtée en sept. 2026, version 2 annulée</td></tr>
+<tr><td><b>Meta Portal Go</b></td><td>199 $</td><td>Station sans aimants, difficile à reposer</td><td>1,4 kg, 5 h d'appel</td><td>Très bon son et vidéo, trop lourd, méfiance vie privée</td><td>Arrêté en 2022</td></tr>
+<tr><td><b>Amazon Fire + Show Mode</b></td><td>non trouvé</td><td>Coque à contacts et aimants</td><td>-</td><td>Bascule auto en écran d'accueil ; coque dédiée obligatoire</td><td>Gamme Fire arrêtée en oct. 2026</td></tr>
+<tr><td><b>Lenovo Smart Tab</b></td><td>non trouvé</td><td>Tablette emboîtée sur des contacts</td><td>-</td><td>Proche d'un Nest Hub</td><td>non trouvé</td></tr>
+<tr><td><b>GrandPad</b></td><td>299 $ + 40 $/mois</td><td>Socle de charge sans fil</td><td>environ 850 g avec coque</td><td>Assistance appréciée, prix</td><td>Actif (USA)</td></tr>
+</tbody></table></div><h3 class="sub">Ce qu'on en tire pour notre socle</h3><ol class="next"><li><b>Aimants et contacts à ressort</b>, comme Pixel et Amazon. Sans aimants (Portal Go), reposer l'écran devient pénible.</li><li><b>Un guidage en entonnoir</b> en plus des aimants, et une lumière ou un son quand la charge démarre : le Pixel rate parfois le contact.</li><li><b>Une encoche pour les doigts</b> et un dos antidérapant : retirer l'écran à une main le fait glisser.</li><li><b>Un socle lesté</b>, au moins aussi lourd que l'écran (repère : 460 g), pour ne pas basculer.</li><li><b>Un écran de 500 g au plus</b> : le Portal Go à 1,4 kg a été jugé trop lourd.</li><li><b>L'écran surélevé et incliné</b> : moins de flexion du dos et de la nuque (Tomita 2022, Vasavada 2015).</li><li><b>Pas d'adaptateur USB-C aimanté dans le produit</b> : non certifiable et risque de court-circuit. Il reste acceptable pour la démo.</li><li><b>Bois, tissu, feutre</b> : un objet de déco, pas un appareil médical.</li></ol>
+  </div>
+</div>
+</section>
+<section id="s04">
+<div class="grid">
+  <div class="k"><span class="num">04</span> · Fonctionnalités</div>
   <div>
     <h2>41 fonctions pour le cadre</h2>
 <p>41 fonctionnalités, adaptées au cadre (pas à une tablette). S = senior, A = aidant, F = famille. Chaque ligne est vérifiée contre la promesse « rassurer sans surveiller ».</p><h3 class="sub">Version 1 : indispensable (18)</h3><div class="tablewrap"><table class="feat"><thead><tr><th>N°</th><th>Fonction</th><th>En une phrase</th><th>Pour</th><th>Preuve</th></tr></thead><tbody>
@@ -283,13 +330,34 @@ table.feat td:first-child { width: 3ch; }
 <tr><td>39</td><td><b>Planning de la fratrie</b></td><td>Qui appelle quel jour, pour éviter que tout le monde appelle le dimanche.</td><td>A, F</td><td>Hypothèse à tester</td></tr>
 <tr><td>40</td><td><b>Garantie de durée</b></td><td>Engagement écrit : export des photos, fonctions locales gardées si le service s'arrête, pas de hausse surprise.</td><td>A</td><td>Nixplay, Portal, Ardoiz</td></tr>
 <tr><td>41</td><td><b>Photo masquée par l'aidant</b></td><td>Masquer une photo sensible (deuil, divorce) sans la supprimer chez l'expéditeur.</td><td>A</td><td>Hypothèse</td></tr>
-</tbody></table></div><p class="note" style="margin-top:14px">Exclu volontairement : fil d'activité, détection de présence, alertes « rappel non lu », décroché automatique réglé par la famille seule, détection de chute (bascule en dispositif médical).</p>
+</tbody></table></div><p class="note" style="margin-top:14px">Exclu volontairement : fil d'activité, détection de présence, alertes « rappel non lu », décroché automatique réglé par la famille seule, détection de chute (bascule en dispositif médical).</p><p style="margin-top:14px"><b>À trancher :</b> la veille sur les besoins déconseille tout décroché automatique en vidéo (le senior doit toujours appuyer sur « Décrocher »), alors que la fonction n° 36 le propose s'il est donné par le senior lui-même. Proposition : version 1 sans décroché automatique, à tester ensuite avec des seniors.</p>
   </div>
 </div>
 </section>
-<section id="s03">
+<section id="s05">
 <div class="grid">
-  <div class="k"><span class="num">03</span> · Stack matérielle</div>
+  <div class="k"><span class="num">05</span> · Design pour seniors</div>
+  <div>
+    <h2>Les règles en chiffres</h2>
+<div class="tablewrap"><table class=""><thead><tr><th>Point</th><th>Règle</th><th>Source</th></tr></thead><tbody>
+<tr><td>Taille des boutons</td><td>16 mm minimum, 20 mm préférés (environ 118 pixels sur un écran 10 pouces)</td><td>Études 2022 et 2025, 220 participants</td></tr>
+<tr><td>Espacement</td><td>Au moins 3 mm entre deux boutons</td><td>Jin 2007</td></tr>
+<tr><td>Position</td><td>Actions principales en haut ou à droite</td><td>Étude 2025</td></tr>
+<tr><td>Texte</td><td>14 à 22 points à 40 cm ; environ deux fois plus grand si le cadre est lu à 80 cm</td><td>Hou 2022</td></tr>
+<tr><td>Contraste</td><td>7:1 (niveau AAA), jamais d'information portée par la couleur seule</td><td>W3C WCAG ; DMLA chez 25 à 30 % des plus de 75 ans</td></tr>
+<tr><td>Gestes</td><td>Seulement l'appui simple : ni glisser, ni pincer, ni appui long. Ignorer les doubles appuis</td><td>NN/g ; tremblement chez environ 7 % des plus de 65 ans</td></tr>
+<tr><td>Délais</td><td>Aucun : la sonnerie dure, les messages restent affichés</td><td>WCAG 2.2.1</td></tr>
+<tr><td>Son</td><td>Haut-parleur vers l'avant, bouton de volume physique, sonnerie grave et lumière</td><td>Plus de 65 % des 65 ans et plus ont une perte auditive (INSERM) ; les aigus partent d'abord</td></tr>
+<tr><td>Retour</td><td>Son et image à chaque action</td><td>W3C WAI</td></tr>
+<tr><td>Troubles cognitifs</td><td>Mode simple : un écran avec le jour, la date, les visages et les prénoms</td><td>Charte Alzheimer's Society</td></tr>
+<tr><td>Emplacement</td><td>Salon ou cuisine, jamais la chambre ni la salle de bain</td><td>Étude sur 30 foyers</td></tr>
+</tbody></table></div>
+  </div>
+</div>
+</section>
+<section id="s06">
+<div class="grid">
+  <div class="k"><span class="num">06</span> · Stack matérielle</div>
   <div>
     <h2>Ce qu'il y a dans le cadre</h2>
 <p>Tous les écrans connectés du marché (Echo Show, Nest Hub, Portal) utilisent une puce ARM avec Android ou Linux et un encodeur vidéo matériel. Aucun n'utilise de Raspberry Pi. Pour comparaison, les composants d'un Echo Show 8 coûtent 138,79 $ (TechInsights), sans batterie ni 4G.</p>
@@ -306,7 +374,7 @@ table.feat td:first-child { width: 3ch; }
   <div class="b"><h3>Micros anti-écho</h3><ul><li>XMOS XVF3800 : annulation d'écho, captation jusqu'à 5 m</li><li>Sa broche de coupure éteint les micros et allume la LED rouge : vraie coupure matérielle</li></ul></div>
   <div class="b"><h3>Recharge par contacts aimantés</h3><ul><li>Rendement 95 à 98 %, contre 75 à 85 % pour une recharge sans fil</li><li>Moins de chaleur, pas de ventilateur</li></ul></div>
   <div class="o"><h3>Batterie amovible</h3><ul><li>Obligatoire dès le 18/02/2027 (règlement 2023/1542)</li><li>Trappe vissée, pack batterie avec connecteur</li></ul></div>
-  <div class="o"><h3>Mot d'activation</h3><ul><li>Picovoice : trop cher (899 $/mois pour 1 000 cadres)</li><li>openWakeWord ou microWakeWord : gratuits, licence des modèles à vérifier</li><li>Toujours un bouton « parler » en plus</li></ul></div>
+  <div class="o"><h3>Mot d'activation</h3><ul><li>Picovoice : trop cher (899 $/mois pour 1 000 cadres)</li><li>openWakeWord et microWakeWord : anglais seulement, modèles non commerciaux</li><li>Seul Picovoice gère le français</li><li>Toujours un bouton « parler » en plus</li></ul></div>
   <div class="o"><h3>Appareils auditifs</h3><ul><li>Android 15 gère nativement ASHA et LE Audio</li><li>Sous Linux, LE Audio marche mais ASHA non : argument pour Android</li></ul></div>
 </div>
 <h3 class="sub">Liste des pièces</h3><div class="tablewrap"><table class=""><thead><tr><th>Pièce</th><th>Référence pour le prototype</th><th>Prix prototype</th><th>Prix en série (estimation)</th></tr></thead><tbody>
@@ -327,9 +395,9 @@ table.feat td:first-child { width: 3ch; }
   </div>
 </div>
 </section>
-<section id="s04">
+<section id="s07">
 <div class="grid">
-  <div class="k"><span class="num">04</span> · Stack logicielle</div>
+  <div class="k"><span class="num">07</span> · Stack logicielle</div>
   <div>
     <h2>Comment tout communique</h2>
 <div class="flow">CADRE (tablette Android en kiosque, appli Flutter)
@@ -344,12 +412,12 @@ APPLI FAMILLE (FlutterFlow)          TABLEAU DE BORD AIDANT
 
 n8n : cadre hors ligne depuis 24 h ─► message à l&#x27;aidant (« vérifiez la prise et le wifi »)
 Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewrap"><table class=""><thead><tr><th>Brique</th><th>Choix recommandé</th><th>Autres options</th></tr></thead><tbody>
-<tr><td>Système du cadre</td><td><b>Android en mode kiosque</b> (Android Management API, gratuite)</td><td>Linux + Flutter (flutter-pi) : plus de contrôle, trop lourd pour nous</td></tr>
+<tr><td>Système du cadre</td><td><b>Android verrouillé par FreeKiosk</b> (gratuit, open source, mode propriétaire de l'appareil)</td><td>Fully Kiosk (8,90 € une fois). L'Android Management API de Google est réservée aux éditeurs commerciaux : interdite pour nous</td></tr>
 <tr><td>Appli du cadre</td><td><b>Flutter</b> (créée dans FlutterFlow, avec un peu de code)</td><td>Chromium en plein écran : fragile pour la visio et le micro</td></tr>
 <tr><td>Appli famille</td><td><b>FlutterFlow</b> (39 à 80 $/mois)</td><td>Bubble, Adalo ; Glide exclu (pas d'appli native ni de notifications)</td></tr>
 <tr><td>Base de données, comptes, photos</td><td><b>Supabase, région Paris</b> (25 $/mois)</td><td>Firebase : quotas gratuits seulement aux États-Unis</td></tr>
 <tr><td>Appels vidéo</td><td><b>LiveKit</b> (chiffrement de bout en bout, SDK Flutter, 0,0005 $ la minute)</td><td>Daily, 100ms, Vonage : 8 fois plus chers ; Jitsi</td></tr>
-<tr><td>Mot d'activation</td><td><b>openWakeWord</b> sur le cadre, et bouton « parler »</td><td>Picovoice Porcupine : trop cher</td></tr>
+<tr><td>Mot d'activation</td><td><b>Bouton « parler »</b> d'abord ; plus tard Picovoice Porcupine, le seul qui gère le français</td><td>openWakeWord et microWakeWord : anglais seulement, modèles non commerciaux</td></tr>
 <tr><td>Transcription de la voix</td><td><b>Mistral Voxtral</b> ou <b>Scaleway Whisper</b> (0,003 €/min, en France)</td><td>Gladia, Speechmatics, Deepgram</td></tr>
 <tr><td>Compréhension de la commande</td><td><b>Mistral Small</b>, réponses limitées à une liste d'actions</td><td>OVHcloud AI Endpoints</td></tr>
 <tr><td>Voix du cadre</td><td><b>Phrases enregistrées</b> ou <b>Piper</b> (gratuit, sur le cadre)</td><td>Azure, ElevenLabs : jusqu'à 2 € par cadre et par mois</td></tr>
@@ -357,14 +425,47 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td>Statut « connecté »</td><td><b>Signal toutes les 5 min</b> vers Supabase</td><td>MQTT (EMQX)</td></tr>
 <tr><td>Automatisations</td><td><b>n8n</b> hébergé en Europe</td><td>Make, Zapier</td></tr>
 <tr><td>Paiement</td><td><b>Stripe Billing</b> et prélèvement SEPA (environ 0,40 € par abonnement)</td><td>-</td></tr>
-<tr><td>Mises à jour</td><td><b>Play Store géré</b> par l'Android Management API</td><td>Mender, balena, Esper (2 $/cadre/mois)</td></tr>
+<tr><td>Mises à jour</td><td><b>FreeKiosk</b> (démo), puis un outil de gestion de flotte (Headwind MDM, Esper)</td><td>Mender, balena (pour Linux)</td></tr>
 </tbody></table></div><h3 class="sub">Automatisations no-code utiles</h3><ol class="next"><li><b>Bienvenue aidant</b> : nouveau compte, e-mail avec la liste des étapes d'installation.</li><li><b>Cadre hors ligne depuis 24 h</b> : message à l'aidant avec les vérifications à faire.</li><li><b>Nouveau proche</b> : l'aidant reçoit la demande et valide en un clic.</li><li><b>Résumé hebdomadaire</b> : nombre de photos et d'appels, jamais leur contenu.</li><li><b>Paiement échoué</b> : relance, puis le cadre garde ses photos en mode réduit.</li></ol>
   </div>
 </div>
 </section>
-<section id="s05">
+<section id="s08">
 <div class="grid">
-  <div class="k"><span class="num">05</span> · Coûts</div>
+  <div class="k"><span class="num">08</span> · Voix et IA</div>
+  <div>
+    <h2>Une voix utile, jamais surveillante</h2>
+<p>Les voix âgées sont moins bien reconnues : débit lent, pauses, dentiers, troubles cognitifs. La voix reste un confort, jamais le seul moyen d'agir.</p><div class="tablewrap"><table class=""><thead><tr><th>Mesure</th><th>Résultat</th><th>Source</th></tr></thead><tbody>
+<tr><td>Azure en maison de retraite (français standard)</td><td>95 % de précision</td><td>Étude RO-MAN 2025</td></tr>
+<tr><td>Whisper, phrases inventées</td><td>environ 1 % des transcriptions, plus fréquent avec de longues pauses</td><td>FAccT 2024</td></tr>
+<tr><td>Avec dentier</td><td>précision par mot de 60 %, contre 70 % sans problème dentaire</td><td>J Oral Rehab 2010</td></tr>
+<tr><td>Voxtral temps réel, français adulte</td><td>6,4 % d'erreur</td><td>Mistral, benchmark FLEURS</td></tr>
+<tr><td>Vosk embarqué, français</td><td>24 % (petit modèle) à 15 % (gros) d'erreur</td><td>Alphacephei</td></tr>
+<tr><td>Activations par erreur près d'une télé</td><td>0,95 par heure</td><td>PoPETs 2020</td></tr>
+</tbody></table></div><h3 class="sub">Les fonctions IA utiles, sans surveiller</h3><div class="tablewrap"><table class=""><thead><tr><th>Fonction</th><th>Coût par cadre et par mois</th><th>Risque</th><th>Avis</th></tr></thead><tbody>
+<tr><td>Lire à voix haute légendes et messages</td><td>Sur le cadre, gratuit</td><td>Quasi nul</td><td><span class="feu f-v">Vert</span></td></tr>
+<tr><td>Résumé des nouvelles de la famille chaque semaine</td><td>moins de 0,10 €</td><td>Porte seulement sur ce que la famille envoie</td><td><span class="feu f-v">Vert</span></td></tr>
+<tr><td>Commandes vocales fermées (« appelle Marie »)</td><td>environ 0,25 €</td><td>Rien gardé, confirmation avant d'agir</td><td><span class="feu f-v">Vert</span></td></tr>
+<tr><td>Traduction pour familles bilingues</td><td>moins de 0,01 €</td><td>Faible</td><td><span class="feu f-v">Vert</span></td></tr>
+<tr><td>Description de photo pour malvoyants</td><td>environ 0,02 à 0,30 €</td><td>Photos de tiers : désactivé par défaut</td><td><span class="feu f-o">Orange</span></td></tr>
+<tr><td>Sous-titres pendant les appels</td><td>environ 0,50 à 1 €</td><td>Transcrit la voix des proches : accord des deux côtés</td><td><span class="feu f-o">Orange</span></td></tr>
+<tr><td>Compagnon IA qui fait la conversation</td><td>-</td><td>Dépendance, tromperie, AI Act article 5</td><td><span class="feu f-r">Rouge</span></td></tr>
+</tbody></table></div><div class="arch" style="margin-top:20px">
+  <div class="b"><h3>Mot d'activation</h3><ul><li>openWakeWord, microWakeWord : anglais seulement</li><li>Picovoice Porcupine : gère le français, conditions gratuites à vérifier</li><li>Un bon mot : 3 à 4 syllabes, au moins 6 sons, absent des conversations et de la télé</li></ul></div>
+  <div class="b"><h3>Sur le cadre</h3><ul><li>Whisper base : temps réel sur RK3576, pas sur RK3566</li><li>Voix de synthèse Piper en français, gratuite</li><li>Rien ne sort avant l'activation</li></ul></div>
+  <div class="o"><h3>Pas de compagnon IA</h3><ul><li>ElliQ : 80 % disent se sentir moins seuls, mais étude faite avec l'entreprise</li><li>Risques : dépendance, tromperie, infantilisation</li><li>Un assistant utile qui renvoie toujours vers la famille</li></ul></div>
+</div>
+<h3 class="sub">Nos règles pour la voix et l'IA</h3>
+<div class="cards two">
+  <div><span class="k">On fait</span><ol class="next"><li>Bouton « parler » d'abord, mot d'activation en confort</li><li>Lumière dès que le micro écoute, bouton qui coupe le micro électriquement</li><li>« Je suis un assistant automatique » au premier usage (AI Act article 50)</li><li>Confirmation avant toute action, et le toucher remplace toujours la voix</li><li>Prénoms de la liste blanche donnés au moteur pour mieux les reconnaître</li><li>Audio supprimé juste après la transcription, hébergement en Europe</li><li>Fonctions sensibles désactivées par défaut, activées par le senior</li></ol></div>
+  <div class="o"><span class="k">On interdit</span><ol class="next"><li>Analyser l'humeur, la santé ou le déclin à partir de la voix</li><li>Montrer à la famille l'activité du senior</li><li>Reconnaître qui parle (donnée biométrique)</li><li>Écouter en continu et envoyer au cloud</li><li>Cloner la voix d'un proche, vivant ou décédé</li><li>Relancer, persuader, vendre</li><li>Répondre aux questions médicales ou financières</li><li>Enregistrer les appels ou leurs transcriptions</li></ol></div>
+</div>
+  </div>
+</div>
+</section>
+<section id="s09">
+<div class="grid">
+  <div class="k"><span class="num">09</span> · Coûts</div>
   <div>
     <h2>Ce que coûte un cadre chaque mois</h2>
 <p>Hypothèse : chaque jour, 30 minutes de visio, 10 photos et 20 commandes vocales. Flotte de 1 000 cadres.</p><div class="tablewrap"><table class=""><thead><tr><th>Poste</th><th>Base de calcul</th><th>Par cadre et par mois</th></tr></thead><tbody>
@@ -382,14 +483,68 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td>4G, 14,90 € TTC</td><td>12,42 €</td><td>2,60 à 3,40 €</td><td>8 à 11,90 € (10 Go)</td><td><b>-2,90 à 1,80 €</b></td><td><span class="feu f-r">Rouge</span></td></tr>
 <tr><td>4G, 19,90 € TTC (proposé)</td><td>16,58 €</td><td>2,60 à 3,40 €</td><td>8 à 11,90 €</td><td><b>1,30 à 6 €</b></td><td><span class="feu f-o">Orange</span></td></tr>
 </tbody></table></div><p style="margin-top:14px">Le coût varie surtout avec la vidéo : en 480p ou en audio seul quand la connexion est faible, il baisse fortement. Avec un serveur LiveKit installé chez nous en Europe, la vidéo tombe sous 0,10 € par cadre dès environ 500 cadres. À l'inverse, des services « confort » (Daily, voix Azure, gestion Esper) font monter le total à environ 9,60 €, plus que l'abonnement wifi.</p>
-<p><b>Rentabilité, ordre de grandeur :</b> avec 300 000 € de frais fixes par an et 4 € de marge par mois, il faut environ <b>6 250 abonnés</b>. Familink en revendique 50 000, Famileo 260 000. Le désabonnement des seniors (décès, entrée en EHPAD) est inconnu et pèsera.</p>
+<p><b>Rentabilité, ordre de grandeur :</b> avec 300 000 € de frais fixes par an et 4 € de marge par mois, il faut environ <b>6 250 abonnés</b>. Familink en revendique 50 000, Famileo 280 000. Le désabonnement des seniors (décès, entrée en EHPAD) est inconnu et pèsera.</p>
 <p><b>Fabrication :</b> environ 90 à 190 $ de pièces par cadre selon le volume. Avec 30 à 50 % de marge, le prix de 249 € est cohérent, à condition de vendre surtout en direct.</p>
   </div>
 </div>
 </section>
-<section id="s06">
+<section id="s10">
 <div class="grid">
-  <div class="k"><span class="num">06</span> · Faisabilité</div>
+  <div class="k"><span class="num">10</span> · Modèle économique</div>
+  <div>
+    <h2>Crédit d'impôt, marché, compte de résultat</h2>
+<h3 class="sub" style="margin-top:0">Le crédit d'impôt de 50 %</h3><div class="tablewrap"><table class=""><thead><tr><th>Point</th><th>Ce qu'il faut savoir</th></tr></thead><tbody>
+<tr><td>Taux</td><td>50 % des sommes payées, plafond 12 000 € par an</td></tr>
+<tr><td>Activité visée</td><td>« Téléassistance et visioassistance » ou « assistance informatique » : simple déclaration, sans agrément</td></tr>
+<tr><td>Qui doit payer</td><td><b>Le senior</b>, titulaire du contrat, à son domicile. L'enfant qui paie n'en profite pas (LiNote l'écrit clairement)</td></tr>
+<tr><td>Ce qui est concerné</td><td>L'abonnement et la location. <b>L'achat du cadre, probablement pas</b> (texte BOFiP à vérifier)</td></tr>
+<tr><td>TVA</td><td>20 % pour la téléassistance et l'assistance informatique</td></tr>
+<tr><td>Avance immédiate</td><td>Possible via l'URSSAF : le client ne paie que 50 % sur le moment</td></tr>
+<tr><td>Condition</td><td>Le service doit vraiment ressembler à de l'assistance à distance : aide à l'installation, prise en main à distance, assistance</td></tr>
+</tbody></table></div><h3 class="sub">Quatre modèles possibles</h3><div class="tablewrap"><table class=""><thead><tr><th>Modèle</th><th>Prix mensuel payé</th><th>Crédit d'impôt</th><th>Qui le fait</th><th>Avis</th></tr></thead><tbody>
+<tr><td>Achat 249 € + 7,90 €/mois</td><td>7,90 €</td><td>Pas de crédit</td><td>Familink, ViewClix</td><td>Vente de matériel déguisée, sensible au coût d'acquisition</td></tr>
+<tr><td><b>Location tout compris 19,90 €/mois</b></td><td><b>9,95 €</b></td><td>Oui si le senior paie</td><td>LiNote 18,99 €, Emotivi 15 € après crédit</td><td>Le plus fort, mais il faut financer les cadres et demander une caution</td></tr>
+<tr><td>Location sans crédit</td><td>14,99 €</td><td>-</td><td>Familink</td><td>Repère du marché</td></tr>
+<tr><td>Gratuit financé par un tiers</td><td>0 €</td><td>-</td><td>Départements, mutuelles</td><td>Volume, mais cycles de vente longs</td></tr>
+</tbody></table></div><h3 class="sub">Taille du marché, calculée par le bas</h3>
+<p><b>Marché total :</b> 7,7 millions de 75 ans et plus × 38 % vivant seuls × 85 % avec un enfant adulte = <b>environ 2,5 millions de foyers</b>.</p>
+<p><b>Marché atteignable :</b> 60 % avec une box et un enfant à l'aise avec le numérique, puis 10 % intéressés (le taux d'équipement en téléassistance) = <b>environ 150 000 foyers</b>.</p>
+<p><b>Objectif à 3 ans :</b> 5 à 10 % de ce marché, soit <b>7 500 à 15 000 cadres</b>. Repères : Famileo 280 000 familles, LiNote 27 000 utilisateurs, Familink plus de 10 000 seniors. Les pourcentages en gras sont des hypothèses.</p>
+<h3 class="sub">Compte de résultat sur 3 ans (achat 249 € + 7,90 €/mois)</h3><div class="tablewrap"><table class=""><thead><tr><th>Scénario</th><th>Cadres vendus (an 1 / 2 / 3)</th><th>Abonnés en fin d'année</th><th>Chiffre d'affaires</th><th>Résultat</th></tr></thead><tbody>
+<tr><td>Prudent</td><td>300 / 900 / 2 000</td><td>262 / 979 / 2 469</td><td>68 k€ / 223 k€ / 522 k€</td><td><b>-43 k€ / -26 k€ / +12 k€</b></td></tr>
+<tr><td>Moyen</td><td>800 / 2 500 / 6 000</td><td>699 / 2 699 / 7 232</td><td>182 k€ / 617 k€ / 1,55 M€</td><td><b>-92 k€ / -127 k€ / -52 k€</b></td></tr>
+<tr><td>Ambitieux</td><td>2 000 / 7 000 / 18 000</td><td>1 747 / 7 402 / 21 183</td><td>456 k€ / 1,71 M€ / 4,60 M€</td><td><b>-208 k€ / -363 k€ / -343 k€</b></td></tr>
+</tbody></table></div><p class="note" style="margin-top:12px">Hypothèses : coût de revient 110 € HT par cadre, 30 % des ventes en magasin (30 % de marge prise), désabonnement 2,5 % par mois, coût d'acquisition 60 à 110 € par client. Chaque client rapporte environ 285 € de marge sur sa durée de vie, avant acquisition et frais fixes.</p><p><b>À retenir :</b> à 7,90 €, l'abonnement pèse moins d'un quart du chiffre d'affaires et croître vite coûte de l'argent. Les trois leviers : la location à 19,90 €, l'abonnement à 9,90 €, ou la vente via les mutuelles et caisses de retraite qui réduit le coût d'acquisition.</p>
+  </div>
+</div>
+</section>
+<section id="s11">
+<div class="grid">
+  <div class="k"><span class="num">11</span> · Distribution</div>
+  <div>
+    <h2>Par où vendre</h2>
+<div class="tablewrap"><table class=""><thead><tr><th>Canal</th><th>Intérêt</th><th>Qui l'utilise</th></tr></thead><tbody>
+<tr><td>Vente directe en ligne (publicité vers les 45-65 ans)</td><td>Maîtrise du prix et du discours</td><td>Tous les concurrents, avec 1 mois d'essai</td></tr>
+<tr><td>Mutuelles et caisses de retraite</td><td>Prescription, action sociale, financement</td><td>LiNote (Solidarm, Mutuelle Familiale), Familink Pro</td></tr>
+<tr><td>Départements, conférences des financeurs, CCAS</td><td>Financement de la lutte contre l'isolement</td><td>Emotivi Pro</td></tr>
+<tr><td>Audioprothésistes et opticiens</td><td>Public idéal, rendez-vous réguliers, son déjà au cœur du sujet</td><td>Personne trouvé : piste à creuser</td></tr>
+<tr><td>Magasins de matériel médical et d'autonomie</td><td>Public déjà qualifié</td><td>Familink</td></tr>
+<tr><td>Pharmacies</td><td>Confiance et fréquentation des 75 ans et plus</td><td>non trouvé</td></tr>
+<tr><td>Entreprises (salariés aidants)</td><td>Nos acheteurs sont des salariés</td><td>non trouvé : piste à creuser</td></tr>
+<tr><td>Résidences seniors (Domitys : 200 résidences)</td><td>Vente groupée</td><td>Emotivi Pro</td></tr>
+<tr><td>La Poste « Veiller sur mes parents »</td><td>Concurrent ou partenaire</td><td>Téléassistance de 25,90 à 33,90 €/mois</td></tr>
+</tbody></table></div><h3 class="sub">Événements et réseaux</h3><div class="tablewrap"><table class=""><thead><tr><th>Où</th><th>Quand</th><th>Pourquoi y aller</th></tr></thead><tbody>
+<tr><td>Silver Économie Expo</td><td>1er et 2 décembre 2026, Paris Porte de Versailles</td><td>Village Silver Valley et gérontopôles</td></tr>
+<tr><td>Silver Valley (Ivry)</td><td>Mercredis de l'Entrepreneur, Open Lab pour tester avec des seniors</td><td>Réseau de 4 500 innovateurs, Prix Silver Valley 20 000 €</td></tr>
+<tr><td>Gérontopôle Pays de la Loire</td><td>Concours SPECIFIK, 7e édition</td><td>Living lab et accélérateur</td></tr>
+<tr><td>Festival SilverEco</td><td>16 et 17 novembre 2027</td><td>Trophées SilverEco, sommet des aidants</td></tr>
+</tbody></table></div>
+  </div>
+</div>
+</section>
+<section id="s12">
+<div class="grid">
+  <div class="k"><span class="num">12</span> · Faisabilité</div>
   <div>
     <h2>Feu vert, orange ou rouge</h2>
 <div class="tablewrap"><table class=""><thead><tr><th>Sujet</th><th>Feu</th><th>Pourquoi</th></tr></thead><tbody>
@@ -426,50 +581,51 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
   </div>
 </div>
 </section>
-<section id="s07">
+<section id="s13">
 <div class="grid">
-  <div class="k"><span class="num">07</span> · Mise en œuvre</div>
+  <div class="k"><span class="num">13</span> · Mise en œuvre</div>
   <div>
     <h2>De la démo à la vente</h2>
 
 <div class="cards">
-  <div><span class="k">Étape 1 · 3 à 6 semaines</span><h3>La démo pour l'oral</h3>
-    <p><b>Matériel :</b> une tablette Android 10 pouces du commerce, déjà marquée CE, verrouillée sur notre appli. Un socle imprimé en 3D avec aimants, un connecteur USB-C aimanté et un volet de caméra imprimé.</p>
-    <p style="margin-top:8px"><b>Logiciel :</b> appli du cadre et appli famille dans FlutterFlow, Supabase (Paris), LiveKit gratuit (5 000 minutes). Bouton « parler » plutôt que mot d'activation.</p>
-    <p style="margin-top:8px"><b>À montrer :</b> la famille envoie une photo, le senior dit merci, un proche appelle, le senior décroche, puis sort l'écran du cadre et l'emporte.</p></div>
+  <div><span class="k">Étape 1 · 4 semaines</span><h3>La démo pour l'oral</h3>
+    <p><b>Matériel :</b> Samsung Galaxy Tab A11+ (environ 280 €), verrouillée par FreeKiosk. Socle imprimé en 3D en PLA effet bois, aimants, adaptateur USB-C aimanté, cache webcam coulissant.</p>
+    <p style="margin-top:8px"><b>Logiciel :</b> FlutterFlow (plan Growth pour le code de l'appel), Supabase Paris, LiveKit gratuit, Mistral pour la voix.</p>
+    <p style="margin-top:8px"><b>Détails :</b> voir la <a href="1-1-plan-demo-cadre.html" style="color:var(--blue)">page de réalisation de la démo</a>.</p></div>
   <div class="o"><span class="k">Étape 2 · 6 à 10 semaines</span><h3>Un test avec 10 à 20 familles</h3>
-    <p><b>Recrutement :</b> centres communaux d'action sociale, résidences autonomie, clubs seniors, Silver Valley, familles de l'école.</p>
+    <p><b>Recrutement :</b> Open Lab de Silver Valley, centres communaux d'action sociale, résidences autonomie, audioprothésistes, familles de l'école.</p>
     <p style="margin-top:8px"><b>RGPD :</b> analyse d'impact simplifiée (modèle CNIL), consentements séparés pour le senior et l'aidant.</p>
-    <p style="margin-top:8px"><b>Mesures :</b> appels par semaine, photos vues, facilité d'usage (questionnaire SUS), prix acceptable pour l'aidant. Question clé : la 4G est-elle vraiment utile ?</p></div>
+    <p style="margin-top:8px"><b>Mesures :</b> combien de familles acceptent l'objet (le point faible de Komp), appels par semaine, facilité d'usage (SUS), prix acceptable. La 4G est-elle utile ?</p></div>
   <div class="g"><span class="k">Étape 3 · 12 à 24 mois</span><h3>La fabrication</h3>
-    <p>Créer la société, demander la Bourse French Tech, candidater au Prix Silver Valley. Consulter 3 à 5 usines en marque blanche, avec leurs rapports CE et EN 18031.</p>
-    <p style="margin-top:8px">Concevoir la batterie amovible et le socle (moule souple de 3 000 à 12 000 $), certifier en laboratoire (8 à 12 semaines). Vendre d'abord via des départements, mutuelles et résidences.</p></div>
+    <p>Société et déclaration « services à la personne », Bourse French Tech, Prix Silver Valley. Tablette 10 pouces en marque blanche (environ 100 à 130 $) avec un socle à contacts sur mesure (20 à 25 $), en exigeant Android 14, la conformité radio et cybersécurité.</p>
+    <p style="margin-top:8px">Batterie remplaçable (février 2027), certification en laboratoire, vente d'abord par les mutuelles et les départements.</p></div>
 </div>
 
   </div>
 </div>
 </section>
-<section id="s08">
+<section id="s14">
 <div class="grid">
-  <div class="k"><span class="num">08</span> · À décider en équipe</div>
+  <div class="k"><span class="num">14</span> · À décider en équipe</div>
   <div>
-    <h2>Six choix à faire</h2>
+    <h2>Sept choix à faire</h2>
 <ol class="next">
-  <li><b>Prix de l'offre 4G :</b> passer à 19,90 € ou limiter la vidéo en 4G (audio seul, ou bascule sur le wifi dès qu'il existe).</li>
-  <li><b>Taille d'écran :</b> la veille recommande 10 pouces.</li>
-  <li><b>Démo :</b> tablette Android du commerce (rapide, compatible FlutterFlow) ou Raspberry Pi 5 (plus « fait maison », mais sans encodeur vidéo et plus lourd en batterie). Recommandation : la tablette.</li>
-  <li><b>Fonctions de la version 1 :</b> valider les 18 fonctions indispensables, en particulier le décroché automatique donné par le senior (n° 36), qu'on garde pour la version 2.</li>
-  <li><b>Positionnement :</b> « cadre photo connecté » plutôt que « tablette », pour éviter les règles d'écoconception des tablettes.</li>
-  <li><b>Crédit d'impôt service à la personne :</b> voir s'il peut s'appliquer à notre abonnement, comme chez Emotivi ou LiNote.</li>
+  <li><b>Modèle de prix :</b> achat 249 € + 7,90 €, ou location tout compris à 19,90 € (9,95 € après crédit d'impôt si le senior paie). La location semble plus forte.</li>
+  <li><b>Offre 4G :</b> 19,90 € au lieu de 14,90 €, ou vidéo limitée en 4G.</li>
+  <li><b>Taille d'écran :</b> 10 pouces et moins de 500 g.</li>
+  <li><b>Décroché automatique :</b> absent de la version 1, à tester ensuite.</li>
+  <li><b>Positionnement :</b> « cadre photo connecté » et service d'assistance, ni tablette ni appareil médical.</li>
+  <li><b>Budget de la démo :</b> environ 330 à 390 € de matériel, plus FlutterFlow Growth (80 $ par mois) pendant 1 à 2 mois.</li>
+  <li><b>Canaux à tester en premier :</b> audioprothésistes et mutuelles, personne ne les occupe vraiment.</li>
 </ol>
   </div>
 </div>
 </section>
 <section id="src"><div class="grid"><div class="k">Sources</div><div class="src-list">
-<p class="note">Recherche faite le 15 octobre 2026. Les prix viennent des pages officielles ou de la presse ; ceux marqués « estimation » sont calculés. Conversion : 1 $ ≈ 0,86 €. Liste réduite aux sources principales.</p>
-<h4>Concurrents</h4><a href="https://www.familinkframe.com/fr/">familinkframe.com/fr/</a><br><a href="https://www.techradar.com/home/smart-home/aura-carver-mat-review">techradar.com/home/smart-home/aura-carver-mat-review</a><br><a href="https://www.androidpolice.com/nixplay-digital-photo-frames-subscription-plan-changes/">androidpolice.com/nixplay-digital-photo-frames-subscription-plan-changes/</a><br><a href="https://getsense.ai/blog/posts/skylight-calendar-hidden-costs-paywall">getsense.ai/blog/posts/skylight-calendar-hidden-costs-paywall</a><br><a href="https://www.pix-star.com/frames">pix-star.com/frames</a><br><a href="https://komp.family/">komp.family/</a><br><a href="https://www.agespace.org/reviews/komp-review">agespace.org/reviews/komp-review</a><br><a href="https://viewclix.com/features/">viewclix.com/features/</a><br><a href="https://autonome-a-domicile.com/avis-tablette-linote/">autonome-a-domicile.com/avis-tablette-linote/</a><br><a href="https://www.visioframe.com/notre-concept">visioframe.com/notre-concept</a><br><a href="https://emotivi.fr/">emotivi.fr/</a><br><a href="https://www.seniorliving.org/cell-phone/consumer-cellular/grandpad/">seniorliving.org/cell-phone/consumer-cellular/grandpad/</a><br><a href="https://www.tomsguide.com/news/alexa-emergency-assist-what-it-is-how-much-it-costs-and-how-it-could-save-your-life">tomsguide.com/news/alexa-emergency-assist-what-it-is-how-much-it-costs-and-how-it-could-sa</a><br><a href="https://www.besidecare.com/blog/what-to-use-now-that-alexa-together-is-gone/">besidecare.com/blog/what-to-use-now-that-alexa-together-is-gone/</a><br><a href="https://www.makeuseof.com/why-meta-is-killing-portal-for-consumers/">makeuseof.com/why-meta-is-killing-portal-for-consumers/</a><br><a href="https://9to5google.com/2025/12/02/google-home-app-has-removed-the-call-home-feature/">9to5google.com/2025/12/02/google-home-app-has-removed-the-call-home-feature/</a><br><a href="https://carezano.com/software/elliq">carezano.com/software/elliq</a><br><a href="https://www.clubic.com/actualite-614452-la-poste-arrete-ardoiz-sa-tablette-pour-seniors-qui-n-a-pas-survecu-a-l-apres-covid.html">clubic.com/actualite-614452-la-poste-arrete-ardoiz-sa-tablette-pour-seniors-qui-n-a-pas-su</a><br><a href="https://www.bretagne-economique.com/portraits/famileo-260-000-familles-abonnees-et-des-horizons-europeens/">bretagne-economique.com/portraits/famileo-260-000-familles-abonnees-et-des-horizons-europe</a><br><a href="https://www.usenix.org/system/files/usenixsecurity23-do.pdf">usenix.org/system/files/usenixsecurity23-do.pdf</a><h4>Matériel</h4><a href="https://www.raspberrypi.com/products/touch-display-2/">raspberrypi.com/products/touch-display-2/</a><br><a href="https://www.theregister.com/2026/02/02/raspberry_pi_ram_shortage_price_hike/">theregister.com/2026/02/02/raspberry_pi_ram_shortage_price_hike/</a><br><a href="https://linuxgizmos.com/radxa-rock-4d-with-rk3576-soc-pcie-gen2-x1-gigabit-ethernet-and-poe-support/">linuxgizmos.com/radxa-rock-4d-with-rk3576-soc-pcie-gen2-x1-gigabit-ethernet-and-poe-suppor</a><br><a href="https://proventusnova.com/blog/mediatek-genio-soc-longevity-supply-plan">proventusnova.com/blog/mediatek-genio-soc-longevity-supply-plan</a><br><a href="https://www.nxp.com/docs/en/fact-sheet/IMX8MPLUSFS.pdf">nxp.com/docs/en/fact-sheet/IMX8MPLUSFS.pdf</a><br><a href="https://www.alibaba.com/product-detail/Wall-mount-android-11-10-1-1600493764374.html">alibaba.com/product-detail/Wall-mount-android-11-10-1-1600493764374.html</a><br><a href="https://www.waveshare.com/10.1-dsi-touch-a.htm">waveshare.com/10.1-dsi-touch-a.htm</a><br><a href="https://wiki.seeedstudio.com/respeaker_xvf3800_introduction/">wiki.seeedstudio.com/respeaker_xvf3800_introduction/</a><br><a href="https://www.androidpolice.com/android-15-hearing-aid-support-le-audio/">androidpolice.com/android-15-hearing-aid-support-le-audio/</a><br><a href="https://support.google.com/googlenest/answer/9449280?hl=en">support.google.com/googlenest/answer/9449280?hl=en</a><br><a href="https://www.waveshare.com/ups-hat-e.htm">waveshare.com/ups-hat-e.htm</a><br><a href="https://www.compliancegate.com/removable-and-replaceable-battery-requirements-european-union/">compliancegate.com/removable-and-replaceable-battery-requirements-european-union/</a><br><a href="https://www.techinsights.com/blog/deep-dive-teardown-amazon-echo-show-8-3rd-gen-r855d6-smart-display">techinsights.com/blog/deep-dive-teardown-amazon-echo-show-8-3rd-gen-r855d6-smart-display</a><br><a href="https://github.com/dscripka/openWakeWord">github.com/dscripka/openWakeWord</a><br><a href="https://www.kevinahrendt.com/micro-wake-word">kevinahrendt.com/micro-wake-word</a><br><a href="https://infogerant.com/telecom/forfaits-data-m2m-iot/">infogerant.com/telecom/forfaits-data-m2m-iot/</a><h4>Logiciel et cloud</h4><a href="https://livekit.com/pricing">livekit.com/pricing</a><br><a href="https://docs.livekit.io/transport/encryption/">docs.livekit.io/transport/encryption/</a><br><a href="https://www.daily.co/pricing/video-sdk/">daily.co/pricing/video-sdk/</a><br><a href="https://supabase.com/pricing">supabase.com/pricing</a><br><a href="https://www.lowcode.agency/blog/flutterflow-pricing-plans">lowcode.agency/blog/flutterflow-pricing-plans</a><br><a href="https://www.scaleway.com/en/pricing/model-as-a-service/">scaleway.com/en/pricing/model-as-a-service/</a><br><a href="https://the-decoder.com/voxtral-transcribe-2-offers-speech-recognition-at-0-003-per-minute/">the-decoder.com/voxtral-transcribe-2-offers-speech-recognition-at-0-003-per-minute/</a><br><a href="https://picovoice.ai/blog/introducing-picovoices-free-tier/">picovoice.ai/blog/introducing-picovoices-free-tier/</a><br><a href="https://medium.com/ackee/dedicated-one-app-device-with-android-management-api-39cf498f8c9b">medium.com/ackee/dedicated-one-app-device-with-android-management-api-39cf498f8c9b</a><br><a href="https://github.com/ardera/flutter-pi">github.com/ardera/flutter-pi</a><br><a href="https://www.esper.io/pricing">esper.io/pricing</a><br><a href="https://instapods.com/blog/n8n-pricing/">instapods.com/blog/n8n-pricing/</a><br><a href="https://stripe.com/en-fr/pricing">stripe.com/en-fr/pricing</a><h4>Réglementation et faisabilité</h4><a href="https://www.schutzwerk.com/en/compliance/red/">schutzwerk.com/en/compliance/red/</a><br><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act">digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act</a><br><a href="https://www.spilma.com/en/guides/certification-costs">spilma.com/en/guides/certification-costs</a><br><a href="https://www.aestechno.com/en/ce-red-certification-iot/">aestechno.com/en/ce-red-certification-iot/</a><br><a href="https://www.cnil.fr/fr/ce-quil-faut-savoir-sur-lanalyse-dimpact-relative-la-protection-des-donnees-aipd">cnil.fr/fr/ce-quil-faut-savoir-sur-lanalyse-dimpact-relative-la-protection-des-donnees-aip</a><br><a href="https://nordflux.de/en/insights/eu-ai-act-article-50-labelling-obligation-for-chatbots-and-voice-agents-from-2-august-2026">nordflux.de/en/insights/eu-ai-act-article-50-labelling-obligation-for-chatbots-and-voice-a</a><br><a href="https://health.ec.europa.eu/system/files/2020-09/md_mdcg_2019_11_guidance_en_0.pdf">health.ec.europa.eu/system/files/2020-09/md_mdcg_2019_11_guidance_en_0.pdf</a><br><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32023R1670">eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32023R1670</a><br><a href="https://www.ecologic-france.com/storage/uploads/699da6df324b1/Ecologic-Bareme-EEE-Menager-simplifie-2026-FR-VF.pdf">ecologic-france.com/storage/uploads/699da6df324b1/Ecologic-Bareme-EEE-Menager-simplifie-20</a><br><a href="https://accessible.org/eaa-scope-products-services/">accessible.org/eaa-scope-products-services/</a><br><a href="https://formlabs.com/blog/validation-testing-product-development-poc-evt-dvt-pvt-mp/">formlabs.com/blog/validation-testing-product-development-poc-evt-dvt-pvt-mp/</a><br><a href="https://www.bourse-french-tech.fr/">bourse-french-tech.fr/</a><br><a href="https://www.silvereco.fr/prix-silver-valley-2026-le-concours-dedie-aux-innovations-pour-la-transition-demographique-est-lance/">silvereco.fr/prix-silver-valley-2026-le-concours-dedie-aux-innovations-pour-la-transition-</a><br><a href="https://www.therobotreport.com/jibo-social-robot-analyzing-what-went-wrong/">therobotreport.com/jibo-social-robot-analyzing-what-went-wrong/</a><br><a href="https://eightx.co/blog/average-subscription-churn-rate-by-category">eightx.co/blog/average-subscription-churn-rate-by-category</a>
+<p class="note">Recherche faite le 15 octobre 2026 en deux vagues, par 9 agents de recherche. Les prix viennent des pages officielles ou de la presse ; ceux marqués « estimation » ou « hypothèse » sont calculés. Conversion : 1 $ ≈ 0,86 €. Liste réduite aux sources principales.</p>
+<h4>Concurrents</h4><a href="https://www.familinkframe.com/fr/">familinkframe.com/fr/</a><br><a href="https://www.techradar.com/home/smart-home/aura-carver-mat-review">techradar.com/home/smart-home/aura-carver-mat-review</a><br><a href="https://www.androidpolice.com/nixplay-digital-photo-frames-subscription-plan-changes/">androidpolice.com/nixplay-digital-photo-frames-subscription-plan-changes/</a><br><a href="https://getsense.ai/blog/posts/skylight-calendar-hidden-costs-paywall">getsense.ai/blog/posts/skylight-calendar-hidden-costs-paywall</a><br><a href="https://www.pix-star.com/frames">pix-star.com/frames</a><br><a href="https://komp.family/">komp.family/</a><br><a href="https://www.agespace.org/reviews/komp-review">agespace.org/reviews/komp-review</a><br><a href="https://viewclix.com/features/">viewclix.com/features/</a><br><a href="https://autonome-a-domicile.com/avis-tablette-linote/">autonome-a-domicile.com/avis-tablette-linote/</a><br><a href="https://www.visioframe.com/notre-concept">visioframe.com/notre-concept</a><br><a href="https://emotivi.fr/">emotivi.fr/</a><br><a href="https://www.seniorliving.org/cell-phone/consumer-cellular/grandpad/">seniorliving.org/cell-phone/consumer-cellular/grandpad/</a><br><a href="https://www.tomsguide.com/news/alexa-emergency-assist-what-it-is-how-much-it-costs-and-how-it-could-save-your-life">tomsguide.com/news/alexa-emergency-assist-what-it-is-how-much-it-costs-and-how-it-could-sa</a><br><a href="https://www.besidecare.com/blog/what-to-use-now-that-alexa-together-is-gone/">besidecare.com/blog/what-to-use-now-that-alexa-together-is-gone/</a><br><a href="https://www.makeuseof.com/why-meta-is-killing-portal-for-consumers/">makeuseof.com/why-meta-is-killing-portal-for-consumers/</a><br><a href="https://9to5google.com/2025/12/02/google-home-app-has-removed-the-call-home-feature/">9to5google.com/2025/12/02/google-home-app-has-removed-the-call-home-feature/</a><br><a href="https://carezano.com/software/elliq">carezano.com/software/elliq</a><br><a href="https://www.clubic.com/actualite-614452-la-poste-arrete-ardoiz-sa-tablette-pour-seniors-qui-n-a-pas-survecu-a-l-apres-covid.html">clubic.com/actualite-614452-la-poste-arrete-ardoiz-sa-tablette-pour-seniors-qui-n-a-pas-su</a><br><a href="https://www.bretagne-economique.com/portraits/famileo-260-000-familles-abonnees-et-des-horizons-europeens/">bretagne-economique.com/portraits/famileo-260-000-familles-abonnees-et-des-horizons-europe</a><br><a href="https://www.usenix.org/system/files/usenixsecurity23-do.pdf">usenix.org/system/files/usenixsecurity23-do.pdf</a><br><a href="https://www.famileo.com/famileo/fr-FR/">famileo.com/famileo/fr-FR/</a><br><a href="https://linote.fr/tarif/">linote.fr/tarif/</a><br><a href="https://www.emotivi.fr/notre-offre/particuliers.html">emotivi.fr/notre-offre/particuliers.html</a><h4>Matériel</h4><a href="https://www.raspberrypi.com/products/touch-display-2/">raspberrypi.com/products/touch-display-2/</a><br><a href="https://www.theregister.com/2026/02/02/raspberry_pi_ram_shortage_price_hike/">theregister.com/2026/02/02/raspberry_pi_ram_shortage_price_hike/</a><br><a href="https://linuxgizmos.com/radxa-rock-4d-with-rk3576-soc-pcie-gen2-x1-gigabit-ethernet-and-poe-support/">linuxgizmos.com/radxa-rock-4d-with-rk3576-soc-pcie-gen2-x1-gigabit-ethernet-and-poe-suppor</a><br><a href="https://proventusnova.com/blog/mediatek-genio-soc-longevity-supply-plan">proventusnova.com/blog/mediatek-genio-soc-longevity-supply-plan</a><br><a href="https://www.nxp.com/docs/en/fact-sheet/IMX8MPLUSFS.pdf">nxp.com/docs/en/fact-sheet/IMX8MPLUSFS.pdf</a><br><a href="https://www.alibaba.com/product-detail/Wall-mount-android-11-10-1-1600493764374.html">alibaba.com/product-detail/Wall-mount-android-11-10-1-1600493764374.html</a><br><a href="https://www.waveshare.com/10.1-dsi-touch-a.htm">waveshare.com/10.1-dsi-touch-a.htm</a><br><a href="https://wiki.seeedstudio.com/respeaker_xvf3800_introduction/">wiki.seeedstudio.com/respeaker_xvf3800_introduction/</a><br><a href="https://www.androidpolice.com/android-15-hearing-aid-support-le-audio/">androidpolice.com/android-15-hearing-aid-support-le-audio/</a><br><a href="https://support.google.com/googlenest/answer/9449280?hl=en">support.google.com/googlenest/answer/9449280?hl=en</a><br><a href="https://www.waveshare.com/ups-hat-e.htm">waveshare.com/ups-hat-e.htm</a><br><a href="https://www.compliancegate.com/removable-and-replaceable-battery-requirements-european-union/">compliancegate.com/removable-and-replaceable-battery-requirements-european-union/</a><br><a href="https://www.techinsights.com/blog/deep-dive-teardown-amazon-echo-show-8-3rd-gen-r855d6-smart-display">techinsights.com/blog/deep-dive-teardown-amazon-echo-show-8-3rd-gen-r855d6-smart-display</a><br><a href="https://github.com/dscripka/openWakeWord">github.com/dscripka/openWakeWord</a><br><a href="https://www.kevinahrendt.com/micro-wake-word">kevinahrendt.com/micro-wake-word</a><br><a href="https://infogerant.com/telecom/forfaits-data-m2m-iot/">infogerant.com/telecom/forfaits-data-m2m-iot/</a><h4>Logiciel et cloud</h4><a href="https://livekit.com/pricing">livekit.com/pricing</a><br><a href="https://docs.livekit.io/transport/encryption/">docs.livekit.io/transport/encryption/</a><br><a href="https://www.daily.co/pricing/video-sdk/">daily.co/pricing/video-sdk/</a><br><a href="https://supabase.com/pricing">supabase.com/pricing</a><br><a href="https://www.lowcode.agency/blog/flutterflow-pricing-plans">lowcode.agency/blog/flutterflow-pricing-plans</a><br><a href="https://www.scaleway.com/en/pricing/model-as-a-service/">scaleway.com/en/pricing/model-as-a-service/</a><br><a href="https://the-decoder.com/voxtral-transcribe-2-offers-speech-recognition-at-0-003-per-minute/">the-decoder.com/voxtral-transcribe-2-offers-speech-recognition-at-0-003-per-minute/</a><br><a href="https://picovoice.ai/blog/introducing-picovoices-free-tier/">picovoice.ai/blog/introducing-picovoices-free-tier/</a><br><a href="https://github.com/ardera/flutter-pi">github.com/ardera/flutter-pi</a><br><a href="https://www.esper.io/pricing">esper.io/pricing</a><br><a href="https://instapods.com/blog/n8n-pricing/">instapods.com/blog/n8n-pricing/</a><br><a href="https://stripe.com/en-fr/pricing">stripe.com/en-fr/pricing</a><br><a href="https://developers.google.com/android/management/permissible-usage">developers.google.com/android/management/permissible-usage</a><br><a href="https://github.com/RushB-fr/freekiosk">github.com/RushB-fr/freekiosk</a><h4>Réglementation et faisabilité</h4><a href="https://www.schutzwerk.com/en/compliance/red/">schutzwerk.com/en/compliance/red/</a><br><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act">digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act</a><br><a href="https://www.spilma.com/en/guides/certification-costs">spilma.com/en/guides/certification-costs</a><br><a href="https://www.aestechno.com/en/ce-red-certification-iot/">aestechno.com/en/ce-red-certification-iot/</a><br><a href="https://www.cnil.fr/fr/ce-quil-faut-savoir-sur-lanalyse-dimpact-relative-la-protection-des-donnees-aipd">cnil.fr/fr/ce-quil-faut-savoir-sur-lanalyse-dimpact-relative-la-protection-des-donnees-aip</a><br><a href="https://nordflux.de/en/insights/eu-ai-act-article-50-labelling-obligation-for-chatbots-and-voice-agents-from-2-august-2026">nordflux.de/en/insights/eu-ai-act-article-50-labelling-obligation-for-chatbots-and-voice-a</a><br><a href="https://health.ec.europa.eu/system/files/2020-09/md_mdcg_2019_11_guidance_en_0.pdf">health.ec.europa.eu/system/files/2020-09/md_mdcg_2019_11_guidance_en_0.pdf</a><br><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32023R1670">eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32023R1670</a><br><a href="https://www.ecologic-france.com/storage/uploads/699da6df324b1/Ecologic-Bareme-EEE-Menager-simplifie-2026-FR-VF.pdf">ecologic-france.com/storage/uploads/699da6df324b1/Ecologic-Bareme-EEE-Menager-simplifie-20</a><br><a href="https://accessible.org/eaa-scope-products-services/">accessible.org/eaa-scope-products-services/</a><br><a href="https://formlabs.com/blog/validation-testing-product-development-poc-evt-dvt-pvt-mp/">formlabs.com/blog/validation-testing-product-development-poc-evt-dvt-pvt-mp/</a><br><a href="https://www.bourse-french-tech.fr/">bourse-french-tech.fr/</a><br><a href="https://www.silvereco.fr/prix-silver-valley-2026-le-concours-dedie-aux-innovations-pour-la-transition-demographique-est-lance/">silvereco.fr/prix-silver-valley-2026-le-concours-dedie-aux-innovations-pour-la-transition-</a><br><a href="https://www.therobotreport.com/jibo-social-robot-analyzing-what-went-wrong/">therobotreport.com/jibo-social-robot-analyzing-what-went-wrong/</a><br><a href="https://eightx.co/blog/average-subscription-churn-rate-by-category">eightx.co/blog/average-subscription-churn-rate-by-category</a><h4>Format écran + socle</h4><a href="https://en.wikipedia.org/wiki/Pixel_Tablet">en.wikipedia.org/wiki/Pixel_Tablet</a><br><a href="https://www.theverge.com/23765921/google-pixel-tablet-review">theverge.com/23765921/google-pixel-tablet-review</a><br><a href="https://9to5google.com/2026/09/10/google-pixel-tablet-discontinued/">9to5google.com/2026/09/10/google-pixel-tablet-discontinued/</a><br><a href="https://www.techadvisor.com/article/722764/facebook-portal-go-review.html">techadvisor.com/article/722764/facebook-portal-go-review.html</a><br><a href="https://www.pcmag.com/reviews/amazon-show-mode-charging-dock">pcmag.com/reviews/amazon-show-mode-charging-dock</a><br><a href="https://www.androidauthority.com/lenovo-smart-tab-m10-hd-review-1208995/">androidauthority.com/lenovo-smart-tab-m10-hd-review-1208995/</a><br><a href="https://www.mdpi.com/1424-8220/22/21/8237">mdpi.com/1424-8220/22/21/8237</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/25643042/">pubmed.ncbi.nlm.nih.gov/25643042/</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/23909815/">pubmed.ncbi.nlm.nih.gov/23909815/</a><h4>Besoins et preuves</h4><a href="https://www.insee.fr/fr/statistiques/2381512">insee.fr/fr/statistiques/2381512</a><br><a href="https://www.insee.fr/fr/statistiques/8349408">insee.fr/fr/statistiques/8349408</a><br><a href="https://www.insee.fr/fr/statistiques/7633654">insee.fr/fr/statistiques/7633654</a><br><a href="https://www.petitsfreresdespauvres.fr/sinformer/actualites/barometre-2025-les-10-chiffres-cles-de-lisolement-des-aines/">petitsfreresdespauvres.fr/sinformer/actualites/barometre-2025-les-10-chiffres-cles-de-liso</a><br><a href="https://www.arcep.fr/uploads/tx_gspublication/barometre-du-numerique-edition-2026_RAPPORT.pdf">arcep.fr/uploads/tx_gspublication/barometre-du-numerique-edition-2026_RAPPORT.pdf</a><br><a href="https://drees.solidarites-sante.gouv.fr/sites/default/files/2023-02/ER1255.pdf">drees.solidarites-sante.gouv.fr/sites/default/files/2023-02/ER1255.pdf</a><br><a href="https://www.ined.fr/sites/default/files/inline-files/premiers-resultats-%231-ined-2601-fiche-06.pdf">ined.fr/sites/default/files/inline-files/premiers-resultats-%231-ined-2601-fiche-06.pdf</a><br><a href="https://www.afrata.fr/wp-content/uploads/2026/02/E%CC%81tude-AFRATA-2024.pdf">afrata.fr/wp-content/uploads/2026/02/E%CC%81tude-AFRATA-2024.pdf</a><br><a href="https://doi.org/10.1002/14651858.CD013632">doi.org/10.1002/14651858.CD013632</a><br><a href="https://doi.org/10.2196/80059">doi.org/10.2196/80059</a><br><a href="https://doi.org/10.1186/s12889-026-27683-9">doi.org/10.1186/s12889-026-27683-9</a><br><a href="https://doi.org/10.1186/s12877-026-07322-z">doi.org/10.1186/s12877-026-07322-z</a><br><a href="https://doi.org/10.1093/geront/gnz068">doi.org/10.1093/geront/gnz068</a><br><a href="https://doi.org/10.1371/journal.pdig.0001625">doi.org/10.1371/journal.pdig.0001625</a><br><a href="https://doi.org/10.2196/73917">doi.org/10.2196/73917</a><h4>Design pour seniors</h4><a href="https://doi.org/10.1177/00315125251345594">doi.org/10.1177/00315125251345594</a><br><a href="https://doi.org/10.3390/ijerph19042391">doi.org/10.3390/ijerph19042391</a><br><a href="https://doi.org/10.3389/fpsyg.2022.931646">doi.org/10.3389/fpsyg.2022.931646</a><br><a href="https://www.nngroup.com/articles/touch-target-size/">nngroup.com/articles/touch-target-size/</a><br><a href="https://www.w3.org/WAI/older-users/">w3.org/WAI/older-users/</a><br><a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html">w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html</a><br><a href="https://www.inserm.fr/dossier/troubles-audition-surdites/">inserm.fr/dossier/troubles-audition-surdites/</a><br><a href="https://www.wwl.nhs.uk/media/Services/Dementia/Dementia_Friendly_Technology_Charter.pdf">wwl.nhs.uk/media/Services/Dementia/Dementia_Friendly_Technology_Charter.pdf</a><h4>Voix et IA</h4><a href="https://doi.org/10.1145/3630106.3658996">doi.org/10.1145/3630106.3658996</a><br><a href="https://doi.org/10.1109/ro-man63969.2025.11217575">doi.org/10.1109/ro-man63969.2025.11217575</a><br><a href="https://doi.org/10.2478/popets-2020-0072">doi.org/10.2478/popets-2020-0072</a><br><a href="https://picovoice.ai/docs/tips/choosing-a-wake-word/">picovoice.ai/docs/tips/choosing-a-wake-word/</a><br><a href="https://alphacephei.com/vosk/models">alphacephei.com/vosk/models</a><br><a href="https://github.com/airockchip/rknn_model_zoo">github.com/airockchip/rknn_model_zoo</a><br><a href="https://github.com/rhasspy/piper/blob/master/VOICES.md">github.com/rhasspy/piper/blob/master/VOICES.md</a><br><a href="https://docs.mistral.ai/inference/pricing">docs.mistral.ai/inference/pricing</a><br><a href="https://artificialintelligenceact.eu/article/50/">artificialintelligenceact.eu/article/50/</a><br><a href="https://artificialintelligenceact.eu/article/5/">artificialintelligenceact.eu/article/5/</a><br><a href="https://www.jarlife.net/3792-elliq-an-ai-driven-social-robot-to-alleviate-loneliness-progress-and-lessons-learned.html">jarlife.net/3792-elliq-an-ai-driven-social-robot-to-alleviate-loneliness-progress-and-less</a><br><a href="https://doi.org/10.1007/s10676-020-09573-9">doi.org/10.1007/s10676-020-09573-9</a><h4>Business et distribution</h4><a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F12">service-public.gouv.fr/particuliers/vosdroits/F12</a><br><a href="https://www.servicesalapersonne.gouv.fr/tout-savoir-sur-les-services-la-personne/les-26-activites-de-services-la-personne">servicesalapersonne.gouv.fr/tout-savoir-sur-les-services-la-personne/les-26-activites-de-s</a><br><a href="https://www.servicesalapersonne.gouv.fr/je-suis-un-organisme-de-sap/les-avantages-fiscaux-et-sociaux-pour-les-organismes-de-services-la">servicesalapersonne.gouv.fr/je-suis-un-organisme-de-sap/les-avantages-fiscaux-et-sociaux-p</a><br><a href="https://linote.fr/credit-impot-abonnement-linote/">linote.fr/credit-impot-abonnement-linote/</a><br><a href="https://linote.fr/partenaires/">linote.fr/partenaires/</a><br><a href="https://www.familinkframe.com/fr/where-to-buy">familinkframe.com/fr/where-to-buy</a><br><a href="https://www.laposte.fr/veiller-sur-mes-parents">laposte.fr/veiller-sur-mes-parents</a><br><a href="https://www.insee.fr/fr/statistiques/2381474">insee.fr/fr/statistiques/2381474</a><br><a href="https://www.silvervalley.fr/">silvervalley.fr/</a><br><a href="https://www.gerontopole-paysdelaloire.fr/">gerontopole-paysdelaloire.fr/</a>
 </div></div></section>
-<footer class="k">Suite de la <a href="1-1-synthese-questions-techniques.html" style="color:var(--blue)">synthèse des questions techniques</a>.</footer>
+<footer class="k">Suite de la <a href="1-1-synthese-questions-techniques.html" style="color:var(--blue)">synthèse des questions techniques</a> · Réalisation : <a href="1-1-plan-demo-cadre.html" style="color:var(--blue)">plan de la démo</a>.</footer>
 </div>
 </body>
 </html>
