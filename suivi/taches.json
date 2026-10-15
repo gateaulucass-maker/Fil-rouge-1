@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-15T14:51",
+  "mise_a_jour": "2026-10-15T15:05",
   "phases": [
     {
       "id": "P0",
@@ -541,7 +541,7 @@
           "qui": "Lucas",
           "date": "2026-10-15",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-synthese-questions-techniques.html",
-          "note": "Validée par l'équipe le 15/10 : 11 propositions de Claude et 8 décisions (pas d'appel auto aux secours, lumière et bouton micro, batterie, boutons physiques, mises à jour de sécurité auto). Volet de caméra refusé. Reste : taille d'écran (10 ou 13 pouces) et calcul de rentabilité."
+          "note": "Validée par l'équipe le 15/10 : 11 propositions de Claude et 8 décisions (pas d'appel auto aux secours, lumière et bouton micro, volet de caméra, batterie, boutons physiques, mises à jour de sécurité auto). Reste : taille d'écran (10 ou 13 pouces) et calcul de rentabilité."
         }
       ]
     },
@@ -563,7 +563,7 @@
           "qui": "Lucas",
           "date": "2026-10-15",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-synthese-questions-techniques.html",
-          "note": "Validée par l'équipe le 15/10 : 11 propositions de Claude et 8 décisions (pas d'appel auto aux secours, lumière et bouton micro, batterie, boutons physiques, mises à jour de sécurité auto). Volet de caméra refusé. Reste : taille d'écran (10 ou 13 pouces) et calcul de rentabilité."
+          "note": "Validée par l'équipe le 15/10 : 11 propositions de Claude et 8 décisions (pas d'appel auto aux secours, lumière et bouton micro, volet de caméra, batterie, boutons physiques, mises à jour de sécurité auto). Reste : taille d'écran (10 ou 13 pouces) et calcul de rentabilité."
         }
       ]
     },
