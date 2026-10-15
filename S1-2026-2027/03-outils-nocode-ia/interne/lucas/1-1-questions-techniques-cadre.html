@@ -258,11 +258,11 @@ footer { margin-top: 56px; border-top: 1px solid var(--hair); padding-top: 12px;
 
       <!-- Compteur mis à jour par le script -->
       <div class="counter" aria-live="polite">
-        <div><b id="nTotal">14</b><span>questions</span></div>
+        <div><b id="nTotal">32</b><span>questions</span></div>
         <div class="done"><b id="nDone">0</b><span>répondues</span></div>
         <div><b id="nProgress">0</b><span>en cours</span></div>
       </div>
-      <p class="counter-line" id="counterLine">14 questions, 0 répondues</p>
+      <p class="counter-line" id="counterLine">32 questions, 0 répondue</p>
 
       <div class="urgent">
         <p><b>Les 3 questions les plus urgentes sont la 1, la 2 et la 13</b>, car sans connexion ou dépannage possible, le produit ne fonctionne pas.</p>
@@ -326,7 +326,25 @@ const QUESTIONS = [
   [11, "Matériel", "Quelle durée de vie de l'écran et du matériel, et qui répare ou remplace ?", "Moyenne"],
   [12, "Matériel", "Que se passe-t-il en cas de coupure de courant ?", "Basse"],
   [13, "Installation et maintenance", "Comment dépanne-t-on à distance quand le senior ne sait pas décrire le problème ? L'aidant a-t-il un tableau de bord ?", "Haute"],
-  [14, "Installation et maintenance", "Comment gère-t-on les mises à jour sans que l'écran change du jour au lendemain ?", "Basse"]
+  [14, "Installation et maintenance", "Comment gère-t-on les mises à jour sans que l'écran change du jour au lendemain ?", "Basse"],
+  [15, "Connexion et réseau", "Quel débit faut-il pour recevoir les photos et passer un appel vidéo ? Que fait le cadre quand la connexion est lente ?", "Moyenne"],
+  [16, "Photos et données", "Le senior peut-il garder, supprimer ou mettre de côté une photo ? Que se passe-t-il quand la mémoire est pleine ?", "Basse"],
+  [17, "Appels et voix", "Qui le senior peut-il appeler : seulement une liste choisie par la famille, ou n'importe qui ? Peut-il joindre les secours ?", "Moyenne"],
+  [18, "Appels et voix", "Le son convient-il aux personnes malentendantes : volume, qualité du haut-parleur, compatibilité avec les appareils auditifs ?", "Moyenne"],
+  [19, "Matériel", "Faut-il une caméra intégrée ? Comment la cacher physiquement (volet) quand elle ne sert pas ?", "Haute"],
+  [20, "Matériel", "Le cadre se pose-t-il sur un meuble, s'accroche-t-il au mur, ou les deux ? Le câble peut-il faire trébucher ?", "Basse"],
+  [21, "Installation et maintenance", "Qui installe le cadre : la famille, un technicien, le livreur ? Combien de temps faut-il ?", "Moyenne"],
+  [22, "Installation et maintenance", "Comment l'aidant sait-il que le cadre est allumé et connecté, sans surveiller le senior ?", "Haute"],
+  [23, "Sécurité et vie privée", "Comment respecter le RGPD : accord du senior, droit d'effacement, photos où apparaissent d'autres personnes ou des enfants ?", "Haute"],
+  [24, "Sécurité et vie privée", "Les appels et les photos sont-ils chiffrés ? Les appels sont-ils enregistrés quelque part ?", "Haute"],
+  [25, "Sécurité et vie privée", "Comment protéger le cadre contre le piratage : mises à jour de sécurité, mots de passe, normes européennes pour les objets connectés ?", "Haute"],
+  [26, "Sécurité et vie privée", "Que se passe-t-il si le téléphone d'un proche est volé ou si son compte est piraté ?", "Moyenne"],
+  [27, "Accessibilité et usage", "Comment le senior sait-il qu'une nouvelle photo est arrivée, sans être dérangé (lumière, son, rien) ?", "Moyenne"],
+  [28, "Accessibilité et usage", "Les boutons sont-ils utilisables avec une vue basse, des tremblements ou des doigts raides ?", "Haute"],
+  [29, "Accessibilité et usage", "Que fait le cadre si le senior appuie par erreur ou plusieurs fois ? Comment annuler simplement ?", "Moyenne"],
+  [30, "Accessibilité et usage", "Le senior peut-il refuser un appel ou mettre le cadre en pause pour garder la main ?", "Haute"],
+  [31, "Coût et normes", "Combien coûte le cadre à fabriquer, et combien la famille paie-t-elle chaque mois (stockage, 4G, assistance) ?", "Haute"],
+  [32, "Coût et normes", "Quelles règles pour vendre le cadre en Europe (marquage CE, recyclage) ? Comment rester un produit de bien-être et non un dispositif médical ?", "Moyenne"]
 ].map(([n, theme, q, prio]) => ({ n, theme, q, prio }));
 
 const STATUTS = { a_traiter: "À traiter", en_cours: "En cours", repondu: "Répondu" };
