@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Veille du cadre connecté</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --green: #1e7a46;
+  --red: #c0262d;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+.feu { display:inline-block; font:11px var(--mono); text-transform:uppercase; letter-spacing:.05em; padding:2px 7px; white-space:nowrap; color:#fff; }
+.f-v { background: var(--green); } .f-o { background: var(--orange); } .f-r { background: var(--red); }
+.f-vo { background: linear-gradient(90deg, var(--green) 50%, var(--orange) 50%); }
+.f-or { background: linear-gradient(90deg, var(--orange) 50%, var(--red) 50%); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.cards { display:grid; grid-template-columns: repeat(3, 1fr); gap: 0 24px; margin-top: 8px; }
+.cards > div { border-top: 3px solid var(--blue); padding: 12px 0 16px; }
+.cards > div.o { border-color: var(--orange); }
+.cards > div.g { border-color: var(--fg); }
+.cards h3 { margin: 4px 0 6px; font-size: 18px; letter-spacing:-.01em; }
+.cards p { margin: 0; font-size: 15px; }
+.arch { display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 8px 0 20px; }
+.arch > div { border: 1px solid var(--fg); padding: 12px 14px; }
+.arch > div.b { border-color: var(--blue); background: var(--blue-soft); }
+.arch > div.o { border-color: var(--orange); background: var(--orange-soft); }
+.arch h3 { margin: 0 0 6px; font-size: 16px; }
+.arch ul { margin: 0; padding-left: 16px; font-size: 14px; }
+.flow { font: 13px/1.7 var(--mono); background: var(--soft); padding: 12px 14px; margin: 0 0 20px; overflow-x:auto; white-space: pre; }
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+td b { font-weight: 700; }
+table.feat td:first-child { width: 3ch; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+@media (max-width: 760px) { .cards, .arch { grid-template-columns: 1fr; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span>
+  <span>Bloc 03 · Outils no-code et IA</span>
+  <span>Leçon 1.1</span>
+  <span>Équipe Clément, Camille, Lucas</span>
+  <span>15 octobre 2026</span>
+</div>
+<h1>Veille du cadre : <span>fonctions, stack, faisabilité</span></h1>
+<p class="lead">Ce que font les 17 produits concurrents, les 41 fonctions à donner à notre cadre, le matériel et le logiciel pour le construire, ce que ça coûte et comment le réaliser concrètement.</p>
+<div class="stats">
+  <div><span class="k">Produits étudiés</span><b>17</b></div>
+  <div><span class="k">Fonctionnalités</span><b class="b">41</b></div>
+  <div><span class="k">Cloud par cadre et par mois</span><b>3 €</b></div>
+  <div><span class="k">Recherches et lectures web</span><b class="o">150+</b></div>
+</div>
+<nav class="toc"><a href="#s00">00 En bref</a><a href="#s01">01 Concurrents</a><a href="#s02">02 Fonctionnalités</a><a href="#s03">03 Matériel</a><a href="#s04">04 Logiciel</a><a href="#s05">05 Coûts</a><a href="#s06">06 Faisabilité</a><a href="#s07">07 Mise en œuvre</a><a href="#s08">08 À décider</a><a href="#src">Sources</a></nav>
+<section id="s00">
+<div class="grid">
+  <div class="k"><span class="num">00</span> · En bref</div>
+  <div>
+    <h2>Les six choses à retenir</h2>
+
+    <div class="cards">
+      <div><span class="k">Format</span><h3>Personne ne fait un écran portatif avec socle</h3><p>Les cadres (Familink, Aura) n'appellent pas. Les écrans d'appel (Komp, LiNote) sont fixes. GrandPad a un socle, mais c'est une tablette de 8 pouces.</p></div>
+      <div class="o"><span class="k">Prix</span><h3>L'offre 4G à 14,90 € ne tient pas</h3><p>14,90 € TTC font 12,42 € HT. Un forfait data de 10 Go coûte 8 à 11,90 € HT. Une heure de visio consomme environ 1 Go. Il faut monter à 19,90 € ou limiter la vidéo en 4G.</p></div>
+      <div class="g"><span class="k">Stratégie</span><h3>Ne pas concevoir l'électronique</h3><p>Partir d'une tablette Android déjà marquée CE (113 à 117 $ en marque blanche). Notre valeur : le logiciel, le socle aimanté et le service.</p></div>
+      <div><span class="k">Coût cloud</span><h3>2,60 à 3,40 € par cadre et par mois</h3><p>Avec 30 min de visio, 10 photos et 20 commandes vocales par jour. La vidéo pèse 60 à 70 % du coût.</p></div>
+      <div class="o"><span class="k">Loi</span><h3>Trois textes déjà en vigueur</h3><p>Cybersécurité radio (EN 18031, août 2025), signalement des failles (CRA, septembre 2026), information « vous parlez à une IA » (AI Act, août 2026).</p></div>
+      <div class="g"><span class="k">Démo</span><h3>Faisable en 3 à 6 semaines</h3><p>Tablette Android en mode kiosque dans un cadre imprimé en 3D, appli famille FlutterFlow, Supabase et LiveKit.</p></div>
+    </div>
+    <p class="note" style="margin-top:16px">Les choix de l'équipe du 15 octobre (volet de caméra, bouton micro, pas d'appel automatique aux secours, cadre fixe et écran portatif) sont confirmés par la veille. Recommandation sur la taille : <b>10 pouces</b>. Le 13 pouces pèse plus d'un kilo avec son boîtier et demande une batterie deux fois plus grosse.</p>
+
+  </div>
+</div>
+</section>
+<section id="s01">
+<div class="grid">
+  <div class="k"><span class="num">01</span> · Veille concurrentielle</div>
+  <div>
+    <h2>17 produits passés au crible</h2>
+<div class="tablewrap"><table class=""><thead><tr><th>Produit</th><th>Type</th><th>Achat</th><th>Abonnement</th><th>Ce qui plaît</th><th>Ce qui est critiqué</th><th>Statut</th></tr></thead><tbody>
+<tr><td><b>Familink</b> (FR)</td><td>Cadre photo</td><td>219,90 € ; ou location dès 14,99 €/mois</td><td>Basic gratuit ; Plus 4,90 € ; 4G 5,90 €</td><td>Prêt à brancher, SIM 4G, bouton « j'aime »</td><td>Pas d'appel vidéo, abonnements empilés</td><td>Actif, 50 000 foyers</td></tr>
+<tr><td><b>Aura</b></td><td>Cadre photo</td><td>149 à 299 $</td><td>Aucun</td><td>Réactions qui reviennent à l'expéditeur, envoi par SMS</td><td>Pas d'appel, wifi obligatoire</td><td>Actif</td></tr>
+<tr><td><b>Nixplay</b></td><td>Cadre photo</td><td>non trouvé</td><td>0 à 39,99 $/an</td><td>Synchro Google Photos</td><td>Stockage gratuit réduit de 10 Go à 500 Mo en 2025, pétition</td><td>Actif, réputation abîmée</td></tr>
+<tr><td><b>Skylight</b></td><td>Cadre et calendrier</td><td>169,99 à 599,99 $</td><td>39 à 79 $/an</td><td>Très simple, calendrier familial</td><td>Fonctions de base derrière l'abonnement</td><td>Actif</td></tr>
+<tr><td><b>Pix-Star</b></td><td>Cadre photo</td><td>139,99 à 299 $</td><td>Aucun</td><td>Gestion à distance, 25 cadres par compte</td><td>Pas d'appel, menus datés</td><td>Actif</td></tr>
+<tr><td><b>Komp</b> (No Isolation)</td><td>Écran d'appel</td><td>699 £ ou 39 £/mois</td><td>Obligatoire</td><td>Un seul bouton, décroché auto après 10 s refusable, 4G</td><td>Prix, coupures, payant par membre</td><td>Actif, 4/5 Trustpilot</td></tr>
+<tr><td><b>ViewClix</b></td><td>Écran d'appel</td><td>179 à 269 $</td><td>9,95 $/mois</td><td>Bouton « appelle-moi », photos regardées ensemble en appel, horloge</td><td>non trouvé</td><td>Actif, le plus proche de nous</td></tr>
+<tr><td><b>LiNote</b> (FR)</td><td>Écran d'appel</td><td>Location</td><td>37,99 € (49,99 € en 4G)</td><td>Décroche seul, lit les messages à voix haute, 27 000 utilisateurs</td><td>Visage qui surgit (peur en cas de démence), alertes « rappel non lu » à la famille</td><td>Actif</td></tr>
+<tr><td><b>Visioframe</b> (FR)</td><td>Tablette</td><td>199 €</td><td>29,90 €/mois</td><td>Visio auto, sous-titres, commande vocale</td><td>non trouvé</td><td>Actif</td></tr>
+<tr><td><b>Emotivi</b> (FR)</td><td>Sur la télé</td><td>70 € de dépôt + 69 € de frais</td><td>30 €/mois</td><td>Visio sur la télévision</td><td>non trouvé</td><td>Actif</td></tr>
+<tr><td><b>GrandPad</b></td><td>Tablette 8 pouces</td><td>299 $</td><td>40 à 65 $/mois</td><td>Socle de recharge, famille gère à distance</td><td>Écran petit, l'aidant ne voit pas la batterie</td><td>Actif</td></tr>
+<tr><td><b>Echo Show</b></td><td>Assistant à écran</td><td>150 à 250 $</td><td>Emergency Assist 5,99 $</td><td>Drop In, 25 contacts</td><td>Publicités, méfiance vie privée</td><td>Actif</td></tr>
+<tr><td><b>Alexa Together</b></td><td>Service aidant</td><td>-</td><td>19,99 $/mois</td><td>Fil d'activité du parent</td><td>Surveillance passive</td><td>Arrêté (2024-2025)</td></tr>
+<tr><td><b>Meta Portal</b></td><td>Écran d'appel</td><td>-</td><td>-</td><td>Caméra qui cadre seule</td><td>Méfiance envers Facebook</td><td>Arrêté (2022)</td></tr>
+<tr><td><b>ElliQ</b></td><td>Compagnon IA</td><td>249 $ de frais</td><td>39 à 59 $/mois</td><td>Prend l'initiative, rappels</td><td>Pas de propriété</td><td>Actif (USA)</td></tr>
+<tr><td><b>Ardoiz</b> (La Poste)</td><td>Tablette</td><td>229 € + 11,99 €/mois</td><td>Inclus</td><td>Tablette simplifiée</td><td>Engagement, demande retombée après le Covid</td><td>Fermeture annoncée en mai 2026</td></tr>
+<tr><td><b>Famileo</b> (FR)</td><td>Gazette papier</td><td>-</td><td>5,99 à 9,99 €/mois</td><td>Pas d'écran pour le senior</td><td>Aucun retour du senior</td><td>Actif, 260 000 familles</td></tr>
+</tbody></table></div><h3 class="sub">Ce que la concurrence nous apprend</h3><ol class="next"><li><b>Le décroché automatique marche, mais c'est toujours la famille qui le règle.</b> Chez nous, c'est le senior qui le donne, contact par contact.</li><li><b>Changer l'abonnement après la vente déclenche la colère</b> (Nixplay, Skylight, Komp). Il faut promettre des prix stables.</li><li><b>Les arrêts sont fréquents</b> : Portal, Alexa Together, Call Home de Google, Meural, Ardoiz. Une garantie écrite de durée et d'export des photos devient un argument.</li><li><b>Le « j'aime » qui revient à l'expéditeur est validé</b> par Aura, Skylight et Familink.</li><li><b>Le contrôle physique du micro est ce qui rassure le plus</b> (étude USENIX 2023, 489 personnes), à condition que la coupure soit réelle et visible.</li><li><b>Le crédit d'impôt de 50 % « service à la personne »</b> est utilisé par Emotivi, Visioframe et LiNote. À étudier pour notre abonnement.</li><li><b>À éviter absolument</b> : fil d'activité passif, détection de présence, alerte « rappel non lu ». C'est ce que font Alexa Together et LiNote, et c'est l'inverse de notre promesse.</li></ol>
+  </div>
+</div>
+</section>
+<section id="s02">
+<div class="grid">
+  <div class="k"><span class="num">02</span> · Fonctionnalités</div>
+  <div>
+    <h2>41 fonctions pour le cadre</h2>
+<p>41 fonctionnalités, adaptées au cadre (pas à une tablette). S = senior, A = aidant, F = famille. Chaque ligne est vérifiée contre la promesse « rassurer sans surveiller ».</p><h3 class="sub">Version 1 : indispensable (18)</h3><div class="tablewrap"><table class="feat"><thead><tr><th>N°</th><th>Fonction</th><th>En une phrase</th><th>Pour</th><th>Preuve</th></tr></thead><tbody>
+<tr><td>1</td><td><b>Diaporama familial sans action</b></td><td>Les photos défilent seules, avec le prénom de l'expéditeur en gros.</td><td>S, F</td><td>Familink, Aura, Komp</td></tr>
+<tr><td>2</td><td><b>« Merci » en un geste</b></td><td>Toucher le cœur envoie « Mamie a aimé ta photo » à l'expéditeur.</td><td>S, F</td><td>Aura, Skylight, Familink</td></tr>
+<tr><td>3</td><td><b>Légende lue à voix haute</b></td><td>Un toucher ou « lis-moi » lit la légende et le nom de l'expéditeur.</td><td>S</td><td>LiNote</td></tr>
+<tr><td>4</td><td><b>Messages vocaux</b></td><td>La famille envoie un vocal avec sa photo, le senior répond avec un gros bouton.</td><td>S, F</td><td>Familink Plus</td></tr>
+<tr><td>5</td><td><b>Appel en une touche</b></td><td>Grille de 4 à 8 visages choisis par la famille, toucher égale appeler.</td><td>S</td><td>Komp, ViewClix</td></tr>
+<tr><td>6</td><td><b>Appel entrant clair</b></td><td>Sonnerie forte, photo, « C'est Paul » à voix haute, deux énormes boutons Décrocher et Plus tard.</td><td>S</td><td>ViewClix</td></tr>
+<tr><td>7</td><td><b>Liste blanche de contacts</b></td><td>Seuls les proches validés par l'aidant appellent ou envoient : aucune arnaque possible.</td><td>S, A</td><td>ViewClix, GrandPad</td></tr>
+<tr><td>8</td><td><b>Coupure micro physique et voyant</b></td><td>Le bouton coupe le micro au niveau du matériel, une lumière montre quand il écoute.</td><td>S</td><td>Étude USENIX 2023, Nest Hub Max</td></tr>
+<tr><td>9</td><td><b>Volet de caméra</b></td><td>Ouvert seulement pendant un appel, le senior le voit.</td><td>S</td><td>Echo Show</td></tr>
+<tr><td>10</td><td><b>Mot d'activation local, et bouton « parler »</b></td><td>Rien n'est envoyé avant le mot. Un bouton physique fait la même chose, car les voix âgées sont mal reconnues.</td><td>S</td><td>Études sur la voix des seniors</td></tr>
+<tr><td>11</td><td><b>Mode pause</b></td><td>Bouton pause : ni appels ni photos. La famille voit « en pause », sans raison.</td><td>S</td><td>Veille de Komp</td></tr>
+<tr><td>12</td><td><b>Horloge du jour</b></td><td>« Mardi après-midi, 15 octobre » en grand, lumière baissée la nuit.</td><td>S</td><td>ViewClix, LiNote</td></tr>
+<tr><td>13</td><td><b>Tout réglé par l'aidant</b></td><td>Wifi et contacts réglés depuis l'appli, le senior n'a qu'à brancher.</td><td>A</td><td>Familink, Komp</td></tr>
+<tr><td>14</td><td><b>Statut technique pour l'aidant</b></td><td>« Connecté, batterie, dernière synchro ». Jamais d'activité ni de présence.</td><td>A</td><td>Critique de GrandPad</td></tr>
+<tr><td>15</td><td><b>Écran portatif « suis-moi »</b></td><td>On sort l'écran pour un appel au lit ou au jardin, il se recharge quand on le repose.</td><td>S</td><td>Personne ne le fait</td></tr>
+<tr><td>16</td><td><b>Son fort et appareils auditifs</b></td><td>Volume élevé, Bluetooth vers les appareils auditifs (Android 15).</td><td>S</td><td>Komp</td></tr>
+<tr><td>17</td><td><b>Sans publicité, mises à jour la nuit</b></td><td>Aucune suggestion commerciale, mises à jour de sécurité silencieuses.</td><td>S</td><td>Critiques de l'Echo Show</td></tr>
+<tr><td>18</td><td><b>Information IA</b></td><td>Une phrase « Je suis un assistant automatique » au premier usage de la voix.</td><td>S</td><td>AI Act, article 50</td></tr>
+</tbody></table></div><h3 class="sub">Version 2 (13)</h3><div class="tablewrap"><table class="feat"><thead><tr><th>N°</th><th>Fonction</th><th>En une phrase</th><th>Pour</th><th>Preuve</th></tr></thead><tbody>
+<tr><td>19</td><td><b>Sous-titres en direct</b></td><td>Grands caractères pendant l'appel, pour les malentendants.</td><td>S</td><td>Visioframe</td></tr>
+<tr><td>20</td><td><b>Rappels doux</b></td><td>« Déjeuner chez Sophie dimanche » lu à voix haute. Aucune alerte à la famille si le rappel n'est pas lu.</td><td>S, A</td><td>ViewClix ; contre-exemple LiNote</td></tr>
+<tr><td>21</td><td><b>Calendrier familial léger</b></td><td>Anniversaires et visites prévues, remplis par la famille.</td><td>S, F</td><td>Skylight, Frameo</td></tr>
+<tr><td>22</td><td><b>Album par personne, à la voix</b></td><td>« Montre-moi les photos de Léa ».</td><td>S</td><td>Komp</td></tr>
+<tr><td>23</td><td><b>Appel de groupe</b></td><td>Jusqu'à 3 proches et le senior.</td><td>S, F</td><td>ViewClix</td></tr>
+<tr><td>24</td><td><b>Photos regardées ensemble</b></td><td>Pendant l'appel, le proche fait défiler un album chez le senior.</td><td>S, F</td><td>ViewClix</td></tr>
+<tr><td>25</td><td><b>Vidéos courtes</b></td><td>Lecture en un toucher.</td><td>S, F</td><td>Skylight, Familink</td></tr>
+<tr><td>26</td><td><b>« Appelle Marie » à la voix</b></td><td>Appel lancé par la voix, seulement vers la liste blanche.</td><td>S</td><td>Echo, Visioframe</td></tr>
+<tr><td>27</td><td><b>Envoi sans appli</b></td><td>Photos par e-mail ou SMS pour les proches sans l'appli.</td><td>F</td><td>Aura, Pix-Star</td></tr>
+<tr><td>28</td><td><b>Famille illimitée</b></td><td>Aucun paiement en plus par proche.</td><td>F</td><td>Plaintes contre Komp</td></tr>
+<tr><td>29</td><td><b>Météo du jour</b></td><td>En grand, une fois par jour.</td><td>S</td><td>ViewClix, Komp</td></tr>
+<tr><td>30</td><td><b>Rendez-vous programmés</b></td><td>Messe ou émission diffusée à heure fixe, choisie par le senior.</td><td>S</td><td>ViewClix</td></tr>
+<tr><td>31</td><td><b>Gazette papier en option</b></td><td>Les photos du mois imprimées et envoyées.</td><td>S</td><td>Famileo</td></tr>
+</tbody></table></div><h3 class="sub">Ce qui nous différencie (10)</h3><div class="tablewrap"><table class="feat"><thead><tr><th>N°</th><th>Fonction</th><th>En une phrase</th><th>Pour</th><th>Preuve</th></tr></thead><tbody>
+<tr><td>32</td><td><b>« Je pense à toi » dans les deux sens</b></td><td>Le senior appuie, une lumière s'allume chez l'enfant, et inversement.</td><td>S, F</td><td>Lovebox le fait dans un seul sens</td></tr>
+<tr><td>33</td><td><b>« Je suis dispo »</b></td><td>Le senior allume un signal, la famille reçoit « Maman est dispo pour un appel ».</td><td>S, F</td><td>Bouton de ViewClix</td></tr>
+<tr><td>34</td><td><b>« Je vais bien » volontaire</b></td><td>Un bouton soleil ou nuage envoyé par le senior, à la place d'une surveillance.</td><td>S, A</td><td>Ce qui manquait après Alexa Together</td></tr>
+<tr><td>35</td><td><b>Annonce douce de l'appel</b></td><td>Fondu, voix, puis photo avant la vidéo : jamais un visage qui surgit.</td><td>S</td><td>Critique d'ergothérapeute sur LiNote</td></tr>
+<tr><td>36</td><td><b>Décroché auto donné par le senior</b></td><td>Le senior autorise un proche (« Paul peut entrer »), 10 s pour refuser. Désactivé par défaut.</td><td>S</td><td>Komp, mais réglé par la famille</td></tr>
+<tr><td>37</td><td><b>Journal de confidentialité</b></td><td>Un écran simple : qui m'a appelé, quand le micro a écouté, qui voit mon statut.</td><td>S</td><td>Échec de Portal</td></tr>
+<tr><td>38</td><td><b>Partage dans l'autre sens</b></td><td>Le senior envoie une photo ou un vocal : « regarde mes tomates ».</td><td>S, F</td><td>Aura et Familink vont dans un seul sens</td></tr>
+<tr><td>39</td><td><b>Planning de la fratrie</b></td><td>Qui appelle quel jour, pour éviter que tout le monde appelle le dimanche.</td><td>A, F</td><td>Hypothèse à tester</td></tr>
+<tr><td>40</td><td><b>Garantie de durée</b></td><td>Engagement écrit : export des photos, fonctions locales gardées si le service s'arrête, pas de hausse surprise.</td><td>A</td><td>Nixplay, Portal, Ardoiz</td></tr>
+<tr><td>41</td><td><b>Photo masquée par l'aidant</b></td><td>Masquer une photo sensible (deuil, divorce) sans la supprimer chez l'expéditeur.</td><td>A</td><td>Hypothèse</td></tr>
+</tbody></table></div><p class="note" style="margin-top:14px">Exclu volontairement : fil d'activité, détection de présence, alertes « rappel non lu », décroché automatique réglé par la famille seule, détection de chute (bascule en dispositif médical).</p>
+  </div>
+</div>
+</section>
+<section id="s03">
+<div class="grid">
+  <div class="k"><span class="num">03</span> · Stack matérielle</div>
+  <div>
+    <h2>Ce qu'il y a dans le cadre</h2>
+<p>Tous les écrans connectés du marché (Echo Show, Nest Hub, Portal) utilisent une puce ARM avec Android ou Linux et un encodeur vidéo matériel. Aucun n'utilise de Raspberry Pi. Pour comparaison, les composants d'un Echo Show 8 coûtent 138,79 $ (TechInsights), sans batterie ni 4G.</p>
+<h3 class="sub">La puce</h3><div class="tablewrap"><table class=""><thead><tr><th>Plateforme</th><th>Prix</th><th>Encodeur vidéo matériel</th><th>Système</th><th>Disponible</th><th>Pour</th></tr></thead><tbody>
+<tr><td>Raspberry Pi 5 (4 Go)</td><td>110 $</td><td>Non, encodage logiciel : chauffe et vide la batterie</td><td>Linux</td><td>Jusqu'en 2036</td><td>Prototype</td></tr>
+<tr><td>Rockchip RK3576 (Radxa ROCK 4D)</td><td>40 à 60 $</td><td>Oui, jusqu'en 4K</td><td>Android et Linux</td><td>Plus de 10 ans</td><td>Prototype réaliste, série</td></tr>
+<tr><td>Rockchip RK3566 (tablette en marque blanche)</td><td>113 à 117 $ la tablette 10 pouces</td><td>Oui</td><td>Android 11</td><td>Selon l'usine</td><td>Série rapide</td></tr>
+<tr><td>MediaTek Genio 510</td><td>79 à 148 $ (module)</td><td>Oui</td><td>Android et Linux officiels</td><td>Jusqu'en 2034</td><td>Série</td></tr>
+<tr><td>NXP i.MX 8M Plus</td><td>59 à 86 $ (module)</td><td>Oui</td><td>Linux surtout</td><td>15 ans</td><td>Série longue durée</td></tr>
+</tbody></table></div>
+<h3 class="sub">Les choix qui comptent</h3>
+<div class="arch">
+  <div class="b"><h3>Écran 10 pouces</h3><ul><li>Dalle 10,1 pouces 800×1280, 400 à 500 cd/m²</li><li>Le 13 pouces pèse plus d'un kilo et double la batterie</li></ul></div>
+  <div class="b"><h3>Micros anti-écho</h3><ul><li>XMOS XVF3800 : annulation d'écho, captation jusqu'à 5 m</li><li>Sa broche de coupure éteint les micros et allume la LED rouge : vraie coupure matérielle</li></ul></div>
+  <div class="b"><h3>Recharge par contacts aimantés</h3><ul><li>Rendement 95 à 98 %, contre 75 à 85 % pour une recharge sans fil</li><li>Moins de chaleur, pas de ventilateur</li></ul></div>
+  <div class="o"><h3>Batterie amovible</h3><ul><li>Obligatoire dès le 18/02/2027 (règlement 2023/1542)</li><li>Trappe vissée, pack batterie avec connecteur</li></ul></div>
+  <div class="o"><h3>Mot d'activation</h3><ul><li>Picovoice : trop cher (899 $/mois pour 1 000 cadres)</li><li>openWakeWord ou microWakeWord : gratuits, licence des modèles à vérifier</li><li>Toujours un bouton « parler » en plus</li></ul></div>
+  <div class="o"><h3>Appareils auditifs</h3><ul><li>Android 15 gère nativement ASHA et LE Audio</li><li>Sous Linux, LE Audio marche mais ASHA non : argument pour Android</li></ul></div>
+</div>
+<h3 class="sub">Liste des pièces</h3><div class="tablewrap"><table class=""><thead><tr><th>Pièce</th><th>Référence pour le prototype</th><th>Prix prototype</th><th>Prix en série (estimation)</th></tr></thead><tbody>
+<tr><td>Calcul</td><td>Raspberry Pi 5, 4 Go</td><td>110 $</td><td>40 à 80 $</td></tr>
+<tr><td>Écran tactile 10 pouces</td><td>Raspberry Pi Touch Display 2</td><td>80 $</td><td>30 à 45 $</td></tr>
+<tr><td>Micros, anti-écho, coupure micro</td><td>ReSpeaker XVF3800 (4 micros)</td><td>61 $</td><td>8 à 15 $</td></tr>
+<tr><td>Haut-parleur et ampli</td><td>MAX98357A et haut-parleur 3 pouces</td><td>11 à 48 $</td><td>2,5 à 6 $</td></tr>
+<tr><td>Caméra grand angle</td><td>Pi Camera Module 3 Wide</td><td>38,50 $</td><td>5 à 12 $</td></tr>
+<tr><td>Bluetooth pour appareils auditifs</td><td>Carte Intel AX210 (le Pi 5 est en Bluetooth 5.0)</td><td>20 à 30 $</td><td>3 à 6 $</td></tr>
+<tr><td>Batterie environ 30 Wh</td><td>Waveshare UPS HAT (E) et 4 cellules 21700</td><td>57 $</td><td>8 à 15 $</td></tr>
+<tr><td>Contacts aimantés</td><td>Pogo pins magnétiques 4 contacts</td><td>1 à 2 $</td><td>0,9 à 4 $</td></tr>
+<tr><td>Socle</td><td>Alimentation USB-C 27 W, lumière douce</td><td>environ 25 $</td><td>6 à 10 $</td></tr>
+<tr><td>Boutons, LED, volet</td><td>Interrupteurs, volet imprimé en 3D</td><td>environ 10 $</td><td>1 à 3 $</td></tr>
+<tr><td>Boîtier</td><td>Impression 3D, puis moule à injection</td><td>30 à 60 $</td><td>3 à 8 $ (+ moule)</td></tr>
+<tr><td><b>Total sans 4G</b></td><td></td><td><b>480 à 560 $</b></td><td><b>90 à 190 $</b></td></tr>
+<tr><td>4G (option)</td><td>Module Cat 1 (SIMCom A7670E, Quectel EG915U)</td><td>85 à 112 $</td><td>+ 8 à 18 $</td></tr>
+</tbody></table></div><p class="note" style="margin-top:12px">Les prix en série sont des estimations : aucun devis d'usine n'a été obtenu. Elles sont cohérentes avec l'Echo Show 8 et avec les tablettes en marque blanche. À ajouter une seule fois : moules (15 000 à 75 000 $) et certifications. Attention : la pénurie de mémoire de 2026 a fait monter tous les prix (Raspberry Pi a augmenté cinq fois en un an).</p>
+  </div>
+</div>
+</section>
+<section id="s04">
+<div class="grid">
+  <div class="k"><span class="num">04</span> · Stack logicielle</div>
+  <div>
+    <h2>Comment tout communique</h2>
+<div class="flow">CADRE (tablette Android en kiosque, appli Flutter)
+  ├─ mot d&#x27;activation sur le cadre ─► transcription (Voxtral, France) ─► Mistral Small ─► action
+  ├─ appel vidéo chiffré ◄────────► LiveKit (Europe) ◄────────► appli famille
+  ├─ signal toutes les 5 min ─────► Supabase : « connecté il y a 2 min »
+  └─ photos ◄──── lien sécurisé ◄── Supabase Storage (Paris) ◄── appli famille
+
+APPLI FAMILLE (FlutterFlow)          TABLEAU DE BORD AIDANT
+  envoyer photos et vocaux             valider les proches, liste d&#x27;appels
+  appeler, recevoir les « merci »      statut technique, jamais d&#x27;activité
+
+n8n : cadre hors ligne depuis 24 h ─► message à l&#x27;aidant (« vérifiez la prise et le wifi »)
+Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewrap"><table class=""><thead><tr><th>Brique</th><th>Choix recommandé</th><th>Autres options</th></tr></thead><tbody>
+<tr><td>Système du cadre</td><td><b>Android en mode kiosque</b> (Android Management API, gratuite)</td><td>Linux + Flutter (flutter-pi) : plus de contrôle, trop lourd pour nous</td></tr>
+<tr><td>Appli du cadre</td><td><b>Flutter</b> (créée dans FlutterFlow, avec un peu de code)</td><td>Chromium en plein écran : fragile pour la visio et le micro</td></tr>
+<tr><td>Appli famille</td><td><b>FlutterFlow</b> (39 à 80 $/mois)</td><td>Bubble, Adalo ; Glide exclu (pas d'appli native ni de notifications)</td></tr>
+<tr><td>Base de données, comptes, photos</td><td><b>Supabase, région Paris</b> (25 $/mois)</td><td>Firebase : quotas gratuits seulement aux États-Unis</td></tr>
+<tr><td>Appels vidéo</td><td><b>LiveKit</b> (chiffrement de bout en bout, SDK Flutter, 0,0005 $ la minute)</td><td>Daily, 100ms, Vonage : 8 fois plus chers ; Jitsi</td></tr>
+<tr><td>Mot d'activation</td><td><b>openWakeWord</b> sur le cadre, et bouton « parler »</td><td>Picovoice Porcupine : trop cher</td></tr>
+<tr><td>Transcription de la voix</td><td><b>Mistral Voxtral</b> ou <b>Scaleway Whisper</b> (0,003 €/min, en France)</td><td>Gladia, Speechmatics, Deepgram</td></tr>
+<tr><td>Compréhension de la commande</td><td><b>Mistral Small</b>, réponses limitées à une liste d'actions</td><td>OVHcloud AI Endpoints</td></tr>
+<tr><td>Voix du cadre</td><td><b>Phrases enregistrées</b> ou <b>Piper</b> (gratuit, sur le cadre)</td><td>Azure, ElevenLabs : jusqu'à 2 € par cadre et par mois</td></tr>
+<tr><td>Notifications</td><td><b>Firebase Cloud Messaging</b> (gratuit)</td><td>OneSignal</td></tr>
+<tr><td>Statut « connecté »</td><td><b>Signal toutes les 5 min</b> vers Supabase</td><td>MQTT (EMQX)</td></tr>
+<tr><td>Automatisations</td><td><b>n8n</b> hébergé en Europe</td><td>Make, Zapier</td></tr>
+<tr><td>Paiement</td><td><b>Stripe Billing</b> et prélèvement SEPA (environ 0,40 € par abonnement)</td><td>-</td></tr>
+<tr><td>Mises à jour</td><td><b>Play Store géré</b> par l'Android Management API</td><td>Mender, balena, Esper (2 $/cadre/mois)</td></tr>
+</tbody></table></div><h3 class="sub">Automatisations no-code utiles</h3><ol class="next"><li><b>Bienvenue aidant</b> : nouveau compte, e-mail avec la liste des étapes d'installation.</li><li><b>Cadre hors ligne depuis 24 h</b> : message à l'aidant avec les vérifications à faire.</li><li><b>Nouveau proche</b> : l'aidant reçoit la demande et valide en un clic.</li><li><b>Résumé hebdomadaire</b> : nombre de photos et d'appels, jamais leur contenu.</li><li><b>Paiement échoué</b> : relance, puis le cadre garde ses photos en mode réduit.</li></ol>
+  </div>
+</div>
+</section>
+<section id="s05">
+<div class="grid">
+  <div class="k"><span class="num">05</span> · Coûts</div>
+  <div>
+    <h2>Ce que coûte un cadre chaque mois</h2>
+<p>Hypothèse : chaque jour, 30 minutes de visio, 10 photos et 20 commandes vocales. Flotte de 1 000 cadres.</p><div class="tablewrap"><table class=""><thead><tr><th>Poste</th><th>Base de calcul</th><th>Par cadre et par mois</th></tr></thead><tbody>
+<tr><td>Appels vidéo (LiveKit)</td><td>1 800 minutes de participants et 16 Go par mois</td><td>1,67 à 2,44 €</td></tr>
+<tr><td>Photos (stockage et envoi)</td><td>10 photos par jour, 2 Mo chacune</td><td>0,18 à 0,28 €</td></tr>
+<tr><td>Base de données et temps réel</td><td>Supabase partagé entre 1 000 cadres</td><td>0,03 €</td></tr>
+<tr><td>Transcription de la voix</td><td>50 minutes d'audio par mois</td><td>0,13 à 0,26 €</td></tr>
+<tr><td>Compréhension (Mistral Small)</td><td>600 commandes par mois</td><td>0,03 €</td></tr>
+<tr><td>Mot d'activation, voix, notifications, mises à jour</td><td>Sur le cadre ou gratuits</td><td>0 €</td></tr>
+<tr><td>Automatisations (n8n)</td><td>Un serveur pour 1 000 cadres</td><td>0,02 €</td></tr>
+<tr><td>Paiement (Stripe SEPA)</td><td>Par abonnement</td><td>0,37 à 0,52 €</td></tr>
+<tr><td><b>Total par cadre et par mois</b></td><td></td><td><b>2,60 à 3,40 €</b></td></tr>
+</tbody></table></div><h3 class="sub">Ce qui reste sur chaque abonnement</h3><div class="tablewrap"><table class=""><thead><tr><th>Offre</th><th>Prix HT</th><th>Cloud</th><th>Forfait 4G</th><th>Reste avant support</th><th>Feu</th></tr></thead><tbody>
+<tr><td>Wifi, 7,90 € TTC</td><td>6,58 €</td><td>2,60 à 3,40 €</td><td>-</td><td><b>3,20 à 4 €</b></td><td><span class="feu f-o">Orange</span></td></tr>
+<tr><td>4G, 14,90 € TTC</td><td>12,42 €</td><td>2,60 à 3,40 €</td><td>8 à 11,90 € (10 Go)</td><td><b>-2,90 à 1,80 €</b></td><td><span class="feu f-r">Rouge</span></td></tr>
+<tr><td>4G, 19,90 € TTC (proposé)</td><td>16,58 €</td><td>2,60 à 3,40 €</td><td>8 à 11,90 €</td><td><b>1,30 à 6 €</b></td><td><span class="feu f-o">Orange</span></td></tr>
+</tbody></table></div><p style="margin-top:14px">Le coût varie surtout avec la vidéo : en 480p ou en audio seul quand la connexion est faible, il baisse fortement. Avec un serveur LiveKit installé chez nous en Europe, la vidéo tombe sous 0,10 € par cadre dès environ 500 cadres. À l'inverse, des services « confort » (Daily, voix Azure, gestion Esper) font monter le total à environ 9,60 €, plus que l'abonnement wifi.</p>
+<p><b>Rentabilité, ordre de grandeur :</b> avec 300 000 € de frais fixes par an et 4 € de marge par mois, il faut environ <b>6 250 abonnés</b>. Familink en revendique 50 000, Famileo 260 000. Le désabonnement des seniors (décès, entrée en EHPAD) est inconnu et pèsera.</p>
+<p><b>Fabrication :</b> environ 90 à 190 $ de pièces par cadre selon le volume. Avec 30 à 50 % de marge, le prix de 249 € est cohérent, à condition de vendre surtout en direct.</p>
+  </div>
+</div>
+</section>
+<section id="s06">
+<div class="grid">
+  <div class="k"><span class="num">06</span> · Faisabilité</div>
+  <div>
+    <h2>Feu vert, orange ou rouge</h2>
+<div class="tablewrap"><table class=""><thead><tr><th>Sujet</th><th>Feu</th><th>Pourquoi</th></tr></thead><tbody>
+<tr><td>Démo pour l'oral</td><td><span class="feu f-v">Vert</span></td><td>Tablette du commerce en kiosque dans un cadre imprimé en 3D, prête en 3 à 6 semaines.</td></tr>
+<tr><td>Logiciel en no-code / low-code</td><td><span class="feu f-vo">Vert / orange</span></td><td>FlutterFlow, Supabase et LiveKit couvrent tout. La visio et le chiffrement demandent un peu de code Dart.</td></tr>
+<tr><td>Pilote avec 10 à 20 familles</td><td><span class="feu f-vo">Vert / orange</span></td><td>Faisable avec des tablettes déjà marquées CE. Il faut une analyse d'impact RGPD et le consentement du senior lui-même.</td></tr>
+<tr><td>Marque blanche (usine existante)</td><td><span class="feu f-vo">Vert / orange</span></td><td>Tablettes 10 pouces 4G à 55 à 117 $. En vendant sous notre marque, on devient le fabricant au sens de la loi.</td></tr>
+<tr><td>Réglementation européenne</td><td><span class="feu f-o">Orange</span></td><td>Faisable, mais beaucoup de textes. Budget de certification : 30 000 à 70 000 € HT.</td></tr>
+<tr><td>Rentabilité offre wifi à 7,90 €</td><td><span class="feu f-o">Orange</span></td><td>3 à 4 € de marge avant le support : jouable avec une stack maîtrisée.</td></tr>
+<tr><td>Financement</td><td><span class="feu f-o">Orange</span></td><td>Bourse French Tech (30 000 €), Prix Silver Valley (20 000 €), French Tech Tremplin (15 000 €).</td></tr>
+<tr><td>Concurrence</td><td><span class="feu f-or">Orange / rouge</span></td><td>Familink en location à 14,99 € avec la 4G, LiNote et Visioframe en France.</td></tr>
+<tr><td>Électronique conçue sur mesure</td><td><span class="feu f-r">Rouge</span></td><td>12 à 24 mois, moules de 8 000 à 40 000 £, plusieurs dizaines de milliers d'euros de certification.</td></tr>
+<tr><td>Rentabilité offre 4G à 14,90 €</td><td><span class="feu f-r">Rouge</span></td><td>Le forfait data mange presque tout l'abonnement.</td></tr>
+</tbody></table></div><h3 class="sub">Les règles à respecter</h3><div class="tablewrap"><table class=""><thead><tr><th>Texte</th><th>Concerné ?</th><th>Ce que ça demande</th></tr></thead><tbody>
+<tr><td>Marquage CE et directive radio (RED)</td><td>Oui</td><td>Wifi, 4G, Bluetooth. 4 000 à 15 000 € par bande radio, 8 à 12 semaines.</td></tr>
+<tr><td>Cybersécurité radio (EN 18031)</td><td>Oui, depuis le 01/08/2025</td><td>Pas de mot de passe par défaut, mises à jour sécurisées. 0 à 8 000 €.</td></tr>
+<tr><td>Cyber Resilience Act</td><td>Oui</td><td>Failles exploitées signalées en 24 h depuis le 11/09/2026 ; tout le reste le 11/12/2027. Mises à jour de sécurité pendant au moins 5 ans.</td></tr>
+<tr><td>RGPD</td><td>Oui, point critique</td><td>Caméra et micro chez une personne vulnérable : analyse d'impact quasi obligatoire, consentement du senior, hébergement en Europe, aucune donnée de santé.</td></tr>
+<tr><td>AI Act</td><td>En partie</td><td>Dire « je suis un assistant automatique » depuis le 02/08/2026. Interdit : reconnaître les émotions.</td></tr>
+<tr><td>Dispositif médical (MDR)</td><td>Non, si on reste prudent</td><td>Ne jamais écrire « surveillance », « alerte », « prévenir le déclin cognitif ».</td></tr>
+<tr><td>Batteries (2023/1542)</td><td>Oui</td><td>Batterie remplaçable par l'utilisateur à partir du 18/02/2027.</td></tr>
+<tr><td>Écoconception des tablettes (2023/1670)</td><td>Risque</td><td>Si l'écran est vu comme une tablette : étiquette énergie, pièces pendant 7 ans, 800 cycles. Se présenter comme un cadre photo, à faire valider par un juriste.</td></tr>
+<tr><td>Chargeur universel</td><td>Oui</td><td>Port USB-C obligatoire sur l'écran, même avec les contacts aimantés.</td></tr>
+<tr><td>Recyclage (DEEE)</td><td>Oui</td><td>Adhésion à un éco-organisme, 1,29 € par cadre photo (2,98 € si tablette).</td></tr>
+<tr><td>Sécurité des produits (GPSR)</td><td>Oui</td><td>Analyse de risques gardée 10 ans, responsable établi dans l'UE.</td></tr>
+<tr><td>Accessibilité (EAA)</td><td>Probable</td><td>Depuis le 28/06/2025 pour les tablettes et les terminaux de communication. À confirmer.</td></tr>
+</tbody></table></div><h3 class="sub">Les échecs à retenir</h3><div class="tablewrap"><table class=""><thead><tr><th>Produit</th><th>Ce qui s'est passé</th><th>Leçon pour nous</th></tr></thead><tbody>
+<tr><td>Meta Portal</td><td>Arrêté en 2022</td><td>Personne ne voulait une caméra Facebook dans son salon : la confiance avant la technique.</td></tr>
+<tr><td>Alexa Together</td><td>Arrêté</td><td>Même Amazon arrête un service d'aidants sans modèle économique solide.</td></tr>
+<tr><td>Jibo</td><td>Serveurs coupés en 2019</td><td>Quand le cloud s'arrête, le produit meurt : prévoir un mode local.</td></tr>
+<tr><td>Ardoiz (La Poste)</td><td>Fermeture annoncée en mai 2026</td><td>Le cas le plus proche : 110 000 seniors au pic du Covid, 40 000 ensuite. Il faut un usage quotidien qui dure et un réseau de vente.</td></tr>
+<tr><td>Hoomano, Lili Smart, H4D</td><td>Liquidés</td><td>La silver tech française a aussi ses échecs.</td></tr>
+</tbody></table></div>
+  </div>
+</div>
+</section>
+<section id="s07">
+<div class="grid">
+  <div class="k"><span class="num">07</span> · Mise en œuvre</div>
+  <div>
+    <h2>De la démo à la vente</h2>
+
+<div class="cards">
+  <div><span class="k">Étape 1 · 3 à 6 semaines</span><h3>La démo pour l'oral</h3>
+    <p><b>Matériel :</b> une tablette Android 10 pouces du commerce, déjà marquée CE, verrouillée sur notre appli. Un socle imprimé en 3D avec aimants, un connecteur USB-C aimanté et un volet de caméra imprimé.</p>
+    <p style="margin-top:8px"><b>Logiciel :</b> appli du cadre et appli famille dans FlutterFlow, Supabase (Paris), LiveKit gratuit (5 000 minutes). Bouton « parler » plutôt que mot d'activation.</p>
+    <p style="margin-top:8px"><b>À montrer :</b> la famille envoie une photo, le senior dit merci, un proche appelle, le senior décroche, puis sort l'écran du cadre et l'emporte.</p></div>
+  <div class="o"><span class="k">Étape 2 · 6 à 10 semaines</span><h3>Un test avec 10 à 20 familles</h3>
+    <p><b>Recrutement :</b> centres communaux d'action sociale, résidences autonomie, clubs seniors, Silver Valley, familles de l'école.</p>
+    <p style="margin-top:8px"><b>RGPD :</b> analyse d'impact simplifiée (modèle CNIL), consentements séparés pour le senior et l'aidant.</p>
+    <p style="margin-top:8px"><b>Mesures :</b> appels par semaine, photos vues, facilité d'usage (questionnaire SUS), prix acceptable pour l'aidant. Question clé : la 4G est-elle vraiment utile ?</p></div>
+  <div class="g"><span class="k">Étape 3 · 12 à 24 mois</span><h3>La fabrication</h3>
+    <p>Créer la société, demander la Bourse French Tech, candidater au Prix Silver Valley. Consulter 3 à 5 usines en marque blanche, avec leurs rapports CE et EN 18031.</p>
+    <p style="margin-top:8px">Concevoir la batterie amovible et le socle (moule souple de 3 000 à 12 000 $), certifier en laboratoire (8 à 12 semaines). Vendre d'abord via des départements, mutuelles et résidences.</p></div>
+</div>
+
+  </div>
+</div>
+</section>
+<section id="s08">
+<div class="grid">
+  <div class="k"><span class="num">08</span> · À décider en équipe</div>
+  <div>
+    <h2>Six choix à faire</h2>
+<ol class="next">
+  <li><b>Prix de l'offre 4G :</b> passer à 19,90 € ou limiter la vidéo en 4G (audio seul, ou bascule sur le wifi dès qu'il existe).</li>
+  <li><b>Taille d'écran :</b> la veille recommande 10 pouces.</li>
+  <li><b>Démo :</b> tablette Android du commerce (rapide, compatible FlutterFlow) ou Raspberry Pi 5 (plus « fait maison », mais sans encodeur vidéo et plus lourd en batterie). Recommandation : la tablette.</li>
+  <li><b>Fonctions de la version 1 :</b> valider les 18 fonctions indispensables, en particulier le décroché automatique donné par le senior (n° 36), qu'on garde pour la version 2.</li>
+  <li><b>Positionnement :</b> « cadre photo connecté » plutôt que « tablette », pour éviter les règles d'écoconception des tablettes.</li>
+  <li><b>Crédit d'impôt service à la personne :</b> voir s'il peut s'appliquer à notre abonnement, comme chez Emotivi ou LiNote.</li>
+</ol>
+  </div>
+</div>
+</section>
+<section id="src"><div class="grid"><div class="k">Sources</div><div class="src-list">
+<p class="note">Recherche faite le 15 octobre 2026. Les prix viennent des pages officielles ou de la presse ; ceux marqués « estimation » sont calculés. Conversion : 1 $ ≈ 0,86 €. Liste réduite aux sources principales.</p>
+<h4>Concurrents</h4><a href="https://www.familinkframe.com/fr/">familinkframe.com/fr/</a><br><a href="https://www.techradar.com/home/smart-home/aura-carver-mat-review">techradar.com/home/smart-home/aura-carver-mat-review</a><br><a href="https://www.androidpolice.com/nixplay-digital-photo-frames-subscription-plan-changes/">androidpolice.com/nixplay-digital-photo-frames-subscription-plan-changes/</a><br><a href="https://getsense.ai/blog/posts/skylight-calendar-hidden-costs-paywall">getsense.ai/blog/posts/skylight-calendar-hidden-costs-paywall</a><br><a href="https://www.pix-star.com/frames">pix-star.com/frames</a><br><a href="https://komp.family/">komp.family/</a><br><a href="https://www.agespace.org/reviews/komp-review">agespace.org/reviews/komp-review</a><br><a href="https://viewclix.com/features/">viewclix.com/features/</a><br><a href="https://autonome-a-domicile.com/avis-tablette-linote/">autonome-a-domicile.com/avis-tablette-linote/</a><br><a href="https://www.visioframe.com/notre-concept">visioframe.com/notre-concept</a><br><a href="https://emotivi.fr/">emotivi.fr/</a><br><a href="https://www.seniorliving.org/cell-phone/consumer-cellular/grandpad/">seniorliving.org/cell-phone/consumer-cellular/grandpad/</a><br><a href="https://www.tomsguide.com/news/alexa-emergency-assist-what-it-is-how-much-it-costs-and-how-it-could-save-your-life">tomsguide.com/news/alexa-emergency-assist-what-it-is-how-much-it-costs-and-how-it-could-sa</a><br><a href="https://www.besidecare.com/blog/what-to-use-now-that-alexa-together-is-gone/">besidecare.com/blog/what-to-use-now-that-alexa-together-is-gone/</a><br><a href="https://www.makeuseof.com/why-meta-is-killing-portal-for-consumers/">makeuseof.com/why-meta-is-killing-portal-for-consumers/</a><br><a href="https://9to5google.com/2025/12/02/google-home-app-has-removed-the-call-home-feature/">9to5google.com/2025/12/02/google-home-app-has-removed-the-call-home-feature/</a><br><a href="https://carezano.com/software/elliq">carezano.com/software/elliq</a><br><a href="https://www.clubic.com/actualite-614452-la-poste-arrete-ardoiz-sa-tablette-pour-seniors-qui-n-a-pas-survecu-a-l-apres-covid.html">clubic.com/actualite-614452-la-poste-arrete-ardoiz-sa-tablette-pour-seniors-qui-n-a-pas-su</a><br><a href="https://www.bretagne-economique.com/portraits/famileo-260-000-familles-abonnees-et-des-horizons-europeens/">bretagne-economique.com/portraits/famileo-260-000-familles-abonnees-et-des-horizons-europe</a><br><a href="https://www.usenix.org/system/files/usenixsecurity23-do.pdf">usenix.org/system/files/usenixsecurity23-do.pdf</a><h4>Matériel</h4><a href="https://www.raspberrypi.com/products/touch-display-2/">raspberrypi.com/products/touch-display-2/</a><br><a href="https://www.theregister.com/2026/02/02/raspberry_pi_ram_shortage_price_hike/">theregister.com/2026/02/02/raspberry_pi_ram_shortage_price_hike/</a><br><a href="https://linuxgizmos.com/radxa-rock-4d-with-rk3576-soc-pcie-gen2-x1-gigabit-ethernet-and-poe-support/">linuxgizmos.com/radxa-rock-4d-with-rk3576-soc-pcie-gen2-x1-gigabit-ethernet-and-poe-suppor</a><br><a href="https://proventusnova.com/blog/mediatek-genio-soc-longevity-supply-plan">proventusnova.com/blog/mediatek-genio-soc-longevity-supply-plan</a><br><a href="https://www.nxp.com/docs/en/fact-sheet/IMX8MPLUSFS.pdf">nxp.com/docs/en/fact-sheet/IMX8MPLUSFS.pdf</a><br><a href="https://www.alibaba.com/product-detail/Wall-mount-android-11-10-1-1600493764374.html">alibaba.com/product-detail/Wall-mount-android-11-10-1-1600493764374.html</a><br><a href="https://www.waveshare.com/10.1-dsi-touch-a.htm">waveshare.com/10.1-dsi-touch-a.htm</a><br><a href="https://wiki.seeedstudio.com/respeaker_xvf3800_introduction/">wiki.seeedstudio.com/respeaker_xvf3800_introduction/</a><br><a href="https://www.androidpolice.com/android-15-hearing-aid-support-le-audio/">androidpolice.com/android-15-hearing-aid-support-le-audio/</a><br><a href="https://support.google.com/googlenest/answer/9449280?hl=en">support.google.com/googlenest/answer/9449280?hl=en</a><br><a href="https://www.waveshare.com/ups-hat-e.htm">waveshare.com/ups-hat-e.htm</a><br><a href="https://www.compliancegate.com/removable-and-replaceable-battery-requirements-european-union/">compliancegate.com/removable-and-replaceable-battery-requirements-european-union/</a><br><a href="https://www.techinsights.com/blog/deep-dive-teardown-amazon-echo-show-8-3rd-gen-r855d6-smart-display">techinsights.com/blog/deep-dive-teardown-amazon-echo-show-8-3rd-gen-r855d6-smart-display</a><br><a href="https://github.com/dscripka/openWakeWord">github.com/dscripka/openWakeWord</a><br><a href="https://www.kevinahrendt.com/micro-wake-word">kevinahrendt.com/micro-wake-word</a><br><a href="https://infogerant.com/telecom/forfaits-data-m2m-iot/">infogerant.com/telecom/forfaits-data-m2m-iot/</a><h4>Logiciel et cloud</h4><a href="https://livekit.com/pricing">livekit.com/pricing</a><br><a href="https://docs.livekit.io/transport/encryption/">docs.livekit.io/transport/encryption/</a><br><a href="https://www.daily.co/pricing/video-sdk/">daily.co/pricing/video-sdk/</a><br><a href="https://supabase.com/pricing">supabase.com/pricing</a><br><a href="https://www.lowcode.agency/blog/flutterflow-pricing-plans">lowcode.agency/blog/flutterflow-pricing-plans</a><br><a href="https://www.scaleway.com/en/pricing/model-as-a-service/">scaleway.com/en/pricing/model-as-a-service/</a><br><a href="https://the-decoder.com/voxtral-transcribe-2-offers-speech-recognition-at-0-003-per-minute/">the-decoder.com/voxtral-transcribe-2-offers-speech-recognition-at-0-003-per-minute/</a><br><a href="https://picovoice.ai/blog/introducing-picovoices-free-tier/">picovoice.ai/blog/introducing-picovoices-free-tier/</a><br><a href="https://medium.com/ackee/dedicated-one-app-device-with-android-management-api-39cf498f8c9b">medium.com/ackee/dedicated-one-app-device-with-android-management-api-39cf498f8c9b</a><br><a href="https://github.com/ardera/flutter-pi">github.com/ardera/flutter-pi</a><br><a href="https://www.esper.io/pricing">esper.io/pricing</a><br><a href="https://instapods.com/blog/n8n-pricing/">instapods.com/blog/n8n-pricing/</a><br><a href="https://stripe.com/en-fr/pricing">stripe.com/en-fr/pricing</a><h4>Réglementation et faisabilité</h4><a href="https://www.schutzwerk.com/en/compliance/red/">schutzwerk.com/en/compliance/red/</a><br><a href="https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act">digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act</a><br><a href="https://www.spilma.com/en/guides/certification-costs">spilma.com/en/guides/certification-costs</a><br><a href="https://www.aestechno.com/en/ce-red-certification-iot/">aestechno.com/en/ce-red-certification-iot/</a><br><a href="https://www.cnil.fr/fr/ce-quil-faut-savoir-sur-lanalyse-dimpact-relative-la-protection-des-donnees-aipd">cnil.fr/fr/ce-quil-faut-savoir-sur-lanalyse-dimpact-relative-la-protection-des-donnees-aip</a><br><a href="https://nordflux.de/en/insights/eu-ai-act-article-50-labelling-obligation-for-chatbots-and-voice-agents-from-2-august-2026">nordflux.de/en/insights/eu-ai-act-article-50-labelling-obligation-for-chatbots-and-voice-a</a><br><a href="https://health.ec.europa.eu/system/files/2020-09/md_mdcg_2019_11_guidance_en_0.pdf">health.ec.europa.eu/system/files/2020-09/md_mdcg_2019_11_guidance_en_0.pdf</a><br><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32023R1670">eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32023R1670</a><br><a href="https://www.ecologic-france.com/storage/uploads/699da6df324b1/Ecologic-Bareme-EEE-Menager-simplifie-2026-FR-VF.pdf">ecologic-france.com/storage/uploads/699da6df324b1/Ecologic-Bareme-EEE-Menager-simplifie-20</a><br><a href="https://accessible.org/eaa-scope-products-services/">accessible.org/eaa-scope-products-services/</a><br><a href="https://formlabs.com/blog/validation-testing-product-development-poc-evt-dvt-pvt-mp/">formlabs.com/blog/validation-testing-product-development-poc-evt-dvt-pvt-mp/</a><br><a href="https://www.bourse-french-tech.fr/">bourse-french-tech.fr/</a><br><a href="https://www.silvereco.fr/prix-silver-valley-2026-le-concours-dedie-aux-innovations-pour-la-transition-demographique-est-lance/">silvereco.fr/prix-silver-valley-2026-le-concours-dedie-aux-innovations-pour-la-transition-</a><br><a href="https://www.therobotreport.com/jibo-social-robot-analyzing-what-went-wrong/">therobotreport.com/jibo-social-robot-analyzing-what-went-wrong/</a><br><a href="https://eightx.co/blog/average-subscription-churn-rate-by-category">eightx.co/blog/average-subscription-churn-rate-by-category</a>
+</div></div></section>
+<footer class="k">Suite de la <a href="1-1-synthese-questions-techniques.html" style="color:var(--blue)">synthèse des questions techniques</a>.</footer>
+</div>
+</body>
+</html>
