@@ -202,7 +202,7 @@ table.feat td:first-child { width: 3ch; }
   <a href="#s02"><span class="n">2</span><span class="k">Stack</span><h3>Tablette Android, FlutterFlow, Supabase, LiveKit, Mistral</h3>
     <p>Démo : Galaxy Tab A11+ verrouillée par FreeKiosk dans un socle imprimé en 3D. Série : tablette 10 pouces en marque blanche avec socle à contacts aimantés. Cloud en Europe, environ 3 € par cadre et par mois.</p></a>
   <a href="#s03" class="o"><span class="n">3</span><span class="k">Faisabilité</span><h3>Démo : vert. Produit : orange. Électronique sur mesure : rouge</h3>
-    <p>La démo tient en 4 semaines à trois. La vente demande 30 000 à 70 000 € de certification et 12 à 24 mois. L'offre wifi est rentable, l'offre 4G à 14,90 € ne l'est pas. La location à 19,90 € (9,95 € après crédit d'impôt) est la piste la plus forte.</p></a>
+    <p>La démo tient en 4 semaines à trois. La vente demande 30 000 à 70 000 € de certification et 12 à 24 mois. L'offre wifi est rentable, l'offre 4G à 14,90 € ne l'est pas. La location à 19,90 € (9,95 € après crédit d'impôt) est la piste la plus forte.</p></a>
   <a href="#s04" class="g"><span class="n">4</span><span class="k">Implémentation concrète</span><h3>9 étapes, 4 semaines, environ 360 € de matériel</h3>
     <p>Acheter, verrouiller la tablette, créer la base, faire les deux applis, brancher l'appel et la voix, automatiser, imprimer le socle, répéter un scénario de 5 minutes.</p></a>
 </div>
@@ -319,7 +319,7 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
   <div class="b"><h3>Micros anti-écho</h3><ul><li>XMOS XVF3800 : annulation d'écho, captation jusqu'à 5 m</li><li>Sa broche de coupure éteint les micros et allume la LED rouge : vraie coupure matérielle</li></ul></div>
   <div class="b"><h3>Recharge par contacts aimantés</h3><ul><li>Rendement 95 à 98 %, contre 75 à 85 % pour une recharge sans fil</li><li>Moins de chaleur, pas de ventilateur</li></ul></div>
   <div class="o"><h3>Batterie amovible</h3><ul><li>Obligatoire dès le 18/02/2027 (règlement 2023/1542)</li><li>Trappe vissée, pack batterie avec connecteur</li></ul></div>
-  <div class="o"><h3>Mot d'activation</h3><ul><li>Picovoice : trop cher (899 $/mois pour 1 000 cadres)</li><li>openWakeWord et microWakeWord : anglais seulement, modèles non commerciaux</li><li>Seul Picovoice gère le français</li><li>Toujours un bouton « parler » en plus</li></ul></div>
+  <div class="o"><h3>Mot d'activation</h3><ul><li>Picovoice : trop cher (899 $/mois pour 1 000 cadres)</li><li>openWakeWord et microWakeWord : anglais seulement, modèles non commerciaux</li><li>Seul Picovoice gère le français</li><li>Toujours un bouton « parler » en plus</li></ul></div>
   <div class="o"><h3>Appareils auditifs</h3><ul><li>Android 15 gère nativement ASHA et LE Audio</li><li>Sous Linux, LE Audio marche mais ASHA non : argument pour Android</li></ul></div>
 </div>
 <h3 class="sub">Liste des pièces</h3><div class="tablewrap"><table class=""><thead><tr><th>Pièce</th><th>Référence pour le prototype</th><th>Prix prototype</th><th>Prix en série (estimation)</th></tr></thead><tbody>
@@ -336,7 +336,7 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td>Boîtier</td><td>Impression 3D, puis moule à injection</td><td>30 à 60 $</td><td>3 à 8 $ (+ moule)</td></tr>
 <tr><td><b>Total sans 4G</b></td><td></td><td><b>480 à 560 $</b></td><td><b>90 à 190 $</b></td></tr>
 <tr><td>4G (option)</td><td>Module Cat 1 (SIMCom A7670E, Quectel EG915U)</td><td>85 à 112 $</td><td>+ 8 à 18 $</td></tr>
-</tbody></table></div><p class="note" style="margin-top:12px">Les prix en série sont des estimations : aucun devis d'usine n'a été obtenu. Elles sont cohérentes avec l'Echo Show 8 et avec les tablettes en marque blanche. À ajouter une seule fois : moules (15 000 à 75 000 $) et certifications. Attention : la pénurie de mémoire de 2026 a fait monter tous les prix (Raspberry Pi a augmenté cinq fois en un an).</p>
+</tbody></table></div><p class="note" style="margin-top:12px">Les prix en série sont des estimations : aucun devis d'usine n'a été obtenu. Elles sont cohérentes avec l'Echo Show 8 et avec les tablettes en marque blanche. À ajouter une seule fois : moules (15 000 à 75 000 $) et certifications. Attention : la pénurie de mémoire de 2026 a fait monter tous les prix (Raspberry Pi a augmenté cinq fois en un an).</p>
   </div>
 </div>
 </section>
@@ -350,15 +350,15 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td>Logiciel en no-code / low-code</td><td><span class="feu f-vo">Vert / orange</span></td><td>FlutterFlow, Supabase et LiveKit couvrent tout. La visio et le chiffrement demandent un peu de code Dart.</td></tr>
 <tr><td>Pilote avec 10 à 20 familles</td><td><span class="feu f-vo">Vert / orange</span></td><td>Faisable avec des tablettes déjà marquées CE. Il faut une analyse d'impact RGPD et le consentement du senior lui-même.</td></tr>
 <tr><td>Marque blanche (usine existante)</td><td><span class="feu f-vo">Vert / orange</span></td><td>Tablettes 10 pouces 4G à 55 à 117 $. En vendant sous notre marque, on devient le fabricant au sens de la loi.</td></tr>
-<tr><td>Réglementation européenne</td><td><span class="feu f-o">Orange</span></td><td>Faisable, mais beaucoup de textes. Budget de certification : 30 000 à 70 000 € HT.</td></tr>
+<tr><td>Réglementation européenne</td><td><span class="feu f-o">Orange</span></td><td>Faisable, mais beaucoup de textes. Budget de certification : 30 000 à 70 000 € HT.</td></tr>
 <tr><td>Rentabilité offre wifi à 7,90 €</td><td><span class="feu f-o">Orange</span></td><td>3 à 4 € de marge avant le support : jouable avec une stack maîtrisée.</td></tr>
-<tr><td>Financement</td><td><span class="feu f-o">Orange</span></td><td>Bourse French Tech (30 000 €), Prix Silver Valley (20 000 €), French Tech Tremplin (15 000 €).</td></tr>
+<tr><td>Financement</td><td><span class="feu f-o">Orange</span></td><td>Bourse French Tech (30 000 €), Prix Silver Valley (20 000 €), French Tech Tremplin (15 000 €).</td></tr>
 <tr><td>Concurrence</td><td><span class="feu f-or">Orange / rouge</span></td><td>Familink en location à 14,99 € avec la 4G, LiNote et Visioframe en France.</td></tr>
-<tr><td>Électronique conçue sur mesure</td><td><span class="feu f-r">Rouge</span></td><td>12 à 24 mois, moules de 8 000 à 40 000 £, plusieurs dizaines de milliers d'euros de certification.</td></tr>
+<tr><td>Électronique conçue sur mesure</td><td><span class="feu f-r">Rouge</span></td><td>12 à 24 mois, moules de 8 000 à 40 000 £, plusieurs dizaines de milliers d'euros de certification.</td></tr>
 <tr><td>Rentabilité offre 4G à 14,90 €</td><td><span class="feu f-r">Rouge</span></td><td>Le forfait data mange presque tout l'abonnement.</td></tr>
 </tbody></table></div><h3 class="sub">Les règles à respecter</h3><div class="tablewrap"><table class=""><thead><tr><th>Texte</th><th>Concerné ?</th><th>Ce que ça demande</th></tr></thead><tbody>
-<tr><td>Marquage CE et directive radio (RED)</td><td>Oui</td><td>Wifi, 4G, Bluetooth. 4 000 à 15 000 € par bande radio, 8 à 12 semaines.</td></tr>
-<tr><td>Cybersécurité radio (EN 18031)</td><td>Oui, depuis le 01/08/2025</td><td>Pas de mot de passe par défaut, mises à jour sécurisées. 0 à 8 000 €.</td></tr>
+<tr><td>Marquage CE et directive radio (RED)</td><td>Oui</td><td>Wifi, 4G, Bluetooth. 4 000 à 15 000 € par bande radio, 8 à 12 semaines.</td></tr>
+<tr><td>Cybersécurité radio (EN 18031)</td><td>Oui, depuis le 01/08/2025</td><td>Pas de mot de passe par défaut, mises à jour sécurisées. 0 à 8 000 €.</td></tr>
 <tr><td>Cyber Resilience Act</td><td>Oui</td><td>Failles exploitées signalées en 24 h depuis le 11/09/2026 ; tout le reste le 11/12/2027. Mises à jour de sécurité pendant au moins 5 ans.</td></tr>
 <tr><td>RGPD</td><td>Oui, point critique</td><td>Caméra et micro chez une personne vulnérable : analyse d'impact quasi obligatoire, consentement du senior, hébergement en Europe, aucune donnée de santé.</td></tr>
 <tr><td>AI Act</td><td>En partie</td><td>Dire « je suis un assistant automatique » depuis le 02/08/2026. Interdit : reconnaître les émotions.</td></tr>
@@ -373,16 +373,16 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td>Meta Portal</td><td>Arrêté en 2022</td><td>Personne ne voulait une caméra Facebook dans son salon : la confiance avant la technique.</td></tr>
 <tr><td>Alexa Together</td><td>Arrêté</td><td>Même Amazon arrête un service d'aidants sans modèle économique solide.</td></tr>
 <tr><td>Jibo</td><td>Serveurs coupés en 2019</td><td>Quand le cloud s'arrête, le produit meurt : prévoir un mode local.</td></tr>
-<tr><td>Ardoiz (La Poste)</td><td>Fermeture annoncée en mai 2026</td><td>Le cas le plus proche : 110 000 seniors au pic du Covid, 40 000 ensuite. Il faut un usage quotidien qui dure et un réseau de vente.</td></tr>
+<tr><td>Ardoiz (La Poste)</td><td>Fermeture annoncée en mai 2026</td><td>Le cas le plus proche : 110 000 seniors au pic du Covid, 40 000 ensuite. Il faut un usage quotidien qui dure et un réseau de vente.</td></tr>
 <tr><td>Hoomano, Lili Smart, H4D</td><td>Liquidés</td><td>La silver tech française a aussi ses échecs.</td></tr>
-</tbody></table></div><h3 class="sub">Faisabilité économique : ce que coûte un cadre chaque mois</h3><p>Hypothèse : chaque jour, 30 minutes de visio, 10 photos et 20 commandes vocales. Flotte de 1 000 cadres.</p><div class="tablewrap"><table class=""><thead><tr><th>Poste</th><th>Base de calcul</th><th>Par cadre et par mois</th></tr></thead><tbody>
-<tr><td>Appels vidéo (LiveKit)</td><td>1 800 minutes de participants et 16 Go par mois</td><td>1,67 à 2,44 €</td></tr>
+</tbody></table></div><h3 class="sub">Faisabilité économique : ce que coûte un cadre chaque mois</h3><p>Hypothèse : chaque jour, 30 minutes de visio, 10 photos et 20 commandes vocales. Flotte de 1 000 cadres.</p><div class="tablewrap"><table class=""><thead><tr><th>Poste</th><th>Base de calcul</th><th>Par cadre et par mois</th></tr></thead><tbody>
+<tr><td>Appels vidéo (LiveKit)</td><td>1 800 minutes de participants et 16 Go par mois</td><td>1,67 à 2,44 €</td></tr>
 <tr><td>Photos (stockage et envoi)</td><td>10 photos par jour, 2 Mo chacune</td><td>0,18 à 0,28 €</td></tr>
-<tr><td>Base de données et temps réel</td><td>Supabase partagé entre 1 000 cadres</td><td>0,03 €</td></tr>
+<tr><td>Base de données et temps réel</td><td>Supabase partagé entre 1 000 cadres</td><td>0,03 €</td></tr>
 <tr><td>Transcription de la voix</td><td>50 minutes d'audio par mois</td><td>0,13 à 0,26 €</td></tr>
 <tr><td>Compréhension (Mistral Small)</td><td>600 commandes par mois</td><td>0,03 €</td></tr>
 <tr><td>Mot d'activation, voix, notifications, mises à jour</td><td>Sur le cadre ou gratuits</td><td>0 €</td></tr>
-<tr><td>Automatisations (n8n)</td><td>Un serveur pour 1 000 cadres</td><td>0,02 €</td></tr>
+<tr><td>Automatisations (n8n)</td><td>Un serveur pour 1 000 cadres</td><td>0,02 €</td></tr>
 <tr><td>Paiement (Stripe SEPA)</td><td>Par abonnement</td><td>0,37 à 0,52 €</td></tr>
 <tr><td><b>Total par cadre et par mois</b></td><td></td><td><b>2,60 à 3,40 €</b></td></tr>
 </tbody></table></div><h3 class="sub">Ce qui reste sur chaque abonnement</h3><div class="tablewrap"><table class=""><thead><tr><th>Offre</th><th>Prix HT</th><th>Cloud</th><th>Forfait 4G</th><th>Reste avant support</th><th>Feu</th></tr></thead><tbody>
@@ -390,7 +390,7 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td>4G, 14,90 € TTC</td><td>12,42 €</td><td>2,60 à 3,40 €</td><td>8 à 11,90 € (10 Go)</td><td><b>-2,90 à 1,80 €</b></td><td><span class="feu f-r">Rouge</span></td></tr>
 <tr><td>4G, 19,90 € TTC (proposé)</td><td>16,58 €</td><td>2,60 à 3,40 €</td><td>8 à 11,90 €</td><td><b>1,30 à 6 €</b></td><td><span class="feu f-o">Orange</span></td></tr>
 </tbody></table></div><p style="margin-top:14px">Le coût varie surtout avec la vidéo : en 480p ou en audio seul quand la connexion est faible, il baisse fortement. Avec un serveur LiveKit installé chez nous en Europe, la vidéo tombe sous 0,10 € par cadre dès environ 500 cadres. À l'inverse, des services « confort » (Daily, voix Azure, gestion Esper) font monter le total à environ 9,60 €, plus que l'abonnement wifi.</p>
-<p><b>Rentabilité, ordre de grandeur :</b> avec 300 000 € de frais fixes par an et 4 € de marge par mois, il faut environ <b>6 250 abonnés</b>. Familink en revendique 50 000, Famileo 280 000. Le désabonnement des seniors (décès, entrée en EHPAD) est inconnu et pèsera.</p>
+<p><b>Rentabilité, ordre de grandeur :</b> avec 300 000 € de frais fixes par an et 4 € de marge par mois, il faut environ <b>6 250 abonnés</b>. Familink en revendique 50 000, Famileo 280 000. Le désabonnement des seniors (décès, entrée en EHPAD) est inconnu et pèsera.</p>
 <p><b>Fabrication :</b> environ 90 à 190 $ de pièces par cadre selon le volume. Avec 30 à 50 % de marge, le prix de 249 € est cohérent, à condition de vendre surtout en direct.</p><h3 class="sub">Les modèles de prix possibles</h3><div class="tablewrap"><table class=""><thead><tr><th>Modèle</th><th>Prix mensuel payé</th><th>Crédit d'impôt</th><th>Qui le fait</th><th>Avis</th></tr></thead><tbody>
 <tr><td>Achat 249 € + 7,90 €/mois</td><td>7,90 €</td><td>Pas de crédit</td><td>Familink, ViewClix</td><td>Vente de matériel déguisée, sensible au coût d'acquisition</td></tr>
 <tr><td><b>Location tout compris 19,90 €/mois</b></td><td><b>9,95 €</b></td><td>Oui si le senior paie</td><td>LiNote 18,99 €, Emotivi 15 € après crédit</td><td>Le plus fort, mais il faut financer les cadres et demander une caution</td></tr>
@@ -464,7 +464,7 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td>80 ans et plus vivant seuls</td><td>48,4 % (femmes 61,3 %)</td><td>2023</td><td>INSEE</td></tr>
 <tr><td>65 ans et plus vivant seuls</td><td>32,4 %</td><td>2021</td><td>INSEE</td></tr>
 <tr><td>Population de 75 ans et plus</td><td>7,7 millions</td><td>2026</td><td>INSEE</td></tr>
-<tr><td>Aînés en « mort sociale »</td><td>750 000 (+42 % en 4 ans)</td><td>2025</td><td>Petits Frères des Pauvres</td></tr>
+<tr><td>Aînés en « mort sociale »</td><td>750 000 (+42 % en 4 ans)</td><td>2025</td><td>Petits Frères des Pauvres</td></tr>
 <tr><td>Ne voient presque jamais enfants ou petits-enfants</td><td>1,5 million</td><td>2025</td><td>Petits Frères des Pauvres</td></tr>
 <tr><td>Se sentent seuls tous les jours</td><td>2,5 millions</td><td>2025</td><td>Petits Frères des Pauvres</td></tr>
 <tr><td>60 ans et plus qui n'utilisent jamais Internet</td><td>au moins 5 millions</td><td>2025</td><td>Petits Frères des Pauvres</td></tr>
@@ -474,11 +474,11 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td>Aidants qui travaillent</td><td>58 à 61 %</td><td>2021-2022</td><td>DREES, OCIRP</td></tr>
 <tr><td>Aidants en fatigue mentale</td><td>40 %</td><td>2024</td><td>BVA, Je t'Aide</td></tr>
 <tr><td>Adultes qui voient leurs parents chaque jour</td><td>7 % (32 % chaque semaine)</td><td>2024</td><td>INED</td></tr>
-<tr><td>Personnes en téléassistance</td><td>750 000, soit 10 % des 75 ans et plus</td><td>2024</td><td>AFRATA</td></tr>
+<tr><td>Personnes en téléassistance</td><td>750 000, soit 10 % des 75 ans et plus</td><td>2024</td><td>AFRATA</td></tr>
 </tbody></table></div><h3 class="sub">Ce que disent les études</h3><div class="tablewrap"><table class=""><thead><tr><th>Sujet</th><th>Résultat</th><th>Ce qu'on en fait</th></tr></thead><tbody>
 <tr><td>Appels vidéo contre la solitude</td><td>Cochrane 2020 : 3 essais, 201 personnes en EHPAD, certitude très faible. Méta-analyse JMIR 2026 : 7 essais, effet non significatif.</td><td>Ne pas promettre de guérir la solitude. Mettre en avant le lien et la préparation des visites.</td></tr>
 <tr><td>Numérique et présence</td><td>Revue BMC 2026 (79 études) : le mélange numérique et activités en vrai marche mieux que le numérique seul. Japon 2024 : seuls les contacts en personne améliorent la santé mentale.</td><td>Fonction « planifier la prochaine visite » pour la fratrie.</td></tr>
-<tr><td>Komp à domicile</td><td>Essai 2026 sur 1 099 personnes de 84 ans en moyenne : seules 150 machines livrées sur 516 proposées.</td><td>Le vrai défi est l'adoption : accompagner l'installation.</td></tr>
+<tr><td>Komp à domicile</td><td>Essai 2026 sur 1 099 personnes de 84 ans en moyenne : seules 150 machines livrées sur 516 proposées.</td><td>Le vrai défi est l'adoption : accompagner l'installation.</td></tr>
 <tr><td>Surveillance perçue</td><td>Berridge 2020 : les enfants préfèrent la surveillance plus que leurs mères et pensent pouvoir les convaincre. Risque d'« emprise de l'aidant ».</td><td>Aucune donnée d'activité. Le senior choisit ses réglages.</td></tr>
 <tr><td>Acceptation</td><td>Revue 2026 (41 études) : 4 facteurs décident, dont le contrôle perçu et la stigmatisation. Modèle STAM : la confiance en soi et l'anxiété comptent plus que l'utilité.</td><td>Objet de déco, zéro réglage pour le senior.</td></tr>
 <tr><td>Abandon</td><td>Revue JMIR Aging 2025 (95 études) : vie privée, coût, besoin non ressenti, stigmatisation, manque d'humain.</td><td>Un service humain derrière l'objet.</td></tr>
@@ -493,14 +493,14 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
   <div>
     <h2>17 produits passés au crible</h2>
 <div class="tablewrap"><table class=""><thead><tr><th>Produit</th><th>Type</th><th>Achat</th><th>Abonnement</th><th>Ce qui plaît</th><th>Ce qui est critiqué</th><th>Statut</th></tr></thead><tbody>
-<tr><td><b>Familink</b> (FR)</td><td>Cadre photo</td><td>219,90 € ; ou location dès 14,99 €/mois</td><td>Basic gratuit ; Plus 4,90 € ; 4G 5,90 €</td><td>Prêt à brancher, SIM 4G, bouton « j'aime »</td><td>Pas d'appel vidéo, abonnements empilés</td><td>Actif, 50 000 foyers</td></tr>
+<tr><td><b>Familink</b> (FR)</td><td>Cadre photo</td><td>219,90 € ; ou location dès 14,99 €/mois</td><td>Basic gratuit ; Plus 4,90 € ; 4G 5,90 €</td><td>Prêt à brancher, SIM 4G, bouton « j'aime »</td><td>Pas d'appel vidéo, abonnements empilés</td><td>Actif, 50 000 foyers</td></tr>
 <tr><td><b>Aura</b></td><td>Cadre photo</td><td>149 à 299 $</td><td>Aucun</td><td>Réactions qui reviennent à l'expéditeur, envoi par SMS</td><td>Pas d'appel, wifi obligatoire</td><td>Actif</td></tr>
 <tr><td><b>Nixplay</b></td><td>Cadre photo</td><td>non trouvé</td><td>0 à 39,99 $/an</td><td>Synchro Google Photos</td><td>Stockage gratuit réduit de 10 Go à 500 Mo en 2025, pétition</td><td>Actif, réputation abîmée</td></tr>
 <tr><td><b>Skylight</b></td><td>Cadre et calendrier</td><td>169,99 à 599,99 $</td><td>39 à 79 $/an</td><td>Très simple, calendrier familial</td><td>Fonctions de base derrière l'abonnement</td><td>Actif</td></tr>
 <tr><td><b>Pix-Star</b></td><td>Cadre photo</td><td>139,99 à 299 $</td><td>Aucun</td><td>Gestion à distance, 25 cadres par compte</td><td>Pas d'appel, menus datés</td><td>Actif</td></tr>
 <tr><td><b>Komp</b> (No Isolation)</td><td>Écran d'appel</td><td>699 £ ou 39 £/mois</td><td>Obligatoire</td><td>Un seul bouton, décroché auto après 10 s refusable, 4G</td><td>Prix, coupures, payant par membre</td><td>Actif, 4/5 Trustpilot</td></tr>
 <tr><td><b>ViewClix</b></td><td>Écran d'appel</td><td>179 à 269 $</td><td>9,95 $/mois</td><td>Bouton « appelle-moi », photos regardées ensemble en appel, horloge</td><td>non trouvé</td><td>Actif, le plus proche de nous</td></tr>
-<tr><td><b>LiNote</b> (FR)</td><td>Écran d'appel</td><td>Location</td><td>37,99 € (49,99 € en 4G)</td><td>Décroche seul, lit les messages à voix haute, 27 000 utilisateurs</td><td>Visage qui surgit (peur en cas de démence), alertes « rappel non lu » à la famille</td><td>Actif</td></tr>
+<tr><td><b>LiNote</b> (FR)</td><td>Écran d'appel</td><td>Location</td><td>37,99 € (49,99 € en 4G)</td><td>Décroche seul, lit les messages à voix haute, 27 000 utilisateurs</td><td>Visage qui surgit (peur en cas de démence), alertes « rappel non lu » à la famille</td><td>Actif</td></tr>
 <tr><td><b>Visioframe</b> (FR)</td><td>Tablette</td><td>199 €</td><td>29,90 €/mois</td><td>Visio auto, sous-titres, commande vocale</td><td>non trouvé</td><td>Actif</td></tr>
 <tr><td><b>Emotivi</b> (FR)</td><td>Sur la télé</td><td>70 € de dépôt + 69 € de frais</td><td>30 €/mois</td><td>Visio sur la télévision</td><td>non trouvé</td><td>Actif</td></tr>
 <tr><td><b>GrandPad</b></td><td>Tablette 8 pouces</td><td>299 $</td><td>40 à 65 $/mois</td><td>Socle de recharge, famille gère à distance</td><td>Écran petit, l'aidant ne voit pas la batterie</td><td>Actif</td></tr>
@@ -509,7 +509,7 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td><b>Meta Portal</b></td><td>Écran d'appel</td><td>-</td><td>-</td><td>Caméra qui cadre seule</td><td>Méfiance envers Facebook</td><td>Arrêté (2022)</td></tr>
 <tr><td><b>ElliQ</b></td><td>Compagnon IA</td><td>249 $ de frais</td><td>39 à 59 $/mois</td><td>Prend l'initiative, rappels</td><td>Pas de propriété</td><td>Actif (USA)</td></tr>
 <tr><td><b>Ardoiz</b> (La Poste)</td><td>Tablette</td><td>229 € + 11,99 €/mois</td><td>Inclus</td><td>Tablette simplifiée</td><td>Engagement, demande retombée après le Covid</td><td>Fermeture annoncée en mai 2026</td></tr>
-<tr><td><b>Famileo</b> (FR)</td><td>Gazette papier</td><td>-</td><td>5,99 à 9,99 €/mois</td><td>Pas d'écran pour le senior</td><td>Aucun retour du senior</td><td>Actif, 280 000 familles</td></tr>
+<tr><td><b>Famileo</b> (FR)</td><td>Gazette papier</td><td>-</td><td>5,99 à 9,99 €/mois</td><td>Pas d'écran pour le senior</td><td>Aucun retour du senior</td><td>Actif, 280 000 familles</td></tr>
 </tbody></table></div><h3 class="sub">Ce que la concurrence nous apprend</h3><ol class="next"><li><b>Le décroché automatique marche, mais c'est toujours la famille qui le règle.</b> Chez nous, c'est le senior qui le donne, contact par contact.</li><li><b>Changer l'abonnement après la vente déclenche la colère</b> (Nixplay, Skylight, Komp). Il faut promettre des prix stables.</li><li><b>Les arrêts sont fréquents</b> : Portal, Alexa Together, Call Home de Google, Meural, Ardoiz. Une garantie écrite de durée et d'export des photos devient un argument.</li><li><b>Le « j'aime » qui revient à l'expéditeur est validé</b> par Aura, Skylight et Familink.</li><li><b>Le contrôle physique du micro est ce qui rassure le plus</b> (étude USENIX 2023, 489 personnes), à condition que la coupure soit réelle et visible.</li><li><b>Le crédit d'impôt de 50 % « service à la personne »</b> est utilisé par Emotivi, Visioframe et LiNote. À étudier pour notre abonnement.</li><li><b>À éviter absolument</b> : fil d'activité passif, détection de présence, alerte « rappel non lu ». C'est ce que font Alexa Together et LiNote, et c'est l'inverse de notre promesse.</li></ol>
   </div>
 </div>
@@ -568,7 +568,7 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
   <div>
     <h2>Crédit d'impôt, marché, compte de résultat</h2>
 <h3 class="sub" style="margin-top:0">Le crédit d'impôt de 50 %</h3><div class="tablewrap"><table class=""><thead><tr><th>Point</th><th>Ce qu'il faut savoir</th></tr></thead><tbody>
-<tr><td>Taux</td><td>50 % des sommes payées, plafond 12 000 € par an</td></tr>
+<tr><td>Taux</td><td>50 % des sommes payées, plafond 12 000 € par an</td></tr>
 <tr><td>Activité visée</td><td>« Téléassistance et visioassistance » ou « assistance informatique » : simple déclaration, sans agrément</td></tr>
 <tr><td>Qui doit payer</td><td><b>Le senior</b>, titulaire du contrat, à son domicile. L'enfant qui paie n'en profite pas (LiNote l'écrit clairement)</td></tr>
 <tr><td>Ce qui est concerné</td><td>L'abonnement et la location. <b>L'achat du cadre, probablement pas</b> (texte BOFiP à vérifier)</td></tr>
@@ -582,12 +582,12 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td>Gratuit financé par un tiers</td><td>0 €</td><td>-</td><td>Départements, mutuelles</td><td>Volume, mais cycles de vente longs</td></tr>
 </tbody></table></div><h3 class="sub">Taille du marché, calculée par le bas</h3>
 <p><b>Marché total :</b> 7,7 millions de 75 ans et plus × 38 % vivant seuls × 85 % avec un enfant adulte = <b>environ 2,5 millions de foyers</b>.</p>
-<p><b>Marché atteignable :</b> 60 % avec une box et un enfant à l'aise avec le numérique, puis 10 % intéressés (le taux d'équipement en téléassistance) = <b>environ 150 000 foyers</b>.</p>
-<p><b>Objectif à 3 ans :</b> 5 à 10 % de ce marché, soit <b>7 500 à 15 000 cadres</b>. Repères : Famileo 280 000 familles, LiNote 27 000 utilisateurs, Familink plus de 10 000 seniors. Les pourcentages en gras sont des hypothèses.</p>
+<p><b>Marché atteignable :</b> 60 % avec une box et un enfant à l'aise avec le numérique, puis 10 % intéressés (le taux d'équipement en téléassistance) = <b>environ 150 000 foyers</b>.</p>
+<p><b>Objectif à 3 ans :</b> 5 à 10 % de ce marché, soit <b>7 500 à 15 000 cadres</b>. Repères : Famileo 280 000 familles, LiNote 27 000 utilisateurs, Familink plus de 10 000 seniors. Les pourcentages en gras sont des hypothèses.</p>
 <h3 class="sub">Compte de résultat sur 3 ans (achat 249 € + 7,90 €/mois)</h3><div class="tablewrap"><table class=""><thead><tr><th>Scénario</th><th>Cadres vendus (an 1 / 2 / 3)</th><th>Abonnés en fin d'année</th><th>Chiffre d'affaires</th><th>Résultat</th></tr></thead><tbody>
-<tr><td>Prudent</td><td>300 / 900 / 2 000</td><td>262 / 979 / 2 469</td><td>68 k€ / 223 k€ / 522 k€</td><td><b>-43 k€ / -26 k€ / +12 k€</b></td></tr>
-<tr><td>Moyen</td><td>800 / 2 500 / 6 000</td><td>699 / 2 699 / 7 232</td><td>182 k€ / 617 k€ / 1,55 M€</td><td><b>-92 k€ / -127 k€ / -52 k€</b></td></tr>
-<tr><td>Ambitieux</td><td>2 000 / 7 000 / 18 000</td><td>1 747 / 7 402 / 21 183</td><td>456 k€ / 1,71 M€ / 4,60 M€</td><td><b>-208 k€ / -363 k€ / -343 k€</b></td></tr>
+<tr><td>Prudent</td><td>300 / 900 / 2 000</td><td>262 / 979 / 2 469</td><td>68 k€ / 223 k€ / 522 k€</td><td><b>-43 k€ / -26 k€ / +12 k€</b></td></tr>
+<tr><td>Moyen</td><td>800 / 2 500 / 6 000</td><td>699 / 2 699 / 7 232</td><td>182 k€ / 617 k€ / 1,55 M€</td><td><b>-92 k€ / -127 k€ / -52 k€</b></td></tr>
+<tr><td>Ambitieux</td><td>2 000 / 7 000 / 18 000</td><td>1 747 / 7 402 / 21 183</td><td>456 k€ / 1,71 M€ / 4,60 M€</td><td><b>-208 k€ / -363 k€ / -343 k€</b></td></tr>
 </tbody></table></div><p class="note" style="margin-top:12px">Hypothèses : coût de revient 110 € HT par cadre, 30 % des ventes en magasin (30 % de marge prise), désabonnement 2,5 % par mois, coût d'acquisition 60 à 110 € par client. Chaque client rapporte environ 285 € de marge sur sa durée de vie, avant acquisition et frais fixes.</p><p><b>À retenir :</b> à 7,90 €, l'abonnement pèse moins d'un quart du chiffre d'affaires et croître vite coûte de l'argent. Les trois leviers : la location à 19,90 €, l'abonnement à 9,90 €, ou la vente via les mutuelles et caisses de retraite qui réduit le coût d'acquisition.</p>
   </div>
 </div>
@@ -609,7 +609,7 @@ Stripe : abonnement ─► Supabase (droits du compte)</div><div class="tablewr
 <tr><td>La Poste « Veiller sur mes parents »</td><td>Concurrent ou partenaire</td><td>Téléassistance de 25,90 à 33,90 €/mois</td></tr>
 </tbody></table></div><h3 class="sub">Événements et réseaux</h3><div class="tablewrap"><table class=""><thead><tr><th>Où</th><th>Quand</th><th>Pourquoi y aller</th></tr></thead><tbody>
 <tr><td>Silver Économie Expo</td><td>1er et 2 décembre 2026, Paris Porte de Versailles</td><td>Village Silver Valley et gérontopôles</td></tr>
-<tr><td>Silver Valley (Ivry)</td><td>Mercredis de l'Entrepreneur, Open Lab pour tester avec des seniors</td><td>Réseau de 4 500 innovateurs, Prix Silver Valley 20 000 €</td></tr>
+<tr><td>Silver Valley (Ivry)</td><td>Mercredis de l'Entrepreneur, Open Lab pour tester avec des seniors</td><td>Réseau de 4 500 innovateurs, Prix Silver Valley 20 000 €</td></tr>
 <tr><td>Gérontopôle Pays de la Loire</td><td>Concours SPECIFIK, 7e édition</td><td>Living lab et accélérateur</td></tr>
 <tr><td>Festival SilverEco</td><td>16 et 17 novembre 2027</td><td>Trophées SilverEco, sommet des aidants</td></tr>
 </tbody></table></div>
