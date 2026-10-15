@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Synthèse technique du cadre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span>
+  <span>Bloc 03 · Outils no-code et IA</span>
+  <span>Leçon 1.1</span>
+  <span>Équipe Clément, Camille, Lucas</span>
+  <span>15 octobre 2026</span>
+</div>
+
+<h1>Synthèse technique <span>du cadre connecté</span></h1>
+
+<p class="lead">Nos réponses aux 32 questions techniques, ce qu'elles disent du produit, les contradictions à régler et mes propositions pour les questions qu'on m'a confiées.</p>
+
+<div class="stats">
+  <div><span class="k">Questions</span><b>32</b></div>
+  <div><span class="k">Répondues par l'équipe</span><b>21</b></div>
+  <div><span class="k">Proposées par Claude</span><b class="b">11</b></div>
+  <div><span class="k">Points de vigilance</span><b class="o">8</b></div>
+</div>
+
+<!-- 01 -->
+<section>
+<div class="grid">
+  <div class="k"><span class="num">01</span> · Le produit en une page</div>
+  <div>
+    <h2>Ce que nos réponses décident</h2>
+    <p>En mettant bout à bout les réponses, le cadre prend forme. Voici la fiche technique qui en sort.</p>
+    <div class="spec">
+      <dl>
+        <div class="row"><dt>Écran</dt><dd>Tactile, grand (environ 15 pouces), luminosité baissée la nuit, aucun bruit.</dd></div>
+        <div class="row"><dt>Forme</dt><dd>Écran posé dans un cadre avec fixation magnétique, on peut le sortir et le déplacer dans la maison.</dd></div>
+        <div class="row"><dt>Câble</dt><dd>Un seul, celui du chargeur, rangé dans le cadre.</dd></div>
+        <div class="row"><dt>Réseau</dt><dd>Wifi, carte SIM 4G en option si pas de box. L'abonnement est payé par la famille.</dd></div>
+        <div class="row"><dt>Installation</dt><dd>Par la famille, en 30 minutes. L'aidant saisit le wifi.</dd></div>
+        <div class="row"><dt>Durée de vie</dt><dd>8 ans visés, un technicien à appeler en cas de panne.</dd></div>
+      </dl>
+      <dl>
+        <div class="row"><dt>Photos</dt><dd>Envoyées depuis une appli dédiée, affichées en vignettes, stockées dans le cloud. Cloud payant en option quand la mémoire est pleine.</dd></div>
+        <div class="row"><dt>Expéditeurs</dt><dd>Toute personne qui a l'appli, avec un filtre géré par l'aidant.</dd></div>
+        <div class="row"><dt>Appels</dt><dd>Vidéo ou audio, uniquement vers une liste choisie par la famille, plus les secours. Volume réglable.</dd></div>
+        <div class="row"><dt>Voix</dt><dd>Commande vocale avec un mot d'activation, IA hébergée chez nous.</dd></div>
+        <div class="row"><dt>Caméra</dt><dd>Intégrée, éteinte quand personne ne parle.</dd></div>
+        <div class="row"><dt>Aidant</dt><dd>Un tableau de bord pour dépanner, et des instructions sur l'écran.</dd></div>
+      </dl>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 02 -->
+<section>
+<div class="grid">
+  <div class="k"><span class="num">02</span> · À régler en équipe</div>
+  <div>
+    <h2>8 points de vigilance</h2>
+    <p>Certaines réponses se contredisent entre elles, ou vont contre notre promesse « rassurer sans surveiller ». Ce sont les choses à trancher avant l'oral.</p>
+    <div class="alert">
+      <div class="al"><span class="n">1</span><div>
+        <h3>L'appel automatique aux secours (Q7)</h3>
+        <p>Appeler les secours tout seul au bout de quelques jours, c'est de la surveillance. Cela crée aussi des fausses alertes et peut faire passer le cadre pour un dispositif médical (Q32).</p>
+        <p class="fix">Proposition : pas d'appel aux secours automatique. Si le senior l'accepte, l'aidant reçoit un message doux, par exemple « Le cadre n'a pas été touché depuis 3 jours ». Le senior peut couper cette option.</p>
+      </div></div>
+      <div class="al"><span class="n">2</span><div>
+        <h3>Un micro toujours à l'écoute (Q9)</h3>
+        <p>Dire « on écoute mais on ne garde rien » ne suffit pas à rassurer : il faut que ça se voie.</p>
+        <p class="fix">Proposition : le mot d'activation est reconnu dans le cadre lui-même, sans rien envoyer. Une petite lumière s'allume quand le micro écoute vraiment, et un bouton physique coupe le micro.</p>
+      </div></div>
+      <div class="al"><span class="n">3</span><div>
+        <h3>« IA locale sur nos serveurs » (Q8)</h3>
+        <p>« Locale » veut dire dans l'appareil, « serveurs » veut dire à distance. Il faut choisir les mots.</p>
+        <p class="fix">Proposition : le mot d'activation dans le cadre, le reste de la commande vocale sur nos serveurs, en Europe.</p>
+      </div></div>
+      <div class="al"><span class="n">4</span><div>
+        <h3>La caméra « éteinte » (Q19)</h3>
+        <p>Une caméra coupée par le logiciel, le senior ne peut pas le vérifier.</p>
+        <p class="fix">Proposition : un volet qu'on fait glisser à la main sur la caméra. C'est simple, ça coûte quelques centimes et ça se voit.</p>
+      </div></div>
+      <div class="al"><span class="n">5</span><div>
+        <h3>« Pas d'écran éteint » en cas de coupure (Q12)</h3>
+        <p>Sans courant, l'écran ne peut pas rester allumé sans batterie. Comme on veut aussi un cadre qu'on peut déplacer (Q20), il faut une batterie.</p>
+        <p class="fix">Proposition : une batterie qui tient quelques heures, et un message à l'écran « Le cadre fonctionne sur batterie ».</p>
+      </div></div>
+      <div class="al"><span class="n">6</span><div>
+        <h3>Des mises à jour « ponctuelles, pas régulières » (Q14)</h3>
+        <p>C'est bien pour l'écran, mais la loi européenne (Cyber Resilience Act) oblige à fournir des mises à jour de sécurité gratuites et automatiques pendant au moins 5 ans.</p>
+        <p class="fix">Proposition : deux types de mises à jour. Les mises à jour de sécurité sont invisibles et régulières. Les changements d'écran sont rares et annoncés à l'aidant à l'avance.</p>
+      </div></div>
+      <div class="al"><span class="n">7</span><div>
+        <h3>Tout passe par l'écran tactile (Q28)</h3>
+        <p>Avec des tremblements ou des doigts raides, un écran tactile seul est difficile à utiliser.</p>
+        <p class="fix">Proposition : de très gros boutons à l'écran, la voix, et un ou deux boutons physiques sur le cadre (pause et micro).</p>
+      </div></div>
+      <div class="al"><span class="n">8</span><div>
+        <h3>Un signal qui clignote (Q27) et un écran de 15 pouces (Q10)</h3>
+        <p>Un clignotement dans une chambre réveille. Un écran de 15 pouces coûte plus cher, pèse plus lourd et vide la batterie plus vite.</p>
+        <p class="fix">Proposition : une lumière douce et fixe, éteinte la nuit. Comparer 10 et 13 pouces avant de choisir.</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 03 -->
+<section>
+<div class="grid">
+  <div class="k"><span class="num">03</span> · Les 32 réponses</div>
+  <div>
+    <h2>Toutes les réponses, une par une</h2>
+    <p>Les réponses de l'équipe sont reformulées sans changer le sens. Les questions marquées « Claude » sont celles que vous m'avez confiées : ce sont des propositions à valider.</p>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>N°</th><th>Question</th><th>Réponse</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr class="theme"><td colspan="4">Connexion et réseau</td></tr>
+        <tr><td>1</td><td>Sans wifi, carte SIM 4G et abonnement</td><td>Wifi par défaut, carte SIM 4G en option quand il n'y a pas de wifi. Le client (la famille) paie l'abonnement.</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+        <tr><td>2</td><td>Connecter le wifi sans mot de passe à saisir</td><td>C'est l'aidant qui saisit le mot de passe, depuis l'appli.</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+        <tr><td>3</td><td>Changement de box ou de mot de passe</td><td>Le senior ou l'aidant modifie le wifi.</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+        <tr><td>15</td><td>Débit nécessaire, connexion lente</td><td>Une connexion de 3 Mbit/s suffit pour un appel vidéo, moins pour les photos. Si la connexion est lente, le cadre passe l'appel en audio seul, télécharge les photos la nuit et garde les dernières en mémoire pour en avoir toujours à afficher.</td><td class="src"><span class="tag reco">Claude</span></td></tr>
+
+        <tr class="theme"><td colspan="4">Photos et données</td></tr>
+        <tr><td>4</td><td>Arrivée des photos, format, stockage</td><td>Une appli dédiée sur le téléphone des proches. Photos affichées en vignettes sur l'écran.</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+        <tr><td>5</td><td>Qui peut envoyer des photos</td><td>Toute personne qui a l'appli, avec un filtre que l'aidant règle (à préciser).</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+        <tr><td>6</td><td>Stockage, accès, faillite</td><td>Dans le cloud, l'aidant y a accès. Si l'entreprise disparaît, les données sont supprimées. <em>À compléter : envoyer d'abord aux familles un fichier avec toutes leurs photos.</em></td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+        <tr><td>16</td><td>Garder, supprimer, mémoire pleine</td><td>Oui, le senior peut garder ou supprimer. Mémoire pleine : on propose un cloud payant, comme iCloud.</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+
+        <tr class="theme"><td colspan="4">Appels et voix</td></tr>
+        <tr><td>7</td><td>Fonctionnement de l'appel, senior qui ne décroche pas</td><td>L'aidant appelle en vidéo ou en audio depuis l'appli. Au bout de quelques jours sans réponse, appel automatique aux secours.</td><td class="src"><span class="tag warn">Vigilance 1</span></td></tr>
+        <tr><td>8</td><td>Voix âgées, accents, bruit</td><td>Une IA hébergée sur nos serveurs. Quand elle ne comprend pas, un message d'erreur, rare grâce à l'IA.</td><td class="src"><span class="tag warn">Vigilance 3</span></td></tr>
+        <tr><td>9</td><td>Micro toujours à l'écoute</td><td>Écoute active mais rien n'est gardé. Le produit ne s'active que sur un mot précis.</td><td class="src"><span class="tag warn">Vigilance 2</span></td></tr>
+        <tr><td>17</td><td>Qui le senior peut appeler</td><td>Seulement une liste choisie par la famille, et les secours.</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+        <tr><td>18</td><td>Son pour les malentendants</td><td>Oui, volume réglable. <em>À ajouter : un haut-parleur puissant et la connexion Bluetooth aux appareils auditifs.</em></td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+
+        <tr class="theme"><td colspan="4">Matériel</td></tr>
+        <tr><td>10</td><td>Taille, luminosité, bruit</td><td>Aucun bruit, écran d'environ 15 pouces, luminosité baissée la nuit.</td><td class="src"><span class="tag warn">Vigilance 8</span></td></tr>
+        <tr><td>11</td><td>Durée de vie, réparation</td><td>8 ans, un technicien à appeler.</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+        <tr><td>12</td><td>Coupure de courant</td><td>Fixation magnétique, l'écran ne s'éteint pas. Quand le courant revient, il se recharge.</td><td class="src"><span class="tag warn">Vigilance 5</span></td></tr>
+        <tr><td>19</td><td>Caméra, volet</td><td>Caméra intégrée, éteinte quand personne ne parle.</td><td class="src"><span class="tag warn">Vigilance 4</span></td></tr>
+        <tr><td>20</td><td>Posé ou mural, câble</td><td>Posé dans son cadre, et on peut le déplacer. Un seul câble, celui du chargeur, dans le cadre.</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+
+        <tr class="theme"><td colspan="4">Installation et maintenance</td></tr>
+        <tr><td>13</td><td>Dépannage à distance</td><td>Un tableau de bord pour l'aidant, avec les instructions pour régler le problème.</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+        <tr><td>14</td><td>Mises à jour</td><td>Des mises à jour de temps en temps, pas régulières.</td><td class="src"><span class="tag warn">Vigilance 6</span></td></tr>
+        <tr><td>21</td><td>Qui installe, combien de temps</td><td>La famille, en 30 minutes.</td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+        <tr><td>22</td><td>L'aidant sait que le cadre marche</td><td>À l'allumage, l'écran guide le réglage. <em>À compléter : dans l'appli, un simple voyant « cadre connecté » pour l'aidant, sans heure ni activité du senior.</em></td><td class="src"><span class="tag eq">Équipe</span></td></tr>
+
+        <tr class="theme"><td colspan="4">Sécurité et vie privée</td></tr>
+        <tr><td>23</td><td>RGPD, accord du senior, photos de tiers et d'enfants</td><td>Au premier allumage, le senior donne son accord sur un écran simple, et il peut tout effacer depuis le cadre. Données hébergées en Europe, pas de reconnaissance de visages. La personne qui envoie une photo confirme que les personnes dessus sont d'accord. Pour les enfants, c'est l'accord des parents.</td><td class="src"><span class="tag reco">Claude</span></td></tr>
+        <tr><td>24</td><td>Chiffrement, enregistrement des appels</td><td>Les photos sont chiffrées pendant l'envoi et dans le cloud. Les appels sont chiffrés de bout en bout et ne sont jamais enregistrés.</td><td class="src"><span class="tag reco">Claude</span></td></tr>
+        <tr><td>25</td><td>Piratage, normes européennes</td><td>Pas de mot de passe identique pour tous les cadres, mises à jour de sécurité signées et automatiques, durée de support annoncée à l'achat. C'est ce que demandent la directive RED (obligatoire depuis août 2025) et le Cyber Resilience Act (fin 2027).</td><td class="src"><span class="tag reco">Claude</span></td></tr>
+        <tr><td>26</td><td>Téléphone d'un proche volé ou piraté</td><td>L'aidant retire ce téléphone de la liste en un geste depuis l'appli. Code de confirmation par SMS pour se connecter, et chaque nouveau proche doit être validé par l'aidant.</td><td class="src"><span class="tag reco">Claude</span></td></tr>
+
+        <tr class="theme"><td colspan="4">Accessibilité et usage</td></tr>
+        <tr><td>27</td><td>Signal d'une nouvelle photo</td><td>Un affichage à l'écran qui clignote, on touche pour la découvrir.</td><td class="src"><span class="tag warn">Vigilance 8</span></td></tr>
+        <tr><td>28</td><td>Vue basse, tremblements</td><td>Tout se fait sur l'écran tactile, utilisable.</td><td class="src"><span class="tag warn">Vigilance 7</span></td></tr>
+        <tr><td>29</td><td>Appui par erreur, annuler</td><td>Un double appui compte pour un seul. Les actions importantes (supprimer, appeler) demandent une confirmation. Un bouton « Retour » toujours au même endroit. Une photo supprimée reste 30 jours dans une corbeille.</td><td class="src"><span class="tag reco">Claude</span></td></tr>
+        <tr><td>30</td><td>Refuser un appel, mettre en pause</td><td>Oui, c'est le cœur de notre promesse. On refuse un appel d'un seul geste, et un mode pause coupe appels et photos. L'aidant voit seulement « en pause », sans raison.</td><td class="src"><span class="tag reco">Claude</span></td></tr>
+
+        <tr class="theme"><td colspan="4">Coût et normes</td></tr>
+        <tr><td>31</td><td>Coût de fabrication, prix mensuel</td><td>Voir la partie 04 ci-dessous.</td><td class="src"><span class="tag reco">Claude</span></td></tr>
+        <tr><td>32</td><td>Marquage CE, recyclage, bien-être</td><td>Marquage CE (radio, sécurité électrique, compatibilité électromagnétique), éco-participation pour le recyclage, règles sur les batteries. Pour rester un produit de bien-être, ne jamais promettre de détecter une chute ou un problème de santé. Sinon, le cadre peut devenir un dispositif médical, avec des règles bien plus lourdes.</td><td class="src"><span class="tag reco">Claude</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 04 -->
+<section>
+<div class="grid">
+  <div class="k"><span class="num">04</span> · Question 31</div>
+  <div>
+    <h2>Combien la famille paie chaque mois</h2>
+    <p>Ce que paient aujourd'hui les familles pour des produits proches :</p>
+    <div class="tablewrap">
+    <table class="prices">
+      <thead><tr><th>Produit</th><th>Achat</th><th>Chaque mois</th></tr></thead>
+      <tbody>
+        <tr><td colspan="1" style="width:auto;font:inherit;color:inherit">Familink (cadre pour seniors)</td><td>Cadre seul</td><td>4,90 € (photos illimitées) + 5,90 € pour la 4G</td></tr>
+        <tr><td style="width:auto;font:inherit;color:inherit">Famileo (gazette papier)</td><td>Aucun</td><td>À partir de 5,99 €</td></tr>
+        <tr><td style="width:auto;font:inherit;color:inherit">Tablettes seniors (Ardoiz, Facilotab)</td><td>250 à 500 €</td><td>8 à 15 €, plus 10 à 20 € pour la 4G</td></tr>
+        <tr><td style="width:auto;font:inherit;color:inherit">GrandPad (États-Unis, 4G et assistance)</td><td>environ 300 $</td><td>25 à 65 $</td></tr>
+        <tr><td style="width:auto;font:inherit;color:inherit">Aura, Nixplay (cadres grand public)</td><td>150 à 300 €</td><td>0 €, options payantes</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="margin-top:20px">Fabrication, ordre de grandeur pour une petite série (estimation à vérifier avec un fabricant) : écran tactile 30 à 70 € selon la taille, carte électronique 30 €, caméra, micros et haut-parleur 15 €, batterie 10 €, module 4G 15 €, cadre et assemblage 30 €. Soit <b>130 à 170 €</b> par cadre, avant la certification, la livraison et le service client.</p>
+    <div class="offer">
+      <div>
+        <span class="k">Proposition · Formule Essentiel</span>
+        <b class="p">7,90 € <span class="k">/ mois</span></b>
+        <ul><li>Cadre vendu environ 249 €</li><li>Wifi, photos et appels illimités</li><li>Assistance pour l'aidant</li></ul>
+      </div>
+      <div class="o">
+        <span class="k">Proposition · Formule Sans box</span>
+        <b class="p">14,90 € <span class="k">/ mois</span></b>
+        <ul><li>Tout l'Essentiel</li><li>Carte SIM 4G incluse</li><li>Stockage illimité des photos</li></ul>
+      </div>
+    </div>
+    <p style="margin-top:20px">Pourquoi ces prix : on reste au même niveau que Familink et les tablettes seniors. La 4G nous coûte quelques euros par mois et les serveurs moins d'un euro par cadre. Il reste donc une marge pour payer l'assistance et les mises à jour pendant au moins 5 ans, comme l'exige la loi. Pour que ce soit rentable, il faut que l'abonnement rembourse aussi une partie du cadre : c'est un calcul à faire ensemble.</p>
+  </div>
+</div>
+</section>
+
+<!-- 05 -->
+<section>
+<div class="grid">
+  <div class="k"><span class="num">05</span> · Et maintenant</div>
+  <div>
+    <h2>Prochaines étapes</h2>
+    <ol class="next">
+      <li>Trancher les 8 points de vigilance ensemble, en priorité le 1 (secours automatiques) et le 2 (micro).</li>
+      <li>Valider ou corriger les 11 propositions marquées « Claude ».</li>
+      <li>Choisir la taille d'écran (10, 13 ou 15 pouces) : elle change le prix, le poids et la batterie.</li>
+      <li>Faire le calcul de rentabilité : prix du cadre, abonnement, nombre de familles nécessaires.</li>
+      <li>Reporter la fiche produit de la partie 01 dans la fiche « La Fenêtre ».</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+  <div class="k">Sources</div>
+  <div class="src-list">
+    <a href="https://www.familinkframe.com/fr/pricing/">familinkframe.com · tarifs</a><br>
+    <a href="https://aidemaintiendomicile.fr/blog/cadre-photo-numerique-senior-4g-sans-wifi/">aidemaintiendomicile.fr · cadre photo 4G pour seniors</a><br>
+    <a href="https://aidechezsoi.fr/maintien-a-domicile/tablette-senior-comparatif-2026">aidechezsoi.fr · tablettes seniors 2026</a><br>
+    <a href="https://www.seniorliving.org/cell-phone/consumer-cellular/grandpad/">seniorliving.org · prix du GrandPad</a><br>
+    <a href="https://cast-hub.com/best-digital-photo-frame/">cast-hub.com · cadres photo et abonnements</a><br>
+    <a href="https://www.pillsburylaw.com/en/news-and-insights/eu-cyber-resilience-act-requirements-products-software.html">pillsburylaw.com · Cyber Resilience Act</a><br>
+    <a href="https://www.bsi.bund.de/EN/Themen/Unternehmen-und-Organisationen/Informationen-und-Empfehlungen/Cyber_Resilience_Act/cyber_resilience_act_node.html">bsi.bund.de · Cyber Resilience Act</a>
+  </div>
+</div>
+</section>
+
+<footer class="k">Réponses récupérées le 15 octobre 2026 depuis la page <a href="1-1-questions-techniques-cadre.html" style="color:var(--blue)">Questions techniques du cadre</a>.</footer>
+
+</div>
+</body>
+</html>

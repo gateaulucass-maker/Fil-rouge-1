@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-15T12:43",
+  "mise_a_jour": "2026-10-15T14:41",
   "phases": [
     {
       "id": "P0",
@@ -439,11 +439,11 @@
       "taches": [
         {
           "titre": "Question 1 : qui utilise, qui paie, qui influence ?",
-          "statut": "a_valider",
+          "statut": "termine",
           "qui": "Équipe d'agents",
           "date": "2026-10-02",
           "lien": "S1-2026-2027/01-veille/rendus/2-1-question-1-acteurs.html",
-          "note": "Tableau simple, une colonne pour tout le marché, comme l'exemple du prof. 7 sources officielles. La version détaillée par segment reste en annexe.",
+          "note": "32 questions en 8 thèmes, remplies par l'équipe le 15/10 (21 réponses de l'équipe, 11 confiées à Claude).",
           "etapes": [
             {
               "titre": "Preuves tirées de la veille validée",
@@ -534,6 +534,14 @@
           "note": "Réponses écrites aux 5 questions, carte et place visée (Le Cadre), un « En bref » par partie, personas à déplier, 49 sources de la veille validée.",
           "date": "2026-10-08",
           "lien": "S1-2026-2027/01-veille/rendus/2-1-fiche-marche-redigee.html"
+        },
+        {
+          "titre": "Synthèse des questions techniques du cadre",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-15",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-synthese-questions-techniques.html",
+          "note": "Fiche produit, 8 points de vigilance à trancher (dont appel auto aux secours et micro), 11 propositions à valider, prix mensuel proposé (7,90 € et 14,90 €)."
         }
       ]
     },
@@ -543,11 +551,19 @@
       "taches": [
         {
           "titre": "Questions techniques du cadre connecté (32 questions)",
-          "statut": "en_cours",
+          "statut": "termine",
           "qui": "Lucas",
           "date": "2026-10-15",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-questions-techniques-cadre.html",
-          "note": "32 questions en 8 thèmes (connexion, photos et données, appels et voix, matériel, installation, sécurité et vie privée, accessibilité et usage, coût et normes). Réponses à remplir ensemble, puis synthèse. Urgences : 1, 2 et 13."
+          "note": "32 questions en 8 thèmes, remplies par l'équipe le 15/10 (21 réponses de l'équipe, 11 confiées à Claude)."
+        },
+        {
+          "titre": "Synthèse des questions techniques du cadre",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-15",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-synthese-questions-techniques.html",
+          "note": "Fiche produit, 8 points de vigilance à trancher (dont appel auto aux secours et micro), 11 propositions à valider, prix mensuel proposé (7,90 € et 14,90 €)."
         }
       ]
     },
