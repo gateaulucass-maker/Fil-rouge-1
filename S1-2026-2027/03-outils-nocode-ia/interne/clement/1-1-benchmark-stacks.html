@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Benchmark des stacks</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse de l'équipe : grille 3/9, étiquettes mono, fond blanc, bleu et orange. */
+:root{
+  --bg:#ffffff;--fg:#111418;--muted:#5f6670;--hair:#dcdfe3;--soft:#f3f4f6;
+  --blue:#1f3fbf;--blue-soft:#eef1fb;--orange:#e8571c;--orange-soft:#fdf0ea;--green:#1d7a4a;--green-soft:#e8f4ed;
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px),min(4vw,48px));padding-right:max(16px,env(safe-area-inset-right,0px),min(4vw,48px));padding-block:clamp(28px,6vw,72px) 64px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;border-top:2px solid var(--fg);padding-top:12px}
+.meta b{color:var(--fg);font-weight:500}
+h1{margin:clamp(24px,4vw,44px) 0 0;font-weight:800;font-size:clamp(40px,7.5vw,96px);line-height:.92;letter-spacing:-.045em;text-wrap:balance}
+h1 span{color:var(--blue)}
+.grid{display:grid;grid-template-columns:3fr 9fr;gap:0 24px}
+.grid>*{min-width:0}
+.lead{margin:28px 0 0;max-width:56ch;font-size:clamp(19px,2vw,24px);font-weight:700;line-height:1.3;letter-spacing:-.012em}
+section{margin-top:clamp(40px,6vw,72px)}
+section>.grid{border-top:1px solid var(--fg);padding-top:14px}
+h2{margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
+p{margin:0 0 12px;max-width:70ch}
+.tag{display:inline-block;font:11px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:2px 6px;white-space:nowrap;vertical-align:1px}
+.tag.ok{background:var(--green-soft);color:var(--green)}
+.tag.mid{background:var(--blue-soft);color:var(--blue)}
+.tag.ko{background:var(--orange-soft);color:var(--orange)}
+.tag.na{background:var(--soft);color:var(--muted)}
+.tag.src{background:var(--blue-soft);color:var(--blue);outline:1px solid var(--blue)}
+.tag.chk{background:var(--bg);color:var(--fg);outline:1px dashed var(--muted)}
+.stacks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:0 20px}
+.stack{border-top:3px solid var(--fg);padding-top:10px;padding-bottom:16px;min-width:0}
+.stack.keep{border-color:var(--green)}
+.stack h3{margin:0 0 2px;font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.stack .sub{margin:0 0 8px;font:11.5px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.stack dl{margin:0}
+.stack .r{display:grid;grid-template-columns:11ch 1fr;gap:10px;padding:7px 0;border-bottom:1px solid var(--hair);font-size:15px}
+.stack dt{font:11.5px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.stack dd{margin:0;font-weight:700}
+.tablewrap{overflow-x:auto;margin-top:6px}
+table{width:100%;min-width:1120px;border-collapse:collapse;font-size:14.5px}
+th{text-align:left;font:11.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:8px 12px 8px 0;border-bottom:1px solid var(--fg);font-weight:400;vertical-align:bottom}
+td{vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--hair)}
+td:first-child{font-weight:700;width:15%}
+td.p{font-variant-numeric:tabular-nums;white-space:nowrap;width:6%}
+td small{display:block;margin-top:4px;color:var(--muted);font-size:13px}
+tr.elim td{border-top:2px solid var(--fg);background:var(--soft)}
+.keepbox{border-top:3px solid var(--green);background:var(--green-soft);padding:16px 20px;max-width:80ch}
+.keepbox h3{margin:0 0 8px;font-size:clamp(22px,2.6vw,30px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.keepbox ul{margin:6px 0 10px;padding-left:20px}
+.keepbox li{padding:2px 0}
+.box{background:var(--orange-soft);border-left:3px solid var(--orange);padding:12px 16px;max-width:76ch;margin-top:16px}
+.box p{margin:0 0 6px;font-size:15px}.box p:last-child{margin:0}
+.box b.h{color:var(--orange)}
+.def{border-top:3px solid var(--blue);background:var(--soft);padding:14px 18px;max-width:76ch;margin-top:14px}
+.def p{margin:0;font-size:15px}
+.src-list{font:13px/1.7 var(--mono);color:var(--muted);margin:0;padding-left:20px}
+.src-list a{color:var(--blue);word-break:break-word}
+footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
+@media (max-width:760px){
+  .grid{grid-template-columns:1fr}
+  .grid>.k{margin-bottom:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<div class="meta k">
+<span>PFR Générations Connectées</span>
+<span>Bloc 03 · Outils no-code et IA</span>
+<span>Équipe <b>Clément, Camille, Lucas</b></span>
+<span>Version provisoire · <b>16 octobre 2026</b></span>
+</div>
+
+<h1>Benchmark <span>des stacks</span></h1>
+<p class="lead">Quatre combinaisons d’outils comparées sur nos critères : celle avec Claude Code, et les trois avec un outil no-code pour construire. Une est gardée pour l’instant, en attendant les tests.</p>
+
+<section>
+<div class="grid">
+<div class="k">Les 4 stacks</div>
+<div>
+<h2>Claude Code face aux outils no-code</h2>
+<div class="stacks">
+<div class="stack keep"><h3>A · Claude Code</h3><p class="sub">notre voie</p><dl>
+<div class="r"><dt>Build</dt><dd>Claude Code</dd></div>
+<div class="r"><dt>Base</dt><dd>Supabase</dd></div>
+<div class="r"><dt>Automatisation</dt><dd>n8n</dd></div></dl></div>
+<div class="stack"><h3>B · Glide</h3><p class="sub">no-code, rapide</p><dl>
+<div class="r"><dt>Build</dt><dd>Glide</dd></div>
+<div class="r"><dt>Base</dt><dd>Glide Tables</dd></div>
+<div class="r"><dt>Automatisation</dt><dd>Make</dd></div></dl></div>
+<div class="stack"><h3>C · Softr</h3><p class="sub">no-code, web et portail</p><dl>
+<div class="r"><dt>Build</dt><dd>Softr</dd></div>
+<div class="r"><dt>Base</dt><dd>Airtable</dd></div>
+<div class="r"><dt>Automatisation</dt><dd>Zapier</dd></div></dl></div>
+<div class="stack"><h3>D · FlutterFlow</h3><p class="sub">no-code, vraie app</p><dl>
+<div class="r"><dt>Build</dt><dd>FlutterFlow</dd></div>
+<div class="r"><dt>Base</dt><dd>Supabase</dd></div>
+<div class="r"><dt>Automatisation</dt><dd>n8n</dd></div></dl></div>
+</div>
+<div class="def"><p><b>À noter.</b> A et D ont la même base et la même automatisation (Supabase et n8n). La seule différence est l’outil de construction : Claude Code d’un côté, FlutterFlow de l’autre. La comparaison est donc nette sur le build. Le sujet demande au moins 3 combinaisons : on en compare 4.</p></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Les usages</div>
+<div>
+<h2>Les 4 usages du cours, stack par stack</h2>
+<p>Le cours demande des combinaisons capables de couvrir le parcours d’achat (le site vitrine), l’usage senior (l’écran du cadre), la vue de l’aidant (l’appli connectée au cadre) et les alertes. Chaque case porte l’un des trois statuts du cours.</p>
+<p><span class="tag ok" style="background:var(--green-soft)">testé</span> on l’a fait, avec une preuve &nbsp; <span class="tag src">source</span> une page l’annonce, pas essayé &nbsp; <span class="tag chk">à vérifier</span> ni test ni source fiable</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Usage</th><th>A · Claude Code + Supabase + n8n</th><th>B · Glide + Make</th><th>C · Softr + Airtable + Zapier</th><th>D · FlutterFlow + Supabase + n8n</th></tr></thead>
+<tbody>
+<tr><td>1 · Site vitrine et achat</td><td><span class="tag chk">à vérifier</span><small>Une page web écrite par Claude Code. Hébergement à choisir en Europe.</small></td><td><span class="tag chk">à vérifier</span><small>Glide construit des applis, pas des sites de vente.</small></td><td><span class="tag src">source</span><small>Softr sert à faire des sites et des portails.</small></td><td><span class="tag chk">à vérifier</span><small>Publication web possible, mais pas pensée pour une vitrine.</small></td></tr>
+<tr><td>2 · Écran du cadre</td><td><span class="tag chk">à vérifier</span><small>Affichage libre en code, mais rien d’essayé.</small></td><td><span class="tag chk">à vérifier</span><small>App façon mobile, à tester en plein écran.</small></td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span></td></tr>
+<tr><td>3 · Appli de l’aidant</td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span><small>Notifications possibles sans payer ?</small></td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span><small>Notifications sur téléphone à confirmer.</small></td></tr>
+<tr><td>4 · Alertes</td><td><span class="tag chk">à vérifier</span><small>n8n reçoit des webhooks. Pas essayé.</small></td><td><span class="tag chk">à vérifier</span><small>Make reçoit des webhooks. Workflows de Glide payants selon un site tiers.</small></td><td><span class="tag src">source</span><small>Zapier gratuit ne reçoit pas de webhooks : bloquant sans payer.</small></td><td><span class="tag chk">à vérifier</span><small>n8n comme en A.</small></td></tr>
+</tbody></table></div>
+<p class="k" style="margin-top:10px;text-transform:none;letter-spacing:0">Aucune case n’est « testé » : on n’a encore rien essayé. Le détail des tests est sur <a href="https://claude.ai/artifact/25XSWSHmih8CjyruxDY5Uj">la page des 4 usages</a>.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Le comparatif</div>
+<div>
+<h2>Ce qu’on sait, critère par critère</h2>
+<p>Les cases « à tester » restent vides tant qu’on n’a pas joué les tests des 4 usages : on ne met pas de note sans preuve. Les « bon », « moyen » et « bloquant » sont une lecture des sources, pas encore des résultats.</p>
+<p><span class="tag ok">bon</span> <span class="tag mid">moyen</span> <span class="tag ko">bloquant</span> <span class="tag na">à tester</span></p>
+<div class="tablewrap"><table>
+<thead><tr><th>Critère</th><th>Poids</th><th>A · Claude Code + Supabase + n8n</th><th>B · Glide + Make</th><th>C · Softr + Airtable + Zapier</th><th>D · FlutterFlow + Supabase + n8n</th></tr></thead>
+<tbody>
+<tr><td>Capacités</td><td class="p">20 %</td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td></tr>
+<tr><td>Interopérabilité</td><td class="p">20 %</td><td><span class="tag ok">bon</span><small>n8n reçoit des webhooks, et le code peut appeler n’importe quelle API. À confirmer en test.</small></td><td><span class="tag na">à tester</span><small>Make reçoit des webhooks, mais les workflows de Glide sont absents du plan gratuit (site tiers).</small></td><td><span class="tag ko">bloquant</span><small>Zapier gratuit ne reçoit pas de webhooks.</small></td><td><span class="tag ok">bon</span><small>n8n reçoit des webhooks. À confirmer en test.</small></td></tr>
+<tr><td>Affichage adapté au cadre</td><td class="p">15 %</td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td></tr>
+<tr><td>Simplicité</td><td class="p">15 %</td><td><span class="tag na">à tester</span><small>Dépend de la qualité de nos consignes à Claude Code.</small></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td></tr>
+<tr><td>Coûts</td><td class="p">10 %</td><td><span class="tag mid">moyen</span><small>Claude Code demande un abonnement Claude payant (à vérifier pour chacun de nous). Supabase gratuit ; n8n gratuit installé, ou environ 20 €/mois en cloud.</small></td><td><span class="tag mid">moyen</span><small>Glide et Make ont un plan gratuit ; les prix payants de Glide sont contestés.</small></td><td><span class="tag mid">moyen</span><small>Il faut payer Zapier (environ 20 $/mois) pour recevoir des webhooks.</small></td><td><span class="tag mid">moyen</span><small>FlutterFlow et Supabase gratuits ; n8n comme en A.</small></td></tr>
+<tr><td>Limites</td><td class="p">10 %</td><td><span class="tag mid">moyen</span><small>Supabase se met en veille après 1 semaine sans activité. L’hébergement de l’appli reste à choisir.</small></td><td><span class="tag mid">moyen</span><small>Make : 1 000 crédits par mois.</small></td><td><span class="tag ko">serré</span><small>Airtable : 1 000 lignes. Zapier : 100 tâches par mois.</small></td><td><span class="tag mid">moyen</span><small>Supabase se met en veille après 1 semaine. FlutterFlow : 1 éditeur.</small></td></tr>
+<tr><td>Stockage des vidéos</td><td class="p">10 %</td><td><span class="tag mid">moyen</span><small>Supabase : 1 Go de fichiers.</small></td><td><span class="tag na">à tester</span></td><td><span class="tag mid">moyen</span><small>Airtable : 1 Go de fichiers par base.</small></td><td><span class="tag mid">moyen</span><small>Supabase : 1 Go de fichiers.</small></td></tr>
+<tr class="elim"><td>Données en Europe<br><span class="k">éliminatoire</span></td><td class="p">oui / non</td><td><span class="tag ok">oui</span><small>Supabase : région européenne et DPA. n8n : Francfort ou serveur de notre choix. À vérifier : l’hébergement de l’appli.</small></td><td><span class="tag ko">non</span><small>Serveurs aux États-Unis, pas d’option européenne.</small></td><td><span class="tag ko">non</span><small>Airtable : États-Unis, Europe en Enterprise seulement. Zapier : États-Unis par défaut.</small></td><td><span class="tag ok">oui</span><small>Supabase et n8n comme en A. FlutterFlow : à demander.</small></td></tr>
+</tbody></table></div>
+<p class="k" style="margin-top:10px;text-transform:none;letter-spacing:0">Lecture : aucune note chiffrée avant les tests. Ce tableau montre déjà où les stacks se séparent : l’hébergement et les webhooks.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Celle qu’on garde</div>
+<div>
+<h2>Pour l’instant : la stack A</h2>
+<div class="keepbox">
+<h3>Claude Code + Supabase + n8n</h3>
+<ul>
+<li>C’est l’outil avec lequel on va construire Le Cadre.</li>
+<li>Elle passe le critère éliminatoire sur l’hébergement en Europe, d’après la documentation, et n’a pas de blocage sur les webhooks.</li>
+<li>Comparée à la stack D (même base, même automatisation), la différence vient du seul outil de construction : la comparaison est claire.</li>
+</ul>
+<p><span class="tag mid">provisoire</span> Ce choix est une base de travail, pas une décision. Il ne vaut qu’avec les tests.</p>
+</div>
+<div class="box"><p><b class="h">Ce qui peut encore la faire tomber</b></p>
+<p>L’hébergement européen de l’appli construite avec Claude Code n’est pas encore choisi ni vérifié. Et si Claude Code échoue sur un des 5 tests, ou y passe beaucoup trop de temps, la stack D (FlutterFlow, même base et même automatisation) est le plan B.</p></div>
+<p style="margin-top:16px"><b>Prochaine étape :</b> jouer le test commun sur les 4 stacks (le toucher, de l’envoi à la notification de l’aidant, avec un cas invalide et un doublon), en commençant par A et D. Chaque résultat passe en « testé », avec sa capture. Détail sur <a href="https://claude.ai/artifact/25XSWSHmih8CjyruxDY5Uj">la page des 4 usages</a>.</p>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="grid">
+<div class="k">Sources</div>
+<div>
+<p class="k" style="text-transform:none;letter-spacing:0">Relevé du 15 et 16 octobre 2026. Beaucoup viennent de sites tiers ou de forums, parfois en désaccord : à confirmer sur les pages officielles pendant les tests.</p>
+<ul class="src-list">
+<li><a href="https://help.glideapps.com/en/articles/9528015-gdpr-eu-compliance-and-glide-servers">Glide : GDPR et serveurs</a></li>
+<li><a href="https://AirTable.com/company/data-residency-faqs">Airtable : data residency</a></li>
+<li><a href="https://supabase.com/docs/guides/security/gdpr-compliance">Supabase : conformité GDPR</a></li>
+<li><a href="https://supabase.com/pricing">Supabase : prix</a></li>
+<li><a href="https://help.make.com/ai-providers-and-data-zones-in-make.md">Make : zones de données</a></li>
+<li><a href="https://www.virtua.cloud/learn/fr/concepts/n8n-vs-zapier-vs-make-cout-confidentialite">Comparatif n8n, Zapier, Make</a></li>
+<li><a href="https://www.jetadmin.io/blog/zapier-pricing/">Jet Admin : prix de Zapier</a></li>
+<li><a href="https://www.jetadmin.io/blog/airtable-pricing-in-2026-plans-real-costs-and-when-to-upgrade/">Jet Admin : prix d'Airtable</a></li>
+<li><a href="https://costbench.com/software/no-code/glide/free-plan/">CostBench : plan gratuit de Glide</a></li>
+<li><a href="https://vp0.com/blogs/flutterflow-pricing-plans-2026/">VP0 : prix de FlutterFlow</a></li>
+<li><a href="https://sliplane.io/blog/n8n-pricing">Sliplane : prix de n8n</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</div>
+</body>
+</html>

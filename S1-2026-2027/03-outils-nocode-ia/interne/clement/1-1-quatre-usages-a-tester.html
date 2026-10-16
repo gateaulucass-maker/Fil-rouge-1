@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Les 4 usages à tester</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse de l'équipe : grille 3/9, étiquettes mono, fond blanc, bleu et orange. */
+:root{
+  --bg:#ffffff;--fg:#111418;--muted:#5f6670;--hair:#dcdfe3;--soft:#f3f4f6;
+  --blue:#1f3fbf;--blue-soft:#eef1fb;--orange:#e8571c;--orange-soft:#fdf0ea;--green:#1d7a4a;--green-soft:#e8f4ed;
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px),min(4vw,48px));padding-right:max(16px,env(safe-area-inset-right,0px),min(4vw,48px));padding-block:clamp(28px,6vw,72px) 64px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;border-top:2px solid var(--fg);padding-top:12px}
+.meta b{color:var(--fg);font-weight:500}
+h1{margin:clamp(24px,4vw,44px) 0 0;font-weight:800;font-size:clamp(40px,7.5vw,96px);line-height:.92;letter-spacing:-.045em;text-wrap:balance}
+h1 span{color:var(--blue)}
+.grid{display:grid;grid-template-columns:3fr 9fr;gap:0 24px}
+.grid>*{min-width:0}
+.lead{margin:28px 0 0;max-width:58ch;font-size:clamp(19px,2vw,24px);font-weight:700;line-height:1.3;letter-spacing:-.012em}
+section{margin-top:clamp(40px,6vw,72px)}
+section>.grid{border-top:1px solid var(--fg);padding-top:14px}
+h2{margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
+h3{margin:22px 0 8px;font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:400}
+p{margin:0 0 12px;max-width:70ch}
+.tag{display:inline-block;font:11px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:2px 6px;white-space:nowrap;vertical-align:1px}
+.tag.ok{background:var(--green-soft);color:var(--green)}
+.tag.mid{background:var(--blue-soft);color:var(--blue)}
+.tag.ko{background:var(--orange-soft);color:var(--orange)}
+.tag.na{background:var(--soft);color:var(--muted)}
+.road{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));border-top:1px solid var(--fg)}
+.road li{padding:12px 14px 14px 0;border-bottom:1px solid var(--hair);min-width:0}
+.road a{color:inherit;text-decoration:none;display:grid;gap:3px}
+.road a:hover b{color:var(--blue)}
+.road .no{font:800 30px var(--display);letter-spacing:-.04em;line-height:1;color:var(--blue)}
+.road b{font-size:16px;line-height:1.25}
+.road small{font-size:13.5px;color:var(--muted)}
+.usage{margin-top:clamp(32px,5vw,56px)}
+.usage>.grid{border-top:3px solid var(--fg);padding-top:16px}
+.rail{display:grid;gap:6px;align-content:start}
+.big{font:800 clamp(56px,7vw,96px)/.85 var(--display);letter-spacing:-.05em;color:var(--blue)}
+.who{font:12px var(--mono);color:var(--muted)}
+.goal{font-size:clamp(17px,1.6vw,19px);font-weight:700;line-height:1.35;max-width:62ch;margin:0 0 14px}
+.kv{display:grid;margin:0;border-top:1px solid var(--hair);max-width:90ch}
+.kv div{display:grid;grid-template-columns:minmax(0,13em) minmax(0,1fr);gap:14px;border-bottom:1px solid var(--hair);padding-block:10px}
+.kv dt{font:11.5px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.kv dd{margin:0;font-size:15.5px}
+.kv div.bad dt{color:var(--orange)}
+.tablewrap{overflow-x:auto;margin-top:6px}
+table{width:100%;min-width:720px;border-collapse:collapse;font-size:14.5px}
+th{text-align:left;font:11.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:8px 12px 8px 0;border-bottom:1px solid var(--fg);font-weight:400;vertical-align:bottom}
+td{vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--hair)}
+td:first-child{font-weight:700;width:22%}
+.box{background:var(--orange-soft);border-left:3px solid var(--orange);padding:12px 16px;max-width:78ch;margin-top:14px}
+.box p{margin:0 0 6px;font-size:15px}.box p:last-child{margin:0}
+.box b.h{color:var(--orange)}
+.def{border-top:3px solid var(--blue);background:var(--soft);padding:14px 18px;max-width:78ch;margin-top:14px}
+.def p{margin:0 0 8px;font-size:15px}.def p:last-child{margin:0}
+.check{list-style:none;margin:0;padding:0;border-top:1px solid var(--fg);max-width:84ch}
+.check li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;padding:9px 0;border-bottom:1px solid var(--hair)}
+.check li::before{content:"";width:14px;height:14px;border:2px solid var(--blue);margin-top:4px}
+.chain{display:flex;flex-wrap:wrap;border-top:1px solid var(--fg);border-bottom:1px solid var(--hair);margin:8px 0}
+.chain div{flex:1 1 130px;min-width:0;padding:10px 12px 12px 0;display:grid;gap:3px;align-content:start}
+.chain div+div{padding-left:12px;border-left:1px solid var(--hair)}
+.chain i{font:500 11px var(--mono);color:var(--blue);font-style:normal}
+.chain b{font-size:15px;line-height:1.2}
+.chain span{font:12px/1.45 var(--mono);color:var(--muted)}
+pre{margin:6px 0 0;background:var(--soft);border-left:3px solid var(--fg);padding:12px 16px;overflow-x:auto;font:12.5px/1.55 var(--mono);white-space:pre-wrap;word-break:break-word;max-width:84ch}
+.src-list{font:13px/1.7 var(--mono);color:var(--muted);margin:0;padding-left:20px}
+.src-list a{color:var(--blue);word-break:break-word}
+footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
+@media (max-width:760px){
+  .grid{grid-template-columns:1fr}
+  .grid>.k{margin-bottom:10px}
+  .rail{grid-template-columns:auto 1fr;align-items:end;gap:4px 14px;margin-bottom:12px}
+  .rail .big{grid-row:span 2}
+  .kv div{grid-template-columns:1fr;gap:2px}
+  .chain div+div{border-left:0;padding-left:0;border-top:1px solid var(--hair)}
+  .chain div{flex-basis:100%}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<div class="meta k">
+<span>PFR Générations Connectées</span>
+<span>Bloc 03 · Écosystème no-code &amp; IA</span>
+<span>Équipe <b>Clément, Camille, Lucas</b></span>
+<span><b>16 octobre 2026</b></span>
+</div>
+
+<h1>Les 4 usages <span>à tester</span></h1>
+<p class="lead">Le cours demande de comparer des combinaisons d’outils capables de couvrir ces usages, avec des tests réels. Voici ce que chacun veut dire pour Le Cadre, et le test qu’on rejouera sur chaque stack.</p>
+
+<section>
+<div class="grid">
+<div class="k">Les 4 usages</div>
+<div>
+<h2>Ce que la stack doit couvrir</h2>
+<ol class="road">
+<li><a href="#u1"><span class="no">1</span><b>Parcours d’achat</b><small>le site vitrine</small></a></li>
+<li><a href="#u2"><span class="no">2</span><b>Usage senior</b><small>l’écran du cadre</small></a></li>
+<li><a href="#u3"><span class="no">3</span><b>Vue de l’aidant</b><small>l’appli de l’enfant</small></a></li>
+<li><a href="#u4"><span class="no">4</span><b>Alertes</b><small>48 h sans toucher</small></a></li>
+</ol>
+<div class="def"><p><b>Règles du cours pour les tests.</b> Pas de produit complet : des essais courts, avec le même fonctionnement dans chaque stack. Le résultat attendu s’écrit avant de commencer. Chaque test a aussi un cas invalide. Les données sont fictives. Une capture ou une courte vidéo garde la preuve.</p></div>
+</div>
+</div>
+</section>
+
+<section class="usage" id="u1">
+<div class="grid">
+<div class="rail"><span class="big">1</span><span class="who">Site vitrine</span></div>
+<div>
+<h2>Le site vitrine présente Le Cadre et permet de l’acheter</h2>
+<p class="goal">Savoir si la stack sait porter un site vitrine, avec un parcours jusqu’à une commande qui est gardée et retrouvée.</p>
+<dl class="kv">
+<div><dt>Test à jouer</dt><dd>Un visiteur fictif arrive sur le site, lit la présentation du produit, choisit le format, saisit un prénom de parent fictif et une adresse fictive, puis valide.</dd></div>
+<div><dt>Résultat attendu</dt><dd>La commande est enregistrée, un récapitulatif s’affiche, et on la retrouve dans la base.</dd></div>
+<div class="bad"><dt>Cas invalide</dt><dd>Commande sans adresse ou sans e-mail : elle est refusée avec un message clair, et rien n’est enregistré.</dd></div>
+<div><dt>Preuve</dt><dd>Capture de la page et de la ligne dans la base.</dd></div>
+<div><dt>Limite à noter</dt><dd>Aucun vrai paiement : un paiement en mode test, ou simplement simulé, et on le dit.</dd></div>
+<div><dt>À trancher</dt><dd>Le site prend-il la commande lui-même, ou renvoie-t-il vers une précommande ou une liste d’attente ?</dd></div>
+</dl>
+</div>
+</div>
+</section>
+
+<section class="usage" id="u2">
+<div class="grid">
+<div class="rail"><span class="big">2</span><span class="who">Usage senior</span></div>
+<div>
+<h2>Le parent voit ce qu’on lui envoie, et touche l’écran</h2>
+<p class="goal">Savoir si la stack sait afficher photos, vidéos et messages en plein écran, dans le bon sens, et prendre en compte le toucher.</p>
+<dl class="kv">
+<div><dt>Test à jouer</dt><dd>L’enfant envoie une photo, puis une vidéo, puis un message. On les regarde sur l’écran du cadre, tablette tenue en portrait puis en paysage. Le parent fictif touche l’écran.</dd></div>
+<div><dt>Résultat attendu</dt><dd>Chaque contenu apparaît sur le cadre, bien dimensionné dans les deux sens. Le toucher fait apparaître un petit signe qui confirme.</dd></div>
+<div class="bad"><dt>Cas invalide</dt><dd>Un fichier trop lourd ou d’un format non pris en charge : il est refusé côté enfant avec un message simple, et le cadre continue d’afficher le contenu précédent.</dd></div>
+<div><dt>Preuve</dt><dd>Photo de la tablette dans les deux sens, courte vidéo du toucher.</dd></div>
+<div><dt>Limite à noter</dt><dd>Poids maximal d’une vidéo et nombre de contenus que la stack garde.</dd></div>
+</dl>
+</div>
+</div>
+</section>
+
+<section class="usage" id="u3">
+<div class="grid">
+<div class="rail"><span class="big">3</span><span class="who">Vue de l’aidant</span></div>
+<div>
+<h2>L’enfant envoie, et voit que son parent est là</h2>
+<p class="goal">Le test commun du cours, adapté à nous : un événement part du cadre, est reçu, enregistré, puis montré à l’aidant.</p>
+<div class="chain">
+<div><i>1</i><b>Toucher</b><span>le parent touche le cadre</span></div>
+<div><i>2</i><b>Événement</b><span>un message est envoyé à l’outil d’automatisation</span></div>
+<div><i>3</i><b>Enregistrement</b><span>l’heure du dernier toucher est gardée</span></div>
+<div><i>4</i><b>Notification</b><span>l’appli de l’aidant la reçoit et l’affiche</span></div>
+</div>
+<dl class="kv">
+<div><dt>Résultat attendu</dt><dd>L’aidant reçoit « votre parent est là » en quelques secondes, et le dernier toucher s’affiche dans son appli. On chronomètre.</dd></div>
+<div class="bad"><dt>Cas invalide</dt><dd>Un toucher sans identifiant de cadre, ou sans heure : il est rejeté, sans fausse notification.</dd></div>
+<div class="bad"><dt>Doublon</dt><dd>Le même événement envoyé deux fois ne crée qu’une seule notification.</dd></div>
+<div><dt>Preuve</dt><dd>Courte vidéo de bout en bout, avec le temps mesuré, et capture de la base.</dd></div>
+<div><dt>Limite à noter</dt><dd>Les notifications sur téléphone sont-elles possibles sans payer ?</dd></div>
+</dl>
+<h3>Le message fictif envoyé par le cadre</h3>
+<pre>{
+  "cadre_id": "cadre-demo-01",
+  "type": "toucher",
+  "horodatage": "2026-10-20T08:12:00+02:00"
+}</pre>
+</div>
+</div>
+</section>
+
+<section class="usage" id="u4">
+<div class="grid">
+<div class="rail"><span class="big">4</span><span class="who">Alertes</span></div>
+<div>
+<h2>Plus de 48 heures sans toucher : on prévient les aidants</h2>
+<p class="goal">Savoir si la stack sait déclencher une règle dans le temps, une seule fois, et seulement si le parent l’a acceptée à l’installation.</p>
+<dl class="kv">
+<div><dt>Test à jouer</dt><dd>On règle le délai à quelques minutes pour la démonstration. Deux familles fictives : l’une a accepté l’alerte, l’autre non. Plus aucun toucher n’arrive.</dd></div>
+<div><dt>Résultat attendu</dt><dd>Les aidants de la première famille reçoivent une alerte, une seule. Ceux de la seconde n’en reçoivent aucune. Un nouveau toucher remet le compteur à zéro.</dd></div>
+<div class="bad"><dt>Cas invalide</dt><dd>L’automatisation s’arrête ou plante en cours de route : on observe si une alerte part quand même au redémarrage, et si elle ne part pas en double.</dd></div>
+<div><dt>Preuve</dt><dd>Capture de l’alerte reçue et de la règle, avec les heures.</dd></div>
+<div><dt>Limite à noter</dt><dd>Fréquence de vérification possible et nombre d’exécutions par mois.</dd></div>
+</dl>
+<div class="box"><p><b class="h">Reste ouvert : la gradation de l’alerte</b></p><p>Le cours demande d’expliquer la gradation des alertes. Décidé : les aidants sont prévenus d’abord, après 48 heures. À trancher : que se passe-t-il si aucun aidant ne réagit, et si l’appel aux secours se déclenche. Pour les tests, aucun message ne part vers un proche réel ni vers les secours.</p></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Qui couvre quoi</div>
+<div>
+<h2>Trois choses à construire, quatre usages</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Ce qu’on construit</th><th>Usages</th><th>Qui s’en sert</th><th>Comment</th></tr></thead>
+<tbody>
+<tr><td>Le site vitrine</td><td>1 · Parcours d’achat</td><td>Le visiteur, l’enfant qui achète</td><td>Le build (pages web). La commande va dans la base.</td></tr>
+<tr><td>L’appli de l’aidant, connectée au cadre</td><td>3 · Vue de l’aidant, et le réglage de l’alerte (4)</td><td>L’enfant</td><td>Le build. L’automatisation envoie les notifications.</td></tr>
+<tr><td>L’écran du cadre</td><td>2 · Usage senior</td><td>Le parent</td><td>Le build (affichage plein écran). Les contenus viennent de la base.</td></tr>
+<tr><td>La règle d’alerte</td><td>4 · Alertes</td><td>Les aidants</td><td>L’automatisation : une règle dans le temps, qui lit le dernier toucher dans la base.</td></tr>
+</tbody></table></div>
+<p class="k" style="margin-top:10px;text-transform:none;letter-spacing:0">La base relie les trois, l’automatisation déclenche les notifications et les alertes. Pour la stack avec Claude Code, le build est le code qu’il écrit. Le site vitrine est une partie à part : certains outils no-code le font très bien, d’autres pas du tout.</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Données fictives</div>
+<div>
+<h2>Ce qu’il faut préparer avant les tests</h2>
+<ul class="check">
+<li><span><b>2 familles fictives :</b> un parent, un ou deux aidants, l’accord pour l’alerte (oui pour l’une, non pour l’autre).</span></li>
+<li><span><b>Contenus :</b> 10 photos libres de droits (5 en portrait, 5 en paysage), 2 vidéos courtes, 5 messages.</span></li>
+<li><span><b>Touchers :</b> une liste avec l’heure, dont une famille sans toucher depuis plus de 48 heures, et un événement envoyé deux fois.</span></li>
+<li><span><b>Commandes :</b> une commande complète, une sans adresse, une sans e-mail.</span></li>
+<li><span><b>Fichiers à tester :</b> une vidéo très lourde et un format non pris en charge.</span></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Statuts</div>
+<div>
+<h2>Comment on note chaque résultat</h2>
+<p>Pour chaque usage et chaque stack, on garde le résultat, la limite et la prochaine étape, avec l’un des trois statuts du cours.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Statut</th><th>Ce que ça veut dire</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td><span class="tag ok">testé</span></td><td>On l’a fait nous-mêmes, avec une capture ou une vidéo.</td><td>« Le toucher arrive en 4 s chez l’aidant. »</td></tr>
+<tr><td><span class="tag mid">source</span></td><td>Une page officielle ou une documentation l’annonce, mais on ne l’a pas essayé.</td><td>« Supabase propose une région européenne. »</td></tr>
+<tr><td><span class="tag na">à vérifier</span></td><td>On n’a ni test ni source fiable.</td><td>« FlutterFlow : hébergement à demander. »</td></tr>
+</tbody></table></div>
+<div class="def"><p><b>Test réel ou simulation.</b> Une simulation reste une simulation. Si un accès bloque l’essai, on le note, avec l’obstacle et le prochain essai. Un écran dessiné ne prouve pas que l’application reçoit, enregistre puis affiche un événement.</p></div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="grid">
+<div class="k">Sources</div>
+<div>
+<p class="k" style="text-transform:none;letter-spacing:0">Les 4 usages viennent de la page du cours, lue le 16 octobre 2026. Le contenu de chaque test est une proposition, à valider en équipe.</p>
+<ul class="src-list">
+<li><a href="https://cours.victorr.fr/b2-2026">Cours B2 2026 : page principale</a></li>
+<li><a href="https://cours.victorr.fr/b2-2026/fiches/88e41e51-f8ef-42c8-a0eb-c35ec87056e0">Fiche : tester et comparer les outils</a></li>
+<li><a href="https://cours.victorr.fr/b2-2026/fiches/44bef182-1487-45b1-908a-a6a094230e80">Fiche : relier les outils et automatiser</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</div>
+</body>
+</html>
