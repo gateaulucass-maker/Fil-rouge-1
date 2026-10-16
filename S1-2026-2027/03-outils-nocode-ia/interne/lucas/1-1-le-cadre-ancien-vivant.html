@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Le Cadre ancien vivant</title>
+<title>Le Cadre vivant</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap">
@@ -110,6 +110,40 @@ a { color: var(--blue); }
 footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
 @media (max-width: 900px) { .scenes, .refs { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 620px) { .scenes, .refs, .vie { grid-template-columns: 1fr; } }
+
+/* diaporama : 3 photos, 15 s chacune */
+.slides .ph { opacity: 0; animation: slide 45s infinite; }
+.slides .ph:nth-child(2) { animation-delay: 15s; }
+.slides .ph:nth-child(3) { animation-delay: 30s; }
+@keyframes slide { 0% { opacity: 0; } 4% { opacity: 1; } 33% { opacity: 1; } 37% { opacity: 0; } 100% { opacity: 0; } }
+.night .screen { filter: brightness(.6) sepia(.45); }
+.night .frame { filter: brightness(.8); }
+.piliers { display:grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; margin-top: 28px; }
+.piliers > div { border-top: 3px solid var(--orange); padding-top: 10px; }
+.piliers .n { font: 800 32px/1 var(--display); color: var(--orange); }
+.piliers h3 { margin: 6px 0 4px; font-size: 20px; }
+.piliers p { margin: 0; font-size: 15px; }
+.scenes { grid-template-columns: repeat(3, 1fr); }
+.gammes { display:grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.gammes .g { min-width: 0; }
+.wall.mini { padding: 22px 8px; }
+.frame.mini { --w: min(190px, 70vw); }
+.frame.oak { background: linear-gradient(135deg, #d9b98a, #b8905c 50%, #caa673); box-shadow: 0 18px 30px -14px rgba(60,40,10,.45), inset 0 0 0 2px #8f6a3c; border-radius: 2px; }
+.frame.black { background: #1d1d1d; box-shadow: 0 18px 30px -14px rgba(0,0,0,.5); border-radius: 1px; padding: calc(var(--w) * .035); }
+.frame.black .mat { inset: 3.5%; padding: 11% 11% 14%; }
+.mat.white { background: #fbfaf7; }
+.frame.patine { background: linear-gradient(135deg, #e9e5dc, #c9c3b6 50%, #ddd8cd); box-shadow: 0 18px 30px -14px rgba(60,50,30,.35), inset 0 0 0 2px #b1aa9b, inset 0 0 12px 3px rgba(120,110,90,.35); }
+.frame.brass { background: #4a3322; box-shadow: 0 18px 30px -14px rgba(40,25,10,.5), inset 0 0 0 3px #3a2618, inset 0 0 0 5px #d4b066, inset 0 0 0 7px #3a2618; border-radius: 2px; }
+.gammes h3 { margin: 10px 0 4px; font-size: 19px; }
+.gammes p { margin: 0 0 6px; font-size: 14px; }
+.prix { font: 800 22px var(--display); color: var(--blue); }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.tablewrap { overflow-x: auto; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+@media (max-width: 1000px) { .gammes { grid-template-columns: repeat(3, 1fr); } .piliers { grid-template-columns: 1fr 1fr; gap: 16px 20px; } }
+@media (max-width: 620px) { .gammes, .piliers { grid-template-columns: 1fr; } }
+
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
 </style>
 </head>
@@ -126,8 +160,15 @@ footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px;
 <div class="meta k">
   <span><b>PFR Générations Connectées</b></span><span>Bloc 03 · Outils no-code et IA</span><span>Leçon 1.1</span><span>Équipe Clément, Camille, Lucas</span><span>16 octobre 2026</span>
 </div>
-<h1>Le Cadre : <span>un vieux cadre doré qui vit</span></h1>
-<p class="lead">Pas un écran au mur : le cadre ancien de la famille, moulure dorée et passe-partout ivoire, dans lequel les photos arrivent et qui s'éclaire quand on le touche.</p>
+<h1>Le Cadre : <span>un cadre de famille qui vit</span></h1>
+<p class="lead">Pas un écran au mur : un vrai cadre, doré ou sobre, où les photos de la famille défilent doucement et qui s'éclaire quand on le touche.</p>
+
+<div class="piliers">
+  <div><span class="n">1</span><h3>Accès</h3><p>Rien à apprendre, rien à installer pour le parent. Le cadre marche tout seul.</p></div>
+  <div><span class="n">2</span><h3>Photo</h3><p>Les photos de la famille défilent, une toutes les 15 secondes.</p></div>
+  <div><span class="n">3</span><h3>Relation</h3><p>Un toucher dit « je suis là » ; l'enfant peut renvoyer une lueur.</p></div>
+  <div><span class="n">4</span><h3>Message</h3><p>Un mot de la famille, affiché comme une carte postale.</p></div>
+</div>
 
 <!-- HERO -->
 <div class="wall" style="margin-top:32px">
@@ -137,26 +178,27 @@ footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px;
       <span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span>
       <span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
       <svg class="crest" viewBox="0 0 120 50"><use href="#crest"/></svg>
-      <div class="mat"><div class="screen"><div class="ph sea"></div><span class="hand" aria-hidden="true">👆</span></div></div>
+      <div class="mat"><div class="screen slides"><div class="ph sea"></div><div class="ph garden"></div><div class="ph sepia"></div><span class="hand" aria-hidden="true">👆</span></div></div>
       <span class="plaque">Jeanne &amp; les siens</span>
     </div>
   </div>
 </div>
-<p class="k" style="margin-top:10px">Maquette animée : le parent touche la photo, la moulure dorée s'illumine, l'enfant reçoit « je suis là ».</p>
+<p class="k" style="margin-top:10px">Maquette animée : les photos défilent toutes les 15 secondes ; le parent touche, la dorure s'illumine, l'enfant reçoit « je suis là ».</p>
 
 <section>
 <span class="k">01 · Le cadre au fil de la journée</span>
-<h2>Six moments où l'objet vit</h2>
+<h2>Cinq moments où l'objet vit</h2>
+<p>Au repos, le cadre n'est jamais un écran noir ou gris : <b>une photo à la fois, environ 15 secondes chacune, puis un fondu lent vers la suivante</b>. La lumière suit celle de la pièce.</p>
 <div class="scenes">
 
   <div class="scene">
     <div class="wall"><div class="hang"><span class="nail"></span><span class="cord"></span>
-      <div class="frame arrive"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
-        <div class="mat"><div class="screen"><div class="ph sepia"></div><div class="ph garden new"></div></div></div><span class="ribbon"></span></div>
+      <div class="frame"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
+        <div class="mat"><div class="screen slides"><div class="ph garden"></div><div class="ph sepia"></div><div class="ph sea"></div></div></div></div>
     </div></div>
-    <h3>Le matin, le courrier arrive</h3>
-    <p>La nouvelle photo apparaît lentement, en fondu, comme une photo qui se développe. Un petit ruban de velours se déplie sur le coin : « du nouveau ».</p>
-    <span class="k">Inspiré de Photobox, Lovebox</span>
+    <h3>Au repos, les photos défilent</h3>
+    <p>Une photo toutes les 15 secondes, avec un fondu lent. Pas de transition qui saute aux yeux, pas d'écran vide.</p>
+    <span class="k">Inspiré d'Aura, Komp, Samsung The Frame</span>
   </div>
 
   <div class="scene">
@@ -181,69 +223,121 @@ footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px;
 
   <div class="scene">
     <div class="wall"><div class="hang"><span class="nail"></span><span class="cord"></span>
-      <div class="frame breathe"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
-        <div class="mat"><div class="screen"><div class="ph sepia"></div></div></div></div>
-    </div></div>
-    <h3>L'après-midi, il respire</h3>
-    <p>Quand rien ne se passe, une lueur très lente passe derrière le passe-partout. On sent que l'objet est là, jamais un écran noir.</p>
-    <span class="k">Inspiré du voyant de veille Apple, de Paro</span>
-  </div>
-
-  <div class="scene">
-    <div class="wall"><div class="hang"><span class="nail"></span><span class="cord"></span>
       <div class="frame glow" style="animation-delay:-3s"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
-        <div class="mat"><div class="screen"><div class="ph garden"></div></div></div></div>
+        <div class="mat"><div class="screen slides"><div class="ph sepia"></div><div class="ph sea"></div><div class="ph garden"></div></div></div></div>
     </div></div>
     <h3>La lueur qui revient</h3>
-    <p>L'enfant répond au toucher : la dorure s'éclaire chez le parent et reste tiède quelques heures. « Quelqu'un a pensé à moi », sans heure ni compteur.</p>
+    <p>L'enfant répond au toucher : la dorure s'éclaire chez le parent pendant que les photos continuent de défiler. « Quelqu'un a pensé à moi », sans heure ni compteur.</p>
     <span class="k">Inspiré du Messaging Kettle</span>
   </div>
 
   <div class="scene night">
     <div class="wall" style="background:#3a3530"><div class="hang"><span class="nail"></span><span class="cord"></span>
       <div class="frame"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
-        <div class="mat"><div class="screen"><div class="ph sepia"></div></div></div></div>
+        <div class="mat"><div class="screen slides"><div class="ph sepia"></div><div class="ph garden"></div><div class="ph sea"></div></div></div></div>
     </div></div>
-    <h3>La nuit, un tableau qui dort</h3>
-    <p>Lumière presque éteinte, teinte ambrée, plus aucun signal. Au mur, il redevient un simple tableau ancien.</p>
-    <span class="k">Inspiré de Samsung The Frame</span>
+    <h3>Le soir, la lumière baisse</h3>
+    <p>Les photos continuent de défiler, mais douces et ambrées, réglées sur la lumière de la pièce. Jamais d'écran noir, jamais d'éblouissement.</p>
+    <span class="k">Inspiré de Samsung The Frame, Meural</span>
   </div>
 
 </div>
 </section>
 
 <section>
-<span class="k">02 · Les aspects de vie</span>
-<h2>Dix détails qui rendent le cadre vivant et agréable</h2>
+<span class="k">02 · Cinq gammes</span>
+<h2>Du cadre doré ancien au cadre sobre</h2>
+<p>Le même cadre, cinq habillages, pour que chaque famille trouve celui qui va avec le salon du parent. Le prix indiqué est une proposition, à comparer avec les concurrents ci-dessous.</p>
+<div class="gammes">
+  <div class="g">
+    <div class="wall mini"><div class="frame mini"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span><div class="mat"><div class="screen slides"><div class="ph sea"></div><div class="ph garden"></div><div class="ph sepia"></div></div></div></div></div>
+    <span class="k">Gamme 1</span><h3>Héritage</h3><p>Moulure baroque dorée à la feuille, passe-partout ivoire, plaque en laiton gravée. Le cadre de grand-mère.</p><span class="prix">249 €</span>
+  </div>
+  <div class="g">
+    <div class="wall mini"><div class="frame mini oak"><div class="mat"><div class="screen slides"><div class="ph garden"></div><div class="ph sepia"></div><div class="ph sea"></div></div></div></div></div>
+    <span class="k">Gamme 2</span><h3>Atelier</h3><p>Chêne massif huilé, angles francs, passe-partout blanc cassé. Chaleureux et intemporel.</p><span class="prix">219 €</span>
+  </div>
+  <div class="g">
+    <div class="wall mini"><div class="frame mini black"><div class="mat white"><div class="screen slides"><div class="ph sepia"></div><div class="ph sea"></div><div class="ph garden"></div></div></div></div></div>
+    <span class="k">Gamme 3</span><h3>Galerie</h3><p>Fin profil noir mat, grand passe-partout blanc. L'allure d'un tirage de musée, très sobre.</p><span class="prix">199 €</span>
+  </div>
+  <div class="g">
+    <div class="wall mini"><div class="frame mini patine"><div class="mat"><div class="screen slides"><div class="ph sea"></div><div class="ph sepia"></div><div class="ph garden"></div></div></div></div></div>
+    <span class="k">Gamme 4</span><h3>Maison de campagne</h3><p>Bois patiné blanchi, gris perle, un peu brocante. Pour les intérieurs clairs.</p><span class="prix">219 €</span>
+  </div>
+  <div class="g">
+    <div class="wall mini"><div class="frame mini brass"><div class="mat"><div class="screen slides"><div class="ph garden"></div><div class="ph sea"></div><div class="ph sepia"></div></div></div></div></div>
+    <span class="k">Gamme 5</span><h3>Filet doré</h3><p>Noyer foncé avec un fin filet de laiton, esprit Art déco. Le doré, mais discret.</p><span class="prix">239 €</span>
+  </div>
+</div>
+<p class="k" style="margin-top:14px">Même électronique dans les cinq gammes : seul l'habillage change, ce qui garde un coût de fabrication maîtrisé.</p>
+</section>
+
+<section>
+<span class="k">03 · Les concurrents</span>
+<h2>Ce qu'ils coûtent et ce qu'ils proposent en design</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Produit</th><th>Prix</th><th>Habillages proposés</th><th>Ce qu'on retient</th></tr></thead>
+<tbody>
+<tr><td><b>Aura Carver / Carver Mat</b></td><td>159 € / 189 €</td><td>Plusieurs coloris de cadre, passe-partout blanc sur le Mat</td><td>Le passe-partout justifie 30 € de plus</td></tr>
+<tr><td><b>Aura Aspen / Walden</b></td><td>249 € / 349 €</td><td>Passe-partout « texture papier », portrait ou paysage, kit mural fourni</td><td>Le haut de gamme se joue sur la matière et la taille</td></tr>
+<tr><td><b>Familink</b></td><td>219,90 € ou 14,99 €/mois</td><td>Un seul modèle</td><td>Peu de choix de design : notre carte à jouer</td></tr>
+<tr><td><b>Skylight Frame</b></td><td>environ 140 $</td><td>Noir, argent, blanc, or</td><td>Des couleurs, mais un look d'appareil</td></tr>
+<tr><td><b>Samsung The Frame</b></td><td>plusieurs centaines d'euros</td><td>Cadres interchangeables (blanc, teck, noyer…) vendus à part</td><td><b>Changer de cadre</b> sans changer d'écran : l'idée de nos gammes</td></tr>
+<tr><td><b>Canvia</b></td><td>non trouvé</td><td>Noir, chêne, cerisier, blanc</td><td>Les essences de bois parlent aux familles</td></tr>
+<tr><td><b>mui Board</b></td><td>849 $</td><td>Bois naturel clair ou foncé</td><td>Le très haut de gamme en bois</td></tr>
+<tr><td><b>Lovebox</b></td><td>99,99 €</td><td>Bois de hêtre du Jura, plusieurs couleurs</td><td>Le made in France et le bois comme argument</td></tr>
+</tbody></table></div>
+<p style="margin-top:14px"><b>Notre place :</b> entre Familink (219,90 €, un seul modèle) et Aura Walden (349 €). De 199 € à 249 €, avec cinq habillages : le seul cadre qu'on choisit comme un meuble.</p>
+</section>
+
+<section>
+<span class="k">04 · Astuces d'aménagement</span>
+<h2>Où et comment le mettre chez le parent</h2>
 <div class="vie">
-  <div><span class="n">1</span><div><h3>La moulure dorée</h3><p>Un vrai cadre ancien ou de style baroque, à la feuille d'or ou en résine dorée. On peut même chiner le cadre de la famille et y loger l'écran.</p></div></div>
-  <div><span class="n">2</span><div><h3>La dorure qui s'illumine</h3><p>Une bande de LED cachée derrière la moulure : quand on touche, c'est l'or qui brille, pas l'écran. Le geste se voit de loin.</p></div></div>
-  <div><span class="n">3</span><div><h3>Le passe-partout ivoire</h3><p>Un carton biseauté couleur ivoire autour de l'écran, plus large en bas. L'écran devient une photo encadrée.</p></div></div>
-  <div><span class="n">4</span><div><h3>Le verre ancien, mat</h3><p>Un film antireflet légèrement mat : pas de reflets pour les yeux opérés de la cataracte, et l'aspect d'un verre de musée.</p></div></div>
-  <div><span class="n">5</span><div><h3>La plaque gravée</h3><p>Une petite plaque en laiton sous la photo, gravée au nom choisi par la famille : « Jeanne &amp; les siens ». L'objet appartient à la famille.</p></div></div>
-  <div><span class="n">6</span><div><h3>La cordelette et le clou</h3><p>Une cordelette visible et un crochet de tableau, comme les cadres d'autrefois. Le câble passe dans la cordelette, gainé de tissu.</p></div></div>
-  <div><span class="n">7</span><div><h3>Le ruban du courrier</h3><p>Un petit ruban de velours qui se déplie sur le coin quand une photo arrive, et se replie quand le parent l'a regardée.</p></div></div>
-  <div><span class="n">8</span><div><h3>Les photos qui se développent</h3><p>Les nouvelles photos apparaissent en fondu lent, d'abord sépia puis en couleurs, comme au labo photo d'autrefois.</p></div></div>
-  <div><span class="n">9</span><div><h3>Les saisons</h3><p>Une lumière plus chaude en hiver, une petite guirlande dessinée sur le passe-partout le jour d'un anniversaire, une photo souvenir d'il y a un an.</p></div></div>
-  <div><span class="n">10</span><div><h3>Un son de pendule</h3><p>Optionnel : un tintement grave et doux, comme une petite horloge, quand le toucher part. Jamais de bip.</p></div></div>
+  <div><span class="n">1</span><div><h3>Face au fauteuil préféré</h3><p>Là où le parent s'assoit chaque jour pour le café ou la télé. Le cadre doit se voir sans y penser.</p></div></div>
+  <div><span class="n">2</span><div><h3>Le centre vers 1,35 m</h3><p>Plus bas qu'un tableau classique : lisible assis et touchable sans se lever (repères du Smithsonian pour les personnes assises).</p></div></div>
+  <div><span class="n">3</span><div><h3>Jamais face à une fenêtre</h3><p>Les reflets gênent beaucoup, surtout après une cataracte. Mieux vaut un mur perpendiculaire à la fenêtre.</p></div></div>
+  <div><span class="n">4</span><div><h3>Parmi les vrais cadres</h3><p>L'accrocher au milieu des photos de famille déjà au mur : il s'y fond comme un cadre de plus, pas comme un appareil.</p></div></div>
+  <div><span class="n">5</span><div><h3>Près d'une prise, câble caché</h3><p>Câble gainé de tissu dans la couleur du mur, ou glissé derrière un meuble. Une goulotte peinte si besoin.</p></div></div>
+  <div><span class="n">6</span><div><h3>Pas dans la chambre</h3><p>Le salon, la cuisine ou l'entrée. La chambre reste un lieu privé, et la lumière la nuit gêne le sommeil.</p></div></div>
+  <div><span class="n">7</span><div><h3>Une lampe à côté</h3><p>Une petite lampe d'appoint chaude près du cadre le met en valeur le soir, comme un tableau.</p></div></div>
+  <div><span class="n">8</span><div><h3>Sur une commode, aussi</h3><p>Avec un chevalet ou posé contre le mur sur un buffet, si on ne veut pas percer.</p></div></div>
+  <div><span class="n">9</span><div><h3>Choisir le cadre avec le parent</h3><p>Héritage, Atelier, Galerie : on choisit la gamme ensemble, d'après son salon. C'est son objet, pas un gadget offert.</p></div></div>
+  <div><span class="n">10</span><div><h3>Les premières photos, ensemble</h3><p>Le jour de l'installation, mettre des photos qu'il aime déjà : mariage, enfants, vacances. Le cadre commence par ses souvenirs.</p></div></div>
 </div>
 </section>
 
 <section>
-<span class="k">03 · Références à voir</span>
+<span class="k">05 · Les détails de vie</span>
+<h2>Huit détails qui rendent le cadre agréable</h2>
+<div class="vie">
+  <div><span class="n">1</span><div><h3>Le cadre qu'on aurait choisi</h3><p>Cinq gammes, et même la possibilité de chiner le cadre ancien de la famille pour y loger l'écran.</p></div></div>
+  <div><span class="n">2</span><div><h3>Le bord qui s'illumine</h3><p>Une lumière cachée derrière la moulure : quand on touche, c'est le cadre qui brille, pas l'écran.</p></div></div>
+  <div><span class="n">3</span><div><h3>Le passe-partout</h3><p>Un carton biseauté autour de l'écran, plus large en bas. L'écran devient une photo encadrée.</p></div></div>
+  <div><span class="n">4</span><div><h3>Le verre mat</h3><p>Un film antireflet légèrement mat : pas de reflets, l'aspect d'un verre de musée.</p></div></div>
+  <div><span class="n">5</span><div><h3>La plaque gravée</h3><p>Une petite plaque sous la photo, au nom choisi par la famille : « Jeanne &amp; les siens ».</p></div></div>
+  <div><span class="n">6</span><div><h3>La cordelette et le crochet</h3><p>Comme les cadres d'autrefois, avec le câble caché dans la cordelette.</p></div></div>
+  <div><span class="n">7</span><div><h3>Le rythme des photos</h3><p>15 secondes par photo, fondu lent, intensité qui suit la lumière de la pièce. Jamais d'écran noir ni gris.</p></div></div>
+  <div><span class="n">8</span><div><h3>Les jours de fête</h3><p>Le jour d'un anniversaire, une petite guirlande dessinée sur le passe-partout, ou la photo d'il y a un an.</p></div></div>
+</div>
+</section>
+
+<section>
+<span class="k">06 · Références à voir</span>
 <h2>Des liens pour s'inspirer</h2>
 <div class="refs">
-  <a class="ref" href="https://www.google.com/search?q=cadre+ancien+dor%C3%A9+baroque&tbm=isch" target="_blank" rel="noopener"><span class="k">Cadres</span><h3>Cadres anciens dorés</h3><p>Moulures baroques, feuille d'or, de 9 € à plus de 2 000 € en occasion.</p><span class="go">Voir les images →</span></a>
-  <a class="ref" href="https://www.etsy.com/fr/search?q=cadre%20ancien%20dor%C3%A9" target="_blank" rel="noopener"><span class="k">Chiner</span><h3>Etsy : cadres dorés anciens</h3><p>Pour trouver le cadre du prototype.</p><span class="go">Voir →</span></a>
-  <a class="ref" href="https://www.leboncoin.fr/recherche?text=cadre%20ancien%20dor%C3%A9" target="_blank" rel="noopener"><span class="k">Chiner</span><h3>Leboncoin : cadre ancien doré</h3><p>Le vrai cadre de grand-mère, à prix brocante.</p><span class="go">Voir →</span></a>
-  <a class="ref" href="https://www.samsung.com/fr/tvs/the-frame/highlights/" target="_blank" rel="noopener"><span class="k">Écran devenu tableau</span><h3>Samsung The Frame</h3><p>Yves Béhar : éteint, il montre une œuvre ; cadres interchangeables, écran mat.</p><span class="go">Voir →</span></a>
-  <a class="ref" href="https://auraframes.fr/digital-frames/color/walden-ink-mat" target="_blank" rel="noopener"><span class="k">Passe-partout</span><h3>Aura Walden</h3><p>Un passe-partout physique « texture papier » autour de l'écran.</p><span class="go">Voir →</span></a>
-  <a class="ref" href="https://muiboard.com/products/mui-board-gen-2" target="_blank" rel="noopener"><span class="k">Écran invisible</span><h3>mui Board</h3><p>Un panneau de bois où l'on touche le bois lui-même.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://www.google.com/search?q=cadre+ancien+dor%C3%A9+baroque&tbm=isch" target="_blank" rel="noopener"><span class="k">Héritage</span><h3>Cadres anciens dorés</h3><p>Moulures baroques, feuille d'or, de 9 € à plus de 2 000 € en occasion.</p><span class="go">Voir les images →</span></a>
+  <a class="ref" href="https://www.google.com/search?q=cadre+photo+ch%C3%AAne+massif+passe-partout&tbm=isch" target="_blank" rel="noopener"><span class="k">Atelier</span><h3>Cadres en chêne massif</h3><p>Bois huilé, angles francs, passe-partout blanc cassé.</p><span class="go">Voir les images →</span></a>
+  <a class="ref" href="https://www.google.com/search?q=gallery+wall+cadres+photo+salon&tbm=isch" target="_blank" rel="noopener"><span class="k">Aménagement</span><h3>Murs de cadres</h3><p>Pour voir comment le cadre se fond parmi les photos de famille.</p><span class="go">Voir les images →</span></a>
+  <a class="ref" href="https://www.samsung.com/fr/tvs/the-frame/highlights/" target="_blank" rel="noopener"><span class="k">Cadres interchangeables</span><h3>Samsung The Frame</h3><p>Yves Béhar : un écran devenu tableau, avec des cadres à changer.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://auraframes.fr/digital-frames/color/walden-ink-mat" target="_blank" rel="noopener"><span class="k">Passe-partout</span><h3>Aura Walden</h3><p>349 € : passe-partout physique « texture papier ».</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://www.familinkframe.com/fr/" target="_blank" rel="noopener"><span class="k">Concurrent français</span><h3>Familink</h3><p>219,90 € : photos, vidéos, messages, un seul modèle.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://muiboard.com/products/mui-board-gen-2" target="_blank" rel="noopener"><span class="k">Bois</span><h3>mui Board</h3><p>Un panneau de bois où l'on touche le bois lui-même.</p><span class="go">Voir →</span></a>
   <a class="ref" href="https://tangible.media.mit.edu/project/lumitouch/" target="_blank" rel="noopener"><span class="k">Recherche</span><h3>LumiTouch (MIT)</h3><p>Deux cadres photo : toucher l'un allume l'autre. Notre geste, en 2001.</p><span class="go">Voir →</span></a>
-  <a class="ref" href="https://en.lovebox.love/" target="_blank" rel="noopener"><span class="k">Objet vivant</span><h3>Lovebox</h3><p>Un cœur qui tourne quand un message arrive : l'idée du ruban.</p><span class="go">Voir →</span></a>
-  <a class="ref" href="https://www.zojirushi.co.jp/syohin/pot_kettle/mimamori/" target="_blank" rel="noopener"><span class="k">Rassurer sans surveiller</span><h3>Zojirushi i-Pot</h3><p>Une bouilloire qui rassure la famille par un geste de vie, depuis 25 ans.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://www.leboncoin.fr/recherche?text=cadre%20ancien%20dor%C3%A9" target="_blank" rel="noopener"><span class="k">Chiner</span><h3>Leboncoin : cadre ancien</h3><p>Le vrai cadre pour le prototype, à prix brocante.</p><span class="go">Voir →</span></a>
 </div>
-<p class="k" style="margin-top:14px">Les illustrations de cette page sont dessinées en code (aucune photo de personne réelle). Les liens ouvrent les vrais produits et images.</p>
+<p class="k" style="margin-top:14px">Les illustrations de cette page sont dessinées en code (aucune photo de personne réelle). Les liens ouvrent les vrais produits et images. Prix relevés le 16 octobre 2026 ; les prix de nos gammes sont des propositions.</p>
 </section>
 
 <footer class="k">Va avec la <a href="1-1-veille-design-le-cadre.html">veille design d'objet pour Le Cadre</a> et la fiche <a href="../clement/1-1-le-cadre-version-retenue.html">Le Cadre, version retenue</a>.</footer>
