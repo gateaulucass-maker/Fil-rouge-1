@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-16T11:01",
+  "mise_a_jour": "2026-10-16T12:25",
   "phases": [
     {
       "id": "P0",
@@ -574,6 +574,14 @@
           "date": "2026-10-16",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-design-le-cadre.html",
           "note": "Cadres muraux (The Frame, Aura, mui, e-paper), objet (bois, passe-partout, écran mat, hauteur 1,35 m), toucher « je pense à toi », signe de confirmation (lueur de bord recommandée), alerte 48 h choisie (6 règles), vidéos et messages, 12 idées. Recommande de retirer micro et caméra."
+        },
+        {
+          "titre": "Maquette de l'appli aidant V1 (UX/UI fil de fer)",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-16",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-maquette-app-v1.html",
+          "note": "16 écrans sur téléphone en 4 parcours (installer, partager, le lien, alerte et réglages), légendes numérotées, statuts décidé / proposé / ouvert. À valider par Clément et Camille."
         }
       ]
     },
@@ -628,6 +636,14 @@
           "date": "2026-10-16",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-design-le-cadre.html",
           "note": "Cadres muraux (The Frame, Aura, mui, e-paper), objet (bois, passe-partout, écran mat, hauteur 1,35 m), toucher « je pense à toi », signe de confirmation (lueur de bord recommandée), alerte 48 h choisie (6 règles), vidéos et messages, 12 idées. Recommande de retirer micro et caméra."
+        },
+        {
+          "titre": "Maquette de l'appli aidant V1 (UX/UI fil de fer)",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-16",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-maquette-app-v1.html",
+          "note": "16 écrans sur téléphone en 4 parcours (installer, partager, le lien, alerte et réglages), légendes numérotées, statuts décidé / proposé / ouvert. À valider par Clément et Camille."
         }
       ]
     },
