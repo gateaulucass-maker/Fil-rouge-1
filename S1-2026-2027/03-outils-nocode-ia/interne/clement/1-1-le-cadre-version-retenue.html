@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Cadre, version retenue</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse de l'équipe (fichiers de Lucas et Camille) : grille 3/9, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root{
+  --bg:#ffffff;--fg:#111418;--muted:#5f6670;--hair:#dcdfe3;--soft:#f3f4f6;
+  --blue:#1f3fbf;--blue-soft:#eef1fb;--orange:#e8571c;--orange-soft:#fdf0ea;
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px),min(4vw,48px));padding-right:max(16px,env(safe-area-inset-right,0px),min(4vw,48px));padding-block:clamp(28px,6vw,72px) 64px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;border-top:2px solid var(--fg);padding-top:12px}
+.meta b{color:var(--fg);font-weight:500}
+h1{margin:clamp(24px,4vw,44px) 0 0;font-weight:800;font-size:clamp(40px,7.5vw,96px);line-height:.92;letter-spacing:-.045em;text-wrap:balance}
+h1 span{color:var(--blue)}
+.grid{display:grid;grid-template-columns:3fr 9fr;gap:0 24px}
+.grid>*{min-width:0}
+.lead{margin:28px 0 0;max-width:46ch;font-size:clamp(19px,2vw,24px);font-weight:700;line-height:1.3;letter-spacing:-.012em}
+section{margin-top:clamp(48px,7vw,88px)}
+section>.grid{border-top:1px solid var(--fg);padding-top:14px}
+h2{margin:0 0 18px;font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
+h3{margin:22px 0 8px;font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+p{margin:0 0 12px;max-width:68ch}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair);margin-top:32px}
+.stats div{padding:14px 16px 14px 0;border-right:1px solid var(--hair)}
+.stats div+div{padding-left:16px}
+.stats div:last-child{border-right:0}
+.stats b{display:block;font-size:clamp(32px,4.5vw,56px);font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.stats b.o{color:var(--orange)}.stats b.b{color:var(--blue)}
+.stats span{display:block;margin-top:6px;font-size:14px;color:var(--muted)}
+.spec{display:grid;grid-template-columns:repeat(2,1fr);gap:0 32px}
+.spec>div{min-width:0}
+.spec dl{margin:0}
+.row{display:grid;grid-template-columns:12ch 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--hair)}
+.row dt{font:11.5px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.row dd{margin:0}
+.who{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.who>div{border-top:3px solid var(--blue);padding-top:12px;min-width:0}
+.who>div.o{border-color:var(--orange)}
+.who b.t{display:block;font-size:clamp(22px,2.4vw,28px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.who ul{margin:10px 0 0;padding-left:18px}
+.who li{padding:3px 0}
+.out{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hair)}
+.out div{padding:14px 16px 14px 0;border-right:1px solid var(--hair);min-width:0}
+.out div+div{padding-left:16px}
+.out div:last-child{border-right:0}
+.out b{display:block;font-size:18px;letter-spacing:-.01em;text-decoration:line-through;text-decoration-color:var(--orange);text-decoration-thickness:2px}
+.out span{display:block;margin-top:4px;font-size:14px;color:var(--muted)}
+.alert{display:grid}
+.al{display:grid;grid-template-columns:4ch 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.al .n{font:800 22px var(--display);color:var(--orange)}
+.al h4{margin:0 0 4px;font-size:18px;letter-spacing:-.01em}
+.al p{margin:0 0 4px}
+.al .fix{color:var(--blue);font-weight:500}
+.tablewrap{overflow-x:auto}
+table{width:100%;min-width:640px;border-collapse:collapse;font-size:15px}
+th{text-align:left;font:11.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:8px 10px 8px 0;border-bottom:1px solid var(--fg);font-weight:400}
+td{vertical-align:top;padding:10px 10px 10px 0;border-bottom:1px solid var(--hair)}
+td:first-child{font-weight:700;width:16%}
+td.new{background:var(--blue-soft);padding-left:10px}
+.tag{display:inline-block;font:11px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:2px 6px;white-space:nowrap;vertical-align:1px}
+.tag.eq{background:var(--soft);color:var(--fg)}
+.tag.reco{background:var(--blue-soft);color:var(--blue)}
+.tag.warn{background:var(--orange-soft);color:var(--orange)}
+.box{background:var(--orange-soft);border-left:3px solid var(--orange);padding:14px 18px;max-width:72ch}
+.box p{margin:0 0 8px}.box p:last-child{margin:0}
+.box b.h{color:var(--orange)}
+ol.next{margin:0;padding-left:22px;max-width:68ch}
+ol.next li{padding:6px 0}
+.frames{display:flex;gap:24px;align-items:flex-end;flex-wrap:wrap;margin-top:6px}
+.frames figure{margin:0;display:grid;gap:8px;justify-items:start}
+.fr{border:8px solid var(--fg);background:var(--blue-soft);display:grid;place-items:center;color:var(--blue);font:500 12px var(--mono);text-align:center;padding:6px}
+.fr.h{width:180px;height:120px}.fr.v{width:120px;height:180px}
+.frames figcaption{font:11.5px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.src-list{font:13px/1.7 var(--mono);color:var(--muted);margin:0;padding-left:18px}
+.src-list a{color:var(--blue)}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
+@media (max-width:760px){
+  .grid{grid-template-columns:1fr}
+  .grid>.k{margin-bottom:10px}
+  .stats,.out{grid-template-columns:repeat(2,1fr)}
+  .stats div:nth-child(2),.out div:nth-child(2){border-right:0}
+  .stats div:nth-child(3),.out div:nth-child(3){padding-left:0}
+  .spec,.who{grid-template-columns:1fr}
+  .row{grid-template-columns:10ch 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<div class="meta k">
+<span>PFR Générations Connectées</span>
+<span>Bloc 03 · Outils no-code et IA</span>
+<span>Équipe <b>Clément, Camille, Lucas</b></span>
+<span><b>15 octobre 2026</b></span>
+</div>
+
+<h1>Le Cadre, version <span>retenue</span></h1>
+<p class="lead">Un cadre accroché au mur, qui reçoit les photos, vidéos et messages de la famille. Le parent n’a rien à installer ni à apprendre.</p>
+
+<div class="stats">
+<div><b class="b">1</b><span>cadre au mur, chez le parent</span></div>
+<div><b class="b">1</b><span>appli, pour l’enfant</span></div>
+<div><b class="o">0</b><span>appli pour le parent</span></div>
+<div><b>3</b><span>contenus : photo, vidéo, message</span></div>
+</div>
+
+<section>
+<div class="grid">
+<div class="k">01 · Pour qui</div>
+<div>
+<h2>Deux personnes, deux objets</h2>
+<div class="who">
+<div><span class="k">Le parent</span><b class="t">Le cadre, et rien d’autre</b>
+<ul>
+<li>Il regarde les photos, les vidéos et les messages qui arrivent.</li>
+<li>Il touche l’écran pour dire « je suis là ».</li>
+<li>Il accepte ou refuse l’appel aux secours à l’installation.</li>
+</ul></div>
+<div class="o"><span class="k">L’enfant (l’aidant)</span><b class="t">L’appli</b>
+<ul>
+<li>Il ajoute une photo ou une vidéo.</li>
+<li>Il écrit et envoie un message.</li>
+<li>Il reçoit une notification quand son parent touche le cadre.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">02 · Le cadre</div>
+<div>
+<h2>Ce que fait le cadre</h2>
+<div class="spec">
+<div><dl>
+<div class="row"><dt>Pose</dt><dd>Accroché au mur.</dd></div>
+<div class="row"><dt>Format</dt><dd>Horizontal ou vertical selon la place sur le mur ; l’affichage s’adapte tout seul.</dd></div>
+<div class="row"><dt>Contenus</dt><dd>Photos, vidéos et messages.</dd></div>
+<div class="row"><dt>Sens</dt><dd>De l’aidant vers le parent : le parent reçoit, il n’écrit pas.</dd></div>
+</dl></div>
+<div><dl>
+<div class="row"><dt>Interaction</dt><dd>Un toucher sur l’écran envoie une notification à l’enfant : son parent est là. <span class="tag reco">décidé</span></dd></div>
+<div class="row"><dt>Secours</dt><dd>Seulement si le parent l’accepte à l’installation : après plus de 48 h sans toucher, les aidants sont prévenus en premier.</dd></div>
+<div class="row"><dt>Appli parent</dt><dd>Aucune : tout se passe sur le cadre.</dd></div>
+</dl></div>
+</div>
+<h3>Un cadre, deux sens</h3>
+<div class="frames">
+<figure><div class="fr h">photo<br>en paysage</div><figcaption>Horizontal</figcaption></figure>
+<figure><div class="fr v">photo<br>en portrait</div><figcaption>Vertical</figcaption></figure>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">03 · Écarté</div>
+<div>
+<h2>Ce qu’on ne fait pas</h2>
+<p>Le cadre reste un objet de nouvelles, pas un téléphone. On écarte tout ce qui demande au parent de répondre en direct ou d’apprendre un outil.</p>
+<div class="out">
+<div><b>Appel vidéo</b><span>type FaceTime</span></div>
+<div><b>Appel audio</b><span>ni entrant ni sortant</span></div>
+<div><b>Messages vocaux</b><span>ni envoyés ni reçus</span></div>
+<div><b>Appli parent</b><span>le cadre suffit</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">04 · Les deux fonctions</div>
+<div>
+<h2>Le toucher est fixé, les secours restent ouverts</h2>
+<div class="alert">
+<div class="al"><span class="n">1</span><div>
+<h4>Le petit toucher <span class="tag reco">décidé</span></h4>
+<p>Le parent touche l’écran, l’enfant reçoit une notification qui dit simplement que son parent est là.</p>
+<div class="spec"><div><dl>
+<div class="row"><dt>Côté enfant</dt><dd>Une notification simple. Elle informe, elle n’appelle pas de réponse.</dd></div>
+<div class="row"><dt>Côté parent</dt><dd>Un petit signe discret à l’écran lui montre que son toucher est bien parti. <span class="tag warn">forme à choisir</span></dd></div>
+</dl></div><div><dl>
+<div class="row"><dt>Sens</dt><dd>Le toucher dit « je suis là », pas « j’aime cette photo ».</dd></div>
+<div class="row"><dt>Geste</dt><dd>Un seul toucher suffit.</dd></div>
+</dl></div></div>
+</div></div>
+<div class="al"><span class="n">2</span><div>
+<h4>L’appel automatique aux secours</h4>
+<p>Validé à condition que le parent l’accepte à l’installation. Reste à dire ce qui le déclenche : le cadre n’a ni caméra, ni micro, ni capteur dans cette version. Le seul signal est l’absence de toucher.</p>
+<div class="spec"><div><dl>
+<div class="row"><dt>Délai</dt><dd>Plus de 48 heures sans toucher. <span class="tag reco">décidé</span></dd></div>
+<div class="row"><dt>Qui d’abord</dt><dd>Les aidants sont prévenus en premier. <span class="tag reco">décidé</span></dd></div>
+</dl></div><div><dl>
+<div class="row"><dt>Et ensuite</dt><dd>Si aucun aidant ne réagit : au bout de combien de temps, et qui appelle les secours ? <span class="tag warn">à trancher</span></dd></div>
+<div class="row"><dt>Changer d’avis</dt><dd>Le parent le demande, l’aidant active ou désactive l’alerte depuis l’appli. <span class="tag reco">décidé</span></dd></div>
+</dl></div></div>
+</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">05 · Ce qui change</div>
+<div>
+<h2>Par rapport à la synthèse technique de ce matin</h2>
+<p>La synthèse des 32 questions techniques (Lucas, 15 octobre) décrivait un cadre plus large. Voici ce que la version retenue modifie, pour mettre la synthèse à jour.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Sujet</th><th>Synthèse du matin</th><th>Version retenue</th></tr></thead>
+<tbody>
+<tr><td>Pose</td><td>Cadre posé sur un meuble, écran portatif qui se clipse par aimant.</td><td class="new">Accroché au mur, horizontal ou vertical.</td></tr>
+<tr><td>Appels</td><td>Vidéo ou audio, vers une liste choisie par la famille.</td><td class="new">Aucun appel.</td></tr>
+<tr><td>Voix et micro</td><td>Mot d’activation, lumière d’écoute, bouton micro.</td><td class="new">Pas de vocal : le micro n’a plus d’usage.</td></tr>
+<tr><td>Caméra</td><td>Intégrée, avec un volet à glisser.</td><td class="new">Plus d’usage sans appel vidéo : à retirer ?</td></tr>
+<tr><td>Expéditeurs</td><td>Toute personne qui a l’appli, avec un filtre de l’aidant.</td><td class="new">L’appli de l’enfant. Autres proches : à préciser.</td></tr>
+<tr><td>Secours</td><td>Pas d’appel automatique : un message doux à l’aidant après 3 jours sans toucher.</td><td class="new">Appel automatique, si le parent l’accepte.</td></tr>
+<tr><td>Toucher</td><td>Sert de signe pour le message doux.</td><td class="new">Un toucher envoie une notification « je suis là » à l’enfant ; un petit signe à l’écran confirme au parent que c’est parti.</td></tr>
+</tbody>
+</table></div>
+<div class="box">
+<p><b class="h">Point de vigilance</b></p>
+<p>L’appel automatique aux secours revient sur la décision n° 1 de ce matin. Celle-ci l’avait écarté pour trois raisons : c’est de la surveillance, ça crée des fausses alertes, et ça peut faire passer le cadre pour un dispositif médical. Notre grille des risques réglementaires disait la même chose. La condition « si le parent l’accepte » règle le consentement, mais pas le risque de fausses alertes ni celui d’être requalifié en dispositif médical.</p>
+<p>Il faut donc écrire noir sur blanc pourquoi on revient dessus, et comment on traite ces deux risques. Le jury posera la question.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">06 · Pour la phase 2</div>
+<div>
+<h2>Ce que ça change pour la stack</h2>
+<p>Le produit est plus simple, donc la stack aussi : plus besoin de gérer la vidéo en direct ni la voix.</p>
+<div class="spec">
+<div><dl>
+<div class="row"><dt>Écran du cadre</dt><dd>Une app web en plein écran, qui tourne selon le sens du cadre. Lisibilité testée à quelques mètres.</dd></div>
+<div class="row"><dt>Appli enfant</dt><dd>Envoyer photos, vidéos et messages ; recevoir le toucher.</dd></div>
+<div class="row"><dt>Base</dt><dd>Familles, contenus envoyés, dernier toucher, choix du parent pour les secours.</dd></div>
+</dl></div>
+<div><dl>
+<div class="row"><dt>Automatisation</dt><dd>Toucher → notification à l’enfant ; pas de toucher depuis X heures → chaîne d’alerte.</dd></div>
+<div class="row"><dt>Vidéos</dt><dd>Stockage et poids des fichiers : un critère à ajouter au benchmark.</dd></div>
+<div class="row"><dt>IA</dt><dd>Le compagnon de conversation n’a plus sa place sans vocal ; le résumé pour l’aidant reste possible.</dd></div>
+</dl></div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">07 · À décider</div>
+<div>
+<h2>Les questions à régler en équipe</h2>
+<ol class="next">
+<li>Le signe qui confirme le toucher au parent : un cœur qui apparaît, une lueur sur le bord du cadre, un court texte « Envoyé » ? Il doit se voir de loin, sans cacher la photo, et disparaître seul.</li>
+<li>L’appel aux secours : ce qui se passe si aucun aidant ne réagit, et pourquoi on revient sur la décision de ce matin.</li>
+<li>Quand l’aidant change le réglage de l’alerte, le cadre l’affiche-t-il au parent (« Alerte désactivée ») pour qu’il sache où il en est ?</li>
+<li>Micro et caméra : on les retire du cadre ?</li>
+<li>Qui peut envoyer : seulement l’enfant, ou aussi les petits-enfants et d’autres proches ?</li>
+<li>Durée de vie des contenus sur le cadre : tout garder, ou les plus récents seulement ?</li>
+<li>Le parent peut-il mettre en pause l’affichage ou masquer une photo ?</li>
+</ol>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="grid">
+<div class="k">Sources</div>
+<ul class="src-list">
+<li>Décisions de l’équipe du 15 octobre 2026, transmises par Clément.</li>
+<li>Synthèse technique du cadre connecté, Lucas, 15 octobre 2026 (dépôt Fil-rouge-1, bloc 03).</li>
+<li><a href="https://claude.ai/artifact/NG1v3zShtbsi76tqBwjCrb">Grille des risques réglementaires</a>, 8 octobre 2026.</li>
+</ul>
+</div>
+</footer>
+</div>
+</body>
+</html>
