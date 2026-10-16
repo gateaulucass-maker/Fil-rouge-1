@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-16T12:25",
+  "mise_a_jour": "2026-10-16T15:54",
   "phases": [
     {
       "id": "P0",
@@ -644,6 +644,36 @@
           "date": "2026-10-16",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-maquette-app-v1.html",
           "note": "16 écrans sur téléphone en 4 parcours (installer, partager, le lien, alerte et réglages), légendes numérotées, statuts décidé / proposé / ouvert. À valider par Clément et Camille."
+        },
+        {
+          "titre": "Compte rendu du brainstorm sur le cadre",
+          "statut": "termine",
+          "qui": "Camille",
+          "date": "2026-10-16",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-brainstorm-cadre.html",
+          "note": "Récup, tablette reconditionnée, pose au mur sans perçage, carrousel 15 s, anniversaires et voix écartés pour la V1, tests familles et EHPAD, vidéo de 20 min."
+        },
+        {
+          "titre": "Compte rendu global : architecture et données du cadre",
+          "statut": "termine",
+          "qui": "Camille",
+          "date": "2026-10-16",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-architecture-donnees-cadre.html",
+          "note": "OS sur base Linux mobile, stack Claude Code + React + Next + Supabase, toutes les photos de l'année gardées pour l'album de l'année, sauvegarde dans le cadre."
+        },
+        {
+          "titre": "Compte rendu global du projet",
+          "statut": "a_valider",
+          "qui": "Camille",
+          "date": "2026-10-16",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-global-projet.html",
+          "note": "État du projet au 16/10 en 13 parties, dont les points à aligner entre les documents de l'équipe (geste du parent, alerte, appel vidéo, tablette, outils, style du cadre, pose)."
+        },
+        {
+          "titre": "Tâche principale : clarifier le fonctionnement de bout en bout",
+          "statut": "a_faire",
+          "qui": "Équipe",
+          "note": "Du premier contact avec la solution jusqu'à la première photo reçue : identifier toutes les frictions (enfant, parent, famille) et les lisser, pour une vue claire du fonctionnement et que tout marche de bout en bout. À réaliser plus tard."
         }
       ]
     },
