@@ -113,6 +113,7 @@ footer a { color: var(--pin); }
 <div class="flow">
   <div><span class="k">Parcours 1</span><h3>Installer</h3><ol><li><a href="#e1">Bienvenue</a></li><li><a href="#e2">Créer son compte</a></li><li><a href="#e3">Le parent et le cadre</a></li><li><a href="#e4">Relier le cadre</a></li><li><a href="#e5">L'alerte, avec le parent</a></li><li><a href="#e6">Premières photos</a></li></ol></div>
   <div><span class="k">Parcours 2</span><h3>Partager au quotidien</h3><ol start="7"><li><a href="#e7">Accueil</a></li><li><a href="#e8">Envoyer</a></li><li><a href="#e9">Aperçu sur le cadre</a></li><li><a href="#e10">Écrire un message</a></li><li><a href="#e11">Ce qui défile</a></li></ol></div>
+  <div><span class="k">Parcours 2 bis</span><h3>Le moment du jour</h3><ol start="17"><li><a href="#e17">La notification du jour</a></li><li><a href="#e18">Photo sur le vif</a></li><li><a href="#e19">Envoyé</a></li><li><a href="#e20">Sur le cadre</a></li></ol></div>
   <div><span class="k">Parcours 3</span><h3>Le lien</h3><ol start="12"><li><a href="#e12">Notification « Maman est là »</a></li><li><a href="#e13">Renvoyer une lueur</a></li></ol></div>
   <div><span class="k">Parcours 4</span><h3>Alerte et réglages</h3><ol start="14"><li><a href="#e14">Réglage de l'alerte</a></li><li><a href="#e15">Alerte reçue</a></li><li><a href="#e16">Réglages du cadre</a></li></ol></div>
 </div>
@@ -231,6 +232,7 @@ footer a { color: var(--pin); }
 <div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
   <div class="title">Le cadre de Jeanne</div>
   <div class="box p"><div class="row"><span class="dot"></span><b>Maman est là</b></div><span class="sub">Ce matin, 8 h 12</span><span class="pin">1</span></div>
+  <div class="box p" style="border-color:#2a2d33"><b>⚡ Moment du jour</b> · pas encore arrivé<br><span class="sub">Vous serez prévenu, à une heure surprise</span><span class="pin l">6</span></div>
   <div class="mini-frame p"><div class="ph" style="height:110px">photo en cours sur le cadre</div><span class="pin">2</span></div>
   <div class="row p" style="justify-content:space-between"><span class="sub">Cadre connecté</span><span class="sub">Alerte : activée</span><span class="pin">3</span></div>
   <div class="btn pri p">＋ Envoyer au cadre<span class="pin">4</span></div>
@@ -243,11 +245,13 @@ footer a { color: var(--pin); }
   <li><span class="n">3</span><span>L'état technique seulement : connecté, et si l'alerte est activée. Jamais l'activité du parent.</span></li>
   <li><span class="n">4</span><span>L'action principale : envoyer.</span></li>
   <li><span class="n">5</span><span>Quatre onglets, pas plus.</span></li>
+  <li><span class="n">6</span><span>L'état du moment du jour : en attente, à faire, ou envoyé. <span class="tag ok">décidé</span></span></li>
 </ul></div>
 
 <div class="item" id="e8"><span class="k">Écran 8 · Envoyer</span>
 <div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
   <div class="title">Envoyer à Jeanne</div>
+  <div class="box p" style="padding:14px;border-color:#2a2d33"><b>⚡ Le moment du jour</b><br><span class="sub">Disponible quand la notification arrive</span><span class="pin l">5</span></div>
   <div class="box p" style="padding:14px"><b>🖼 Une photo</b><br><span class="sub">Depuis votre galerie ou l'appareil photo</span><span class="pin">1</span></div>
   <div class="box p" style="padding:14px"><b>▶ Une vidéo</b><br><span class="sub">30 secondes maximum</span><span class="pin">2</span></div>
   <div class="box p" style="padding:14px"><b>✎ Un petit mot</b><br><span class="sub">Il s'affiche comme une carte postale</span><span class="pin">3</span></div>
@@ -260,6 +264,7 @@ footer a { color: var(--pin); }
   <li><span class="n">2</span><span>Vidéo. <span class="tag ok">décidé</span> Durée maximale (30 s ?) et poids : <span class="tag open">ouvert</span>, à fixer avec les tests de stockage.</span></li>
   <li><span class="n">3</span><span>Message écrit. <span class="tag ok">décidé</span></span></li>
   <li><span class="n">4</span><span>Appels et vocaux écartés. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">5</span><span>Le moment du jour passe en premier : la photo sur le vif. <span class="tag ok">décidé</span> Garder aussi l'envoi depuis la galerie (photos choisies) ? <span class="tag open">ouvert</span></span></li>
 </ul></div>
 
 <div class="item" id="e9"><span class="k">Écran 9 · Aperçu sur le cadre</span>
@@ -317,6 +322,72 @@ footer a { color: var(--pin); }
   <li><span class="n">2</span><span>Tout ce qui tourne sur le cadre, dans l'ordre. L'œil barré = contenu masqué.</span></li>
   <li><span class="n">3</span><span>Masquer une photo sans la supprimer. Le parent peut-il masquer lui-même ? <span class="tag open">ouvert</span></span></li>
   <li><span class="n">4</span><span>Qui peut envoyer : seulement l'enfant, ou aussi petits-enfants et proches ? <span class="tag open">ouvert</span> Combien de contenus garder ? <span class="tag open">ouvert</span></span></li>
+</ul></div>
+</div>
+
+<!-- ============================================================ MOMENT DU JOUR -->
+<h2>2 bis · Le moment du jour</h2>
+<p>Comme BeReal : une fois par jour, à une heure surprise, la famille reçoit une notification et prend une photo sur le vif. Le parent voit le moment présent, pas une photo choisie et retouchée.</p>
+<div class="screens">
+
+<div class="item" id="e17"><span class="k">Écran 17 · La notification du jour</span>
+<div class="phone lock"><div class="sb"><span></span><span>●●●</span></div><div class="scr">
+  <div class="big-time">14:37</div>
+  <div class="sub" style="text-align:center;color:#dfe3e8">mardi 27 octobre</div>
+  <div class="notif p" style="margin-top:18px"><b>⚡ Le Cadre</b> · maintenant<br><b>C'est le moment !</b> Montrez à Maman ce que vous faites, là, maintenant.<span class="pin">1</span></div>
+  <div class="notif p" style="opacity:.85">2 minutes pour prendre la photo<span class="pin">2</span></div>
+</div></div>
+<h3>La notification du jour</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Une seule notification par jour, à une heure différente chaque jour, en même temps pour toute la famille. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Un temps court pour rester sur le vif (2 minutes, comme BeReal). Durée exacte : <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e18"><span class="k">Écran 18 · Photo sur le vif</span>
+<div class="phone"><div class="sb"><span>14:37</span><span>●●●</span></div><div class="scr" style="background:#1d1f23;color:#fff">
+  <div class="row p" style="justify-content:space-between"><b>Le moment du jour</b><span style="font:600 14px var(--mono)">1:48</span><span class="pin">1</span></div>
+  <div class="camera p" style="background:#3a3d44"><span style="color:#cfd3d8;font-size:12px">ce que vous voyez, maintenant</span><div class="p" style="position:absolute;top:10px;left:10px;width:70px;height:92px;border:2px solid #fff;border-radius:8px;background:#55595f;display:grid;place-items:center;font-size:10px;color:#ddd">vous<span class="pin">2</span></div></div>
+  <div class="row" style="justify-content:center;gap:28px;margin-top:6px"><span style="font-size:11px;color:#aaa">⚡</span><span class="p" style="width:58px;height:58px;border-radius:50%;border:4px solid #fff;display:inline-block"><span class="pin">3</span></span><span style="font-size:11px;color:#aaa">↺</span></div>
+  <div class="p" style="font-size:11.5px;color:#bbb;text-align:center">Pas de galerie, pas de filtre.<span class="pin">4</span></div>
+</div></div>
+<h3>Photo sur le vif</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Le compte à rebours, visible mais pas stressant.</span></li>
+  <li><span class="n">2</span><span>Les deux caméras en même temps, comme BeReal : ce qu'on voit et son visage. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">3</span><span>Un seul gros bouton pour prendre la photo.</span></li>
+  <li><span class="n">4</span><span>On ne choisit pas une photo dans la galerie : c'est le moment présent. <span class="tag ok">décidé</span></span></li>
+</ul></div>
+
+<div class="item" id="e19"><span class="k">Écran 19 · Envoyé</span>
+<div class="phone"><div class="sb"><span>14:38</span><span>●●●</span></div><div class="scr">
+  <div class="title">C'est parti pour le cadre ✓</div>
+  <div class="mini-frame p"><div class="ph" style="height:130px">votre photo du moment</div><span class="pin">1</span></div>
+  <div class="field p">Un mot avec ? « Pause café au bureau » (facultatif)<span class="pin">2</span></div>
+  <div class="box soft p">Aujourd'hui : Sophie ✓ · Lucas ✓ · Léa, pas encore<span class="pin">3</span></div>
+  <div class="sub p">Envoyée après les 2 minutes ? Elle part quand même, marquée « plus tard ».<span class="pin">4</span></div>
+  <div class="tabbar"><span class="on"><b>⌂</b>Accueil</span><span><b>＋</b>Envoyer</span><span><b>▦</b>Le cadre</span><span><b>⚙</b>Réglages</span></div>
+</div></div>
+<h3>Envoyé</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>La photo part directement au cadre, telle quelle.</span></li>
+  <li><span class="n">2</span><span>Une légende courte, facultative, pour dire où on est. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">3</span><span>On voit qui de la famille a déjà partagé son moment. <span class="tag warn">proposé</span> (sans classement ni série)</span></li>
+  <li><span class="n">4</span><span>Une photo en retard est-elle acceptée ? <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e20"><span class="k">Écran 20 · Sur le cadre</span>
+<div class="phone" style="border-color:#9a9da3;border-radius:6px;height:300px;margin-top:130px"><div class="scr" style="height:100%;padding:10px;gap:6px">
+  <div class="p" style="font:600 11px var(--font);color:#555">Le moment du jour · mardi<span class="pin">1</span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;flex:1" class="p">
+    <div class="ph" style="height:auto;align-items:end;padding:4px;font-size:10px">Sophie · 14 h 38</div>
+    <div class="ph" style="height:auto;align-items:end;padding:4px;font-size:10px">Lucas · 14 h 39</div>
+    <span class="pin">2</span>
+  </div>
+</div></div>
+<h3>Ce que voit le parent</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Les photos du moment arrivent sur le cadre avec un petit titre « Le moment du jour ». <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">2</span><span>Plusieurs proches : une mosaïque du même instant, puis chaque photo rejoint le défilement de 15 s. Mosaïque ou une par une : <span class="tag open">ouvert</span></span></li>
 </ul></div>
 </div>
 
@@ -427,8 +498,8 @@ footer a { color: var(--pin); }
 
 <h2>À retenir pour la V2</h2>
 <div class="notes">
-  <div><h3>Ce qu'il faut trancher</h3><ul><li>Heure exacte du toucher ou « ce matin » ?</li><li>Qui peut envoyer ?</li><li>Durée et poids des vidéos</li><li>Le parent peut-il masquer une photo ?</li><li>Suite de l'alerte si personne ne réagit</li></ul></div>
-  <div><h3>Ce que les outils doivent savoir faire</h3><ul><li>Envoyer photo, vidéo, mot vers le cadre</li><li>Recevoir le toucher et notifier en quelques secondes</li><li>Règle d'alerte dans le temps, une seule fois</li><li>Relier un cadre par un code</li><li>Données en Europe</li></ul></div>
+  <div><h3>Ce qu'il faut trancher</h3><ul><li>Heure exacte du toucher ou « ce matin » ?</li><li>Moment du jour : durée (2 min ?), photo en retard, mosaïque ou une par une, garder l'envoi depuis la galerie</li><li>Qui peut envoyer ?</li><li>Durée et poids des vidéos</li><li>Le parent peut-il masquer une photo ?</li><li>Suite de l'alerte si personne ne réagit</li></ul></div>
+  <div><h3>Ce que les outils doivent savoir faire</h3><ul><li>Envoyer photo, vidéo, mot vers le cadre</li><li>Recevoir le toucher et notifier en quelques secondes</li><li>Règle d'alerte dans le temps, une seule fois</li><li>Relier un cadre par un code</li><li>Envoyer une notification par jour à une heure aléatoire, à toute la famille en même temps</li><li>Données en Europe</li></ul></div>
   <div><h3>Prochaines étapes</h3><ul><li>Faire valider cette V1 par Clément et Camille</li><li>Passer les décisions dans la fiche produit</li><li>Construire ces écrans dans la stack A (Claude Code) puis D (FlutterFlow) pour les tests</li><li>Donner une direction artistique en V2</li></ul></div>
 </div>
 
