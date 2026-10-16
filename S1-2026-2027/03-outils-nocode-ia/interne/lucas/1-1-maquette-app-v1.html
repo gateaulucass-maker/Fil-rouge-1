@@ -100,7 +100,7 @@ footer a { color: var(--pin); }
 <body>
 <div class="wrap">
 <header>
-  <span class="k">PFR Générations Connectées · Bloc 03 · Leçon 1.1 · Équipe Clément, Camille, Lucas · 16 octobre 2026 · brouillon de Lucas</span>
+  <span class="k">PFR Générations Connectées · Bloc 03 · Leçon 1.1 · Équipe Clément, Camille, Lucas · 16 octobre 2026 · brouillon de Lucas · mis à jour après le brainstorm d'équipe</span>
   <h1>Maquette de l'appli, V1</h1>
   <p class="intro">L'appli de l'enfant (l'aidant) pour Le Cadre, sur téléphone. Maquette fil de fer, sans direction artistique : elle montre <b>quoi</b> est à l'écran et <b>dans quel ordre</b>, pas le style. Chaque numéro bleu renvoie à la légende sous l'écran. Toutes les données sont fictives.</p>
   <div class="tags">
@@ -111,7 +111,7 @@ footer a { color: var(--pin); }
 </header>
 
 <div class="flow">
-  <div><span class="k">Parcours 1</span><h3>Installer</h3><ol><li><a href="#e1">Bienvenue</a></li><li><a href="#e2">Créer son compte</a></li><li><a href="#e3">Le parent et le cadre</a></li><li><a href="#e4">Relier le cadre</a></li><li><a href="#e5">L'alerte, avec le parent</a></li><li><a href="#e6">Premières photos</a></li></ol></div>
+  <div><span class="k">Parcours 1</span><h3>Installer</h3><ol><li><a href="#e1">Bienvenue</a></li><li><a href="#e2">Créer son compte</a></li><li><a href="#e4">Scanner le cadre</a></li><li><a href="#e3">Le parent et le cadre</a></li><li><a href="#e5">L'alerte, avec le parent</a></li><li><a href="#e6">Le carrousel de départ</a></li></ol></div>
   <div><span class="k">Parcours 1 bis</span><h3>Inviter la famille</h3><ol start="21"><li><a href="#e21">Inviter la famille</a></li><li><a href="#e22">Le message WhatsApp</a></li><li><a href="#e23">Rejoindre (petit-enfant)</a></li><li><a href="#e24">Son premier moment</a></li><li><a href="#e25">La famille</a></li></ol></div>
   <div><span class="k">Parcours 2</span><h3>Partager au quotidien</h3><ol start="7"><li><a href="#e7">Accueil</a></li><li><a href="#e8">Envoyer</a></li><li><a href="#e9">Aperçu sur le cadre</a></li><li><a href="#e10">Écrire un message</a></li><li><a href="#e11">Ce qui défile</a></li></ol></div>
   <div><span class="k">Parcours 2 bis</span><h3>Le moment du jour</h3><ol start="17"><li><a href="#e17">La notification du jour</a></li><li><a href="#e18">Photo sur le vif</a></li><li><a href="#e19">Envoyé</a></li><li><a href="#e20">Sur le cadre</a></li></ol></div>
@@ -129,6 +129,7 @@ footer a { color: var(--pin); }
   <div class="ph p" style="height:190px">illustration : un cadre au mur<span class="pin">1</span></div>
   <div class="title">Le Cadre</div>
   <div class="sub p">Envoyez vos photos, vidéos et petits mots au cadre de votre parent. Il n'a rien à faire.<span class="pin">2</span></div>
+  <div class="box soft p" style="text-align:center">Sans abonnement<span class="pin">4</span></div>
   <div style="margin-top:auto" class="btn pri p">Commencer<span class="pin">3</span></div>
   <div class="btn ghost">J'ai déjà un compte</div>
 </div></div>
@@ -137,10 +138,12 @@ footer a { color: var(--pin); }
   <li><span class="n">1</span><span>Une image du cadre au mur : on comprend l'objet avant l'appli.</span></li>
   <li><span class="n">2</span><span>La promesse en une phrase : le parent n'a rien à faire. <span class="tag ok">décidé</span></span></li>
   <li><span class="n">3</span><span>Un seul bouton principal, pour aller droit au but.</span></li>
+  <li><span class="n">4</span><span>Modèle économique : achat unique, sans frais d'abonnement. <span class="tag ok">décidé</span></span></li>
 </ul></div>
 
 <div class="item" id="e2"><span class="k">Écran 2 · Créer son compte</span>
 <div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="sub">Étape 1 sur 5</div>
   <div class="title">Votre compte</div>
   <div class="field">Votre prénom : Sophie</div>
   <div class="field p">Adresse e-mail (fictive)<span class="pin">1</span></div>
@@ -155,8 +158,25 @@ footer a { color: var(--pin); }
   <li><span class="n">2</span><span>Une phrase de confiance dès le début : données en Europe. <span class="tag warn">proposé</span></span></li>
 </ul></div>
 
-<div class="item" id="e3"><span class="k">Écran 3 · Le parent et le cadre</span>
+<div class="item" id="e4"><span class="k">Écran 3 · Scanner le cadre</span>
 <div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="sub">Étape 2 sur 5</div>
+  <div class="title">Scanner le cadre</div>
+  <div class="sub">Allumez le cadre chez Jeanne : un code apparaît sur son écran. Scannez-le pour relier le cadre et le téléphone.</div>
+  <div class="camera p"><div class="target"></div><span class="pin">1</span></div>
+  <div class="box soft p">Pas de caméra ? Tapez le code à 6 chiffres affiché sur le cadre.<span class="pin">2</span></div>
+  <div class="box p"><span class="dot"></span> Cadre de Jeanne relié, connecté au wifi<span class="pin">3</span></div>
+</div></div>
+<h3>Scanner le cadre</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Juste après la connexion, on scanne le code affiché par le cadre : les deux appareils sont reliés tout de suite, pendant la prise en main avec les grands-parents. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Une solution de secours sans scanner.</span></li>
+  <li><span class="n">3</span><span>Confirmation claire : le cadre est relié. Le wifi se règle sur le cadre ou depuis l'appli. <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e3"><span class="k">Écran 4 · Le parent et le cadre</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="sub">Étape 3 sur 5</div>
   <div class="title">Pour qui est le cadre ?</div>
   <div class="field p">Prénom du parent : Jeanne<span class="pin">1</span></div>
   <div class="field p">Comment il vous appelle : Maman<span class="pin">2</span></div>
@@ -174,23 +194,9 @@ footer a { color: var(--pin); }
   <li><span class="n">4</span><span>L'habillage choisi à l'achat, rappelé ici pour l'aperçu. Bois récupéré <span class="tag ok">décidé</span>, autres gammes <span class="tag warn">proposé</span></span></li>
 </ul></div>
 
-<div class="item" id="e4"><span class="k">Écran 4 · Relier le cadre</span>
-<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
-  <div class="title">Relier le cadre</div>
-  <div class="sub">Allumez le cadre : un code apparaît sur son écran. Scannez-le.</div>
-  <div class="camera p"><div class="target"></div><span class="pin">1</span></div>
-  <div class="box soft p">Pas de caméra ? Tapez le code à 6 chiffres affiché sur le cadre.<span class="pin">2</span></div>
-  <div class="box p"><span class="dot"></span> Cadre de Jeanne relié, connecté au wifi<span class="pin">3</span></div>
-</div></div>
-<h3>Relier le cadre</h3>
-<ul class="legend">
-  <li><span class="n">1</span><span>Scanner le code affiché par le cadre au premier démarrage. <span class="tag warn">proposé</span></span></li>
-  <li><span class="n">2</span><span>Une solution de secours sans scanner.</span></li>
-  <li><span class="n">3</span><span>Confirmation claire : le cadre est relié. Le wifi se règle sur le cadre ou depuis l'appli. <span class="tag open">ouvert</span></span></li>
-</ul></div>
-
 <div class="item" id="e5"><span class="k">Écran 5 · L'alerte, avec le parent</span>
 <div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="sub">Étape 4 sur 5</div>
   <div class="title">Une option à décider avec Jeanne</div>
   <div class="box soft p">À lire ensemble : « Si tu ne touches pas le cadre pendant 2 jours, je serai prévenue. »<span class="pin">1</span></div>
   <div class="box p"><div class="row" style="justify-content:space-between"><span><b>Jeanne est d'accord</b><br><span class="sub">Activer l'alerte</span></span><span class="toggle off"></span></div><span class="pin">2</span></div>
@@ -205,22 +211,26 @@ footer a { color: var(--pin); }
   <li><span class="n">3</span><span>Le réglage se change depuis l'appli, à la demande du parent. <span class="tag ok">décidé</span> Désactivée par défaut <span class="tag warn">proposé</span></span></li>
 </ul></div>
 
-<div class="item" id="e6"><span class="k">Écran 6 · Premières photos</span>
+<div class="item" id="e6"><span class="k">Écran 6 · Le carrousel de départ</span>
 <div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
-  <div class="title">Les premières photos</div>
-  <div class="sub p">Choisissez des photos que Jeanne aime déjà : mariage, enfants, vacances.<span class="pin">1</span></div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px">
-    <div class="ph" style="height:62px">✓</div><div class="ph" style="height:62px">✓</div><div class="ph" style="height:62px">✓</div>
-    <div class="ph" style="height:62px"></div><div class="ph" style="height:62px">✓</div><div class="ph" style="height:62px"></div>
+  <div class="sub">Étape 5 sur 5</div>
+  <div class="title">Le carrousel de départ</div>
+  <div class="sub p">Choisissez des souvenirs que Jeanne aime : mariage, enfants, vacances.<span class="pin">1</span></div>
+  <div class="mini-frame p"><div class="ph" style="height:104px">aperçu sur le cadre</div><span class="pin">2</span></div>
+  <div class="row" style="justify-content:center;gap:5px"><span class="dot" style="background:#2a2d33"></span><span class="dot" style="background:var(--mid)"></span><span class="dot" style="background:var(--mid)"></span><span class="dot" style="background:var(--mid)"></span></div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px" class="p">
+    <div class="ph" style="height:46px">✓</div><div class="ph" style="height:46px">✓</div><div class="ph" style="height:46px">✓</div><div class="ph" style="height:46px">＋</div>
+    <span class="pin">3</span>
   </div>
-  <div class="sub p">4 photos choisies · elles défileront toutes les 15 secondes<span class="pin">2</span></div>
-  <div style="margin-top:auto" class="btn pri p">Envoyer au cadre<span class="pin">3</span></div>
+  <div class="sub">Une photo toutes les 15 s</div>
+  <div style="margin-top:auto" class="btn pri p">Lancer le cadre<span class="pin">4</span></div>
 </div></div>
-<h3>Les premières photos</h3>
+<h3>Le carrousel de départ</h3>
 <ul class="legend">
-  <li><span class="n">1</span><span>Le cadre commence avec les souvenirs du parent, pas une photo vide. <span class="tag warn">proposé</span></span></li>
-  <li><span class="n">2</span><span>Au repos, les photos défilent environ 15 s chacune : jamais d'écran noir. <span class="tag ok">décidé</span></span></li>
-  <li><span class="n">3</span><span>Fin de l'installation : on arrive sur l'accueil.</span></li>
+  <li><span class="n">1</span><span>Le cadre démarre avec des souvenirs de famille, jamais vide. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Aperçu du carrousel tel qu'il tournera sur le cadre.</span></li>
+  <li><span class="n">3</span><span>Les photos choisies, à compléter à tout moment.</span></li>
+  <li><span class="n">4</span><span>Fin de l'installation : le carrousel démarre sur le cadre, puis on arrive sur l'accueil.</span></li>
 </ul></div>
 </div>
 
@@ -344,15 +354,15 @@ footer a { color: var(--pin); }
   <div class="box p" style="padding:14px;border-color:#2a2d33"><b>⚡ Le moment du jour</b><br><span class="sub">Disponible quand la notification arrive</span><span class="pin l">5</span></div>
   <div class="box p" style="padding:14px"><b>🖼 Une photo</b><br><span class="sub">Depuis votre galerie ou l'appareil photo</span><span class="pin">1</span></div>
   <div class="box p" style="padding:14px"><b>▶ Une vidéo</b><br><span class="sub">30 secondes maximum</span><span class="pin">2</span></div>
-  <div class="box p" style="padding:14px"><b>✎ Un petit mot</b><br><span class="sub">Il s'affiche comme une carte postale</span><span class="pin">3</span></div>
+  <div class="box p" style="padding:14px"><b>✎ Un petit mot</b><br><span class="sub">Quelques secondes sur la photo, ou en description</span><span class="pin">3</span></div>
   <div class="box soft p">Pas d'appel ni de message vocal : le cadre reste un objet de nouvelles.<span class="pin">4</span></div>
   <div class="tabbar"><span><b>⌂</b>Accueil</span><span class="on"><b>＋</b>Envoyer</span><span><b>▦</b>Le cadre</span><span><b>⚙</b>Réglages</span></div>
 </div></div>
 <h3>Envoyer</h3>
 <ul class="legend">
   <li><span class="n">1</span><span>Photo. <span class="tag ok">décidé</span></span></li>
-  <li><span class="n">2</span><span>Vidéo. <span class="tag ok">décidé</span> Durée maximale (30 s ?) et poids : <span class="tag open">ouvert</span>, à fixer avec les tests de stockage.</span></li>
-  <li><span class="n">3</span><span>Message écrit. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Vidéo. <span class="tag ok">décidé</span> Comment l'afficher sans dénaturer le cadre (lecture auto, son), durée et poids : <span class="tag open">ouvert</span></span></li>
+  <li><span class="n">3</span><span>Le petit mot reste, mais discret pour ne pas dénaturer le cadre photo : pop-up temporaire ou description de photo. <span class="tag ok">décidé</span> Ergonomie exacte : <span class="tag open">ouvert</span></span></li>
   <li><span class="n">4</span><span>Appels et vocaux écartés. <span class="tag ok">décidé</span></span></li>
   <li><span class="n">5</span><span>Le moment du jour passe en premier : la photo sur le vif. <span class="tag ok">décidé</span> Garder aussi l'envoi depuis la galerie (photos choisies) ? <span class="tag open">ouvert</span></span></li>
 </ul></div>
@@ -370,7 +380,7 @@ footer a { color: var(--pin); }
 <h3>Aperçu sur le cadre</h3>
 <ul class="legend">
   <li><span class="n">1</span><span>L'aperçu dans le vrai sens du cadre (paysage ou portrait).</span></li>
-  <li><span class="n">2</span><span>Recadrage par l'IA, sans couper les visages, photo d'origine gardée. Brique IA à tester <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">2</span><span>Recadrage automatique par l'IA, sans couper les visages, avec la possibilité d'afficher la photo entière. <span class="tag ok">décidé</span> Brique IA à tester.</span></li>
   <li><span class="n">3</span><span>Une légende courte, facultative.</span></li>
   <li><span class="n">4</span><span>Envoi. Un fichier refusé affiche un message simple (cas invalide du test 2 de Clément).</span></li>
 </ul></div>
@@ -378,18 +388,18 @@ footer a { color: var(--pin); }
 <div class="item" id="e10"><span class="k">Écran 10 · Écrire un mot</span>
 <div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
   <div class="title">Un petit mot</div>
-  <div class="field p" style="height:80px">Bisous de Biarritz, on pense à toi !<span class="pin">1</span></div>
-  <div class="sub">120 caractères maximum</div>
-  <div class="sub">Aperçu sur le cadre :</div>
-  <div class="mini-frame p"><div class="ph" style="height:96px;align-items:end;padding:8px"><div class="card" style="width:100%">Bisous de Biarritz, on pense à toi !<br><span class="sub">Sophie</span></div></div><span class="pin">2</span></div>
-  <div class="row p"><span class="chip on">Sur une photo</span><span class="chip">Seul</span><span class="pin">3</span></div>
+  <div class="field p" style="height:64px">Bisous de Biarritz, on pense à toi !<span class="pin">1</span></div>
+  <div class="sub">80 caractères maximum</div>
+  <div class="sub">Comment l'afficher ?</div>
+  <div class="row p" style="flex-wrap:wrap"><span class="chip on">Pop-up quelques secondes</span><span class="chip">Description sous la photo</span><span class="pin">2</span></div>
+  <div class="mini-frame p"><div class="ph" style="height:96px;align-items:end;padding:8px"><div class="card" style="width:100%">Bisous de Biarritz, on pense à toi !<br><span class="sub">Sophie</span></div></div><span class="pin">3</span></div>
   <div style="margin-top:auto" class="btn pri">Envoyer</div>
 </div></div>
 <h3>Écrire un mot</h3>
 <ul class="legend">
-  <li><span class="n">1</span><span>Un texte court, pour rester lisible de loin. Limite de longueur <span class="tag warn">proposé</span></span></li>
-  <li><span class="n">2</span><span>Le mot s'affiche comme une carte postale, avec le prénom, puis la photo revient seule. <span class="tag warn">proposé</span></span></li>
-  <li><span class="n">3</span><span>Sur une photo choisie, ou sur un fond simple.</span></li>
+  <li><span class="n">1</span><span>Un texte très court : le cadre reste d'abord visuel.</span></li>
+  <li><span class="n">2</span><span>Deux façons gardées par l'équipe : une pop-up qui disparaît seule, ou une description attachée à une photo. <span class="tag ok">décidé</span> Laquelle par défaut : <span class="tag open">ouvert</span></span></li>
+  <li><span class="n">3</span><span>Aperçu sur le cadre. Ergonomie de l'affichage à finaliser (prochaine étape du brainstorm). <span class="tag open">ouvert</span></span></li>
 </ul></div>
 
 <div class="item" id="e11"><span class="k">Écran 11 · Ce qui défile sur le cadre</span>
@@ -436,6 +446,7 @@ footer a { color: var(--pin); }
 <div class="item" id="e18"><span class="k">Écran 18 · Photo sur le vif</span>
 <div class="phone"><div class="sb"><span>14:37</span><span>●●●</span></div><div class="scr" style="background:#1d1f23;color:#fff">
   <div class="row p" style="justify-content:space-between"><b>Le moment du jour</b><span style="font:600 14px var(--mono)">1:48</span><span class="pin">1</span></div>
+  <div class="row p" style="justify-content:center"><span class="chip on">Photo</span><span class="chip" style="background:#3a3d44;color:#ddd">Vidéo rapide</span><span class="pin">5</span></div>
   <div class="camera p" style="background:#3a3d44"><span style="color:#cfd3d8;font-size:12px">ce que vous voyez, maintenant</span><div class="p" style="position:absolute;top:10px;left:10px;width:70px;height:92px;border:2px solid #fff;border-radius:8px;background:#55595f;display:grid;place-items:center;font-size:10px;color:#ddd">vous<span class="pin">2</span></div></div>
   <div class="row" style="justify-content:center;gap:28px;margin-top:6px"><span style="font-size:11px;color:#aaa">⚡</span><span class="p" style="width:58px;height:58px;border-radius:50%;border:4px solid #fff;display:inline-block"><span class="pin">3</span></span><span style="font-size:11px;color:#aaa">↺</span></div>
   <div class="p" style="font-size:11.5px;color:#bbb;text-align:center">Pas de galerie, pas de filtre.<span class="pin">4</span></div>
@@ -446,6 +457,7 @@ footer a { color: var(--pin); }
   <li><span class="n">2</span><span>Les deux caméras en même temps, comme BeReal : ce qu'on voit et son visage. <span class="tag warn">proposé</span></span></li>
   <li><span class="n">3</span><span>Un seul gros bouton pour prendre la photo.</span></li>
   <li><span class="n">4</span><span>On ne choisit pas une photo dans la galerie : c'est le moment présent. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">5</span><span>Une photo ou une vidéo rapide. <span class="tag ok">décidé</span> Durée de la vidéo : <span class="tag open">ouvert</span></span></li>
 </ul></div>
 
 <div class="item" id="e19"><span class="k">Écran 19 · Envoyé</span>
@@ -512,7 +524,7 @@ footer a { color: var(--pin); }
 </div></div>
 <h3>Renvoyer une lueur</h3>
 <ul class="legend">
-  <li><span class="n">1</span><span>Chez le parent, le bord du cadre s'éclaire doucement : « quelqu'un a pensé à moi ». <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">1</span><span>Chez le parent, une lueur signale qu'un proche pense à lui : à l'écran, ou par des LED à l'arrière du cadre qui éclairent le mur. <span class="tag ok">décidé</span> LED proposées en option.</span></li>
   <li><span class="n">2</span><span>Un seul bouton, facultatif.</span></li>
   <li><span class="n">3</span><span>Jamais d'accusé de lecture ni de statistiques : le toucher reste un don, pas un pointage. <span class="tag warn">proposé</span></span></li>
 </ul></div>
@@ -523,7 +535,7 @@ footer a { color: var(--pin); }
 </div></div>
 <h3>Ce que voit le parent</h3>
 <ul class="legend">
-  <li><span class="n">1</span><span>Le cadre au mur : photos qui défilent, toucher n'importe où, petit signe qui confirme (lueur sur le bord proposée). Détail dans la page <a href="1-1-le-cadre-ancien-vivant.html" style="color:var(--pin)">Le Cadre vivant</a>. Forme du signe : <span class="tag open">ouvert</span></span></li>
+  <li><span class="n">1</span><span>Le cadre au mur : photos qui défilent, toucher n'importe où, petit signe qui confirme : notification à l'écran et lueur des LED à l'arrière du cadre (option). Détail dans la page <a href="1-1-le-cadre-ancien-vivant.html" style="color:var(--pin)">Le Cadre vivant</a>. Forme du signe : <span class="tag open">ouvert</span></span></li>
 </ul></div>
 </div>
 
@@ -572,27 +584,31 @@ footer a { color: var(--pin); }
   <div class="title">Réglages du cadre</div>
   <div class="box p">Durée par photo : <b>15 s</b><span class="pin">1</span></div>
   <div class="box p"><div class="row" style="justify-content:space-between"><span>Luminosité automatique</span><span class="toggle"></span></div><span class="pin">2</span></div>
-  <div class="box p">Soir : lumière douce de <b>21 h</b> à <b>7 h</b><span class="pin">3</span></div>
+  <div class="box p">Mode veille : lumière douce de <b>21 h</b> à <b>7 h</b><span class="pin">3</span></div>
+  <div class="box p">Notifications · Mise en route<span class="pin l">6</span></div>
+  <div class="box p"><div class="row" style="justify-content:space-between"><span>LED à l'arrière (option)</span><span class="toggle"></span></div><span class="pin l">7</span></div>
   <div class="box p">Son des vidéos : <b>bas</b><span class="pin">4</span></div>
   <div class="box p">Famille : <b>3 personnes</b> peuvent envoyer<span class="pin">5</span></div>
-  <div class="box soft">Wifi · Aide · Données personnelles</div>
+  <div class="box soft">Wifi · Aide · Données</div>
   <div class="tabbar"><span><b>⌂</b>Accueil</span><span><b>＋</b>Envoyer</span><span><b>▦</b>Le cadre</span><span class="on"><b>⚙</b>Réglages</span></div>
 </div></div>
 <h3>Réglages du cadre</h3>
 <ul class="legend">
   <li><span class="n">1</span><span>15 secondes par photo par défaut. <span class="tag ok">décidé</span></span></li>
-  <li><span class="n">2</span><span>La luminosité suit la pièce. <span class="tag warn">proposé</span> (capteur de présence : envisagé avec prudence par l'équipe)</span></li>
-  <li><span class="n">3</span><span>Le soir, les photos continuent, plus douces : jamais d'écran noir. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">2</span><span>La luminosité suit la pièce. <span class="tag ok">décidé</span> (capteur de présence : envisagé avec prudence par l'équipe)</span></li>
+  <li><span class="n">3</span><span>Mode veille adapté : le soir, les photos continuent, plus douces. <span class="tag ok">décidé</span></span></li>
   <li><span class="n">4</span><span>Son des vidéos : réglage simple. Lecture auto ou au toucher : <span class="tag open">ouvert</span></span></li>
   <li><span class="n">5</span><span>Voir et inviter la famille (écran 25). <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">6</span><span>Les notifications (toucher, moment du jour) et la mise en route du cadre. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">7</span><span>La lueur des LED à l'arrière, si le cadre a l'option. <span class="tag ok">décidé</span> comme option.</span></li>
 </ul></div>
 </div>
 
 <h2>À retenir pour la V2</h2>
 <div class="notes">
-  <div><h3>Ce qu'il faut trancher</h3><ul><li>Heure exacte du toucher ou « ce matin » ?</li><li>Moment du jour : durée (2 min ?), photo en retard, mosaïque ou une par une, garder l'envoi depuis la galerie</li><li>Petits-enfants de moins de 15 ans : accord parental (RGPD)</li><li>L'aidant valide-t-il chaque nouveau membre ?</li><li>Qui reçoit le toucher et l'alerte : aidants seulement ou toute la famille ?</li><li>Durée et poids des vidéos</li><li>Le parent peut-il masquer une photo ?</li><li>Suite de l'alerte si personne ne réagit</li></ul></div>
+  <div><h3>Ce qu'il faut trancher</h3><ul><li>Ergonomie du petit mot : pop-up ou description par défaut</li><li>Affichage des vidéos sur le cadre</li><li>Heure exacte du toucher ou « ce matin » ?</li><li>Moment du jour : durée (2 min ?), photo en retard, mosaïque ou une par une, garder l'envoi depuis la galerie</li><li>Petits-enfants de moins de 15 ans : accord parental (RGPD)</li><li>L'aidant valide-t-il chaque nouveau membre ?</li><li>Qui reçoit le toucher et l'alerte : aidants seulement ou toute la famille ?</li><li>Durée et poids des vidéos</li><li>Le parent peut-il masquer une photo ?</li><li>Suite de l'alerte si personne ne réagit</li></ul></div>
   <div><h3>Ce que les outils doivent savoir faire</h3><ul><li>Envoyer photo, vidéo, mot vers le cadre</li><li>Recevoir le toucher et notifier en quelques secondes</li><li>Règle d'alerte dans le temps, une seule fois</li><li>Relier un cadre par un code</li><li>Inviter par un lien WhatsApp qui contient le code de la famille</li><li>Plusieurs comptes par famille, avec des rôles (aidant, proche)</li><li>Envoyer une notification par jour à une heure aléatoire, à toute la famille en même temps</li><li>Données en Europe</li></ul></div>
-  <div><h3>Prochaines étapes</h3><ul><li>Faire valider cette V1 par Clément et Camille</li><li>Passer les décisions dans la fiche produit</li><li>Construire ces écrans dans la stack A (Claude Code) puis D (FlutterFlow) pour les tests</li><li>Donner une direction artistique en V2</li></ul></div>
+  <div><h3>Prochaines étapes</h3><ul><li>Uniformiser les écrans 3, 4 et le carrousel (fait dans cette version, à relire)</li><li>Finaliser l'affichage du petit mot et des pop-ups</li><li>Passer les décisions dans la fiche produit</li><li>Construire ces écrans dans la stack A (Claude Code) puis D (FlutterFlow) pour les tests</li><li>Donner une direction artistique en V2</li></ul></div>
 </div>
 
 <footer>Sources : <a href="../clement/1-1-le-cadre-version-retenue.html">Le Cadre, version retenue</a> et <a href="../clement/1-1-quatre-usages-a-tester.html">les 4 usages à tester</a> (Clément), <a href="../camille/1-1-compte-rendu-brainstorm-cadre.html">compte rendu du brainstorm</a> (Camille), <a href="1-1-veille-design-le-cadre.html">veille design pour Le Cadre</a> (Lucas). Données fictives. Maquette réalisée avec l'aide de Claude (IA), à relire par l'équipe.</footer>
