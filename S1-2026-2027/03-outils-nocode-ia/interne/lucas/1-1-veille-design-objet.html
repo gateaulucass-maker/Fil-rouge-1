@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Veille design d'objet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.thesis { margin-top: 32px; border-left: 4px solid var(--orange); padding: 4px 0 4px 18px; max-width: 70ch; }
+.thesis p { margin: 6px 0 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; }
+.princ { display:grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.princ > div { border-top: 1px solid var(--hair); padding: 14px 0 16px; }
+.princ .n { font: 800 28px var(--display); color: var(--blue); letter-spacing: -.03em; }
+.princ h3 { margin: 2px 0 6px; font-size: 19px; letter-spacing: -.01em; }
+.princ p { margin: 0 0 8px; font-size: 15px; }
+.ideas { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.idea { border-top: 4px solid var(--fg); padding: 12px 0 8px; display:flex; flex-direction:column; min-width:0; }
+.ihead { display:flex; justify-content:space-between; align-items:baseline; gap: 8px; }
+.inum { font: 800 44px/1 var(--display); color: var(--orange); letter-spacing: -.05em; }
+.eff { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; white-space: nowrap; }
+.eff.e1 { background: var(--blue-soft); color: var(--blue); }
+.eff.e2 { background: var(--soft); color: var(--fg); }
+.eff.e3 { background: var(--orange-soft); color: var(--orange); }
+.idea h3 { margin: 10px 0 6px; font-size: 20px; letter-spacing: -.015em; }
+.idea p { margin: 0 0 10px; font-size: 15px; }
+.idea dl { margin: auto 0 0; font-size: 13px; border-top: 1px solid var(--hair); padding-top: 8px; }
+.idea dt { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.idea dd { margin: 0 0 6px; }
+.combo { display:grid; grid-template-columns: repeat(3, 1fr); gap: 0 24px; margin-top: 8px; }
+.combo > div { border-top: 3px solid var(--blue); padding-top: 10px; }
+.combo p { margin: 6px 0 0; font-size: 15px; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+td b { font-weight: 700; }
+@media (max-width: 1000px) { .ideas { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .princ, .ideas, .combo { grid-template-columns: 1fr; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span>
+  <span>Bloc 03 · Outils no-code et IA</span>
+  <span>Leçon 1.1</span>
+  <span>Équipe Clément, Camille, Lucas</span>
+  <span>16 octobre 2026</span>
+</div>
+<h1>Un objet vivant, <span>pas un écran de plus</span></h1>
+<p class="lead">Veille en design d'objet : ce que font les grands designers, les objets qui vivent déjà dans les maisons, trente ans de recherche, l'écosystème français, et douze idées pour notre cadre.</p>
+<div class="stats">
+  <div><span class="k">Designers et principes</span><b>10</b></div>
+  <div><span class="k">Objets et projets étudiés</span><b class="b">40+</b></div>
+  <div><span class="k">Lectures</span><b>200+</b></div>
+  <div><span class="k">Idées pour le cadre</span><b class="o">12</b></div>
+</div>
+<div class="thesis"><span class="k">L'idée centrale</span><p>Un écran se regarde ; un objet vivant se remarque du coin de l'œil. Le cadre doit montrer la présence de la famille par la <b>lumière, le mouvement, la matière et des gestes simples</b>, et ne montrer l'écran que quand on le veut. Comme la bouilloire i-Pot, il rassure par un geste de vie, jamais par une caméra.</p></div>
+<nav class="toc"><a href="#s01">01 Les principes</a><a href="#s02">02 Objets vivants</a><a href="#s03">03 La recherche</a><a href="#s04">04 En France</a><a href="#s05">05 Nos idées</a><a href="#s06">06 Assembler et tester</a><a href="#src">Sources</a></nav>
+<section id="s01">
+<div class="grid">
+  <div class="k"><span class="num">01</span> · Les principes</div>
+  <div>
+    <h2>Dix principes de grands designers</h2>
+<div class="princ"><div><span class="n">01</span><h3>Honnête</h3><p>Le bon design « ne prétend pas être plus qu'il n'est ». Le volet de caméra et le bouton micro sont des preuves qu'on voit et qu'on touche, pas des icônes.</p><span class="k">Dieter Rams, 10 principes</span></div><div><span class="n">02</span><h3>Sans y penser</h3><p>Le design se trouve dans les gestes qu'on fait déjà : décrocher, ouvrir un tiroir, poser un objet. Aucun apprentissage.</p><span class="k">Naoto Fukasawa, « Without Thought »</span></div><div><span class="n">03</span><h3>Super normal</h3><p>Un objet qu'on a l'impression d'avoir toujours eu. Rien de gadget.</p><span class="k">Jasper Morrison et Fukasawa, 2006</span></div><div><span class="n">04</span><h3>Un écran devenu meuble</h3><p>La télé Serif est traitée comme un meuble : profil, pieds, présence. Le socle du cadre doit être un petit meuble, pas une station de recharge.</p><span class="k">Ronan et Erwan Bouroullec, Serif TV pour Samsung, 2015</span></div><div><span class="n">05</span><h3>Deux parties, deux rôles</h3><p>ElliQ sépare un élément qui exprime (lumière, mouvement, il « se penche ») et un écran qui sert (appels, photos). C'est notre architecture socle et écran.</p><span class="k">Yves Béhar, fuseproject</span></div><div><span class="n">06</span><h3>Calme</h3><p>Informer sans exiger l'attention, passer de la périphérie au centre seulement quand il le faut. Et fonctionner même en cas de panne.</p><span class="k">Mark Weiser (Xerox PARC, 1995), Amber Case</span></div><div><span class="n">07</span><h3>Aussi malin qu'un chiot</h3><p>Des objets qui n'essaient pas d'être trop intelligents et dont les erreurs sont attachantes. Pas d'IA bavarde.</p><span class="k">BERG London, « Be As Smart As A Puppy »</span></div><div><span class="n">08</span><h3>Trois niveaux d'émotion</h3><p>Ce qu'on ressent (bois, son, lumière), ce qu'on fait (gestes évidents), ce que ça signifie (« le cadre de la famille », pas « l'appareil du vieux »).</p><span class="k">Don Norman, « Emotional Design »</span></div><div><span class="n">09</span><h3>Le vide qui attend</h3><p>Le blanc n'est pas l'absence : c'est un potentiel. L'écran au repos ne doit pas être un rectangle noir.</p><span class="k">Kenya Hara, directeur artistique de Muji</span></div><div><span class="n">10</span><h3>Les lunettes, pas la prothèse</h3><p>Les lunettes étaient un appareil médical ; elles sont devenues de la mode. Le cadre doit être au portrait de famille ce que les lunettes sont à la prothèse.</p><span class="k">Graham Pullin, « Design Meets Disability », 2009</span></div></div>
+  </div>
+</div>
+</section><section id="s02">
+<div class="grid">
+  <div class="k"><span class="num">02</span> · Objets vivants</div>
+  <div>
+    <h2>Les objets qui vivent déjà dans les maisons</h2>
+<div class="tablewrap"><table><thead><tr><th>Objet</th><th>Comment il vit</th><th>Résultat</th><th>Ce qu'on retient</th></tr></thead><tbody>
+<tr><td><b>Zojirushi i-Pot</b> (Japon)</td><td>Une bouilloire qui envoie un message à la famille quand le parent se sert de l'eau chaude pour son thé.</td><td>Plus de 25 ans, environ 15 000 abonnés, 3 300 ¥ par mois</td><td><b>Le modèle de « rassurer sans surveiller »</b> : le signal est un geste de vie, pas une caméra.</td></tr>
+<tr><td><b>Lovebox</b> (France)</td><td>Boîte en hêtre du Jura : un cœur tourne tant que le message n'est pas lu.</td><td>Plus de 250 000 vendues, 99,99 €, offre grands-parents</td><td>Un signal physique avant l'écran. Un objet vivant se vend.</td></tr>
+<tr><td><b>Nabaztag</b> (France, 2005)</td><td>Lapin aux oreilles qui bougent, lumières, voix. Comportement dessiné par Antoine Schmitt, sons par Jean-Jacques Birgé.</td><td>Énorme succès, puis serveurs coupés en 2011</td><td>Un caractère, mais l'objet meurt quand le serveur s'arrête.</td></tr>
+<tr><td><b>ElliQ</b> (fuseproject)</td><td>Une tête lumineuse qui bouge et se penche, et un écran à côté.</td><td>Plus de 800 unités via l'État de New York, environ 20 interactions par jour</td><td>Les seniors voulaient un objet fixe, qui ne les suit pas et ne remplace pas l'humain.</td></tr>
+<tr><td><b>mui board</b> (Kyoto)</td><td>Un panneau de bois : l'écran n'apparaît qu'à l'usage.</td><td>Certifié Calm Tech en 2024</td><td>Un écran peut disparaître dans le bois.</td></tr>
+<tr><td><b>Friendship Lamps, LuvLink</b></td><td>Je touche ma lampe, la tienne s'allume chez toi.</td><td>Plus de 100 000 familles chacune, 70 à 169 $</td><td>La lumière comme « je pense à toi » est un marché réel.</td></tr>
+<tr><td><b>Toniebox</b></td><td>On pose une figurine, l'histoire démarre ; on l'enlève, ça s'arrête. Aucun bouton.</td><td>600 M€ de chiffre d'affaires en 2024</td><td>Les objets à poser sont compris par tous.</td></tr>
+<tr><td><b>Nest</b> (Tony Fadell)</td><td>Bague qui tourne, écran qui s'allume quand on approche, petite feuille verte en récompense.</td><td>Racheté par Google</td><td>S'éveiller à l'approche, un seul geste.</td></tr>
+<tr><td><b>Paro, Joy for All</b></td><td>Phoque qui dort la nuit ; chat robot qui ronronne en vibrant.</td><td>Bénéfices observés en démence</td><td>La vibration rassure. Mais critique de Sherry Turkle : « illusion de relation ».</td></tr>
+<tr><td><b>Jibo, Moxie, Ambient Orb</b></td><td>Robots et objets « attachants ».</td><td>Tous arrêtés</td><td>La personnalité ne compense pas un manque d'utilité, et l'objet meurt avec son serveur.</td></tr>
+</tbody></table></div>
+  </div>
+</div>
+</section><section id="s03">
+<div class="grid">
+  <div class="k"><span class="num">03</span> · La recherche</div>
+  <div>
+    <h2>Trente ans de recherche sur les objets de présence</h2>
+<div class="tablewrap"><table><thead><tr><th>Projet</th><th>Où, quand</th><th>Le principe</th><th>Ce qu'on retient</th></tr></thead><tbody>
+<tr><td><b>LumiTouch</b></td><td>MIT, 2001</td><td>Deux cadres photo jumeaux : toucher le sien allume l'autre. Les proches inventent leur propre langage.</td><td>Un « je pense à toi » sans appel ni message.</td></tr>
+<tr><td><b>Peek-a-drawer</b></td><td>Georgia Tech, 2002</td><td>Des tiroirs partagés : ce qu'on pose dans l'un apparaît en photo dans l'autre. La caméra ne voit que l'intérieur du tiroir.</td><td><b>La forme de l'objet limite ce qui est filmé</b> : la vie privée par le design.</td></tr>
+<tr><td><b>Whereabouts Clock</b></td><td>Microsoft Research, 2007</td><td>Une horloge à 4 zones volontairement floues (maison, travail, école, ailleurs). Elle rassure et crée du lien.</td><td>Des signaux grossiers protègent la vie privée.</td></tr>
+<tr><td><b>Family Window</b></td><td>CHI 2010</td><td>Vidéo permanente entre deux foyers : plus de lien, à condition que chacun garde le contrôle.</td><td>Volet et pause indispensables.</td></tr>
+<tr><td><b>Photobox</b></td><td>Microsoft Research, 2012-2014</td><td>Un coffre en bois qui imprime quelques photos au hasard par mois. Les familles passent de la frustration à l'attachement.</td><td>La rareté crée l'événement.</td></tr>
+<tr><td><b>Presence Project</b></td><td>Bill Gaver, 1999</td><td>Des « sondes culturelles » (cartes postales, appareils photo jetables) confiées à des seniors à Oslo, Amsterdam et Pise.</td><td>Une méthode pour tester avec de vrais seniors.</td></tr>
+<tr><td><b>Drift Table</b></td><td>Bill Gaver, 2004</td><td>Une table basse qui fait défiler lentement des vues aériennes selon ce qu'on pose dessus.</td><td>Une part de rêverie, sans but utile, rend l'objet vivant.</td></tr>
+<tr><td><b>Casablanca</b></td><td>Interval Research, 2001</td><td>Une « lampe de présence volontaire » : on signale qu'on est là, plutôt que d'être détecté.</td><td>Le geste volontaire plutôt que le capteur.</td></tr>
+<tr><td><b>Digital Family Portrait</b></td><td>Georgia Tech, 2001</td><td>Un cadre photo entouré d'icônes qui résument l'activité du parent, mesurée par des capteurs.</td><td><b>Le contre-exemple</b> : c'est de la surveillance. On fait l'inverse.</td></tr>
+<tr><td><b>Hug Over a Distance</b></td><td>2005</td><td>Un gilet gonflable qui « serre » à distance. Jugé inutile au quotidien.</td><td>Le symbolique bat le littéral.</td></tr>
+</tbody></table></div><h3 class="sub">Ce que disent les études</h3><ol class="next"><li><b>Le bois huilé apaise au toucher</b>, plus que le marbre, le carrelage ou l'inox ; le vernis brillant annule une partie de l'effet (Ikei, 2017).</li><li><b>Les sons du monde réel</b> (carillon, bois) sont plus intuitifs et mieux retenus que des bips abstraits (Garzonis, CHI 2009). La presbyacousie touche d'abord les aigus : sons graves.</li><li><b>Des rendez-vous à la même heure</b> sont liés à un meilleur moral chez les 65-84 ans (Luo, 2024).</li><li><b>La pression douce est le toucher à distance le plus apprécié</b>, devant la vibration et la chaleur (Suhonen, 2012).</li><li><b>Pas de vallée de l'étrange chez les seniors</b> (Tu, 2020), mais un visage soudain peut faire peur en cas de démence : mouvement abstrait plutôt que visage.</li><li><b>À ne pas utiliser comme argument</b> : la « lumière Apple à 12 respirations par minute » (le brevet dit environ 1,8 s par cycle) et l'effet psychologique de la chaleur (étude non reproduite).</li></ol>
+  </div>
+</div>
+</section><section id="s04">
+<div class="grid">
+  <div class="k"><span class="num">04</span> · En France</div>
+  <div>
+    <h2>Écoles, concours, musées</h2>
+<h3 class="sub" style="margin-top:0">ENSCI–Les Ateliers : les diplômes qui nous parlent</h3><p>Sur les 234 diplômes en ligne sur Diplorama, ceux qui touchent au lien à distance, à l'âge et au soin :</p><div class="tablewrap"><table><thead><tr><th>Projet</th><th>Auteur, année</th><th>Le principe</th></tr></thead><tbody>
+<tr><td><b>Peau à peau</b></td><td>Mikaela Kvan, 2021</td><td>Objets connectés et textile à formes de mains : une « langue haptique » pour garder le lien à distance.</td></tr>
+<tr><td><b>Objets syntoniques</b></td><td>Julien Gorrias, 2020</td><td>Des objets qui bougent : <i>Cosmos</i> se couche le soir, <i>Bascule</i> culbute pour inviter à une pause.</td></tr>
+<tr><td><b>À l'attention de Eveline, Gilberte, Martine…</b></td><td>Victoire Lesthevenon, 2024</td><td>Vêtements conçus avec les résidentes d'une maison de retraite d'Ivry, « par elles et pour elles ».</td></tr>
+<tr><td><b>Droit de passage</b></td><td>Louise Viollet-Deval, 2024</td><td>Un jeu de cartes pour que les résidents d'EHPAD décident de l'usage des couloirs : méthode d'atelier réutilisable.</td></tr>
+<tr><td><b>Sortir du cadre</b></td><td>Chloé Blanc, 2025</td><td>Le miroir détourné en support de soin et de mémoire.</td></tr>
+<tr><td><b>En résonance</b></td><td>Tom Vincent, 2023</td><td>Modules en liège qui font vibrer le son dans le corps.</td></tr>
+</tbody></table></div><h3 class="sub">Concours et prix</h3><div class="tablewrap"><table><thead><tr><th>Concours</th><th>Lauréats proches de notre sujet</th><th>Pour nous</th></tr></thead><tbody>
+<tr><td><b>Concours Lépine</b></td><td>2026 : <i>Blackeyes</i>, alerte « respectueuse de la vie privée » ; 2025 : Grand Prix pour <i>Spokeo</i>, casque pour malentendants ; 2024 : chaise releveuse, kit chaise marchante</td><td>Inscriptions jusqu'au <b>3 mars 2027</b>, concours du 30 avril au 10 mai 2027 à la Foire de Paris</td></tr>
+<tr><td><b>Silver Awards</b> (Silver Valley)</td><td>2025 : <i>Camémo</i>, capsules de mémoire créées avec seniors et proches</td><td><b>Ouvert aux étudiants</b>, équipes de 3 ou 4. En 2025 : limite fin octobre, finale mi-novembre</td></tr>
+<tr><td><b>Janus</b> (Institut français du design)</td><td>2026 Santé : blouse COALA ; 2025 : <i>Jon</i> de Studio 5.5, un meuble issu des chariots d'hôpital</td><td>Déposé par une entreprise : plus tard</td></tr>
+<tr><td><b>Trophées SilverEco</b></td><td>2026, isolement : <i>Ma Famille Grandit</i> (arbre généalogique)</td><td>Plus tard, avec une entreprise</td></tr>
+<tr><td><b>Design et solidarité en EHPAD</b></td><td><i>L'heure du soin</i> d'Amélie Freyche : un chariot à médicaments qui ne fait pas médical</td><td>Mobilier national et CNSA ; prochaine édition non trouvée</td></tr>
+</tbody></table></div><h3 class="sub">Lieux à visiter, réseaux à rejoindre</h3><div class="tablewrap"><table><thead><tr><th>Lieu</th><th>Pourquoi</th></tr></thead><tbody>
+<tr><td><b>Silver Valley Open Lab</b>, Ivry</td><td>Des seniors testeurs ; <i>Concept Crash</i> le 5 novembre 2026 pour présenter notre cadre</td></tr>
+<tr><td><b>Silver Economy Expo</b>, Porte de Versailles</td><td>1er et 2 décembre 2026</td></tr>
+<tr><td><b>MAD Paris</b></td><td>Collections design des XXe et XXIe siècles, base en ligne collections.madparis.fr ; <i>Paris &gt; Kyoto &gt; Paris</i> sur des designers en résidence à Kyoto</td></tr>
+<tr><td><b>Musée des Arts et Métiers</b></td><td>L'histoire des objets communicants : téléphone, télévision, Minitel</td></tr>
+<tr><td><b>Cité des sciences, Cité de la santé</b></td><td>Le fonds documentaire « Bien vieillir » et des conseillers</td></tr>
+<tr><td><b>EnsadLab, groupe Symbiose</b></td><td>Recherche « design et soin » à l'École des Arts Décoratifs</td></tr>
+<tr><td><b>Strate</b></td><td>Partenariat avec Korian sur les EHPAD, laboratoire de robotique par le design</td></tr>
+<tr><td><b>Centre Pompidou</b></td><td>Fermé jusqu'en 2030 : programmation à Massy</td></tr>
+</tbody></table></div><p class="note" style="margin-top:12px">Contre-exemple français : Ardoiz, la tablette de La Poste pour seniors, jugée « datée » (gros boutons, larges bordures), environ 40 000 clients, arrêt annoncé en 2026 puis reprise par Archos. Il faut un meuble, pas un « appareil pour seniors ».</p>
+  </div>
+</div>
+</section><section id="s05">
+<div class="grid">
+  <div class="k"><span class="num">05</span> · Nos idées</div>
+  <div>
+    <h2>Douze idées pour un cadre vivant</h2>
+<p>Douze idées pour que le cadre vive dans la maison sans jamais surveiller. Chacune vient d'un objet, d'un designer ou d'une étude ci-dessus. Les « faciles » peuvent entrer dans la démo de l'oral.</p><div class="ideas"><article class="idea">
+  <div class="ihead"><span class="inum">01</span><span class="eff e1">Facile</span></div>
+  <h3>Le socle-meuble</h3>
+  <p>Un socle en bois massif huilé, avec des proportions de petit meuble : pieds, profil, poids rassurant. L'écran s'y pose comme une photo dans son cadre. Façade en tissu devant le haut-parleur.</p>
+  <dl><dt>Inspiré de</dt><dd>Serif des Bouroullec, mui board, bois huilé (Ikei 2017), Super Normal</dd><dt>Garde-fou</dt><dd>Bois huilé, jamais vernis brillant ni plastique blanc médical</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">02</span><span class="eff e1">Facile (anneau de LED, 10 à 17 $)</span></div>
+  <h3>La veilleuse qui respire</h3>
+  <p>Un fin liseré de lumière dans le socle, qui « respire » très lentement quand le cadre est en veille ou en pause, ambré le soir, éteint la nuit. L'objet n'est jamais un écran noir mort.</p>
+  <dl><dt>Inspiré de</dt><dd>Voyant de veille Apple, Paro qui dort la nuit, Kenya Hara</dd><dt>Garde-fou</dt><dd>Rythme lent à tester avec des seniors ; clignoter n'est pas respirer</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">03</span><span class="eff e1">Facile (capteur tactile, 15 $)</span></div>
+  <h3>« Je pense à toi » par le bois</h3>
+  <p>Un proche appuie sur un bouton de l'appli : le socle s'illumine une fois. Le senior pose la main sur le bois : un cœur s'allume dans l'appli du proche. Pas de texte, aucune obligation de répondre.</p>
+  <dl><dt>Inspiré de</dt><dd>LumiTouch (MIT), Friendship Lamps, Peau à peau (ENSCI)</dd><dt>Garde-fou</dt><dd>Toujours un geste volontaire, jamais un capteur</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">04</span><span class="eff e2">Moyen (petit moteur, 6 $)</span></div>
+  <h3>Le drapeau du facteur</h3>
+  <p>Quand une photo ou un message arrive, un petit drapeau en bois se lève sur le côté du socle, comme sur une boîte aux lettres. Le senior l'abaisse en regardant le message.</p>
+  <dl><dt>Inspiré de</dt><dd>Lovebox (le cœur qui tourne), Nabaztag (les oreilles), boîte aux lettres américaine</dd><dt>Garde-fou</dt><dd>Mouvement lent et silencieux</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">05</span><span class="eff e2">Moyen (lecteur NFC 5 à 40 $, tags)</span></div>
+  <h3>Les jetons de la famille</h3>
+  <p>Un petit galet en bois par proche, avec sa photo gravée. Le poser sur le socle lance l'appel ; on l'enlève pour raccrocher. Les jetons vivent dans une coupelle, comme des souvenirs.</p>
+  <dl><dt>Inspiré de</dt><dd>Toniebox, Yoto, Ztamps du Nabaztag, Fukasawa « sans y penser »</dd><dt>Garde-fou</dt><dd>Seuls les proches de la liste blanche ont un jeton</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">06</span><span class="eff e1">Facile</span></div>
+  <h3>Le rituel du matin</h3>
+  <p>Le matin, le senior touche le socle en prenant son café : la famille reçoit « Bonne journée de maman ». C'est lui qui envoie, quand il veut. S'il ne le fait pas, il ne se passe rien.</p>
+  <dl><dt>Inspiré de</dt><dd>Zojirushi i-Pot, lampe de présence volontaire de Casablanca</dd><dt>Garde-fou</dt><dd><b>Aucune alerte si le geste manque</b> : sinon c'est de la surveillance</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">07</span><span class="eff e1">Facile (logiciel)</span></div>
+  <h3>La photo qui arrive</h3>
+  <p>Au lieu d'un diaporama en boucle, une seule photo est affichée. Quelques fois par jour, une nouvelle « arrive » : fondu, petit son de bois, prénom de l'expéditeur. Chaque photo devient un événement.</p>
+  <dl><dt>Inspiré de</dt><dd>Photobox (Microsoft Research), Slow Technology</dd><dt>Garde-fou</dt><dd>Garder l'accès à toutes les photos</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">08</span><span class="eff e1">Facile (logiciel)</span></div>
+  <h3>Le rendez-vous du dimanche</h3>
+  <p>La famille choisit un moment (dimanche 10 h, le café). Ce jour-là, le cadre « s'éveille » plus fort, affiche la photo de la semaine et une lumière dit que l'appel est possible.</p>
+  <dl><dt>Inspiré de</dt><dd>Étude Luo 2024 sur les routines, Objets syntoniques (ENSCI)</dd><dt>Garde-fou</dt><dd>Le senior peut décaler ou refuser</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">09</span><span class="eff e1">Facile au prototype, vrai câblage en série</span></div>
+  <h3>Les commandes honnêtes</h3>
+  <p>Un volet de caméra en bois qui glisse, un gros bouton micro qui fait « clic » avec un voyant rouge câblé, une molette de volume. On voit et on touche la vie privée.</p>
+  <dl><dt>Inspiré de</dt><dd>Dieter Rams (honnête), Teenage Engineering, Komp (un seul bouton), Peek-a-drawer</dd><dt>Garde-fou</dt><dd>Le voyant ne dépend jamais du logiciel</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">10</span><span class="eff e3">Ambitieux (servo, 6 $, mécanique)</span></div>
+  <h3>Le cadre qui accueille</h3>
+  <p>Quand un appel arrive, le socle incline doucement l'écran vers la pièce et un carillon grave annonce le prénom. Puis on décroche. Jamais un visage qui surgit.</p>
+  <dl><dt>Inspiré de</dt><dd>ElliQ (« il se penche »), Jibo, critique d'ergothérapeute sur LiNote</dd><dt>Garde-fou</dt><dd>À valider avec des personnes ayant des troubles cognitifs</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">11</span><span class="eff e2">Moyen (imprimante thermique)</span></div>
+  <h3>Le tiroir à souvenirs</h3>
+  <p>Un tiroir dans le socle avec une petite imprimante : chaque mois, une photo de la famille s'imprime au hasard. On la garde, on l'accroche au frigo.</p>
+  <dl><dt>Inspiré de</dt><dd>Photobox, Famileo (280 000 familles), Peek-a-drawer</dd><dt>Garde-fou</dt><dd>Papier de qualité, pas un ticket de caisse</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">12</span><span class="eff e2">Moyen (logiciel)</span></div>
+  <h3>Le cadre qui ne meurt pas</h3>
+  <p>Si internet tombe ou si l'entreprise disparaît, le cadre reste un beau cadre photo : photos gardées en local, lumière et jetons qui marchent. Promesse écrite à l'achat.</p>
+  <dl><dt>Inspiré de</dt><dd>Nabaztag, Ambient Orb, Moxie : morts avec leur serveur ; Amber Case, principe n° 6</dd><dt>Garde-fou</dt><dd>Annoncer combien de temps les mises à jour sont garanties</dd></dl>
+</article></div>
+  </div>
+</div>
+</section><section id="s06">
+<div class="grid">
+  <div class="k"><span class="num">06</span> · Assembler et tester</div>
+  <div>
+    <h2>Une journée avec le cadre</h2>
+<p>Cinq idées s'assemblent en un objet cohérent, faisable pour la démo :</p>
+<div class="combo">
+  <div><span class="k">Le jour</span><p>Le <b>socle-meuble</b> en bois huilé tient l'écran. Une <b>photo arrive</b> avec un son de bois ; le <b>drapeau du facteur</b> se lève. Le senior le baisse, regarde, touche le bois : le proche reçoit un cœur.</p></div>
+  <div><span class="k">L'appel</span><p>Le senior pose le <b>jeton</b> de sa fille sur le socle : l'appel part. Il ouvre le <b>volet</b>, sort l'écran et l'emporte au jardin.</p></div>
+  <div><span class="k">Le soir</span><p>L'écran revient sur le socle, la lumière devient ambrée, puis la <b>veilleuse respire</b>. La nuit, tout est éteint. Le matin, un toucher envoie « Bonne journée ».</p></div>
+</div>
+<h3 class="sub">Comment tester ces idées</h3><ol class="next"><li><b>Une sonde culturelle</b> (méthode de Bill Gaver) : confier à 3 ou 4 seniors un petit kit (cartes postales à remplir, appareil photo jetable) pour comprendre leurs gestes du quotidien.</li><li><b>Des maquettes en carton et en bois</b> à manipuler : le drapeau, les jetons, le volet. Observer sans expliquer.</li><li><b>Le Concept Crash de Silver Valley</b> du 5 novembre 2026 : présenter le cadre à de vrais utilisateurs.</li><li><b>Un test de 4 semaines</b> chez 3 ou 4 familles, comme Photobox : mesurer la gêne au départ puis l'attachement.</li><li><b>Les Silver Awards</b> (ouverts aux étudiants) et le <b>Concours Lépine 2027</b> (inscriptions jusqu'au 3 mars 2027) comme objectifs.</li></ol>
+  </div>
+</div>
+</section>
+<section id="src"><div class="grid"><div class="k">Sources</div><div class="src-list">
+<p class="note">Recherche faite les 15 et 16 octobre 2026 par 3 agents de recherche, environ 200 lectures de sites officiels, d'articles scientifiques et de la plateforme Diplorama de l'ENSCI. Liste réduite aux sources principales.</p>
+<h4>Designers et principes</h4><a href="https://www.vitsoe.com/gb/about/good-design">vitsoe.com/gb/about/good-design</a><br><a href="https://en.wikipedia.org/wiki/Naoto_Fukasawa">en.wikipedia.org/wiki/Naoto_Fukasawa</a><br><a href="https://www.bouroullec.com/">bouroullec.com/</a><br><a href="https://fuseproject.com/case-studies/elliq/">fuseproject.com/case-studies/elliq/</a><br><a href="https://en.wikipedia.org/wiki/Kenya_Hara">en.wikipedia.org/wiki/Kenya_Hara</a><br><a href="https://en.wikipedia.org/wiki/Emotional_Design">en.wikipedia.org/wiki/Emotional_Design</a><br><a href="https://calmtech.com/">calmtech.com/</a><br><a href="https://berglondon.com/blog/2010/09/04/b-a-s-a-a-p/">berglondon.com/blog/2010/09/04/b-a-s-a-a-p/</a><br><a href="https://en.wikipedia.org/wiki/Patricia_Moore">en.wikipedia.org/wiki/Patricia_Moore</a><br><a href="https://www.rca.ac.uk/research-innovation/helen-hamlyn-centre/">rca.ac.uk/research-innovation/helen-hamlyn-centre/</a><h4>Objets vivants</h4><a href="https://www.zojirushi.co.jp/syohin/pot_kettle/mimamori/">zojirushi.co.jp/syohin/pot_kettle/mimamori/</a><br><a href="https://fr.lovebox.love/pages/a-propos">fr.lovebox.love/pages/a-propos</a><br><a href="https://fr.wikipedia.org/wiki/Nabaztag">fr.wikipedia.org/wiki/Nabaztag</a><br><a href="https://collections.vam.ac.uk/item/O1731303/nabaztag-smart-device-olivier-mevel/">collections.vam.ac.uk/item/O1731303/nabaztag-smart-device-olivier-mevel/</a><br><a href="https://muilab.com">muilab.com</a><br><a href="https://friendshiplamps.com/">friendshiplamps.com/</a><br><a href="https://luvlink.com/">luvlink.com/</a><br><a href="https://en.wikipedia.org/wiki/Tonies">en.wikipedia.org/wiki/Tonies</a><br><a href="https://en.wikipedia.org/wiki/Nest_Learning_Thermostat">en.wikipedia.org/wiki/Nest_Learning_Thermostat</a><br><a href="https://en.wikipedia.org/wiki/Paro_(robot)">en.wikipedia.org/wiki/Paro_(robot)</a><br><a href="https://joyforall.com/">joyforall.com/</a><br><a href="https://en.wikipedia.org/wiki/Jibo">en.wikipedia.org/wiki/Jibo</a><br><a href="https://en.wikipedia.org/wiki/Ambient_Devices">en.wikipedia.org/wiki/Ambient_Devices</a><h4>Recherche</h4><a href="https://doi.org/10.1145/634067.634252">doi.org/10.1145/634067.634252</a><br><a href="https://doi.org/10.1145/506443.506494">doi.org/10.1145/506443.506494</a><br><a href="https://www.microsoft.com/en-us/research/publication/the-whereabouts-clock-early-testing-of-a-situated-awareness-device/">microsoft.com/en-us/research/publication/the-whereabouts-clock-early-testing-of-a-situated-awareness-device/</a><br><a href="https://doi.org/10.1145/1753326.1753682">doi.org/10.1145/1753326.1753682</a><br><a href="https://doi.org/10.1145/2317956.2318055">doi.org/10.1145/2317956.2318055</a><br><a href="https://doi.org/10.1145/291224.291235">doi.org/10.1145/291224.291235</a><br><a href="https://doi.org/10.1145/985921.985947">doi.org/10.1145/985921.985947</a><br><a href="https://doi.org/10.1145/365024.383749">doi.org/10.1145/365024.383749</a><br><a href="https://doi.org/10.1145/365024.365126">doi.org/10.1145/365024.365126</a><br><a href="https://doi.org/10.1145/1056808.1056994">doi.org/10.1145/1056808.1056994</a><br><a href="https://doi.org/10.3390/ijerph14070801">doi.org/10.3390/ijerph14070801</a><br><a href="https://doi.org/10.1145/1518701.1518932">doi.org/10.1145/1518701.1518932</a><br><a href="https://doi.org/10.1093/geronb/gbae057">doi.org/10.1093/geronb/gbae057</a><br><a href="https://doi.org/10.14236/ewic/hci2012.26">doi.org/10.14236/ewic/hci2012.26</a><br><a href="https://doi.org/10.1159/000507812">doi.org/10.1159/000507812</a><br><a href="https://patents.google.com/patent/US6658577B2/en">patents.google.com/patent/US6658577B2/en</a><h4>France</h4><a href="https://www.ensci.com/">ensci.com/</a><br><a href="https://diplorama.ensci.com/projet/peau-a-peau">diplorama.ensci.com/projet/peau-a-peau</a><br><a href="https://diplorama.ensci.com/projet/objets-syntoniques">diplorama.ensci.com/projet/objets-syntoniques</a><br><a href="https://diplorama.ensci.com/projet/a-lattention-de-eveline-gilberte-martine">diplorama.ensci.com/projet/a-lattention-de-eveline-gilberte-martine</a><br><a href="https://diplorama.ensci.com/projet/droit-de-passage">diplorama.ensci.com/projet/droit-de-passage</a><br><a href="https://diplorama.ensci.com/projet/sortir-du-cadre">diplorama.ensci.com/projet/sortir-du-cadre</a><br><a href="https://diplorama.ensci.com/projet/en-resonance">diplorama.ensci.com/projet/en-resonance</a><br><a href="https://www.concours-lepine.com/palmares-edition-2026-1">concours-lepine.com/palmares-edition-2026-1</a><br><a href="https://www.concours-lepine.com/palmares-edition-2025">concours-lepine.com/palmares-edition-2025</a><br><a href="https://silvervalley.fr/evenements-silver-valley/silver-awards/">silvervalley.fr/evenements-silver-valley/silver-awards/</a><br><a href="https://www.institutfrancaisdudesign.fr/index.php/fr/les-janus/les-laureats-2025">institutfrancaisdudesign.fr/index.php/fr/les-janus/les-laureats-2025</a><br><a href="https://www.mobiliernational.culture.gouv.fr/fr/expositions-et-evenements/appel-a-projet-design-et-solidarite-en-ehpad">mobiliernational.culture.gouv.fr/fr/expositions-et-evenements/appel-a-projet-design-et-solidarite-en-ehpad</a><br><a href="https://symbiose.ensadlab.fr/">symbiose.ensadlab.fr/</a><br><a href="https://www.madparis.fr/">madparis.fr/</a><br><a href="https://www.arts-et-metiers.net/">arts-et-metiers.net/</a><br><a href="https://silvervalley.fr/nous-rejoindre/rejoignez-la-communaute-open-lab/">silvervalley.fr/nous-rejoindre/rejoignez-la-communaute-open-lab/</a>
+</div></div></section>
+<footer class="k">Suite de la <a href="1-1-veille-fonctionnalites-stack-faisabilite.html" style="color:var(--blue)">veille du cadre connecté</a> et du <a href="1-1-plan-demo-cadre.html" style="color:var(--blue)">plan de la démo</a>.</footer>
+</div>
+</body>
+</html>

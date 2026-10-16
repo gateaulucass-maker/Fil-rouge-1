@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-15T16:52",
+  "mise_a_jour": "2026-10-16T10:28",
   "phases": [
     {
       "id": "P0",
@@ -558,6 +558,14 @@
           "date": "2026-10-15",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html",
           "note": "Galaxy Tab A11+ et FreeKiosk, socle 3D, FlutterFlow + Supabase Paris + LiveKit + Mistral, schéma SQL et QR, prompt vocal, 6 écrans, planning A/B/C, risques, checklist du jour J."
+        },
+        {
+          "titre": "Veille design d'objet : un cadre vivant, pas un écran de plus",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-16",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-design-objet.html",
+          "note": "10 principes de designers (Rams, Fukasawa, Bouroullec, Béhar…), objets vivants (i-Pot, Lovebox, Nabaztag, mui), recherche (LumiTouch, Peek-a-drawer, Photobox), ENSCI, Lépine, Silver Awards, musées, et 12 idées pour le cadre."
         }
       ]
     },
@@ -596,6 +604,14 @@
           "date": "2026-10-15",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html",
           "note": "Galaxy Tab A11+ et FreeKiosk, socle 3D, FlutterFlow + Supabase Paris + LiveKit + Mistral, schéma SQL et QR, prompt vocal, 6 écrans, planning A/B/C, risques, checklist du jour J."
+        },
+        {
+          "titre": "Veille design d'objet : un cadre vivant, pas un écran de plus",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-16",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-design-objet.html",
+          "note": "10 principes de designers (Rams, Fukasawa, Bouroullec, Béhar…), objets vivants (i-Pot, Lovebox, Nabaztag, mui), recherche (LumiTouch, Peek-a-drawer, Photobox), ENSCI, Lépine, Silver Awards, musées, et 12 idées pour le cadre."
         }
       ]
     },
