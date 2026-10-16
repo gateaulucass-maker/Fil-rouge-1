@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Cadre ancien vivant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap">
+<style>
+:root {
+  --bg: #ffffff; --fg: #111418; --muted: #5f6670; --hair: #dcdfe3; --soft: #f3f4f6;
+  --blue: #1f3fbf; --orange: #e8571c; --wall: #ece6dc;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --serif: "Cormorant Garamond", Georgia, serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 var(--display); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); padding-block: clamp(28px, 6vw, 72px) 64px; }
+.k { font: 11.5px var(--mono); letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 28px; border-top: 2px solid var(--fg); padding-top: 12px; }
+.meta b { color: var(--fg); font-weight: 500; }
+h1 { margin: clamp(24px, 4vw, 44px) 0 0; font-weight: 800; font-size: clamp(40px, 7.5vw, 96px); line-height: .92; letter-spacing: -.045em; text-wrap: balance; }
+h1 span { color: var(--orange); }
+.lead { margin: 24px 0 0; max-width: 48ch; font-size: clamp(19px, 2vw, 24px); font-weight: 700; line-height: 1.3; }
+section { margin-top: clamp(48px, 7vw, 88px); border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 { margin: 6px 0 18px; font-size: clamp(26px, 3.4vw, 40px); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+p { max-width: 68ch; }
+a { color: var(--blue); }
+
+/* ---------------- Le cadre doré en CSS ---------------- */
+.wall { background: var(--wall); padding: clamp(24px, 5vw, 64px) 16px; display: grid; place-items: center; position: relative; overflow: hidden; }
+.wall::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(0,0,0,.018) 0 2px, transparent 2px 60px); }
+.hang { position: relative; display: grid; justify-items: center; }
+.hang .nail { width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #d9d2c4, #6b6255); box-shadow: 0 1px 2px rgba(0,0,0,.4); }
+.hang .cord { width: 0; height: 0; border-left: 70px solid transparent; border-right: 70px solid transparent; border-bottom: 34px solid transparent; position: relative; }
+.hang .cord::before, .hang .cord::after { content: ""; position: absolute; top: 0; width: 82px; height: 1.5px; background: #8a7a5a; }
+.hang .cord::before { right: -4px; transform-origin: right; transform: rotate(-25deg); }
+.hang .cord::after { left: -4px; transform-origin: left; transform: rotate(25deg); }
+
+.frame {
+  --w: min(520px, 78vw);
+  width: var(--w); aspect-ratio: 4 / 3.15; position: relative; padding: calc(var(--w) * .085);
+  background:
+    radial-gradient(ellipse at 20% 15%, rgba(255,240,190,.9), transparent 40%),
+    radial-gradient(ellipse at 85% 90%, rgba(120,80,20,.55), transparent 45%),
+    repeating-linear-gradient(45deg, #b8892f 0 3px, #d9b25a 3px 6px, #a8781f 6px 9px),
+    linear-gradient(135deg, #f3d98a, #b98a2c 40%, #e7c66d 60%, #8e651c);
+  box-shadow: 0 30px 50px -20px rgba(60,40,10,.55), inset 0 0 0 3px #7a5414, inset 0 0 0 7px #e8c873, inset 0 0 0 10px #8a6118, inset 0 0 22px 10px rgba(90,60,10,.6);
+  border-radius: 6px;
+}
+.frame.portrait { aspect-ratio: 3.15 / 4; --w: min(400px, 66vw); }
+.frame .orn { position: absolute; width: 22%; aspect-ratio: 1; }
+.frame .orn svg { width: 100%; height: 100%; }
+.frame .o1 { top: -3%; left: -3%; } .frame .o2 { top: -3%; right: -3%; transform: scaleX(-1); }
+.frame .o3 { bottom: -3%; left: -3%; transform: scaleY(-1); } .frame .o4 { bottom: -3%; right: -3%; transform: scale(-1); }
+.frame .crest { position: absolute; top: -6%; left: 50%; transform: translateX(-50%); width: 26%; }
+.mat { position: absolute; inset: 8.5%; background: #f3ecdc; box-shadow: inset 0 0 0 1px #c9b98f, inset 2px 3px 6px rgba(0,0,0,.25); padding: 7% 7% 9%; }
+.screen { position: relative; width: 100%; height: 100%; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(0,0,0,.25); background: #222; }
+.plaque { position: absolute; bottom: 1.6%; left: 50%; transform: translateX(-50%); font: italic 500 clamp(10px, 1.6vw, 14px) var(--serif); color: #4b3510; background: linear-gradient(#f1d98c, #c99b3e); padding: 1px 12px; border: 1px solid #7a5414; border-radius: 2px; white-space: nowrap; letter-spacing: .02em; }
+
+/* photos dessinées (pas de photo réelle de personne) */
+.ph { position: absolute; inset: 0; }
+.ph.sea { background: linear-gradient(#f7c98b 0 38%, #e98c5c 38% 44%, #3d6f8e 44% 70%, #e9d7b2 70%); }
+.ph.sea::after { content: ""; position: absolute; left: 62%; top: 22%; width: 13%; aspect-ratio: 1; border-radius: 50%; background: #fff3c4; box-shadow: 0 0 30px 10px rgba(255,220,150,.7); }
+.ph.garden { background: radial-gradient(circle at 30% 70%, #c0392b 0 6%, transparent 7%), radial-gradient(circle at 55% 62%, #e67e22 0 5%, transparent 6%), radial-gradient(circle at 75% 72%, #f1c40f 0 6%, transparent 7%), linear-gradient(#a9d3e6 0 45%, #6aa84f 45%); }
+.ph.sepia { background: linear-gradient(#cdb48a, #8c6a3d); filter: sepia(.6); }
+.ph.sepia::after { content: ""; position: absolute; left: 30%; top: 25%; width: 40%; height: 60%; border-radius: 45% 45% 10% 10%; background: rgba(60,40,20,.45); }
+
+/* états vivants */
+.glow { animation: glow 6s ease-in-out infinite; }
+@keyframes glow { 0%, 60%, 100% { box-shadow: 0 30px 50px -20px rgba(60,40,10,.55), inset 0 0 0 3px #7a5414, inset 0 0 0 7px #e8c873, inset 0 0 0 10px #8a6118, inset 0 0 22px 10px rgba(90,60,10,.6), 0 0 0 0 rgba(255,200,90,0); }
+  8% { box-shadow: 0 30px 50px -20px rgba(60,40,10,.55), inset 0 0 0 3px #7a5414, inset 0 0 0 7px #fff0b0, inset 0 0 0 10px #8a6118, inset 0 0 22px 10px rgba(90,60,10,.6), 0 0 60px 18px rgba(255,200,90,.75); } }
+.breathe .mat { animation: breathe 7s ease-in-out infinite; }
+@keyframes breathe { 0%,100% { box-shadow: inset 0 0 0 1px #c9b98f, inset 2px 3px 6px rgba(0,0,0,.25), 0 0 0 0 rgba(255,190,110,0); } 50% { box-shadow: inset 0 0 0 1px #c9b98f, inset 2px 3px 6px rgba(0,0,0,.25), 0 0 26px 4px rgba(255,190,110,.55); } }
+.night .screen { filter: brightness(.35) sepia(.5); }
+.night .frame { filter: brightness(.7); }
+.arrive .ph.new { animation: arrive 8s ease-in-out infinite; }
+@keyframes arrive { 0%, 20% { opacity: 0; transform: scale(1.04); } 45%, 100% { opacity: 1; transform: scale(1); } }
+.card { position: absolute; left: 8%; right: 8%; bottom: 10%; background: rgba(250,245,232,.94); padding: 8px 12px; font: 500 clamp(13px, 2vw, 19px)/1.25 var(--serif); color: #2b2113; border-left: 3px solid #b98a2c; }
+.card small { display: block; font: 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: #7a6a4a; margin-top: 4px; }
+.hand { position: absolute; right: 18%; top: 40%; font-size: clamp(26px, 4vw, 40px); animation: tap 6s ease-in-out infinite; }
+@keyframes tap { 0%, 100% { transform: translate(14px, 14px); opacity: 0; } 4% { opacity: 1; } 8% { transform: translate(0,0); } 16% { opacity: 0; } }
+.ribbon { position: absolute; top: -2%; right: 6%; width: 9%; height: 28%; background: linear-gradient(#b0302b, #7d1d1a); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%); transform-origin: top; animation: ribbon 8s ease-in-out infinite; }
+@keyframes ribbon { 0%, 20% { transform: scaleY(0); } 35%, 100% { transform: scaleY(1); } }
+
+/* grille des scènes */
+.scenes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.scene { min-width: 0; }
+.scene .wall { padding: 28px 10px 30px; }
+.scene .frame { --w: min(300px, 84vw); }
+.scene h3 { margin: 12px 0 4px; font-size: 19px; letter-spacing: -.01em; }
+.scene p { margin: 0; font-size: 15px; }
+.scene .k { display: block; margin-top: 6px; }
+
+.vie { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.vie > div { border-top: 1px solid var(--hair); padding: 14px 0; display: grid; grid-template-columns: 3ch 1fr; gap: 12px; }
+.vie .n { font: 800 24px var(--display); color: var(--orange); }
+.vie h3 { margin: 0 0 4px; font-size: 18px; }
+.vie p { margin: 0; font-size: 15px; }
+
+.refs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.refs a.ref { display: block; text-decoration: none; color: var(--fg); border-top: 3px solid var(--fg); padding-top: 10px; }
+.refs a.ref:hover h3 { color: var(--blue); }
+.refs h3 { margin: 4px 0 4px; font-size: 17px; }
+.refs p { margin: 0; font-size: 14px; color: var(--muted); }
+.refs .go { font: 11px var(--mono); color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+@media (max-width: 900px) { .scenes, .refs { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .scenes, .refs, .vie { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe7a1"/><stop offset=".45" stop-color="#c8962f"/><stop offset=".7" stop-color="#f0cf72"/><stop offset="1" stop-color="#7d5615"/></linearGradient>
+    <symbol id="corner" viewBox="0 0 100 100"><path fill="url(#gold)" stroke="#6b4a10" stroke-width="1.2" d="M8 8 C30 4 46 10 52 24 C58 12 72 8 84 14 C74 18 66 26 64 36 C56 30 46 32 42 40 C34 34 22 36 18 46 C12 40 10 30 14 22 C10 18 8 14 8 8 Z M20 20 C26 22 30 28 28 34 M40 16 C44 20 46 26 44 30"/><circle cx="16" cy="16" r="5" fill="url(#gold)" stroke="#6b4a10"/></symbol>
+    <symbol id="crest" viewBox="0 0 120 50"><path fill="url(#gold)" stroke="#6b4a10" stroke-width="1.2" d="M60 4 C70 14 84 12 96 20 C86 22 80 30 78 40 C72 34 66 36 60 46 C54 36 48 34 42 40 C40 30 34 22 24 20 C36 12 50 14 60 4 Z"/><circle cx="60" cy="24" r="6" fill="#fff0b8" stroke="#6b4a10"/></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span><span>Bloc 03 · Outils no-code et IA</span><span>Leçon 1.1</span><span>Équipe Clément, Camille, Lucas</span><span>16 octobre 2026</span>
+</div>
+<h1>Le Cadre : <span>un vieux cadre doré qui vit</span></h1>
+<p class="lead">Pas un écran au mur : le cadre ancien de la famille, moulure dorée et passe-partout ivoire, dans lequel les photos arrivent et qui s'éclaire quand on le touche.</p>
+
+<!-- HERO -->
+<div class="wall" style="margin-top:32px">
+  <div class="hang">
+    <span class="nail"></span><span class="cord"></span>
+    <div class="frame glow">
+      <span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span>
+      <span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
+      <svg class="crest" viewBox="0 0 120 50"><use href="#crest"/></svg>
+      <div class="mat"><div class="screen"><div class="ph sea"></div><span class="hand" aria-hidden="true">👆</span></div></div>
+      <span class="plaque">Jeanne &amp; les siens</span>
+    </div>
+  </div>
+</div>
+<p class="k" style="margin-top:10px">Maquette animée : le parent touche la photo, la moulure dorée s'illumine, l'enfant reçoit « je suis là ».</p>
+
+<section>
+<span class="k">01 · Le cadre au fil de la journée</span>
+<h2>Six moments où l'objet vit</h2>
+<div class="scenes">
+
+  <div class="scene">
+    <div class="wall"><div class="hang"><span class="nail"></span><span class="cord"></span>
+      <div class="frame arrive"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
+        <div class="mat"><div class="screen"><div class="ph sepia"></div><div class="ph garden new"></div></div></div><span class="ribbon"></span></div>
+    </div></div>
+    <h3>Le matin, le courrier arrive</h3>
+    <p>La nouvelle photo apparaît lentement, en fondu, comme une photo qui se développe. Un petit ruban de velours se déplie sur le coin : « du nouveau ».</p>
+    <span class="k">Inspiré de Photobox, Lovebox</span>
+  </div>
+
+  <div class="scene">
+    <div class="wall"><div class="hang"><span class="nail"></span><span class="cord"></span>
+      <div class="frame glow"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
+        <div class="mat"><div class="screen"><div class="ph garden"></div><span class="hand" aria-hidden="true">👆</span></div></div></div>
+    </div></div>
+    <h3>Un toucher : « je suis là »</h3>
+    <p>Le parent effleure la photo. La dorure s'illumine d'une lueur chaude, puis s'éteint doucement. Chez l'enfant : « Maman est là ».</p>
+    <span class="k">Inspiré de LumiTouch (MIT), Friendship Lamps</span>
+  </div>
+
+  <div class="scene">
+    <div class="wall"><div class="hang"><span class="nail"></span><span class="cord"></span>
+      <div class="frame"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
+        <div class="mat"><div class="screen"><div class="ph sea"></div><div class="card">Bisous de Biarritz, on pense à toi !<small>Sophie</small></div></div></div></div>
+    </div></div>
+    <h3>Le message comme une carte postale</h3>
+    <p>Le texte s'affiche dans une belle typo à empattements, comme écrit au dos d'une carte, avec le prénom. Puis la photo revient seule.</p>
+    <span class="k">Inspiré de Komp, Famileo</span>
+  </div>
+
+  <div class="scene">
+    <div class="wall"><div class="hang"><span class="nail"></span><span class="cord"></span>
+      <div class="frame breathe"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
+        <div class="mat"><div class="screen"><div class="ph sepia"></div></div></div></div>
+    </div></div>
+    <h3>L'après-midi, il respire</h3>
+    <p>Quand rien ne se passe, une lueur très lente passe derrière le passe-partout. On sent que l'objet est là, jamais un écran noir.</p>
+    <span class="k">Inspiré du voyant de veille Apple, de Paro</span>
+  </div>
+
+  <div class="scene">
+    <div class="wall"><div class="hang"><span class="nail"></span><span class="cord"></span>
+      <div class="frame glow" style="animation-delay:-3s"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
+        <div class="mat"><div class="screen"><div class="ph garden"></div></div></div></div>
+    </div></div>
+    <h3>La lueur qui revient</h3>
+    <p>L'enfant répond au toucher : la dorure s'éclaire chez le parent et reste tiède quelques heures. « Quelqu'un a pensé à moi », sans heure ni compteur.</p>
+    <span class="k">Inspiré du Messaging Kettle</span>
+  </div>
+
+  <div class="scene night">
+    <div class="wall" style="background:#3a3530"><div class="hang"><span class="nail"></span><span class="cord"></span>
+      <div class="frame"><span class="orn o1"><svg><use href="#corner"/></svg></span><span class="orn o2"><svg><use href="#corner"/></svg></span><span class="orn o3"><svg><use href="#corner"/></svg></span><span class="orn o4"><svg><use href="#corner"/></svg></span>
+        <div class="mat"><div class="screen"><div class="ph sepia"></div></div></div></div>
+    </div></div>
+    <h3>La nuit, un tableau qui dort</h3>
+    <p>Lumière presque éteinte, teinte ambrée, plus aucun signal. Au mur, il redevient un simple tableau ancien.</p>
+    <span class="k">Inspiré de Samsung The Frame</span>
+  </div>
+
+</div>
+</section>
+
+<section>
+<span class="k">02 · Les aspects de vie</span>
+<h2>Dix détails qui rendent le cadre vivant et agréable</h2>
+<div class="vie">
+  <div><span class="n">1</span><div><h3>La moulure dorée</h3><p>Un vrai cadre ancien ou de style baroque, à la feuille d'or ou en résine dorée. On peut même chiner le cadre de la famille et y loger l'écran.</p></div></div>
+  <div><span class="n">2</span><div><h3>La dorure qui s'illumine</h3><p>Une bande de LED cachée derrière la moulure : quand on touche, c'est l'or qui brille, pas l'écran. Le geste se voit de loin.</p></div></div>
+  <div><span class="n">3</span><div><h3>Le passe-partout ivoire</h3><p>Un carton biseauté couleur ivoire autour de l'écran, plus large en bas. L'écran devient une photo encadrée.</p></div></div>
+  <div><span class="n">4</span><div><h3>Le verre ancien, mat</h3><p>Un film antireflet légèrement mat : pas de reflets pour les yeux opérés de la cataracte, et l'aspect d'un verre de musée.</p></div></div>
+  <div><span class="n">5</span><div><h3>La plaque gravée</h3><p>Une petite plaque en laiton sous la photo, gravée au nom choisi par la famille : « Jeanne &amp; les siens ». L'objet appartient à la famille.</p></div></div>
+  <div><span class="n">6</span><div><h3>La cordelette et le clou</h3><p>Une cordelette visible et un crochet de tableau, comme les cadres d'autrefois. Le câble passe dans la cordelette, gainé de tissu.</p></div></div>
+  <div><span class="n">7</span><div><h3>Le ruban du courrier</h3><p>Un petit ruban de velours qui se déplie sur le coin quand une photo arrive, et se replie quand le parent l'a regardée.</p></div></div>
+  <div><span class="n">8</span><div><h3>Les photos qui se développent</h3><p>Les nouvelles photos apparaissent en fondu lent, d'abord sépia puis en couleurs, comme au labo photo d'autrefois.</p></div></div>
+  <div><span class="n">9</span><div><h3>Les saisons</h3><p>Une lumière plus chaude en hiver, une petite guirlande dessinée sur le passe-partout le jour d'un anniversaire, une photo souvenir d'il y a un an.</p></div></div>
+  <div><span class="n">10</span><div><h3>Un son de pendule</h3><p>Optionnel : un tintement grave et doux, comme une petite horloge, quand le toucher part. Jamais de bip.</p></div></div>
+</div>
+</section>
+
+<section>
+<span class="k">03 · Références à voir</span>
+<h2>Des liens pour s'inspirer</h2>
+<div class="refs">
+  <a class="ref" href="https://www.google.com/search?q=cadre+ancien+dor%C3%A9+baroque&tbm=isch" target="_blank" rel="noopener"><span class="k">Cadres</span><h3>Cadres anciens dorés</h3><p>Moulures baroques, feuille d'or, de 9 € à plus de 2 000 € en occasion.</p><span class="go">Voir les images →</span></a>
+  <a class="ref" href="https://www.etsy.com/fr/search?q=cadre%20ancien%20dor%C3%A9" target="_blank" rel="noopener"><span class="k">Chiner</span><h3>Etsy : cadres dorés anciens</h3><p>Pour trouver le cadre du prototype.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://www.leboncoin.fr/recherche?text=cadre%20ancien%20dor%C3%A9" target="_blank" rel="noopener"><span class="k">Chiner</span><h3>Leboncoin : cadre ancien doré</h3><p>Le vrai cadre de grand-mère, à prix brocante.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://www.samsung.com/fr/tvs/the-frame/highlights/" target="_blank" rel="noopener"><span class="k">Écran devenu tableau</span><h3>Samsung The Frame</h3><p>Yves Béhar : éteint, il montre une œuvre ; cadres interchangeables, écran mat.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://auraframes.fr/digital-frames/color/walden-ink-mat" target="_blank" rel="noopener"><span class="k">Passe-partout</span><h3>Aura Walden</h3><p>Un passe-partout physique « texture papier » autour de l'écran.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://muiboard.com/products/mui-board-gen-2" target="_blank" rel="noopener"><span class="k">Écran invisible</span><h3>mui Board</h3><p>Un panneau de bois où l'on touche le bois lui-même.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://tangible.media.mit.edu/project/lumitouch/" target="_blank" rel="noopener"><span class="k">Recherche</span><h3>LumiTouch (MIT)</h3><p>Deux cadres photo : toucher l'un allume l'autre. Notre geste, en 2001.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://en.lovebox.love/" target="_blank" rel="noopener"><span class="k">Objet vivant</span><h3>Lovebox</h3><p>Un cœur qui tourne quand un message arrive : l'idée du ruban.</p><span class="go">Voir →</span></a>
+  <a class="ref" href="https://www.zojirushi.co.jp/syohin/pot_kettle/mimamori/" target="_blank" rel="noopener"><span class="k">Rassurer sans surveiller</span><h3>Zojirushi i-Pot</h3><p>Une bouilloire qui rassure la famille par un geste de vie, depuis 25 ans.</p><span class="go">Voir →</span></a>
+</div>
+<p class="k" style="margin-top:14px">Les illustrations de cette page sont dessinées en code (aucune photo de personne réelle). Les liens ouvrent les vrais produits et images.</p>
+</section>
+
+<footer class="k">Va avec la <a href="1-1-veille-design-le-cadre.html">veille design d'objet pour Le Cadre</a> et la fiche <a href="../clement/1-1-le-cadre-version-retenue.html">Le Cadre, version retenue</a>.</footer>
+</div>
+</body>
+</html>
