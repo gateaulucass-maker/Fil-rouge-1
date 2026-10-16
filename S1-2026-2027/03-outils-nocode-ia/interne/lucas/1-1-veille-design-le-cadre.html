@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Design du Cadre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.thesis { margin-top: 32px; border-left: 4px solid var(--orange); padding: 4px 0 4px 18px; max-width: 70ch; }
+.thesis p { margin: 6px 0 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; }
+.prod, .spec2 { display:grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; }
+.spec2 { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+.prod > div, .spec2 > div { border-top: 3px solid var(--blue); padding-top: 10px; }
+.prod p, .spec2 p { margin: 6px 0 0; font-size: 15px; }
+.ideas { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.idea { border-top: 4px solid var(--fg); padding: 12px 0 8px; display:flex; flex-direction:column; min-width:0; }
+.ihead { display:flex; justify-content:space-between; align-items:baseline; gap: 8px; }
+.inum { font: 800 44px/1 var(--display); color: var(--orange); letter-spacing: -.05em; }
+.eff { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; white-space: nowrap; }
+.eff.e1 { background: var(--blue-soft); color: var(--blue); }
+.eff.e2 { background: var(--soft); color: var(--fg); }
+.eff.e3 { background: var(--orange-soft); color: var(--orange); }
+.idea h3 { margin: 10px 0 6px; font-size: 20px; letter-spacing: -.015em; }
+.idea p { margin: 0 0 10px; font-size: 15px; }
+.idea dl { margin: auto 0 0; font-size: 13px; border-top: 1px solid var(--hair); padding-top: 8px; }
+.idea dt { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.idea dd { margin: 0 0 6px; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+td b { font-weight: 700; }
+@media (max-width: 1000px) { .ideas { grid-template-columns: repeat(2, 1fr); } .prod { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .ideas, .prod, .spec2 { grid-template-columns: 1fr; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span>
+  <span>Bloc 03 · Outils no-code et IA</span>
+  <span>Leçon 1.1</span>
+  <span>Équipe Clément, Camille, Lucas</span>
+  <span>16 octobre 2026</span>
+</div>
+<h1>Le Cadre : <span>un objet de famille au mur</span></h1>
+<p class="lead">Veille en design d'objet pour la version retenue : un cadre mural qui reçoit photos, vidéos et messages, et un seul geste, le toucher qui dit « je suis là ».</p>
+<div class="stats">
+  <div><span class="k">Cadres muraux étudiés</span><b>10</b></div>
+  <div><span class="k">Études et projets</span><b class="b">40+</b></div>
+  <div><span class="k">Lectures</span><b>300+</b></div>
+  <div><span class="k">Idées pour Le Cadre</span><b class="o">12</b></div>
+</div>
+<div class="thesis"><span class="k">L'idée centrale</span><p>Au mur, Le Cadre doit d'abord être <b>un cadre de famille</b> : du bois, un passe-partout, une photo qui respire. L'écran se fait oublier. Le seul geste, le toucher, reste <b>un don du parent</b> qui dit « je pense à toi », confirmé par une lueur douce, sans compteur ni pointage. Sans micro ni caméra, l'objet ne peut rien surveiller : c'est sa forme qui le prouve.</p></div>
+<nav class="toc"><a href="#s01">01 Le produit</a><a href="#s02">02 Cadres muraux</a><a href="#s03">03 L'objet</a><a href="#s04">04 Le toucher</a><a href="#s05">05 Le signe</a><a href="#s06">06 L'alerte</a><a href="#s07">07 Vidéos et messages</a><a href="#s08">08 Designers et France</a><a href="#s09">09 Nos idées</a><a href="#s10">10 À trancher</a><a href="#src">Sources</a></nav>
+<section id="s01">
+<div class="grid">
+  <div class="k"><span class="num">01</span> · Le produit</div>
+  <div>
+    <h2>Le Cadre, version retenue</h2>
+<div class="prod">
+  <div><span class="k">Où</span><p>Accroché au mur chez le parent, horizontal ou vertical. L'affichage s'adapte seul.</p></div>
+  <div><span class="k">Ce qu'il reçoit</span><p>Photos, vidéos et messages envoyés par l'enfant depuis son appli.</p></div>
+  <div><span class="k">Le seul geste</span><p>Un toucher sur l'écran envoie « je suis là » à l'enfant ; un petit signe confirme au parent.</p></div>
+  <div><span class="k">L'option</span><p>Si le parent l'accepte : après 48 h sans toucher, les aidants sont prévenus en premier.</p></div>
+</div>
+<p class="note" style="margin-top:14px">Écarté : appels vidéo et audio, messages vocaux, appli pour le parent. Encore ouvert : micro et caméra, qui peut envoyer, la forme du signe de confirmation, la suite de l'alerte. Source : fiche « Le Cadre, version retenue » de Clément, 16 octobre 2026.</p>
+  </div>
+</div>
+</section><section id="s02">
+<div class="grid">
+  <div class="k"><span class="num">02</span> · Cadres muraux</div>
+  <div>
+    <h2>Ce que font les cadres déjà au mur</h2>
+<div class="tablewrap"><table><thead><tr><th>Produit</th><th>Repère</th><th>Ce qu'il fait</th><th>Ce qu'on retient</th></tr></thead><tbody>
+<tr><td><b>Samsung The Frame</b></td><td>Yves Béhar, 2017</td><td>Éteint, il montre une œuvre au lieu d'un écran noir. Écran mat sans reflet, capteurs de lumière et de mouvement, cadres interchangeables, boîtier qui cache la connectique.</td><td>Un écran qui devient tableau.</td></tr>
+<tr><td><b>Aura Walden et Carver Mat</b></td><td>349 € et 189 €</td><td>Passe-partout physique « texture papier », écran antireflet, double orientation, luminosité auto, kit mural fourni. Une barre tactile sur le cadre pour réagir.</td><td>Le passe-partout fait « vraie photo ».</td></tr>
+<tr><td><b>mui Board</b></td><td>849 $</td><td>Panneau de bois naturel, « l'écran invisible ». On touche le bois (« Touch on Wood »), messages manuscrits de la famille, 4 petites vis au mur.</td><td>L'écran disparaît dans le bois.</td></tr>
+<tr><td><b>The Invisible Display</b></td><td>Certifié Calm Tech</td><td>Encre électronique dans un cadre en bois fini main. Ni son, ni rétroéclairage, ni notification : « se lit comme du papier au mur ».</td><td>Le calme absolu, mais pas de vidéo.</td></tr>
+<tr><td><b>InkPoster</b></td><td>à partir de 499 $</td><td>Encre électronique couleur, design Pininfarina, 2,5 cm d'épaisseur, <b>un an sur une charge</b>, aucune lumière.</td><td>Le cadre sans câble existe.</td></tr>
+<tr><td><b>Meural</b> (Netgear)</td><td>moins de 500 $</td><td>Écran mat peu réfléchissant, capteur de lumière ambiante, on change d'image d'un geste.</td><td>Luminosité qui suit la pièce.</td></tr>
+<tr><td><b>Nixplay, Skylight</b></td><td>140 $ environ</td><td>Rotation automatique, marche/arrêt selon la présence, vidéos limitées à 15 s, 1 min ou 2 min selon l'abonnement.</td><td>Repère pour la durée des vidéos.</td></tr>
+<tr><td><b>Familink</b> (France)</td><td>219,90 €</td><td>Photos, vidéos, messages, bouton « J'aime », 4G possible.</td><td>Le concurrent le plus proche du « je suis là ».</td></tr>
+<tr><td><b>Komp</b></td><td>15,6 pouces, posé</td><td>Texte d'abord sur la photo, puis la photo seule. Les réactions de la famille ne s'affichent jamais chez le senior.</td><td>Contre-modèle pour les appels, modèle pour l'affichage.</td></tr>
+</tbody></table></div>
+  </div>
+</div>
+</section><section id="s03">
+<div class="grid">
+  <div class="k"><span class="num">03</span> · L'objet</div>
+  <div>
+    <h2>Écran, bois, passe-partout, hauteur, câble</h2>
+<div class="tablewrap"><table><thead><tr><th>Point</th><th>Recommandation</th><th>Pourquoi</th></tr></thead><tbody>
+<tr><td>Écran</td><td><b>Mat, luminosité limitée</b>, réglée par capteur, éteint la nuit</td><td>Plus de la moitié des 80 ans et plus ont ou ont eu une cataracte : halos, éblouissement (NEI). Le Smithsonian demande des surfaces mates.</td></tr>
+<tr><td>Encre électronique ?</td><td><b>Non pour la démo.</b> Une piste pour plus tard</td><td>Sans câble et sans lumière, mais pas de vidéo, et 19 s pour changer d'image : trop lent pour confirmer un toucher.</td></tr>
+<tr><td>Hauteur</td><td><b>Centre du cadre vers 1,30 à 1,37 m</b></td><td>Ligne optimale à 1,37 m ; yeux d'une personne assise entre 1,09 et 1,30 m ; zone tactile sous 1,22 m (Smithsonian, normes ADA).</td></tr>
+<tr><td>Matière</td><td><b>Bois massif huilé</b> (chêne, frêne), 2,5 à 3 cm d'épaisseur</td><td>mui, Invisible Display, Canvia. Le bois huilé apaise au toucher (Ikei 2017). Jamais de plastique blanc « médical ».</td></tr>
+<tr><td>Passe-partout</td><td><b>Physique, blanc cassé, plus large en bas</b></td><td>Aura le fait. Le bas plus large recentre l'œil : l'écran devient une photo encadrée.</td></tr>
+<tr><td>Fixation</td><td><b>Tasseau ou 4 vis</b>, pas d'adhésif seul</td><td>mui, Aura, Samsung fournissent un kit. Un gabarit papier pour l'installation par l'enfant.</td></tr>
+<tr><td>Câble</td><td><b>Un seul, gainé de tissu</b>, couleur du mur, goulotte peinte</td><td>Samsung cache la connectique ; c'est le point faible de tous les cadres sur secteur.</td></tr>
+<tr><td>Orientation</td><td><b>Détectée seule</b> (accéléromètre)</td><td>Nixplay, Skylight, Aura Walden.</td></tr>
+<tr><td>Texte</td><td><b>Lettres de 2 cm</b> de haut (minuscules) pour 2 m, 2,8 cm pour 3 m</td><td>Smithsonian, Parcs Canada : aligné à gauche, interligne +20 %, sombre sur clair.</td></tr>
+</tbody></table></div>
+  </div>
+</div>
+</section><section id="s04">
+<div class="grid">
+  <div class="k"><span class="num">04</span> · Le toucher</div>
+  <div>
+    <h2>Un toucher qui dit « je pense à toi »</h2>
+<div class="tablewrap"><table><thead><tr><th>Exemple</th><th>Repère</th><th>Ce qui se passe</th><th>Pour nous</th></tr></thead><tbody>
+<tr><td><b>LumiTouch</b></td><td>MIT, 2001</td><td>Deux cadres photo : toucher l'un allume l'autre. Les proches inventent leur propre langage.</td><td><b>Le précédent direct du Cadre.</b></td></tr>
+<tr><td><b>Bouton « 1 bit »</b></td><td>Kaye, 2005-2006</td><td>Des couples avec un seul bouton : vécu comme un canal riche, chaque clic est réinterprété selon le contexte.</td><td>Un seul geste suffit.</td></tr>
+<tr><td><b>Bracelets Hey</b></td><td>17 couples, 2 semaines, 2022</td><td>Une pression douce à distance. Le lien augmente nettement. Le signe veut dire « je pense à toi ». <b>Aucun code n'apparaît</b>, mais répondre devient vite une obligation.</td><td>Attention au devoir de réponse.</td></tr>
+<tr><td><b>Friendship Lamps</b></td><td>100 000 familles</td><td>Un toucher allume la lampe de l'autre. Usages : au réveil, au coucher, « juste comme ça ».</td><td>Le rituel bat le code.</td></tr>
+<tr><td><b>i-Pot Zojirushi</b></td><td>Japon, 25 ans</td><td>La famille est prévenue quand le parent se sert de l'eau chaude.</td><td>Un geste de vie, pas un capteur.</td></tr>
+<tr><td><b>Messaging Kettle</b></td><td>CHI 2015</td><td>Une bouilloire dont la lumière s'estompe à mesure qu'elle refroidit : une indication vague du dernier usage. Un parent sur deux a aimé ; une crainte d'être réveillé la nuit.</td><td>Un signal flou est plus doux qu'une heure exacte.</td></tr>
+<tr><td><b>Recevoir ou donner</b></td><td>Brown, 2003</td><td>Chez les seniors, donner du soutien est associé à une meilleure santé ; recevoir, non.</td><td><b>Le toucher est un don du parent</b>, pas un compte rendu.</td></tr>
+</tbody></table></div><p style="margin-top:14px"><b>À retenir :</b> le toucher marche quand il reste un « je pense à toi » volontaire, sans code ni compteur. Le danger, c'est qu'il devienne un pointage quotidien.</p>
+  </div>
+</div>
+</section><section id="s05">
+<div class="grid">
+  <div class="k"><span class="num">05</span> · Le signe</div>
+  <div>
+    <h2>Comment confirmer le toucher au parent</h2>
+<p>C'est la question laissée ouverte par Clément. La veille répond assez clairement.</p><div class="tablewrap"><table><thead><tr><th>Option</th><th>Pour</th><th>Contre</th><th>Avis</th></tr></thead><tbody>
+<tr><td>Un cœur au centre</td><td>Très clair</td><td>Cache la photo ; confond « je suis là » avec « j'aime cette photo »</td><td>Non</td></tr>
+<tr><td>Le mot « Envoyé »</td><td>Explicite</td><td>Un texte qui disparaît seul n'est pas fiable pour une personne âgée (règle WCAG sur les délais) ; illisible de loin</td><td>Non</td></tr>
+<tr><td><b>Une lueur douce sur le bord du cadre</b></td><td>Se voit de loin, du coin de l'œil ; ne cache rien ; disparaît seule sans rien faire perdre</td><td>Moins explicite : à doubler d'un son grave facultatif</td><td><b>Oui</b></td></tr>
+</tbody></table></div><div class="spec2">
+  <div><span class="k">Le mouvement de la lueur</span><p>Montée rapide (environ 0,3 s), tenue 2 à 3 s, extinction lente (4 à 6 s). Ces durées sont une hypothèse : aucune étude ne les fixe, à tester avec des seniors.</p></div>
+  <div><span class="k">Le son</span><p>Facultatif, grave et bref, réglé une fois pour toutes. Il prévient la personne qui a touché sans regarder.</p></div>
+  <div><span class="k">Les inspirations</span><p>LumiTouch (semi-ambiant), Messaging Kettle (lumière qui s'estompe), mui « Touch on Wood », barre tactile d'Aura.</p></div>
+</div>
+  </div>
+</div>
+</section><section id="s06">
+<div class="grid">
+  <div class="k"><span class="num">06</span> · L'alerte</div>
+  <div>
+    <h2>Une alerte choisie, pas une surveillance</h2>
+<p>La fiche de Clément le signale : l'alerte revient sur la décision du 15 octobre. La veille ne dit pas qu'il faut l'abandonner, mais elle montre comment elle peut basculer dans la surveillance.</p><div class="tablewrap"><table><thead><tr><th>Exemple</th><th>Ce qui se passe</th><th>Leçon</th></tr></thead><tbody>
+<tr><td><b>Digital Family Portrait</b></td><td>Un cadre photo qui résume l'activité du parent mesurée par des capteurs.</td><td>L'archétype du cadre qui surveille. Le Cadre doit rester l'inverse : un geste volontaire.</td></tr>
+<tr><td><b>Alarmes suédoises</b> (Bostrom 2011, 45 personnes)</td><td>L'alarme peut « limiter plutôt que libérer ». Ceux qui ne savent pas ce qu'elle fait se sentent en insécurité et se culpabilisent.</td><td>Afficher clairement ce que fait l'option.</td></tr>
+<tr><td><b>Snug</b> (États-Unis)</td><td>Check-in quotidien, rappels, délai de grâce, mode vacances.</td><td>Prévenir le parent avant les aidants.</td></tr>
+<tr><td><b>Japan Post</b></td><td>Appel quotidien automatique, rappel dans l'heure sans réponse.</td><td>Une seconde chance avant d'alerter.</td></tr>
+<tr><td><b>« Are You Dead? »</b> (Chine, 2026)</td><td>Un clic par jour, alerte après 2 jours. Viral puis retiré, critiqué comme « outil de notification de décès ».</td><td>Le contre-exemple de ton et de formulation.</td></tr>
+<tr><td><b>Homme mort</b> (trains)</td><td>Il faut réappuyer régulièrement pour prouver qu'on est là.</td><td>Le risque : transformer le geste d'affection en pointage.</td></tr>
+</tbody></table></div><h3 class="sub">Six règles pour une alerte choisie</h3><ol class="next"><li><b>Désactivée par défaut</b>, activée par le parent lui-même, avec une phrase claire : « Si je ne reçois aucun toucher pendant 2 jours, Marie sera prévenue. »</li><li><b>Un petit pictogramme permanent</b> rappelle au parent que l'option est active. Il sait toujours où il en est.</li><li><b>Une pré-alerte au parent d'abord</b>, vers 36 h : « Un petit toucher pour dire que tout va bien ? ». L'enfant n'est prévenu qu'après 48 h.</li><li><b>Un message neutre à l'enfant</b> : « Pas de toucher depuis 48 h, peut-être un simple oubli. » Jamais « inquiétant », « chute » ou « santé ».</li><li><b>Mode vacances et mode nuit</b>, avec une date de fin automatique.</li><li><b>Séparer l'affection de la vigilance</b> : la lueur du toucher est identique avec ou sans alerte, et l'enfant ne voit jamais « dernier toucher à 14 h 32 ».</li></ol>
+  </div>
+</div>
+</section><section id="s07">
+<div class="grid">
+  <div class="k"><span class="num">07</span> · Vidéos et messages</div>
+  <div>
+    <h2>Recevoir sans rien avoir à faire</h2>
+<ol class="next"><li><b>Le message d'abord, la photo ensuite.</b> Le texte apparaît en grand sur la photo, avec le prénom de l'expéditeur, puis la photo réapparaît seule (Komp).</li><li><b>Des vidéos courtes</b> : 15 à 30 secondes à l'envoi (repères Nixplay : 15 s, 1 min, 2 min).</li><li><b>Lecture automatique, sous-titres incrustés, son modéré en journée</b> et coupé la nuit. Plus de 65 % des plus de 65 ans entendent mal.</li><li><b>Un toucher pendant une vidéo</b> envoie « je suis là » et relance la vidéo avec le son : on garde un seul geste, sans menu.</li><li><b>Un rythme lent</b> : les nouveautés arrivent à un moment choisi (le matin, à midi), avec un fondu plus long, puis rejoignent la rotation (Photobox, Famileo).</li><li><b>Aucune réaction de la famille affichée</b> chez le parent par défaut : pas de « vu », pas de compteur (Komp, bracelets Hey).</li></ol><p class="note">Aucune étude trouvée sur la lecture automatique ou les sous-titres sur un écran passif pour seniors : ces règles sont à tester.</p>
+  </div>
+</div>
+</section><section id="s08">
+<div class="grid">
+  <div class="k"><span class="num">08</span> · Designers et France</div>
+  <div>
+    <h2>Les principes qui s'appliquent</h2>
+<div class="tablewrap"><table><thead><tr><th>Designer</th><th>Principe</th><th>Pour Le Cadre</th></tr></thead><tbody>
+<tr><td><b>Dieter Rams</b></td><td>Le bon design est honnête et discret.</td><td>Pas de caméra ni de micro : la confiance se voit dans l'objet.</td></tr>
+<tr><td><b>Naoto Fukasawa</b></td><td>Le design se trouve dans les gestes qu'on fait déjà.</td><td>Toucher un cadre au mur, comme on effleure une photo.</td></tr>
+<tr><td><b>Yves Béhar</b>, The Frame</td><td>Un écran qui devient tableau quand il ne sert pas.</td><td>Jamais d'écran noir au mur.</td></tr>
+<tr><td><b>Ronan et Erwan Bouroullec</b>, Serif</td><td>La télé traitée comme un meuble.</td><td>Le cadre traité comme un objet de famille.</td></tr>
+<tr><td><b>Kenya Hara</b></td><td>Le vide est un potentiel qui attend.</td><td>Le passe-partout blanc qui laisse respirer la photo.</td></tr>
+<tr><td><b>Graham Pullin</b></td><td>Les lunettes sont passées du médical à la mode.</td><td>Le cadre ne doit jamais ressembler à un appareil pour personnes âgées.</td></tr>
+<tr><td><b>Amber Case</b>, Calm Tech</td><td>Informer sans demander d'attention, et marcher même en panne.</td><td>Lueur du coin de l'œil ; photos gardées sans internet.</td></tr>
+</tbody></table></div><h3 class="sub">En France</h3><div class="tablewrap"><table><thead><tr><th>Projet ou rendez-vous</th><th>Ce qu'on en retient</th></tr></thead><tbody>
+<tr><td><b>Peau à peau</b>, ENSCI 2021</td><td>Mikaela Kvan : une « langue haptique » pour garder le lien à distance.</td></tr>
+<tr><td><b>Objets syntoniques</b>, ENSCI 2020</td><td>Julien Gorrias : des objets qui bougent au lieu de notifier.</td></tr>
+<tr><td><b>Sortir du cadre</b>, ENSCI 2025</td><td>Chloé Blanc : le miroir détourné en support de mémoire.</td></tr>
+<tr><td><b>Blackeyes</b>, Lépine 2026</td><td>Une alerte « respectueuse de la vie privée », primée : la formulation est défendable devant un jury.</td></tr>
+<tr><td><b>Silver Awards</b></td><td>Ouverts aux étudiants, équipes de 3 ou 4.</td></tr>
+<tr><td><b>Concept Crash, Silver Valley</b></td><td>Le 5 novembre 2026 : présenter Le Cadre à de vrais seniors.</td></tr>
+<tr><td><b>Concours Lépine 2027</b></td><td>Inscriptions jusqu'au 3 mars 2027.</td></tr>
+</tbody></table></div><p class="note" style="margin-top:12px">Le détail (ENSCI, musées, concours) est dans la <a href="1-1-veille-design-objet.html" style="color:var(--blue)">première veille design d'objet</a>, faite pour l'ancienne version du cadre.</p>
+  </div>
+</div>
+</section><section id="s09">
+<div class="grid">
+  <div class="k"><span class="num">09</span> · Nos idées</div>
+  <div>
+    <h2>Douze idées pour Le Cadre</h2>
+<p>Douze idées pour que Le Cadre soit un objet de famille vivant, et pas un écran au mur. Presque toutes sont faisables pour la démo avec une tablette Android dans un cadre en bois.</p><div class="ideas"><article class="idea">
+  <div class="ihead"><span class="inum">01</span><span class="eff e1">Facile</span></div>
+  <h3>Le cadre en bois huilé</h3>
+  <p>Un vrai cadre en chêne ou en frêne huilé, 2,5 à 3 cm d'épaisseur, qui loge l'écran. Au mur, on voit un cadre de famille, pas une tablette.</p>
+  <dl><dt>Inspiré de</dt><dd>mui Board, Invisible Display, The Frame</dd><dt>Garde-fou</dt><dd>Jamais de plastique blanc ni de gros boutons</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">02</span><span class="eff e1">Facile (carton biseauté)</span></div>
+  <h3>Le passe-partout</h3>
+  <p>Un passe-partout physique blanc cassé, plus large en bas, entre le bois et l'écran. La photo respire et l'écran disparaît.</p>
+  <dl><dt>Inspiré de</dt><dd>Aura Walden, encadrement d'art, Kenya Hara</dd><dt>Garde-fou</dt><dd>S'adapte au portrait et au paysage</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">03</span><span class="eff e1">Facile (bande LED ou bord animé)</span></div>
+  <h3>La lueur « je suis là »</h3>
+  <p>Le parent touche n'importe où sur l'écran : une lueur douce fait le tour du cadre, puis s'éteint lentement. Pas de cœur, pas de texte.</p>
+  <dl><dt>Inspiré de</dt><dd>LumiTouch, Messaging Kettle, Friendship Lamps</dd><dt>Garde-fou</dt><dd>Un seul envoi par minute, même si le parent tape plusieurs fois</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">04</span><span class="eff e1">Facile</span></div>
+  <h3>La lueur qui revient</h3>
+  <p>Quand l'enfant a reçu le toucher, il peut renvoyer une lueur chaude qui s'estompe sur plusieurs heures. Le parent qui passe devant sait que quelqu'un a pensé à lui, sans heure précise.</p>
+  <dl><dt>Inspiré de</dt><dd>Messaging Kettle, thèse Visser (l'ambiguïté rapproche)</dd><dt>Garde-fou</dt><dd>Jamais de « vu » ni d'obligation de répondre</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">05</span><span class="eff e1">Facile (capteur de lumière)</span></div>
+  <h3>Le tableau au repos</h3>
+  <p>La nuit ou quand personne n'est là, le cadre baisse sa lumière et garde une photo, comme un tableau. Il ne devient jamais un rectangle noir.</p>
+  <dl><dt>Inspiré de</dt><dd>Samsung The Frame, Kenya Hara</dd><dt>Garde-fou</dt><dd>Éteint la nuit pour ne pas réveiller</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">06</span><span class="eff e1">Facile</span></div>
+  <h3>Le message comme une carte</h3>
+  <p>Le message s'affiche comme une carte posée sur la photo : grandes lettres, aligné à gauche, prénom de l'expéditeur. Puis la photo revient seule.</p>
+  <dl><dt>Inspiré de</dt><dd>Komp, carte postale, mui (manuscrit)</dd><dt>Garde-fou</dt><dd>Lettres de 2 cm minimum pour être lues à 2 m</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">07</span><span class="eff e1">Facile (file d'attente)</span></div>
+  <h3>L'arrivée lente</h3>
+  <p>Les nouvelles photos et vidéos arrivent le matin, avec un fondu plus long, comme le courrier. Pas de notification à chaque envoi.</p>
+  <dl><dt>Inspiré de</dt><dd>Photobox, Famileo</dd><dt>Garde-fou</dt><dd>L'enfant peut forcer l'envoi immédiat pour une grande nouvelle</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">08</span><span class="eff e2">Moyen (sous-titrage automatique)</span></div>
+  <h3>La vidéo qui parle doucement</h3>
+  <p>Lecture automatique, sous-titres incrustés, son bas en journée, coupé la nuit. Un toucher relance la vidéo avec le son, et envoie aussi « je suis là ».</p>
+  <dl><dt>Inspiré de</dt><dd>Komp (malentendants), Nixplay</dd><dt>Garde-fou</dt><dd>Vidéos de 15 à 30 s</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">09</span><span class="eff e1">Facile (on retire)</span></div>
+  <h3>Le cadre sans micro ni caméra</h3>
+  <p>On retire le micro et la caméra. La vie privée est garantie par l'objet lui-même : il ne peut rien voir ni entendre.</p>
+  <dl><dt>Inspiré de</dt><dd>Peek-a-drawer, Dieter Rams (honnête), échec du Portal</dd><dt>Garde-fou</dt><dd>C'est l'argument le plus fort du « sans surveiller »</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">10</span><span class="eff e2">Moyen</span></div>
+  <h3>L'alerte choisie</h3>
+  <p>Désactivée par défaut, activée par le parent sur le cadre. Petit pictogramme permanent quand elle est active, pré-alerte au parent à 36 h, message neutre à l'enfant à 48 h, mode vacances.</p>
+  <dl><dt>Inspiré de</dt><dd>Snug, Japan Post, alarmes suédoises</dd><dt>Garde-fou</dt><dd>Lueur du toucher identique avec ou sans alerte</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">11</span><span class="eff e1">Facile</span></div>
+  <h3>L'accroche guidée</h3>
+  <p>Un tasseau en bois et un gabarit papier : l'enfant accroche le cadre en 10 minutes, centre à 1,35 m, à portée de main du parent assis. Un câble en tissu de la couleur du mur.</p>
+  <dl><dt>Inspiré de</dt><dd>Smithsonian, normes ADA, kits Aura et mui</dd><dt>Garde-fou</dt><dd>Le parent doit pouvoir toucher sans se lever</dd></dl>
+</article><article class="idea">
+  <div class="ihead"><span class="inum">12</span><span class="eff e2">Moyen</span></div>
+  <h3>Le cadre qui ne meurt pas</h3>
+  <p>Sans internet ou si le service s'arrête, le cadre garde ses photos et reste un beau cadre. Plus tard : une version à encre électronique, sans câble, pour les photos seules.</p>
+  <dl><dt>Inspiré de</dt><dd>Nabaztag, Ambient Orb, InkPoster (un an sur batterie)</dd><dt>Garde-fou</dt><dd>Promesse écrite à l'achat</dd></dl>
+</article></div>
+  </div>
+</div>
+</section><section id="s10">
+<div class="grid">
+  <div class="k"><span class="num">10</span> · À trancher</div>
+  <div>
+    <h2>Sept choix pour l'équipe</h2>
+<ol class="next"><li><b>Le signe de confirmation :</b> la veille recommande la lueur sur le bord du cadre, avec un son grave facultatif.</li><li><b>Micro et caméra :</b> la veille recommande de les retirer.</li><li><b>L'enfant peut-il répondre au toucher</b> par une lueur qui revient ? Oui, mais sans « vu » ni obligation.</li><li><b>L'alerte des 48 h :</b> si on la garde, avec les six règles de la partie 06 et une pré-alerte au parent.</li><li><b>Les vidéos :</b> lecture automatique avec sous-titres, ou lecture seulement au toucher ?</li><li><b>Le rythme :</b> les nouveautés arrivent immédiatement, ou le matin comme le courrier ?</li><li><b>Le test :</b> présenter Le Cadre au Concept Crash de Silver Valley le 5 novembre 2026.</li></ol>
+  </div>
+</div>
+</section>
+<section id="src"><div class="grid"><div class="k">Sources</div><div class="src-list">
+<p class="note">Recherche faite le 16 octobre 2026 par 5 agents de recherche (cette veille et la précédente), environ 300 lectures de sites officiels, guides institutionnels et articles scientifiques. Les durées de la lueur et les règles vidéo sont des hypothèses à tester. Liste réduite aux sources principales.</p>
+<h4>Cadres muraux</h4><a href="https://www.samsung.com/fr/tvs/the-frame/highlights/">samsung.com/fr/tvs/the-frame/highlights/</a><br><a href="https://auraframes.fr/digital-frames/color/walden-ink-mat">auraframes.fr/digital-frames/color/walden-ink-mat</a><br><a href="https://auraframes.fr/digital-frames/color/carver-mat">auraframes.fr/digital-frames/color/carver-mat</a><br><a href="https://muiboard.com/products/mui-board-gen-2">muiboard.com/products/mui-board-gen-2</a><br><a href="https://www.calmtech.institute/post/invisible-computer-is-calm-tech-certified">calmtech.institute/post/invisible-computer-is-calm-tech-certified</a><br><a href="https://www.inkposter.com/">inkposter.com/</a><br><a href="https://www.netgear.com/home/digital-art-canvas">netgear.com/home/digital-art-canvas</a><br><a href="https://www.nixplay.com/">nixplay.com/</a><br><a href="https://myskylight.com/products/the-skylight-frame">myskylight.com/products/the-skylight-frame</a><br><a href="https://www.familinkframe.com/fr/">familinkframe.com/fr/</a><br><a href="https://help.komp.family/knowledge/display-options">help.komp.family/knowledge/display-options</a><br><a href="https://help.komp.family/likes-comments">help.komp.family/likes-comments</a><h4>Objet, lisibilité, accroche</h4><a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/cataracts">nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/cataracts</a><br><a href="https://www.sifacilities.si.edu/sites/default/files/Files/Accessibility/accessible-exhibition-design1.pdf">sifacilities.si.edu/sites/default/files/Files/Accessibility/accessible-exhibition-design1.pdf</a><br><a href="https://www.access-board.gov/ada/guides/chapter-3-operable-parts/">access-board.gov/ada/guides/chapter-3-operable-parts/</a><br><a href="https://en.wikipedia.org/wiki/Mat_(picture_framing)">en.wikipedia.org/wiki/Mat_(picture_framing)</a><br><a href="https://www.eink.com/brand/detail/Spectra6">eink.com/brand/detail/Spectra6</a><br><a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2022.931646/full">frontiersin.org/articles/10.3389/fpsyg.2022.931646/full</a><br><a href="https://doi.org/10.3390/ijerph14070801">doi.org/10.3390/ijerph14070801</a><h4>Toucher et présence</h4><a href="https://doi.org/10.1145/634067.634252">doi.org/10.1145/634067.634252</a><br><a href="https://doi.org/10.1145/1125451.1125530">doi.org/10.1145/1125451.1125530</a><br><a href="https://doi.org/10.3389/fpsyg.2022.817787">doi.org/10.3389/fpsyg.2022.817787</a><br><a href="https://www.friendlamps.com/pages/how-it-works">friendlamps.com/pages/how-it-works</a><br><a href="https://www.zojirushi.co.jp/syohin/pot_kettle/mimamori/">zojirushi.co.jp/syohin/pot_kettle/mimamori/</a><br><a href="https://doi.org/10.1145/2702123.2702462">doi.org/10.1145/2702123.2702462</a><br><a href="https://doi.org/10.1111/1467-9280.14461">doi.org/10.1111/1467-9280.14461</a><br><a href="https://repository.tudelft.nl/record/uuid:a79c4534-6681-4a27-aa1a-e76ccb1c2c35">repository.tudelft.nl/record/uuid:a79c4534-6681-4a27-aa1a-e76ccb1c2c35</a><br><a href="https://www.w3.org/WAI/WCAG22/Understanding/timing-adjustable.html">w3.org/WAI/WCAG22/Understanding/timing-adjustable.html</a><h4>Alerte</h4><a href="https://doi.org/10.1145/365024.365126">doi.org/10.1145/365024.365126</a><br><a href="https://doi.org/10.4017/gt.2011.10.3.001.00">doi.org/10.4017/gt.2011.10.3.001.00</a><br><a href="https://snugsafe.com/">snugsafe.com/</a><br><a href="https://www.post.japanpost.jp/life/mimamori/">post.japanpost.jp/life/mimamori/</a><br><a href="https://en.wikipedia.org/wiki/Are_You_Dead%3F">en.wikipedia.org/wiki/Are_You_Dead%3F</a><br><a href="https://doi.org/10.2196/48526">doi.org/10.2196/48526</a><br><a href="https://doi.org/10.1371/journal.pdig.0001625">doi.org/10.1371/journal.pdig.0001625</a><h4>Rythme et vidéo</h4><a href="https://doi.org/10.1145/2556288.2557178">doi.org/10.1145/2556288.2557178</a><br><a href="https://doi.org/10.1145/3313831.3376486">doi.org/10.1145/3313831.3376486</a><br><a href="https://help.komp.family/hard-of-hearing">help.komp.family/hard-of-hearing</a><br><a href="https://www.famileo.com/famileo/fr-FR/">famileo.com/famileo/fr-FR/</a><h4>Designers et France</h4><a href="https://www.vitsoe.com/gb/about/good-design">vitsoe.com/gb/about/good-design</a><br><a href="https://en.wikipedia.org/wiki/Naoto_Fukasawa">en.wikipedia.org/wiki/Naoto_Fukasawa</a><br><a href="https://en.wikipedia.org/wiki/Yves_B%C3%A9har">en.wikipedia.org/wiki/Yves_B%C3%A9har</a><br><a href="https://www.bouroullec.com/">bouroullec.com/</a><br><a href="https://calmtech.com/">calmtech.com/</a><br><a href="https://diplorama.ensci.com/projet/peau-a-peau">diplorama.ensci.com/projet/peau-a-peau</a><br><a href="https://www.concours-lepine.com/palmares-edition-2026-1">concours-lepine.com/palmares-edition-2026-1</a><br><a href="https://silvervalley.fr/evenements-silver-valley/silver-awards/">silvervalley.fr/evenements-silver-valley/silver-awards/</a>
+</div></div></section>
+<footer class="k">Produit : <a href="../clement/1-1-le-cadre-version-retenue.html" style="color:var(--blue)">Le Cadre, version retenue</a> (Clément) · Veille précédente : <a href="1-1-veille-design-objet.html" style="color:var(--blue)">design d'objet</a>.</footer>
+</div>
+</body>
+</html>

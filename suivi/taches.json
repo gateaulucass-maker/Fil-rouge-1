@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-16T10:28",
+  "mise_a_jour": "2026-10-16T11:01",
   "phases": [
     {
       "id": "P0",
@@ -566,6 +566,14 @@
           "date": "2026-10-16",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-design-objet.html",
           "note": "10 principes de designers (Rams, Fukasawa, Bouroullec, Béhar…), objets vivants (i-Pot, Lovebox, Nabaztag, mui), recherche (LumiTouch, Peek-a-drawer, Photobox), ENSCI, Lépine, Silver Awards, musées, et 12 idées pour le cadre."
+        },
+        {
+          "titre": "Veille design d'objet pour Le Cadre (version retenue, cadre mural)",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-16",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-design-le-cadre.html",
+          "note": "Cadres muraux (The Frame, Aura, mui, e-paper), objet (bois, passe-partout, écran mat, hauteur 1,35 m), toucher « je pense à toi », signe de confirmation (lueur de bord recommandée), alerte 48 h choisie (6 règles), vidéos et messages, 12 idées. Recommande de retirer micro et caméra."
         }
       ]
     },
@@ -612,6 +620,14 @@
           "date": "2026-10-16",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-design-objet.html",
           "note": "10 principes de designers (Rams, Fukasawa, Bouroullec, Béhar…), objets vivants (i-Pot, Lovebox, Nabaztag, mui), recherche (LumiTouch, Peek-a-drawer, Photobox), ENSCI, Lépine, Silver Awards, musées, et 12 idées pour le cadre."
+        },
+        {
+          "titre": "Veille design d'objet pour Le Cadre (version retenue, cadre mural)",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-16",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-design-le-cadre.html",
+          "note": "Cadres muraux (The Frame, Aura, mui, e-paper), objet (bois, passe-partout, écran mat, hauteur 1,35 m), toucher « je pense à toi », signe de confirmation (lueur de bord recommandée), alerte 48 h choisie (6 règles), vidéos et messages, 12 idées. Recommande de retirer micro et caméra."
         }
       ]
     },
