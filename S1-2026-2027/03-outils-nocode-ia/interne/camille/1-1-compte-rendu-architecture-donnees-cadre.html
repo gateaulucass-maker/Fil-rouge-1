@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Architecture et données</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#ffffff;--panel:#f8f3ea;--soft:#eef1fb;
+  --ink:#14298a;--blue:#1d3bc1;--muted:#4b5891;--line:#cfd3e6;--on-blue:#ffffff;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --fs-mega:clamp(48px,10vw,136px);--fs-num:clamp(64px,10vw,128px);--fs-h2:clamp(32px,4.6vw,58px);
+  --fs-h3:clamp(22px,2.4vw,28px);--fs-lead:clamp(20px,2.2vw,27px);--fs-q:clamp(26px,3.4vw,44px);
+  --s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s10:144px;
+  --gutter:clamp(16px,4vw,48px);--section-gap:clamp(80px,10vw,var(--s10));
+}
+
+
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:64px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--sans);overflow-wrap:break-word}
+p,li{max-width:66ch}
+h1,h2,h3{text-wrap:balance;margin:0}
+a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.skip{position:absolute;left:-9999px;top:8px;z-index:30;background:var(--blue);color:var(--on-blue);padding:8px 12px;font:500 13px var(--mono)}
+.skip:focus{left:8px}
+.label{font:500 13px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+b,strong{font-weight:800}
+
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--s5)}
+.grid>*{min-width:0}
+.rail{grid-column:1 / span 3}
+.body{grid-column:4 / span 9}
+
+.topnav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:3px solid var(--blue)}
+.topnav ol{display:flex;gap:clamp(14px,1.8vw,28px);margin:0 auto;max-width:1240px;padding:0 var(--gutter);list-style:none;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.topnav ol::-webkit-scrollbar{display:none}
+.topnav a{font:500 12px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:16px 0;display:inline-block}
+.topnav a span{color:var(--blue);margin-right:6px;opacity:.7}
+.topnav a:hover{color:var(--blue)}
+
+.cover{min-height:min(100svh,940px);display:grid;align-content:space-between;row-gap:var(--s8);padding-block:var(--s8) var(--s7)}
+.meta{grid-column:1/-1;border-top:2px solid var(--ink);padding-top:var(--s3);font:500 13px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0;max-width:none}
+.cover-title{grid-column:1/-1;font:800 var(--fs-mega)/.92 var(--sans);letter-spacing:-.045em;max-width:13ch}
+.cover-title .pre{display:block;font:500 clamp(14px,1.6vw,18px)/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:var(--s5)}
+.question{grid-column:4/-1;background:var(--blue);color:var(--on-blue);padding:var(--s6) var(--s6) var(--s7)}
+.question .label{color:var(--on-blue);opacity:.85;margin-bottom:var(--s4)}
+.question p.q{font:800 var(--fs-q)/1.12 var(--sans);letter-spacing:-.02em;margin:0;max-width:none;text-wrap:pretty}
+.cover-facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:var(--s5);margin:0;border-top:1px solid var(--line);padding-top:var(--s4)}
+.cover-facts dt{font:500 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cover-facts dd{margin:6px 0 0;font-weight:700;line-height:1.35}
+
+.sec{border-top:3px solid var(--ink);padding-top:var(--s5);margin-top:var(--section-gap);scroll-margin-top:64px}
+.sec-num{display:block;font:800 var(--fs-num)/.85 var(--sans);letter-spacing:-.05em;color:var(--blue);position:sticky;top:72px}
+.sec h2{font:800 var(--fs-h2)/1 var(--sans);letter-spacing:-.03em;margin-bottom:var(--s6)}
+.sec .label{margin-bottom:var(--s3)}
+.chapeau{font:700 var(--fs-lead)/1.28 var(--sans);letter-spacing:-.01em;max-width:34em;padding-left:var(--s5);border-left:6px solid var(--blue);margin:0 0 var(--s7);text-wrap:pretty}
+.body h3{font:800 var(--fs-h3)/1.15 var(--sans);letter-spacing:-.015em;border-top:2px solid var(--ink);padding-top:var(--s3);margin:var(--s8) 0 var(--s4)}
+
+.rules{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.rules li{font:700 var(--fs-lead)/1.28 var(--sans);letter-spacing:-.01em;padding:var(--s4) 0;border-bottom:1px solid var(--line);max-width:none;text-wrap:pretty}
+.rules.small li{font:500 19px/1.45 var(--sans);letter-spacing:0}
+.rules li b{color:var(--blue)}
+.rules.check li{padding-left:2.2em;position:relative}
+.rules.check li::before{content:"";position:absolute;left:0;top:calc(var(--s4) + .3em);width:1.05em;height:1.05em;border:2px solid var(--blue)}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:var(--s6) var(--s5)}
+.cols>div{border-top:6px solid var(--blue);padding-top:var(--s3)}
+.cols h4{font:800 22px/1.2 var(--sans);letter-spacing:-.01em;margin:var(--s2) 0 var(--s3)}
+.cols p{margin:0}
+.cols ul{margin:0;padding-left:1.1em}
+.cols li{margin-bottom:var(--s2)}
+
+.encart{background:var(--soft);border-left:6px solid var(--blue);padding:var(--s5);margin-top:var(--s7)}
+.encart p{margin:0 0 var(--s2);max-width:none}
+.encart p:last-child{margin:0}
+.encart .label{color:var(--blue);margin-bottom:var(--s3)}
+
+.kfs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));border-top:2px solid var(--ink);margin:0 0 var(--s5)}
+.kf{padding:var(--s4) var(--s5) var(--s5) 0;border-bottom:1px solid var(--line)}
+.kv{font:800 clamp(40px,5vw,64px)/1 var(--sans);letter-spacing:-.04em;color:var(--blue);margin:0 0 var(--s2);font-variant-numeric:tabular-nums}
+.kt{font-size:15px;line-height:1.45;margin:0}
+
+table{width:100%;border-collapse:collapse;border-top:2px solid var(--ink);margin-top:var(--s4)}
+th,td{text-align:left;vertical-align:top;padding:var(--s4) var(--s3) var(--s4) 0;border-bottom:1px solid var(--line)}
+th{font:500 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+td:first-child{font-weight:800;width:28%}
+td.pts{font:800 clamp(28px,3vw,40px)/1 var(--sans);color:var(--blue);letter-spacing:-.03em;text-align:right;padding-right:0;width:4ch;font-variant-numeric:tabular-nums}
+th.r{text-align:right;padding-right:0}
+tr.now td{background:var(--soft)}
+tr.now td:first-child{box-shadow:inset 6px 0 0 var(--blue);padding-left:var(--s3)}
+.rncp{font:500 14px var(--mono);color:var(--blue);display:block;margin-bottom:4px;letter-spacing:.06em}
+
+.foot{border-top:2px solid var(--ink);margin-top:var(--section-gap);padding-block:var(--s4) var(--s8);font:400 13px/1.6 var(--mono);color:var(--muted)}
+.foot p{max-width:none;margin:0 0 var(--s2)}
+
+@media (max-width:820px){
+  .rail,.body,.question{grid-column:1/-1}
+  .sec-num{position:static;margin-bottom:var(--s3)}
+  .cover{min-height:auto;row-gap:var(--s7)}
+  .question{padding:var(--s5)}
+  td:first-child{width:auto}
+  table,thead,tbody,tr,th,td{display:block}
+  thead{position:absolute;left:-9999px}
+  tr{border-bottom:1px solid var(--line);padding:var(--s3) 0}
+  td{border:0;padding:2px 0}
+  tr.pts-row{display:grid;grid-template-columns:1fr auto;column-gap:var(--s3)}
+  tr.pts-row td:nth-child(2){grid-column:1/-1;grid-row:2}
+  tr.pts-row td.pts{grid-column:2;grid-row:1}
+  td[data-l]::before{content:attr(data-l) " · ";font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  tr.now td:first-child{box-shadow:none;padding-left:0}
+}
+@media print{.topnav,.skip{display:none}.sec-num{position:static}}
+
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);border-top:2px solid var(--ink);padding-top:var(--s5)}
+.vs>div{min-width:0}
+.vs .tag{font:800 var(--fs-h3)/1.1 var(--sans);letter-spacing:-.015em;color:var(--blue);margin:var(--s2) 0 var(--s3)}
+.vs p{margin:0 0 var(--s3)}
+.fh{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.06em;padding:3px 5px;margin-right:6px;vertical-align:2px;border:1.5px solid var(--blue);color:var(--blue)}
+.fh.f{background:var(--soft)}
+.fh.h{border-style:dashed;color:var(--muted);border-color:var(--muted)}
+td.v{font-weight:700}
+td.win{color:var(--blue);font-weight:800}
+.verdict{background:var(--blue);color:var(--on-blue);padding:var(--s6) var(--s6) var(--s7);margin-top:var(--s4)}
+.verdict .label{color:var(--on-blue);opacity:.85;margin-bottom:var(--s4)}
+.verdict p.q{font:800 clamp(24px,3vw,38px)/1.15 var(--sans);letter-spacing:-.02em;margin:0 0 var(--s4);max-width:none}
+.verdict p{max-width:60ch;margin:0 0 var(--s2)}
+.src{font:400 14px/1.55 var(--sans);padding-left:1.4em;margin:0}
+.src li{margin-bottom:var(--s2);max-width:none}
+@media (max-width:820px){.vs{grid-template-columns:1fr}.verdict{padding:var(--s5)}}
+
+.quote{font:700 clamp(20px,2.2vw,26px)/1.3 var(--sans);letter-spacing:-.01em;border-left:6px solid var(--blue);padding-left:var(--s5);margin:0 0 var(--s2);max-width:40em}
+.quote+.who{font-size:14px;color:var(--muted);margin:0 0 var(--s6);padding-left:calc(var(--s5) + 6px)}
+.acts{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.acts li{display:grid;grid-template-columns:7ch minmax(0,1fr);gap:var(--s5);padding:var(--s4) 0;border-bottom:1px solid var(--line);max-width:none}
+.acts .tc{font:800 clamp(20px,2.2vw,26px)/1.1 var(--sans);color:var(--blue);font-variant-numeric:tabular-nums}
+.acts b{display:block;font-size:19px;margin-bottom:4px}
+
+.idea{border-top:6px solid var(--blue);padding-top:var(--s3)}
+.ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:var(--s6) var(--s5)}
+.ideas h4{font:800 21px/1.2 var(--sans);margin:var(--s2) 0 var(--s3);letter-spacing:-.01em}
+.ideas p{margin:0 0 var(--s2);font-size:16px}
+.ideas .q{color:var(--blue);font-weight:700;font-size:15px}
+.tension{display:grid;grid-template-columns:1fr auto 1fr;gap:var(--s4);align-items:center;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.tension b{font-size:18px}
+.tension .vs2{font:800 14px var(--mono);color:var(--muted)}
+.tension p{grid-column:1/-1;margin:0;color:var(--muted);font-size:15px}
+@media (max-width:820px){.tension{grid-template-columns:1fr}.tension .vs2{display:none}}
+
+.arch{display:grid;gap:10px;margin-top:var(--s5)}
+.arch .layer{display:grid;grid-template-columns:minmax(0,180px) minmax(0,1fr);gap:var(--s4);align-items:stretch}
+.arch .name{background:var(--blue);color:#fff;font:800 15px/1.25 var(--sans);padding:14px 16px;display:flex;align-items:center}
+.arch .boxes{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border:2px solid var(--line);padding:10px}
+.arch .boxes span{border:1.5px solid var(--ink);padding:8px 12px;font:600 14px/1.3 var(--sans);background:#fff}
+.arch .boxes span.alt{border-style:dashed;color:var(--muted)}
+.arch .flow{font:500 13px var(--mono);color:var(--muted);padding-left:196px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:var(--s5)}
+.opts>div{border-top:6px solid var(--blue);padding-top:var(--s3)}
+.opts>div.no{border-top-style:dashed;border-top-color:var(--muted)}
+.opts h4{font:800 20px/1.2 var(--sans);margin:var(--s2) 0 var(--s2)}
+.opts p{margin:0 0 var(--s2);font-size:16px}
+.opts .v{font-weight:800;color:var(--blue)}
+@media (max-width:820px){.arch .layer{grid-template-columns:1fr}.arch .flow{padding-left:0}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<nav class="topnav" aria-label="Sections">
+  <ol>
+    <li><a href="#synthese"><span>01</span>Synthèse</a></li>
+    <li><a href="#objet"><span>02</span>L'objet</a></li>
+    <li><a href="#os"><span>03</span>Notre OS</a></li>
+    <li><a href="#stack"><span>04</span>La stack</a></li>
+    <li><a href="#donnees"><span>05</span>Les données</a></li>
+    <li><a href="#album"><span>06</span>L'album</a></li>
+    <li><a href="#serveurs"><span>07</span>Serveurs</a></li>
+    <li><a href="#ouvert"><span>08</span>Encore ouvert</a></li>
+  </ol>
+</nav>
+
+<header class="cover wrap grid">
+  <p class="meta">Compte rendu global · PFR Générations Connectées · Le Cadre · 16 octobre 2026 · architecture, données, album de l'année · équipe : Clément, Lucas, Camille</p>
+  <h1 class="cover-title"><span class="pre">Compte rendu global</span>Comment on construit le Cadre</h1>
+  <div class="question">
+    <p class="label">En une phrase</p>
+    <p class="q">Une vieille tablette dans un cadre en bois récupéré, avec notre propre OS, qui garde les photos de la famille chez le parent, et un album qui récapitule toute l'année.</p>
+  </div>
+  <dl class="cover-facts">
+    <div><dt>L'objet</dt><dd>Cadre en bois de récup, vieille tablette, câble discret, fixation adhésive</dd></div>
+    <div><dt>Le logiciel</dt><dd>Notre OS sur base Linux mobile, appli React, construit avec Claude Code</dd></div>
+    <div><dt>Les données</dt><dd>Supabase en Europe garde toutes les photos de l'année ; le cadre les garde pour toujours</dd></div>
+    <div><dt>En plus</dt><dd>L'album de l'année, numérique inclus, imprimé en option</dd></div>
+  </dl>
+</header>
+
+<main id="contenu">
+
+<section class="sec wrap grid" id="synthese" aria-labelledby="t1">
+  <div class="rail"><span class="sec-num" aria-hidden="true">01</span></div>
+  <div class="body">
+    <p class="label">Ce qui a été décidé</p>
+    <h2 id="t1">Synthèse</h2>
+    <ul class="rules small">
+      <li><b>On construit un vrai produit physique,</b> en récup : un cadre en bois récupéré autour d'une vieille tablette qui fonctionne encore.</li>
+      <li><b>On remplace le système du constructeur par notre propre OS,</b> construit sur une base Linux mobile existante. C'est nous qui garantissons le produit.</li>
+      <li><b>On construit en code avec Claude Code :</b> React pour l'appli du cadre, Next pour le site d'achat et le tableau de bord, Supabase pour les données.</li>
+      <li><b>Toutes les photos de l'année sont enregistrées</b> sur le serveur, pour l'album ; le cadre les garde chez le parent, pour toujours.</li>
+      <li><b>Chaque fin d'année, l'album de l'année</b> récapitule toute l'année de la famille.</li>
+      <li><b>Pour le rendu du cours,</b> notre combinaison est comparée à deux stacks no-code avec exactement le même scénario.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="objet" aria-labelledby="t2">
+  <div class="rail"><span class="sec-num" aria-hidden="true">02</span></div>
+  <div class="body">
+    <p class="label">Le produit physique</p>
+    <h2 id="t2">L'objet</h2>
+    <ul class="rules small">
+      <li><b>Un cadre en bois récupéré,</b> idéalement un objet de la famille.</li>
+      <li><b>Une vieille tablette</b> qui fonctionne encore bien ; modèle à choisir selon sa compatibilité avec notre OS.</li>
+      <li><b>Branchée en continu,</b> câble presque transparent pour le cacher ; <b>charge limitée à 80 %</b> par notre OS pour protéger la batterie.</li>
+      <li><b>Fixation adhésive au mur,</b> sans perçage (jusqu'à 8 kg annoncés par les fabricants), à tester sur différents murs.</li>
+      <li><b>V1 sans caméra ni micro :</b> uniquement des photos animées.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="os" aria-labelledby="t3">
+  <div class="rail"><span class="sec-num" aria-hidden="true">03</span></div>
+  <div class="body">
+    <p class="label">Le logiciel de la tablette</p>
+    <h2 id="t3">Notre OS</h2>
+    <ul class="rules small">
+      <li><b>Base retenue :</b> un Linux pour appareils mobiles (type postmarketOS), qui remplace le système du constructeur.</li>
+      <li><b>Une seule utilisation :</b> au démarrage, l'OS lance directement l'appli du cadre en plein écran ; rien d'autre n'est visible.</li>
+      <li><b>L'appli du cadre :</b> une appli React plein écran (carrousel, nouvelles photos, geste merci, nuit), qui garde les photos en mémoire et marche sans réseau.</li>
+      <li><b>Nos mises à jour :</b> l'OS et l'appli se mettent à jour à distance, par nous.</li>
+      <li><b>À vérifier :</b> la liste des tablettes prises en charge par la base Linux, et les pilotes (écran, wifi, luminosité, charge) du modèle choisi.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="stack" aria-labelledby="t4">
+  <div class="rail"><span class="sec-num" aria-hidden="true">04</span></div>
+  <div class="body">
+    <p class="label">Avec quoi on construit</p>
+    <h2 id="t4">La stack</h2>
+    <table>
+      <thead><tr><th scope="col">Partie</th><th scope="col">Technologie</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Partie">Construction</td><td data-l="Techno">Claude Code, solution principale de conception</td></tr>
+        <tr><td data-l="Partie">Appli du cadre</td><td data-l="Techno">React, plein écran, lancée par notre OS</td></tr>
+        <tr><td data-l="Partie">Appli des enfants</td><td data-l="Techno">React Native ; publication sur les stores seulement si une vraie demande se confirme</td></tr>
+        <tr><td data-l="Partie">Site d'achat et tableau de bord</td><td data-l="Techno">Next</td></tr>
+        <tr><td data-l="Partie">Base, stockage, comptes, temps réel</td><td data-l="Techno">Supabase, région Europe</td></tr>
+        <tr><td data-l="Partie">Automatisations</td><td data-l="Techno">Nos propres logiciels, écrits avec Claude Code, et les fonctions de Supabase</td></tr>
+        <tr><td data-l="Partie">Autour</td><td data-l="Techno">Hébergement du site, notifications, e-mails, paiement, suivi des erreurs, API d'IA</td></tr>
+      </tbody>
+    </table>
+    <div class="encart">
+      <p class="label">Pour le rendu du cours</p>
+      <p>Trois combinaisons comparées avec exactement le même scénario : notre code (Claude Code, React, Next, Supabase), une stack no-code rapide et une stack no-code solide. Usage de Claude Code déclaré. Une simulation d'usage, écrite avec Claude Code, joue une famille fictive pendant plusieurs jours pour trouver ce qui bloque.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="donnees" aria-labelledby="t5">
+  <div class="rail"><span class="sec-num" aria-hidden="true">05</span></div>
+  <div class="body">
+    <p class="label">Toutes les photos de l'année, enregistrées pour l'album</p>
+    <h2 id="t5">Les données</h2>
+    <table>
+      <thead><tr><th scope="col">Où</th><th scope="col">Quoi</th><th scope="col">Combien de temps</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Où">Téléphone de l'expéditeur</td><td data-l="Quoi">L'original de la photo</td><td data-l="Durée">C'est sa photo</td></tr>
+        <tr><td data-l="Où">Serveur (Supabase)</td><td data-l="Quoi">Une version à la taille de l'écran et une miniature</td><td data-l="Durée">Toute l'année, jusqu'à la livraison de l'album ; ensuite effacée du serveur</td></tr>
+        <tr class="now"><td data-l="Où">Le cadre</td><td data-l="Quoi">Toutes les photos reçues, et la sauvegarde des informations de la famille</td><td data-l="Durée">Toujours, dans la limite de sa mémoire</td></tr>
+        <tr><td data-l="Où">Base de données</td><td data-l="Quoi">Qui a envoyé quoi, les petits mots, les mercis</td><td data-l="Durée">Tant que le compte existe ; effacés à la résiliation</td></tr>
+      </tbody>
+    </table>
+    <h3>La sauvegarde maison</h3>
+    <ul class="rules small">
+      <li><b>Chaque nuit, le cadre enregistre dans sa mémoire interne</b> une copie numérique des informations de la famille : photos, petits mots, mercis, réglages.</li>
+      <li><b>Les données sont ainsi digitalisées chez le parent,</b> même quand le serveur les a effacées.</li>
+      <li><b>Si la tablette casse :</b> les originaux restent sur les téléphones de la famille, et toutes les photos de l'année en cours sont sur le serveur pour remplir le nouveau cadre.</li>
+    </ul>
+    <h3>Les vidéos</h3>
+    <ul class="rules small">
+      <li><b>30 secondes maximum,</b> qualité moyenne, compressées à l'envoi.</li>
+      <li><b>Lues 5 fois sur le cadre,</b> puis remplacées par une image fixe tirée de la vidéo ; le parent peut en garder une en favori.</li>
+      <li><b>Sur le serveur :</b> la vidéo est effacée dès son arrivée sur le cadre, au plus tard après 30 jours ; son image fixe est gardée avec les photos de l'année, pour l'album.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="album" aria-labelledby="t6">
+  <div class="rail"><span class="sec-num" aria-hidden="true">06</span></div>
+  <div class="body">
+    <p class="label">Proposition E retenue · univers à valider</p>
+    <h2 id="t6">L'album de l'année</h2>
+    <p class="chapeau">Chaque fin d'année, toutes les photos partagées au parent deviennent un album qui récapitule l'année : une trace à garder, à feuilleter ensemble, et un cadeau de Noël tout trouvé.</p>
+
+    <h3 style="margin-top:0">L'univers</h3>
+    <ul class="rules small">
+      <li><b>Le moment :</b> l'album arrive début décembre, juste avant Noël, pour être offert ou feuilleté en famille pendant les fêtes.</li>
+      <li><b>Le contenu :</b> toute l'année de la famille racontée mois par mois, à partir de toutes les photos envoyées ; celles mises en favori par le parent ou qui ont reçu un merci sont mises en avant, avec les petits mots des proches.</li>
+      <li><b>La couverture :</b> le nom de la famille et l'origine du bois du cadre (« Bois du buffet de Jeanne, 1968 »), pour relier l'album à l'objet.</li>
+      <li><b>Le ton :</b> le même que le Cadre, sobre et chaleureux, aux couleurs de notre identité ; jamais de statistiques sur le parent, seulement les moments partagés.</li>
+      <li><b>L'objet :</b> un album imprimé sur papier recyclé ou issu de forêts gérées, cohérent avec la récup. <span class="fh h">H</span></li>
+    </ul>
+
+    <h3>Comment ça marche dans Supabase</h3>
+    <ul class="rules small">
+      <li><b>Toutes les photos de l'année :</b> chaque photo envoyée est gardée dans l'espace de la famille, rangée par année, jusqu'à la livraison de l'album. Les favoris et les mercis sont notés dans la base pour la mise en avant.</li>
+      <li><b>Une table des albums :</b> pour chaque famille et chaque année, un album avec son état (brouillon, validé, imprimé, livré).</li>
+      <li><b>Mi-novembre :</b> une tâche planifiée prépare un brouillon à partir de toutes les photos de l'année (mois par mois, favoris et mercis en avant) ; la famille le relit dans l'appli, retire ou ajoute des photos, choisit la couverture.</li>
+      <li><b>À la validation :</b> notre logiciel, écrit avec Claude Code, met en page l'album en PDF et l'envoie à un imprimeur partenaire si la famille a commandé la version papier.</li>
+      <li><b>Après la livraison :</b> les photos de l'année sont effacées du serveur ; elles restent dans le cadre, dans l'album, et sur les téléphones de la famille.</li>
+      <li><b>Volume :</b> environ 1 800 photos par famille et par an en version écran, soit environ 0,7 à 0,9 Go en fin d'année ; 1 000 familles représentent environ 0,7 à 0,9 To. <span class="fh h">H</span></li>
+    </ul>
+
+    <h3>Le modèle pour les clients</h3>
+    <table>
+      <thead><tr><th scope="col">Offre</th><th scope="col">Ce qu'elle contient</th><th scope="col">Prix</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Offre">Inclus dans l'abonnement</td><td data-l="Contenu">L'album numérique : un PDF et une page privée à feuilleter, à télécharger et à garder</td><td data-l="Prix">Inclus</td></tr>
+        <tr class="now"><td data-l="Offre">Option : l'album imprimé</td><td data-l="Contenu">L'album papier livré chez le parent ou chez l'enfant, commandé au moment de la validation</td><td data-l="Prix">À fixer après devis d'imprimeur <span class="fh h">H</span></td></tr>
+        <tr><td data-l="Offre">Option : exemplaires en plus</td><td data-l="Contenu">Un album pour chaque enfant de la fratrie</td><td data-l="Prix">Prix réduit par exemplaire <span class="fh h">H</span></td></tr>
+      </tbody>
+    </table>
+    <div class="encart">
+      <p class="label">Pourquoi c'est le modèle le plus viable</p>
+      <p>Le numérique inclus donne une raison de garder l'abonnement d'une année sur l'autre. L'impression, payée seulement par ceux qui la veulent, ne coûte rien à l'entreprise et rapporte une marge. Et l'album, c'est aussi un objet de communication : chaque famille qui l'offre à Noël fait connaître le Cadre.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="serveurs" aria-labelledby="t7">
+  <div class="rail"><span class="sec-num" aria-hidden="true">07</span></div>
+  <div class="body">
+    <p class="label">Tarifs Supabase relevés le 16 octobre 2026 · estimations</p>
+    <h2 id="t7">Les serveurs</h2>
+    <table>
+      <thead><tr><th scope="col">Étape</th><th scope="col">Plan Supabase</th><th scope="col">Stockage avec notre politique</th><th scope="col">Coût estimé</th></tr></thead>
+      <tbody>
+        <tr><td data-l="Étape">Prototype et simulation</td><td data-l="Plan">Free</td><td data-l="Stockage">Quelques centaines de Mo</td><td data-l="Coût">0 $</td></tr>
+        <tr><td data-l="Étape">Test chez 3 familles</td><td data-l="Plan">Free pour un test court ; Pro au-delà (budget à trouver)</td><td data-l="Stockage">~0,2 Go par mois de test ; le gratuit (1 Go) est plein en 4 à 5 mois</td><td data-l="Coût">0 $, puis ~25 $ par mois</td></tr>
+        <tr><td data-l="Étape">100 cadres</td><td data-l="Plan">Pro</td><td data-l="Stockage">jusqu'à ~70 à 90 Go en fin d'année</td><td data-l="Coût">~25 à 35 $ par mois</td></tr>
+        <tr><td data-l="Étape">1 000 cadres</td><td data-l="Plan">Pro, serveur plus puissant</td><td data-l="Stockage">jusqu'à ~0,7 à 0,9 To en fin d'année</td><td data-l="Coût">quelques dizaines de $ par mois</td></tr>
+        <tr><td data-l="Étape">10 000 cadres</td><td data-l="Plan">Pro ou Team</td><td data-l="Stockage">jusqu'à ~7 à 9 To en fin d'année</td><td data-l="Coût">quelques centaines de $ par mois</td></tr>
+      </tbody>
+    </table>
+    <p style="color:var(--muted);font-size:15px;margin-top:var(--s4)">Plans relevés : Free (0 $, 1 Go de fichiers, pas de sauvegarde, pause après une semaine sans activité) ; Pro (dès 25 $ par mois, 100 Go, 500 connexions en direct, sauvegardes 7 jours). Coûts par cadre : quelques centimes par mois. Estimations à confirmer par la simulation d'usage.</p>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="ouvert" aria-labelledby="t8">
+  <div class="rail"><span class="sec-num" aria-hidden="true">08</span></div>
+  <div class="body">
+    <p class="label">À trancher ou à vérifier</p>
+    <h2 id="t8">Encore ouvert</h2>
+    <ul class="rules small check">
+      <li>Le modèle de tablette, choisi selon la compatibilité avec la base Linux.</li>
+      <li>Le prix de l'album imprimé et l'imprimeur partenaire.</li>
+      <li>Le nombre de lectures des vidéos (1, 3 ou 5), à tester avec les familles.</li>
+      <li>Le plan Supabase pour le test chez les familles, et le budget.</li>
+      <li>Ce qu'on fait des photos après l'album : effacées du serveur (proposé), ou gardées en archive payante.</li>
+      <li>La tenue de la fixation adhésive sur différents murs.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+<footer class="foot wrap">
+  <p>Compte rendu global des décisions de l'équipe au 16 octobre 2026, rédigé avec l'aide de Claude et validé par Camille. Les chiffres marqués H sont des hypothèses ; tarifs Supabase relevés sur supabase.com/pricing le 16 octobre 2026.</p>
+</footer>
+</body>
+</html>
