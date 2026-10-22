@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pistes de noms</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.thesis { margin-top: 32px; border-left: 4px solid var(--orange); padding: 4px 0 4px 18px; max-width: 70ch; }
+.thesis p { margin: 6px 0 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; }
+.prod, .spec2 { display:grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; }
+.spec2 { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+.prod > div, .spec2 > div { border-top: 3px solid var(--blue); padding-top: 10px; }
+.prod p, .spec2 p { margin: 6px 0 0; font-size: 15px; }
+.ideas { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.idea { border-top: 4px solid var(--fg); padding: 12px 0 8px; display:flex; flex-direction:column; min-width:0; }
+.ihead { display:flex; justify-content:space-between; align-items:baseline; gap: 8px; }
+.inum { font: 800 44px/1 var(--display); color: var(--orange); letter-spacing: -.05em; }
+.eff { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; white-space: nowrap; }
+.eff.e1 { background: var(--blue-soft); color: var(--blue); }
+.eff.e2 { background: var(--soft); color: var(--fg); }
+.eff.e3 { background: var(--orange-soft); color: var(--orange); }
+.idea h3 { margin: 10px 0 6px; font-size: 20px; letter-spacing: -.015em; }
+.idea p { margin: 0 0 10px; font-size: 15px; }
+.idea dl { margin: auto 0 0; font-size: 13px; border-top: 1px solid var(--hair); padding-top: 8px; }
+.idea dt { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.idea dd { margin: 0 0 6px; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+td b { font-weight: 700; }
+@media (max-width: 1000px) { .ideas { grid-template-columns: repeat(2, 1fr); } .prod { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .ideas, .prod, .spec2 { grid-template-columns: 1fr; } }
+
+.nt td:first-child { width: auto; font: inherit; color: inherit; }
+.nm { font-size: 22px; letter-spacing: -.02em; }
+.vig { color: var(--muted); font-size: 14px; }
+.st { color: var(--blue); letter-spacing: 2px; white-space: nowrap; } .st .off { color: var(--hair); }
+.tops { display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.tp { border-top: 3px solid var(--orange); padding-top: 10px; min-width: 0; }
+.tn { font-size: clamp(44px, 6vw, 76px); font-weight: 800; letter-spacing: -.04em; line-height: 1; margin: 10px 0; }
+.tp p { font-size: 15px; }
+.tu { font: 12px var(--mono); color: var(--blue); }
+@media (max-width: 760px) { .tops { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta k"><span><b>PFR Générations Connectées</b></span><span>Bloc 03 · Outils no-code et IA</span><span>Direction artistique · nom de marque</span><span>Lucas (DA), équipe Clément, Camille, Lucas</span><span>22 octobre 2026</span></div>
+<h1>Quel nom <span>pour Le Cadre&nbsp;?</span></h1>
+<p class="lead">Douze pistes de noms réparties en quatre territoires, notées, avec leurs risques, puis trois favoris, un par univers de DA.</p>
+<div class="thesis"><span class="k">Ce qu'on cherche</span><p>Un nom <b>court</b>, <b>français</b>, qui se dit à voix haute en famille, qui parle du <b>lien</b> plutôt que de l'appareil, et qui ne sonne jamais médical ni «&nbsp;senior&nbsp;». Le meilleur test&nbsp;: peut-on dire «&nbsp;J'ai reçu un … de Maman&nbsp;»&nbsp;?</p></div>
+<section id="s01"><div class="grid"><div class="k"><span class="num">01</span> · Les trois favoris</div><div>
+<h2>Un nom par univers</h2><div class="tops"><div class="tp"><span class="k">1 · univers Papier</span><div class="tn">Lueur</div><p>Il nomme le geste unique du produit, pas l'objet. Il se dit à voix haute («&nbsp;t'as eu une lueur de Maman&nbsp;?&nbsp;») et devient un verbe d'usage, comme on dit «&nbsp;un snap&nbsp;». Il va avec l'ambre de la DA Papier.</p><div class="tu">Notification&nbsp;: «&nbsp;Lueur de Maman&nbsp;»</div></div><div class="tp"><span class="k">2 · univers Héritage</span><div class="tn">Pêle-mêle</div><p>Tous les Français de 40 ans ont vu un pêle-mêle chez leurs grands-parents&nbsp;: l'émotion est immédiate et aucun concurrent ne peut la copier. Parfait pour l'édition cadeau dorée.</p><div class="tu">Notification&nbsp;: «&nbsp;Pêle-mêle de Maman&nbsp;»</div></div><div class="tp"><span class="k">3 · univers Soleil</span><div class="tn">Coucou</div><p>Le mot le plus simple du lien familial. Il marche pour les trois générations et transforme chaque notification en «&nbsp;Coucou de Maman&nbsp;».</p><div class="tu">Notification&nbsp;: «&nbsp;Coucou de Maman&nbsp;»</div></div></div>
+<p style="margin-top:18px"><b>Mon choix&nbsp;: Lueur.</b> C'est le seul nom qui décrit ce que Le Cadre fait de différent, le signe lumineux du parent, et il va avec la DA retenue pour le produit (Papier). Pêle-mêle reste idéal comme nom de l'édition cadeau Héritage&nbsp;: «&nbsp;Lueur, édition Pêle-mêle&nbsp;».</p>
+</div></div></section>
+<section id="s02"><div class="grid"><div class="k"><span class="num">02</span> · Toutes les pistes</div><div>
+<h2>Douze noms, quatre territoires</h2><h3 class="sub">La lumière du lien</h3><p class="note">Le point qui s'allume quand le parent touche le cadre&nbsp;: le cœur du produit.</p><div class="tablewrap"><table class="nt"><thead><tr><th>Nom</th><th>Ce qu'il dit</th><th>Univers</th><th>Note</th><th>Vigilance</th></tr></thead><tbody><tr><td><b class='nm'>Lueur</b></td><td>La petite lumière qui dit «&nbsp;je suis là&nbsp;». Court, doux, français.</td><td>Papier</td><td><span class="st">●●●●●<span class="off"></span></span></td><td class='vig'>Mot courant&nbsp;: déposer «&nbsp;Lueur&nbsp;» avec un complément (Lueur Famille).</td></tr><tr><td><b class='nm'>Luciole</b></td><td>Une petite lumière vivante dans la nuit&nbsp;; tendre, un peu joueur.</td><td>Soleil</td><td><span class="st">●●●●<span class="off">●</span></span></td><td class='vig'>Nom très utilisé par d'autres entreprises.</td></tr><tr><td><b class='nm'>Veilleuse</b></td><td>La lampe qui reste allumée pour rassurer.</td><td>Papier</td><td><span class="st">●●<span class="off">●●●</span></span></td><td class='vig'>«&nbsp;Veiller sur&nbsp;» évoque la surveillance&nbsp;: contraire à notre promesse.</td></tr></tbody></table></div><h3 class="sub">La présence</h3><p class="note">Ce que dit le geste&nbsp;: je suis là, je pense à toi.</p><div class="tablewrap"><table class="nt"><thead><tr><th>Nom</th><th>Ce qu'il dit</th><th>Univers</th><th>Note</th><th>Vigilance</th></tr></thead><tbody><tr><td><b class='nm'>Coucou</b></td><td>Le premier mot qu'on dit en arrivant chez ses parents. Universel, joyeux, toutes générations.</td><td>Soleil</td><td><span class="st">●●●●●<span class="off"></span></span></td><td class='vig'>Utilisé par des applis de messagerie&nbsp;: vérifier à l'INPI.</td></tr><tr><td><b class='nm'>Là</b></td><td>«&nbsp;Maman est là.&nbsp;» Le nom est la notification.</td><td>Papier</td><td><span class="st">●●●<span class="off">●●</span></span></td><td class='vig'>Trop court pour être trouvé en ligne ou déposé seul.</td></tr><tr><td><b class='nm'>Présent</b></td><td>Être présent sans être là&nbsp;; aussi un cadeau.</td><td>Héritage</td><td><span class="st">●●●<span class="off">●●</span></span></td><td class='vig'>Double sens intéressant mais nom générique.</td></tr></tbody></table></div><h3 class="sub">La famille et la maison</h3><p class="note">Le cadre comme centre de la maison.</p><div class="tablewrap"><table class="nt"><thead><tr><th>Nom</th><th>Ce qu'il dit</th><th>Univers</th><th>Note</th><th>Vigilance</th></tr></thead><tbody><tr><td><b class='nm'>Foyer</b></td><td>Le feu de la maison et la famille. Chaleureux et adulte.</td><td>Héritage</td><td><span class="st">●●●●<span class="off">●</span></span></td><td class='vig'>Un écran américain s'appelle déjà Hearth (foyer).</td></tr><tr><td><b class='nm'>Le Fil</b></td><td>Le fil de famille qu'on ne lâche pas.</td><td>Papier</td><td><span class="st">●●●<span class="off">●●</span></span></td><td class='vig'>Confusion avec «&nbsp;fil d'actualité&nbsp;» et notre «&nbsp;fil rouge&nbsp;».</td></tr><tr><td><b class='nm'>Tribu</b></td><td>Toute la famille, petits-enfants compris.</td><td>Soleil</td><td><span class="st">●●●<span class="off">●●</span></span></td><td class='vig'>Très utilisé dans le marketing.</td></tr></tbody></table></div><h3 class="sub">Le cadre photo</h3><p class="note">L'objet lui-même et sa culture.</p><div class="tablewrap"><table class="nt"><thead><tr><th>Nom</th><th>Ce qu'il dit</th><th>Univers</th><th>Note</th><th>Vigilance</th></tr></thead><tbody><tr><td><b class='nm'>Pêle-mêle</b></td><td>Le cadre multi-photos qu'on trouvait chez tous les grands-parents français. Nostalgie immédiate, unique en France.</td><td>Héritage</td><td><span class="st">●●●●●<span class="off"></span></span></td><td class='vig'>Trait d'union et accent&nbsp;: prévoir pelemele en adresse web.</td></tr><tr><td><b class='nm'>Sépia</b></td><td>La couleur des vieilles photos de famille.</td><td>Héritage</td><td><span class="st">●●●<span class="off">●●</span></span></td><td class='vig'>Évoque le passé plus que le lien vivant.</td></tr><tr><td><b class='nm'>Le Cadre</b></td><td>Notre nom de travail&nbsp;: clair, mais générique.</td><td>Tous</td><td><span class="st">●●<span class="off">●●●</span></span></td><td class='vig'>Impossible à déposer seul et à trouver en ligne.</td></tr></tbody></table></div>
+<p class="note" style="margin-top:12px">Notes de 1 à 5&nbsp;: sens, facilité à dire, originalité, accord avec la promesse «&nbsp;un signe, pas une surveillance&nbsp;».</p>
+</div></div></section>
+<section id="s03"><div class="grid"><div class="k"><span class="num">03</span> · À vérifier</div><div>
+<h2>Avant de choisir</h2>
+<ol class="next">
+ <li><b>INPI</b>&nbsp;: chercher la marque dans la classe 9 (appareils) et 38 (télécommunications) sur data.inpi.fr.</li>
+ <li><b>Adresse web</b>&nbsp;: vérifier le .fr et le .com (par exemple lueur-famille.fr si lueur.fr est pris).</li>
+ <li><b>Instagram</b>&nbsp;: vérifier le nom de compte.</li>
+ <li><b>Test en famille</b>&nbsp;: dire les 3 favoris à 5 parents et 5 enfants pendant les entretiens, sans expliquer, et noter ce qu'ils imaginent.</li>
+</ol>
+<p class="note" style="margin-top:16px">Statut&nbsp;: propositions de Lucas, à choisir en équipe. Aucune disponibilité n'a encore été vérifiée (INPI, domaines, réseaux). Les mentions de noms déjà utilisés (Hearth, applis Coucou) sont à confirmer. IA utilisée&nbsp;: Claude (Claude Code) pour proposer et classer les noms.</p>
+</div></div></section>
+<footer class="k">PFR Générations Connectées · Pistes de noms · 22 octobre 2026</footer>
+</div>
+</body>
+</html>
