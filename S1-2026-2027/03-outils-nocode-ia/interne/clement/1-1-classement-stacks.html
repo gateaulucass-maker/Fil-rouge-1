@@ -124,6 +124,8 @@ tr.elim td{border-top:2px solid var(--fg);background:var(--soft)}
 .row.C .fill{background:#aab1bd}
 .col.X{background:#5c6675}
 .row.X .fill{background:#5c6675}
+.usages{min-width:900px;font-size:14px}
+.usages td:first-child{width:14%}
 .compo{min-width:560px;margin:4px 0 14px;font-size:14px}
 .compo td:first-child{width:26%}
 .compo td:nth-child(2){font-weight:700;width:26%}
@@ -215,6 +217,25 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 
 <section>
 <div class="grid">
+<div class="k">Les 4 usages</div>
+<div>
+<h2>Ce que chaque stack couvre, usage par usage</h2>
+<p>Le cours demande des combinaisons capables de porter le site vitrine qui vend, l’écran du cadre, l’appli de l’aidant et les alertes. Lecture du 16 octobre, reprise ici : c’est ce que résume le critère Capacités. Aucune case n’est « testé » tant que les essais du 29 octobre ne sont pas joués.</p>
+<p class="legend"><span><span class="tag ok">testé</span> on l’a fait, avec une preuve</span><span><span class="tag src">source</span> une page l’annonce, pas essayé</span><span><span class="tag chk">à vérifier</span> ni test ni source fiable</span></p>
+<div class="tablewrap"><table class="usages">
+<thead><tr><th>Usage</th><th>A · React + Next.js + Supabase</th><th>B · Glide + Make</th><th>C · Softr + Airtable + Zapier</th><th>D · FlutterFlow + Supabase + n8n</th></tr></thead>
+<tbody>
+<tr><td>1 · Site vitrine et achat</td><td><span class="tag chk">à vérifier</span><small>Un site Next.js. Hébergement à choisir en Europe.</small></td><td><span class="tag chk">à vérifier</span><small>Glide construit des applis, pas des sites de vente.</small></td><td><span class="tag src">source</span><small>Softr sert à faire des sites et des portails.</small></td><td><span class="tag chk">à vérifier</span><small>Publication web possible, mais pas pensée pour une vitrine.</small></td></tr>
+<tr><td>2 · Écran du cadre</td><td><span class="tag chk">à vérifier</span><small>Affichage libre en code, mais rien d’essayé.</small></td><td><span class="tag chk">à vérifier</span><small>App façon mobile, à tester en plein écran.</small></td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span></td></tr>
+<tr><td>3 · Appli de l’aidant</td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span><small>Notifications possibles sans payer ?</small></td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span><small>Notifications sur téléphone à confirmer.</small></td></tr>
+<tr><td>4 · Alertes</td><td><span class="tag chk">à vérifier</span><small>Une fonction Edge de Supabase reçoit le webhook, une tâche planifiée vérifie les 48 h. Pas essayé.</small></td><td><span class="tag chk">à vérifier</span><small>Make reçoit des webhooks. Workflows de Glide payants selon un site tiers.</small></td><td><span class="tag src">source</span><small>Zapier gratuit ne reçoit pas de webhooks : bloquant sans payer.</small></td><td><span class="tag chk">à vérifier</span><small>n8n comme en A.</small></td></tr>
+</tbody></table></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
 <div class="k">Celle qu’on garde</div>
 <div>
 <div class="keepbox">
@@ -238,7 +259,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 </ul>
 <p><span class="tag chk">provisoire</span> Ce choix est une base de travail, pas une décision. Il ne vaut qu’avec les tests.</p>
 </div>
-<div class="def"><p><b>Pourquoi Claude Code n’est plus dans le nom.</b> Un outil qui écrit du code n’est pas une stack : la stack, c’est ce qui fait tourner le produit. Le benchmark du 16 octobre et le compte rendu de Camille disaient « Claude Code + … ». À écrire partout de la même façon désormais : React + Next.js + Supabase, règles en code, construit avec Claude Code. Décision du 22 octobre : pas de n8n, l’automatisation se fait en code.</p></div>
+<div class="def"><p><b>Pourquoi Claude Code n’est plus dans le nom.</b> Un outil qui écrit du code n’est pas une stack : la stack, c’est ce qui fait tourner le produit. Le compte rendu de Camille dit encore « Claude Code + … ». À écrire partout de la même façon désormais : React + Next.js + Supabase, règles en code, construit avec Claude Code. Décision du 22 octobre : pas de n8n, l’automatisation se fait en code.</p></div>
 </div>
 </div>
 </section>
@@ -269,7 +290,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <div class="step"><span class="k">Après chaque test</span><p>La note passe en « testé », la capture va dans <code>captures-ia/</code> à côté de cette page, et son lien s’affiche sous le statut dans le détail. Si le code en React et Next.js échoue sur un usage ou prend beaucoup trop de temps, D passe devant : c’est le plan B.</p></div>
 <div class="step"><span class="k">6 novembre · rendu</span><p>La version avec les tests part dans <code>rendus/</code> pour le PDF de groupe.</p></div>
 </div>
-<p style="margin-top:14px">Pages liées : <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-benchmark-stacks.html">le benchmark des stacks</a> (les critères et les sources), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html">les 4 usages à tester</a> (le protocole), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-architecture-donnees-cadre.html">architecture et données</a> (Camille), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html">plan de la démo</a> (Lucas).</p>
+<p style="margin-top:14px">Pages liées : <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html">les 4 usages à tester</a> (le protocole), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-architecture-donnees-cadre.html">architecture et données</a> (Camille), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html">plan de la démo</a> (Lucas).</p>
 </div>
 </div>
 </section>
@@ -278,7 +299,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <div class="grid">
 <div class="k">Sources</div>
 <div>
-<p>Relevé des 15 et 16 octobre 2026 pour le benchmark, repris ici sans nouvelle vérification. Plusieurs viennent de sites tiers : à confirmer sur les pages officielles pendant les tests.</p>
+<p>Relevé des 15 et 16 octobre 2026 pour la première version du benchmark, fusionnée dans cette page le 22 octobre, et complété ce jour-là pour les outils ajoutés. Plusieurs viennent de sites tiers : à confirmer sur les pages officielles pendant les tests.</p>
 <ol class="src-list" id="sources"></ol>
 </div>
 </div>
@@ -325,7 +346,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     gha:{t:"GitHub Actions : documentation et quotas",u:"https://docs.github.com/en/actions"},
     process:{t:"Notre process de veille (Neon à Francfort, GitHub Actions le jeudi)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/1-1-process-veille.html"},
     makePrix:{t:"Make : prix et plan gratuit",u:"https://www.make.com/en/pricing"},
-    bench:{t:"Benchmark des stacks (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-benchmark-stacks.html"},
+    bench:{t:"Notre lecture du 16 octobre (benchmark, fusionné dans cette page le 22)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html"},
     usages:{t:"Les 4 usages à tester (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html"},
     demo:{t:"Plan de la démo du cadre (Lucas, 15 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html"}
   };

@@ -18,14 +18,13 @@ Ce document raconte ce qui a été fait sur le benchmark des stacks, les décisi
 |---|---|---|
 | 15 octobre | Le Cadre, version retenue | le produit fixé : cadre au mur, appli pour l'enfant, aucune appli pour le parent, un toucher qui dit « je suis là », alerte après 48 h si le parent l'accepte |
 | 16 octobre | Les 4 usages à tester | ce que chaque usage du cours veut dire pour Le Cadre, le test à rejouer sur chaque stack, les données fictives, les 3 statuts |
-| 16 octobre | Benchmark des stacks | les 4 combinaisons, le tableau des 4 usages, les critères et leurs poids, une première lecture bon / moyen / bloquant, les sources, la stack A gardée à titre provisoire |
+| 16 octobre | Benchmark des stacks | les 4 combinaisons, le tableau des 4 usages, les critères et leurs poids, une première lecture bon / moyen / bloquant, les sources. Fusionné dans le classement le 22 octobre, la page n'existe plus que dans l'historique git |
 | 22 octobre | Classement des stacks | les notes chiffrées avec leur statut et leur source, le classement visuel façon vals.ai, la comparaison brique par brique, les décisions du jour |
 | 22 octobre | Prompts de la boîte à outils IA | un prompt par thème pour tester les IA, grille et fiche communes |
 
 Les pages, en ligne :
 
 - Classement des stacks : https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-classement-stacks.html (version de travail : https://claude.ai/artifact/WHLSKt2jd1t2FJEi1MDjrp)
-- Benchmark du 16 octobre : https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-benchmark-stacks.html
 - Les 4 usages à tester : https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html
 - Version retenue : https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-le-cadre-version-retenue.html
 
@@ -160,6 +159,6 @@ Si le code en React et Next.js échoue sur un usage, ou prend beaucoup trop de t
 
 - officielles : Supabase (conformité GDPR, prix, fonctions Edge, pg_cron), Next.js, Nuxt, SvelteKit, Flutter, Django, Vercel (prix, cron), Firebase (prix, fonctions), Neon, Make (zones de données, prix), Glide (GDPR), Airtable (résidence des données, API), GitHub Actions, MDN (Push API), enquête Stack Overflow 2025 ;
 - tierces, à confirmer sur les pages officielles pendant les tests : Jet Admin (prix de Zapier et d'Airtable), CostBench (plan gratuit de Glide), VP0 (prix de FlutterFlow), Sliplane (prix de n8n), Virtua (comparatif n8n, Zapier, Make) ;
-- internes : le benchmark du 16 octobre, les 4 usages à tester, le plan de la démo de Lucas, le process de veille (Neon à Francfort, GitHub Actions le jeudi).
+- internes : les 4 usages à tester, le plan de la démo de Lucas, le process de veille (Neon à Francfort, GitHub Actions le jeudi).
 
 Relevé des 15 et 16 octobre pour les prix et les limites, complété le 22 octobre pour les outils ajoutés.
