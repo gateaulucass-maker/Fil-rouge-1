@@ -189,7 +189,7 @@ td b { font-weight: 700; }
 .bar span.b { height: 14px; background: var(--fg); display:block; }
 .bar span.b.o { background: var(--orange); }
 .bar em { font: 12px var(--mono); font-style: normal; color: var(--muted); }
-.pistes { display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pistes { display:grid; grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
 .piste { border-top: 3px solid var(--fg); padding-top: 10px; min-width: 0; }
 .piste.reco { border-color: var(--blue); }
 .pk { display:flex; justify-content: space-between; align-items: center; }
@@ -218,16 +218,16 @@ td b { font-weight: 700; }
   <span>Lucas (DA), équipe Clément, Camille, Lucas</span>
   <span>22 octobre 2026</span>
 </div>
-<h1>Le marché est bleu. <span>Le Cadre sera chaud.</span></h1>
-<p class="lead">Veille des couleurs et des typographies de la silvertech et de la tech&nbsp;: 15 marques relevées dans le code de leurs sites, classées par famille et par niveau de saturation, puis trois pistes de direction artistique pour Le Cadre.</p>
+<h1>Le marché est bleu. <span>Le Cadre sera épuré et chaud.</span></h1>
+<p class="lead">Veille des couleurs et des typographies de la silvertech et de la tech&nbsp;: 15 marques relevées dans le code de leurs sites, classées par famille et par niveau de saturation, puis quatre pistes de direction artistique pour Le Cadre.</p>
 <div class="stats">
   <div><span class="k">Marques relevées</span><b>15</b></div>
   <div><span class="k">Silvertech en bleu</span><b class="o">6 / 10</b></div>
   <div><span class="k">Silvertech en tons chauds et papier</span><b class="b">0 / 10</b></div>
-  <div><span class="k">Pistes proposées</span><b>3</b></div>
+  <div><span class="k">Pistes proposées</span><b>4</b></div>
 </div>
 <div class="thesis"><span class="k">Ce qu'on retient</span><p>La silvertech parle <b>soin et sécurité</b>&nbsp;: bleu confiance, rouge alerte, typos rondes. La tech récente parle <b>contenu</b>&nbsp;: noir et blanc, ou papier et encre avec une seule couleur chaude. Le Cadre est un <b>objet de famille</b>&nbsp;: sa place est du côté papier, bois, photo. Et notre seule couleur vive doit signifier <b>le lien</b> (la lueur «&nbsp;je suis là&nbsp;»), jamais l'alerte.</p></div>
-<nav class="toc"><a href="#s01">01 Méthode</a><a href="#s02">02 Les familles de couleurs</a><a href="#s03">03 Silvertech, marque par marque</a><a href="#s04">04 Tech et IA</a><a href="#s05">05 Typographies</a><a href="#s06">06 Contraintes seniors</a><a href="#s07">07 Trois pistes</a><a href="#s08">08 Recommandation</a></nav>
+<nav class="toc"><a href="#s01">01 Méthode</a><a href="#s02">02 Les familles de couleurs</a><a href="#s03">03 Silvertech, marque par marque</a><a href="#s04">04 Tech et IA</a><a href="#s05">05 Typographies</a><a href="#s06">06 Contraintes seniors</a><a href="#s07">07 Quatre pistes</a><a href="#s08">08 Recommandation</a></nav>
 
 <section id="s01"><div class="grid"><div class="k"><span class="num">01</span> · Méthode</div><div>
 <h2>Comment on a relevé les couleurs</h2>
@@ -278,18 +278,26 @@ td b { font-weight: 700; }
 <dl class="alert"><div class="row"><dt>Contraste renforcé</dt><dd>Viser 7:1 entre texte et fond (niveau AAA du WCAG), pas seulement 4,5:1. Le contraste perçu baisse avec l'âge. <span class="note">(w3.org/TR/WCAG22 · 1.4.6)</span></dd></div><div class="row"><dt>Le cristallin jaunit</dt><dd>Avec l'âge, les bleus et les violets se distinguent moins bien, le bleu sur bleu devient illisible. Un accent chaud reste net. <span class="note">(w3.org/WAI/older-users)</span></dd></div><div class="row"><dt>Pas de gris clair</dt><dd>Le texte gris clair très à la mode en tech est le premier à disparaître. Les gris restent foncés. <span class="note">(w3.org/WAI/older-users)</span></dd></div><div class="row"><dt>Grande taille, peu de graisses fines</dt><dd>Pas de police en Light ou Thin. Sur le cadre, les textes font au moins 24 px à 2 m. <span class="note">(Recommandation du projet)</span></dd></div><div class="row"><dt>Jamais la couleur seule</dt><dd>La lueur du toucher s'accompagne d'un mot («&nbsp;Envoyé&nbsp;»), pour les parents daltoniens ou malvoyants. <span class="note">(WCAG 1.4.1)</span></dd></div></dl>
 </div></div></section>
 
-<section id="s07"><div class="grid"><div class="k"><span class="num">07</span> · Trois pistes</div><div>
-<h2>Trois directions possibles pour Le Cadre</h2>
+<section id="s07"><div class="grid"><div class="k"><span class="num">07</span> · Quatre pistes</div><div>
+<h2>Quatre directions possibles pour Le Cadre</h2>
 <p>Chaque piste est montrée sur le cadre au mur (avec sa lueur) et sur la notification de l'appli «&nbsp;Maman est là&nbsp;».</p>
 <div class="pistes"><div class="piste reco">
-<div class="pk"><span class="k">Piste A</span><span class="lv eme">Recommandée</span></div>
+<div class="pk"><span class="k">Piste D</span><span class="lv eme">Recommandée</span></div>
+<h3>Papier</h3>
+<div class="mock" style="background:#faf8f5;color:#161412">
+  <div class="frame" style="border-color:#efe9e1"><div class="photo"></div><div class="glow" style="background:#c98a3a"></div></div>
+  <div class="phone" style="border-color:#161412"><span style="font-family:'Atkinson Hyperlegible',Arial,sans-serif;color:#161412">Maman est là</span><i style="background:#c98a3a"></i><small style="color:#161412">il y a 2 min</small></div>
+</div>
+<span class="sw"><i style="background:#faf8f5" title="#faf8f5"></i><i style="background:#161412" title="#161412"></i><i style="background:#c98a3a" title="#c98a3a"></i><i style="background:#efe9e1" title="#efe9e1"></i></span><br><span class="hx">#faf8f5 · #161412 · #c98a3a · #efe9e1</span>
+<p>L'épure d'OpenAI, réchauffée. Blanc cassé chaud, encre presque noire, gris chauds, sable pour les surfaces. Aucune couleur vive dans l'interface&nbsp;: seule la lueur du toucher est ambrée, comme une lampe. Une seule famille de typo sans empattement, Atkinson Hyperlegible pour tout ce que lit le parent.</p><p><b>Pourquoi&nbsp;:</b> Garde ce qui marche chez ChatGPT (l'interface disparaît, les photos de famille sont la seule couleur) et la chaleur du papier photo, sans vert ni orange. Contraste 17,3:1 pour l'encre sur le fond, 8,9:1 pour le texte secondaire&nbsp;: niveau AAA.</p><p class="note"><b>Risque&nbsp;:</b> Très sobre&nbsp;: la marque repose sur la typo, la lueur et la qualité des photos. L'ambre ne sert jamais pour du texte (2,8:1).</p></div><div class="piste">
+<div class="pk"><span class="k">Piste A</span></div>
 <h3>Le salon</h3>
 <div class="mock" style="background:#f6f0e6;color:#2a211b">
   <div class="frame" style="border-color:#8a9a7b"><div class="photo"></div><div class="glow" style="background:#c8623a"></div></div>
   <div class="phone" style="border-color:#2a211b"><span style="font-family:'Fraunces',Georgia,serif;color:#2a211b">Maman est là</span><i style="background:#c8623a"></i><small style="color:#2a211b">il y a 2 min</small></div>
 </div>
 <span class="sw"><i style="background:#f6f0e6" title="#f6f0e6"></i><i style="background:#2a211b" title="#2a211b"></i><i style="background:#c8623a" title="#c8623a"></i><i style="background:#8a9a7b" title="#8a9a7b"></i></span><br><span class="hx">#f6f0e6 · #2a211b · #c8623a · #8a9a7b</span>
-<p>Fond ivoire, encre brune, une seule couleur vivante&nbsp;: la terre cuite de la lueur «&nbsp;je suis là&nbsp;». Vert sauge en secondaire. Titres en serif, texte en Atkinson Hyperlegible.</p><p><b>Pourquoi&nbsp;:</b> Personne dans la silvertech n'utilise ces codes. Ils prolongent le cadre ancien doré et le bois&nbsp;: on parle d'un objet de famille, pas d'un appareil. Le chaud reste lisible malgré le jaunissement du cristallin.</p><p class="note"><b>Risque&nbsp;:</b> Peut paraître «&nbsp;vieillot&nbsp;» si la typo et les photos ne sont pas modernes.</p></div><div class="piste">
+<p>Fond ivoire, encre brune, une seule couleur vivante&nbsp;: la terre cuite de la lueur «&nbsp;je suis là&nbsp;». Vert sauge en secondaire. Titres en serif, texte en Atkinson Hyperlegible.</p><p><b>Pourquoi&nbsp;:</b> Personne dans la silvertech n'utilise ces codes. Ils prolongent le cadre ancien doré et le bois&nbsp;: on parle d'un objet de famille, pas d'un appareil. Le chaud reste lisible malgré le jaunissement du cristallin.</p><p class="note"><b>Risque&nbsp;:</b> Peut paraître «&nbsp;vieillot&nbsp;»&nbsp;; <b>écartée par Lucas le 22/10&nbsp;: le vert et l'orange ne plaisent pas.</b></p></div><div class="piste">
 <div class="pk"><span class="k">Piste B</span></div>
 <h3>La lueur</h3>
 <div class="mock" style="background:#fbfaf7;color:#151515">
@@ -309,18 +317,19 @@ td b { font-weight: 700; }
 </div></div></section>
 
 <section id="s08"><div class="grid"><div class="k"><span class="num">08</span> · Recommandation</div><div>
-<h2>Notre recommandation&nbsp;: la piste A, avec la rigueur de la B</h2>
+<h2>Notre recommandation&nbsp;: la piste D «&nbsp;Papier&nbsp;»</h2>
+<p class="note">Mise à jour du 22/10 après retour de Lucas&nbsp;: la piste A (vert et orange) est écartée. Ce qui plaît&nbsp;: l'épure d'OpenAI et les couleurs chaudes. La piste D réunit les deux.</p>
 <ol class="next">
  <li><b>Sortir du bleu.</b> 6 marques sur 10 sont bleues&nbsp;: c'est le seul moyen d'être reconnu tout de suite, et de ne pas ressembler à un service de santé.</li>
- <li><b>Ivoire, encre, terre cuite.</b> Les couleurs du papier photo, du bois et des cadres anciens choisis par l'équipe. Chaudes, donc lisibles malgré le jaunissement du cristallin.</li>
- <li><b>Une seule couleur vive, avec un sens.</b> La terre cuite est réservée au lien&nbsp;: la lueur du toucher, le bouton d'envoi, la notification «&nbsp;je suis là&nbsp;». Jamais de rouge d'alerte, même pour l'alerte des 48 h, qui reste sobre (encre).</li>
- <li><b>L'interface s'efface</b> (esprit ChatGPT)&nbsp;: sur le cadre, la photo occupe tout&nbsp;; le texte n'apparaît qu'en cas de petit mot.</li>
- <li><b>Fraunces et Atkinson Hyperlegible.</b> La serif pour la mémoire et la marque, l'hyperlisible pour le parent.</li>
- <li><b>Contraste AAA</b> pour tout texte lu par le parent&nbsp;; aucun gris clair.</li>
+ <li><b>L'épure d'OpenAI.</b> Pas de couleur de marque dans l'interface&nbsp;: sur le cadre, la photo occupe tout&nbsp;; dans l'appli, du noir, du blanc et de l'espace.</li>
+ <li><b>La chaleur par les neutres, pas par les couleurs vives.</b> Blanc cassé chaud (#faf8f5), sable (#efe9e1), encre (#161412), gris chaud (#4a4540). Ni vert, ni orange, ni rouge.</li>
+ <li><b>Une seule touche ambrée, avec un sens.</b> L'ambre (#c98a3a) est réservé à la lueur du toucher et à «&nbsp;je suis là&nbsp;»&nbsp;; il n'est jamais utilisé pour du texte. L'alerte des 48 h reste en encre, sobre.</li>
+ <li><b>Une seule famille de typo.</b> Atkinson Hyperlegible, sans empattement comme chez OpenAI, mais dessinée pour la basse vision. Les titres en gras, le reste en normal.</li>
+ <li><b>Contraste AAA</b> pour tout texte lu par le parent&nbsp;: 17,3:1 pour l'encre, 8,9:1 pour le gris chaud. Aucun gris clair.</li>
 </ol>
 <h3 class="sub">Prochaine étape&nbsp;: définir la DA</h3>
 <ol class="next decide">
- <li>Choisir la piste en équipe (A recommandée)&nbsp;; Camille donne son avis côté cadre physique et matières.</li>
+ <li>Valider la piste D en équipe&nbsp;; Camille donne son avis côté cadre physique et matières (bois clair ou cadre ancien, qui vont avec le papier).</li>
  <li>Fixer la palette exacte (5 couleurs avec rôles et contrastes vérifiés) et les tailles de texte.</li>
  <li>Trancher le nom («&nbsp;Le Cadre&nbsp;» ou «&nbsp;CBW&nbsp;») avant de dessiner le logo.</li>
  <li>Habiller 2 écrans de la maquette (accueil et notification) et le cadre au repos.</li>

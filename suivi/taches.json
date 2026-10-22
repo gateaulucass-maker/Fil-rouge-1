@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T14:45",
+  "mise_a_jour": "2026-10-22T15:07",
   "phases": [
     {
       "id": "P0",
@@ -746,7 +746,7 @@
           "statut": "en_cours",
           "qui": "Lucas",
           "date": "2026-10-22",
-          "note": "Veille DA faite (15 marques relevées dans le code des sites, 6 familles de couleurs classées, 4 familles de typos, règles seniors, 3 pistes). Piste A « Le salon » recommandée : ivoire, encre, terre cuite réservée au lien, Fraunces + Atkinson Hyperlegible. Reste : définir la DA.",
+          "note": "Veille DA faite (15 marques, 6 familles de couleurs, typos, règles seniors). Piste A écartée par Lucas (vert et orange). Piste D « Papier » recommandée : épure OpenAI + neutres chauds, ambre réservé à la lueur, Atkinson Hyperlegible. Reste : valider en équipe et définir la DA.",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-da-marche.html"
         }
       ]
