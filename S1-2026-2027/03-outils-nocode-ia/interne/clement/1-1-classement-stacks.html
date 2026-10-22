@@ -50,14 +50,31 @@ a{color:var(--blue)}
 .keepbox ul{margin:6px 0 10px;padding-left:20px}
 .keepbox li{padding:2px 0}
 
-/* Filtres */
-.filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
-.filters button{font:12px var(--mono);letter-spacing:.04em;text-transform:uppercase;background:var(--bg);color:var(--fg);border:1px solid var(--hair);padding:7px 11px;cursor:pointer;border-radius:0}
-.filters button:hover{border-color:var(--fg)}
-.filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+/* Filtres : une ligne d'onglets discrets, façon barre d'outils vals.ai */
+.filters{display:flex;flex-wrap:wrap;gap:2px 4px;margin:0;padding:6px 0;border-top:1px solid var(--fg);border-bottom:1px solid var(--hair)}
+.filters button{font:11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;background:none;color:var(--muted);border:0;padding:6px 9px;cursor:pointer;border-radius:0}
+.filters button:hover{color:var(--fg)}
+.filters button[aria-pressed="true"]{background:var(--soft);color:var(--fg)}
 .filters button:focus-visible,.row:focus-visible,.close:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-.filters .w{color:inherit;opacity:.65;margin-left:6px}
-.filters button[aria-pressed="true"] .w{opacity:.75}
+.filters .sep{flex:1}
+.filters .date{font:11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:6px 0;white-space:nowrap}
+
+/* Colonnes, façon vals.ai : collées, une couleur par stack, score en haut, nom en bas, fond pointillé */
+.chart{position:relative;height:360px;display:flex;align-items:flex-end;background-color:var(--bg);background-image:radial-gradient(var(--hair) 1px,transparent 1px);background-size:10px 10px;border-bottom:1px solid var(--fg)}
+.col{flex:1;min-width:0;height:0;display:flex;flex-direction:column;justify-content:space-between;padding:8px 10px;font:12px var(--mono);color:#fff;border-right:1px solid var(--bg);transition:height .5s cubic-bezier(.2,.7,.2,1);overflow:hidden}
+.col:last-child{border-right:0}
+.col.A{background:var(--bar-keep)}
+.col.D{background:var(--blue)}
+.col.B{background:#d9c9a9;color:var(--fg)}
+.col.C{background:#c4c9d2;color:var(--fg)}
+.col.out{background-image:repeating-linear-gradient(135deg,transparent 0 7px,rgba(255,255,255,.55) 7px 9px)}
+.col .v{font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+.col .nm{text-transform:uppercase;letter-spacing:.04em;font-size:11px;line-height:1.3;font-weight:500}
+.col .nm small{display:block;text-transform:none;letter-spacing:0;opacity:.8;font-size:10.5px}
+.chart-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding:8px 0 0;font-size:13px;color:var(--muted)}
+.chart-foot a{color:var(--fg);font:11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--fg)}
+@media (prefers-reduced-motion:reduce){.col{transition:none}}
+@media (max-width:760px){.chart{height:300px}.col{padding:6px 6px}}
 
 /* Barres */
 .board{border-top:1px solid var(--fg)}
@@ -147,7 +164,9 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <span><span class="tag chk">estimé</span> notre lecture, sans test ni source ferme</span>
 </p>
 <div class="filters" id="filters" role="group" aria-label="Critère affiché"></div>
-<div class="board" id="board" aria-live="polite">
+<div class="chart" id="chart" aria-hidden="true"></div>
+<div class="chart-foot"><span id="chart-note">Score total pondéré sur 100. En gris hachuré : les stacks éliminées, données hors Europe.</span><a href="#rows">Voir le détail</a></div>
+<div class="board" id="board" aria-live="polite" style="margin-top:28px">
 <div class="board-head"><span>#</span><span id="board-title">Score total pondéré</span><span style="text-align:right">/100</span></div>
 <div id="rows"></div>
 </div>
@@ -240,18 +259,18 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
   };
 
   var CRIT = [
-    {id:"cap",  n:"Capacités",                 w:20, s5:"Couvre les 4 usages (site, écran du cadre, appli de l’aidant, alertes) sans contournement.", s3:"Couvre 3 usages, le 4e avec un contournement ou un outil en plus.", s1:"Un seul usage couvert proprement."},
-    {id:"inter",n:"Interopérabilité",          w:20, s5:"Webhooks entrants et sortants gratuits, et n’importe quelle API appelable.", s3:"Webhooks possibles, mais limités ou payants sur un maillon de la stack.", s1:"Pas de webhook entrant sans payer."},
-    {id:"aff",  n:"Affichage adapté au cadre", w:15, s5:"Plein écran, portrait et paysage, photos et vidéos lisibles à 3 mètres.", s3:"Plein écran possible, mais un sens ou la vidéo demande du bricolage.", s1:"Affichage pensé pour un téléphone seulement."},
-    {id:"simp", n:"Simplicité",                w:15, s5:"L’équipe construit l’essai en une demi-journée, sans aide extérieure.", s3:"Une journée, avec la documentation ou une consigne soignée.", s1:"Plusieurs jours, ou une compétence que l’équipe n’a pas."},
-    {id:"cout", n:"Coûts",                     w:10, s5:"Gratuit pour la démo et le prototype.", s3:"Un abonnement de moins de 25 € par mois sur la stack.", s1:"Plusieurs abonnements, ou un maillon payant obligatoire."},
-    {id:"lim",  n:"Limites",                   w:10, s5:"Aucune limite gênante pour 2 familles de test pendant un mois.", s3:"Une limite à surveiller (mise en veille, crédits mensuels).", s1:"Une limite atteinte pendant les tests."},
-    {id:"stock",n:"Stockage des vidéos",       w:10, s5:"Plus de 5 Go de fichiers, ou illimité.", s3:"Autour de 1 Go : vidéos de 30 s compressées, à purger.", s1:"Moins de 200 Mo."}
+    {id:"cap",  n:"Capacités",                 w:20, s:"Capacités", s5:"Couvre les 4 usages (site, écran du cadre, appli de l’aidant, alertes) sans contournement.", s3:"Couvre 3 usages, le 4e avec un contournement ou un outil en plus.", s1:"Un seul usage couvert proprement."},
+    {id:"inter",n:"Interopérabilité",          w:20, s:"Interop.", s5:"Webhooks entrants et sortants gratuits, et n’importe quelle API appelable.", s3:"Webhooks possibles, mais limités ou payants sur un maillon de la stack.", s1:"Pas de webhook entrant sans payer."},
+    {id:"aff",  n:"Affichage adapté au cadre", w:15, s:"Affichage", s5:"Plein écran, portrait et paysage, photos et vidéos lisibles à 3 mètres.", s3:"Plein écran possible, mais un sens ou la vidéo demande du bricolage.", s1:"Affichage pensé pour un téléphone seulement."},
+    {id:"simp", n:"Simplicité",                w:15, s:"Simplicité", s5:"L’équipe construit l’essai en une demi-journée, sans aide extérieure.", s3:"Une journée, avec la documentation ou une consigne soignée.", s1:"Plusieurs jours, ou une compétence que l’équipe n’a pas."},
+    {id:"cout", n:"Coûts",                     w:10, s:"Coûts", s5:"Gratuit pour la démo et le prototype.", s3:"Un abonnement de moins de 25 € par mois sur la stack.", s1:"Plusieurs abonnements, ou un maillon payant obligatoire."},
+    {id:"lim",  n:"Limites",                   w:10, s:"Limites", s5:"Aucune limite gênante pour 2 familles de test pendant un mois.", s3:"Une limite à surveiller (mise en veille, crédits mensuels).", s1:"Une limite atteinte pendant les tests."},
+    {id:"stock",n:"Stockage des vidéos",       w:10, s:"Vidéos", s5:"Plus de 5 Go de fichiers, ou illimité.", s3:"Autour de 1 Go : vidéos de 30 s compressées, à purger.", s1:"Moins de 200 Mo."}
   ];
 
   // statut : "teste" | "doc" | "est"
   var STACKS = [
-    {id:"A", n:"A · Claude Code + Supabase + n8n", sub:"notre voie · build en code", role:"keep",
+    {id:"A", n:"A · Claude Code + Supabase + n8n", short:"A · Claude Code", rest:"Supabase + n8n", sub:"notre voie · build en code", role:"keep",
      eu:{ok:true, st:"doc", why:"Supabase : région européenne et DPA. n8n : Francfort ou un serveur à nous. L’hébergement de l’appli écrite par Claude Code reste à choisir en Europe.", src:["supaGdpr","n8nCmp"]},
      notes:{
        cap:  {v:4, st:"est", why:"En code, les 4 usages sont faisables : page web pour la vitrine, affichage plein écran pour le cadre, appli de l’aidant, règle d’alerte dans n8n. Rien d’essayé, d’où 4 et pas 5.", src:["bench"]},
@@ -262,7 +281,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
        lim:  {v:3, st:"doc", why:"Supabase se met en veille après une semaine sans activité. L’hébergement de l’appli reste à choisir.", src:["supaPrix"]},
        stock:{v:3, st:"doc", why:"Supabase : 1 Go de fichiers sur le plan gratuit. Suffisant pour la démo avec des vidéos de 30 s compressées.", src:["supaPrix"]}
      }},
-    {id:"D", n:"D · FlutterFlow + Supabase + n8n", sub:"no-code, vraie app · plan B", role:"planb",
+    {id:"D", n:"D · FlutterFlow + Supabase + n8n", short:"D · FlutterFlow", rest:"Supabase + n8n", sub:"no-code, vraie app · plan B", role:"planb",
      eu:{ok:true, st:"doc", why:"Supabase et n8n comme en A. FlutterFlow : lieu des données à demander.", src:["supaGdpr","n8nCmp"]},
      notes:{
        cap:  {v:3, st:"est", why:"Fait une vraie app pour l’aidant. Publication web possible mais pas pensée pour un site vitrine. Écran du cadre et notifications sur téléphone à confirmer.", src:["bench","demo"]},
@@ -273,7 +292,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
        lim:  {v:3, st:"doc", why:"Supabase en veille après une semaine. FlutterFlow gratuit : un seul éditeur à la fois.", src:["supaPrix","ff"]},
        stock:{v:3, st:"doc", why:"Supabase : 1 Go de fichiers, comme en A.", src:["supaPrix"]}
      }},
-    {id:"B", n:"B · Glide + Make", sub:"no-code, rapide", role:"out",
+    {id:"B", n:"B · Glide + Make", short:"B · Glide", rest:"Glide Tables + Make", sub:"no-code, rapide", role:"out",
      eu:{ok:false, st:"doc", why:"Glide : serveurs aux États-Unis, pas d’option européenne.", src:["glideGdpr"]},
      notes:{
        cap:  {v:2, st:"est", why:"Glide construit des applis, pas des sites de vente. Alertes possibles via Make. Écran du cadre et notifications gratuites à vérifier.", src:["bench"]},
@@ -284,7 +303,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
        lim:  {v:3, st:"doc", why:"Make : 1 000 crédits par mois. Glide gratuit : lignes et utilisateurs limités.", src:["glideFree","make"]},
        stock:{v:2, st:"est", why:"Stockage de fichiers de Glide limité sur le plan gratuit ; chiffre non relevé dans le benchmark.", src:["glideFree"]}
      }},
-    {id:"C", n:"C · Softr + Airtable + Zapier", sub:"no-code, web et portail", role:"out",
+    {id:"C", n:"C · Softr + Airtable + Zapier", short:"C · Softr", rest:"Airtable + Zapier", sub:"no-code, web et portail", role:"out",
      eu:{ok:false, st:"doc", why:"Airtable : États-Unis, Europe réservée au plan Enterprise. Zapier : États-Unis par défaut.", src:["airtable"]},
      notes:{
        cap:  {v:3, st:"est", why:"Softr sert à faire des sites et des portails : bon pour la vitrine et l’espace de l’aidant. Écran du cadre à vérifier, alertes bloquées par Zapier gratuit.", src:["bench"]},
@@ -322,8 +341,20 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     });
     var ranked=list.filter(function(x){return x.s.eu.ok}).sort(function(a,b){return b.v-a.v});
     var out=list.filter(function(x){return !x.s.eu.ok}).sort(function(a,b){return b.v-a.v});
-    tb.textContent = current==="total" ? "Score total pondéré" : "Critère : "+CRIT.filter(function(c){return c.id===current})[0].n;
-    document.querySelector(".board-head span:last-child").textContent = current==="total" ? "/100" : "/5";
+    var crit = current==="total" ? null : CRIT.filter(function(c){return c.id===current})[0];
+    tb.textContent = crit ? "Critère : "+crit.n+" · "+crit.w+" %" : "Score total pondéré";
+    document.querySelector(".board-head span:last-child").textContent = crit ? "/5" : "/100";
+    document.getElementById("chart-note").textContent = crit
+      ? crit.n+", note sur 5, poids "+crit.w+" % du total. En gris hachuré : les stacks éliminées, données hors Europe."
+      : "Score total pondéré sur 100. En gris hachuré : les stacks éliminées, données hors Europe.";
+    // colonnes
+    var ch="";
+    ranked.concat(out).forEach(function(x){var s=x.s;
+      ch+='<div class="col '+s.id+(s.eu.ok?'':' out')+'" style="height:'+(x.v/x.max*100)+'%"><span class="v">'+x.v+(crit?'/5':'/100')+'</span><span class="nm">'+esc(s.short)+'<small>'+esc(s.eu.ok?s.rest:'éliminée · hors Europe')+'</small></span></div>';
+    });
+    var chart=document.getElementById("chart"); chart.innerHTML=ch;
+    var cols=chart.querySelectorAll(".col");
+    cols.forEach(function(c){var hh=c.style.height;c.style.height="0";requestAnimationFrame(function(){c.style.height=hh})});
     var h="", r=0;
     function row(x,rank){
       var s=x.s, k=conf(s), pct=x.v/x.max*100;
@@ -368,8 +399,9 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 
   // filtres
   var f=document.getElementById("filters");
-  var fh='<button type="button" data-c="total" aria-pressed="true">Total<span class="w">100</span></button>';
-  CRIT.forEach(function(c){fh+='<button type="button" data-c="'+c.id+'" aria-pressed="false">'+esc(c.n)+'<span class="w">'+c.w+' %</span></button>'});
+  var fh='<button type="button" data-c="total" aria-pressed="true">Score total</button>';
+  CRIT.forEach(function(c){fh+='<button type="button" data-c="'+c.id+'" aria-pressed="false" title="'+esc(c.n)+' · '+c.w+' %">'+esc(c.s)+'</button>'});
+  fh+='<span class="sep"></span><span class="date">Provisoire · 22 oct. 2026</span>';
   f.innerHTML=fh;
   f.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){
     current=b.dataset.c; f.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")}); render();
