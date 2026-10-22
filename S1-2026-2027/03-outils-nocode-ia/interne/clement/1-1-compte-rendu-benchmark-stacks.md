@@ -145,7 +145,7 @@ Ce que la lecture par couche apprend, et que le tableau des stacks ne montrait p
 | Quand | Quoi | Qui |
 |---|---|---|
 | avant le 24 octobre | relire les notes, contester celles qui semblent fausses, en écrivant le désaccord dans la case | Lucas |
-| dès le compte Supabase | le test commun du toucher sur la stack A : schéma, fonction Edge, page du cadre, page aidant, notification sur le téléphone, avec le cas invalide et le doublon | Clément, code préparé avec Claude Code |
+| dès le compte Supabase | la preuve de la chaîne cœur sur la stack A : un simulateur envoie le toucher, une fonction Edge l'enregistre, l'aidant reçoit la notification, avec le cas invalide et le doublon ; filmée et chronométrée | Camille, code préparé avec Claude Code |
 | 29 octobre | les 4 usages sur A puis D ; chaque résultat passe en « testé » avec sa capture ; le classement se recalcule. L'écran du cadre se teste dans un navigateur si la tablette n'est pas prête | Lucas et Clément |
 | 29 octobre | les prompts de la boîte à outils IA sur Claude, ChatGPT, Gemini, Mistral et un outil spécialisé par thème | Lucas et Clément, Camille pour ses 2 thèmes |
 | avant le 6 novembre | la version testée du classement part dans `rendus/` ; pages 2, 3 et 5 du PDF | Clément |

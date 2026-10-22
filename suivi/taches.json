@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T17:03",
+  "mise_a_jour": "2026-10-28T23:47",
   "phases": [
     {
       "id": "P0",
@@ -713,6 +713,14 @@
           "date": "2026-10-22",
           "note": "Page faite par Clément le 22/10 : 4 stacks notées sur 8 critères (échelle écrite), classées sur 100 avec barres, filtre par critère, détail au clic ; chaque note porte son statut (testé, documenté, estimé) et sa source. Stack A nommée par ses briques (React + Next.js + Supabase, règles en code, sans n8n, construit avec Claude Code) : 71 ; D 64 ; B et C éliminées (données hors Europe). Aucune note testée pour l'instant. À relire par Lucas avant le 24/10. Ajout : comparaison brique par brique (construction, base, automatisation) en tableau interactif, placée avant les stacks. Compte rendu Markdown de tout le travail : interne/clement/1-1-compte-rendu-benchmark-stacks.md.",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-classement-stacks.html"
+        },
+        {
+          "titre": "Preuve de la chaîne cœur sur la stack A (toucher → Supabase → notification), filmée et chronométrée",
+          "statut": "a_faire",
+          "qui": "Camille",
+          "date": "2026-10-22",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html",
+          "note": "Exigée par le sujet (« test de faisabilité de la chaîne cœur, preuve rapide »). Un simulateur envoie le toucher en JSON, une fonction Edge Supabase l'enregistre, l'aidant reçoit la notification ; avec le message invalide et le doublon. Vidéo de 30 s, temps mesuré, capture de la table. Préalable : compte Supabase, projet en région Francfort. Code préparé avec Claude Code. Cible 29/10."
         },
         {
           "titre": "Boîte à outils IA : tests réels par thème (maquette, code, automatisation, recadrage)",
