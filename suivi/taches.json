@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T15:07",
+  "mise_a_jour": "2026-10-22T15:25",
   "phases": [
     {
       "id": "P0",
@@ -708,10 +708,11 @@
         },
         {
           "titre": "Comparatif des stacks en classement visuel (style vals.ai), stack A choisie",
-          "statut": "en_cours",
+          "statut": "a_valider",
           "qui": "Clément",
           "date": "2026-10-22",
-          "note": "Scores par critère avec leur source (testé, documenté, estimé), à partir du benchmark de Clément. Cible 24/10."
+          "note": "Page faite par Clément le 22/10 : 4 stacks notées sur 8 critères (échelle écrite), classées sur 100 avec barres, filtre par critère, détail au clic ; chaque note porte son statut (testé, documenté, estimé) et sa source. A 71, D 64 ; B et C éliminées (données hors Europe). Aucune note testée pour l'instant. À relire par Lucas avant le 24/10.",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-classement-stacks.html"
         },
         {
           "titre": "Boîte à outils IA : tests réels par thème (maquette, code, automatisation, recadrage)",

@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Classement des stacks</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse de l'équipe : grille 3/9, étiquettes mono, fond blanc, bleu et orange. Classement en barres, façon vals.ai. */
+:root{
+  --bg:#ffffff;--fg:#111418;--muted:#5f6670;--hair:#dcdfe3;--soft:#f3f4f6;
+  --blue:#1f3fbf;--blue-soft:#eef1fb;--orange:#e8571c;--orange-soft:#fdf0ea;--green:#1d7a4a;--green-soft:#e8f4ed;
+  --bar:#c9cdd3;--bar-keep:#1d7a4a;--bar-b:#1f3fbf;--bar-out:#e6e8eb;
+  --display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px),min(4vw,48px));padding-right:max(16px,env(safe-area-inset-right,0px),min(4vw,48px));padding-block:clamp(28px,6vw,72px) 64px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;border-top:2px solid var(--fg);padding-top:12px}
+.meta b{color:var(--fg);font-weight:500}
+h1{margin:clamp(24px,4vw,44px) 0 0;font-weight:800;font-size:clamp(40px,7.5vw,96px);line-height:.92;letter-spacing:-.045em;text-wrap:balance}
+h1 span{color:var(--blue)}
+.grid{display:grid;grid-template-columns:3fr 9fr;gap:0 24px}
+.grid>*{min-width:0}
+.lead{margin:28px 0 0;max-width:56ch;font-size:clamp(19px,2vw,24px);font-weight:700;line-height:1.3;letter-spacing:-.012em}
+section{margin-top:clamp(40px,6vw,72px)}
+section>.grid{border-top:1px solid var(--fg);padding-top:14px}
+h2{margin:0 0 16px;font-size:clamp(24px,3vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
+h3{margin:0 0 8px;font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+p{margin:0 0 12px;max-width:70ch}
+a{color:var(--blue)}
+.tag{display:inline-block;font:11px var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:2px 6px;white-space:nowrap;vertical-align:1px}
+.tag.ok{background:var(--green-soft);color:var(--green)}
+.tag.src{background:var(--blue-soft);color:var(--blue);outline:1px solid var(--blue)}
+.tag.chk{background:var(--bg);color:var(--fg);outline:1px dashed var(--muted)}
+.tag.ko{background:var(--orange-soft);color:var(--orange)}
+.tag.na{background:var(--soft);color:var(--muted)}
+.box{background:var(--orange-soft);border-left:3px solid var(--orange);padding:12px 16px;max-width:76ch;margin-top:16px}
+.box p{margin:0 0 6px;font-size:15px}.box p:last-child{margin:0}
+.box b.h{color:var(--orange)}
+.def{border-top:3px solid var(--blue);background:var(--soft);padding:14px 18px;max-width:76ch;margin-top:14px}
+.def p{margin:0;font-size:15px}
+.keepbox{border-top:3px solid var(--green);background:var(--green-soft);padding:16px 20px;max-width:80ch}
+.keepbox h3{font-size:clamp(22px,2.6vw,30px)}
+.keepbox ul{margin:6px 0 10px;padding-left:20px}
+.keepbox li{padding:2px 0}
+
+/* Filtres */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+.filters button{font:12px var(--mono);letter-spacing:.04em;text-transform:uppercase;background:var(--bg);color:var(--fg);border:1px solid var(--hair);padding:7px 11px;cursor:pointer;border-radius:0}
+.filters button:hover{border-color:var(--fg)}
+.filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filters button:focus-visible,.row:focus-visible,.close:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.filters .w{color:inherit;opacity:.65;margin-left:6px}
+.filters button[aria-pressed="true"] .w{opacity:.75}
+
+/* Barres */
+.board{border-top:1px solid var(--fg)}
+.board-head{display:grid;grid-template-columns:2.2em 1fr 6ch;gap:0 14px;padding:8px 0;font:11.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:1px solid var(--hair)}
+.row{display:grid;grid-template-columns:2.2em 1fr 6ch;gap:0 14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--hair);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;width:100%;text-align:left;font:inherit;color:inherit}
+.row:hover .name{text-decoration:underline;text-decoration-color:var(--hair)}
+.row[aria-expanded="true"] .name{text-decoration:underline;text-decoration-color:var(--fg)}
+.row .rank{font:15px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.row .name{font-weight:800;font-size:17px;letter-spacing:-.015em;line-height:1.15}
+.row .name small{display:block;font:11.5px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:400;margin-top:2px}
+.row .score{font:800 clamp(20px,2.2vw,26px)/1 var(--display);letter-spacing:-.03em;text-align:right;font-variant-numeric:tabular-nums}
+.row .score small{display:block;font:11px var(--mono);color:var(--muted);letter-spacing:.04em;margin-top:3px;font-weight:400}
+.track{grid-column:2;height:14px;background:var(--soft);position:relative;margin-top:8px;overflow:hidden}
+.fill{position:absolute;inset:0 auto 0 0;width:0;background:var(--bar);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.row.keep .fill{background:var(--bar-keep)}
+.row.planb .fill{background:var(--bar-b)}
+.row.out .fill{background:var(--bar-out);background-image:repeating-linear-gradient(135deg,transparent 0 6px,#fff 6px 8px)}
+.row.out .name,.row.out .score{color:var(--muted)}
+.row .conf{grid-column:2;display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+@media (prefers-reduced-motion:reduce){.fill{transition:none}}
+
+/* Détail */
+.detail{border-top:3px solid var(--fg);margin-top:24px;padding-top:14px}
+.detail.keep{border-color:var(--green)}
+.detail.planb{border-color:var(--blue)}
+.detail-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px;align-items:baseline}
+.detail-head p{margin:0;color:var(--muted);font-size:15px}
+.close{font:12px var(--mono);letter-spacing:.04em;text-transform:uppercase;background:none;border:1px solid var(--hair);padding:6px 10px;cursor:pointer;color:var(--fg)}
+.tablewrap{overflow-x:auto;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+.detail table{min-width:760px}
+.scale table{min-width:860px}
+th{text-align:left;font:11.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:8px 12px 8px 0;border-bottom:1px solid var(--fg);font-weight:400;vertical-align:bottom}
+td{vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--hair)}
+td:first-child{font-weight:700;width:18%}
+td.n{font:800 18px/1.2 var(--display);letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap;width:7ch}
+td.n span{font:400 12px var(--mono);color:var(--muted)}
+td.p{font-variant-numeric:tabular-nums;white-space:nowrap;width:6%}
+td small{display:block;margin-top:4px;color:var(--muted);font-size:13px}
+td small a{word-break:break-word}
+tr.elim td{border-top:2px solid var(--fg);background:var(--soft)}
+.dots{display:inline-flex;gap:3px;vertical-align:middle;margin-left:8px}
+.dots i{width:9px;height:9px;background:var(--hair);display:block}
+.dots i.on{background:var(--fg)}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14px;margin:0 0 14px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:0 20px}
+.step{border-top:3px solid var(--fg);padding-top:10px;padding-bottom:16px;min-width:0}
+.step .k{display:block;margin-bottom:6px}
+.step p{font-size:15px;margin:0}
+.src-list{font:13px/1.7 var(--mono);color:var(--muted);margin:0;padding-left:20px}
+.src-list a{color:var(--blue);word-break:break-word}
+footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
+@media (max-width:760px){
+  .grid{grid-template-columns:1fr}
+  .grid>.k{margin-bottom:10px}
+  .row{grid-template-columns:1.8em 1fr 5ch;gap:0 10px}
+  .board-head{grid-template-columns:1.8em 1fr 5ch;gap:0 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<div class="meta k">
+<span>PFR Générations Connectées</span>
+<span>Bloc 03 · Outils no-code et IA</span>
+<span>Équipe <b>Clément, Camille, Lucas</b></span>
+<span>Version provisoire · <b>22 octobre 2026</b></span>
+</div>
+
+<h1>Classement <span>des stacks</span></h1>
+<p class="lead">Les quatre combinaisons du benchmark, notées critère par critère et classées sur 100. Chaque note dit d’où elle vient. La stack A reste devant, mais rien n’est encore testé.</p>
+
+<div class="box">
+<p><b class="h">Provisoire.</b> Aucune note ne vient d’un test réel : tout est lu dans la documentation ou estimé à partir de ce qu’on sait. Les tests des 4 usages sont prévus le 29 octobre. Chaque résultat remplacera une estimation par une note « testé », et le classement se recalculera.</p>
+</div>
+
+<section>
+<div class="grid">
+<div class="k">Le classement</div>
+<div>
+<h2>Quatre stacks, un score sur 100</h2>
+<p class="legend">
+<span><span class="tag ok">testé</span> on l’a fait, avec une preuve</span>
+<span><span class="tag src">documenté</span> une page officielle ou une source l’annonce</span>
+<span><span class="tag chk">estimé</span> notre lecture, sans test ni source ferme</span>
+</p>
+<div class="filters" id="filters" role="group" aria-label="Critère affiché"></div>
+<div class="board" id="board" aria-live="polite">
+<div class="board-head"><span>#</span><span id="board-title">Score total pondéré</span><span style="text-align:right">/100</span></div>
+<div id="rows"></div>
+</div>
+<p class="k" style="margin-top:10px;text-transform:none;letter-spacing:0">Cliquer sur une stack ouvre le détail de ses 8 notes. Les stacks dont les données sortent d’Europe sont éliminées : elles gardent leur score pour information, mais ne sont pas classées.</p>
+<div id="detail"></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Celle qu’on garde</div>
+<div>
+<div class="keepbox">
+<h3>Stack A · Claude Code + Supabase + n8n</h3>
+<p>C’est l’outil avec lequel on construit Le Cadre. Première du classement avec <b id="keep-score">71</b> sur 100, devant la stack D qui a la même base et la même automatisation.</p>
+<ul>
+<li>Elle passe le critère éliminatoire : Supabase en région européenne, n8n à Francfort ou chez nous. Reste à choisir l’hébergement de l’appli en Europe.</li>
+<li>Aucun blocage sur les webhooks, là où Glide et Zapier bloquent sans payer.</li>
+<li>L’écart avec D vient de deux critères estimés : capacités et affichage. Ce sont justement ceux que les tests du 29 octobre vont mesurer.</li>
+</ul>
+<p><span class="tag chk">provisoire</span> Ce choix est une base de travail, pas une décision. Il ne vaut qu’avec les tests.</p>
+</div>
+<div class="def"><p><b>Même produit, deux descriptions.</b> Le compte rendu de Camille écrit la stack A comme « Claude Code + React + Next + Supabase ». C’est la même stack vue de plus près : React et Next sont ce que Claude Code écrit, n8n ou les fonctions de Supabase font l’automatisation. À écrire d’une seule façon dans le rendu final.</p></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">L’échelle</div>
+<div>
+<h2>Comment chaque note est donnée</h2>
+<p>Une note sans échelle ne vaut rien. Voici ce que valent 5, 3 et 1 pour chaque critère. Les notes 4 et 2 sont entre deux. Le score total est la somme des notes multipliées par leur poids, ramenée sur 100.</p>
+<div class="tablewrap scale"><table>
+<thead><tr><th>Critère</th><th>Poids</th><th>5</th><th>3</th><th>1</th></tr></thead>
+<tbody id="scale"></tbody>
+<tr class="elim"><td>Données en Europe</td><td class="p">éliminatoire</td><td colspan="3">Oui ou non, pas de note. Un « non » sort la stack du classement, quel que soit son score. Un « à vérifier » sur un maillon reste accepté le temps des tests, et il est écrit en face.</td></tr>
+</table></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Et après</div>
+<div>
+<h2>Ce qui fait bouger le classement</h2>
+<div class="steps">
+<div class="step"><span class="k">Jusqu’au 24 octobre</span><p>Lucas relit les notes et conteste celles qu’il juge fausses. Un désaccord s’écrit dans la case, on ne fait pas la moyenne.</p></div>
+<div class="step"><span class="k">29 octobre · tests</span><p>Le test commun joué sur A et D d’abord : le toucher, de l’envoi à la notification de l’aidant, avec un cas invalide et un doublon. Puis le site vitrine, l’écran du cadre, l’alerte.</p></div>
+<div class="step"><span class="k">Après chaque test</span><p>La note passe en « testé » avec sa capture. Si Claude Code échoue ou prend beaucoup trop de temps, D passe devant : c’est le plan B.</p></div>
+<div class="step"><span class="k">6 novembre · rendu</span><p>La version avec les tests part dans <code>rendus/</code> pour le PDF de groupe.</p></div>
+</div>
+<p style="margin-top:14px">Pages liées : <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-benchmark-stacks.html">le benchmark des stacks</a> (les critères et les sources), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html">les 4 usages à tester</a> (le protocole), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-architecture-donnees-cadre.html">architecture et données</a> (Camille), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html">plan de la démo</a> (Lucas).</p>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Sources</div>
+<div>
+<p>Relevé des 15 et 16 octobre 2026 pour le benchmark, repris ici sans nouvelle vérification. Plusieurs viennent de sites tiers : à confirmer sur les pages officielles pendant les tests.</p>
+<ol class="src-list" id="sources"></ol>
+</div>
+</div>
+</section>
+
+<footer class="k">Classement des stacks · Clément · brouillon dans interne/clement · à relire par Lucas avant le 24 octobre</footer>
+</div>
+
+<script>
+(function(){
+  var SRC = {
+    supaGdpr:{t:"Supabase : conformité GDPR",u:"https://supabase.com/docs/guides/security/gdpr-compliance"},
+    supaPrix:{t:"Supabase : prix et limites du plan gratuit",u:"https://supabase.com/pricing"},
+    glideGdpr:{t:"Glide : GDPR et serveurs",u:"https://help.glideapps.com/en/articles/9528015-gdpr-eu-compliance-and-glide-servers"},
+    glideFree:{t:"CostBench : plan gratuit de Glide",u:"https://costbench.com/software/no-code/glide/free-plan/"},
+    airtable:{t:"Airtable : data residency",u:"https://AirTable.com/company/data-residency-faqs"},
+    airtablePrix:{t:"Jet Admin : prix d’Airtable",u:"https://www.jetadmin.io/blog/airtable-pricing-in-2026-plans-real-costs-and-when-to-upgrade/"},
+    make:{t:"Make : zones de données",u:"https://help.make.com/ai-providers-and-data-zones-in-make.md"},
+    n8nCmp:{t:"Comparatif n8n, Zapier, Make",u:"https://www.virtua.cloud/learn/fr/concepts/n8n-vs-zapier-vs-make-cout-confidentialite"},
+    n8nPrix:{t:"Sliplane : prix de n8n",u:"https://sliplane.io/blog/n8n-pricing"},
+    zapierPrix:{t:"Jet Admin : prix de Zapier",u:"https://www.jetadmin.io/blog/zapier-pricing/"},
+    ff:{t:"VP0 : prix de FlutterFlow",u:"https://vp0.com/blogs/flutterflow-pricing-plans-2026/"},
+    bench:{t:"Benchmark des stacks (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-benchmark-stacks.html"},
+    usages:{t:"Les 4 usages à tester (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html"},
+    demo:{t:"Plan de la démo du cadre (Lucas, 15 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html"}
+  };
+
+  var CRIT = [
+    {id:"cap",  n:"Capacités",                 w:20, s5:"Couvre les 4 usages (site, écran du cadre, appli de l’aidant, alertes) sans contournement.", s3:"Couvre 3 usages, le 4e avec un contournement ou un outil en plus.", s1:"Un seul usage couvert proprement."},
+    {id:"inter",n:"Interopérabilité",          w:20, s5:"Webhooks entrants et sortants gratuits, et n’importe quelle API appelable.", s3:"Webhooks possibles, mais limités ou payants sur un maillon de la stack.", s1:"Pas de webhook entrant sans payer."},
+    {id:"aff",  n:"Affichage adapté au cadre", w:15, s5:"Plein écran, portrait et paysage, photos et vidéos lisibles à 3 mètres.", s3:"Plein écran possible, mais un sens ou la vidéo demande du bricolage.", s1:"Affichage pensé pour un téléphone seulement."},
+    {id:"simp", n:"Simplicité",                w:15, s5:"L’équipe construit l’essai en une demi-journée, sans aide extérieure.", s3:"Une journée, avec la documentation ou une consigne soignée.", s1:"Plusieurs jours, ou une compétence que l’équipe n’a pas."},
+    {id:"cout", n:"Coûts",                     w:10, s5:"Gratuit pour la démo et le prototype.", s3:"Un abonnement de moins de 25 € par mois sur la stack.", s1:"Plusieurs abonnements, ou un maillon payant obligatoire."},
+    {id:"lim",  n:"Limites",                   w:10, s5:"Aucune limite gênante pour 2 familles de test pendant un mois.", s3:"Une limite à surveiller (mise en veille, crédits mensuels).", s1:"Une limite atteinte pendant les tests."},
+    {id:"stock",n:"Stockage des vidéos",       w:10, s5:"Plus de 5 Go de fichiers, ou illimité.", s3:"Autour de 1 Go : vidéos de 30 s compressées, à purger.", s1:"Moins de 200 Mo."}
+  ];
+
+  // statut : "teste" | "doc" | "est"
+  var STACKS = [
+    {id:"A", n:"A · Claude Code + Supabase + n8n", sub:"notre voie · build en code", role:"keep",
+     eu:{ok:true, st:"doc", why:"Supabase : région européenne et DPA. n8n : Francfort ou un serveur à nous. L’hébergement de l’appli écrite par Claude Code reste à choisir en Europe.", src:["supaGdpr","n8nCmp"]},
+     notes:{
+       cap:  {v:4, st:"est", why:"En code, les 4 usages sont faisables : page web pour la vitrine, affichage plein écran pour le cadre, appli de l’aidant, règle d’alerte dans n8n. Rien d’essayé, d’où 4 et pas 5.", src:["bench"]},
+       inter:{v:4, st:"doc", why:"n8n reçoit des webhooks, et le code appelle n’importe quelle API. À confirmer sur le test commun du toucher.", src:["n8nCmp"]},
+       aff:  {v:4, st:"est", why:"Affichage libre en code : plein écran, rotation selon le sens du cadre. Lisibilité à 3 mètres à tester sur la tablette.", src:["bench"]},
+       simp: {v:3, st:"est", why:"Dépend de la qualité de nos consignes à Claude Code et du temps passé à corriger. Pas d’éditeur visuel pour Camille et Lucas.", src:["bench"]},
+       cout: {v:3, st:"doc", why:"Claude Code demande un abonnement Claude payant, à vérifier pour chacun de nous. Supabase gratuit. n8n gratuit installé chez nous, ou environ 20 € par mois en cloud.", src:["supaPrix","n8nPrix"]},
+       lim:  {v:3, st:"doc", why:"Supabase se met en veille après une semaine sans activité. L’hébergement de l’appli reste à choisir.", src:["supaPrix"]},
+       stock:{v:3, st:"doc", why:"Supabase : 1 Go de fichiers sur le plan gratuit. Suffisant pour la démo avec des vidéos de 30 s compressées.", src:["supaPrix"]}
+     }},
+    {id:"D", n:"D · FlutterFlow + Supabase + n8n", sub:"no-code, vraie app · plan B", role:"planb",
+     eu:{ok:true, st:"doc", why:"Supabase et n8n comme en A. FlutterFlow : lieu des données à demander.", src:["supaGdpr","n8nCmp"]},
+     notes:{
+       cap:  {v:3, st:"est", why:"Fait une vraie app pour l’aidant. Publication web possible mais pas pensée pour un site vitrine. Écran du cadre et notifications sur téléphone à confirmer.", src:["bench","demo"]},
+       inter:{v:4, st:"doc", why:"n8n reçoit des webhooks, comme en A. FlutterFlow sait appeler une API. À confirmer en test.", src:["n8nCmp"]},
+       aff:  {v:3, st:"est", why:"App mobile affichée sur une tablette : plein écran possible, les deux sens et la vidéo à vérifier.", src:["bench"]},
+       simp: {v:3, st:"est", why:"Éditeur visuel, mais une courbe d’apprentissage réelle. Lucas l’a retenu pour le plan de démo, ce qui joue en sa faveur.", src:["demo"]},
+       cout: {v:3, st:"doc", why:"FlutterFlow et Supabase gratuits pour construire ; publier ou travailler à plusieurs demande un plan payant. n8n comme en A.", src:["ff","n8nPrix"]},
+       lim:  {v:3, st:"doc", why:"Supabase en veille après une semaine. FlutterFlow gratuit : un seul éditeur à la fois.", src:["supaPrix","ff"]},
+       stock:{v:3, st:"doc", why:"Supabase : 1 Go de fichiers, comme en A.", src:["supaPrix"]}
+     }},
+    {id:"B", n:"B · Glide + Make", sub:"no-code, rapide", role:"out",
+     eu:{ok:false, st:"doc", why:"Glide : serveurs aux États-Unis, pas d’option européenne.", src:["glideGdpr"]},
+     notes:{
+       cap:  {v:2, st:"est", why:"Glide construit des applis, pas des sites de vente. Alertes possibles via Make. Écran du cadre et notifications gratuites à vérifier.", src:["bench"]},
+       inter:{v:2, st:"doc", why:"Make reçoit des webhooks, mais les workflows de Glide sont absents du plan gratuit d’après un site tiers.", src:["glideFree","make"]},
+       aff:  {v:2, st:"est", why:"App façon mobile ; plein écran sur tablette et rotation à tester.", src:["bench"]},
+       simp: {v:4, st:"est", why:"C’est l’argument de Glide : une appli en quelques heures depuis un tableau. Make est visuel.", src:["glideFree"]},
+       cout: {v:3, st:"doc", why:"Glide et Make ont un plan gratuit. Les prix payants de Glide sont contestés selon les sources.", src:["glideFree"]},
+       lim:  {v:3, st:"doc", why:"Make : 1 000 crédits par mois. Glide gratuit : lignes et utilisateurs limités.", src:["glideFree","make"]},
+       stock:{v:2, st:"est", why:"Stockage de fichiers de Glide limité sur le plan gratuit ; chiffre non relevé dans le benchmark.", src:["glideFree"]}
+     }},
+    {id:"C", n:"C · Softr + Airtable + Zapier", sub:"no-code, web et portail", role:"out",
+     eu:{ok:false, st:"doc", why:"Airtable : États-Unis, Europe réservée au plan Enterprise. Zapier : États-Unis par défaut.", src:["airtable"]},
+     notes:{
+       cap:  {v:3, st:"est", why:"Softr sert à faire des sites et des portails : bon pour la vitrine et l’espace de l’aidant. Écran du cadre à vérifier, alertes bloquées par Zapier gratuit.", src:["bench"]},
+       inter:{v:1, st:"doc", why:"Zapier gratuit ne reçoit pas de webhooks : bloquant pour le toucher sans payer.", src:["zapierPrix","n8nCmp"]},
+       aff:  {v:2, st:"est", why:"Pages web : plein écran possible, mais pensé pour un portail, pas pour un diaporama à 3 mètres.", src:["bench"]},
+       simp: {v:4, st:"est", why:"Softr et Airtable sont parmi les plus simples à prendre en main pour un portail.", src:["bench"]},
+       cout: {v:2, st:"doc", why:"Il faut payer Zapier, environ 20 $ par mois, pour recevoir des webhooks.", src:["zapierPrix"]},
+       lim:  {v:2, st:"doc", why:"Airtable : 1 000 lignes par base. Zapier : 100 tâches par mois. Serré pour un mois de test.", src:["airtablePrix","zapierPrix"]},
+       stock:{v:3, st:"doc", why:"Airtable : 1 Go de fichiers par base.", src:["airtablePrix"]}
+     }}
+  ];
+
+  var W = CRIT.reduce(function(a,c){return a+c.w},0); // 100
+  var ST = {teste:["ok","testé"], doc:["src","documenté"], est:["chk","estimé"]};
+
+  function total(s){
+    var sum=0; CRIT.forEach(function(c){sum+=s.notes[c.id].v*c.w});
+    return Math.round(sum/(5*W)*100);
+  }
+  function conf(s){
+    var k={teste:0,doc:0,est:0}; CRIT.forEach(function(c){k[s.notes[c.id].st]++}); k[s.eu.st]++; return k;
+  }
+  function tag(st){return '<span class="tag '+ST[st][0]+'">'+ST[st][1]+'</span>'}
+  function esc(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+  function dots(v){var h='<span class="dots" aria-hidden="true">';for(var i=1;i<=5;i++)h+='<i class="'+(i<=v?'on':'')+'"></i>';return h+'</span>'}
+  function srcLinks(ids){return ids.map(function(i){var s=SRC[i];return '<a href="'+s.u+'" target="_blank" rel="noopener">'+esc(s.t)+'</a>'}).join(" · ")}
+
+  var current="total", open=null;
+
+  function render(){
+    var tb=document.getElementById("board-title");
+    var list=STACKS.map(function(s){
+      var v = current==="total" ? total(s) : s.notes[current].v;
+      return {s:s,v:v,max:current==="total"?100:5};
+    });
+    var ranked=list.filter(function(x){return x.s.eu.ok}).sort(function(a,b){return b.v-a.v});
+    var out=list.filter(function(x){return !x.s.eu.ok}).sort(function(a,b){return b.v-a.v});
+    tb.textContent = current==="total" ? "Score total pondéré" : "Critère : "+CRIT.filter(function(c){return c.id===current})[0].n;
+    document.querySelector(".board-head span:last-child").textContent = current==="total" ? "/100" : "/5";
+    var h="", r=0;
+    function row(x,rank){
+      var s=x.s, k=conf(s), pct=x.v/x.max*100;
+      var cls="row "+s.role, lab = rank? rank : "·";
+      var sub = s.eu.ok ? s.sub : "éliminée · données hors Europe";
+      var confh = current==="total"
+        ? '<span class="k" style="letter-spacing:.04em">Notes : </span>'+(k.teste?'<span class="tag ok">'+k.teste+' testé</span>':'')+'<span class="tag src">'+k.doc+' documenté</span><span class="tag chk">'+k.est+' estimé</span>'
+        : tag(s.notes[current].st)+'<span style="font-size:14px;color:var(--muted)">'+esc(s.notes[current].why)+'</span>';
+      return '<button class="'+cls+'" type="button" data-id="'+s.id+'" aria-expanded="'+(open===s.id)+'" aria-controls="detail">'+
+        '<span class="rank">'+lab+'</span>'+
+        '<span class="name">'+esc(s.n)+'<small>'+esc(sub)+'</small></span>'+
+        '<span class="score">'+x.v+'<small>'+(current==="total"?"/100":"/5")+'</small></span>'+
+        '<span class="track"><span class="fill" style="width:'+pct+'%"></span></span>'+
+        '<span class="conf">'+confh+'</span>'+
+        '</button>';
+    }
+    ranked.forEach(function(x){r++;h+=row(x,r)});
+    out.forEach(function(x){h+=row(x,0)});
+    document.getElementById("rows").innerHTML=h;
+    // anime les barres depuis 0 à la première peinture
+    var fills=document.querySelectorAll("#rows .fill");
+    fills.forEach(function(f){var w=f.style.width;f.style.width="0";requestAnimationFrame(function(){f.style.width=w})});
+    document.querySelectorAll("#rows .row").forEach(function(b){b.addEventListener("click",function(){open=open===b.dataset.id?null:b.dataset.id;render();renderDetail()})});
+    document.getElementById("keep-score").textContent=total(STACKS[0]);
+  }
+
+  function renderDetail(){
+    var d=document.getElementById("detail");
+    if(!open){d.innerHTML="";return}
+    var s=STACKS.filter(function(x){return x.id===open})[0];
+    var h='<div class="detail '+s.role+'" id="detail-'+s.id+'"><div class="detail-head"><div><h3>'+esc(s.n)+'</h3><p>'+(s.eu.ok?'Score total '+total(s)+' sur 100.':'Hors classement : données hors Europe. Score pour information : '+total(s)+' sur 100.')+'</p></div><button class="close" type="button" id="close">Fermer</button></div>';
+    h+='<div class="tablewrap"><table><thead><tr><th>Critère</th><th>Poids</th><th>Note</th><th>Source</th><th>Pourquoi</th></tr></thead><tbody>';
+    CRIT.forEach(function(c){var n=s.notes[c.id];
+      h+='<tr><td>'+esc(c.n)+'</td><td class="p">'+c.w+' %</td><td class="n">'+n.v+'<span>/5</span>'+dots(n.v)+'</td><td>'+tag(n.st)+'</td><td>'+esc(n.why)+'<small>'+srcLinks(n.src)+'</small></td></tr>';
+    });
+    h+='<tr class="elim"><td>Données en Europe</td><td class="p">éliminatoire</td><td class="n">'+(s.eu.ok?'oui':'non')+'</td><td>'+tag(s.eu.st)+'</td><td>'+esc(s.eu.why)+'<small>'+srcLinks(s.eu.src)+'</small></td></tr>';
+    h+='</tbody></table></div></div>';
+    d.innerHTML=h;
+    document.getElementById("close").addEventListener("click",function(){open=null;render();renderDetail()});
+    d.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }
+
+  // filtres
+  var f=document.getElementById("filters");
+  var fh='<button type="button" data-c="total" aria-pressed="true">Total<span class="w">100</span></button>';
+  CRIT.forEach(function(c){fh+='<button type="button" data-c="'+c.id+'" aria-pressed="false">'+esc(c.n)+'<span class="w">'+c.w+' %</span></button>'});
+  f.innerHTML=fh;
+  f.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){
+    current=b.dataset.c; f.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")}); render();
+  })});
+
+  // échelle
+  document.getElementById("scale").innerHTML=CRIT.map(function(c){return '<tr><td>'+esc(c.n)+'</td><td class="p">'+c.w+' %</td><td>'+esc(c.s5)+'</td><td>'+esc(c.s3)+'</td><td>'+esc(c.s1)+'</td></tr>'}).join("");
+
+  // sources
+  document.getElementById("sources").innerHTML=Object.keys(SRC).map(function(k){return '<li><a href="'+SRC[k].u+'" target="_blank" rel="noopener">'+esc(SRC[k].t)+'</a></li>'}).join("");
+
+  render();
+})();
+</script>
+</body>
+</html>
