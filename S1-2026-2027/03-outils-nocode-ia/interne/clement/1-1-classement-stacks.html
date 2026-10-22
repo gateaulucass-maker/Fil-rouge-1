@@ -116,37 +116,12 @@ td.p{font-variant-numeric:tabular-nums;white-space:nowrap;width:6%}
 td small{display:block;margin-top:4px;color:var(--muted);font-size:13px}
 td small a{word-break:break-word}
 tr.elim td{border-top:2px solid var(--fg);background:var(--soft)}
-/* Brique par brique : un mini graphique par couche, puis la grille des notes */
-.layer{margin-top:34px}
-.layer:first-of-type{margin-top:0}
-.layer h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
-.layer h3 .k{font-weight:400}
-.layer .chart{height:190px;margin-top:10px}
-.layer .col{padding:6px 8px}
-.layer .col .v{font-size:12px}
-.layer .col .nm{font-size:10.5px}
-.heat{min-width:640px;margin-top:10px;font-size:14px}
-.heat th{text-align:center;padding-left:6px;padding-right:6px}
-.heat th:first-child{text-align:left}
-.heat td{text-align:center;padding:8px 6px;font-variant-numeric:tabular-nums}
-.heat td:first-child{text-align:left;width:auto;white-space:nowrap}
-.heat td:first-child small{font:11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
-.heat td.c{font-weight:800;font-size:16px;letter-spacing:-.02em}
-.heat td.c small{display:block;font:10px var(--mono);color:var(--muted);letter-spacing:.04em;margin-top:1px;text-transform:uppercase}
-.heat td.t{font-weight:800;font-size:18px;letter-spacing:-.02em;white-space:nowrap}
-.heat td.t small{font:10px var(--mono);color:var(--muted);letter-spacing:.04em}
-.heat td.eu{white-space:nowrap}
-.why{margin-top:10px;border-top:1px solid var(--hair)}
-.why details{border-bottom:1px solid var(--hair)}
-.why summary{cursor:pointer;padding:9px 0;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;gap:12px}
-.why summary::after{content:"+";font:400 18px/1 var(--mono);color:var(--muted)}
-.why details[open] summary::after{content:"–"}
-.why summary::-webkit-details-marker{display:none}
-.why ul{margin:0 0 12px;padding-left:0;list-style:none;display:grid;gap:8px}
-.why li{font-size:14px;display:grid;grid-template-columns:14ch 1fr;gap:10px}
-.why li b{font:11.5px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:400}
-.why li small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
-@media (max-width:760px){.why li{grid-template-columns:1fr;gap:2px}}
+/* Brique par brique : deux rangées d'onglets (couche, puis critère), même graphique et même liste que les stacks */
+.filters.main button{font-size:12.5px;padding:7px 11px}
+.filters.main button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.filters.sub{border-top:0;padding-top:2px}
+.row.B .fill{background:#c9b48a}
+.row.C .fill{background:#aab1bd}
 .compo{min-width:560px;margin:4px 0 14px;font-size:14px}
 .compo td:first-child{width:26%}
 .compo td:nth-child(2){font-weight:700;width:26%}
@@ -189,7 +164,33 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 
 <section>
 <div class="grid">
-<div class="k">Le classement</div>
+<div class="k">Brique par brique</div>
+<div>
+<h2>Chaque outil seul, couche par couche</h2>
+<p>Une stack, c’est trois couches : ce qui construit les écrans, ce qui garde les données, ce qui automatise. Ici chaque outil est noté seul, sur les critères de sa couche, de 0 à 5. Le score de la couche est la moyenne, ramenée sur 100. C’est là qu’on voit où un critère se joue, et quelle brique on choisit.</p>
+<p class="legend">
+<span><span class="tag ok">testé</span> on l’a fait, avec une preuve</span>
+<span><span class="tag src">documenté</span> une page officielle ou une source l’annonce</span>
+<span><span class="tag chk">estimé</span> notre lecture, sans test ni source ferme</span>
+</p>
+<div class="filters main" id="lfilters" role="group" aria-label="Couche"></div>
+<div class="filters sub" id="bfilters" role="group" aria-label="Critère de la couche"></div>
+<div class="chart" id="bchart" aria-hidden="true"></div>
+<div class="chart-foot"><span id="bchart-note"></span><a href="#brows">Voir le détail</a></div>
+<div class="board" style="margin-top:28px">
+<div class="board-head"><span>#</span><span id="bboard-title">Score de la couche</span><span id="bboard-unit" style="text-align:right">/100</span></div>
+<div id="brows"></div>
+</div>
+<p class="k" style="margin-top:10px;text-transform:none;letter-spacing:0">Cliquer sur un outil ouvre le détail de ses notes. Un outil dont les données sortent d’Europe est hors classement, son score reste affiché pour information.</p>
+<div id="bdetail"></div>
+<div class="def" id="layers-verdict"></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Les stacks complètes</div>
 <div>
 <h2>Quatre stacks, un score sur 100</h2>
 <p class="legend">
@@ -206,18 +207,6 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 </div>
 <p class="k" style="margin-top:10px;text-transform:none;letter-spacing:0">Cliquer sur une stack ouvre le détail de ses 8 notes. Les stacks dont les données sortent d’Europe sont éliminées : elles gardent leur score pour information, mais ne sont pas classées.</p>
 <div id="detail"></div>
-</div>
-</div>
-</section>
-
-<section>
-<div class="grid">
-<div class="k">Brique par brique</div>
-<div>
-<h2>Chaque outil seul, couche par couche</h2>
-<p>Une stack, c’est trois couches : ce qui construit les écrans, ce qui garde les données, ce qui automatise. Ici chaque outil est noté seul, sur les critères de sa couche, avec la même échelle de 0 à 5. Le score de la couche est la moyenne, ramenée sur 100. C’est là qu’on voit où un critère se joue, et quelle brique on choisit.</p>
-<div id="layers"></div>
-<div class="def" id="layers-verdict"></div>
 </div>
 </div>
 </section>
@@ -546,38 +535,82 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     current=b.dataset.c; f.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")}); render();
   })});
 
-  // brique par brique
+  // brique par brique : même mécanique que les stacks, avec une couche active
   function brickScore(b,L){var s=0;L.crit.forEach(function(c){s+=b.notes[c.id].v});return Math.round(s/(5*L.crit.length)*100)}
   var EU={oui:'<span class="tag ok">oui</span>',non:'<span class="tag ko">non</span>',chk:'<span class="tag chk">à vérifier</span>'};
-  var lh="", best=[];
-  LAYERS.forEach(function(L){
-    var bs=L.bricks.map(function(b){return {b:b,v:brickScore(b,L)}}).sort(function(a,b){return b.v-a.v});
-    best.push({L:L,b:bs[0].b,v:bs[0].v});
-    lh+='<div class="layer"><h3>'+esc(L.n)+' <span class="k">'+esc(L.what)+'</span></h3>';
-    lh+='<div class="chart" aria-hidden="true">';
-    bs.forEach(function(x){lh+='<div class="col '+x.b.col+(x.b.eu.v==="non"?' out':'')+'" style="height:'+x.v+'%"><span class="v">'+x.v+'/100</span><span class="nm">'+esc(x.b.n)+'<small>'+esc(x.b.eu.v==="non"?'hors Europe':x.b.sub)+'</small></span></div>'});
-    lh+='</div>';
-    lh+='<div class="tablewrap"><table class="heat"><thead><tr><th>Outil</th>';
-    L.crit.forEach(function(c){lh+='<th>'+esc(c.n)+'</th>'});
-    lh+='<th>Europe</th><th>Score</th></tr></thead><tbody>';
-    bs.forEach(function(x){var b=x.b;
-      lh+='<tr><td>'+esc(b.n)+'<small>'+esc(b.sub)+'</small></td>';
-      L.crit.forEach(function(c){var n=b.notes[c.id];
-        lh+='<td class="c" style="background:rgba(29,122,74,'+(n.v/5*.28).toFixed(2)+')">'+n.v+'<small>'+ST[n.st][1]+'</small></td>'});
-      lh+='<td class="eu">'+EU[b.eu.v]+'</td><td class="t">'+x.v+'<small>/100</small></td></tr>';
+  var EUW={oui:"oui",non:"non",chk:"à vérifier"};
+  var layer=LAYERS[0], bcur="total", bopen=null;
+
+  function renderBricks(){
+    var crit = bcur==="total" ? null : layer.crit.filter(function(c){return c.id===bcur})[0];
+    var list=layer.bricks.map(function(b){return {b:b, v: crit? b.notes[crit.id].v : brickScore(b,layer), max: crit?5:100}});
+    var ranked=list.filter(function(x){return x.b.eu.v!=="non"}).sort(function(a,b){return b.v-a.v});
+    var out=list.filter(function(x){return x.b.eu.v==="non"}).sort(function(a,b){return b.v-a.v});
+    document.getElementById("bboard-title").textContent = crit ? layer.n+" · "+crit.n : layer.n+" · score de la couche";
+    document.getElementById("bboard-unit").textContent = crit ? "/5" : "/100";
+    document.getElementById("bchart-note").textContent = crit
+      ? layer.n+" : "+crit.n+", note sur 5. En hachuré : données hors Europe, hors classement."
+      : layer.n+" : moyenne des "+layer.crit.length+" critères, sur 100. En hachuré : données hors Europe, hors classement.";
+    var ch="";
+    ranked.concat(out).forEach(function(x){var b=x.b;
+      ch+='<div class="col '+b.col+(b.eu.v==="non"?' out':'')+'" style="height:'+(x.v/x.max*100)+'%"><span class="v">'+x.v+(crit?'/5':'/100')+'</span><span class="nm">'+esc(b.n)+'<small>'+esc(b.eu.v==="non"?'hors Europe':b.sub)+'</small></span></div>';
     });
-    lh+='</tbody></table></div>';
-    lh+='<div class="why">';
-    bs.forEach(function(x){var b=x.b;
-      lh+='<details><summary>'+esc(b.n)+' · pourquoi ces notes</summary><ul>';
-      L.crit.forEach(function(c){var n=b.notes[c.id];
-        lh+='<li><b>'+esc(c.n)+' · '+n.v+'/5</b><span>'+tag(n.st)+' '+esc(n.why)+'<small>'+srcLinks(n.src)+'</small></span></li>'});
-      lh+='<li><b>Europe · '+esc(b.eu.v==="chk"?"à vérifier":b.eu.v)+'</b><span>'+tag(b.eu.st)+' '+esc(b.eu.why)+'<small>'+srcLinks(b.eu.src)+'</small></span></li>';
-      lh+='</ul></details>';
+    var chart=document.getElementById("bchart"); chart.innerHTML=ch;
+    chart.querySelectorAll(".col").forEach(function(c){var hh=c.style.height;c.style.height="0";requestAnimationFrame(function(){c.style.height=hh})});
+    var h="", r=0;
+    function row(x,rank){
+      var b=x.b, pct=x.v/x.max*100, k={teste:0,doc:0,est:0};
+      layer.crit.forEach(function(c){k[b.notes[c.id].st]++}); k[b.eu.st]++;
+      var cls="row "+b.col+(b.eu.v==="non"?" out":"");
+      var confh = crit
+        ? tag(b.notes[crit.id].st)+'<span style="font-size:14px;color:var(--muted)">'+esc(b.notes[crit.id].why)+'</span>'
+        : '<span class="k" style="letter-spacing:.04em">Notes : </span>'+(k.teste?'<span class="tag ok">'+k.teste+' testé</span>':'')+'<span class="tag src">'+k.doc+' documenté</span><span class="tag chk">'+k.est+' estimé</span>';
+      return '<button class="'+cls+'" type="button" data-id="'+b.id+'" aria-expanded="'+(bopen===b.id)+'" aria-controls="bdetail">'+
+        '<span class="rank">'+(rank||"·")+'</span>'+
+        '<span class="name">'+esc(b.n)+'<small>'+esc(b.eu.v==="non"?b.sub+' · hors Europe':b.sub)+'</small></span>'+
+        '<span class="score">'+x.v+'<small>'+(crit?"/5":"/100")+'</small></span>'+
+        '<span class="track"><span class="fill" style="width:'+pct+'%"></span></span>'+
+        '<span class="conf">'+confh+'</span></button>';
+    }
+    ranked.forEach(function(x){r++;h+=row(x,r)});
+    out.forEach(function(x){h+=row(x,0)});
+    var rows=document.getElementById("brows"); rows.innerHTML=h;
+    rows.querySelectorAll(".fill").forEach(function(f){var w=f.style.width;f.style.width="0";requestAnimationFrame(function(){f.style.width=w})});
+    rows.querySelectorAll(".row").forEach(function(btn){btn.addEventListener("click",function(){bopen=bopen===btn.dataset.id?null:btn.dataset.id;renderBricks();renderBrickDetail()})});
+    // onglets critère de la couche
+    var bf=document.getElementById("bfilters");
+    var fh='<button type="button" data-c="total" aria-pressed="'+(bcur==="total")+'">Score de la couche</button>';
+    layer.crit.forEach(function(c){fh+='<button type="button" data-c="'+c.id+'" aria-pressed="'+(bcur===c.id)+'">'+esc(c.n)+'</button>'});
+    bf.innerHTML=fh;
+    bf.querySelectorAll("button").forEach(function(btn){btn.addEventListener("click",function(){bcur=btn.dataset.c;renderBricks()})});
+  }
+  function renderBrickDetail(){
+    var d=document.getElementById("bdetail");
+    if(!bopen){d.innerHTML="";return}
+    var b=layer.bricks.filter(function(x){return x.id===bopen})[0];
+    if(!b){bopen=null;d.innerHTML="";return}
+    var role = b.col==="A"?"keep":b.col==="D"?"planb":"";
+    var h='<div class="detail '+role+'"><div class="detail-head"><div><h3>'+esc(b.n)+'</h3><p>'+(b.eu.v==="non"?'Hors classement : données hors Europe. Score pour information : ':'Score de la couche '+esc(layer.n)+' : ')+brickScore(b,layer)+' sur 100.</p></div><button class="close" type="button" id="bclose">Fermer</button></div>';
+    h+='<div class="tablewrap"><table><thead><tr><th>Critère</th><th>Note</th><th>Source</th><th>Pourquoi</th></tr></thead><tbody>';
+    layer.crit.forEach(function(c){var n=b.notes[c.id];
+      h+='<tr><td>'+esc(c.n)+'</td><td class="n">'+n.v+'<span>/5</span>'+dots(n.v)+'</td><td>'+tag(n.st)+'</td><td>'+esc(n.why)+'<small>'+srcLinks(n.src)+'</small></td></tr>';
     });
-    lh+='</div></div>';
-  });
-  document.getElementById("layers").innerHTML=lh;
+    h+='<tr class="elim"><td>Données en Europe</td><td class="n">'+EUW[b.eu.v]+'</td><td>'+tag(b.eu.st)+'</td><td>'+esc(b.eu.why)+'<small>'+srcLinks(b.eu.src)+'</small></td></tr>';
+    h+='</tbody></table></div></div>';
+    d.innerHTML=h;
+    document.getElementById("bclose").addEventListener("click",function(){bopen=null;renderBricks();renderBrickDetail()});
+    d.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }
+  var lf=document.getElementById("lfilters");
+  lf.innerHTML=LAYERS.map(function(L,i){return '<button type="button" data-l="'+L.id+'" aria-pressed="'+(i===0)+'" title="'+esc(L.what)+'">'+esc(L.n)+'</button>'}).join("")+'<span class="sep"></span><span class="date">3 couches · 10 outils</span>';
+  lf.querySelectorAll("button").forEach(function(btn){btn.addEventListener("click",function(){
+    layer=LAYERS.filter(function(L){return L.id===btn.dataset.l})[0]; bcur="total"; bopen=null;
+    lf.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===btn?"true":"false")});
+    renderBricks(); renderBrickDetail();
+  })});
+  renderBricks();
+
+  var best=LAYERS.map(function(L){var bs=L.bricks.map(function(b){return {b:b,v:brickScore(b,L)}}).sort(function(a,b){return b.v-a.v});return {L:L,b:bs[0].b,v:bs[0].v}});
   document.getElementById("layers-verdict").innerHTML='<p><b>Ce que ça dit sur la stack à construire.</b> La meilleure brique de chaque couche est '+
     best.map(function(x){return '<b>'+esc(x.b.n)+'</b> ('+x.v+')'}).join(', ')+
     '. Mises bout à bout, elles donnent la stack A. Softr fait un site vitrine aussi bien que Next.js et plus simplement, et Glide est le plus simple de tous : mais les bases et les automatisations qui vont avec tombent sur l’Europe ou sur les webhooks. Si le code bloque, on ne change que la brique de construction : FlutterFlow sur la même base et la même automatisation, c’est la stack D.</p>';
