@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Deux guides, deux publics</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Grille suisse des rendus du dépôt : rail gauche, colonne de contenu, filets noirs. Thème clair unique, comme les rendus. */
+:root{--cream:#f4eee1;--paper:#faf6ec;--ink:#111526;--muted:#5d6172;--blue:#1d3bc1;--blue-soft:#dfe3f2;--line:#d3ccba;--sans:"Archivo",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+body{background:var(--cream);color:var(--ink);font:17px/1.55 var(--sans);margin:0}
+main{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:48px 80px}
+header{display:grid;gap:28px;padding-bottom:48px}
+.eyebrow{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-weight:800;font-size:clamp(44px,8.5vw,112px);line-height:.92;letter-spacing:-.035em;margin:0;max-width:11ch;text-wrap:balance}
+.key{border-top:6px solid var(--blue);padding-top:18px;display:grid;gap:10px;max-width:34em}
+.key span{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.key p{margin:0;font-size:clamp(20px,2.6vw,30px);font-weight:700;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.toc{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none;font:500 14px var(--mono)}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}.toc a:hover{color:var(--blue);border-color:var(--blue)}
+.legend{font:13px var(--mono);color:var(--muted);margin:0}
+.q{scroll-margin-top:16px;display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:0 32px;border-top:3px solid var(--ink);padding-block:28px 56px}
+.rail{min-width:0}
+.qnum{display:block;font-weight:800;color:var(--blue);font-size:clamp(34px,4.6vw,56px);line-height:.95;letter-spacing:-.03em}
+.kicker{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:8px 0 0}
+.qbody{min-width:0;display:grid;gap:20px}
+h2{font-size:clamp(28px,4vw,48px);font-weight:800;margin:0;line-height:1;letter-spacing:-.025em;text-wrap:balance}
+.text{display:grid;gap:12px;max-width:68ch}.text p{margin:0}
+.bref{border-top:6px solid var(--blue);background:var(--paper);padding:14px 20px 16px;display:grid;gap:8px;max-width:72ch}
+.bref span{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.bref ul{margin:0;padding-left:18px;display:grid;gap:4px;font-weight:600;font-size:16px;line-height:1.4}
+.temps{border-top:2px solid var(--ink);padding-top:12px;display:grid;gap:14px}
+.temps>h3{margin:0;font-size:22px;font-weight:800;letter-spacing:-.01em;line-height:1.15}
+.temps>h3 small{display:block;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.qu{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:10px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.qu .n{font:500 14px var(--mono);color:var(--blue);padding-top:4px}
+.qu p{margin:0}
+.qu .ask{font-size:18px;font-weight:700;line-height:1.35;max-width:36em}
+.qu .rel{margin-top:6px;padding-left:16px;display:grid;gap:3px;font-size:15px;color:var(--ink)}
+.qu .rel li::marker{color:var(--muted)}
+.qu>div{display:flex;flex-direction:column;min-width:0}
+.qu .why{order:-1;margin:0 0 8px;font:500 12px var(--mono);letter-spacing:.04em;color:var(--blue);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.qu .why b{font-weight:500;background:var(--blue);color:#fff;padding:1px 7px;border-radius:2px}
+.qu .why span{color:var(--muted)}
+.qu .why em{font-style:normal;border:1px solid var(--blue);padding:0 6px;border-radius:2px}.qu .why em.sec{border-color:var(--line);color:var(--muted)}
+.hl{margin:0;border-top:2px solid var(--ink);max-width:76ch}.hl div{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:12px;border-bottom:1px solid var(--line);padding-block:10px}.hl dt{font:500 12px var(--mono);color:var(--blue);padding-top:3px;display:grid;gap:3px}.hl dt em{font-style:normal;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.hl dd{margin:0;font-size:15px;line-height:1.45}.hl dd b{color:var(--blue)}
+@media (max-width:760px){.hl div{grid-template-columns:minmax(0,1fr);gap:2px}}
+.hl{margin:0;border-top:2px solid var(--ink);max-width:76ch}.hl div{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:12px;border-bottom:1px solid var(--line);padding-block:10px}.hl dt{font:500 12px var(--mono);color:var(--blue);padding-top:3px;display:grid;gap:3px}.hl dt em{font-style:normal;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.hl dd{margin:0;font-size:15px;line-height:1.45}.hl dd b{color:var(--blue)}
+@media (max-width:760px){.hl div{grid-template-columns:minmax(0,1fr);gap:2px}}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:760px}
+thead th{text-align:left;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 16px 10px 0;border-bottom:2px solid var(--ink)}
+tbody th,tbody td{padding:10px 16px 10px 0;vertical-align:top;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
+tbody th{font-weight:800;width:26%;line-height:1.25}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px}
+.duo>div{min-width:0;display:grid;gap:6px;align-content:start;border-top:2px solid var(--ink);padding-top:12px}
+.duo h3{margin:0;font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.duo ul{margin:0;padding-left:18px;display:grid;gap:4px;font-size:15px}
+.duo .bad h3{color:#a3231f}.duo .good h3{color:#1f6b3a}
+.sum{margin:0;font-size:clamp(18px,2.2vw,24px);font-weight:700;line-height:1.3;max-width:34em;padding-left:20px;border-left:6px solid var(--blue)}
+ul.plain{margin:0;padding-left:20px;display:grid;gap:8px;max-width:70ch;font-size:15.5px}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media (max-width:760px){.q{grid-template-columns:minmax(0,1fr);gap:10px}}
+@media print{.toc{display:none}.q{break-inside:avoid}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">Besoins utilisateurs · Séance 2 · Atelier 2 · PFR Générations Connectées · 22 octobre 2026</div>
+<h1>Deux guides, deux publics</h1>
+<div class="key"><span>Plan de recherche, annexe</span><p>Un guide pour le parent, un pour l'enfant, sur la trame en 5 temps. Douze questions par guide, une par hypothèse : les 6 critiques et les 6 secondaires du rendu retenu, au passé, sans jargon, avec deux relances.</p></div>
+<ul class="toc"><li><a href="#regles">Les règles</a></li><li><a href="#hypotheses">Les 12 hypothèses</a></li><li><a href="#parent">Guide parent</a></li><li><a href="#enfant">Guide enfant</a></li><li><a href="#couverture">Hypothèse par question</a></li><li><a href="#ethique">Logistique et éthique</a></li></ul>
+<p class="legend">Proposition de Clément à partir du rendu retenu de l'atelier 1 (compte rendu de Camille). À tester à voix haute en équipe avant le terrain.</p>
+</header>
+
+<section class="q" id="regles">
+<div class="rail"><span class="qnum">01</span><p class="kicker">Avant de lire</p></div>
+<div class="qbody">
+<h2>Les règles du guide</h2>
+<div class="bref"><span>La trame en 5 temps</span><ul>
+<li>1 · Accueil : qui on est, pourquoi, consentement, « il n'y a pas de bonne réponse », une question d'échauffement.</li>
+<li>2 · Le quotidien : une journée, une semaine, pour comprendre le contexte avant de parler du sujet.</li>
+<li>3 · Le lien aujourd'hui : comment les nouvelles circulent, dans les deux sens.</li>
+<li>4 · Les objets et les achats : ce qui a été essayé, gardé, abandonné, et ce qui rassure.</li>
+<li>5 · Clôture : ce qu'on n'a pas demandé, qui d'autre voir, remerciements.</li>
+</ul></div>
+<div class="bref" style="margin-top:4px"><span>L'entonnoir</span><ul><li>On part large (une journée, une semaine) et on resserre à chaque temps : les nouvelles, puis les objets, puis le choix, l'argent et la surveillance.</li><li>Dans chaque temps, la question la plus ouverte d'abord, la plus précise ou la plus délicate en dernier.</li><li>Une question précise posée trop tôt oriente toutes les suivantes.</li></ul></div>
+<div class="bref" style="margin-top:4px"><span>Une question par hypothèse</span><ul><li>12 hypothèses : les 6 critiques du rendu retenu (principales) et les 6 secondaires choisies par l'équipe.</li><li>Chaque guide pose une question par hypothèse, donc 12 questions, posées des deux côtés : le parent qui la vit, l'enfant qui la voit.</li><li>Si le temps manque, on garde les 6 questions marquées « principale » et on saute les secondaires.</li></ul></div>
+<div class="duo">
+<div class="bad"><h3>À éviter</h3><ul><li>Fermée : « Vous utilisez un téléphone ? »</li><li>Orientée : « Une alerte, ce serait rassurant, non ? »</li><li>Hypothétique : « Vous achèteriez un bracelet ? »</li><li>Double : « Comment et pourquoi l'avez-vous choisi ? »</li><li>Jargon : « une appli connectée à un capteur IoT »</li></ul></div>
+<div class="good"><h3>À préférer</h3><ul><li>Ouverte : « Comment se passe une journée type ? »</li><li>Neutre : « Comment savez-vous que votre mère va bien ? »</li><li>Au passé : « Racontez-moi la dernière fois que… »</li><li>Une seule idée par question.</li><li>Les mots de la personne interrogée.</li></ul></div>
+</div>
+<div class="text"><p>Le Cadre n'est jamais nommé pendant l'entretien. On ne présente ni maquette ni idée de produit : on écoute ce que la personne fait déjà. Chaque question porte, au-dessus, l'hypothèse qu'elle sert et son rang ; la personne interrogée, elle, ne la voit pas. Les relances servent à obtenir un fait précis (quand, qui, combien de temps), pas une opinion.</p></div>
+</div>
+</section>
+
+<section class="q" id="hypotheses">
+<div class="rail"><span class="qnum">02</span><p class="kicker">Ce qu'on teste</p></div>
+<div class="qbody">
+<h2>Les 12 hypothèses</h2>
+<div class="text"><p>Le tri est celui de l'équipe, dans le rendu final de l'atelier 1 : 6 critiques à tester en premier (principales), 6 secondaires à garder en tête pendant les entretiens, 8 mises de côté pour plus tard. Les numéros sont ceux du rendu.</p></div>
+<h3 class="kicker" style="margin:0">Le parent</h3>
+<dl class="hl"><div><dt>P1<em>Principale</em></dt><dd><b>Partager seulement si c'est son choix.</b> Nous pensons que les seniors acceptent de donner une information sur eux quand ils décident eux-mêmes de le faire, et la refusent quand l'enfant l'impose, parce que c'est le choix qui sépare rassurer et être surveillé.</dd></div><div><dt>P2<em>Principale</em></dt><dd><b>Recevoir, puis répondre par la voix.</b> Nous pensons que les seniors apprécient les nouvelles reçues, mais répondent à leur famille par le téléphone, pas par le service, parce que la voix reste leur façon de dire merci et de garder le contact.</dd></div><div><dt>P4<em>Principale</em></dt><dd><b>Un écran ne s'adopte pas seul.</b> Nous pensons que les seniors n'adoptent un écran que si quelqu'un les accompagne au départ, parce que ils n'apprennent pas seuls un objet nouveau.</dd></div><div><dt>P3<em>Secondaire</em></dt><dd><b>Rien à manipuler.</b> Nous pensons que les seniors adoptent un service de lien seulement s'il ne leur demande aucune manipulation, parce que tout geste technique devient une barrière.</dd></div><div><dt>P7<em>Secondaire</em></dt><dd><b>La famille avant le service.</b> Nous pensons que en difficulté, les seniors appellent d'abord un proche plutôt qu'un service, parce que ils font confiance à la famille avant un appareil.</dd></div><div><dt>P10<em>Secondaire</em></dt><dd><b>Débrancher ce qui sonne pour rien.</b> Nous pensons que les seniors débranchent un appareil qui sonne sans raison, surtout la nuit, parce que il les inquiète plus qu'il ne les rassure.</dd></div></dl>
+<h3 class="kicker" style="margin:0">L'enfant</h3>
+<dl class="hl"><div><dt>E1<em>Principale</em></dt><dd><b>L'oubli au moment de partager.</b> Nous pensons que les enfants partagent leurs photos en famille et sur les réseaux, mais presque pas avec leur parent, parce que le parent n'est pas sur ces outils et rien ne le leur rappelle au moment de partager.</dd></div><div><dt>E2<em>Principale</em></dt><dd><b>Le lien s'achète avant l'incident.</b> Nous pensons que les enfants achètent un service de lien sans attendre d'incident, souvent en cadeau, alors qu'ils n'achètent la sécurité qu'après une chute, parce que le manque de nouvelles se ressent déjà, la peur seulement après l'accident.</dd></div><div><dt>E3<em>Principale</em></dt><dd><b>La corvée.</b> Nous pensons que les enfants cessent d'alimenter un service de lien dès qu'il leur demande une action régulière, parce que ils concilient déjà l'aide, le travail et leurs enfants.</dd></div><div><dt>E4<em>Secondaire</em></dt><dd><b>Payer pour la réaction du parent.</b> Nous pensons que les enfants paient un abonnement de lien tant que leur parent montre qu'il en profite, et l'arrêtent quand ce retour disparaît, parce que ils paient pour sa réaction.</dd></div><div><dt>E6<em>Secondaire</em></dt><dd><b>Pas de caméra chez le parent.</b> Nous pensons que les enfants n'installent ni caméra ni localisation chez leur parent, alors qu'ils localisent leurs propres enfants, parce que ils craignent que le parent se sente surveillé.</dd></div><div><dt>E9<em>Secondaire</em></dt><dd><b>Couper après les fausses alertes.</b> Nous pensons que les enfants coupent un dispositif après quelques fausses alertes, parce que une alerte pour rien fait perdre confiance plus vite qu'une alerte manquée.</dd></div></dl>
+</div>
+</section>
+
+<section class="q" id="parent">
+<div class="rail"><span class="qnum">03</span><p class="kicker">Guide parent · 12 questions · 45 min</p></div>
+<div class="qbody">
+<h2>Le parent</h2>
+<div class="text"><p>Cible : une personne de 75 ans ou plus, autonome, qui vit seule chez elle, avec au moins un enfant qui n'habite pas à côté. Entretien chez elle si possible, en tête-à-tête, sans l'enfant dans la pièce. Une question par hypothèse, les 12 dans l'ordre de l'entonnoir.</p></div>
+<div class="temps"><h3>1 · Accueil<small>5 minutes</small></h3>
+<div class="text"><p>« Nous sommes trois étudiants. Nous cherchons à comprendre comment les familles gardent le contact quand les enfants vivent loin. Il n'y a pas de bonne réponse, c'est votre expérience qui nous intéresse. Ça dure trois quarts d'heure. Vous pouvez vous arrêter quand vous voulez. Nous ne noterons pas votre nom. Est-ce que je peux enregistrer pour ne rien oublier ? Nous effacerons l'enregistrement à la fin de l'année. »</p><p><b>Échauffement, hors hypothèse :</b> « Racontez-moi votre journée d'hier, du réveil au coucher. » On écoute sans relancer : c'est pour mettre à l'aise et entendre les mots de la personne.</p></div>
+</div>
+<div class="temps"><h3>2 · Le quotidien<small>8 minutes · large : la vie telle qu'elle est</small></h3>
+<div class="qu"><span class="n">P·1</span><div><p class="why"><b>Hypothèse P2</b> Recevoir, puis répondre par la voix<em class="pri">Principale</em><span>Comment les nouvelles arrivent, et ce qu'il fait après</span></p><p class="ask">Racontez-moi comment vous avez des nouvelles de votre famille, dans une semaine normale.</p><ul class="rel"><li>La dernière fois, c'était quoi, et comment c'est arrivé ?</li><li>Qu'avez-vous fait juste après ?</li></ul></div></div>
+<div class="qu"><span class="n">P·2</span><div><p class="why"><b>Hypothèse P3</b> Rien à manipuler<em class="sec">Secondaire</em><span>Ce qu'il manipule chaque jour, et ce qu'il a laissé</span></p><p class="ask">Quels objets utilisez-vous tous les jours chez vous ?</p><ul class="rel"><li>Et lesquels avez-vous laissés de côté ?</li><li>Qu'est-ce qui fait que vous utilisez celui-là et pas l'autre ?</li></ul></div></div>
+</div>
+<div class="temps"><h3>3 · Le lien aujourd'hui<small>12 minutes · plus précis : les nouvelles, dans les deux sens</small></h3>
+<div class="qu"><span class="n">P·3</span><div><p class="why"><b>Hypothèse E1</b> L'oubli au moment de partager<em class="pri">Principale</em><span>Les photos arrivent-elles jusqu'au parent ?</span></p><p class="ask">Racontez-moi la dernière photo que vous avez reçue de votre famille : qui l'a envoyée, et comment ?</p><ul class="rel"><li>Vous l'avez gardée où ?</li><li>Et les petits-enfants, comment avez-vous de leurs nouvelles ?</li></ul></div></div>
+<div class="qu"><span class="n">P·4</span><div><p class="why"><b>Hypothèse E3</b> La corvée<em class="pri">Principale</em><span>Ce que les enfants font régulièrement, vu du parent</span></p><p class="ask">Qu'est-ce que vos enfants font pour vous régulièrement, et depuis quand ?</p><ul class="rel"><li>Y a-t-il quelque chose qu'ils faisaient et qu'ils ont arrêté ?</li><li>Qu'est-ce que vous en avez pensé ?</li></ul></div></div>
+<div class="qu"><span class="n">P·5</span><div><p class="why"><b>Hypothèse P1</b> Partager seulement si c'est son choix<em class="pri">Principale</em><span>Le signe de vie : donné, ou capté</span></p><p class="ask">Dans une semaine normale, comment vos enfants savent-ils que vous allez bien ?</p><ul class="rel"><li>Quand vous ne donnez pas signe pendant quelques jours, que se passe-t-il ?</li><li>Et quand vous partez quelques jours, comment ça se passe ?</li></ul></div></div>
+<div class="qu"><span class="n">P·6</span><div><p class="why"><b>Hypothèse E4</b> Payer pour la réaction du parent<em class="sec">Secondaire</em><span>Montre-t-il qu'il en profite ?</span></p><p class="ask">Racontez-moi la dernière fois que vous avez remercié vos enfants pour quelque chose. Comment avez-vous fait ?</p><ul class="rel"><li>Qu'est-ce qu'ils ont répondu ?</li><li>Et quand quelque chose ne vous plaît pas, vous le dites comment ?</li></ul></div></div>
+</div>
+<div class="temps"><h3>4 · Les objets, les cadeaux, les choix<small>15 minutes · le plus précis, le plus délicat en dernier</small></h3>
+<div class="qu"><span class="n">P·7</span><div><p class="why"><b>Hypothèse P4</b> Un écran ne s'adopte pas seul<em class="pri">Principale</em><span>Qui l'a accompagné, combien de temps</span></p><p class="ask">Quel est le dernier appareil que vous avez appris à utiliser ? Racontez-moi comment ça s'est passé.</p><ul class="rel"><li>Qui vous a aidé, et pendant combien de temps ?</li><li>Qu'est-ce que vous en faites aujourd'hui ?</li></ul></div></div>
+<div class="qu"><span class="n">P·8</span><div><p class="why"><b>Hypothèse P10</b> Débrancher ce qui sonne pour rien<em class="sec">Secondaire</em><span>L'appareil qui sonne ou s'allume tout seul</span></p><p class="ask">Y a-t-il chez vous un appareil qui s'est déjà mis à sonner ou à s'allumer tout seul ? Racontez-moi.</p><ul class="rel"><li>Qu'avez-vous fait sur le moment ?</li><li>Où est-il aujourd'hui ?</li></ul></div></div>
+<div class="qu"><span class="n">P·9</span><div><p class="why"><b>Hypothèse E2</b> Le lien s'achète avant l'incident<em class="pri">Principale</em><span>Le cadeau et son occasion, vu du parent</span></p><p class="ask">Racontez-moi le dernier cadeau que vos enfants vous ont fait. À quelle occasion ?</p><ul class="rel"><li>Vous en aviez parlé avant, ou c'était une surprise ?</li><li>Qu'en avez-vous fait ?</li></ul></div></div>
+<div class="qu"><span class="n">P·10</span><div><p class="why"><b>Hypothèse P7</b> La famille avant le service<em class="sec">Secondaire</em><span>Qui il appelle en premier</span></p><p class="ask">La dernière fois que vous avez eu besoin d'aide, comment ça s'est passé ?</p><ul class="rel"><li>Qui avez-vous appelé en premier, et pourquoi cette personne ?</li><li>Après coup, qu'est-ce qui a changé ?</li></ul></div></div>
+<div class="qu"><span class="n">P·11</span><div><p class="why"><b>Hypothèse E9</b> Couper après les fausses alertes<em class="sec">Secondaire</em><span>L'alerte pour rien, vue du parent</span></p><p class="ask">Racontez-moi une fois où vos enfants ont été prévenus pour rien à votre sujet : une alerte, un appel, une inquiétude.</p><ul class="rel"><li>Comment l'avez-vous su ?</li><li>Qu'est-ce qui a changé après ?</li></ul></div></div>
+<div class="qu"><span class="n">P·12</span><div><p class="why"><b>Hypothèse E6</b> Pas de caméra chez le parent<em class="sec">Secondaire</em><span>Veiller sur lui : ce qu'on lui a proposé, ce qu'il a dit</span></p><p class="ask">Racontez-moi la dernière fois qu'on vous a proposé d'installer quelque chose chez vous pour veiller sur vous.</p><ul class="rel"><li>Qu'avez-vous répondu, et pourquoi ?</li><li>Qu'est-ce que ça a changé entre vous ?</li></ul></div></div>
+</div>
+<div class="temps"><h3>5 · Clôture<small>5 minutes</small></h3>
+<div class="text"><p>« Y a-t-il quelque chose que je n'ai pas demandé et qui compte pour vous ? » Puis : connaissez-vous quelqu'un d'autre qui accepterait de nous parler ; peut-on vous recontacter ; rappel de l'anonymat ; remerciements.</p></div>
+</div>
+</div>
+</section>
+
+<section class="q" id="enfant">
+<div class="rail"><span class="qnum">04</span><p class="kicker">Guide enfant · 12 questions · 45 min</p></div>
+<div class="qbody">
+<h2>L'enfant</h2>
+<div class="text"><p>Cible : un enfant de 40 à 65 ans, qui travaille, dont le parent vit seul à plus d'une heure de route. Entretien en visio ou au téléphone si besoin. On ne parle jamais du Cadre, et on ne demande pas « achèteriez-vous ». Une question par hypothèse, les 12 dans l'ordre de l'entonnoir.</p></div>
+<div class="temps"><h3>1 · Accueil<small>5 minutes</small></h3>
+<div class="text"><p>Même texte que pour le parent. On ajoute : « On ne vous demandera rien sur la santé de votre parent, seulement sur la façon dont vous gardez le contact. »</p><p><b>Échauffement, hors hypothèse :</b> « Parlez-moi de votre parent : où il vit, et comment ça se passe pour lui en ce moment. »</p></div>
+</div>
+<div class="temps"><h3>2 · Le quotidien<small>8 minutes · large : la situation, les rituels</small></h3>
+<div class="qu"><span class="n">E·1</span><div><p class="why"><b>Hypothèse P2</b> Recevoir, puis répondre par la voix<em class="pri">Principale</em><span>Qui appelle qui : le canal du parent</span></p><p class="ask">Racontez-moi la dernière fois que vous avez eu votre parent : quand, comment, et qui a appelé qui.</p><ul class="rel"><li>C'est le rythme habituel ?</li><li>Et quand il reçoit quelque chose de vous, une photo, une carte : que fait-il ?</li></ul></div></div>
+<div class="qu"><span class="n">E·2</span><div><p class="why"><b>Hypothèse E3</b> La corvée<em class="pri">Principale</em><span>Ce qui est tenu dans la durée</span></p><p class="ask">Qu'est-ce que vous faites régulièrement pour votre parent, et depuis quand ?</p><ul class="rel"><li>Comment en parlez-vous avec vos frères et sœurs ?</li><li>Qu'est-ce qui est le plus dur à tenir ?</li></ul></div></div>
+</div>
+<div class="temps"><h3>3 · Le lien aujourd'hui<small>12 minutes · plus précis : ce qui circule, ce qui n'arrive pas</small></h3>
+<div class="qu"><span class="n">E·3</span><div><p class="why"><b>Hypothèse E1</b> L'oubli au moment de partager<em class="pri">Principale</em><span>L'oubli au moment de partager, ou l'outil</span></p><p class="ask">Les dernières photos que vous avez prises : à qui les avez-vous envoyées ?</p><ul class="rel"><li>Et à votre parent ? Qu'est-ce qui a fait que oui, ou que non ?</li><li>D'habitude, comment reçoit-il les photos de la famille ?</li></ul></div></div>
+<div class="qu"><span class="n">E·4</span><div><p class="why"><b>Hypothèse P3</b> Rien à manipuler<em class="sec">Secondaire</em><span>Ce que le parent manipule, vu de l'enfant</span></p><p class="ask">Racontez-moi ce que votre parent utilise tous les jours chez lui.</p><ul class="rel"><li>Et ce qu'il a laissé de côté ?</li><li>D'après vous, qu'est-ce qui fait la différence ?</li></ul></div></div>
+<div class="qu"><span class="n">E·5</span><div><p class="why"><b>Hypothèse P1</b> Partager seulement si c'est son choix<em class="pri">Principale</em><span>Le signe de vie, vu de l'enfant</span></p><p class="ask">Dans une semaine normale, comment savez-vous que votre parent va bien ?</p><ul class="rel"><li>Et les jours où vous ne l'avez pas ?</li><li>Racontez-moi la dernière fois que vous vous êtes inquiété pour lui.</li></ul></div></div>
+<div class="qu"><span class="n">E·6</span><div><p class="why"><b>Hypothèse E4</b> Payer pour la réaction du parent<em class="sec">Secondaire</em><span>Le retour du parent, et ce qu'il fait tenir</span></p><p class="ask">Quand vous faites quelque chose pour votre parent, comment savez-vous que ça lui a fait plaisir ?</p><ul class="rel"><li>La dernière fois, qu'a-t-il dit ou fait ?</li><li>Et quand il ne dit rien, qu'est-ce que ça vous fait ?</li></ul></div></div>
+</div>
+<div class="temps"><h3>4 · Les achats, les objets, les choix<small>15 minutes · le plus précis, le plus délicat en dernier</small></h3>
+<div class="qu"><span class="n">E·7</span><div><p class="why"><b>Hypothèse E2</b> Le lien s'achète avant l'incident<em class="pri">Principale</em><span>Le déclencheur du dernier achat</span></p><p class="ask">Qu'avez-vous déjà acheté, installé ou essayé pour votre parent ? Racontez-moi le dernier.</p><ul class="rel"><li>Qu'est-ce qui s'est passé juste avant ?</li><li>Qu'est-ce que c'est devenu ?</li></ul></div></div>
+<div class="qu"><span class="n">E·8</span><div><p class="why"><b>Hypothèse P4</b> Un écran ne s'adopte pas seul<em class="pri">Principale</em><span>Qui a accompagné le parent, combien de temps</span></p><p class="ask">Le dernier appareil que votre parent a eu à apprendre : comment ça s'est passé, et qui a aidé ?</p><ul class="rel"><li>Combien de temps ça a pris ?</li><li>Aujourd'hui, il s'en sert ?</li></ul></div></div>
+<div class="qu"><span class="n">E·9</span><div><p class="why"><b>Hypothèse E9</b> Couper après les fausses alertes<em class="sec">Secondaire</em><span>L'alerte pour rien, et la confiance après</span></p><p class="ask">Racontez-moi la dernière fois qu'une alerte ou un appel à propos de votre parent s'est révélé être pour rien.</p><ul class="rel"><li>Qu'avez-vous fait sur le moment ?</li><li>Et la fois d'après, comment avez-vous réagi ?</li></ul></div></div>
+<div class="qu"><span class="n">E·10</span><div><p class="why"><b>Hypothèse P10</b> Débrancher ce qui sonne pour rien<em class="sec">Secondaire</em><span>L'appareil qui sonne chez le parent</span></p><p class="ask">Y a-t-il chez votre parent un appareil qui sonne ou s'allume tout seul ? Racontez-moi ce qu'il en a fait.</p><ul class="rel"><li>Qui l'avait installé ?</li><li>Où est-il aujourd'hui ?</li></ul></div></div>
+<div class="qu"><span class="n">E·11</span><div><p class="why"><b>Hypothèse P7</b> La famille avant le service<em class="sec">Secondaire</em><span>Qui le parent a appelé en premier</span></p><p class="ask">La dernière fois que votre parent a eu besoin d'aide, comment l'avez-vous su ?</p><ul class="rel"><li>Qui a-t-il appelé en premier ?</li><li>Qu'est-ce que ça a changé ensuite ?</li></ul></div></div>
+<div class="qu"><span class="n">E·12</span><div><p class="why"><b>Hypothèse E6</b> Pas de caméra chez le parent<em class="sec">Secondaire</em><span>Veiller sur lui : ce qui retient, ce qui décide</span></p><p class="ask">Racontez-moi la dernière fois que vous avez pensé à installer quelque chose chez votre parent pour veiller sur lui.</p><ul class="rel"><li>Qu'est-ce qui vous a retenu, ou décidé ?</li><li>Et pour vos propres enfants, vous faites comment ?</li></ul></div></div>
+</div>
+<div class="temps"><h3>5 · Clôture<small>5 minutes</small></h3>
+<div class="text"><p>« Y a-t-il quelque chose que je n'ai pas demandé et qui compte ? » Puis : votre parent accepterait-il de nous parler aussi ; quelqu'un d'autre à voir ; rappel de l'anonymat ; remerciements.</p></div>
+</div>
+</div>
+</section>
+
+
+<section class="q" id="couverture">
+<div class="rail"><span class="qnum">05</span><p class="kicker">Couverture</p></div>
+<div class="qbody">
+<h2>Chaque hypothèse a sa question, des deux côtés</h2>
+<div class="tw"><table>
+<thead><tr><th>Hypothèse</th><th>Rang</th><th>Guide parent</th><th>Guide enfant</th><th>Elle est fausse si…</th></tr></thead>
+<tbody>
+<tr><th>P1 · Partager seulement si c'est son choix</th><td>Principale</td><td>P·5</td><td>E·5</td><td>les parents ne font aucune différence entre ce qu'ils ont choisi et ce qu'on leur a installé.</td></tr>
+<tr><th>P2 · Recevoir, puis répondre par la voix</th><td>Principale</td><td>P·1</td><td>E·1</td><td>la plupart ne répondent pas du tout, ou autrement que par la voix.</td></tr>
+<tr><th>P4 · Un écran ne s'adopte pas seul</th><td>Principale</td><td>P·7</td><td>E·8</td><td>plusieurs parents ont adopté seuls un écran pour voir leur famille.</td></tr>
+<tr><th>E1 · L'oubli au moment de partager</th><td>Principale</td><td>P·3</td><td>E·3</td><td>la majorité envoie déjà des photos au parent chaque semaine.</td></tr>
+<tr><th>E2 · Le lien s'achète avant l'incident</th><td>Principale</td><td>P·9</td><td>E·7</td><td>les achats racontés suivent presque tous un incident ou une hospitalisation.</td></tr>
+<tr><th>E3 · La corvée</th><td>Principale</td><td>P·4</td><td>E·2</td><td>3 aidants sur 5 tiennent un geste hebdomadaire depuis plus de 3 mois.</td></tr>
+<tr><th>P3 · Rien à manipuler</th><td>Secondaire</td><td>P·2</td><td>E·4</td><td>la majorité utilise déjà un écran pour voir les photos de la famille.</td></tr>
+<tr><th>P7 · La famille avant le service</th><td>Secondaire</td><td>P·10</td><td>E·11</td><td>des parents équipés citent spontanément le bouton ou le service en premier.</td></tr>
+<tr><th>P10 · Débrancher ce qui sonne pour rien</th><td>Secondaire</td><td>P·8</td><td>E·10</td><td>des seniors disent supporter les sonneries sans raison et garder l'appareil.</td></tr>
+<tr><th>E4 · Payer pour la réaction du parent</th><td>Secondaire</td><td>P·6</td><td>E·6</td><td>des enfants continuent de payer sans savoir si le parent regarde, ou arrêtent alors qu'il adore.</td></tr>
+<tr><th>E6 · Pas de caméra chez le parent</th><td>Secondaire</td><td>P·12</td><td>E·12</td><td>des enfants ont déjà une caméra, une position ou un capteur chez leur parent, avec son accord.</td></tr>
+<tr><th>E9 · Couper après les fausses alertes</th><td>Secondaire</td><td>P·11</td><td>E·9</td><td>« je préfère dix fausses alertes à une chute ratée », ou un enfant qui garde un bracelet trop sensible depuis des mois.</td></tr>
+</tbody></table></div>
+<p class="sum">Chaque hypothèse est posée à la personne qui la vit et à celle qui la voit. Les seuils viennent du rendu retenu quand il en donne ; les autres sont proposés, à valider en équipe.</p>
+</div>
+</section>
+
+<section class="q" id="ethique">
+<div class="rail"><span class="qnum">06</span><p class="kicker">Logistique et éthique</p></div>
+<div class="qbody">
+<h2>Comment on mène l'entretien</h2>
+<ul class="plain">
+<li><b>Qui.</b> Deux personnes : une mène, une note. On alterne les rôles d'un entretien à l'autre. Jamais l'enfant et le parent ensemble dans la même pièce.</li>
+<li><b>Combien.</b> 5 parents et 5 enfants, dont au moins 3 duos parent-enfant de la même famille. Diversité : au moins un parent de plus de 85 ans, un parent qui n'a pas de smartphone, un enfant à plus de 300 km, un enfant seul dans sa fratrie.</li>
+<li><b>Où et combien de temps.</b> Chez le parent si possible ; en visio ou au téléphone pour l'enfant. 45 minutes, jamais plus d'une heure.</li>
+<li><b>Consentement.</b> Lu à voix haute à l'accueil, accord oral enregistré. La personne peut s'arrêter ou retirer son accord à tout moment, y compris après.</li>
+<li><b>Anonymisation.</b> Pas de nom, pas de ville, pas d'âge précis dans les notes : un code (Parent 1, Enfant 3). Les verbatims gardés font 300 caractères au plus, comme le reste du dépôt public.</li>
+<li><b>Données.</b> Les enregistrements restent sur un seul ordinateur, hors du dépôt, et sont effacés à la fin de l'année scolaire. Seules les notes anonymisées sont partagées.</li>
+<li><b>Après.</b> Dans l'heure qui suit, celui qui a noté écrit trois choses : ce qui confirme une hypothèse, ce qui la contredit, et la phrase qu'on n'avait pas prévue.</li>
+</ul>
+</div>
+</section>
+</main>
+
+</body>
+</html>
