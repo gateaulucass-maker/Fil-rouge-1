@@ -116,6 +116,37 @@ td.p{font-variant-numeric:tabular-nums;white-space:nowrap;width:6%}
 td small{display:block;margin-top:4px;color:var(--muted);font-size:13px}
 td small a{word-break:break-word}
 tr.elim td{border-top:2px solid var(--fg);background:var(--soft)}
+/* Brique par brique : un mini graphique par couche, puis la grille des notes */
+.layer{margin-top:34px}
+.layer:first-of-type{margin-top:0}
+.layer h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.layer h3 .k{font-weight:400}
+.layer .chart{height:190px;margin-top:10px}
+.layer .col{padding:6px 8px}
+.layer .col .v{font-size:12px}
+.layer .col .nm{font-size:10.5px}
+.heat{min-width:640px;margin-top:10px;font-size:14px}
+.heat th{text-align:center;padding-left:6px;padding-right:6px}
+.heat th:first-child{text-align:left}
+.heat td{text-align:center;padding:8px 6px;font-variant-numeric:tabular-nums}
+.heat td:first-child{text-align:left;width:auto;white-space:nowrap}
+.heat td:first-child small{font:11px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.heat td.c{font-weight:800;font-size:16px;letter-spacing:-.02em}
+.heat td.c small{display:block;font:10px var(--mono);color:var(--muted);letter-spacing:.04em;margin-top:1px;text-transform:uppercase}
+.heat td.t{font-weight:800;font-size:18px;letter-spacing:-.02em;white-space:nowrap}
+.heat td.t small{font:10px var(--mono);color:var(--muted);letter-spacing:.04em}
+.heat td.eu{white-space:nowrap}
+.why{margin-top:10px;border-top:1px solid var(--hair)}
+.why details{border-bottom:1px solid var(--hair)}
+.why summary{cursor:pointer;padding:9px 0;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.why summary::after{content:"+";font:400 18px/1 var(--mono);color:var(--muted)}
+.why details[open] summary::after{content:"–"}
+.why summary::-webkit-details-marker{display:none}
+.why ul{margin:0 0 12px;padding-left:0;list-style:none;display:grid;gap:8px}
+.why li{font-size:14px;display:grid;grid-template-columns:14ch 1fr;gap:10px}
+.why li b{font:11.5px/1.9 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:400}
+.why li small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+@media (max-width:760px){.why li{grid-template-columns:1fr;gap:2px}}
 .compo{min-width:560px;margin:4px 0 14px;font-size:14px}
 .compo td:first-child{width:26%}
 .compo td:nth-child(2){font-weight:700;width:26%}
@@ -175,6 +206,18 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 </div>
 <p class="k" style="margin-top:10px;text-transform:none;letter-spacing:0">Cliquer sur une stack ouvre le détail de ses 8 notes. Les stacks dont les données sortent d’Europe sont éliminées : elles gardent leur score pour information, mais ne sont pas classées.</p>
 <div id="detail"></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="grid">
+<div class="k">Brique par brique</div>
+<div>
+<h2>Chaque outil seul, couche par couche</h2>
+<p>Une stack, c’est trois couches : ce qui construit les écrans, ce qui garde les données, ce qui automatise. Ici chaque outil est noté seul, sur les critères de sa couche, avec la même échelle de 0 à 5. Le score de la couche est la moyenne, ramenée sur 100. C’est là qu’on voit où un critère se joue, et quelle brique on choisit.</p>
+<div id="layers"></div>
+<div class="def" id="layers-verdict"></div>
 </div>
 </div>
 </section>
@@ -268,6 +311,14 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     zapierPrix:{t:"Jet Admin : prix de Zapier",u:"https://www.jetadmin.io/blog/zapier-pricing/"},
     ff:{t:"VP0 : prix de FlutterFlow",u:"https://vp0.com/blogs/flutterflow-pricing-plans-2026/"},
     vercel:{t:"Vercel : prix (Hobby gratuit, Pro payant)",u:"https://vercel.com/pricing"},
+    next:{t:"Next.js : documentation",u:"https://nextjs.org/docs"},
+    push:{t:"MDN : Push API (notifications web, iOS 16.4 et plus en appli installée)",u:"https://developer.mozilla.org/en-US/docs/Web/API/Push_API"},
+    ffDocs:{t:"FlutterFlow : documentation (notifications push via Firebase)",u:"https://docs.flutterflow.io/"},
+    softr:{t:"Softr : prix et plan gratuit",u:"https://www.softr.io/pricing"},
+    supaDocs:{t:"Supabase : documentation (API, temps réel, webhooks de base)",u:"https://supabase.com/docs"},
+    airtableApi:{t:"Airtable : API web et webhooks",u:"https://airtable.com/developers/web/api/introduction"},
+    n8nDocs:{t:"n8n : documentation (webhook, déclencheur planifié)",u:"https://docs.n8n.io/"},
+    makePrix:{t:"Make : prix et plan gratuit",u:"https://www.make.com/en/pricing"},
     bench:{t:"Benchmark des stacks (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-benchmark-stacks.html"},
     usages:{t:"Les 4 usages à tester (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html"},
     demo:{t:"Plan de la démo du cadre (Lucas, 15 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html"}
@@ -329,6 +380,79 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
        lim:  {v:2, st:"doc", why:"Airtable : 1 000 lignes par base. Zapier : 100 tâches par mois. Serré pour un mois de test.", src:["airtablePrix","zapierPrix"]},
        stock:{v:3, st:"doc", why:"Airtable : 1 Go de fichiers par base.", src:["airtablePrix"]}
      }}
+  ];
+
+  // Brique par brique : chaque outil seul, sur les critères de sa couche. eu : "oui" | "non" | "chk".
+  var LAYERS = [
+    {id:"build", n:"Construction", what:"ce qui fait les écrans : le site, l’écran du cadre, l’appli de l’aidant",
+     crit:[{id:"site",n:"Site vitrine"},{id:"cadre",n:"Écran du cadre"},{id:"aidant",n:"Appli aidant"},{id:"simp",n:"Simplicité"},{id:"cout",n:"Coût"}],
+     bricks:[
+      {id:"react", n:"React + Next.js", col:"A", sub:"code · stack A", eu:{v:"chk",st:"est",why:"Le code s’héberge où on veut : Vercel en région Francfort ou un serveur européen. À choisir et à vérifier.",src:["vercel"]}, notes:{
+        site:{v:5,st:"doc",why:"Next.js est fait pour les sites web : pages, formulaires, rendu côté serveur.",src:["next"]},
+        cadre:{v:4,st:"est",why:"Plein écran et rotation libres en code. Lisibilité à 3 mètres et tenue sur une vieille tablette à tester.",src:["bench"]},
+        aidant:{v:3,st:"doc",why:"Appli web installable (PWA). Les notifications push web marchent sur Android, et sur iPhone seulement depuis iOS 16.4 et en appli installée sur l’écran d’accueil.",src:["push"]},
+        simp:{v:2,st:"est",why:"C’est du code. Claude Code l’écrit, mais la relecture et les corrections reposent sur Clément ; pas d’éditeur visuel pour Camille et Lucas.",src:["bench"]},
+        cout:{v:5,st:"doc",why:"React et Next.js sont libres et gratuits. L’hébergement est compté à part.",src:["next","vercel"]}}},
+      {id:"ff", n:"FlutterFlow", col:"D", sub:"no-code · stack D", eu:{v:"chk",st:"est",why:"Lieu des données de l’éditeur à demander à FlutterFlow. L’app, elle, parle à Supabase en Europe.",src:["ffDocs"]}, notes:{
+        site:{v:2,st:"est",why:"Publication web possible, mais l’outil est pensé pour des applis, pas pour un site de vente.",src:["bench"]},
+        cadre:{v:3,st:"est",why:"App mobile affichée sur une tablette : plein écran possible, les deux sens et la vidéo à vérifier.",src:["bench"]},
+        aidant:{v:4,st:"doc",why:"Vraie app mobile, installable sur les stores. Les notifications push passent par Firebase, à brancher en plus de Supabase.",src:["ffDocs"]},
+        simp:{v:3,st:"est",why:"Éditeur visuel, mais une vraie courbe d’apprentissage. Lucas l’a retenu pour le plan de démo.",src:["demo"]},
+        cout:{v:3,st:"doc",why:"Gratuit pour construire ; publier sur les stores ou récupérer le code demande un plan payant.",src:["ff"]}}},
+      {id:"softr", n:"Softr", col:"C", sub:"no-code · stack C", eu:{v:"chk",st:"est",why:"Éditeur allemand, mais le lieu d’hébergement des sites n’est pas relevé. À demander.",src:["softr"]}, notes:{
+        site:{v:5,st:"doc",why:"Softr sert à faire des sites et des portails : c’est son métier.",src:["softr"]},
+        cadre:{v:2,st:"est",why:"Pages web, plein écran possible, mais pensé pour un portail, pas pour un diaporama à 3 mètres.",src:["bench"]},
+        aidant:{v:3,st:"est",why:"Portail web pour l’aidant, installable comme une PWA. Notifications sur téléphone à vérifier.",src:["bench"]},
+        simp:{v:4,st:"est",why:"Parmi les plus simples pour un portail : blocs prêts, connexion directe à Airtable.",src:["bench"]},
+        cout:{v:3,st:"doc",why:"Plan gratuit limité ; les fonctions utiles passent vite en payant.",src:["softr"]}}},
+      {id:"glide", n:"Glide", col:"B", sub:"no-code · stack B", eu:{v:"non",st:"doc",why:"Serveurs aux États-Unis, pas d’option européenne.",src:["glideGdpr"]}, notes:{
+        site:{v:1,st:"est",why:"Glide construit des applis, pas des sites de vente.",src:["bench"]},
+        cadre:{v:2,st:"est",why:"App façon mobile ; plein écran sur tablette et rotation à tester.",src:["bench"]},
+        aidant:{v:3,st:"est",why:"App web type mobile pour l’aidant. Notifications push réservées aux plans payants, à vérifier.",src:["glideFree"]},
+        simp:{v:5,st:"est",why:"C’est l’argument de Glide : une appli en quelques heures à partir d’un tableau.",src:["glideFree"]},
+        cout:{v:3,st:"doc",why:"Plan gratuit ; les prix payants sont contestés selon les sources.",src:["glideFree"]}}}
+     ]},
+    {id:"base", n:"Base de données", what:"ce qui garde les familles, les contenus, le dernier toucher, et sert les fichiers",
+     crit:[{id:"fich",n:"Fichiers vidéo"},{id:"lim",n:"Limites"},{id:"api",n:"API et temps réel"},{id:"cout",n:"Coût"}],
+     bricks:[
+      {id:"supa", n:"Supabase", col:"A", sub:"stacks A et D", eu:{v:"oui",st:"doc",why:"Région européenne au choix et accord de traitement (DPA).",src:["supaGdpr"]}, notes:{
+        fich:{v:3,st:"doc",why:"1 Go de fichiers sur le plan gratuit : des vidéos de 30 s compressées, à purger.",src:["supaPrix"]},
+        lim:{v:3,st:"doc",why:"500 Mo de base, mise en veille après une semaine sans activité.",src:["supaPrix"]},
+        api:{v:5,st:"doc",why:"API REST générée, temps réel, comptes, et webhooks de base de données vers n8n.",src:["supaDocs"]},
+        cout:{v:4,st:"doc",why:"Gratuit pour la démo ; Pro à environ 25 $ par mois.",src:["supaPrix"]}}},
+      {id:"airtable", n:"Airtable", col:"C", sub:"stack C", eu:{v:"non",st:"doc",why:"États-Unis ; l’Europe est réservée au plan Enterprise.",src:["airtable"]}, notes:{
+        fich:{v:3,st:"doc",why:"1 Go de fichiers par base.",src:["airtablePrix"]},
+        lim:{v:2,st:"doc",why:"1 000 lignes par base en gratuit : serré pour un mois de test avec les touchers.",src:["airtablePrix"]},
+        api:{v:4,st:"doc",why:"API web complète et webhooks. Pas de temps réel natif.",src:["airtableApi"]},
+        cout:{v:3,st:"doc",why:"Gratuit limité ; Team à environ 20 $ par utilisateur et par mois.",src:["airtablePrix"]}}},
+      {id:"gtables", n:"Glide Tables", col:"B", sub:"stack B", eu:{v:"non",st:"doc",why:"Comme Glide : États-Unis.",src:["glideGdpr"]}, notes:{
+        fich:{v:2,st:"est",why:"Stockage de fichiers limité en gratuit ; chiffre non relevé.",src:["glideFree"]},
+        lim:{v:2,st:"doc",why:"Lignes et mises à jour limitées sur le plan gratuit.",src:["glideFree"]},
+        api:{v:2,st:"est",why:"API réservée aux plans payants ; pas de temps réel vers un outil externe.",src:["glideFree"]},
+        cout:{v:3,st:"doc",why:"Inclus dans Glide.",src:["glideFree"]}}}
+     ]},
+    {id:"auto", n:"Automatisation", what:"ce qui reçoit le toucher, prévient l’aidant et applique la règle des 48 heures",
+     crit:[{id:"hook",n:"Webhooks"},{id:"temps",n:"Règle dans le temps"},{id:"notif",n:"Notifications"},{id:"quota",n:"Quota"},{id:"cout",n:"Coût"}],
+     bricks:[
+      {id:"n8n", n:"n8n", col:"A", sub:"stacks A et D", eu:{v:"oui",st:"doc",why:"Cloud à Francfort, ou installé sur un serveur à nous.",src:["n8nCmp"]}, notes:{
+        hook:{v:5,st:"doc",why:"Webhooks entrants et sortants gratuits, sans limite en auto-hébergé.",src:["n8nDocs","n8nCmp"]},
+        temps:{v:5,st:"doc",why:"Déclencheur planifié (cron) pour vérifier le dernier toucher toutes les heures.",src:["n8nDocs"]},
+        notif:{v:4,st:"est",why:"E-mail direct ; push sur téléphone via un service tiers (ntfy, OneSignal) à brancher et tester.",src:["n8nDocs"]},
+        quota:{v:4,st:"doc",why:"Sans limite installé chez nous ; environ 2 500 exécutions par mois en cloud d’entrée de gamme.",src:["n8nPrix"]},
+        cout:{v:4,st:"doc",why:"Gratuit installé ; environ 20 € par mois en cloud.",src:["n8nPrix"]}}},
+      {id:"make", n:"Make", col:"B", sub:"stack B", eu:{v:"oui",st:"doc",why:"Zone de données européenne au choix. Ce n’est pas Make qui élimine la stack B, c’est Glide.",src:["make"]}, notes:{
+        hook:{v:4,st:"doc",why:"Webhooks disponibles sur le plan gratuit.",src:["makePrix"]},
+        temps:{v:4,st:"doc",why:"Scénarios planifiés ; intervalle minimal de 15 minutes en gratuit.",src:["makePrix"]},
+        notif:{v:3,st:"est",why:"E-mail et services tiers ; à tester.",src:["makePrix"]},
+        quota:{v:3,st:"doc",why:"1 000 crédits par mois en gratuit.",src:["makePrix"]},
+        cout:{v:3,st:"doc",why:"Gratuit limité ; Core à environ 10 $ par mois.",src:["makePrix"]}}},
+      {id:"zapier", n:"Zapier", col:"C", sub:"stack C", eu:{v:"non",st:"doc",why:"États-Unis par défaut.",src:["n8nCmp"]}, notes:{
+        hook:{v:1,st:"doc",why:"Pas de webhook entrant sur le plan gratuit : bloquant pour le toucher.",src:["zapierPrix"]},
+        temps:{v:3,st:"doc",why:"Déclencheur planifié inclus, mais 2 étapes par Zap en gratuit.",src:["zapierPrix"]},
+        notif:{v:3,st:"est",why:"E-mail et services tiers ; à tester.",src:["zapierPrix"]},
+        quota:{v:1,st:"doc",why:"100 tâches par mois en gratuit.",src:["zapierPrix"]},
+        cout:{v:2,st:"doc",why:"Il faut payer, environ 20 $ par mois, pour les webhooks.",src:["zapierPrix"]}}}
+     ]}
   ];
 
   var W = CRIT.reduce(function(a,c){return a+c.w},0); // 100
@@ -421,6 +545,42 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
   f.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){
     current=b.dataset.c; f.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")}); render();
   })});
+
+  // brique par brique
+  function brickScore(b,L){var s=0;L.crit.forEach(function(c){s+=b.notes[c.id].v});return Math.round(s/(5*L.crit.length)*100)}
+  var EU={oui:'<span class="tag ok">oui</span>',non:'<span class="tag ko">non</span>',chk:'<span class="tag chk">à vérifier</span>'};
+  var lh="", best=[];
+  LAYERS.forEach(function(L){
+    var bs=L.bricks.map(function(b){return {b:b,v:brickScore(b,L)}}).sort(function(a,b){return b.v-a.v});
+    best.push({L:L,b:bs[0].b,v:bs[0].v});
+    lh+='<div class="layer"><h3>'+esc(L.n)+' <span class="k">'+esc(L.what)+'</span></h3>';
+    lh+='<div class="chart" aria-hidden="true">';
+    bs.forEach(function(x){lh+='<div class="col '+x.b.col+(x.b.eu.v==="non"?' out':'')+'" style="height:'+x.v+'%"><span class="v">'+x.v+'/100</span><span class="nm">'+esc(x.b.n)+'<small>'+esc(x.b.eu.v==="non"?'hors Europe':x.b.sub)+'</small></span></div>'});
+    lh+='</div>';
+    lh+='<div class="tablewrap"><table class="heat"><thead><tr><th>Outil</th>';
+    L.crit.forEach(function(c){lh+='<th>'+esc(c.n)+'</th>'});
+    lh+='<th>Europe</th><th>Score</th></tr></thead><tbody>';
+    bs.forEach(function(x){var b=x.b;
+      lh+='<tr><td>'+esc(b.n)+'<small>'+esc(b.sub)+'</small></td>';
+      L.crit.forEach(function(c){var n=b.notes[c.id];
+        lh+='<td class="c" style="background:rgba(29,122,74,'+(n.v/5*.28).toFixed(2)+')">'+n.v+'<small>'+ST[n.st][1]+'</small></td>'});
+      lh+='<td class="eu">'+EU[b.eu.v]+'</td><td class="t">'+x.v+'<small>/100</small></td></tr>';
+    });
+    lh+='</tbody></table></div>';
+    lh+='<div class="why">';
+    bs.forEach(function(x){var b=x.b;
+      lh+='<details><summary>'+esc(b.n)+' · pourquoi ces notes</summary><ul>';
+      L.crit.forEach(function(c){var n=b.notes[c.id];
+        lh+='<li><b>'+esc(c.n)+' · '+n.v+'/5</b><span>'+tag(n.st)+' '+esc(n.why)+'<small>'+srcLinks(n.src)+'</small></span></li>'});
+      lh+='<li><b>Europe · '+esc(b.eu.v==="chk"?"à vérifier":b.eu.v)+'</b><span>'+tag(b.eu.st)+' '+esc(b.eu.why)+'<small>'+srcLinks(b.eu.src)+'</small></span></li>';
+      lh+='</ul></details>';
+    });
+    lh+='</div></div>';
+  });
+  document.getElementById("layers").innerHTML=lh;
+  document.getElementById("layers-verdict").innerHTML='<p><b>Ce que ça dit sur la stack à construire.</b> La meilleure brique de chaque couche est '+
+    best.map(function(x){return '<b>'+esc(x.b.n)+'</b> ('+x.v+')'}).join(', ')+
+    '. Mises bout à bout, elles donnent la stack A. Softr fait un site vitrine aussi bien que Next.js et plus simplement, et Glide est le plus simple de tous : mais les bases et les automatisations qui vont avec tombent sur l’Europe ou sur les webhooks. Si le code bloque, on ne change que la brique de construction : FlutterFlow sur la même base et la même automatisation, c’est la stack D.</p>';
 
   // échelle
   document.getElementById("scale").innerHTML=CRIT.map(function(c){return '<tr><td>'+esc(c.n)+'</td><td class="p">'+c.w+' %</td><td>'+esc(c.s5)+'</td><td>'+esc(c.s3)+'</td><td>'+esc(c.s1)+'</td></tr>'}).join("");
