@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T16:06",
+  "mise_a_jour": "2026-10-22T16:21",
   "phases": [
     {
       "id": "P0",
@@ -758,6 +758,14 @@
           "date": "2026-10-22",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-noms-univers-soleil.html",
           "note": "L'équipe préfère l'univers Soleil. 10 noms dans cet esprit et 3 systèmes marque + geste. Reco : Smala + « un coucou ». Alternatives : Tournesol + « un rayon », Ribambelle + « un bisou ». Reste : INPI, domaines, Instagram, test en entretien."
+        },
+        {
+          "titre": "Soly : mise en situation de la marque (univers Soleil)",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-22",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-soly-mise-en-situation.html",
+          "note": "Nom retenu par Lucas : Soly, geste « un Soly ». Mockups : cadre au salon, journée type, 3 écrans d'appli, site soly.fr, Instagram, affiche, boîte. Reste : INPI, domaine, validation équipe."
         }
       ]
     },

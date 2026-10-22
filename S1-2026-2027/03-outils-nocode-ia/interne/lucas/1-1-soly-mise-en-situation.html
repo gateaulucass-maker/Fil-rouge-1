@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Soly, mise en situation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root { --cr:#fff6e0; --be:#f6d775; --ca:#2e1e14; --no:#5c4636; --li:#b7a3e0; --w:#ffffff;
+  --bri:"Bricolage Grotesque", "Arial Black", Arial, sans-serif; --atk:"Atkinson Hyperlegible", Arial, sans-serif; --mono:"IBM Plex Mono", Menlo, monospace; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cr); color: var(--ca); font: 17px/1.5 var(--atk); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); padding-block: 28px 64px; }
+.meta { display:flex; flex-wrap: wrap; gap: 4px 24px; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--no); border-top: 2px solid var(--ca); padding-top: 10px; }
+.meta b { color: var(--ca); font-weight: 500; }
+.k { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--no); }
+h2 { font-family: var(--bri); font-weight: 800; font-size: clamp(34px, 5vw, 60px); letter-spacing: -.035em; line-height: .98; margin: 8px 0 14px; text-wrap: balance; }
+section { margin-top: clamp(56px, 8vw, 104px); }
+.lead { font-size: clamp(18px, 1.8vw, 21px); max-width: 60ch; }
+/* hero */
+.hero { display:grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; margin-top: 28px; }
+.hero > div { min-width: 0; }
+.hero h1 { font-family: var(--bri); font-weight: 800; font-size: clamp(54px, 9vw, 128px); line-height: .88; letter-spacing: -.05em; margin: 18px 0 16px; }
+.hero h1 span { background: var(--be); padding: 0 .12em; }
+.chips { display:flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.chips span { background: var(--w); border: 1px solid var(--be); padding: 7px 14px; border-radius: 999px; font-weight: 700; font-size: 15px; }
+.room { position: relative; aspect-ratio: 4/3; background-size: cover; background-position: center; border-radius: 6px; overflow: hidden; }
+.onwall { position: absolute; left: 33%; top: 14%; width: 34%; }
+.room.sm2 .onwall { left: 30%; top: 12%; width: 40%; }
+.fr { position: relative; padding: 7%; background: var(--be); border-radius: 12px; box-shadow: 0 16px 34px rgba(46,30,20,.28); }
+.fi { aspect-ratio: 4/3; background-size: cover; background-position: center; border-radius: 5px; position: relative; }
+.fn { position:absolute; right: 6%; bottom: 7%; background: var(--cr); padding: 6px 9px; font-family: var(--bri); font-weight: 800; font-size: clamp(10px, 1.1vw, 15px); line-height: 1.05; border-radius: 4px; }
+.fn small { display:block; font: 400 10px var(--atk); color: var(--no); margin-top: 2px; }
+.gl { position:absolute; left: 14%; right: 14%; bottom: -7px; height: 5px; border-radius: 5px; background: var(--li); box-shadow: 0 0 16px 5px rgba(183,163,224,.85); animation: gl 2.6s ease-in-out infinite; }
+@keyframes gl { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .gl { animation: none; } }
+.cap { font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--no); margin-top: 8px; }
+/* timeline */
+.stps { display:grid; gap: 0; }
+.stp { display:grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: center; padding: 28px 0; border-top: 2px solid var(--ca); }
+.stp > div { min-width: 0; }
+.tm { font-family: var(--bri); font-weight: 800; font-size: clamp(36px, 5vw, 64px); letter-spacing: -.04em; display:block; line-height: 1; }
+.sh b { display:block; margin-top: 8px; font: 12.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--no); }
+.sh p { font-size: 19px; max-width: 40ch; }
+.sv { display:flex; justify-content: center; }
+.sv .room { width: 100%; }
+/* phone */
+.ph { width: 250px; max-width: 100%; aspect-ratio: 9/19; border: 9px solid #141210; border-radius: 38px; background: var(--cr); overflow: hidden; box-shadow: 0 18px 40px rgba(46,30,20,.18); flex: none; }
+.pi { height: 100%; padding: 30px 13px 14px; display:flex; flex-direction: column; gap: 10px; }
+.at { display:flex; justify-content: space-between; align-items: center; }
+.at b { font-family: var(--bri); font-weight: 800; font-size: 23px; letter-spacing: -.02em; }
+.at .x { color: var(--no); font-size: 13px; }
+.as { display:flex; gap: 10px; align-items: center; background: var(--be); border-radius: 16px; padding: 11px; }
+.as i { width: 15px; height: 15px; border-radius: 50%; background: var(--li); flex: none; box-shadow: 0 0 0 5px rgba(183,163,224,.35); }
+.as b { display:block; font-size: 14px; line-height: 1.2; } .as small { font-size: 11px; color: var(--no); }
+.ak { font-size: 12px; color: var(--no); }
+.ap { height: 32%; background-size: cover; background-position: center; border-radius: 14px; }
+.ap.big { height: 50%; }
+.ar { display:flex; gap: 6px; }
+.ar span { width: 38px; height: 38px; border-radius: 50%; background-size: cover; background-position: center; border: 2px solid var(--cr); box-shadow: 0 0 0 2px var(--be); }
+.ar .more { background: var(--ca); color: var(--cr); display:flex; align-items:center; justify-content:center; font-size: 12px; font-weight: 700; }
+.ab { margin-top: auto; background: var(--ca); color: var(--cr); text-align: center; font-weight: 700; padding: 13px; border-radius: 999px; font-size: 15px; }
+.af { background: var(--w); border-radius: 14px; padding: 10px; }
+.af small { color: var(--no); font-size: 12px; } .af span { display:block; font-size: 15px; margin-top: 2px; }
+.ad { background: var(--be); border-radius: 16px; padding: 12px; }
+.ad span { font: 500 12px var(--mono); } .ad b { display:block; font-family: var(--bri); font-size: 19px; line-height: 1.05; margin: 4px 0; } .ad small { font-size: 12px; color: var(--no); }
+.am { display:grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.am span { aspect-ratio: 1; background-size: cover; background-position: center; border-radius: 10px; }
+.ph.dk { background: #2a221c; }
+.lk { height: 100%; margin: -30px -13px -14px; padding: 46px 12px; background: linear-gradient(180deg,#5c4636,#2e1e14); color: var(--cr); display:flex; flex-direction: column; align-items: center; gap: 8px; }
+.lh { font-family: var(--bri); font-weight: 800; font-size: 56px; letter-spacing: -.03em; line-height: 1; }
+.ld { font-size: 13px; opacity: .85; margin-bottom: 14px; }
+.nt { width: 100%; background: rgba(255,246,224,.95); color: var(--ca); border-radius: 16px; padding: 10px; display:flex; gap: 9px; align-items: center; text-align: left; }
+.ni { flex: none; }
+.nt b { display:block; font-size: 13px; } .nt span { font-size: 13px; }
+/* app trio */
+.trio { display:flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+.trio figure { margin: 0; text-align: center; }
+/* web */
+.web { background: var(--w); border-radius: 10px; overflow: hidden; box-shadow: 0 18px 44px rgba(46,30,20,.14); }
+.wb { display:flex; gap: 6px; align-items: center; padding: 9px 12px; background: #efe6d0; }
+.wb i { width: 10px; height: 10px; border-radius: 50%; background: #d9cdb2; }
+.wb span { margin-left: 10px; font: 12px var(--mono); color: var(--no); background: var(--w); padding: 2px 10px; border-radius: 999px; }
+.wn { display:flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; padding: 14px 24px; font-size: 14px; }
+.wn svg { margin-right: auto; }
+.wc { background: var(--ca); color: var(--cr); padding: 9px 16px; border-radius: 999px; font-weight: 700; }
+.wh { display:grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 18px 24px 30px; align-items: center; background: var(--cr); }
+.wh > div { min-width: 0; }
+.wh h3 { font-family: var(--bri); font-weight: 800; font-size: clamp(34px, 4.6vw, 64px); letter-spacing: -.045em; line-height: .92; margin: 0 0 14px; }
+.wh h3 span { background: var(--be); padding: 0 .1em; }
+.wh p { color: var(--no); font-size: 17px; max-width: 42ch; }
+.wbt { display:inline-block; background: var(--ca); color: var(--cr); padding: 13px 22px; border-radius: 999px; font-weight: 700; margin-right: 8px; }
+.wbt.o { background: transparent; color: var(--ca); border: 2px solid var(--ca); }
+.wp { aspect-ratio: 1; border-radius: 50%; background-size: cover; background-position: center; border: 10px solid var(--be); }
+.wf { display:grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid #efe6d0; }
+.wf div { padding: 16px 24px; border-right: 1px solid #efe6d0; font-size: 15px; }
+.wf b { display:block; font-family: var(--bri); font-size: 20px; }
+/* insta */
+.igw { display:grid; grid-template-columns: 380px 1fr; gap: 32px; align-items: start; }
+.igw > div { min-width: 0; }
+.ig { background: var(--w); padding: 16px; border-radius: 10px; font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; color: #111; box-shadow: 0 18px 44px rgba(46,30,20,.12); }
+.igh { display:flex; gap: 16px; align-items: center; }
+.iga { width: 78px; height: 78px; border-radius: 50%; padding: 3px; background: conic-gradient(var(--be), var(--li), var(--be)); flex: none; }
+.iga div { width: 100%; height: 100%; border-radius: 50%; background: var(--w); display:flex; align-items:center; justify-content:center; }
+.igs { display:flex; gap: 16px; font-size: 13px; } .igs b { display:block; font-size: 15px; }
+.igb { font-size: 13px; line-height: 1.4; margin: 10px 0; } .igb b { font-size: 14px; }
+.igl { display:flex; gap: 12px; margin: 10px 0 14px; font-size: 11px; }
+.igl span { display:flex; flex-direction: column; align-items: center; gap: 4px; }
+.igl i { width: 50px; height: 50px; border-radius: 50%; background: var(--be); border: 2px solid var(--w); box-shadow: 0 0 0 1px #ddd; display:flex; align-items:center; justify-content:center; font-style: normal; font-size: 20px; }
+.igg { display:grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.it { aspect-ratio: 4/5; background-size: cover; background-position: center; position: relative; }
+.ix { background: var(--cr); display:flex; align-items: center; padding: 10px; }
+.ix.yl { background: var(--be); }
+.ix p { margin: 0; font-family: var(--bri); font-weight: 800; font-size: 15px; line-height: 1.02; color: var(--ca); letter-spacing: -.02em; }
+.ix small { display:block; font: 400 10px var(--atk); color: var(--no); margin-top: 4px; }
+.ix i { position:absolute; right: 9px; bottom: 9px; width: 9px; height: 9px; border-radius: 50%; background: var(--li); }
+.story { width: 220px; max-width: 100%; aspect-ratio: 9/16; border-radius: 18px; background-size: cover; background-position: center; position: relative; overflow: hidden; box-shadow: 0 18px 40px rgba(46,30,20,.2); }
+.story .bar { position:absolute; left: 10px; right: 10px; top: 10px; height: 3px; background: rgba(255,255,255,.5); border-radius: 3px; }
+.story .bar i { display:block; width: 60%; height: 100%; background: #fff; border-radius: 3px; }
+.story .stk { position:absolute; left: 12px; right: 12px; bottom: 18px; background: var(--be); padding: 12px; border-radius: 14px; font-family: var(--bri); font-weight: 800; font-size: 19px; line-height: 1; letter-spacing: -.02em; }
+.story .stk small { display:block; font: 400 12px var(--atk); margin-top: 6px; }
+.igside { display:flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+.rules { list-style: none; margin: 0; padding: 0; flex: 1 1 260px; }
+.rules li { padding: 10px 0; border-top: 1px solid rgba(46,30,20,.2); font-size: 15.5px; }
+.rules b { display:block; font-family: var(--bri); font-size: 18px; }
+/* print */
+.ooh { display:grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: end; }
+.ooh > div { min-width: 0; }
+.abri { background: #3d3a36; padding: 14px 14px 0; border-radius: 6px 6px 0 0; }
+.aff { aspect-ratio: 3/4; max-height: 560px; margin: 0 auto; background: var(--be); display:flex; flex-direction: column; padding: 8%; position: relative; overflow: hidden; }
+.aff .ap2 { flex: 1; background-size: cover; background-position: center; border-radius: 50% 50% 8px 8px; }
+.aff h4 { font-family: var(--bri); font-weight: 800; font-size: clamp(26px, 3.2vw, 42px); line-height: .95; letter-spacing: -.04em; margin: 18px 0 10px; }
+.aff .lg { display:flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.box { aspect-ratio: 5/4; background: var(--be); border-radius: 10px; position: relative; display:flex; align-items: center; justify-content: center; box-shadow: inset 0 -18px 0 rgba(46,30,20,.08), 0 16px 34px rgba(46,30,20,.18); }
+.box .lid { text-align: center; }
+.box .lid p { font-family: var(--bri); font-weight: 800; font-size: 22px; letter-spacing: -.02em; margin: 10px 0 0; }
+.box .tag { position:absolute; right: 8%; top: 10%; background: var(--cr); padding: 10px 14px; border-radius: 6px; transform: rotate(4deg); font-size: 14px; max-width: 45%; }
+.box .tag span { display:block; font-family: "Bradley Hand", "Segoe Print", cursive; font-size: 18px; }
+.next { margin: 0; padding-left: 22px; max-width: 70ch; }
+.next li { padding: 6px 0; }
+.note { font-size: 14px; color: var(--no); }
+.note a { color: var(--ca); }
+footer { margin-top: 64px; border-top: 1px solid rgba(46,30,20,.25); padding-top: 12px; }
+@media (max-width: 900px) {
+  .hero, .stp, .wh, .igw, .ooh { grid-template-columns: 1fr; }
+  .wf { grid-template-columns: 1fr; } .wf div { border-right: 0; border-bottom: 1px solid #efe6d0; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta"><span><b>PFR Générations Connectées</b></span><span>Bloc 03 · Outils no-code et IA</span><span>Direction artistique · univers Soleil</span><span>Lucas (DA), équipe Clément, Camille, Lucas</span><span>22 octobre 2026</span></div>
+
+<div class="hero"><div>
+ <svg viewBox="0 0 190 64" width="230" role="img" aria-label="Soly"><circle cx="31" cy="32" r="29" fill="#f6d775"/><rect x="17" y="19" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="31" cy="49" r="4.2" fill="#b7a3e0"/><text x="72" y="45" font-family="Bricolage Grotesque, Arial" font-weight="800" font-size="40" letter-spacing="-1.5" fill="#2e1e14">soly</text></svg>
+ <h1>Toute la smala <span>au même mur.</span></h1>
+ <p class="lead">Soly est un cadre au mur chez vos parents. Vous y envoyez vos photos depuis l'appli&nbsp;; eux n'ont qu'un geste à faire&nbsp;: toucher le cadre pour vous envoyer <b>un Soly</b>, le petit signe qui dit «&nbsp;je suis là&nbsp;».</p>
+ <div class="chips"><span>Sans appli pour eux</span><span>Sans abonnement</span><span>Sans caméra ni micro</span></div>
+</div><div>
+ <div class="room" style="background-image:url(img-da/l3.jpg)"><div class="onwall"><div class="fr"><div class="fi" style="background-image:url(img-da/g5.jpg)"><div class="fn">Bisous Mamie&nbsp;!<small>Hugo</small></div></div><i class="gl"></i></div></div></div>
+ <div class="cap">Mise en situation · le Soly au salon, au moment où Mamie le touche</div>
+</div></div>
+
+<section><span class="k">01 · Une journée avec Soly</span><h2>Samedi, chez Léa et sa mère</h2>
+<p class="lead">Une famille fictive, pour voir le produit vivre du matin au soir.</p>
+<div class="stps"><div class="stp"><div class="sh"><span class="tm">8 h 05</span><b>Léa, 44 ans, Lyon</b><p>Dans le métro, elle envoie la photo du goûter d'hier avec un mot doux. Dix secondes.</p></div><div class="sv"><div class="ph"><div class="pi"><div class="at"><b>Hop, au mur</b><small class="x">Fermer</small></div>
+<div class="ap big" style="background-image:url(img-da/d4.jpg)"></div>
+<div class="af"><small>Un mot doux&nbsp;?</small><span>Le gratin de dimanche, on t'en garde&nbsp;!</span></div>
+<div class="ab">Envoyer chez Mamie</div></div></div></div></div><div class="stp"><div class="sh"><span class="tm">10 h 12</span><b>Mamie Jeanne, 81 ans, Annecy</b><p>La photo apparaît sur le Soly du salon. Elle sourit, pose la main sur le cadre&nbsp;: le bord s'allume en lilas.</p></div><div class="sv"><div class="room sm2" style="background-image:url(img-da/l3.jpg)"><div class="onwall"><div class="fr sm"><div class="fi" style="background-image:url(img-da/d4.jpg)"><div class="fn">Le gratin de dimanche,<br>on t’en garde&nbsp;!<small>Léa</small></div></div><i class="gl"></i></div></div></div></div></div><div class="stp"><div class="sh"><span class="tm">10 h 12</span><b>Léa, au bureau</b><p>Une notification&nbsp;: «&nbsp;Mamie t'a envoyé un Soly&nbsp;». Pas d'appel à passer, pas d'inquiétude&nbsp;: elle va bien, elle a vu.</p></div><div class="sv"><div class="ph dk"><div class="pi"><div class="lk"><span class="lh">10:12</span><span class="ld">samedi 7 novembre</span>
+<div class="nt"><div class="ni"><svg viewBox="0 0 60 60" width="30" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#f6d775"/><rect x="16" y="17" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="30" cy="47" r="4.2" fill="#b7a3e0"/></svg></div><div><b>Soly</b><span>Mamie t'a envoyé un Soly ☀</span></div></div>
+<div class="nt"><div class="ni"><svg viewBox="0 0 60 60" width="30" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#f6d775"/><rect x="16" y="17" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="30" cy="47" r="4.2" fill="#b7a3e0"/></svg></div><div><b>Soly</b><span>Papi a vu la photo de Hugo.</span></div></div></div></div></div></div></div><div class="stp"><div class="sh"><span class="tm">17 h 42</span><b>Toute la smala</b><p>Le moment du jour&nbsp;: Hugo, 15 ans, envoie sa photo du foot. Le soir, Mamie voit toute sa famille en mosaïque.</p></div><div class="sv"><div class="ph"><div class="pi"><div class="at"><b>Le moment du jour</b></div>
+<div class="ad"><span>17:42</span><b>Montre à Mamie ce que tu fais&nbsp;!</b><small>2 minutes · photo ou vidéo</small></div>
+<div class="am"><span style="background-image:url(img-da/g5.jpg)"></span><span style="background-image:url(img-da/c4.jpg)"></span><span style="background-image:url(img-da/s5.jpg)"></span><span style="background-image:url(img-da/d2.jpg)"></span></div>
+<div class="ab">Prendre le moment</div></div></div></div></div></div></section>
+
+<section><span class="k">02 · L'appli</span><h2>Trois écrans, un seul geste à la fois</h2>
+<div class="trio"><figure><div class="ph"><div class="pi"><div class="at"><b>Salut Léa</b><svg viewBox="0 0 60 60" width="28" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#f6d775"/><rect x="16" y="17" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="30" cy="47" r="4.2" fill="#b7a3e0"/></svg></div>
+<div class="as"><i></i><div><b>Mamie t'a envoyé un Soly</b><small>il y a 3 min · elle a vu ta photo</small></div></div>
+<div class="ak">Au mur chez Mamie</div><div class="ap" style="background-image:url(img-da/g5.jpg)"></div>
+<div class="ar"><span style="background-image:url(img-da/c3.jpg)"></span><span style="background-image:url(img-da/d2.jpg)"></span><span style="background-image:url(img-da/s4.jpg)"></span><span class="more">+12</span></div>
+<div class="ab">Mettre une photo au mur</div></div></div><figcaption class="cap">Accueil · le Soly reçu en premier</figcaption></figure><figure><div class="ph"><div class="pi"><div class="at"><b>Hop, au mur</b><small class="x">Fermer</small></div>
+<div class="ap big" style="background-image:url(img-da/d4.jpg)"></div>
+<div class="af"><small>Un mot doux&nbsp;?</small><span>Le gratin de dimanche, on t'en garde&nbsp;!</span></div>
+<div class="ab">Envoyer chez Mamie</div></div></div><figcaption class="cap">«&nbsp;Hop, au mur&nbsp;»</figcaption></figure><figure><div class="ph"><div class="pi"><div class="at"><b>Le moment du jour</b></div>
+<div class="ad"><span>17:42</span><b>Montre à Mamie ce que tu fais&nbsp;!</b><small>2 minutes · photo ou vidéo</small></div>
+<div class="am"><span style="background-image:url(img-da/g5.jpg)"></span><span style="background-image:url(img-da/c4.jpg)"></span><span style="background-image:url(img-da/s5.jpg)"></span><span style="background-image:url(img-da/d2.jpg)"></span></div>
+<div class="ab">Prendre le moment</div></div></div><figcaption class="cap">Le moment du jour</figcaption></figure></div></section>
+
+<section><span class="k">03 · Le site</span><h2>soly.fr</h2>
+<div class="web"><div class="wb"><i></i><i></i><i></i><span>soly.fr</span></div>
+<div class="wn"><svg viewBox="0 0 190 64" width="120" role="img" aria-label="Soly"><circle cx="31" cy="32" r="29" fill="#f6d775"/><rect x="17" y="19" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="31" cy="49" r="4.2" fill="#b7a3e0"/><text x="72" y="45" font-family="Bricolage Grotesque, Arial" font-weight="800" font-size="40" letter-spacing="-1.5" fill="#2e1e14">soly</text></svg><span>Le cadre</span><span>Comment ça marche</span><span>Pour la famille</span><span>Confiance</span><span class="wc">Offrir un Soly</span></div>
+<div class="wh"><div><h3>Vos photos chez eux. <span>Leur Soly</span> chez vous.</h3><p>Le cadre que toute la famille remplit, et qu'un toucher suffit à faire répondre. Pour vos parents&nbsp;: rien à installer, rien à apprendre.</p><span class="wbt">Offrir un Soly</span><span class="wbt o">Voir comment ça marche</span></div><div class="wp" style="background-image:url(img-da/c4.jpg)"></div></div>
+<div class="wf"><div><b>1 · Accrochez</b>Le cadre se pose sans perçage.</div><div><b>2 · Invitez</b>Un QR code, et toute la smala est là.</div><div><b>3 · Envoyez</b>Photos, vidéos, mots doux.</div></div></div></section>
+
+<section><span class="k">04 · Instagram</span><h2>@soly.famille</h2>
+<div class="igw"><div class="ig">
+ <div class="igh"><div class="iga"><div><svg viewBox="0 0 60 60" width="58" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#f6d775"/><rect x="16" y="17" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="30" cy="47" r="4.2" fill="#b7a3e0"/></svg></div></div><div class="igs"><span><b>48</b>posts</span><span><b>2&nbsp;310</b>abonnés</span><span><b>96</b>abonnements</span></div></div>
+ <div class="igb"><b>Soly</b><br>Le cadre de toute la smala ☀<br>Vos photos chez eux, leur Soly chez vous.<br>Sans abonnement · sans caméra<br>soly.fr</div>
+ <div class="igl"><span><i>☀</i>Nos Soly</span><span><i>▢</i>Le cadre</span><span><i>?</i>FAQ</span><span><i>♥</i>Vos mots</span></div>
+ <div class="igg"><div class="it" style="background-image:url(img-da/c3.jpg)"></div><div class="it ix"><p>Mamie t'a envoyé<br>un Soly ☀</p><i></i></div><div class="it" style="background-image:url(img-da/g5.jpg)"></div><div class="it" style="background-image:url(img-da/d4.jpg)"></div><div class="it ix yl"><p>Toute la smala<br>au même mur.</p><i></i></div><div class="it" style="background-image:url(img-da/s4.jpg)"></div><div class="it ix"><p>Où accrocher<br>son Soly&nbsp;?<small>à 1,35 m du sol</small></p><i></i></div><div class="it" style="background-image:url(img-da/d2.jpg)"></div><div class="it" style="background-image:url(img-da/c4.jpg)"></div></div>
+</div><div class="igside">
+ <div class="story" style="background-image:url(img-da/d2.jpg)"><div class="bar"><i></i></div><div class="stk">Dimanche, qui envoie sa photo à Mamie&nbsp;?<small>Réponds avec ta photo ↑</small></div></div>
+ <ul class="rules"><li><b>La grille</b>Une photo de famille, un mot sur crème ou sur beurre, une photo&nbsp;: elle respire comme le cadre.</li><li><b>Le rendez-vous</b>Chaque dimanche en story&nbsp;: «&nbsp;Qui envoie sa photo à Mamie&nbsp;?&nbsp;»</li><li><b>Le reel signature</b>6 secondes&nbsp;: une main touche le cadre, le bord s'allume, un téléphone vibre.</li><li><b>Le ton</b>On tutoie, on rit, jamais de peur ni de mot médical.</li></ul>
+</div></div>
+<p class="note" style="margin-top:10px">Chiffres d'abonnés fictifs, pour la maquette. Le nom @soly.famille n'a pas été vérifié.</p></section>
+
+<section><span class="k">05 · Dans la rue et dans la boîte</span><h2>L'affiche et le déballage</h2>
+<div class="ooh"><div><div class="abri"><div class="aff"><div class="ap2" style="background-image:url(img-da/c3.jpg)"></div><h4>Mamie vous a envoyé un Soly.</h4><div class="lg"><svg viewBox="0 0 190 64" width="110" role="img" aria-label="Soly"><circle cx="31" cy="32" r="29" fill="#f6d775"/><rect x="17" y="19" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="31" cy="49" r="4.2" fill="#b7a3e0"/><text x="72" y="45" font-family="Bricolage Grotesque, Arial" font-weight="800" font-size="40" letter-spacing="-1.5" fill="#2e1e14">soly</text></svg><span>Le cadre de toute la smala</span></div></div></div><div class="cap">Affiche abribus · campagne fête des grands-mères</div></div>
+<div><div class="box"><div class="lid"><svg viewBox="0 0 60 60" width="90" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#f6d775"/><rect x="16" y="17" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="30" cy="47" r="4.2" fill="#b7a3e0"/></svg><p>soly</p></div><div class="tag">Pour la maison de<span>Mamie Jeanne</span></div></div><div class="cap">La boîte · carton jaune beurre, étiquette à écrire à la main</div>
+<ol class="next" style="margin-top:16px"><li>À l'ouverture&nbsp;: le cadre, une carte «&nbsp;Coucou, on commence&nbsp;?&nbsp;» avec le QR code, et une carte pour le premier mot doux.</li><li>Pas de plastique, pas de notice épaisse&nbsp;: tout passe par l'appli de l'enfant.</li></ol></div></div></section>
+
+<section><span class="k">06 · La suite</span><h2>Ce qu'il reste à valider</h2>
+<ol class="next">
+ <li><b>Le nom Soly</b>&nbsp;: vérifier l'INPI (classes 9 et 38), soly.fr, soly.famille sur Instagram.</li>
+ <li><b>Le geste «&nbsp;un Soly&nbsp;»</b>&nbsp;: à tester en entretien, avec la phrase «&nbsp;Mamie t'a envoyé un Soly&nbsp;».</li>
+ <li><b>Le cadre physique</b> (Camille)&nbsp;: laqué jaune beurre comme ici, ou bois clair avec un liseré jaune&nbsp;?</li>
+ <li><b>Appliquer Soly</b> à toute la maquette de l'appli et préparer les 9 premiers posts.</li>
+</ol>
+<p class="note" style="margin-top:16px">Mise en situation fictive (Léa, Jeanne, Hugo sont des personnages inventés). Photos&nbsp;: Unsplash, licence Unsplash, pour maquette seulement, à remplacer par nos photos. Polices&nbsp;: Bricolage Grotesque, Atkinson Hyperlegible. Suite de 1-1-da-trois-univers.html (univers Soleil) et 1-1-noms-univers-soleil.html. IA utilisée&nbsp;: Claude (Claude Code) pour les maquettes et les textes.</p></section>
+
+<footer class="meta"><span>Soly · mise en situation · 22 octobre 2026</span></footer>
+</div>
+</body>
+</html>
