@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cadro, nom et logo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root { --cr:#fff6e0; --be:#f6d775; --ca:#2e1e14; --no:#5c4636; --li:#b7a3e0; --w:#ffffff;
+  --bri:"Bricolage Grotesque", "Arial Black", Arial, sans-serif; --atk:"Atkinson Hyperlegible", Arial, sans-serif; --mono:"IBM Plex Mono", Menlo, monospace; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cr); color: var(--ca); font: 17px/1.5 var(--atk); }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); padding-block: 28px 64px; }
+.meta { display:flex; flex-wrap: wrap; gap: 4px 24px; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--no); border-top: 2px solid var(--ca); padding-top: 10px; }
+.meta b { color: var(--ca); font-weight: 500; }
+.k { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--no); }
+h1 { font-family: var(--bri); font-weight: 800; font-size: clamp(48px, 8vw, 110px); letter-spacing: -.05em; line-height: .9; margin: 24px 0 14px; }
+h2 { font-family: var(--bri); font-weight: 800; font-size: clamp(30px, 4.4vw, 52px); letter-spacing: -.035em; line-height: 1; margin: 8px 0 16px; }
+section { margin-top: clamp(48px, 7vw, 88px); }
+.lead { font-size: clamp(18px, 1.8vw, 21px); max-width: 62ch; }
+/* logo */
+.wm { font-family: var(--bri); font-weight: 800; letter-spacing: -.055em; line-height: 1; color: var(--ca); display:inline-flex; align-items: baseline; white-space: nowrap; }
+.wm .o { display:inline-block; width: .56em; height: .5em; border: .1em solid currentColor; border-radius: .13em; margin-left: .04em; position: relative; background: var(--be); }
+.wm .o i { position:absolute; left: 50%; bottom: -.29em; width: .13em; height: .13em; margin-left: -.065em; border-radius: 50%; background: var(--li); box-shadow: 0 0 .12em .03em var(--li); }
+.wm.inv { color: var(--cr); }
+.wm.inv .o { background: transparent; }
+.ic { display:inline-flex; align-items: center; justify-content: center; border-radius: 22%; }
+.io { width: 46%; height: 40%; border: 7px solid var(--ca); border-radius: 18%; position: relative; }
+.io i { position:absolute; left: 50%; bottom: -46%; width: 22%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: var(--li); }
+.hero-logo { background: var(--be); padding: clamp(32px, 7vw, 90px) 24px; display:flex; flex-direction: column; align-items: center; gap: 18px; margin-top: 24px; }
+.hero-logo .wm .o { background: var(--cr); }
+.hero-logo p { font-family: var(--bri); font-weight: 500; font-size: clamp(18px, 2.2vw, 26px); margin: 0; }
+.grid3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.tile { min-height: 200px; display:flex; align-items: center; justify-content: center; padding: 20px; border-radius: 8px; }
+.cap { font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--no); margin-top: 8px; display:block; }
+.build { display:grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: center; }
+.build > div { min-width: 0; }
+.build ol { margin: 0; padding-left: 22px; }
+.build li { padding: 6px 0; }
+.uses { display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: end; }
+.uses > div { min-width: 0; text-align: center; }
+.av { width: 110px; height: 110px; border-radius: 50%; padding: 4px; background: conic-gradient(var(--be), var(--li), var(--be)); margin: 0 auto; }
+.av > div { width: 100%; height: 100%; border-radius: 50%; background: var(--w); display:flex; align-items: center; justify-content: center; }
+.notif { display:flex; gap: 10px; align-items: center; background: var(--w); border-radius: 16px; padding: 10px 12px; box-shadow: 0 6px 20px rgba(46,30,20,.14); text-align: left; font-family: -apple-system, Arial, sans-serif; }
+.notif b { display:block; font-size: 13px; } .notif span { font-size: 13px; }
+.room { position: relative; aspect-ratio: 4/3; background-size: cover; background-position: center; border-radius: 8px; overflow: hidden; }
+.onwall { position:absolute; left: 32%; top: 13%; width: 36%; }
+.fr { padding: 7% 7% 10%; background: var(--be); border-radius: 12px; box-shadow: 0 16px 34px rgba(46,30,20,.28); position: relative; }
+.fi { aspect-ratio: 4/3; background-size: cover; background-position: center; border-radius: 5px; }
+.fr .tiny { position:absolute; left: 0; right: 0; bottom: 1.5%; text-align: center; }
+.fr .gl { position:absolute; left: 14%; right: 14%; bottom: -7px; height: 5px; border-radius: 5px; background: var(--li); box-shadow: 0 0 16px 5px rgba(183,163,224,.85); }
+.box { aspect-ratio: 5/4; background: var(--be); border-radius: 10px; display:flex; align-items: center; justify-content: center; box-shadow: inset 0 -16px 0 rgba(46,30,20,.08); }
+.tbl { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--no); padding: 8px 10px 8px 0; border-bottom: 2px solid var(--ca); }
+td { vertical-align: top; padding: 12px 10px 12px 0; border-bottom: 1px solid rgba(46,30,20,.18); }
+.nm { font-family: var(--bri); font-size: 26px; letter-spacing: -.03em; }
+td.ph { font-weight: 700; }
+.st { color: var(--ca); letter-spacing: 2px; white-space: nowrap; } .st .off { color: rgba(46,30,20,.18); }
+.next { margin: 0; padding-left: 22px; max-width: 70ch; } .next li { padding: 6px 0; }
+.note { font-size: 14px; color: var(--no); }
+footer { margin-top: 64px; border-top: 1px solid rgba(46,30,20,.25); padding-top: 12px; }
+@media (max-width: 860px) { .grid3, .build { grid-template-columns: 1fr; } .uses { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta"><span><b>PFR Générations Connectées</b></span><span>Bloc 03 · Outils no-code et IA</span><span>Direction artistique · nom et logo</span><span>Lucas (DA), équipe Clément, Camille, Lucas</span><span>22 octobre 2026</span></div>
+<h1>Cadro.</h1>
+<p class="lead">L'équipe veut un nom plus proche de l'idée de cadre, dans l'esprit de Soly. Proposition&nbsp;: <b>Cadro</b>. C'est le cadre, dit avec le sourire. Le logo dessine l'objet dans le nom&nbsp;: le o devient un cadre, et sa lueur s'allume dessous.</p>
+
+<div class="hero-logo"><span class="wm " style="font-size:150px">cadr<span class="o"><i></i></span></span><p>Toute la famille au même mur.</p></div>
+
+<section><span class="k">01 · Le nom</span><h2>Cinq noms autour du cadre</h2>
+<div class="tbl"><table><thead><tr><th>Nom</th><th>Pourquoi</th><th>Phrase test</th><th>Note</th></tr></thead><tbody><tr><td><b class="nm">Cadro</b></td><td>Le mot «&nbsp;cadre&nbsp;», rendu joyeux par le o final, comme Soly. On comprend tout de suite de quoi on parle, et ça sonne comme une marque.</td><td class="ph">«&nbsp;Mets ta photo sur le Cadro de Mamie.&nbsp;»</td><td><span class="st">●●●●●<span class="off"></span></span></td></tr><tr><td><b class="nm">Tablo</b></td><td>Le tableau de famille, écrit comme on le prononce. Évoque aussi le tableau qu'on accroche au mur.</td><td class="ph">«&nbsp;Le Tablo de Papi est plein&nbsp;!&nbsp;»</td><td><span class="st">●●●●<span class="off">●</span></span></td></tr><tr><td><b class="nm">Pola</b></td><td>Le Polaroid, la photo dans son cadre blanc. Très visuel, culture photo.</td><td class="ph">«&nbsp;Envoie un Pola à Mamie.&nbsp;»</td><td><span class="st">●●●●<span class="off">●</span></span></td></tr><tr><td><b class="nm">Muro</b></td><td>Le mur, en italien et en espagnol&nbsp;: là où vit le cadre.</td><td class="ph">«&nbsp;Toute la famille sur le Muro.&nbsp;»</td><td><span class="st">●●●<span class="off">●●</span></span></td></tr><tr><td><b class="nm">Cadoo</b></td><td>Cadre et cadeau dans le même mot&nbsp;: l'objet qu'on offre.</td><td class="ph">«&nbsp;Le Cadoo de Noël.&nbsp;»</td><td><span class="st">●●●<span class="off">●●</span></span></td></tr></tbody></table></div>
+<p style="margin-top:14px"><b>Mon choix&nbsp;: Cadro.</b> C'est le plus direct&nbsp;: en deux syllabes, on sait que c'est un cadre, et le o final le rend léger et mémorable, comme Soly. Il se dit pareil par un enfant de 8 ans et par une grand-mère de 85 ans. Tablo reste la meilleure solution de repli.</p>
+</section>
+
+<section><span class="k">02 · Le logo</span><h2>Le cadre est dans le nom</h2>
+<div class="build"><div><span class="wm " style="font-size:110px">cadr<span class="o"><i></i></span></span></div><div><ol>
+ <li><b>Le mot</b> en Bricolage Grotesque très gras, en minuscules&nbsp;: rond, joyeux, lisible de loin.</li>
+ <li><b>Le o devient un cadre</b>&nbsp;: un rectangle aux coins arrondis, rempli de jaune beurre, comme le produit au mur.</li>
+ <li><b>Le point lilas dessous, c'est la lueur</b> qui s'allume quand le parent touche le cadre. C'est le seul élément de couleur vive, et il a un sens.</li>
+ <li><b>Le symbole seul</b> (le cadre et son point) sert d'icône d'appli, de photo de profil et de marque discrète sur l'objet.</li>
+</ol></div></div>
+</section>
+
+<section><span class="k">03 · Les déclinaisons</span><h2>Sur tous les fonds</h2>
+<div class="grid3">
+ <div><div class="tile" style="background:var(--cr);border:1px solid rgba(46,30,20,.15)"><span class="wm " style="font-size:72px">cadr<span class="o"><i></i></span></span></div><span class="cap">Principal · sur crème</span></div>
+ <div><div class="tile" style="background:var(--be)"><span class="wm " style="font-size:72px">cadr<span class="o"><i></i></span></span></div><span class="cap">Sur jaune beurre</span></div>
+ <div><div class="tile" style="background:var(--ca)"><span class="wm inv" style="font-size:72px">cadr<span class="o"><i></i></span></span></div><span class="cap">Sur cacao</span></div>
+</div>
+<div class="uses" style="margin-top:28px">
+ <div><span class="ic" style="width:110px;height:110px;background:var(--be)"><span class="io"><i></i></span></span><span class="cap">Icône d'appli</span></div>
+ <div><div class="av"><div><span class="ic" style="width:76px;height:76px;background:var(--w)"><span class="io"><i></i></span></span></div></div><span class="cap">Profil Instagram</span></div>
+ <div><div class="notif"><span class="ic" style="width:36px;height:36px;background:var(--be)"><span class="io"><i></i></span></span><div><b>Cadro</b><span>Mamie t'a fait coucou ☀</span></div></div><span class="cap">Notification</span></div>
+ <div><div class="box"><span class="wm " style="font-size:54px">cadr<span class="o"><i></i></span></span></div><span class="cap">La boîte</span></div>
+</div>
+</section>
+
+<section><span class="k">04 · Au mur</span><h2>Le Cadro dans le salon</h2>
+<div class="room" style="background-image:url(img-da/l3.jpg)"><div class="onwall"><div class="fr"><div class="fi" style="background-image:url(img-da/g5.jpg)"></div><div class="tiny"><span class="wm " style="font-size:13px">cadr<span class="o"><i></i></span></span></div><i class="gl"></i></div></div></div>
+<span class="cap">Le nom gravé petit sous l'écran, la lueur lilas quand Mamie touche le cadre</span>
+</section>
+
+<section><span class="k">05 · La suite</span><h2>À valider</h2>
+<ol class="next">
+ <li><b>Le nom</b>&nbsp;: Cadro ou Tablo&nbsp;? Puis vérifier l'INPI (classes 9 et 38), cadro.fr et le compte Instagram.</li>
+ <li><b>Le geste</b>&nbsp;: garder «&nbsp;faire coucou&nbsp;» («&nbsp;Mamie t'a fait coucou&nbsp;») ou un mot à la marque («&nbsp;un Cadro&nbsp;»)&nbsp;?</li>
+ <li><b>Le cadre physique</b> (Camille)&nbsp;: laqué jaune beurre comme le logo, ou bois clair avec le point lilas.</li>
+ <li><b>Ensuite</b>&nbsp;: je remplace Soly par le nom choisi dans la mise en situation complète (site, appli, Instagram, affiche).</li>
+</ol>
+<p class="note" style="margin-top:16px">Logo de travail, dessiné en HTML et CSS. Aucune disponibilité vérifiée. Photo du salon&nbsp;: Unsplash, maquette seulement. Suite de 1-1-soly-mise-en-situation.html. IA utilisée&nbsp;: Claude (Claude Code) pour les noms et le logo.</p>
+</section>
+<footer class="meta"><span>Cadro · nom et logo · 22 octobre 2026</span></footer>
+</div>
+</body>
+</html>
