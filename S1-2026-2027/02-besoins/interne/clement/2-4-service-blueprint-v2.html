@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blueprint en post-it</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap">
+<style>
+/* Le blueprint de Camille, même contenu, en tableau de post-it : un couloir coloré par rôle, une carte par case,
+   les trois lignes du service tracées, les cartes « à construire » en pointillé. */
+:root{
+  color-scheme:light;
+  --bg:#ffffff;--board:#f4f1ea;--dot:#d9d4c8;--ink:#14298a;--blue:#1d3bc1;--muted:#4b5891;--line:#cfd3e6;--soft:#eef1fb;
+  --rule:#3b3f4a;
+  --c-preuve:#dfe6f3;--c-preuve-bar:#6b7a99;
+  --c-famille:#e4d6fb;--c-famille-bar:#7c3aed;
+  --c-front:#cdeedd;--c-front-bar:#1d9a6c;
+  --c-back:#fdd9c7;--c-back-bar:#f26b3a;
+  --c-sys:#fff0a8;--c-sys-bar:#f2a900;
+  --c-mat-bar:#6b7280;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --hand:"Caveat","Segoe Print","Bradley Hand",cursive;
+  --gutter:clamp(16px,4vw,48px);
+  --col:176px;--gap:12px;--lab:132px;--bar:48px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px),var(--gutter));padding-right:max(16px,env(safe-area-inset-right,0px),var(--gutter));padding-block:clamp(28px,5vw,56px) 16px}
+.meta{border-top:2px solid var(--ink);padding-top:12px;font:500 12.5px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 24px;margin:0}
+h1{margin:clamp(20px,3vw,36px) 0 0;font:800 clamp(38px,7vw,88px)/.95 var(--sans);letter-spacing:-.04em;text-wrap:balance;max-width:14ch}
+h1 span{color:var(--blue)}
+.chapeau{margin:22px 0 0;max-width:62ch;font:700 clamp(18px,2vw,23px)/1.3 var(--sans);letter-spacing:-.01em;border-left:6px solid var(--blue);padding-left:18px}
+.chapeau a{color:var(--blue)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:22px 0 0;font-size:14px;color:var(--muted)}
+.legend .sw{display:inline-block;width:16px;height:16px;vertical-align:-3px;margin-right:6px;box-shadow:1px 1px 2px rgba(0,0,0,.15)}
+.legend .sw.todo{background:#fff;border:2px dashed var(--blue);box-shadow:none}
+.hint{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+
+/* Le tableau */
+.boardwrap{overflow-x:auto;background:var(--board);background-image:radial-gradient(var(--dot) 1.2px,transparent 1.2px);background-size:18px 18px;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink)}
+.board{display:grid;grid-template-columns:var(--bar) var(--lab) repeat(10,var(--col));column-gap:var(--gap);row-gap:0;padding:28px max(16px,env(safe-area-inset-right,0px),var(--gutter)) 36px max(16px,env(safe-area-inset-left,0px),var(--gutter));min-width:max-content;position:relative}
+.board>*{min-width:0}
+
+/* phases et étapes */
+.phase{grid-row:1;margin:0 0 10px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;font:700 13.5px/1.1 var(--sans);letter-spacing:-.005em;text-align:center;padding:0 22px 0 14px;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%,12px 50%)}
+.phase:first-of-type{clip-path:polygon(0 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,0 100%)}
+.phase-lab{grid-row:1;grid-column:1 / span 2;align-self:center;font:500 11.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-bottom:10px}
+.step{grid-row:2;background:#fff;border:2px solid var(--ink);padding:10px 12px 12px;margin-bottom:22px;box-shadow:3px 3px 0 var(--ink)}
+.step b{display:block;font:800 12px var(--mono);letter-spacing:.08em;color:var(--blue);margin-bottom:3px}
+.step span{font:700 15px/1.2 var(--sans);letter-spacing:-.01em;display:block}
+.step-lab{grid-row:2;grid-column:1 / span 2;align-self:end;margin-bottom:22px;font:500 11.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+/* couloirs */
+.bar{grid-column:1;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;justify-content:center;color:#fff;font:800 14px/1 var(--sans);letter-spacing:.02em;padding:14px 0;margin:6px 0;text-align:center}
+.lab{grid-column:2;align-self:center;padding:6px 10px 6px 0;font:700 14px/1.2 var(--sans);letter-spacing:-.01em}
+.lab small{display:block;font:400 12px/1.3 var(--sans);color:var(--muted);margin-top:3px;letter-spacing:0}
+.cell{position:relative;padding:12px 0;display:flex;align-items:stretch;min-height:96px}
+.cell .arrow{position:absolute;right:calc(-1 * var(--gap) - 1px);top:50%;width:var(--gap);height:12px;margin-top:-6px;z-index:2}
+.cell .arrow::before{content:"";position:absolute;left:0;right:5px;top:5px;height:2px;background:var(--rule)}
+.cell .arrow::after{content:"";position:absolute;right:0;top:0;border:6px solid transparent;border-left:7px solid var(--rule);border-right:0}
+
+/* les post-it */
+.card{flex:1;min-width:0;padding:16px 14px 14px;font:600 18.5px/1.15 var(--hand);color:#1c1f2a;position:relative;box-shadow:2px 4px 8px rgba(40,30,10,.16),0 0 0 1px rgba(0,0,0,.03);transform:rotate(var(--rot,0deg));transition:transform .18s ease,box-shadow .18s ease}
+.card::before{content:"";position:absolute;left:50%;top:-8px;width:54px;height:16px;margin-left:-27px;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06);transform:rotate(-2deg)}
+.card:hover{transform:rotate(0deg) scale(1.03);box-shadow:4px 8px 16px rgba(40,30,10,.22);z-index:3}
+.card.todo{background:#fff;border:2px dashed var(--blue);box-shadow:none}
+.card.todo .t{display:block;font:500 10.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.card.todo::before{display:none}
+.r0{--rot:-1.3deg}.r1{--rot:.9deg}.r2{--rot:-.4deg}.r3{--rot:1.5deg}.r4{--rot:-.9deg}
+.cell.sys .card{font-size:17.5px}
+
+/* les trois lignes du service */
+.rule{grid-column:1 / -1;display:grid;grid-template-columns:var(--bar) var(--lab) 1fr;column-gap:var(--gap);align-items:center;margin:10px 0 8px}
+.rule .rl{grid-column:1 / span 2;font:500 11.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--rule);display:flex;align-items:center;gap:8px}
+.rule .rl svg{width:18px;height:18px;flex:none}
+.rule .ln{height:0;border-top:4px solid var(--rule)}
+.rule.dash .ln{border-top-style:dashed}
+
+/* maturité */
+.mat{display:flex;align-items:center;padding:10px 0 6px}
+.chip{font:700 12.5px/1 var(--sans);letter-spacing:.02em;padding:8px 10px;border-radius:2px;white-space:nowrap}
+.chip.rien{background:#f8caca;color:#8b1a1a}
+.chip.partiel{background:#fbe3a6;color:#6b4a00}
+.chip.essai{background:#fff;color:#6b4a00;border:2px dashed #d9a400}
+
+/* bas de page */
+.after{max-width:1240px;margin-inline:auto;padding:22px max(16px,env(safe-area-inset-right,0px),var(--gutter)) 56px max(16px,env(safe-area-inset-left,0px),var(--gutter))}
+.after p{max-width:66ch;margin:0 0 10px}
+.after .k{font:500 11.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.after a{color:var(--blue)}
+footer{border-top:1px solid var(--line);margin-top:22px;padding-top:10px;font:400 12.5px/1.6 var(--mono);color:var(--muted)}
+@media (max-width:760px){
+  :root{--col:160px;--lab:112px;--bar:40px}
+  .card{font-size:17px}
+}
+@media (prefers-reduced-motion:reduce){.card,.card:hover{transition:none;transform:rotate(var(--rot,0deg))}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<p class="meta"><span>Service blueprint · version 2</span><span>PFR Générations Connectées · Le Cadre</span><span>Bloc 02 · d’après le blueprint de Camille du 22 octobre</span><span>Clément · 22 octobre 2026</span></p>
+<h1>Le service, <span>en post-it</span></h1>
+<p class="chapeau">Même contenu que <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/02-besoins/interne/camille/2-4-service-blueprint.html">le blueprint de Camille</a>, rien d’ajouté, rien d’enlevé. Seulement remis en tableau de post-it, comme sur un mur : un couloir par rôle, une carte par case, et les trois lignes qui séparent ce que la famille voit de ce qu’elle ne voit pas.</p>
+<div class="legend">
+<span><i class="sw" style="background:var(--c-preuve)"></i>Preuves visibles</span>
+<span><i class="sw" style="background:var(--c-famille)"></i>La famille</span>
+<span><i class="sw" style="background:var(--c-front)"></i>Équipe devant la famille</span>
+<span><i class="sw" style="background:var(--c-back)"></i>Équipe en coulisse</span>
+<span><i class="sw" style="background:var(--c-sys)"></i>Systèmes et supports</span>
+<span><i class="sw todo"></i>À construire ou à faire</span>
+</div>
+<p class="hint">Faire défiler vers la droite · 10 étapes · 9 couloirs</p>
+</div>
+
+<div class="boardwrap"><div class="board" id="board"></div></div>
+
+<div class="after">
+<p class="k">Lire le tableau</p>
+<p>Chaque colonne est une étape du parcours v2, de la première rencontre aux premiers jours. Chaque ligne est un rôle ou une couche du service. Les flèches suivent ce que fait chaque personne d’une étape à l’autre. Une carte en pointillé bleu n’existe pas encore. La dernière ligne dit ce qui existe vraiment aujourd’hui, d’après les dossiers lus.</p>
+<p>Étape suivante de cette version 2 : poser sur ces mêmes cartes les tensions et les moments agréables de la carte de Camille, puis les six maillons sans support et leurs replis.</p>
+<footer>Blueprint en post-it, version 2 · Clément · contenu du blueprint de Camille (22 octobre 2026), construit sur le parcours v2 · mis en page avec Claude Code</footer>
+</div>
+
+<script>
+(function(){
+  var DATA = {"steps": [{"id": "E1", "n": "Choisir et approcher la famille"}, {"id": "E2", "n": "Faire connaître le produit"}, {"id": "E3", "n": "Obtenir l'accord"}, {"id": "E4", "n": "Préparer la pose"}, {"id": "E5", "n": "Fabriquer et contrôler le cadre"}, {"id": "E6", "n": "Poser chez le parent"}, {"id": "E7", "n": "Le parent dit oui, sur le cadre"}, {"id": "E8", "n": "Brancher la famille"}, {"id": "E9", "n": "La première photo"}, {"id": "E10", "n": "Les premiers jours"}], "lanes": [{"label": "Preuves visibles ce que les gens voient ou touchent", "cells": [null, {"t": "Fiche d'une page, photos du prototype (à faire)", "todo": true, "mat": false}, {"t": "Fiche d'accord (à faire)", "todo": true, "mat": false}, {"t": "Liste de questions, photo du mur", "todo": false, "mat": false}, {"t": "Cadre fini, fiche de contrôle", "todo": false, "mat": false}, {"t": "Cadre, câble, kit de pose, écran « Bonjour »", "todo": false, "mat": false}, {"t": "Carte d'accord à l'écran (à construire)", "todo": true, "mat": false}, {"t": "Consigne écrite : « une photo du jour »", "todo": false, "mat": false}, {"t": "Bandeau avec prénom et mot, 8 s", "todo": false, "mat": false}, {"t": "Feuille de suivi", "todo": false, "mat": false}]}, {"label": "L'enfant actions", "cells": [{"t": "Est approché en premier, répond", "todo": false, "mat": false}, {"t": "En parle à son parent, pose ses questions", "todo": false, "mat": false}, {"t": "Donne son accord", "todo": false, "mat": false}, {"t": "Cherche box, mot de passe, prise ; fixe la date", "todo": false, "mat": false}, {"t": "Donne les photos de départ", "todo": false, "mat": false}, {"t": "Tape le wifi sur le cadre, aide à choisir la place", "todo": false, "mat": false}, {"t": "Regarde, ne touche pas l'écran", "todo": false, "mat": false}, {"t": "Choisit qui enverra, relaie la consigne", "todo": false, "mat": false}, {"t": "Prévient un proche", "todo": false, "mat": false}, {"t": "Répond à l'appel de J+1", "todo": false, "mat": false}]}, {"label": "Le parent actions", "cells": [null, {"t": "Écoute, regarde, réagit", "todo": false, "mat": false}, {"t": "Répond lui-même (oral et écrit)", "todo": false, "mat": false}, {"t": "Dit où il veut le cadre", "todo": false, "mat": false}, null, {"t": "Choisit la place, puis occupé ailleurs, puis informé", "todo": false, "mat": false}, {"t": "Touche « D'accord », ou dit plus tard", "todo": false, "mat": false}, null, {"t": "Voit la photo (ou pas)", "todo": false, "mat": false}, {"t": "Vit avec le cadre", "todo": false, "mat": false}]}, {"label": "Les proches actions", "cells": [null, null, {"t": "Donnent leur accord (mineurs : un parent)", "todo": false, "mat": false}, null, null, null, null, {"t": "Reçoivent la consigne", "todo": false, "mat": false}, {"t": "Envoient une photo", "todo": false, "mat": false}, {"t": "Envoient, ou non", "todo": false, "mat": false}]}, {"label": "ligne d'interaction", "cells": [null, null, null, null, null, null, null, null, null, null]}, {"label": "Équipe, en vue front stage : ce que la famille voit", "cells": [{"t": "Approche la famille", "todo": false, "mat": false}, {"t": "Présente, montre, répond", "todo": false, "mat": false}, {"t": "Explique les conditions, recueille l'accord", "todo": false, "mat": false}, {"t": "Appelle l'enfant", "todo": false, "mat": false}, null, {"t": "Pose, règle, explique en trois phrases", "todo": false, "mat": false}, {"t": "Observe sans aider", "todo": false, "mat": false}, {"t": "Explique comment envoyer", "todo": false, "mat": false}, {"t": "Chronomètre, observe", "todo": false, "mat": false}, {"t": "Appelle l'enfant à J+1", "todo": false, "mat": false}]}, {"label": "ligne de visibilité", "cells": [null, null, null, null, null, null, null, null, null, null]}, {"label": "Équipe, en coulisse back stage : ce qu'elle ne voit pas", "cells": [{"t": "Liste les familles, vérifie les critères", "todo": false, "mat": false}, {"t": "Prépare fiche et photos", "todo": false, "mat": false}, {"t": "Rédige et range la fiche (hors dépôt public)", "todo": false, "mat": false}, {"t": "Prépare le kit et une tablette de rechange", "todo": false, "mat": false}, {"t": "Construit le système, fabrique, essai de 24 à 48 h, ferme l'accès de débogage", "todo": false, "mat": false}, null, {"t": "Note les réactions", "todo": false, "mat": false}, {"t": "Mode manuel : dépose les photos sur le cadre", "todo": false, "mat": false}, {"t": "Note le délai et les réactions", "todo": false, "mat": false}, {"t": "Note pannes et usage", "todo": false, "mat": false}]}, {"label": "ligne d'interaction interne", "cells": [null, null, null, null, null, null, null, null, null, null]}, {"label": "Systèmes et supports outils, tablette, appli", "cells": [null, {"t": "Photos du prototype (à faire)", "todo": true, "mat": false}, null, {"t": "Téléphone, messagerie", "todo": false, "mat": false}, {"t": "Tablette SM-T510, système et overlay (jamais essayés), appli v0", "todo": false, "mat": false}, {"t": "Page de saisie du wifi (à construire), wifi de la maison", "todo": true, "mat": false}, {"t": "Écran d'accord (à construire)", "todo": true, "mat": false}, {"t": "Dossier modifiable et méthode de dépôt (à construire) ; ou serveur et appli de la famille (à construire)", "todo": true, "mat": false}, {"t": "Appli v0 : bandeau ; pas de merci", "todo": false, "mat": false}, {"t": "Feuille de suivi (à faire)", "todo": true, "mat": false}]}, {"label": "Maturité ce qui existe vraiment", "cells": [{"t": "Rien", "todo": false, "mat": true}, {"t": "Partiel", "todo": false, "mat": true}, {"t": "Partiel", "todo": false, "mat": true}, {"t": "Partiel", "todo": false, "mat": true}, {"t": "Partiel, non essayé", "todo": false, "mat": true}, {"t": "Partiel", "todo": false, "mat": true}, {"t": "Rien", "todo": false, "mat": true}, {"t": "Rien", "todo": false, "mat": true}, {"t": "Partiel", "todo": false, "mat": true}, {"t": "Rien", "todo": false, "mat": true}]}], "tensions": [{"who": "L'enfant", "cells": [{"lvl": 0, "refs": "", "plus": ""}, {"lvl": 2, "refs": "R08", "plus": "Comprendre l'idée en une phrase"}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 2, "refs": "R12", "plus": ""}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 0, "refs": "", "plus": "Choisir la place avec son parent"}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 0, "refs": "", "plus": "Voir sa photo apparaître chez son parent"}, {"lvl": 2, "refs": "R40", "plus": "Un retour de son parent"}]}, {"who": "Le parent", "cells": [{"lvl": 0, "refs": "", "plus": ""}, {"lvl": 2, "refs": "R04, R05, R06", "plus": "Voir des photos de sa famille sur un objet"}, {"lvl": 2, "refs": "R11", "plus": "On lui demande son avis, il peut dire non"}, {"lvl": 1, "refs": "R15", "plus": "Il choisit où va le cadre chez lui"}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 2, "refs": "R24", "plus": "Le cadre s'allume seul : « Bonjour »"}, {"lvl": 2, "refs": "R28, R29", "plus": ""}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 2, "refs": "R36, R37, R38", "plus": "Voir arriver la photo d'un proche, avec son prénom"}, {"lvl": 1, "refs": "R42", "plus": "Une nouvelle photo le lendemain"}]}, {"who": "Les proches", "cells": [{"lvl": 0, "refs": "", "plus": ""}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 0, "refs": "", "plus": ""}, {"lvl": 2, "refs": "R32, R33", "plus": ""}, {"lvl": 1, "refs": "R39", "plus": "Envoyer en quelques gestes (à construire)"}, {"lvl": 0, "refs": "", "plus": ""}]}, {"who": "L'équipe", "cells": [{"lvl": 2, "refs": "R01, R02, R03", "plus": ""}, {"lvl": 1, "refs": "R07", "plus": ""}, {"lvl": 2, "refs": "R09, R10, R30", "plus": ""}, {"lvl": 3, "refs": "R13, R14", "plus": ""}, {"lvl": 3, "refs": "R16, R17, R18, R19, R20, R21", "plus": "Voir le cadre tourner seul 24 h"}, {"lvl": 3, "refs": "R14, R18, R22, R23, R25, R26", "plus": "Cadre posé, parent content"}, {"lvl": 2, "refs": "R27, R30", "plus": ""}, {"lvl": 3, "refs": "R31, R34", "plus": ""}, {"lvl": 2, "refs": "R35", "plus": "La première photo est vue"}, {"lvl": 2, "refs": "R41", "plus": ""}]}]};
+  // Quatre phases qui regroupent les 10 étapes (lecture, pas une donnée de Camille).
+  var PHASES=[{n:"Avant la pose",from:0,to:2},{n:"Préparer et fabriquer",from:3,to:4},{n:"Chez le parent",from:5,to:6},{n:"Les premiers échanges",from:7,to:9}];
+  // Couloirs : groupes de couleur, dans l'ordre des lignes de Camille.
+  var GROUPS=[
+    {name:"Preuves",color:"var(--c-preuve)",bar:"var(--c-preuve-bar)",lanes:[0]},
+    {name:"La famille",color:"var(--c-famille)",bar:"var(--c-famille-bar)",lanes:[1,2,3]},
+    {rule:4,label:"ligne d’interaction",dash:false},
+    {name:"Équipe devant",color:"var(--c-front)",bar:"var(--c-front-bar)",lanes:[5]},
+    {rule:6,label:"ligne de visibilité",dash:true},
+    {name:"Équipe en coulisse",color:"var(--c-back)",bar:"var(--c-back-bar)",lanes:[7]},
+    {rule:8,label:"ligne d’interaction interne",dash:true},
+    {name:"Supports",color:"var(--c-sys)",bar:"var(--c-sys-bar)",lanes:[9]},
+    {name:"Maturité",color:"",bar:"var(--c-mat-bar)",lanes:[10],mat:true}
+  ];
+  var ARROWS={1:1,2:1,3:1,5:1,7:1}; // couloirs où l'on suit l'action d'une étape à l'autre
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+  function splitLabel(l){
+    // « L'enfant actions » → titre + sous-titre ; « Preuves visibles ce que les gens voient ou touchent »
+    var m=l.match(/^(L'enfant|Le parent|Les proches|Preuves visibles|Équipe, en vue|Équipe, en coulisse|Systèmes et supports|Maturité)\s*(.*)$/);
+    if(!m) return [l,""];
+    var t=m[1], s=m[2];
+    if(t==="Équipe, en vue"){t="Devant la famille";s=s.replace(/^front stage\s*:?\s*/,"")}
+    if(t==="Équipe, en coulisse"){t="En coulisse";s=s.replace(/^back stage\s*:?\s*/,"")}
+    if(t==="Preuves visibles"){t="Preuves visibles"}
+    return [t,s];
+  }
+  var h="", row=1;
+  // ligne 1 : phases
+  h+='<div class="phase-lab">Phases</div>';
+  PHASES.forEach(function(p){h+='<div class="phase" style="grid-column:'+(3+p.from)+' / span '+(p.to-p.from+1)+'">'+esc(p.n)+'</div>'});
+  // ligne 2 : étapes
+  h+='<div class="step-lab">Étapes</div>';
+  DATA.steps.forEach(function(s,i){h+='<div class="step" style="grid-column:'+(3+i)+'"><b>'+esc(s.id)+'</b><span>'+esc(s.n)+'</span></div>'});
+  row=3;
+  GROUPS.forEach(function(g){
+    if(g.rule!==undefined){
+      var icon = g.dash
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v10H9l-5 4z"/></svg>';
+      h+='<div class="rule'+(g.dash?' dash':'')+'" style="grid-row:'+row+'"><div class="rl">'+icon+esc(g.label)+'</div><div class="ln"></div></div>';
+      row++; return;
+    }
+    var first=row, last=row+g.lanes.length-1;
+    g.lanes.forEach(function(li,k){
+      var lane=DATA.lanes[li], ls=splitLabel(lane.label);
+      h+='<div class="lab" style="grid-row:'+row+'">'+esc(ls[0])+(ls[1]?'<small>'+esc(ls[1])+'</small>':'')+'</div>';
+      lane.cells.forEach(function(c,i){
+        var col=3+i;
+        if(g.mat){
+          var v=c?c.t:""; var cls=/non essayé/.test(v)?"essai":(/^Rien/.test(v)?"rien":"partiel");
+          h+='<div class="mat" style="grid-row:'+row+';grid-column:'+col+'"><span class="chip '+cls+'">'+esc(v)+'</span></div>'; return;
+        }
+        var next = ARROWS[li] && c && lane.cells[i+1];
+        h+='<div class="cell'+(li===9?' sys':'')+'" style="grid-row:'+row+';grid-column:'+col+'">';
+        if(c){
+          var txt=c.t, lab="";
+          if(c.todo){var m=txt.match(/\((à construire|à faire)\)/); lab=m?m[1]:"à construire"; txt=txt.replace(/\s*\((à construire|à faire)\)/g,"");}
+          h+='<div class="card r'+((i+li)%5)+(c.todo?' todo':'')+'" style="background:'+(c.todo?'#fff':g.color)+'">'+(c.todo?'<span class="t">'+esc(lab)+'</span>':'')+esc(txt)+'</div>';
+          if(next) h+='<span class="arrow" aria-hidden="true"></span>';
+        }
+        h+='</div>';
+      });
+      row++;
+    });
+    h+='<div class="bar" style="grid-row:'+first+' / '+(last+1)+';background:'+g.bar+'">'+esc(g.name)+'</div>';
+  });
+  document.getElementById("board").innerHTML=h;
+})();
+</script>
+</body>
+</html>
