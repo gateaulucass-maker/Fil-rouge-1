@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T12:10",
+  "mise_a_jour": "2026-10-22T14:20",
   "phases": [
     {
       "id": "P0",
@@ -698,6 +698,55 @@
           "date": "2026-10-22",
           "lien": "S1-2026-2027/02-besoins/interne/lucas/2-3-guides-entretien.html",
           "note": "v2 : 12 corrections (questions doubles, fermées ou orientées, seuils chiffrés sur 5, 6 questions obligatoires, vie privée, jargon), grille de recrutement, grille de débrief, interface à onglets et vue terrain. À relire en équipe avant l'annexe."
+        },
+        {
+          "titre": "Storyboard utilisateur : de la découverte du produit à la première photo dans le cadre",
+          "statut": "en_cours",
+          "qui": "Lucas et Clément",
+          "date": "2026-10-22",
+          "note": "10 à 12 cases reliées aux écrans de la maquette, étapes floues signalées. À faire en premier, cible 24/10."
+        },
+        {
+          "titre": "Comparatif des stacks en classement visuel (style vals.ai), stack A choisie",
+          "statut": "en_cours",
+          "qui": "Lucas et Clément",
+          "date": "2026-10-22",
+          "note": "Scores par critère avec leur source (testé, documenté, estimé), à partir du benchmark de Clément. Cible 24/10."
+        },
+        {
+          "titre": "Boîte à outils IA : tests réels par thème (maquette, code, automatisation, recadrage)",
+          "statut": "en_cours",
+          "qui": "Lucas et Clément",
+          "date": "2026-10-22",
+          "note": "4 thèmes : même prompt, captures, note, outil retenu. Cible 29/10."
+        },
+        {
+          "titre": "Boîte à outils IA : tests réels par thème (visuels, analyse d'entretiens)",
+          "statut": "en_cours",
+          "qui": "Camille",
+          "date": "2026-10-22",
+          "note": "2 thèmes : même protocole que Lucas et Clément. Cible 29/10."
+        },
+        {
+          "titre": "Trouver les tablettes (1 démo + 3 tests terrain)",
+          "statut": "en_cours",
+          "qui": "Camille",
+          "date": "2026-10-22",
+          "note": "3 options sourcées : 10 pouces, Android 9+ compatible FreeKiosk, Wi-Fi. Commande cible 24/10."
+        },
+        {
+          "titre": "Cadre physique : habiller la tablette en cadre de famille",
+          "statut": "en_cours",
+          "qui": "Camille",
+          "date": "2026-10-22",
+          "note": "2 ou 3 solutions (cadre standard, brocante doré, bois récupéré), pose et câble, prototype accroché en photo. Cible 29/10."
+        },
+        {
+          "titre": "Identité visuelle globale (sobre, style ChatGPT)",
+          "statut": "en_cours",
+          "qui": "Camille",
+          "date": "2026-10-22",
+          "note": "2 propositions : nom, typo, couleur d'accent, logo, ton, 2 écrans habillés. Cible 01/11."
         }
       ]
     },
