@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Veille DA du marché</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Fraunces:wght@600&family=Newsreader:wght@600&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.thesis { margin-top: 32px; border-left: 4px solid var(--orange); padding: 4px 0 4px 18px; max-width: 70ch; }
+.thesis p { margin: 6px 0 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; }
+.prod, .spec2 { display:grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; }
+.spec2 { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+.prod > div, .spec2 > div { border-top: 3px solid var(--blue); padding-top: 10px; }
+.prod p, .spec2 p { margin: 6px 0 0; font-size: 15px; }
+.ideas { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.idea { border-top: 4px solid var(--fg); padding: 12px 0 8px; display:flex; flex-direction:column; min-width:0; }
+.ihead { display:flex; justify-content:space-between; align-items:baseline; gap: 8px; }
+.inum { font: 800 44px/1 var(--display); color: var(--orange); letter-spacing: -.05em; }
+.eff { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; white-space: nowrap; }
+.eff.e1 { background: var(--blue-soft); color: var(--blue); }
+.eff.e2 { background: var(--soft); color: var(--fg); }
+.eff.e3 { background: var(--orange-soft); color: var(--orange); }
+.idea h3 { margin: 10px 0 6px; font-size: 20px; letter-spacing: -.015em; }
+.idea p { margin: 0 0 10px; font-size: 15px; }
+.idea dl { margin: auto 0 0; font-size: 13px; border-top: 1px solid var(--hair); padding-top: 8px; }
+.idea dt { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.idea dd { margin: 0 0 6px; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+td b { font-weight: 700; }
+@media (max-width: 1000px) { .ideas { grid-template-columns: repeat(2, 1fr); } .prod { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .ideas, .prod, .spec2 { grid-template-columns: 1fr; } }
+
+.sw { display:inline-flex; gap: 0; margin: 6px 0 2px; border: 1px solid var(--hair); }
+.sw i { display:block; width: 30px; height: 22px; }
+.hx { font: 11px var(--mono); color: var(--muted); }
+.lv { display:inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.lv.sat { background: var(--orange); color: #fff; }
+.lv.cou { background: var(--soft); color: var(--fg); }
+.lv.eme { background: var(--blue); color: #fff; }
+.lv.rar { background: var(--blue-soft); color: var(--blue); }
+.fams { display:grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.fam { display:grid; grid-template-columns: 3ch 1fr; gap: 12px; padding: 16px 0; border-top: 1px solid var(--hair); min-width: 0; }
+.fam > div { min-width: 0; }
+.fh { display:flex; flex-wrap: wrap; gap: 8px; align-items: baseline; justify-content: space-between; }
+.fam h3 { margin: 0; font-size: 19px; letter-spacing: -.01em; }
+.fam .sw i { width: 40px; height: 28px; }
+.fam p { margin: 6px 0 0; font-size: 15px; }
+.fam .use { color: var(--blue); font-weight: 500; }
+.bars { display:grid; gap: 6px; max-width: 620px; margin-top: 8px; }
+.bar { display:grid; grid-template-columns: 18ch 1fr 4ch; gap: 10px; align-items: center; font-size: 14px; }
+.bar span.b { height: 14px; background: var(--fg); display:block; }
+.bar span.b.o { background: var(--orange); }
+.bar em { font: 12px var(--mono); font-style: normal; color: var(--muted); }
+.pistes { display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.piste { border-top: 3px solid var(--fg); padding-top: 10px; min-width: 0; }
+.piste.reco { border-color: var(--blue); }
+.pk { display:flex; justify-content: space-between; align-items: center; }
+.piste h3 { margin: 6px 0 10px; font-size: 22px; letter-spacing: -.02em; }
+.piste p { font-size: 15px; }
+.mock { position: relative; height: 210px; display:flex; align-items: center; justify-content: center; gap: 22px; padding: 16px; }
+.frame { width: 46%; aspect-ratio: 4/3; border: 9px solid; position: relative; background: #fff; }
+.frame .photo { position:absolute; inset: 8px; background: linear-gradient(135deg,#c9b8a2,#8f7a66 60%,#5d4b3d); }
+.frame .glow { position:absolute; left: 0; right: 0; bottom: -9px; height: 4px; }
+.phone { width: 26%; aspect-ratio: 9/17; border: 2px solid; border-radius: 14px; display:flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 6px; text-align: center; }
+.phone span { font-size: 13px; font-weight: 700; line-height: 1.1; }
+.phone i { width: 26px; height: 26px; border-radius: 50%; display:block; }
+.phone small { font: 9px var(--mono); opacity: .7; }
+.tdo td:first-child { width: auto; font: inherit; color: inherit; }
+.decide li { padding: 6px 0; }
+@media (max-width: 900px) { .pistes { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .fams { grid-template-columns: 1fr; } .bar { grid-template-columns: 12ch 1fr 4ch; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span>
+  <span>Bloc 03 · Outils no-code et IA</span>
+  <span>Direction artistique · veille</span>
+  <span>Lucas (DA), équipe Clément, Camille, Lucas</span>
+  <span>22 octobre 2026</span>
+</div>
+<h1>Le marché est bleu. <span>Le Cadre sera chaud.</span></h1>
+<p class="lead">Veille des couleurs et des typographies de la silvertech et de la tech&nbsp;: 15 marques relevées dans le code de leurs sites, classées par famille et par niveau de saturation, puis trois pistes de direction artistique pour Le Cadre.</p>
+<div class="stats">
+  <div><span class="k">Marques relevées</span><b>15</b></div>
+  <div><span class="k">Silvertech en bleu</span><b class="o">6 / 10</b></div>
+  <div><span class="k">Silvertech en tons chauds et papier</span><b class="b">0 / 10</b></div>
+  <div><span class="k">Pistes proposées</span><b>3</b></div>
+</div>
+<div class="thesis"><span class="k">Ce qu'on retient</span><p>La silvertech parle <b>soin et sécurité</b>&nbsp;: bleu confiance, rouge alerte, typos rondes. La tech récente parle <b>contenu</b>&nbsp;: noir et blanc, ou papier et encre avec une seule couleur chaude. Le Cadre est un <b>objet de famille</b>&nbsp;: sa place est du côté papier, bois, photo. Et notre seule couleur vive doit signifier <b>le lien</b> (la lueur «&nbsp;je suis là&nbsp;»), jamais l'alerte.</p></div>
+<nav class="toc"><a href="#s01">01 Méthode</a><a href="#s02">02 Les familles de couleurs</a><a href="#s03">03 Silvertech, marque par marque</a><a href="#s04">04 Tech et IA</a><a href="#s05">05 Typographies</a><a href="#s06">06 Contraintes seniors</a><a href="#s07">07 Trois pistes</a><a href="#s08">08 Recommandation</a></nav>
+
+<section id="s01"><div class="grid"><div class="k"><span class="num">01</span> · Méthode</div><div>
+<h2>Comment on a relevé les couleurs</h2>
+<p>Le 22 octobre 2026, on a téléchargé la page d'accueil de chaque marque et ses feuilles de style, puis compté les codes couleur et les polices les plus utilisés. C'est une mesure, pas une impression&nbsp;: les codes hexadécimaux affichés sont ceux du code des sites.</p>
+<p class="note">Limites&nbsp;: une page d'accueil ne dit pas tout d'une marque&nbsp;; certains sites (GrandPad, Komp) chargent leurs couleurs en JavaScript et ont été lus en partie. Les couleurs d'Anthropic viennent de sa charte publique connue (une seule couleur relevée dans le code). Les noms de polices propriétaires viennent des sites eux-mêmes.</p>
+<span class="k" style="display:block;margin-top:18px">Niveaux de classement</span>
+<p style="margin-top:6px"><span class="lv sat">Saturé</span> la moitié du marché ou plus&nbsp;: on ne s'y distingue pas · <span class="lv cou">Courant</span> plusieurs acteurs · <span class="lv eme">Émergent</span> nouvelle vague, peu d'acteurs, rien en silvertech · <span class="lv rar">Rare</span> presque personne</p>
+</div></div></section>
+
+<section id="s02"><div class="grid"><div class="k"><span class="num">02</span> · Familles</div><div>
+<h2>Six familles de couleurs, classées</h2>
+<div class="bars">
+ <div class="bar">Bleu confiance<span class="b o" style="width:100%"></span><em>6</em></div>
+ <div class="bar">Sombre premium<span class="b" style="width:66%"></span><em>4</em></div>
+ <div class="bar">Rouge, orange<span class="b" style="width:66%"></span><em>4</em></div>
+ <div class="bar">Violet, vert<span class="b" style="width:33%"></span><em>2</em></div>
+ <div class="bar">Monochrome<span class="b" style="width:33%"></span><em>2</em></div>
+ <div class="bar">Encre, papier, terre<span class="b" style="width:16%"></span><em>1</em></div>
+</div>
+<p class="note">Nombre de marques (sur 15) dont la couleur principale ou d'accent appartient à la famille. Une marque peut compter dans deux familles.</p>
+<div class="fams" style="margin-top:20px"><div class="fam"><span class="num">01</span><div><div class="fh"><h3>Le bleu «&nbsp;confiance&nbsp;»</h3><span class="lv sat">Saturé</span></div><span class="sw"><i style="background:#6ebed9" title="#6ebed9"></i><i style="background:#0d3f94" title="#0d3f94"></i><i style="background:#3b76ac" title="#3b76ac"></i><i style="background:#244c88" title="#244c88"></i><i style="background:#58b6d2" title="#58b6d2"></i></span><p>6 acteurs silvertech sur 10. Bleu = fiabilité, santé, institution. Il rassure, mais tout le monde l'a&nbsp;: impossible de s'en distinguer.</p><p class="use">À éviter comme couleur principale.</p></div></div><div class="fam"><span class="num">02</span><div><div class="fh"><h3>Le rouge et l'orange «&nbsp;alerte&nbsp;»</h3><span class="lv cou">Courant</span></div><span class="sw"><i style="background:#ff0000" title="#ff0000"></i><i style="background:#ff6900" title="#ff6900"></i><i style="background:#f69322" title="#f69322"></i><i style="background:#d80027" title="#d80027"></i></span><p>Téléassistance et capteurs. Couleur du bouton d'urgence et du danger. Associée à la chute et à la dépendance.</p><p class="use">À bannir&nbsp;: notre produit n'est pas une alarme.</p></div></div><div class="fam"><span class="num">03</span><div><div class="fh"><h3>Violet et vert «&nbsp;bien-être&nbsp;»</h3><span class="lv cou">Courant</span></div><span class="sw"><i style="background:#472583" title="#472583"></i><i style="background:#6ba617" title="#6ba617"></i><i style="background:#375a5d" title="#375a5d"></i></span><p>Services à domicile, santé, mutuelles. Évoque le soin et le médical doux.</p><p class="use">Le vert sauge, désaturé, peut servir en couleur secondaire.</p></div></div><div class="fam"><span class="num">04</span><div><div class="fh"><h3>Le sombre premium</h3><span class="lv cou">Courant en tech</span></div><span class="sw"><i style="background:#131c27" title="#131c27"></i><i style="background:#363b42" title="#363b42"></i><i style="background:#08090a" title="#08090a"></i><i style="background:#292a33" title="#292a33"></i></span><p>Cadres photo haut de gamme et outils pros&nbsp;: fond sombre, un seul accent lumineux. L'objet ou l'écran est la star.</p><p class="use">Bon pour présenter l'objet, trop froid pour le salon d'un parent.</p></div></div><div class="fam"><span class="num">05</span><div><div class="fh"><h3>Encre, papier et terre</h3><span class="lv eme">Émergent</span></div><span class="sw"><i style="background:#141413" title="#141413"></i><i style="background:#faf9f5" title="#faf9f5"></i><i style="background:#d97757" title="#d97757"></i><i style="background:#e8dccb" title="#e8dccb"></i></span><p>Nouvelle vague de l'IA (Anthropic) et des marques éditoriales&nbsp;: fond ivoire, texte encre, une couleur terre, serif. Chaleureux, adulte, jamais infantilisant.</p><p class="use">La famille la plus proche de notre idée de cadre ancien.</p></div></div><div class="fam"><span class="num">06</span><div><div class="fh"><h3>Monochrome pur</h3><span class="lv cou">Courant en tech</span></div><span class="sw"><i style="background:#ffffff" title="#ffffff"></i><i style="background:#0d0d0d" title="#0d0d0d"></i><i style="background:#8e8ea0" title="#8e8ea0"></i></span><p>ChatGPT, Notion&nbsp;: la marque disparaît derrière le contenu. Idéal quand le contenu est fort.</p><p class="use">L'esprit à garder pour l'écran du cadre&nbsp;: les photos sont le contenu.</p></div></div></div>
+</div></div></section>
+
+<section id="s03"><div class="grid"><div class="k"><span class="num">03</span> · Silvertech</div><div>
+<h2>10 marques de la silvertech et du cadre connecté</h2>
+<div class="tablewrap"><table class="tdo"><thead><tr><th>Marque</th><th>Couleurs relevées</th><th>Typo</th><th>Ce que ça dit</th><th>Source</th></tr></thead><tbody><tr><td><b>Famileo</b><br><span class='note'>Lien familial · France</span></td><td><span class="sw"><i style="background:#6ebed9" title="#6ebed9"></i><i style="background:#212529" title="#212529"></i><i style="background:#dee2e6" title="#dee2e6"></i></span><br><span class='hx'>#6ebed9 #212529 #dee2e6</span></td><td>Cabin (titres), police système</td><td>Bleu ciel doux sur gris Bootstrap&nbsp;: rassurant mais générique, rien qui évoque la famille.</td><td class='src'><a href='https://famileo.com'>famileo.com</a></td></tr><tr><td><b>Ardoiz / Tikeasy</b><br><span class='note'>Tablette senior · France</span></td><td><span class="sw"><i style="background:#0d3f94" title="#0d3f94"></i><i style="background:#ff6900" title="#ff6900"></i><i style="background:#fcb900" title="#fcb900"></i></span><br><span class='hx'>#0d3f94 #ff6900 #fcb900</span></td><td>Montserrat, Quase</td><td>Bleu marine institutionnel et orange vif&nbsp;: l'image d'un service public (La Poste).</td><td class='src'><a href='https://ardoiz.com'>ardoiz.com</a></td></tr><tr><td><b>SeniorAdom</b><br><span class='note'>Téléassistance · France</span></td><td><span class="sw"><i style="background:#472583" title="#472583"></i><i style="background:#6ba617" title="#6ba617"></i><i style="background:#f2f2f2" title="#f2f2f2"></i></span><br><span class='hx'>#472583 #6ba617 #f2f2f2</span></td><td>Wigrum</td><td>Violet et vert «&nbsp;santé et bien-être&nbsp;»&nbsp;: on lit l'aide à domicile, pas la famille.</td><td class='src'><a href='https://senioradom.com'>senioradom.com</a></td></tr><tr><td><b>Tunstall</b><br><span class='note'>Téléassistance · international</span></td><td><span class="sw"><i style="background:#3d4d5a" title="#3d4d5a"></i><i style="background:#ff0000" title="#ff0000"></i><i style="background:#ffffff" title="#ffffff"></i></span><br><span class='hx'>#3d4d5a #ff0000 #ffffff</span></td><td>Lato</td><td>Gris ardoise et rouge&nbsp;: le code de l'alarme. Exactement ce que l'on veut éviter.</td><td class='src'><a href='https://tunstall.com'>tunstall.com</a></td></tr><tr><td><b>CarePredict</b><br><span class='note'>Capteurs seniors · USA</span></td><td><span class="sw"><i style="background:#f69322" title="#f69322"></i><i style="background:#716c67" title="#716c67"></i><i style="background:#d6d1cc" title="#d6d1cc"></i></span><br><span class='hx'>#f69322 #716c67 #d6d1cc</span></td><td>Poppins</td><td>Orange et gris chauds&nbsp;: plus humain, mais l'orange reste une couleur de signal.</td><td class='src'><a href='https://carepredict.com'>carepredict.com</a></td></tr><tr><td><b>Komp (No Isolation)</b><br><span class='note'>Écran de lien senior · Norvège</span></td><td><span class="sw"><i style="background:#292a33" title="#292a33"></i><i style="background:#244c88" title="#244c88"></i><i style="background:#fafafa" title="#fafafa"></i></span><br><span class='hx'>#292a33 #244c88 #fafafa</span></td><td>Circular Pro</td><td>Anthracite et bleu, très «&nbsp;design scandinave&nbsp;»&nbsp;: sérieux, un peu froid.</td><td class='src'><a href='https://noisolation.com'>noisolation.com</a></td></tr><tr><td><b>Skylight</b><br><span class='note'>Cadre photo connecté · USA</span></td><td><span class="sw"><i style="background:#3b76ac" title="#3b76ac"></i><i style="background:#375a5d" title="#375a5d"></i><i style="background:#f66951" title="#f66951"></i></span><br><span class='hx'>#3b76ac #375a5d #f66951</span></td><td>Police système</td><td>Bleu et vert sapin, accent corail&nbsp;: familial, mais encore bleu.</td><td class='src'><a href='https://myskylight.com'>myskylight.com</a></td></tr><tr><td><b>Aura Frames</b><br><span class='note'>Cadre photo premium · USA</span></td><td><span class="sw"><i style="background:#131c27" title="#131c27"></i><i style="background:#ffd200" title="#ffd200"></i><i style="background:#ffffff" title="#ffffff"></i></span><br><span class='hx'>#131c27 #ffd200 #ffffff</span></td><td>Police propriétaire</td><td>Bleu nuit presque noir et jaune vif&nbsp;: codes de la tech premium, l'objet en héros.</td><td class='src'><a href='https://auraframes.com'>auraframes.com</a></td></tr><tr><td><b>Nixplay</b><br><span class='note'>Cadre photo connecté · USA</span></td><td><span class="sw"><i style="background:#363b42" title="#363b42"></i><i style="background:#09819c" title="#09819c"></i><i style="background:#d80027" title="#d80027"></i></span><br><span class='hx'>#363b42 #09819c #d80027</span></td><td>Noto Sans</td><td>Anthracite et bleu canard&nbsp;: électronique grand public.</td><td class='src'><a href='https://nixplay.com'>nixplay.com</a></td></tr><tr><td><b>Loop</b><br><span class='note'>Cadre photo partagé · UK</span></td><td><span class="sw"><i style="background:#58b6d2" title="#58b6d2"></i><i style="background:#32373c" title="#32373c"></i><i style="background:#00d084" title="#00d084"></i></span><br><span class='hx'>#58b6d2 #32373c #00d084</span></td><td>Police système</td><td>Bleu ciel et vert&nbsp;: proche de Famileo, peu distinctif.</td><td class='src'><a href='https://loop.co.uk'>loop.co.uk</a></td></tr></tbody></table></div>
+<p class="note" style="margin-top:12px">Constat&nbsp;: aucune marque n'ose le chaud et le papier. Les cadres photo (Aura, Nixplay) parlent électronique&nbsp;; les services seniors (Ardoiz, SeniorAdom, Tunstall) parlent institution ou santé&nbsp;; seuls Skylight et Famileo parlent un peu famille, en bleu.</p>
+</div></div></section>
+
+<section id="s04"><div class="grid"><div class="k"><span class="num">04</span> · Tech et IA</div><div>
+<h2>Ce que fait la tech en 2026</h2>
+<div class="tablewrap"><table class="tdo"><thead><tr><th>Marque</th><th>Couleurs</th><th>Typo</th><th>Ce que ça dit</th><th>Source</th></tr></thead><tbody><tr><td><b>ChatGPT / OpenAI</b></td><td><span class="sw"><i style="background:#ffffff" title="#ffffff"></i><i style="background:#0d0d0d" title="#0d0d0d"></i><i style="background:#8e8ea0" title="#8e8ea0"></i></span><br><span class='hx'>#ffffff #0d0d0d #8e8ea0</span></td><td>OpenAI Sans (propriétaire)</td><td>Noir et blanc, aucune couleur de marque dans l'interface&nbsp;: l'outil s'efface derrière le contenu.</td><td class='src'><a href='https://openai.com'>openai.com</a></td></tr><tr><td><b>Claude / Anthropic</b></td><td><span class="sw"><i style="background:#141413" title="#141413"></i><i style="background:#faf9f5" title="#faf9f5"></i><i style="background:#d97757" title="#d97757"></i></span><br><span class='hx'>#141413 #faf9f5 #d97757</span></td><td>Styrene, Tiempos (propriétaires)</td><td>Encre, papier ivoire, terre cuite, serif éditoriale&nbsp;: la tech qui ressemble à un livre.</td><td class='src'><a href='https://anthropic.com'>anthropic.com</a></td></tr><tr><td><b>Mistral AI</b></td><td><span class="sw"><i style="background:#fa500f" title="#fa500f"></i><i style="background:#ff8204" title="#ff8204"></i><i style="background:#c4001d" title="#c4001d"></i></span><br><span class='hx'>#fa500f #ff8204 #c4001d</span></td><td>Police propriétaire</td><td>Dégradé orange et rouge chaud, pixels&nbsp;: une identité européenne qui assume la chaleur.</td><td class='src'><a href='https://mistral.ai'>mistral.ai</a></td></tr><tr><td><b>Linear</b></td><td><span class="sw"><i style="background:#08090a" title="#08090a"></i><i style="background:#e2e4e7" title="#e2e4e7"></i><i style="background:#55cdff" title="#55cdff"></i></span><br><span class='hx'>#08090a #e2e4e7 #55cdff</span></td><td>Inter, police mono</td><td>Noir profond, gris froids, lueurs&nbsp;: la référence des outils pros.</td><td class='src'><a href='https://linear.app'>linear.app</a></td></tr><tr><td><b>Notion</b></td><td><span class="sw"><i style="background:#ffffff" title="#ffffff"></i><i style="background:#191919" title="#191919"></i><i style="background:#097fe8" title="#097fe8"></i></span><br><span class='hx'>#ffffff #191919 #097fe8</span></td><td>Police système, illustrations au trait</td><td>Noir et blanc, petites touches de couleur&nbsp;: sobre et humain grâce aux dessins.</td><td class='src'><a href='https://notion.so'>notion.so</a></td></tr></tbody></table></div>
+<ol class="next" style="margin-top:16px">
+ <li><b>Le contenu d'abord.</b> ChatGPT, Notion&nbsp;: interface noir et blanc, la couleur vient du contenu. Pour nous, le contenu, ce sont les photos de famille.</li>
+ <li><b>Le retour du chaud et du papier.</b> Anthropic, Mistral&nbsp;: ivoire, terre cuite, orange, serif. L'IA cherche à paraître humaine&nbsp;; c'est exactement notre enjeu.</li>
+ <li><b>Une seule couleur qui a un sens.</b> Linear, Aura&nbsp;: tout est neutre sauf un accent, réservé à une action. Pour nous&nbsp;: la lueur du toucher.</li>
+</ol>
+</div></div></section>
+
+<section id="s05"><div class="grid"><div class="k"><span class="num">05</span> · Typographies</div><div>
+<h2>Quatre familles de typos, classées</h2>
+<div class="tablewrap"><table class="tdo"><thead><tr><th>Famille</th><th>Niveau</th><th>Ce qu'on en lit</th><th>Pour nous</th></tr></thead><tbody><tr><td><b>Géométriques arrondies</b><br><span class='note'>Montserrat, Poppins, Cabin, Circular</span></td><td><span class='lv sat'>Saturé</span></td><td>La silvertech presque entière. Ronde, amicale, mais interchangeable et parfois enfantine.</td><td><b>Éviter</b></td></tr><tr><td><b>Grotesques neutres</b><br><span class='note'>Inter, Lato, Noto Sans, police système</span></td><td><span class='lv cou'>Courant</span></td><td>Applis et outils tech. Très lisibles, sans personnalité.</td><td><b>Possible pour l'appli</b></td></tr><tr><td><b>Serif éditoriales</b><br><span class='note'>Tiempos, Fraunces, Newsreader</span></td><td><span class='lv eme'>Émergent</span></td><td>Marques IA récentes, presse, objets haut de gamme. Évoque l'album, la lettre, la mémoire.</td><td><b>Pour les titres</b></td></tr><tr><td><b>Conçues pour la basse vision</b><br><span class='note'>Atkinson Hyperlegible</span></td><td><span class='lv rar'>Rare</span></td><td>Dessinée par le Braille Institute&nbsp;: les lettres qui se confondent (l, I, 1&nbsp;; O, 0) sont différenciées. Gratuite, sur Google Fonts.</td><td><b>Pour l'écran du cadre et l'appli</b></td></tr></tbody></table></div>
+<p style="margin-top:14px"><b>Proposition&nbsp;:</b> une serif chaleureuse pour les titres et la marque (<b>Fraunces</b> ou <b>Newsreader</b>, gratuites sur Google Fonts) et <b>Atkinson Hyperlegible</b> pour tout ce qui doit être lu par le parent&nbsp;: l'écran du cadre, les petits mots, l'appli. Ce duo n'existe chez aucun acteur de la silvertech.</p>
+</div></div></section>
+
+<section id="s06"><div class="grid"><div class="k"><span class="num">06</span> · Seniors</div><div>
+<h2>Cinq règles qu'aucune DA ne peut ignorer</h2>
+<dl class="alert"><div class="row"><dt>Contraste renforcé</dt><dd>Viser 7:1 entre texte et fond (niveau AAA du WCAG), pas seulement 4,5:1. Le contraste perçu baisse avec l'âge. <span class="note">(w3.org/TR/WCAG22 · 1.4.6)</span></dd></div><div class="row"><dt>Le cristallin jaunit</dt><dd>Avec l'âge, les bleus et les violets se distinguent moins bien, le bleu sur bleu devient illisible. Un accent chaud reste net. <span class="note">(w3.org/WAI/older-users)</span></dd></div><div class="row"><dt>Pas de gris clair</dt><dd>Le texte gris clair très à la mode en tech est le premier à disparaître. Les gris restent foncés. <span class="note">(w3.org/WAI/older-users)</span></dd></div><div class="row"><dt>Grande taille, peu de graisses fines</dt><dd>Pas de police en Light ou Thin. Sur le cadre, les textes font au moins 24 px à 2 m. <span class="note">(Recommandation du projet)</span></dd></div><div class="row"><dt>Jamais la couleur seule</dt><dd>La lueur du toucher s'accompagne d'un mot («&nbsp;Envoyé&nbsp;»), pour les parents daltoniens ou malvoyants. <span class="note">(WCAG 1.4.1)</span></dd></div></dl>
+</div></div></section>
+
+<section id="s07"><div class="grid"><div class="k"><span class="num">07</span> · Trois pistes</div><div>
+<h2>Trois directions possibles pour Le Cadre</h2>
+<p>Chaque piste est montrée sur le cadre au mur (avec sa lueur) et sur la notification de l'appli «&nbsp;Maman est là&nbsp;».</p>
+<div class="pistes"><div class="piste reco">
+<div class="pk"><span class="k">Piste A</span><span class="lv eme">Recommandée</span></div>
+<h3>Le salon</h3>
+<div class="mock" style="background:#f6f0e6;color:#2a211b">
+  <div class="frame" style="border-color:#8a9a7b"><div class="photo"></div><div class="glow" style="background:#c8623a"></div></div>
+  <div class="phone" style="border-color:#2a211b"><span style="font-family:'Fraunces',Georgia,serif;color:#2a211b">Maman est là</span><i style="background:#c8623a"></i><small style="color:#2a211b">il y a 2 min</small></div>
+</div>
+<span class="sw"><i style="background:#f6f0e6" title="#f6f0e6"></i><i style="background:#2a211b" title="#2a211b"></i><i style="background:#c8623a" title="#c8623a"></i><i style="background:#8a9a7b" title="#8a9a7b"></i></span><span class="hx">#f6f0e6 · #2a211b · #c8623a · #8a9a7b</span>
+<p>Fond ivoire, encre brune, une seule couleur vivante&nbsp;: la terre cuite de la lueur «&nbsp;je suis là&nbsp;». Vert sauge en secondaire. Titres en serif, texte en Atkinson Hyperlegible.</p><p><b>Pourquoi&nbsp;:</b> Personne dans la silvertech n'utilise ces codes. Ils prolongent le cadre ancien doré et le bois&nbsp;: on parle d'un objet de famille, pas d'un appareil. Le chaud reste lisible malgré le jaunissement du cristallin.</p><p class="note"><b>Risque&nbsp;:</b> Peut paraître «&nbsp;vieillot&nbsp;» si la typo et les photos ne sont pas modernes.</p></div><div class="piste">
+<div class="pk"><span class="k">Piste B</span></div>
+<h3>La lueur</h3>
+<div class="mock" style="background:#fbfaf7;color:#151515">
+  <div class="frame" style="border-color:#d9d4ca"><div class="photo"></div><div class="glow" style="background:#f2b33d"></div></div>
+  <div class="phone" style="border-color:#151515"><span style="font-family:'Archivo',Arial,sans-serif;color:#151515">Maman est là</span><i style="background:#f2b33d"></i><small style="color:#151515">il y a 2 min</small></div>
+</div>
+<span class="sw"><i style="background:#fbfaf7" title="#fbfaf7"></i><i style="background:#151515" title="#151515"></i><i style="background:#f2b33d" title="#f2b33d"></i><i style="background:#d9d4ca" title="#d9d4ca"></i></span><span class="hx">#fbfaf7 · #151515 · #f2b33d · #d9d4ca</span>
+<p>Blanc chaud et noir, aucune couleur sauf un jaune miel réservé au toucher. Tout le reste est photo. Typo grotesque large.</p><p><b>Pourquoi&nbsp;:</b> Esprit ChatGPT&nbsp;: l'interface disparaît, les photos parlent. Le jaune miel devient le signe de la marque&nbsp;: on le reconnaît à un mètre.</p><p class="note"><b>Risque&nbsp;:</b> Jaune sur blanc illisible pour du texte&nbsp;: il ne sert qu'aux formes, jamais aux mots.</p></div><div class="piste">
+<div class="pk"><span class="k">Piste C</span></div>
+<h3>Le soir</h3>
+<div class="mock" style="background:#1d2230;color:#f3ece0">
+  <div class="frame" style="border-color:#4a5268"><div class="photo"></div><div class="glow" style="background:#d79a5b"></div></div>
+  <div class="phone" style="border-color:#f3ece0"><span style="font-family:'Newsreader',Georgia,serif;color:#f3ece0">Maman est là</span><i style="background:#d79a5b"></i><small style="color:#f3ece0">il y a 2 min</small></div>
+</div>
+<span class="sw"><i style="background:#1d2230" title="#1d2230"></i><i style="background:#f3ece0" title="#f3ece0"></i><i style="background:#d79a5b" title="#d79a5b"></i><i style="background:#4a5268" title="#4a5268"></i></span><span class="hx">#1d2230 · #f3ece0 · #d79a5b · #4a5268</span>
+<p>Fond bleu nuit chaud, crème et cuivre. L'écran du cadre en mode veille devient une lumière douce dans la pièce.</p><p><b>Pourquoi&nbsp;:</b> Reprend le sombre premium des cadres haut de gamme (Aura) en le réchauffant. Belle mise en valeur des photos le soir.</p><p class="note"><b>Risque&nbsp;:</b> Proche du bleu du marché, et un fond sombre dans un salon le jour peut faire «&nbsp;télé éteinte&nbsp;».</p></div></div>
+</div></div></section>
+
+<section id="s08"><div class="grid"><div class="k"><span class="num">08</span> · Recommandation</div><div>
+<h2>Notre recommandation&nbsp;: la piste A, avec la rigueur de la B</h2>
+<ol class="next">
+ <li><b>Sortir du bleu.</b> 6 marques sur 10 sont bleues&nbsp;: c'est le seul moyen d'être reconnu tout de suite, et de ne pas ressembler à un service de santé.</li>
+ <li><b>Ivoire, encre, terre cuite.</b> Les couleurs du papier photo, du bois et des cadres anciens choisis par l'équipe. Chaudes, donc lisibles malgré le jaunissement du cristallin.</li>
+ <li><b>Une seule couleur vive, avec un sens.</b> La terre cuite est réservée au lien&nbsp;: la lueur du toucher, le bouton d'envoi, la notification «&nbsp;je suis là&nbsp;». Jamais de rouge d'alerte, même pour l'alerte des 48 h, qui reste sobre (encre).</li>
+ <li><b>L'interface s'efface</b> (esprit ChatGPT)&nbsp;: sur le cadre, la photo occupe tout&nbsp;; le texte n'apparaît qu'en cas de petit mot.</li>
+ <li><b>Fraunces et Atkinson Hyperlegible.</b> La serif pour la mémoire et la marque, l'hyperlisible pour le parent.</li>
+ <li><b>Contraste AAA</b> pour tout texte lu par le parent&nbsp;; aucun gris clair.</li>
+</ol>
+<h3 class="sub">Prochaine étape&nbsp;: définir la DA</h3>
+<ol class="next decide">
+ <li>Choisir la piste en équipe (A recommandée)&nbsp;; Camille donne son avis côté cadre physique et matières.</li>
+ <li>Fixer la palette exacte (5 couleurs avec rôles et contrastes vérifiés) et les tailles de texte.</li>
+ <li>Trancher le nom («&nbsp;Le Cadre&nbsp;» ou «&nbsp;CBW&nbsp;») avant de dessiner le logo.</li>
+ <li>Habiller 2 écrans de la maquette (accueil et notification) et le cadre au repos.</li>
+</ol>
+<p class="note" style="margin-top:16px">Statut&nbsp;: veille de Lucas, à valider en équipe. Couleurs mesurées dans le code des sites le 22/10/2026&nbsp;; règles seniors&nbsp;: W3C WAI (w3.org/WAI/older-users) et WCAG 2.2&nbsp;; Atkinson Hyperlegible&nbsp;: Braille Institute (brailleinstitute.org/freefont). IA utilisée&nbsp;: Claude (Claude Code) pour relever les couleurs dans le code des sites et rédiger la synthèse.</p>
+</div></div></section>
+
+<footer class="k">PFR Générations Connectées · Veille DA du marché · 22 octobre 2026</footer>
+</div>
+</body>
+</html>

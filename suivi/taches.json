@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T14:20",
+  "mise_a_jour": "2026-10-22T14:45",
   "phases": [
     {
       "id": "P0",
@@ -709,7 +709,7 @@
         {
           "titre": "Comparatif des stacks en classement visuel (style vals.ai), stack A choisie",
           "statut": "en_cours",
-          "qui": "Lucas et Clément",
+          "qui": "Clément",
           "date": "2026-10-22",
           "note": "Scores par critère avec leur source (testé, documenté, estimé), à partir du benchmark de Clément. Cible 24/10."
         },
@@ -744,9 +744,10 @@
         {
           "titre": "Identité visuelle globale (sobre, style ChatGPT)",
           "statut": "en_cours",
-          "qui": "Camille",
+          "qui": "Lucas",
           "date": "2026-10-22",
-          "note": "2 propositions : nom, typo, couleur d'accent, logo, ton, 2 écrans habillés. Cible 01/11."
+          "note": "Veille DA faite (15 marques relevées dans le code des sites, 6 familles de couleurs classées, 4 familles de typos, règles seniors, 3 pistes). Piste A « Le salon » recommandée : ivoire, encre, terre cuite réservée au lien, Fraunces + Atkinson Hyperlegible. Reste : définir la DA.",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-da-marche.html"
         }
       ]
     },
