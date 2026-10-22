@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hypothèses critiques</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#ffffff;--panel:#f8f3ea;--soft:#eef1fb;
+  --ink:#14298a;--blue:#1d3bc1;--muted:#4b5891;--line:#cfd3e6;--on-blue:#ffffff;
+  --sans:"Archivo","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --fs-mega:clamp(48px,10vw,136px);--fs-num:clamp(64px,10vw,128px);--fs-h2:clamp(32px,4.6vw,58px);
+  --fs-h3:clamp(22px,2.4vw,28px);--fs-lead:clamp(20px,2.2vw,27px);--fs-q:clamp(26px,3.4vw,44px);
+  --s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s10:144px;
+  --gutter:clamp(16px,4vw,48px);--section-gap:clamp(80px,10vw,var(--s10));
+}
+
+
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:64px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--sans);overflow-wrap:break-word}
+p,li{max-width:66ch}
+h1,h2,h3{text-wrap:balance;margin:0}
+a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.skip{position:absolute;left:-9999px;top:8px;z-index:30;background:var(--blue);color:var(--on-blue);padding:8px 12px;font:500 13px var(--mono)}
+.skip:focus{left:8px}
+.label{font:500 13px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+b,strong{font-weight:800}
+
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--s5)}
+.grid>*{min-width:0}
+.rail{grid-column:1 / span 3}
+.body{grid-column:4 / span 9}
+
+.topnav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:3px solid var(--blue)}
+.topnav ol{display:flex;gap:clamp(14px,1.8vw,28px);margin:0 auto;max-width:1240px;padding:0 var(--gutter);list-style:none;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.topnav ol::-webkit-scrollbar{display:none}
+.topnav a{font:500 12px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:16px 0;display:inline-block}
+.topnav a span{color:var(--blue);margin-right:6px;opacity:.7}
+.topnav a:hover{color:var(--blue)}
+
+.cover{min-height:min(100svh,940px);display:grid;align-content:space-between;row-gap:var(--s8);padding-block:var(--s8) var(--s7)}
+.meta{grid-column:1/-1;border-top:2px solid var(--ink);padding-top:var(--s3);font:500 13px/1.5 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0;max-width:none}
+.cover-title{grid-column:1/-1;font:800 var(--fs-mega)/.92 var(--sans);letter-spacing:-.045em;max-width:13ch}
+.cover-title .pre{display:block;font:500 clamp(14px,1.6vw,18px)/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:var(--s5)}
+.question{grid-column:4/-1;background:var(--blue);color:var(--on-blue);padding:var(--s6) var(--s6) var(--s7)}
+.question .label{color:var(--on-blue);opacity:.85;margin-bottom:var(--s4)}
+.question p.q{font:800 var(--fs-q)/1.12 var(--sans);letter-spacing:-.02em;margin:0;max-width:none;text-wrap:pretty}
+.cover-facts{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:var(--s5);margin:0;border-top:1px solid var(--line);padding-top:var(--s4)}
+.cover-facts dt{font:500 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cover-facts dd{margin:6px 0 0;font-weight:700;line-height:1.35}
+
+.sec{border-top:3px solid var(--ink);padding-top:var(--s5);margin-top:var(--section-gap);scroll-margin-top:64px}
+.sec-num{display:block;font:800 var(--fs-num)/.85 var(--sans);letter-spacing:-.05em;color:var(--blue);position:sticky;top:72px}
+.sec h2{font:800 var(--fs-h2)/1 var(--sans);letter-spacing:-.03em;margin-bottom:var(--s6)}
+.sec .label{margin-bottom:var(--s3)}
+.chapeau{font:700 var(--fs-lead)/1.28 var(--sans);letter-spacing:-.01em;max-width:34em;padding-left:var(--s5);border-left:6px solid var(--blue);margin:0 0 var(--s7);text-wrap:pretty}
+.body h3{font:800 var(--fs-h3)/1.15 var(--sans);letter-spacing:-.015em;border-top:2px solid var(--ink);padding-top:var(--s3);margin:var(--s8) 0 var(--s4)}
+
+.rules{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.rules li{font:700 var(--fs-lead)/1.28 var(--sans);letter-spacing:-.01em;padding:var(--s4) 0;border-bottom:1px solid var(--line);max-width:none;text-wrap:pretty}
+.rules.small li{font:500 19px/1.45 var(--sans);letter-spacing:0}
+.rules li b{color:var(--blue)}
+.rules.check li{padding-left:2.2em;position:relative}
+.rules.check li::before{content:"";position:absolute;left:0;top:calc(var(--s4) + .3em);width:1.05em;height:1.05em;border:2px solid var(--blue)}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:var(--s6) var(--s5)}
+.cols>div{border-top:6px solid var(--blue);padding-top:var(--s3)}
+.cols h4{font:800 22px/1.2 var(--sans);letter-spacing:-.01em;margin:var(--s2) 0 var(--s3)}
+.cols p{margin:0}
+.cols ul{margin:0;padding-left:1.1em}
+.cols li{margin-bottom:var(--s2)}
+
+.encart{background:var(--soft);border-left:6px solid var(--blue);padding:var(--s5);margin-top:var(--s7)}
+.encart p{margin:0 0 var(--s2);max-width:none}
+.encart p:last-child{margin:0}
+.encart .label{color:var(--blue);margin-bottom:var(--s3)}
+
+.kfs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));border-top:2px solid var(--ink);margin:0 0 var(--s5)}
+.kf{padding:var(--s4) var(--s5) var(--s5) 0;border-bottom:1px solid var(--line)}
+.kv{font:800 clamp(40px,5vw,64px)/1 var(--sans);letter-spacing:-.04em;color:var(--blue);margin:0 0 var(--s2);font-variant-numeric:tabular-nums}
+.kt{font-size:15px;line-height:1.45;margin:0}
+
+table{width:100%;border-collapse:collapse;border-top:2px solid var(--ink);margin-top:var(--s4)}
+th,td{text-align:left;vertical-align:top;padding:var(--s4) var(--s3) var(--s4) 0;border-bottom:1px solid var(--line)}
+th{font:500 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+td:first-child{font-weight:800;width:28%}
+td.pts{font:800 clamp(28px,3vw,40px)/1 var(--sans);color:var(--blue);letter-spacing:-.03em;text-align:right;padding-right:0;width:4ch;font-variant-numeric:tabular-nums}
+th.r{text-align:right;padding-right:0}
+tr.now td{background:var(--soft)}
+tr.now td:first-child{box-shadow:inset 6px 0 0 var(--blue);padding-left:var(--s3)}
+.rncp{font:500 14px var(--mono);color:var(--blue);display:block;margin-bottom:4px;letter-spacing:.06em}
+
+.foot{border-top:2px solid var(--ink);margin-top:var(--section-gap);padding-block:var(--s4) var(--s8);font:400 13px/1.6 var(--mono);color:var(--muted)}
+.foot p{max-width:none;margin:0 0 var(--s2)}
+
+@media (max-width:820px){
+  .rail,.body,.question{grid-column:1/-1}
+  .sec-num{position:static;margin-bottom:var(--s3)}
+  .cover{min-height:auto;row-gap:var(--s7)}
+  .question{padding:var(--s5)}
+  td:first-child{width:auto}
+  table,thead,tbody,tr,th,td{display:block}
+  thead{position:absolute;left:-9999px}
+  tr{border-bottom:1px solid var(--line);padding:var(--s3) 0}
+  td{border:0;padding:2px 0}
+  tr.pts-row{display:grid;grid-template-columns:1fr auto;column-gap:var(--s3)}
+  tr.pts-row td:nth-child(2){grid-column:1/-1;grid-row:2}
+  tr.pts-row td.pts{grid-column:2;grid-row:1}
+  td[data-l]::before{content:attr(data-l) " · ";font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  tr.now td:first-child{box-shadow:none;padding-left:0}
+}
+@media print{.topnav,.skip{display:none}.sec-num{position:static}}
+
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);border-top:2px solid var(--ink);padding-top:var(--s5)}
+.vs>div{min-width:0}
+.vs .tag{font:800 var(--fs-h3)/1.1 var(--sans);letter-spacing:-.015em;color:var(--blue);margin:var(--s2) 0 var(--s3)}
+.vs p{margin:0 0 var(--s3)}
+.fh{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.06em;padding:3px 5px;margin-right:6px;vertical-align:2px;border:1.5px solid var(--blue);color:var(--blue)}
+.fh.f{background:var(--soft)}
+.fh.h{border-style:dashed;color:var(--muted);border-color:var(--muted)}
+td.v{font-weight:700}
+td.win{color:var(--blue);font-weight:800}
+.verdict{background:var(--blue);color:var(--on-blue);padding:var(--s6) var(--s6) var(--s7);margin-top:var(--s4)}
+.verdict .label{color:var(--on-blue);opacity:.85;margin-bottom:var(--s4)}
+.verdict p.q{font:800 clamp(24px,3vw,38px)/1.15 var(--sans);letter-spacing:-.02em;margin:0 0 var(--s4);max-width:none}
+.verdict p{max-width:60ch;margin:0 0 var(--s2)}
+.src{font:400 14px/1.55 var(--sans);padding-left:1.4em;margin:0}
+.src li{margin-bottom:var(--s2);max-width:none}
+@media (max-width:820px){.vs{grid-template-columns:1fr}.verdict{padding:var(--s5)}}
+
+.quote{font:700 clamp(20px,2.2vw,26px)/1.3 var(--sans);letter-spacing:-.01em;border-left:6px solid var(--blue);padding-left:var(--s5);margin:0 0 var(--s2);max-width:40em}
+.quote+.who{font-size:14px;color:var(--muted);margin:0 0 var(--s6);padding-left:calc(var(--s5) + 6px)}
+.acts{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.acts li{display:grid;grid-template-columns:7ch minmax(0,1fr);gap:var(--s5);padding:var(--s4) 0;border-bottom:1px solid var(--line);max-width:none}
+.acts .tc{font:800 clamp(20px,2.2vw,26px)/1.1 var(--sans);color:var(--blue);font-variant-numeric:tabular-nums}
+.acts b{display:block;font-size:19px;margin-bottom:4px}
+
+.idea{border-top:6px solid var(--blue);padding-top:var(--s3)}
+.ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:var(--s6) var(--s5)}
+.ideas h4{font:800 21px/1.2 var(--sans);margin:var(--s2) 0 var(--s3);letter-spacing:-.01em}
+.ideas p{margin:0 0 var(--s2);font-size:16px}
+.ideas .q{color:var(--blue);font-weight:700;font-size:15px}
+.tension{display:grid;grid-template-columns:1fr auto 1fr;gap:var(--s4);align-items:center;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.tension b{font-size:18px}
+.tension .vs2{font:800 14px var(--mono);color:var(--muted)}
+.tension p{grid-column:1/-1;margin:0;color:var(--muted);font-size:15px}
+@media (max-width:820px){.tension{grid-template-columns:1fr}.tension .vs2{display:none}}
+/* hypothèses */
+.formule{background:var(--blue);color:var(--on-blue);padding:var(--s5) var(--s6);margin:0 0 var(--s6)}
+.formule .label{color:var(--on-blue);opacity:.85;margin-bottom:var(--s3)}
+.formule p.f{font:800 clamp(22px,2.8vw,34px)/1.2 var(--sans);letter-spacing:-.02em;margin:0;max-width:none}
+.formule i{font-style:normal;border-bottom:3px solid rgba(255,255,255,.55)}
+.hyps{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink);counter-reset:h}
+.hyps li{display:grid;grid-template-columns:5ch minmax(0,1fr);column-gap:var(--s4);padding:var(--s5) 0;border-bottom:1px solid var(--line);max-width:none}
+.hyps .n{font:800 clamp(26px,3vw,38px)/1 var(--sans);letter-spacing:-.03em;color:var(--line);font-variant-numeric:tabular-nums}
+.hyps li.top .n{color:var(--blue)}
+.hyps .t{font:500 19px/1.45 var(--sans);margin:0;max-width:60ch}
+.hyps .t b{color:var(--blue)}
+.hyps .s{font:400 14px/1.5 var(--sans);color:var(--muted);margin:var(--s2) 0 0;max-width:62ch}
+.hyps .s .fh{margin-right:8px}
+.badge{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--blue);color:var(--on-blue);padding:4px 7px;margin-left:8px;vertical-align:3px}
+.prio{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:var(--s6) var(--s5)}
+.prio>div{border-top:6px solid var(--blue);padding-top:var(--s3)}
+.prio h4{font:800 22px/1.2 var(--sans);margin:var(--s2) 0 var(--s4)}
+.prio ol{margin:0;padding:0;list-style:none}
+.prio li{padding:var(--s3) 0;border-bottom:1px solid var(--line)}
+.prio li b{display:block;font-size:18px;line-height:1.3}
+.prio li span{font-size:15px;color:var(--muted)}
+.rw{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-top:var(--s4)}
+.rw div{padding:var(--s4);border:1px solid var(--line)}
+.rw div:last-child{border:2px solid var(--blue);background:var(--soft)}
+.rw .label{margin-bottom:var(--s2)}
+.rw p{margin:0;font-weight:700}
+@media (max-width:820px){.rw{grid-template-columns:1fr}.hyps li{grid-template-columns:4ch minmax(0,1fr)}}
+.tg{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:4px 6px;margin-right:8px;vertical-align:1px}
+.tg.rel{background:var(--soft);color:var(--blue);border:1.5px solid var(--blue)}
+.tg.secu{color:var(--muted);border:1.5px dashed var(--muted)}
+.split{display:flex;height:14px;margin:var(--s3) 0 var(--s2);border:2px solid var(--ink)}
+.split i{display:block;background:var(--blue)}
+.split i+i{background:repeating-linear-gradient(45deg,#fff 0 4px,var(--line) 4px 8px)}
+.enjeux{background:var(--blue);color:var(--on-blue);padding:var(--s5) var(--s6);margin:0 0 var(--s4)}
+.enjeux .label{color:var(--on-blue);opacity:.85;margin-bottom:var(--s3)}
+.enjeux ol{margin:0;padding-left:1.3em}
+.enjeux li{margin:0 0 var(--s3);font-size:18px;line-height:1.4;max-width:none}
+.enjeux li:last-child{margin:0}
+.hcard{border-top:3px solid var(--ink);padding:var(--s5) 0 var(--s6);border-bottom:1px solid var(--line)}
+.hcard>header{display:flex;align-items:baseline;gap:var(--s4);flex-wrap:wrap;margin-bottom:var(--s3)}
+.hcard .n{font:800 clamp(34px,4vw,52px)/1 var(--sans);letter-spacing:-.04em;color:var(--blue)}
+.hcard>header .label{color:var(--ink)}
+.hcard .hm{font:700 clamp(19px,2vw,23px)/1.35 var(--sans);letter-spacing:-.01em;margin:0 0 var(--s5);max-width:none}
+.hcard .hm b{color:var(--blue)}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-bottom:var(--s4)}
+.pc>div{padding:var(--s4);border:1px solid var(--line)}
+.pc .pour{border-top:4px solid var(--blue)}
+.pc .contre{border-top:4px dashed var(--muted)}
+.pc .label{margin-bottom:var(--s2)}
+.pc ul{margin:0;padding-left:1.1em;font-size:15px;line-height:1.5}
+.pc li{margin-bottom:6px}
+.chal,.test{margin:0 0 var(--s3);max-width:none;padding-left:var(--s4)}
+.chal{border-left:6px solid var(--blue);background:var(--soft);padding:var(--s4)}
+.test{border-left:2px solid var(--ink)}
+.chal .label,.test .label{display:block;margin-bottom:6px}
+.chal b{color:var(--blue)}
+@media (max-width:820px){.pc{grid-template-columns:1fr}.enjeux{padding:var(--s5)}}
+.orig{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.06em;color:var(--muted);margin-left:4px}
+.credits{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:var(--s5)}
+.credits>div{border-top:6px solid var(--blue);padding-top:var(--s3)}
+.credits h4{font:800 20px/1.2 var(--sans);margin:var(--s2) 0 var(--s2)}
+.credits p{margin:0;font-size:15px}
+
+/* listes de 10 : pleine largeur, sans retours inutiles */
+.hyps li{grid-template-columns:3.2em minmax(0,1fr);column-gap:var(--s5);padding:var(--s4) 0;align-items:start}
+.hyps .n{white-space:nowrap;font-size:clamp(22px,2.2vw,28px);color:var(--muted);opacity:.45;line-height:1.1}
+.hyps li.top .n{opacity:1;color:var(--blue)}
+.hyps .flag{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--blue);color:var(--on-blue);padding:4px 7px;margin:0 0 var(--s2)}
+.hyps .t{max-width:none;font-size:18px;line-height:1.45;text-wrap:pretty}
+.hyps .s{display:flex;align-items:baseline;gap:var(--s3);max-width:none;margin-top:var(--s2);font-size:14px;line-height:1.5}
+.hyps .s .tg{flex:none;margin:0}
+.hyps .s .orig{flex:none;margin-left:auto;white-space:nowrap;padding-left:var(--s3)}
+@media (max-width:820px){.hyps .s{flex-wrap:wrap}.hyps .s .orig{margin-left:0;padding-left:0;flex-basis:100%}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<nav class="topnav" aria-label="Sections">
+  <ol>
+    <li><a href="#consigne"><span>01</span>La démarche</a></li>
+    <li><a href="#parent"><span>02</span>Le parent</a></li>
+    <li><a href="#enfant"><span>03</span>L'enfant</a></li>
+    <li><a href="#prio"><span>04</span>Les 6 critiques</a></li>
+  </ol>
+</nav>
+
+<header class="cover wrap grid">
+  <p class="meta">Compte rendu global · Besoins utilisateurs · Séance 2 · Atelier 1 · 22 octobre 2026</p>
+  <h1 class="cover-title"><span class="pre">Plan de recherche · partie 1</span>Ce que le marché nous oblige à vérifier</h1>
+  <div class="question">
+    <p class="label">Objectif de recherche</p>
+    <p class="q">Comprendre comment un parent âgé autonome et ses enfants entretiennent le lien aujourd'hui, ce qui le fait vivre ou s'éteindre, ce qui déclenche l'achat d'un objet pour le parent, et à quelles conditions il serait accepté sans être vécu comme une surveillance.</p>
+  </div>
+  <dl class="cover-facts">
+    <div><dt>Base</dt><dd>3 fiches de l'équipe fusionnées</dd></div>
+    <div><dt>Hypothèses</dt><dd>10 parent, 10 enfant, toutes sourcées</dd></div>
+    <div><dt>Équilibre</dt><dd>14 lien, 6 sécurité (70 / 30)</dd></div>
+    <div><dt>Critiques</dt><dd>3 parent, 3 enfant</dd></div>
+  </dl>
+</header>
+
+<main id="contenu">
+
+<section class="sec wrap grid" id="consigne" aria-labelledby="t1">
+  <div class="rail"><span class="sec-num" aria-hidden="true">01</span></div>
+  <div class="body">
+    <p class="label">Atelier 1 · 40 minutes</p>
+    <h2 id="t1">La démarche</h2>
+    <p class="chapeau">On ne teste pas notre produit, on teste le marché. Chaque hypothèse dit ce que la veille montre chez les seniors et leurs enfants, puis ce que cela remet en cause dans le Cadre.</p>
+    <div class="formule">
+      <p class="label">La formule</p>
+      <p class="f">Nous pensons que <i>[cible]</i> <i>[comportement]</i> parce que <i>[raison]</i>.</p>
+    </div>
+    <ul class="rules small check">
+      <li><b>Lister</b> 10 hypothèses sur le parent et 10 sur l'enfant, à partir de la veille de la phase 1.</li>
+      <li><b>Classer :</b> la plus risquée en premier (si elle est fausse, le produit tombe).</li>
+      <li><b>Garder</b> les 3 plus risquées par cible, adaptées au marché et à la question du sujet.</li>
+      <li><b>Rédiger</b> l'objectif de recherche en une phrase.</li>
+    </ul>
+    <div class="encart">
+      <p class="label">Nos trois règles</p>
+      <p><b>Une source de veille pour chaque hypothèse.</b> Aucune intuition seule ; ce qui reste supposé est dit.</p>
+      <p><b>Le marché, pas la fonction.</b> Le toucher, l'alerte des 48 h ou le moment du jour se testeront avec le prototype, pas ici.</p>
+      <p><b>70 % de lien, 30 % de sécurité.</b> Notre problème est le lien, pas la santé.</p>
+      <div class="split" aria-hidden="true"><i style="width:70%"></i><i style="width:30%"></i></div>
+      <p><span class="tg rel">Lien</span>14 hypothèses <span class="tg secu" style="margin-left:16px">Sécurité</span>6 hypothèses</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="parent" aria-labelledby="t2">
+  <div class="rail"><span class="sec-num" aria-hidden="true">02</span></div>
+  <div class="body">
+    <p class="label">Senior autonome, 75 ans et plus, seul à domicile</p>
+    <h2 id="t2">Le parent</h2>
+    <p class="chapeau">Il ne paie pas, il vit avec l'objet et doit l'accepter. Classées de la plus risquée à la moins risquée.</p>
+    <ol class="hyps">
+      <li class="top"><span class="n">P1</span><div><p class="flag">Critique</p><p class="t">Nous pensons que les seniors <b>acceptent de donner une information sur eux quand ils décident eux-mêmes de le faire, et la refusent quand l'enfant l'impose</b>, parce que c'est le choix qui sépare rassurer et être surveillé.</p><p class="s"><span class="tg rel">Lien</span>« Il est important qu'on sache où je me trouve pour rassurer la famille » (avis Life360) ; en droit, le senior décide et consent (fiche marché). Le refus quand c'est imposé n'a pas de source.<span class="orig">· Clément</span></p></div></li>
+      <li class="top"><span class="n">P2</span><div><p class="flag">Critique</p><p class="t">Nous pensons que les seniors <b>apprécient les nouvelles reçues, mais répondent à leur famille par le téléphone, pas par le service</b>, parce que la voix reste leur façon de dire merci et de garder le contact.</p><p class="s"><span class="tg rel">Lien</span>« Ma grand-mère m'appelle chaque mois pour me remercier après sa gazette » (avis Famileo) ; limite relevée : « le senior ne répond pas » ; préférence pour le contact humain (Linexio).<span class="orig">· Clément, Camille</span></p></div></li>
+      <li><span class="n">P3</span><div><p class="t">Nous pensons que les seniors <b>adoptent un service de lien seulement s'il ne leur demande aucune manipulation</b>, parce que tout geste technique devient une barrière.</p><p class="s"><span class="tg rel">Lien</span>Famileo : gazette papier, 4,8/5 sur 5 300 avis, 260 000 familles, rentable depuis 2020 ; 90 % des 75 ans et plus ne sont équipés de rien.<span class="orig">· Camille, Clément</span></p></div></li>
+      <li class="top"><span class="n">P4</span><div><p class="flag">Critique</p><p class="t">Nous pensons que les seniors <b>n'adoptent un écran que si quelqu'un les accompagne au départ</b>, parce qu'ils n'apprennent pas seuls un objet nouveau.</p><p class="s"><span class="tg rel">Lien</span>Ardoiz : environ 110 000 seniors équipés via le guichet de La Poste, arrêté en 2026 ; « rien ne prouve que la tablette elle-même ait été rejetée » (fiche réussites et faillites) ; Meta Portal arrêté.<span class="orig">· Clément, Camille</span></p></div></li>
+      <li><span class="n">P5</span><div><p class="t">Nous pensons que les seniors <b>rejettent ce qui les désigne comme âgés, mais montrent volontiers un objet de famille</b>, parce que la vieillesse reste associée à la maladie et que la famille, elle, valorise.</p><p class="s"><span class="tg rel">Lien</span>87 % voient la téléassistance comme un marqueur de dépendance ; une grand-mère montre « fièrement à ses voisines » sa gazette (avis Famileo) ; enquête HCFEA sur les stéréotypes.<span class="orig">· Camille, Clément</span></p></div></li>
+      <li><span class="n">P6</span><div><p class="t">Nous pensons que les seniors qui appuient sur un bouton d'appel <b>cherchent surtout une voix humaine</b>, parce qu'ils ont besoin d'être rassurés plus que secourus.</p><p class="s"><span class="tg rel">Lien</span>7 millions d'appels de téléassistance par an, 2 % transmis aux secours (AFRATA). Le chiffre est sûr, la raison est la nôtre.<span class="orig">· Camille, Clément</span></p></div></li>
+      <li><span class="n">P7</span><div><p class="t">Nous pensons qu'en difficulté, les seniors <b>appellent d'abord un proche plutôt qu'un service</b>, parce qu'ils font confiance à la famille avant un appareil.</p><p class="s"><span class="tg rel">Lien</span>Une mère de 91 ans tombe la nuit et se traîne jusqu'au téléphone pour appeler sa fille (avis Trustpilot) ; la famille est le premier substitut (2,1 millions d'enfants aidants).<span class="orig">· Camille, Clément</span></p></div></li>
+      <li><span class="n">P8</span><div><p class="t">Nous pensons que les seniors <b>retirent leur bracelet dès qu'ils reçoivent du monde</b>, parce qu'ils ne veulent pas être vus avec.</p><p class="s"><span class="tg secu">Sécurité</span>90 % portent leur dispositif surtout seuls (Drees) ; « personne n'aimerait avoir ça au poignet » (avis Amazon).<span class="orig">· Camille, Clément</span></p></div></li>
+      <li><span class="n">P9</span><div><p class="t">Nous pensons que les seniors <b>refusent un dispositif de sécurité tant qu'ils ne sont pas tombés</b>, parce qu'avant, ils ne se sentent pas concernés.</p><p class="s"><span class="tg secu">Sécurité</span>61 % des achats suivent une chute (2016, source faible) ; montres freinées par « le déni du risque ».<span class="orig">· Clément</span></p></div></li>
+      <li><span class="n">P10</span><div><p class="t">Nous pensons que les seniors <b>débranchent un appareil qui sonne sans raison</b>, surtout la nuit, parce qu'il les inquiète plus qu'il ne les rassure.</p><p class="s"><span class="tg secu">Sécurité</span>« Elle sonne toute seule… poubelle », alarme chaque nuit à minuit (avis bracelet) ; déclenchement accidentel parmi les raisons de non-port.<span class="orig">· Clément</span></p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="enfant" aria-labelledby="t3">
+  <div class="rail"><span class="sec-num" aria-hidden="true">03</span></div>
+  <div class="body">
+    <p class="label">Aidant de 40 à 65 ans, souvent à distance</p>
+    <h2 id="t3">L'enfant</h2>
+    <p class="chapeau">Il paie, décide, installe et fait vivre l'objet. Classées de la plus risquée à la moins risquée.</p>
+    <ol class="hyps">
+      <li class="top"><span class="n">E1</span><div><p class="flag">Critique</p><p class="t">Nous pensons que les enfants <b>partagent leurs photos en famille et sur les réseaux, mais presque pas avec leur parent</b>, parce que le parent n'est pas sur ces outils et que rien ne le leur rappelle au moment de partager.</p><p class="s"><span class="tg rel">Lien</span>Famileo est né « d'une grand-mère exclue des échanges WhatsApp de la famille » ; les personnes âgées « manquent des moments importants de la famille » (avis).<span class="orig">· Clément, Camille, Lucas</span></p></div></li>
+      <li class="top"><span class="n">E2</span><div><p class="flag">Critique</p><p class="t">Nous pensons que les enfants <b>achètent un service de lien sans attendre d'incident, souvent en cadeau, alors qu'ils n'achètent la sécurité qu'après une chute</b>, parce que le manque de nouvelles se ressent déjà, la peur seulement après l'accident.</p><p class="s"><span class="tg rel">Lien</span>61 % des achats de téléassistance suivent une chute (2016) ; Famileo gagne 2 000 à 3 000 familles par mois par bouche-à-oreille ; « très beau cadeau pour ma grand-mère » ; chez Famileo, « le payeur est celui qui culpabilise ».<span class="orig">· Clément, Camille</span></p></div></li>
+      <li class="top"><span class="n">E3</span><div><p class="flag">La plus risquée</p><p class="t">Nous pensons que les enfants <b>cessent d'alimenter un service de lien dès qu'il leur demande une action régulière</b>, parce qu'ils concilient déjà l'aide, le travail et leurs enfants.</p><p class="s"><span class="tg rel">Lien</span>Famileo « devenu une corvée… on passera à la concurrence » ; plus de la moitié des aidants travaillent (UNAF) ; 725 000 aidants pivots (Drees) ; 36 % disent avoir besoin de répit.<span class="orig">· Camille, Clément, Lucas</span></p></div></li>
+      <li><span class="n">E4</span><div><p class="t">Nous pensons que les enfants <b>paient un abonnement de lien tant que leur parent montre qu'il en profite</b>, et l'arrêtent quand ce retour disparaît, parce qu'ils paient pour sa réaction.</p><p class="s"><span class="tg rel">Lien</span>« Je pensais arrêter au bout d'un an, mais ils ont réclamé la gazette en chœur » ; « je compte renouveler » (avis Famileo). Le taux de résiliation n'est pas connu.<span class="orig">· Clément</span></p></div></li>
+      <li><span class="n">E5</span><div><p class="t">Nous pensons que les enfants <b>paient sans difficulté un petit prix annoncé, mais renvoient dès qu'ils découvrent un coût caché</b>, parce qu'ils jugent le prix sur sa lisibilité.</p><p class="s"><span class="tg rel">Lien</span>« 70 € l'abonnement SMS pour un an, c'est du vol » (avis) ; Ardoiz, 230 à 529 € plus environ 30 € par mois, arrêté ; le lien se vend dès 5,99 € par mois.<span class="orig">· Clément, Camille</span></p></div></li>
+      <li><span class="n">E6</span><div><p class="t">Nous pensons que les enfants <b>n'installent ni caméra ni localisation chez leur parent, alors qu'ils localisent leurs propres enfants</b>, parce qu'ils craignent que le parent se sente surveillé.</p><p class="s"><span class="tg rel">Lien</span>« Rassuré de savoir où se trouve [ma] fille à chaque instant » (avis Life360) ; Famileo marche parce que le senior « ne se sent pas surveillé ».<span class="orig">· Clément</span></p></div></li>
+      <li><span class="n">E7</span><div><p class="t">Nous pensons que les enfants <b>font participer frères, sœurs et petits-enfants</b>, parce qu'un rendez-vous commun évite de porter seul les nouvelles du parent.</p><p class="s"><span class="tg rel">Lien</span>« Toute la famille participe chaque mois » (avis Famileo) ; mais 39 % des aidants pivots sont seuls dans leur fratrie (Drees).<span class="orig">· Clément, Camille, Lucas</span></p></div></li>
+      <li><span class="n">E8</span><div><p class="t">Nous pensons que les enfants <b>renvoient un objet d'alerte dès la mise en route</b> (SIM, appli, code), parce qu'ils refusent de devenir le technicien chez leur parent.</p><p class="s"><span class="tg secu">Sécurité</span>« Obligation de télécharger une appli, d'acheter une carte SIM… un cauchemar » (avis) ; la mise en service demande une à deux semaines de présence d'un proche.<span class="orig">· Clément</span></p></div></li>
+      <li><span class="n">E9</span><div><p class="t">Nous pensons que les enfants <b>coupent un dispositif après quelques fausses alertes</b>, parce qu'une alerte pour rien fait perdre confiance plus vite qu'une alerte manquée.</p><p class="s"><span class="tg secu">Sécurité</span>5 à 15 % de fausses alertes ; « fausses alertes qui lassent l'entourage » ; avis Life360 sur une localisation erronée.<span class="orig">· Clément, Camille</span></p></div></li>
+      <li><span class="n">E10</span><div><p class="t">Nous pensons que les enfants <b>veulent être prévenus eux-mêmes</b>, sur leur téléphone, plutôt que par un centre d'écoute, parce qu'ils veulent agir eux-mêmes.</p><p class="s"><span class="tg secu">Sécurité</span>« J'ai toujours été averti », « faute d'avoir été prévenue » (avis bracelet) ; mais les réussites de la téléassistance reposent sur un humain derrière.<span class="orig">· Clément, Camille</span></p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="prio" aria-labelledby="t4">
+  <div class="rail"><span class="sec-num" aria-hidden="true">04</span></div>
+  <div class="body">
+    <p class="label">Si elle est fausse, le produit tombe</p>
+    <h2 id="t4">Les 6 critiques</h2>
+    <p class="chapeau">Les plus risquées, et celles qui répondent à la question du sujet : rassurer les enfants sans surveiller les parents, la relation au numérique, le moment de l'achat.</p>
+
+    <div class="enjeux">
+      <p class="label">Quatre tensions entre le marché et notre projet</p>
+      <ol>
+        <li><b>Le seul succès du lien est sur papier.</b> Famileo réussit avec une gazette ; les écrans de lien (Ardoiz, Portal) se sont arrêtés.</li>
+        <li><b>Le senior répond par la voix, notre V1 est muette.</b> Il remercie par téléphone ; le Cadre V1 n'a ni voix ni visio.</li>
+        <li><b>L'aidant manque de temps, notre cadre vit de ses envois.</b> Le marché abandonne ce qui devient une corvée.</li>
+        <li><b>Le marché se déclenche à la chute, nous vendons du lien.</b> Si l'achat n'arrive qu'après l'accident, un cadeau de lien ne se vend pas.</li>
+      </ol>
+    </div>
+
+    <h3>Côté parent · le lien a-t-il des utilisateurs ?</h3>
+
+    <article class="hcard">
+      <header><span class="n">P1</span><p class="label">Partager seulement si c'est son choix</p></header>
+      <p class="hm">Nous pensons que les seniors <b>acceptent de donner une information sur eux quand ils décident eux-mêmes, et la refusent quand l'enfant l'impose</b>, parce que c'est le choix qui sépare rassurer et être surveillé.</p>
+      <div class="pc">
+        <div class="pour"><p class="label">Le marché le soutient</p><ul><li>« Il est important qu'on sache où je me trouve pour rassurer la famille » (avis Life360).</li><li>En droit, le senior s'abonne, consent et désigne les proches (fiche marché).</li><li>87 % voient la téléassistance comme un marqueur de dépendance.</li></ul></div>
+        <div class="contre"><p class="label">Le marché le contredit</p><ul><li>750 000 abonnés à la téléassistance, souvent poussés par leurs enfants, l'acceptent.</li><li>Aucune source ne montre un refus lié au fait d'imposer.</li></ul></div>
+      </div>
+      <p class="chal"><span class="label">Ce que ça challenge</span>C'est la question centrale du sujet. Le Cadre est <b>offert par l'enfant</b> : si le parent ne choisit rien, même un objet de lien peut être vécu comme imposé.</p>
+      <p class="test"><span class="label">À chercher en entretien</span>Un objet ou un réglage qu'on a mis chez le parent sans lui demander, et ce qu'il en a fait. Fausse si les parents ne font aucune différence entre ce qu'ils ont choisi et ce qu'on leur a installé.</p>
+    </article>
+
+    <article class="hcard">
+      <header><span class="n">P2</span><p class="label">Recevoir, puis répondre par la voix</p></header>
+      <p class="hm">Nous pensons que les seniors <b>apprécient les nouvelles reçues, mais répondent à leur famille par le téléphone, pas par le service</b>, parce que la voix reste leur façon de dire merci.</p>
+      <div class="pc">
+        <div class="pour"><p class="label">Le marché le soutient</p><ul><li>« Ma grand-mère m'appelle chaque mois pour me remercier après sa gazette » (avis Famileo).</li><li>Limite de Famileo : « le senior ne répond pas » par le service.</li><li>Préférence pour le contact humain ; 2 % des appels de téléassistance vont aux secours.</li></ul></div>
+        <div class="contre"><p class="label">Le marché le contredit</p><ul><li>Famileo réussit sans aucune réponse du senior : recevoir peut suffire.</li><li>Meta Portal, appel vidéo en un geste, a échoué.</li></ul></div>
+      </div>
+      <p class="chal"><span class="label">Ce que ça challenge</span>Le geste du parent (toucher ou cœur) et la <b>V1 sans voix</b>. Si le parent répond déjà par téléphone, notre geste est inutile ; s'il veut parler, des photos ne suffisent pas.</p>
+      <p class="test"><span class="label">À chercher en entretien</span>La dernière fois que le parent a reçu une nouvelle de sa famille : qu'a-t-il fait ensuite ? Fausse si la plupart ne répondent pas du tout, ou répondent autrement que par la voix.</p>
+    </article>
+
+    <article class="hcard">
+      <header><span class="n">P4</span><p class="label">Un écran ne s'adopte pas seul</p></header>
+      <p class="hm">Nous pensons que les seniors <b>n'adoptent un écran que si quelqu'un les accompagne au départ</b>, parce qu'ils n'apprennent pas seuls un objet nouveau.</p>
+      <div class="pc">
+        <div class="pour"><p class="label">Le marché le soutient</p><ul><li>Ardoiz a équipé environ 110 000 seniors via un guichet, puis s'est arrêté quand le réseau a reculé.</li><li>Le succès prouvé du lien est un objet papier (Famileo), sans écran.</li><li>Meta Portal arrêté en 2022.</li></ul></div>
+        <div class="contre"><p class="label">Le marché le contredit</p><ul><li>« Rien ne prouve que la tablette elle-même ait été rejetée » (fiche réussites et faillites).</li><li>Familink et Komp vendent des écrans de lien, sans chiffres publics.</li></ul></div>
+      </div>
+      <p class="chal"><span class="label">Ce que ça challenge</span>Rien dans la veille ne prouve qu'un <b>écran au mur</b> soit adopté comme une gazette. L'installation et le premier jour comptent autant que l'objet.</p>
+      <p class="test"><span class="label">À chercher en entretien</span>Le dernier appareil que le parent a appris à utiliser : qui l'a aidé, combien de temps ? Fausse si plusieurs parents ont adopté seuls un écran (tablette, smartphone) pour voir leur famille.</p>
+    </article>
+
+    <h3>Côté enfant · le lien a-t-il des acheteurs ?</h3>
+
+    <article class="hcard">
+      <header><span class="n">E1</span><p class="label">L'oubli au moment de partager</p></header>
+      <p class="hm">Nous pensons que les enfants <b>partagent leurs photos en famille et sur les réseaux, mais presque pas avec leur parent</b>, parce que le parent n'est pas sur ces outils et que rien ne le leur rappelle.</p>
+      <div class="pc">
+        <div class="pour"><p class="label">Le marché le soutient</p><ul><li>Famileo est né d'une grand-mère exclue du groupe WhatsApp de la famille.</li><li>Les personnes âgées « manquent des moments importants de la famille ».</li><li>Un utilisateur réclame des notifications « pour ne pas oublier ».</li></ul></div>
+        <div class="contre"><p class="label">Le marché le contredit</p><ul><li>2,1 millions d'enfants aidants appellent et passent : le lien existe sans photos.</li><li>Le blocage peut être le temps ou l'envie, pas l'oubli.</li></ul></div>
+      </div>
+      <p class="chal"><span class="label">Ce que ça challenge</span>C'est <b>notre problématique</b> (« hors du flux »). Si la cause n'est pas l'oubli, un rappel comme le moment du jour ne règle rien.</p>
+      <p class="test"><span class="label">À chercher en entretien</span>Les dernières photos que l'aidant a prises : à qui les a-t-il envoyées, et pourquoi pas à son parent ? Fausse si la majorité envoie déjà des photos au parent chaque semaine.</p>
+    </article>
+
+    <article class="hcard">
+      <header><span class="n">E2</span><p class="label">Le lien s'achète avant l'incident</p></header>
+      <p class="hm">Nous pensons que les enfants <b>achètent un service de lien sans attendre d'incident, souvent en cadeau, alors qu'ils n'achètent la sécurité qu'après une chute</b>, parce que le manque de nouvelles se ressent déjà.</p>
+      <div class="pc">
+        <div class="pour"><p class="label">Le marché le soutient</p><ul><li>Famileo : 2 000 à 3 000 nouvelles familles par mois, par bouche-à-oreille.</li><li>« Très beau cadeau pour ma grand-mère » (avis).</li><li>Chez Famileo, « le payeur est celui qui culpabilise ».</li></ul></div>
+        <div class="contre"><p class="label">Le marché le contredit</p><ul><li>61 % des achats de téléassistance suivent une chute (2016, source faible).</li><li>« La famille et son téléphone » suffisent jusqu'à la première chute ; 90 % des 75 ans et plus ne sont équipés de rien.</li></ul></div>
+      </div>
+      <p class="chal"><span class="label">Ce que ça challenge</span>Le <b>moment de vente</b> du Cadre. Si l'achat n'arrive qu'après une chute, l'enfant cherche alors un détecteur, pas un cadre, et le marché des parents autonomes reste fermé.</p>
+      <p class="test"><span class="label">À chercher en entretien</span>Ce qui s'est passé juste avant le dernier achat fait pour le parent. Fausse si les achats racontés suivent presque tous un incident ou une hospitalisation.</p>
+    </article>
+
+    <article class="hcard">
+      <header><span class="n">E3</span><p class="label">La corvée</p><span class="badge">La plus risquée</span></header>
+      <p class="hm">Nous pensons que les enfants <b>cessent d'alimenter un service de lien dès qu'il leur demande une action régulière</b>, parce qu'ils concilient déjà l'aide, le travail et leurs enfants.</p>
+      <div class="pc">
+        <div class="pour"><p class="label">Le marché le soutient</p><ul><li>Famileo « devenu une corvée… on passera à la concurrence ».</li><li>Plus de la moitié des aidants travaillent (UNAF) ; 36 % disent avoir besoin de répit.</li><li>L'abonnement porte un risque de lassitude et de résiliation.</li></ul></div>
+        <div class="contre"><p class="label">Le marché le contredit</p><ul><li>Famileo reste rentable depuis 2020 : une partie des familles tient.</li><li>« Toute la famille participe chaque mois » : partager la charge aide à tenir.</li></ul></div>
+      </div>
+      <p class="chal"><span class="label">Ce que ça challenge</span>Le Cadre vit des envois, et le moment du jour demande une action <b>chaque jour</b>. Sans envois, l'écran se fige et le parent le voit.</p>
+      <p class="test"><span class="label">À chercher en entretien</span>Un geste de lien que l'aidant a tenu longtemps, et un qu'il a abandonné : quand et pourquoi. Fausse si 3 aidants sur 5 tiennent un geste hebdomadaire depuis plus de 3 mois.</p>
+    </article>
+
+    <div class="encart">
+      <p class="label">Juste après les 6 critiques</p>
+      <p><b>E5, le prix lisible :</b> notre prix (environ 100 € plus un abonnement) n'est pas tranché dans l'équipe ; achat unique pour Lucas, achat plus abonnement dans le compte rendu.</p>
+      <p><b>E4, payer pour la réaction du parent :</b> si le parent ne réagit pas, l'enfant résilie. Elle relie P2 et E3.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="foot wrap">
+  <p>Compte rendu global de l'atelier 1, séance 2 (Besoins utilisateurs et ateliers de cadrage), 22 octobre 2026. Brouillon de Camille, à valider avec Clément et Lucas.</p>
+  <p>Sources : fiche de veille finale 1.1, fiche marché 2.1, fiche réussites et faillites de la silver tech, 20 avis sur le bracelet détecteur de chute, fiches d'hypothèses de Clément (2-2, v2) et de Lucas (2-1).</p>
+</footer>
+</body>
+</html>
