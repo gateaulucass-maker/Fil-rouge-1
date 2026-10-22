@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-16T15:54",
+  "mise_a_jour": "2026-10-22T10:26",
   "phases": [
     {
       "id": "P0",
@@ -674,6 +674,14 @@
           "statut": "a_faire",
           "qui": "Équipe",
           "note": "Du premier contact avec la solution jusqu'à la première photo reçue : identifier toutes les frictions (enfant, parent, famille) et les lisser, pour une vue claire du fonctionnement et que tout marche de bout en bout. À réaliser plus tard."
+        },
+        {
+          "titre": "Atelier 1 : 20 hypothèses parent et enfant, classées, objectif de recherche",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-22",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/2-1-hypotheses-parent-enfant.html",
+          "note": "Score risque × incertitude, 3 plus risquées par cible (P2, P1, P3 / E1, E4, E2), top 3 à tester d'abord (P2, E1, P1), seuils pour les contredire. À retravailler en groupe."
         }
       ]
     },

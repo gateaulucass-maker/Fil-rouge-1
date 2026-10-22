@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hypothèses prioritaires</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.thesis { margin-top: 32px; border-left: 4px solid var(--orange); padding: 4px 0 4px 18px; max-width: 70ch; }
+.thesis p { margin: 6px 0 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; }
+.prod, .spec2 { display:grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; }
+.spec2 { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+.prod > div, .spec2 > div { border-top: 3px solid var(--blue); padding-top: 10px; }
+.prod p, .spec2 p { margin: 6px 0 0; font-size: 15px; }
+.ideas { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.idea { border-top: 4px solid var(--fg); padding: 12px 0 8px; display:flex; flex-direction:column; min-width:0; }
+.ihead { display:flex; justify-content:space-between; align-items:baseline; gap: 8px; }
+.inum { font: 800 44px/1 var(--display); color: var(--orange); letter-spacing: -.05em; }
+.eff { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; white-space: nowrap; }
+.eff.e1 { background: var(--blue-soft); color: var(--blue); }
+.eff.e2 { background: var(--soft); color: var(--fg); }
+.eff.e3 { background: var(--orange-soft); color: var(--orange); }
+.idea h3 { margin: 10px 0 6px; font-size: 20px; letter-spacing: -.015em; }
+.idea p { margin: 0 0 10px; font-size: 15px; }
+.idea dl { margin: auto 0 0; font-size: 13px; border-top: 1px solid var(--hair); padding-top: 8px; }
+.idea dt { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.idea dd { margin: 0 0 6px; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+td b { font-weight: 700; }
+@media (max-width: 1000px) { .ideas { grid-template-columns: repeat(2, 1fr); } .prod { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .ideas, .prod, .spec2 { grid-template-columns: 1fr; } }
+
+/* Hypothèses */
+.lvl { display:inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.lvl.c { background: var(--orange); color: #fff; }
+.lvl.f { background: var(--orange-soft); color: var(--orange); }
+.lvl.m { background: var(--soft); color: var(--muted); }
+td.sc { font: 500 15px var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr.top td { background: var(--blue-soft); }
+.scale { display:grid; grid-template-columns: repeat(3, 1fr); gap: 0 24px; margin-top: 8px; }
+.scale > div { border-top: 3px solid var(--fg); padding-top: 10px; }
+.scale > div.o { border-color: var(--orange); }
+.scale > div.b { border-color: var(--blue); }
+.podium { display:grid; grid-template-columns: repeat(3, 1fr); gap: 0 24px; margin-top: 8px; }
+.podium > div { border-top: 3px solid var(--orange); padding-top: 12px; min-width: 0; }
+.podium .rk { font: 800 56px/1 var(--display); letter-spacing: -.04em; color: var(--orange); }
+.podium h3 { margin: 8px 0 6px; font-size: 19px; letter-spacing: -.01em; line-height: 1.25; }
+.podium p { font-size: 15px; }
+.card { border-top: 1px solid var(--fg); padding: 16px 0 8px; display:grid; grid-template-columns: 6ch 1fr; gap: 0 16px; }
+.card .id { font: 800 26px var(--display); color: var(--blue); letter-spacing: -.03em; }
+.card h3 { margin: 0 0 8px; font-size: 20px; letter-spacing: -.015em; line-height: 1.25; max-width: 60ch; }
+.card dl { margin: 0; }
+.card .row { grid-template-columns: 16ch 1fr; }
+.card .row dd b { color: var(--orange); }
+.obj { margin-top: 8px; border-left: 4px solid var(--blue); padding: 4px 0 4px 18px; font-size: clamp(19px, 2vw, 24px); font-weight: 700; line-height: 1.3; letter-spacing: -.012em; max-width: 52ch; }
+@media (max-width: 760px) {
+  .scale, .podium { grid-template-columns: 1fr; }
+  .scale > div, .podium > div { margin-bottom: 18px; }
+  .card { grid-template-columns: 1fr; }
+  .card .row { grid-template-columns: 1fr; gap: 2px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span>
+  <span>Bloc 03 · Outils no-code et IA</span>
+  <span>Séance 2 · Atelier 1</span>
+  <span>Équipe Clément, Camille, Lucas</span>
+  <span>22 octobre 2026</span>
+</div>
+<h1>Vingt hypothèses, <span>trois à tester d'abord</span></h1>
+<p class="lead">Atelier 1 «&nbsp;Vos hypothèses et votre objectif&nbsp;»&nbsp;: 10 hypothèses sur le parent, 10 sur l'enfant, classées de la plus risquée à la moins risquée, pour garder celles qui font tomber Le Cadre si elles sont fausses.</p>
+<div class="stats">
+  <div><span class="k">Hypothèses parent</span><b>10</b></div>
+  <div><span class="k">Hypothèses enfant</span><b>10</b></div>
+  <div><span class="k">Prioritaires (3 + 3)</span><b class="b">6</b></div>
+  <div><span class="k">À tester en premier</span><b class="o">3</b></div>
+</div>
+<div class="thesis"><span class="k">En une phrase</span><p>Le Cadre repose sur une boucle&nbsp;: <b>l'enfant envoie</b>, <b>le parent voit</b>, <b>le parent touche</b>, <b>l'enfant est rassuré</b>. Les hypothèses les plus risquées sont celles qui cassent cette boucle. Les fonctions autour (moment du jour, recadrage IA, LED) peuvent être fausses sans que le produit tombe.</p></div>
+<nav class="toc"><a href="#s01">01 La méthode</a><a href="#s02">02 Les 3 à tester d'abord</a><a href="#s03">03 Parent</a><a href="#s04">04 Enfant</a><a href="#s05">05 Les 6 retenues en détail</a><a href="#s06">06 Objectif de recherche</a><a href="#s07">07 Écartées et pourquoi</a></nav>
+
+<section id="s01">
+<div class="grid">
+  <div class="k"><span class="num">01</span> · La méthode</div>
+  <div>
+    <h2>Comment on a classé</h2>
+    <p>Chaque hypothèse suit la formule du cours&nbsp;: «&nbsp;Nous pensons que [cible] [comportement] parce que [raison].&nbsp;» Elle doit pouvoir être contredite sur le terrain. On lui donne deux notes, de 1 à 3, puis on les multiplie.</p>
+    <div class="scale">
+      <div class="o"><span class="k">Risque</span><p><b>Si elle est fausse, que devient le produit&nbsp;?</b><br>3&nbsp;: le produit tombe. 2&nbsp;: il faut changer une fonction importante. 1&nbsp;: on ajuste un détail.</p></div>
+      <div class="b"><span class="k">Incertitude</span><p><b>Ce que notre veille en dit déjà.</b><br>3&nbsp;: rien, c'est une pure supposition. 2&nbsp;: des indices, rien sur notre cible. 1&nbsp;: déjà appuyée par la veille ou des produits existants.</p></div>
+      <div><span class="k">Pertinence = risque × incertitude</span><p><span class="lvl c">Critique</span> 9 ou 6&nbsp;: à tester en premier.<br><span class="lvl f">Forte</span> 4&nbsp;: à tester ensuite.<br><span class="lvl m">Faible</span> 1 à 3&nbsp;: à surveiller.</p></div>
+    </div>
+    <p class="note" style="margin-top:14px">En cas d'égalité, on garde celle qui est au cœur de la boucle envoyer, voir, toucher, être rassuré. Les notes d'incertitude viennent de notre veille de phase 1 et des pages du dépôt (veille design du Cadre, fiche «&nbsp;version retenue&nbsp;» de Clément, brainstorm de Camille, maquette de l'appli). Aucune n'a encore été testée sur le terrain.</p>
+  </div>
+</div>
+</section>
+
+<section id="s02">
+<div class="grid">
+  <div class="k"><span class="num">02</span> · Les 3 à tester d'abord</div>
+  <div>
+    <h2>Si on n'en teste que trois</h2>
+    <p>Une par maillon de la boucle. Ensemble, elles disent si Le Cadre a une raison d'exister. On peut les tester toutes les trois avec un seul dispositif&nbsp;: une tablette dans un cadre chez 3 à 5 parents pendant deux semaines, avec des entretiens avant et après.</p>
+    <div class="podium">
+      <div><span class="rk">1</span><span class="k">P2 · Parent · 9/9</span>
+        <h3>Le parent touche le cadre pour dire «&nbsp;je suis là&nbsp;»</h3>
+        <p><b>Pourquoi d'abord&nbsp;:</b> c'est le seul geste du parent. L'enfant n'est rassuré que par lui, et l'alerte des 48 h en dépend. Si le parent ne touche pas, il ne reste qu'un cadre photo comme ceux qui existent déjà, et l'alerte se déclenche à tort.</p></div>
+      <div><span class="rk">2</span><span class="k">E1 · Enfant · 9/9</span>
+        <h3>L'enfant envoie au moins une photo par semaine</h3>
+        <p><b>Pourquoi&nbsp;:</b> sans envois, le cadre tourne sur les mêmes photos, le parent cesse de le regarder et n'a plus rien à quoi répondre. C'est le carburant de la boucle, et rien ne dit qu'un enfant pris par son travail tient le rythme après le premier mois.</p></div>
+      <div><span class="rk">3</span><span class="k">P1 · Parent · 9/9</span>
+        <h3>Le parent accepte un écran au mur de son salon</h3>
+        <p><b>Pourquoi&nbsp;:</b> c'est la porte d'entrée. Le cours le rappelle avec les bracelets&nbsp;: un objet associé à la dépendance est refusé. Si le parent vit le cadre comme un appareil qu'on lui impose, il le décroche ou le débranche et rien d'autre ne se passe.</p></div>
+    </div>
+    <p class="note" style="margin-top:14px">E4 («&nbsp;le signe rassure l'enfant&nbsp;») a aussi 9/9, mais on ne peut le tester que si P2 est vraie&nbsp;: il passe juste après, dans le même dispositif.</p>
+  </div>
+</div>
+</section>
+
+<section id="s03">
+<div class="grid">
+  <div class="k"><span class="num">03</span> · Parent</div>
+  <div>
+    <h2>10 hypothèses sur le parent</h2>
+    <p>Cible&nbsp;: parent de 70 ans ou plus, autonome, qui vit seul ou en couple, loin d'au moins un de ses enfants. Il n'a pas d'appli&nbsp;: il ne fait que voir et toucher.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Rang</th><th>Hypothèse</th><th>R</th><th>I</th><th>Score</th><th>Niveau</th><th>Justification</th></tr></thead>
+      <tbody>
+      <tr class="top"><td>P2</td><td>Nous pensons que les parents toucheront le cadre pour dire «&nbsp;je suis là&nbsp;» plusieurs fois par semaine parce qu'ils ont envie de répondre aux photos qu'ils reçoivent.</td><td class="sc">3</td><td class="sc">3</td><td class="sc">9</td><td><span class="lvl c">Critique</span></td><td>Le seul geste du parent, et l'alerte en dépend. Aucun produit étudié ne propose ce geste&nbsp;: on n'a aucune donnée.</td></tr>
+      <tr class="top"><td>P1</td><td>Nous pensons que les parents accepteront d'accrocher le cadre dans leur salon parce qu'il ressemble à un cadre de famille et pas à un appareil de santé.</td><td class="sc">3</td><td class="sc">3</td><td class="sc">9</td><td><span class="lvl c">Critique</span></td><td>Sans accord du parent, pas de produit. La veille design soutient la forme «&nbsp;cadre&nbsp;», mais personne de notre cible n'a vu l'objet.</td></tr>
+      <tr class="top"><td>P3</td><td>Nous pensons que les parents accepteront l'alerte après 48 h sans toucher parce qu'elle rassure leurs enfants et qu'ils l'ont choisie eux-mêmes.</td><td class="sc">3</td><td class="sc">2</td><td class="sc">6</td><td><span class="lvl c">Critique</span></td><td>La seule fonction qui touche à la vie privée, et une partie demandée par le cours (alertes, vue aidant). Si elle est vécue comme une surveillance, elle abîme l'image de tout le produit.</td></tr>
+      <tr><td>P4</td><td>Nous pensons que les parents comprendront sans explication que toucher le cadre envoie un signe parce que la lueur sur le bord confirme le geste.</td><td class="sc">2</td><td class="sc">3</td><td class="sc">6</td><td><span class="lvl c">Critique</span></td><td>Score élevé, mais c'est un problème de design, pas de besoin&nbsp;: si c'est faux, on ajoute un texte ou une animation. Sorti du top 3 pour cette raison.</td></tr>
+      <tr><td>P5</td><td>Nous pensons que les parents regarderont les photos qui défilent plusieurs fois par jour parce que le cadre est dans la pièce où ils vivent.</td><td class="sc">2</td><td class="sc">2</td><td class="sc">4</td><td><span class="lvl f">Forte</span></td><td>Les cadres photo du marché montrent qu'on regarde un cadre, mais pas à quelle fréquence. Se teste en même temps que P2.</td></tr>
+      <tr><td>P6</td><td>Nous pensons que le toucher suffira aux parents pour garder le lien parce qu'ils ne veulent pas écrire ni appeler depuis un écran.</td><td class="sc">2</td><td class="sc">2</td><td class="sc">4</td><td><span class="lvl f">Forte</span></td><td>Famileo marche dans un seul sens (gazette papier), ce qui va dans notre sens. Si c'est faux, on ajoute des réponses toutes faites, sans tout refaire.</td></tr>
+      <tr><td>P7</td><td>Nous pensons que les parents se sentiront plus entourés quand plusieurs proches envoient (petits-enfants compris) parce que la famille entière apparaît au mur.</td><td class="sc">2</td><td class="sc">2</td><td class="sc">4</td><td><span class="lvl f">Forte</span></td><td>Justifie les comptes des petits-enfants et le code de famille. Utile, mais le produit vit déjà avec un seul enfant.</td></tr>
+      <tr><td>P8</td><td>Nous pensons que les parents préféreront un cadre sans micro ni caméra parce qu'ils craignent d'être écoutés ou filmés chez eux.</td><td class="sc">2</td><td class="sc">1</td><td class="sc">2</td><td><span class="lvl m">Faible</span></td><td>Déjà appuyée par notre veille sur la surveillance. C'est un choix fait&nbsp;: on le vérifie en passant pendant les entretiens.</td></tr>
+      <tr><td>P9</td><td>Nous pensons qu'un écran toujours allumé ne gênera pas les parents parce que la luminosité baisse seule et qu'une photo vaut mieux qu'un écran noir.</td><td class="sc">1</td><td class="sc">2</td><td class="sc">2</td><td><span class="lvl m">Faible</span></td><td>Si c'est faux, on règle le mode veille. Simple réglage.</td></tr>
+      <tr><td>P10</td><td>Nous pensons que les parents laisseront leur enfant installer le cadre parce que la connexion Wi‑Fi leur paraît compliquée.</td><td class="sc">1</td><td class="sc">1</td><td class="sc">1</td><td><span class="lvl m">Faible</span></td><td>Le parcours d'installation est déjà fait pour l'enfant (maquette, écrans 1 à 6). Aucun risque pour le produit.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<section id="s04">
+<div class="grid">
+  <div class="k"><span class="num">04</span> · Enfant</div>
+  <div>
+    <h2>10 hypothèses sur l'enfant</h2>
+    <p>Cible&nbsp;: enfant de 40 à 60 ans, actif, qui vit à plus d'une heure de son parent. C'est lui qui achète, installe et envoie. On ajoute les petits-enfants comme cible secondaire.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Rang</th><th>Hypothèse</th><th>R</th><th>I</th><th>Score</th><th>Niveau</th><th>Justification</th></tr></thead>
+      <tbody>
+      <tr class="top"><td>E1</td><td>Nous pensons que les enfants enverront au moins une photo ou une vidéo par semaine parce que c'est aussi rapide qu'un message WhatsApp.</td><td class="sc">3</td><td class="sc">3</td><td class="sc">9</td><td><span class="lvl c">Critique</span></td><td>Sans envois, plus rien à voir ni à quoi répondre. On ne sait rien de l'envoi dans la durée, après le premier mois.</td></tr>
+      <tr class="top"><td>E4</td><td>Nous pensons que le signe «&nbsp;je suis là&nbsp;» rassurera les enfants au quotidien parce qu'il montre que leur parent va bien sans qu'ils aient à appeler.</td><td class="sc">3</td><td class="sc">3</td><td class="sc">9</td><td><span class="lvl c">Critique</span></td><td>C'est ce que l'enfant achète vraiment. Si un signe ne le rassure pas, il garde le téléphone et le cadre n'apporte rien de plus qu'un cadre photo.</td></tr>
+      <tr class="top"><td>E2</td><td>Nous pensons que les enfants achèteront Le Cadre pour leur parent, en achat unique, parce qu'ils cherchent un moyen simple de garder le lien sans abonnement.</td><td class="sc">3</td><td class="sc">2</td><td class="sc">6</td><td><span class="lvl c">Critique</span></td><td>Le parcours d'achat est demandé par le cours. Les cadres connectés se vendent déjà, ce qui baisse l'incertitude, mais pas avec notre promesse (le signe).</td></tr>
+      <tr><td>E3</td><td>Nous pensons que les enfants préféreront une alerte rare et fiable à un suivi en continu parce que suivre en permanence les angoisse et les culpabilise.</td><td class="sc">3</td><td class="sc">2</td><td class="sc">6</td><td><span class="lvl c">Critique</span></td><td>Exemple du cours, repris pour notre produit. Même score que E2&nbsp;: on garde E2 car l'achat conditionne tout. E3 se teste en entretien en même temps que E4.</td></tr>
+      <tr><td>E5</td><td>Nous pensons que les enfants répondront au moment du jour parce qu'une notification par jour leur donne un prétexte et deux minutes suffisent.</td><td class="sc">2</td><td class="sc">3</td><td class="sc">6</td><td><span class="lvl c">Critique</span></td><td>Inspiré de BeReal, jamais testé avec cette tranche d'âge. Si c'est faux, l'envoi libre reste&nbsp;: la fonction tombe, pas le produit.</td></tr>
+      <tr><td>E6</td><td>Nous pensons que les enfants inviteront frères, sœurs et petits-enfants parce qu'ils veulent partager le lien avec le parent et ne pas tout porter seuls.</td><td class="sc">2</td><td class="sc">2</td><td class="sc">4</td><td><span class="lvl f">Forte</span></td><td>Plus d'envoyeurs, c'est moins de pression sur E1. Le QR code et le lien WhatsApp sont prévus pour ça.</td></tr>
+      <tr><td>E7</td><td>Nous pensons que les petits-enfants participeront parce que le format court ressemble à leurs réseaux.</td><td class="sc">2</td><td class="sc">2</td><td class="sc">4</td><td><span class="lvl f">Forte</span></td><td>Intéressant pour la mosaïque du moment du jour. Attention au consentement pour les moins de 15 ans.</td></tr>
+      <tr><td>E8</td><td>Nous pensons que les enfants accepteront d'installer une appli de plus parce qu'elle sert uniquement au cadre de leur parent.</td><td class="sc">2</td><td class="sc">2</td><td class="sc">4</td><td><span class="lvl f">Forte</span></td><td>Famileo prouve que des familles installent une appli dédiée. Si c'est faux, on prévoit un envoi depuis WhatsApp ou par lien.</td></tr>
+      <tr><td>E9</td><td>Nous pensons que les enfants installeront le cadre seuls en moins de 15 minutes parce qu'il suffit de scanner un code.</td><td class="sc">2</td><td class="sc">1</td><td class="sc">2</td><td><span class="lvl m">Faible</span></td><td>Aura et Nixplay s'installent déjà ainsi. Se vérifie lors du test de la maquette.</td></tr>
+      <tr><td>E10</td><td>Nous pensons que les enfants apprécieront le recadrage automatique par l'IA parce qu'il leur évite de retoucher les photos.</td><td class="sc">1</td><td class="sc">2</td><td class="sc">2</td><td><span class="lvl m">Faible</span></td><td>Confort, pas besoin. On peut le désactiver.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+</section>
+
+<section id="s05">
+<div class="grid">
+  <div class="k"><span class="num">05</span> · Les 6 retenues</div>
+  <div>
+    <h2>Les 3 plus risquées par cible, et comment les contredire</h2>
+    <p>Pour chacune&nbsp;: ce qui la rendrait fausse, fixé avant le terrain. Les seuils sont des propositions de départ, à valider en équipe.</p>
+
+    <div class="card"><span class="id">P2</span><div><h3>Les parents toucheront le cadre plusieurs fois par semaine pour répondre aux photos.</h3><dl>
+      <div class="row"><dt>Elle est fausse si</dt><dd>en moyenne, <b>moins de 3 touchers par semaine</b> sur deux semaines de test, ou si le parent ne parle pas du toucher en entretien.</dd></div>
+      <div class="row"><dt>Méthode</dt><dd>Prototype chez 3 à 5 parents (tablette dans un cadre, journal des touchers) + entretien avant et après.</dd></div>
+      <div class="row"><dt>Si elle tombe</dt><dd>Revoir le geste (réponse à une photo précise&nbsp;?) et repenser l'alerte, qui ne peut plus reposer sur le toucher.</dd></div></dl></div></div>
+
+    <div class="card"><span class="id">P1</span><div><h3>Les parents accepteront le cadre dans leur salon parce qu'il ressemble à un cadre de famille.</h3><dl>
+      <div class="row"><dt>Elle est fausse si</dt><dd><b>plus d'un parent sur trois</b> refuse de l'accrocher dans une pièce de vie, ou parle d'«&nbsp;appareil&nbsp;» ou de «&nbsp;surveillance&nbsp;».</dd></div>
+      <div class="row"><dt>Méthode</dt><dd>Entretien avec les maquettes des 5 gammes, puis observation&nbsp;: où le cadre est posé après une semaine.</dd></div>
+      <div class="row"><dt>Si elle tombe</dt><dd>Changer la forme (posé sur un meuble, plus petit) avant de changer les fonctions.</dd></div></dl></div></div>
+
+    <div class="card"><span class="id">P3</span><div><h3>Les parents accepteront l'alerte après 48 h parce qu'elle rassure leurs enfants et qu'ils l'ont choisie.</h3><dl>
+      <div class="row"><dt>Elle est fausse si</dt><dd><b>moins de la moitié</b> l'activent après qu'on leur a expliqué, ou s'ils la décrivent comme un contrôle.</dd></div>
+      <div class="row"><dt>Méthode</dt><dd>Entretien&nbsp;: on montre l'écran de réglage de l'alerte (maquette, écran e14) et on demande au parent de choisir.</dd></div>
+      <div class="row"><dt>Si elle tombe</dt><dd>Retirer l'alerte&nbsp;: le produit reste un objet de lien, sans aucune fonction de sécurité.</dd></div></dl></div></div>
+
+    <div class="card"><span class="id">E1</span><div><h3>Les enfants enverront au moins une photo ou une vidéo par semaine.</h3><dl>
+      <div class="row"><dt>Elle est fausse si</dt><dd><b>moins d'un envoi par semaine</b> en moyenne pendant le test, ou si les envois chutent de moitié en deuxième semaine.</dd></div>
+      <div class="row"><dt>Méthode</dt><dd>Même prototype&nbsp;: on compte les envois. Questionnaire court pour les enfants&nbsp;: «&nbsp;Combien de photos avez-vous envoyées à votre parent le mois dernier&nbsp;?&nbsp;»</dd></div>
+      <div class="row"><dt>Si elle tombe</dt><dd>Miser sur le moment du jour et sur les autres membres de la famille (E5, E6) pour remplir le cadre.</dd></div></dl></div></div>
+
+    <div class="card"><span class="id">E4</span><div><h3>Le signe «&nbsp;je suis là&nbsp;» rassurera les enfants au quotidien.</h3><dl>
+      <div class="row"><dt>Elle est fausse si</dt><dd>en fin de test, l'enfant dit qu'il <b>appelle autant qu'avant pour vérifier</b>, ou qu'il ne regarde plus les notifications.</dd></div>
+      <div class="row"><dt>Méthode</dt><dd>Entretien enfant avant et après le test, sur des faits&nbsp;: «&nbsp;La dernière fois que vous vous êtes inquiété, qu'avez-vous fait&nbsp;?&nbsp;»</dd></div>
+      <div class="row"><dt>Si elle tombe</dt><dd>Le produit devient un simple cadre photo&nbsp;: il faut trouver une autre promesse ou arrêter.</dd></div></dl></div></div>
+
+    <div class="card"><span class="id">E2</span><div><h3>Les enfants achèteront Le Cadre en achat unique pour garder le lien.</h3><dl>
+      <div class="row"><dt>Elle est fausse si</dt><dd><b>moins d'un enfant sur trois</b> dit qu'il l'achèterait après avoir vu le parcours d'achat, ou si tous préfèrent un abonnement moins cher au départ.</dd></div>
+      <div class="row"><dt>Méthode</dt><dd>Test du parcours d'achat sur la maquette + questionnaire. Desk research sur les ventes de cadres connectés (Aura, Nixplay, Famileo).</dd></div>
+      <div class="row"><dt>Si elle tombe</dt><dd>Revoir le modèle&nbsp;: location, offre pour les EHPAD ou les mutuelles.</dd></div></dl></div></div>
+  </div>
+</div>
+</section>
+
+<section id="s06">
+<div class="grid">
+  <div class="k"><span class="num">06</span> · Objectif</div>
+  <div>
+    <h2>Notre objectif de recherche</h2>
+    <p class="obj">Comprendre si un cadre mural, sans appli pour le parent, suffit à créer un échange régulier (des photos de l'enfant, un toucher du parent) que les deux vivent comme rassurant et non comme une surveillance.</p>
+    <p class="note" style="margin-top:14px">Cette phrase couvre les 6 hypothèses retenues&nbsp;: l'échange régulier (P2, E1), l'acceptation du cadre (P1), le sentiment rassurant (E4), la surveillance (P3) et ce qui pousse à acheter (E2). C'est la partie 1 du plan de recherche demandée en fin d'atelier.</p>
+  </div>
+</div>
+</section>
+
+<section id="s07">
+<div class="grid">
+  <div class="k"><span class="num">07</span> · Écartées</div>
+  <div>
+    <h2>Ce qu'on ne teste pas en premier, et pourquoi</h2>
+    <ol class="next">
+      <li><b>Les fonctions d'ergonomie</b> (P4 la lueur, P9 l'écran allumé, E9 l'installation, E10 le recadrage IA)&nbsp;: si elles sont fausses, on corrige l'interface. Elles se vérifient au test de la maquette, sans dispositif à part.</li>
+      <li><b>Les choix déjà appuyés par la veille</b> (P8 sans micro ni caméra, P10 l'enfant installe)&nbsp;: on les confirme en passant pendant les entretiens.</li>
+      <li><b>Les fonctions qui renforcent la boucle</b> (E5 moment du jour, E6 et E7 la famille élargie, P7)&nbsp;: utiles seulement si la boucle de base marche. On les teste dans un second temps.</li>
+    </ol>
+    <p class="note" style="margin-top:14px">Statut de cette page&nbsp;: proposition de Lucas, à retravailler en groupe avec Clément et Camille. Les notes viennent de notre veille, rien n'est encore testé sur le terrain. Données fictives, aucune personne réelle citée. IA utilisée&nbsp;: Claude (Claude Code) pour proposer et mettre en forme les hypothèses à partir de nos pages de veille&nbsp;; classement à relire en équipe.</p>
+  </div>
+</div>
+</section>
+
+<footer class="k">PFR Générations Connectées · Séance 2 · Hypothèses et objectif de recherche · 22 octobre 2026</footer>
+</div>
+</body>
+</html>
