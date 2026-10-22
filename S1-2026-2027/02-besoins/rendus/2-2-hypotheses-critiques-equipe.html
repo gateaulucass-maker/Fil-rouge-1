@@ -229,6 +229,25 @@ td.win{color:var(--blue);font-weight:800}
 .hyps .s .tg{flex:none;margin:0}
 .hyps .s .orig{flex:none;margin-left:auto;white-space:nowrap;padding-left:var(--s3)}
 @media (max-width:820px){.hyps .s{flex-wrap:wrap}.hyps .s .orig{margin-left:0;padding-left:0;flex-basis:100%}}
+
+.hyps .flag.mid{background:transparent;color:var(--blue);border:1.5px solid var(--blue);padding:3px 6px}
+.hyps .flag.later{background:transparent;color:var(--muted);border:1.5px dashed var(--muted);padding:3px 6px}
+.hyps li.mid .n{opacity:.8;color:var(--blue)}
+.hyps li.later .t,.hyps li.later .s{opacity:.62}
+.trow{border-top:2px solid var(--ink);padding-top:var(--s3);margin-bottom:var(--s6)}
+.trow h4{font:800 22px/1.2 var(--sans);margin:0 0 var(--s4)}
+.tcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4)}
+.tcol{padding:var(--s4);border:1px solid var(--line)}
+.tcol.c{background:var(--blue);border-color:var(--blue);color:var(--on-blue)}
+.tcol.c .label{color:var(--on-blue);opacity:.85}
+.tcol.m{border:2px solid var(--blue)}
+.tcol.l{border:1.5px dashed var(--muted);color:var(--muted)}
+.tcol .label{margin-bottom:var(--s3)}
+.tcol ul{list-style:none;margin:0;padding:0}
+.tcol li{display:grid;grid-template-columns:3.2em minmax(0,1fr);padding:6px 0;font-size:15px;line-height:1.35;border-top:1px solid rgba(127,127,160,.25)}
+.tcol li:first-child{border-top:0}
+.tcol li b{font-family:var(--mono);font-weight:500;font-size:13px}
+@media (max-width:820px){.tcols{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -238,7 +257,8 @@ td.win{color:var(--blue);font-weight:800}
     <li><a href="#consigne"><span>01</span>La démarche</a></li>
     <li><a href="#parent"><span>02</span>Le parent</a></li>
     <li><a href="#enfant"><span>03</span>L'enfant</a></li>
-    <li><a href="#prio"><span>04</span>Les 6 critiques</a></li>
+    <li><a href="#tri"><span>04</span>Le tri</a></li>
+    <li><a href="#prio"><span>05</span>Les 6 critiques</a></li>
   </ol>
 </nav>
 
@@ -253,7 +273,7 @@ td.win{color:var(--blue);font-weight:800}
     <div><dt>Base</dt><dd>3 fiches de l'équipe fusionnées</dd></div>
     <div><dt>Hypothèses</dt><dd>10 parent, 10 enfant, toutes sourcées</dd></div>
     <div><dt>Équilibre</dt><dd>14 lien, 6 sécurité (70 / 30)</dd></div>
-    <div><dt>Critiques</dt><dd>3 parent, 3 enfant</dd></div>
+    <div><dt>Tri</dt><dd>6 critiques, 6 secondaires, 8 pour plus tard</dd></div>
   </dl>
 </header>
 
@@ -295,14 +315,14 @@ td.win{color:var(--blue);font-weight:800}
     <ol class="hyps">
       <li class="top"><span class="n">P1</span><div><p class="flag">Critique</p><p class="t">Nous pensons que les seniors <b>acceptent de donner une information sur eux quand ils décident eux-mêmes de le faire, et la refusent quand l'enfant l'impose</b>, parce que c'est le choix qui sépare rassurer et être surveillé.</p><p class="s"><span class="tg rel">Lien</span>« Il est important qu'on sache où je me trouve pour rassurer la famille » (avis Life360) ; en droit, le senior décide et consent (fiche marché). Le refus quand c'est imposé n'a pas de source.<span class="orig">· Clément</span></p></div></li>
       <li class="top"><span class="n">P2</span><div><p class="flag">Critique</p><p class="t">Nous pensons que les seniors <b>apprécient les nouvelles reçues, mais répondent à leur famille par le téléphone, pas par le service</b>, parce que la voix reste leur façon de dire merci et de garder le contact.</p><p class="s"><span class="tg rel">Lien</span>« Ma grand-mère m'appelle chaque mois pour me remercier après sa gazette » (avis Famileo) ; limite relevée : « le senior ne répond pas » ; préférence pour le contact humain (Linexio).<span class="orig">· Clément, Camille</span></p></div></li>
-      <li><span class="n">P3</span><div><p class="t">Nous pensons que les seniors <b>adoptent un service de lien seulement s'il ne leur demande aucune manipulation</b>, parce que tout geste technique devient une barrière.</p><p class="s"><span class="tg rel">Lien</span>Famileo : gazette papier, 4,8/5 sur 5 300 avis, 260 000 familles, rentable depuis 2020 ; 90 % des 75 ans et plus ne sont équipés de rien.<span class="orig">· Camille, Clément</span></p></div></li>
+      <li class="mid"><span class="n">P3</span><div><p class="flag mid">Secondaire</p><p class="t">Nous pensons que les seniors <b>adoptent un service de lien seulement s'il ne leur demande aucune manipulation</b>, parce que tout geste technique devient une barrière.</p><p class="s"><span class="tg rel">Lien</span>Famileo : gazette papier, 4,8/5 sur 5 300 avis, 260 000 familles, rentable depuis 2020 ; 90 % des 75 ans et plus ne sont équipés de rien.<span class="orig">· Camille, Clément</span></p></div></li>
       <li class="top"><span class="n">P4</span><div><p class="flag">Critique</p><p class="t">Nous pensons que les seniors <b>n'adoptent un écran que si quelqu'un les accompagne au départ</b>, parce qu'ils n'apprennent pas seuls un objet nouveau.</p><p class="s"><span class="tg rel">Lien</span>Ardoiz : environ 110 000 seniors équipés via le guichet de La Poste, arrêté en 2026 ; « rien ne prouve que la tablette elle-même ait été rejetée » (fiche réussites et faillites) ; Meta Portal arrêté.<span class="orig">· Clément, Camille</span></p></div></li>
-      <li><span class="n">P5</span><div><p class="t">Nous pensons que les seniors <b>rejettent ce qui les désigne comme âgés, mais montrent volontiers un objet de famille</b>, parce que la vieillesse reste associée à la maladie et que la famille, elle, valorise.</p><p class="s"><span class="tg rel">Lien</span>87 % voient la téléassistance comme un marqueur de dépendance ; une grand-mère montre « fièrement à ses voisines » sa gazette (avis Famileo) ; enquête HCFEA sur les stéréotypes.<span class="orig">· Camille, Clément</span></p></div></li>
-      <li><span class="n">P6</span><div><p class="t">Nous pensons que les seniors qui appuient sur un bouton d'appel <b>cherchent surtout une voix humaine</b>, parce qu'ils ont besoin d'être rassurés plus que secourus.</p><p class="s"><span class="tg rel">Lien</span>7 millions d'appels de téléassistance par an, 2 % transmis aux secours (AFRATA). Le chiffre est sûr, la raison est la nôtre.<span class="orig">· Camille, Clément</span></p></div></li>
-      <li><span class="n">P7</span><div><p class="t">Nous pensons qu'en difficulté, les seniors <b>appellent d'abord un proche plutôt qu'un service</b>, parce qu'ils font confiance à la famille avant un appareil.</p><p class="s"><span class="tg rel">Lien</span>Une mère de 91 ans tombe la nuit et se traîne jusqu'au téléphone pour appeler sa fille (avis Trustpilot) ; la famille est le premier substitut (2,1 millions d'enfants aidants).<span class="orig">· Camille, Clément</span></p></div></li>
-      <li><span class="n">P8</span><div><p class="t">Nous pensons que les seniors <b>retirent leur bracelet dès qu'ils reçoivent du monde</b>, parce qu'ils ne veulent pas être vus avec.</p><p class="s"><span class="tg secu">Sécurité</span>90 % portent leur dispositif surtout seuls (Drees) ; « personne n'aimerait avoir ça au poignet » (avis Amazon).<span class="orig">· Camille, Clément</span></p></div></li>
-      <li><span class="n">P9</span><div><p class="t">Nous pensons que les seniors <b>refusent un dispositif de sécurité tant qu'ils ne sont pas tombés</b>, parce qu'avant, ils ne se sentent pas concernés.</p><p class="s"><span class="tg secu">Sécurité</span>61 % des achats suivent une chute (2016, source faible) ; montres freinées par « le déni du risque ».<span class="orig">· Clément</span></p></div></li>
-      <li><span class="n">P10</span><div><p class="t">Nous pensons que les seniors <b>débranchent un appareil qui sonne sans raison</b>, surtout la nuit, parce qu'il les inquiète plus qu'il ne les rassure.</p><p class="s"><span class="tg secu">Sécurité</span>« Elle sonne toute seule… poubelle », alarme chaque nuit à minuit (avis bracelet) ; déclenchement accidentel parmi les raisons de non-port.<span class="orig">· Clément</span></p></div></li>
+      <li class="later"><span class="n">P5</span><div><p class="flag later">Plus tard</p><p class="t">Nous pensons que les seniors <b>rejettent ce qui les désigne comme âgés, mais montrent volontiers un objet de famille</b>, parce que la vieillesse reste associée à la maladie et que la famille, elle, valorise.</p><p class="s"><span class="tg rel">Lien</span>87 % voient la téléassistance comme un marqueur de dépendance ; une grand-mère montre « fièrement à ses voisines » sa gazette (avis Famileo) ; enquête HCFEA sur les stéréotypes.<span class="orig">· Camille, Clément</span></p></div></li>
+      <li class="later"><span class="n">P6</span><div><p class="flag later">Plus tard</p><p class="t">Nous pensons que les seniors qui appuient sur un bouton d'appel <b>cherchent surtout une voix humaine</b>, parce qu'ils ont besoin d'être rassurés plus que secourus.</p><p class="s"><span class="tg rel">Lien</span>7 millions d'appels de téléassistance par an, 2 % transmis aux secours (AFRATA). Le chiffre est sûr, la raison est la nôtre.<span class="orig">· Camille, Clément</span></p></div></li>
+      <li class="mid"><span class="n">P7</span><div><p class="flag mid">Secondaire</p><p class="t">Nous pensons qu'en difficulté, les seniors <b>appellent d'abord un proche plutôt qu'un service</b>, parce qu'ils font confiance à la famille avant un appareil.</p><p class="s"><span class="tg rel">Lien</span>Une mère de 91 ans tombe la nuit et se traîne jusqu'au téléphone pour appeler sa fille (avis Trustpilot) ; la famille est le premier substitut (2,1 millions d'enfants aidants).<span class="orig">· Camille, Clément</span></p></div></li>
+      <li class="later"><span class="n">P8</span><div><p class="flag later">Plus tard</p><p class="t">Nous pensons que les seniors <b>retirent leur bracelet dès qu'ils reçoivent du monde</b>, parce qu'ils ne veulent pas être vus avec.</p><p class="s"><span class="tg secu">Sécurité</span>90 % portent leur dispositif surtout seuls (Drees) ; « personne n'aimerait avoir ça au poignet » (avis Amazon).<span class="orig">· Camille, Clément</span></p></div></li>
+      <li class="later"><span class="n">P9</span><div><p class="flag later">Plus tard</p><p class="t">Nous pensons que les seniors <b>refusent un dispositif de sécurité tant qu'ils ne sont pas tombés</b>, parce qu'avant, ils ne se sentent pas concernés.</p><p class="s"><span class="tg secu">Sécurité</span>61 % des achats suivent une chute (2016, source faible) ; montres freinées par « le déni du risque ».<span class="orig">· Clément</span></p></div></li>
+      <li class="mid"><span class="n">P10</span><div><p class="flag mid">Secondaire</p><p class="t">Nous pensons que les seniors <b>débranchent un appareil qui sonne sans raison</b>, surtout la nuit, parce qu'il les inquiète plus qu'il ne les rassure.</p><p class="s"><span class="tg secu">Sécurité</span>« Elle sonne toute seule… poubelle », alarme chaque nuit à minuit (avis bracelet) ; déclenchement accidentel parmi les raisons de non-port.<span class="orig">· Clément</span></p></div></li>
     </ol>
   </div>
 </section>
@@ -317,19 +337,31 @@ td.win{color:var(--blue);font-weight:800}
       <li class="top"><span class="n">E1</span><div><p class="flag">Critique</p><p class="t">Nous pensons que les enfants <b>partagent leurs photos en famille et sur les réseaux, mais presque pas avec leur parent</b>, parce que le parent n'est pas sur ces outils et que rien ne le leur rappelle au moment de partager.</p><p class="s"><span class="tg rel">Lien</span>Famileo est né « d'une grand-mère exclue des échanges WhatsApp de la famille » ; les personnes âgées « manquent des moments importants de la famille » (avis).<span class="orig">· Clément, Camille, Lucas</span></p></div></li>
       <li class="top"><span class="n">E2</span><div><p class="flag">Critique</p><p class="t">Nous pensons que les enfants <b>achètent un service de lien sans attendre d'incident, souvent en cadeau, alors qu'ils n'achètent la sécurité qu'après une chute</b>, parce que le manque de nouvelles se ressent déjà, la peur seulement après l'accident.</p><p class="s"><span class="tg rel">Lien</span>61 % des achats de téléassistance suivent une chute (2016) ; Famileo gagne 2 000 à 3 000 familles par mois par bouche-à-oreille ; « très beau cadeau pour ma grand-mère » ; chez Famileo, « le payeur est celui qui culpabilise ».<span class="orig">· Clément, Camille</span></p></div></li>
       <li class="top"><span class="n">E3</span><div><p class="flag">La plus risquée</p><p class="t">Nous pensons que les enfants <b>cessent d'alimenter un service de lien dès qu'il leur demande une action régulière</b>, parce qu'ils concilient déjà l'aide, le travail et leurs enfants.</p><p class="s"><span class="tg rel">Lien</span>Famileo « devenu une corvée… on passera à la concurrence » ; plus de la moitié des aidants travaillent (UNAF) ; 725 000 aidants pivots (Drees) ; 36 % disent avoir besoin de répit.<span class="orig">· Camille, Clément, Lucas</span></p></div></li>
-      <li><span class="n">E4</span><div><p class="t">Nous pensons que les enfants <b>paient un abonnement de lien tant que leur parent montre qu'il en profite</b>, et l'arrêtent quand ce retour disparaît, parce qu'ils paient pour sa réaction.</p><p class="s"><span class="tg rel">Lien</span>« Je pensais arrêter au bout d'un an, mais ils ont réclamé la gazette en chœur » ; « je compte renouveler » (avis Famileo). Le taux de résiliation n'est pas connu.<span class="orig">· Clément</span></p></div></li>
-      <li><span class="n">E5</span><div><p class="t">Nous pensons que les enfants <b>paient sans difficulté un petit prix annoncé, mais renvoient dès qu'ils découvrent un coût caché</b>, parce qu'ils jugent le prix sur sa lisibilité.</p><p class="s"><span class="tg rel">Lien</span>« 70 € l'abonnement SMS pour un an, c'est du vol » (avis) ; Ardoiz, 230 à 529 € plus environ 30 € par mois, arrêté ; le lien se vend dès 5,99 € par mois.<span class="orig">· Clément, Camille</span></p></div></li>
-      <li><span class="n">E6</span><div><p class="t">Nous pensons que les enfants <b>n'installent ni caméra ni localisation chez leur parent, alors qu'ils localisent leurs propres enfants</b>, parce qu'ils craignent que le parent se sente surveillé.</p><p class="s"><span class="tg rel">Lien</span>« Rassuré de savoir où se trouve [ma] fille à chaque instant » (avis Life360) ; Famileo marche parce que le senior « ne se sent pas surveillé ».<span class="orig">· Clément</span></p></div></li>
-      <li><span class="n">E7</span><div><p class="t">Nous pensons que les enfants <b>font participer frères, sœurs et petits-enfants</b>, parce qu'un rendez-vous commun évite de porter seul les nouvelles du parent.</p><p class="s"><span class="tg rel">Lien</span>« Toute la famille participe chaque mois » (avis Famileo) ; mais 39 % des aidants pivots sont seuls dans leur fratrie (Drees).<span class="orig">· Clément, Camille, Lucas</span></p></div></li>
-      <li><span class="n">E8</span><div><p class="t">Nous pensons que les enfants <b>renvoient un objet d'alerte dès la mise en route</b> (SIM, appli, code), parce qu'ils refusent de devenir le technicien chez leur parent.</p><p class="s"><span class="tg secu">Sécurité</span>« Obligation de télécharger une appli, d'acheter une carte SIM… un cauchemar » (avis) ; la mise en service demande une à deux semaines de présence d'un proche.<span class="orig">· Clément</span></p></div></li>
-      <li><span class="n">E9</span><div><p class="t">Nous pensons que les enfants <b>coupent un dispositif après quelques fausses alertes</b>, parce qu'une alerte pour rien fait perdre confiance plus vite qu'une alerte manquée.</p><p class="s"><span class="tg secu">Sécurité</span>5 à 15 % de fausses alertes ; « fausses alertes qui lassent l'entourage » ; avis Life360 sur une localisation erronée.<span class="orig">· Clément, Camille</span></p></div></li>
-      <li><span class="n">E10</span><div><p class="t">Nous pensons que les enfants <b>veulent être prévenus eux-mêmes</b>, sur leur téléphone, plutôt que par un centre d'écoute, parce qu'ils veulent agir eux-mêmes.</p><p class="s"><span class="tg secu">Sécurité</span>« J'ai toujours été averti », « faute d'avoir été prévenue » (avis bracelet) ; mais les réussites de la téléassistance reposent sur un humain derrière.<span class="orig">· Clément, Camille</span></p></div></li>
+      <li class="mid"><span class="n">E4</span><div><p class="flag mid">Secondaire</p><p class="t">Nous pensons que les enfants <b>paient un abonnement de lien tant que leur parent montre qu'il en profite</b>, et l'arrêtent quand ce retour disparaît, parce qu'ils paient pour sa réaction.</p><p class="s"><span class="tg rel">Lien</span>« Je pensais arrêter au bout d'un an, mais ils ont réclamé la gazette en chœur » ; « je compte renouveler » (avis Famileo). Le taux de résiliation n'est pas connu.<span class="orig">· Clément</span></p></div></li>
+      <li class="later"><span class="n">E5</span><div><p class="flag later">Plus tard</p><p class="t">Nous pensons que les enfants <b>paient sans difficulté un petit prix annoncé, mais renvoient dès qu'ils découvrent un coût caché</b>, parce qu'ils jugent le prix sur sa lisibilité.</p><p class="s"><span class="tg rel">Lien</span>« 70 € l'abonnement SMS pour un an, c'est du vol » (avis) ; Ardoiz, 230 à 529 € plus environ 30 € par mois, arrêté ; le lien se vend dès 5,99 € par mois.<span class="orig">· Clément, Camille</span></p></div></li>
+      <li class="mid"><span class="n">E6</span><div><p class="flag mid">Secondaire</p><p class="t">Nous pensons que les enfants <b>n'installent ni caméra ni localisation chez leur parent, alors qu'ils localisent leurs propres enfants</b>, parce qu'ils craignent que le parent se sente surveillé.</p><p class="s"><span class="tg rel">Lien</span>« Rassuré de savoir où se trouve [ma] fille à chaque instant » (avis Life360) ; Famileo marche parce que le senior « ne se sent pas surveillé ».<span class="orig">· Clément</span></p></div></li>
+      <li class="later"><span class="n">E7</span><div><p class="flag later">Plus tard</p><p class="t">Nous pensons que les enfants <b>font participer frères, sœurs et petits-enfants</b>, parce qu'un rendez-vous commun évite de porter seul les nouvelles du parent.</p><p class="s"><span class="tg rel">Lien</span>« Toute la famille participe chaque mois » (avis Famileo) ; mais 39 % des aidants pivots sont seuls dans leur fratrie (Drees).<span class="orig">· Clément, Camille, Lucas</span></p></div></li>
+      <li class="later"><span class="n">E8</span><div><p class="flag later">Plus tard</p><p class="t">Nous pensons que les enfants <b>renvoient un objet d'alerte dès la mise en route</b> (SIM, appli, code), parce qu'ils refusent de devenir le technicien chez leur parent.</p><p class="s"><span class="tg secu">Sécurité</span>« Obligation de télécharger une appli, d'acheter une carte SIM… un cauchemar » (avis) ; la mise en service demande une à deux semaines de présence d'un proche.<span class="orig">· Clément</span></p></div></li>
+      <li class="mid"><span class="n">E9</span><div><p class="flag mid">Secondaire</p><p class="t">Nous pensons que les enfants <b>coupent un dispositif après quelques fausses alertes</b>, parce qu'une alerte pour rien fait perdre confiance plus vite qu'une alerte manquée.</p><p class="s"><span class="tg secu">Sécurité</span>5 à 15 % de fausses alertes ; « fausses alertes qui lassent l'entourage » ; avis Life360 sur une localisation erronée.<span class="orig">· Clément, Camille</span></p></div></li>
+      <li class="later"><span class="n">E10</span><div><p class="flag later">Plus tard</p><p class="t">Nous pensons que les enfants <b>veulent être prévenus eux-mêmes</b>, sur leur téléphone, plutôt que par un centre d'écoute, parce qu'ils veulent agir eux-mêmes.</p><p class="s"><span class="tg secu">Sécurité</span>« J'ai toujours été averti », « faute d'avoir été prévenue » (avis bracelet) ; mais les réussites de la téléassistance reposent sur un humain derrière.<span class="orig">· Clément, Camille</span></p></div></li>
     </ol>
   </div>
 </section>
 
-<section class="sec wrap grid" id="prio" aria-labelledby="t4">
+<section class="sec wrap grid" id="tri" aria-labelledby="t35">
   <div class="rail"><span class="sec-num" aria-hidden="true">04</span></div>
+  <div class="body">
+    <p class="label">Décision de l'équipe</p>
+    <h2 id="t35">Le tri</h2>
+    <p class="chapeau">6 critiques à tester en premier, 6 secondaires à garder en tête pendant les entretiens, 8 mises de côté pour plus tard.</p>
+    <div class="trow"><h4>Le parent</h4><div class="tcols"><div class="tcol c"><p class="label">Critiques</p><ul><li><b>P1</b>Partager seulement si c'est son choix</li><li><b>P2</b>Recevoir, puis répondre par la voix</li><li><b>P4</b>Un écran ne s'adopte pas seul</li></ul></div><div class="tcol m"><p class="label">Secondaires</p><ul><li><b>P3</b>Rien à manipuler</li><li><b>P7</b>La famille avant le service</li><li><b>P10</b>Débrancher ce qui sonne pour rien</li></ul></div><div class="tcol l"><p class="label">Plus tard</p><ul><li><b>P5</b>Un objet de famille, pas de senior</li><li><b>P6</b>Chercher une voix humaine</li><li><b>P8</b>Le bracelet retiré devant les autres</li><li><b>P9</b>La sécurité seulement après la chute</li></ul></div></div></div>
+    <div class="trow"><h4>L'enfant</h4><div class="tcols"><div class="tcol c"><p class="label">Critiques</p><ul><li><b>E1</b>L'oubli au moment de partager</li><li><b>E2</b>Le lien s'achète avant l'incident</li><li><b>E3</b>La corvée</li></ul></div><div class="tcol m"><p class="label">Secondaires</p><ul><li><b>E4</b>Payer pour la réaction du parent</li><li><b>E6</b>Pas de caméra chez le parent</li><li><b>E9</b>Couper après les fausses alertes</li></ul></div><div class="tcol l"><p class="label">Plus tard</p><ul><li><b>E5</b>Un prix lisible</li><li><b>E7</b>Partager l'envoi en famille</li><li><b>E8</b>Renvoyer l'objet à la mise en route</li><li><b>E10</b>Être prévenu soi-même</li></ul></div></div></div>
+    <div class="encart"><p class="label">« Plus tard » ne veut pas dire « fausse »</p><p>Ces hypothèses restent valables. Elles touchent surtout la sécurité, le prix ou l'installation, et seront reprises au cahier des charges ou au test du prototype.</p></div>
+  </div>
+</section>
+
+<section class="sec wrap grid" id="prio" aria-labelledby="t4">
+  <div class="rail"><span class="sec-num" aria-hidden="true">05</span></div>
   <div class="body">
     <p class="label">Si elle est fausse, le produit tombe</p>
     <h2 id="t4">Les 6 critiques</h2>
@@ -416,9 +448,9 @@ td.win{color:var(--blue);font-weight:800}
     </article>
 
     <div class="encart">
-      <p class="label">Juste après les 6 critiques</p>
-      <p><b>E5, le prix lisible :</b> notre prix (environ 100 € plus un abonnement) n'est pas tranché dans l'équipe ; achat unique pour Lucas, achat plus abonnement dans le compte rendu.</p>
-      <p><b>E4, payer pour la réaction du parent :</b> si le parent ne réagit pas, l'enfant résilie. Elle relie P2 et E3.</p>
+      <p class="label">À garder en tête pendant les entretiens</p>
+      <p><b>Parent :</b> P3 rien à manipuler, P7 la famille avant le service, P10 débrancher ce qui sonne pour rien.</p>
+      <p><b>Enfant :</b> E4 payer pour la réaction du parent, E6 pas de caméra chez le parent, E9 couper après les fausses alertes.</p>
     </div>
   </div>
 </section>
