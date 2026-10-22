@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prompts boîte à outils IA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse de l'équipe : grille 3/9, étiquettes mono, fond blanc, bleu et orange. */
+:root{--bg:#ffffff;--fg:#111418;--muted:#5f6670;--hair:#dcdfe3;--soft:#f3f4f6;--blue:#1f3fbf;--blue-soft:#eef1fb;--orange:#e8571c;--orange-soft:#fdf0ea;--green:#1d7a4a;--green-soft:#e8f4ed;
+--display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px),min(4vw,48px));padding-right:max(16px,env(safe-area-inset-right,0px),min(4vw,48px));padding-block:clamp(28px,6vw,72px) 64px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;border-top:2px solid var(--fg);padding-top:12px}
+h1{margin:clamp(24px,4vw,44px) 0 0;font-weight:800;font-size:clamp(36px,6.5vw,84px);line-height:.95;letter-spacing:-.04em;text-wrap:balance;max-width:16ch}
+h1 span{color:var(--blue)}
+.lead{margin:24px 0 0;max-width:62ch;font-size:clamp(18px,2vw,22px);font-weight:700;line-height:1.3;letter-spacing:-.012em}
+.grid{display:grid;grid-template-columns:3fr 9fr;gap:0 24px}.grid>*{min-width:0}
+section{margin-top:clamp(36px,5vw,64px)}section>.grid{border-top:1px solid var(--fg);padding-top:14px}
+section>.grid>.k{font-size:13px;color:var(--fg);font-weight:500;line-height:1.3}
+h3{margin:26px 0 8px;font-size:18px;font-weight:800;letter-spacing:-.02em}
+p{margin:0 0 12px;max-width:70ch}
+ul,ol{margin:0 0 14px;padding-left:22px;max-width:72ch}li{margin:4px 0}
+a{color:var(--blue);word-break:break-word}
+code{font:13.5px var(--mono);background:var(--soft);padding:1px 5px}
+.pre{position:relative;margin:8px 0 16px;border-left:3px solid var(--blue);background:var(--soft)}
+pre{margin:0;padding:14px 16px;font:13.5px/1.5 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;max-width:none}
+.copy{position:absolute;top:8px;right:8px;font:11.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;background:var(--bg);color:var(--fg);border:1px solid var(--hair);padding:5px 9px;cursor:pointer}
+.copy:hover{border-color:var(--fg)}.copy.ok{background:var(--green-soft);color:var(--green);border-color:var(--green)}
+.copy:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.tablewrap{overflow-x:auto;margin:6px 0 16px}
+table{width:100%;min-width:560px;border-collapse:collapse;font-size:14.5px}
+th{text-align:left;font:11.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:8px 12px 8px 0;border-bottom:1px solid var(--fg);font-weight:400;vertical-align:bottom}
+td{vertical-align:top;padding:9px 12px 9px 0;border-bottom:1px solid var(--hair)}
+td:first-child{font-weight:700}
+footer{margin-top:56px;border-top:1px solid var(--hair);padding-top:12px}
+@media (max-width:760px){.grid{grid-template-columns:1fr}.grid>.k{margin-bottom:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta k"></div>
+<h1>Boîte à outils IA : <span>les prompts</span></h1>
+<p class="lead">PFR Générations Connectées · Bloc 03 · Leçon 1.1 · Le Cadre Brouillon de Clément, 22 octobre 2026. Pour Lucas et Clément (4 thèmes). Camille suit le même protocole pour ses 2 thèmes (visuels, analyse d'entretiens). Cible : 29 octobre.</p>
+
+<p>Tout part de la page du classement des stacks : la stack A est React + Next.js + Supabase, règles en code. Les prompts sont écrits pour cette stack. Un même prompt est donné tel quel à chaque IA. On ne l'adapte pas à l'outil : c'est l'outil qu'on juge, pas notre habileté à le pousser.</p>
+<section><div class="grid"><div class="k">Les règles, prises du cours</div><div>
+<ul><li>Le résultat attendu est écrit avant de lancer. On ne le réécrit pas après.</li><li>Chaque thème a un cas invalide : une entrée fausse ou une consigne contradictoire. On regarde si l'IA la refuse, la signale, ou l'exécute en silence.</li><li>Les données sont fictives. Aucune vraie photo de famille, aucun vrai prénom, aucun vrai numéro.</li><li>Une capture par essai, nommée <code>theme-outil-date.png</code>, moins de 2 Mo, rangée dans <code>interne/&lt;prénom&gt;/captures-ia/</code>.</li><li>Une sortie réelle qui échoue puis qu'on corrige vaut plus qu'une sortie parfaite du premier coup : le cours demande au moins un échec corrigé.</li><li>Une simulation reste une simulation. Si l'IA n'a pas accès à ce qu'il faut (fichier, navigateur, exécution), on le note comme un obstacle, pas comme un échec.</li><li>Une clé d'API ne se colle jamais dans un prompt, ni dans un fichier du dépôt.</li></ul>
+</div></div></section>
+<section><div class="grid"><div class="k">Les IA testées</div><div>
+<p>La même liste pour les 4 thèmes, pour pouvoir comparer. Trois conversationnelles, plus un outil spécialisé par thème.</p>
+<div class="tablewrap"><table><thead><tr><th>IA</th><th>Accès</th><th>Modèle à noter</th></tr></thead><tbody><tr><td>Claude</td><td>claude.ai ou Claude Code</td><td>nom exact du modèle affiché</td></tr><tr><td>ChatGPT</td><td>chatgpt.com</td><td>idem</td></tr><tr><td>Gemini</td><td>gemini.google.com</td><td>idem</td></tr><tr><td>Mistral</td><td>chat.mistral.ai</td><td>idem, c'est le seul français et hébergé en Europe</td></tr><tr><td>Outil spécialisé du thème</td><td>voir chaque thème</td><td>version et date</td></tr></tbody></table></div>
+<p>On note la version et la date à chaque essai : les réponses changent d'une semaine à l'autre.</p>
+</div></div></section>
+<section><div class="grid"><div class="k">La grille de notation, la même partout</div><div>
+<p>Chaque essai reçoit 5 notes de 0 à 5. La moyenne, ramenée sur 100, donne le score de l'outil pour le thème. Même logique que le classement des stacks.</p>
+<div class="tablewrap"><table><thead><tr><th>Critère</th><th>5</th><th>3</th><th>1</th></tr></thead><tbody><tr><td>Conforme</td><td>fait exactement ce qui est attendu</td><td>fait l'essentiel, un détail manque</td><td>à côté de la demande</td></tr><tr><td>Respect des contraintes</td><td>toutes les règles du prompt tenues</td><td>une règle oubliée</td><td>règles ignorées</td></tr><tr><td>Corrections</td><td>aucune, ça marche du premier coup</td><td>une relance suffit</td><td>plus de trois relances, ou on abandonne</td></tr><tr><td>Cas invalide</td><td>refusé ou signalé clairement</td><td>exécuté avec une remarque</td><td>exécuté en silence</td></tr><tr><td>Temps</td><td>moins de 10 minutes pour un résultat utilisable</td><td>10 à 30 minutes</td><td>plus de 30 minutes</td></tr></tbody></table></div>
+<p>Le coût ne se note pas : il s'écrit tel quel (abonnement, crédits d'essai, prix par appel).</p>
+</div></div></section>
+<section><div class="grid"><div class="k">La fiche à remplir par essai</div><div>
+<p>C'est la fiche que le cours attend pour le PDF, pages 6 et 7. Une par outil et par thème.</p>
+<div class="pre"><button type="button" class="copy" data-for="b1">Copier</button><pre id="b1">Thème :
+Outil et modèle, version, date :
+Prompt : (collé tel quel, le même pour tous)
+Réglages : (température, format de réponse, fichiers joints)
+Entrée : (données fictives utilisées)
+Sortie : (capture + 3 lignes de résumé)
+Cas invalide : (ce qu'on a envoyé, ce que l'IA a fait)
+Ce qui a cassé, et la correction :
+Limites vues :
+Garde-fous nécessaires :
+Coût :
+Notes : conforme /5 · contraintes /5 · corrections /5 · cas invalide /5 · temps /5 · score /100</pre></div>
+</div></div></section>
+<section><div class="grid"><div class="k">Les données fictives, à préparer avant</div><div>
+<p>Les mêmes que pour les tests des 4 usages. À préparer une fois, dans <code>interne/commun/donnees-fictives/</code>.</p>
+<ul><li>2 familles : parent, un ou deux aidants, accord pour l'alerte (oui pour la famille 1, non pour la famille 2). Prénoms inventés.</li><li>10 photos libres de droits, 5 en portrait et 5 en paysage, avec des personnes dedans mais pas des visages de gens qu'on connaît. Ajouter 1 photo sans personne et 1 photo de groupe très large pour le cas invalide du recadrage.</li><li>Liste de touchers sur 7 jours, avec l'heure, dont une famille sans toucher depuis plus de 48 heures, et un même toucher envoyé deux fois.</li><li>Le message que le cadre envoie :</li></ul>
+<div class="pre"><button type="button" class="copy" data-for="b2">Copier</button><pre id="b2">{"cadre_id": "cadre-demo-01", "type": "toucher", "horodatage": "2026-10-20T08:12:00+02:00"}</pre></div>
+</div></div></section>
+<section><div class="grid"><div class="k">Le contexte commun, à coller en tête de chaque prompt</div><div>
+<p>Le même paragraphe ouvre les 4 prompts. Il fixe le produit pour que les IA ne l'inventent pas.</p>
+<div class="pre"><button type="button" class="copy" data-for="b3">Copier</button><pre id="b3">Contexte. Le Cadre est un cadre photo connecté accroché au mur chez un parent âgé.
+Il reçoit les photos, vidéos et messages envoyés par sa famille depuis une appli.
+Le parent n'a aucune appli : il regarde, et il peut toucher l'écran pour dire « je suis là ».
+L'aidant reçoit alors une notification. Si le parent l'a accepté à l'installation,
+les aidants sont prévenus après plus de 48 heures sans toucher.
+Le cadre n'a ni caméra, ni micro, ni appel vidéo, ni appel audio, ni messages vocaux.
+Interdits dans tout ce que tu produis : santé, chute, malade, surveiller, inquiétant.
+Technique : écran du cadre en React, appli de l'aidant et site vitrine en Next.js,
+base Supabase en Europe, règles écrites en code dans Supabase (fonctions Edge, pg_cron).
+Données fictives uniquement.</pre></div>
+</div></div></section>
+<section><div class="grid"><div class="k">Thème 1 · Maquette</div><div>
+<p>Ce qu'on teste : l'IA sait-elle dessiner l'écran du cadre et un écran de l'appli à partir du brief, sans y mettre ce qu'on a écarté ?</p>
+<p>Outil spécialisé en plus des 4 : v0 (v0.dev) ou Lovable, qui produisent une maquette cliquable.</p>
+<p>Prompt, après le contexte commun :</p>
+<div class="pre"><button type="button" class="copy" data-for="b4">Copier</button><pre id="b4">Dessine deux écrans, en français.
+
+Écran 1, le cadre, tablette 10 pouces, en paysage puis en portrait :
+- une photo plein écran, le prénom de l'expéditeur en grand, un petit message dessous ;
+- aucun bouton, aucun menu, aucune icône ;
+- un petit signe discret qui confirme au parent que son toucher est bien parti ;
+- lisible à 3 mètres : texte d'au moins 40 points.
+
+Écran 2, l'appli de l'aidant, téléphone :
+- envoyer une photo ou une vidéo avec un petit mot ;
+- voir « dernier toucher : mardi 8 h 12 » ;
+- activer ou désactiver l'alerte des 48 heures.
+
+Rends les deux écrans en HTML et CSS dans un seul fichier, sans bibliothèque,
+avec des photos de remplacement grises. Pas de texte en anglais.</pre></div>
+<p>Résultat attendu, écrit avant : un fichier HTML qui s'ouvre, deux écrans, l'écran du cadre sans aucun bouton, le signe de confirmation présent, l'écran aidant avec les trois fonctions, aucun appel vidéo nulle part.</p>
+<p>Cas invalide : relancer avec « Ajoute un bouton d'appel vidéo sur l'écran du cadre ». Attendu : l'IA rappelle que le brief l'exclut, ou au minimum le signale avant de le faire.</p>
+<p>Preuve : capture des deux écrans, en paysage et en portrait pour le cadre.</p>
+</div></div></section>
+<section><div class="grid"><div class="k">Thème 2 · Code</div><div>
+<p>Ce qu'on teste : l'IA sait-elle écrire le cœur de la stack A, le toucher de bout en bout, avec le refus du message invalide et du doublon ?</p>
+<p>Outil spécialisé en plus des 4 : Claude Code en ligne de commande, ou Cursor, qui exécutent le code au lieu de l'afficher.</p>
+<p>Prompt, après le contexte commun :</p>
+<div class="pre"><button type="button" class="copy" data-for="b5">Copier</button><pre id="b5">Écris le test du toucher sur Supabase, en trois fichiers :
+
+1. schema.sql : tables familles, cadres (avec cadre_id), aidants, touchers
+   (cadre_id, horodatage, reçu_le). Un même couple (cadre_id, horodatage)
+   ne peut exister qu'une fois.
+2. Une fonction Edge « toucher » en TypeScript qui reçoit en POST :
+   {"cadre_id": "...", "type": "toucher", "horodatage": "..."}
+   - refuse avec un code 400 et un message en français si cadre_id ou
+     horodatage manque, ou si l'horodatage n'est pas une date valide ;
+   - refuse avec 404 si le cadre n'existe pas ;
+   - enregistre le toucher ; si le même toucher arrive deux fois, répond 200
+     sans rien créer ni notifier une seconde fois ;
+   - met à jour le dernier toucher du cadre ;
+   - envoie une notification aux aidants du cadre (laisse une fonction
+     envoyerNotification(aidant, texte) vide, avec un commentaire).
+3. test.sh : trois appels curl, un valide, un sans horodatage, et le valide
+   renvoyé une seconde fois, avec le résultat attendu de chacun en commentaire.
+
+Données fictives seulement. Pas de clé dans le code : lis-la dans les
+variables d'environnement.</pre></div>
+<p>Résultat attendu, écrit avant : les trois fichiers ; le schéma passe dans Supabase ; l'appel valide crée une ligne ; l'appel sans horodatage renvoie 400 avec un message en français ; l'appel renvoyé ne crée pas de deuxième ligne et ne notifie pas deux fois.</p>
+<p>Cas invalide : envoyer <code>{"cadre_id": "cadre-demo-01", "type": "toucher", "horodatage": "hier matin"}</code>. Attendu : 400, pas de ligne créée.</p>
+<p>Preuve : capture du terminal avec les trois appels, capture de la table touchers dans Supabase.</p>
+</div></div></section>
+<section><div class="grid"><div class="k">Thème 3 · Automatisation</div><div>
+<p>Ce qu'on teste : l'IA sait-elle écrire la règle des 48 heures en code, dans Supabase, une seule alerte par famille, seulement si le parent a accepté ?</p>
+<p>Outil spécialisé en plus des 4 : n8n, pour comparer la même règle faite en visuel. C'est aussi ce qui alimente la stack D.</p>
+<p>Prompt, après le contexte commun :</p>
+<div class="pre"><button type="button" class="copy" data-for="b6">Copier</button><pre id="b6">Écris la règle des 48 heures dans Supabase, en deux fichiers :
+
+1. regle.sql : une fonction SQL « verifier_touchers » qui, pour chaque cadre :
+   - ne fait rien si la famille n'a pas accepté l'alerte ;
+   - ne fait rien si le dernier toucher date de moins de 48 heures ;
+   - sinon crée une ligne dans alertes (cadre_id, créée_le) seulement s'il
+     n'existe pas déjà une alerte ouverte pour ce cadre ;
+   - un nouveau toucher ferme l'alerte ouverte.
+   Le délai de 48 heures est une variable, pour pouvoir le régler à
+   3 minutes pendant la démonstration.
+2. cron.sql : la tâche pg_cron qui lance verifier_touchers toutes les
+   heures, et la commande pour la lancer toutes les minutes en démo.
+
+Puis donne le jeu de test : deux familles, l'une a accepté l'alerte,
+l'autre non, plus aucun toucher depuis 3 jours. Dis, pour chaque famille,
+combien d'alertes doivent exister après trois passages de la fonction.</pre></div>
+<p>Résultat attendu, écrit avant : famille 1, une seule alerte après trois passages ; famille 2, aucune ; un nouveau toucher sur la famille 1 ferme l'alerte, et la fonction n'en recrée pas avant 48 heures.</p>
+<p>Cas invalide : demander « que se passe-t-il si la fonction plante au milieu d'un passage ? ». Attendu : l'IA explique qu'une transaction évite l'alerte en double au passage suivant, ou propose comment le vérifier. Ne pas accepter « ça ne peut pas arriver ».</p>
+<p>Preuve : capture de la table alertes après les trois passages, pour les deux familles.</p>
+</div></div></section>
+<section><div class="grid"><div class="k">Thème 4 · Recadrage</div><div>
+<p>Ce qu'on teste : l'IA sait-elle choisir le bon cadrage d'une photo pour le sens du cadre, sans couper les visages, et sans identifier personne ? C'est la brique 2 du plan.</p>
+<p>Outil spécialisé en plus des 4 : un outil d'image qui recadre ou étend, Canva (redimensionnement magique) ou Photoshop (remplissage génératif). Pour lui, le prompt se réduit à la consigne de format.</p>
+<p>Prompt, après le contexte commun, avec la photo jointe. Réglages : température 0 si l'outil le permet.</p>
+<div class="pre"><button type="button" class="copy" data-for="b7">Copier</button><pre id="b7">Tu reçois une photo et le format du cadre : « portrait » ou « paysage ».
+Propose le meilleur cadrage pour ce format.
+Règles :
+- Ne coupe jamais un visage ni une personne au bord.
+- Ne décris pas et n'identifie pas les personnes.
+- Si aucun cadrage n'est bon, réponds "afficher_entiere": true.
+Réponds uniquement en JSON :
+{"x": 0-100, "y": 0-100, "largeur": 0-100, "hauteur": 0-100, "afficher_entiere": true/false}
+Format du cadre : {{format}}</pre></div>
+<p>On passe les 10 photos, 5 de chaque sens, chacune dans le sens opposé au sien : une photo paysage pour un cadre portrait, et l'inverse.</p>
+<p>Résultat attendu, écrit avant : 10 réponses en JSON pur, sans phrase autour ; aucun visage coupé quand on applique le cadrage ; aucune description des personnes.</p>
+<p>Cas invalide : la photo de groupe très large en format portrait. Attendu : <code>"afficher_entiere": true</code>, parce qu'aucun cadrage ne garde tout le monde.</p>
+<p>Second cas invalide : la photo sans personne. Attendu : un cadrage quand même, sans inventer de personne.</p>
+<p>Preuve : pour trois photos, la photo d'origine et la photo recadrée côte à côte ; la réponse JSON de chaque outil pour les 10.</p>
+</div></div></section>
+<section><div class="grid"><div class="k">Les garde-fous, à écrire dans le PDF</div><div>
+<div class="tablewrap"><table><thead><tr><th>Risque</th><th>Garde-fou</th></tr></thead><tbody><tr><td>L'IA invente</td><td>prompts qui l'interdisent, température basse, relecture sur le jeu de test</td></tr><tr><td>Glissement vers le médical</td><td>la liste de mots interdits du contexte commun, la même que la grille des risques réglementaires</td></tr><tr><td>Photos de la famille</td><td>aucune reconnaissance de visage ; photos fictives pendant les tests ; la photo d'origine est toujours gardée</td></tr><tr><td>Clé d'API visible</td><td>jamais dans l'appli ni dans le dépôt ; variables d'environnement côté serveur</td></tr><tr><td>Panne ou coût</td><td>coût par appel noté ; l'alerte des 48 heures ne dépend d'aucune IA, elle part quand même</td></tr><tr><td>Transparence</td><td>dire quand un texte est écrit par une IA (AI Act, article 50)</td></tr></tbody></table></div>
+</div></div></section>
+<section><div class="grid"><div class="k">Ce qu'on rend</div><div>
+<p>Pour chaque thème : les 4 ou 5 fiches, les captures, un tableau des scores, et une ligne « outil retenu, pourquoi ». Le classement des outils par thème se présente comme le classement des stacks : colonnes, score sur 100, statut de chaque note. Les scores vont dans la page HTML de la boîte à outils, et les fiches dans les pages 6 et 7 du PDF.</p>
+<p>Répartition proposée : Clément, thèmes 2 et 3 ; Lucas, thèmes 1 et 4. Chacun lance les 4 IA sur ses thèmes, Camille relit les fiches avant le PDF.</p>
+</div></div></section>
+<footer class="k">Prompts de la boîte à outils IA · Clément · brouillon dans interne/clement · chaque bloc se copie tel quel avec le bouton</footer>
+</div>
+<script>
+document.querySelectorAll(".copy").forEach(function(b){b.addEventListener("click",function(){
+  var pre=document.getElementById(b.dataset.for), txt=pre.textContent;
+  function done(){b.textContent="Copié";b.classList.add("ok");setTimeout(function(){b.textContent="Copier";b.classList.remove("ok")},1600)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){sel()})}else{sel()}
+  function sel(){var r=document.createRange();r.selectNodeContents(pre);var s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent="Sélectionné : ⌘C"}
+})});
+</script>
+</body>
+</html>
