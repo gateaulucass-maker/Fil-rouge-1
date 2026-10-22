@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T12:03",
+  "mise_a_jour": "2026-10-22T12:09",
   "phases": [
     {
       "id": "P0",
@@ -582,6 +582,14 @@
           "date": "2026-10-16",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-maquette-app-v1.html",
           "note": "16 écrans sur téléphone en 4 parcours (installer, partager, le lien, alerte et réglages), légendes numérotées, statuts décidé / proposé / ouvert. À valider par Clément et Camille."
+        },
+        {
+          "titre": "Atelier 2 : plan de recherche complet et deux guides d'entretien (parent 45 min, enfant 40 min)",
+          "statut": "a_valider",
+          "qui": "Camille",
+          "date": "2026-10-22",
+          "lien": "S1-2026-2027/02-besoins/interne/camille/2-3-plan-recherche-guides-camille.html",
+          "note": "Plan en 6 cartes (objectif, hypothèses, cibles, méthodes, logistique, éthique), tableau hypothèses → questions, posture et mots à éviter, 2 guides de 11 questions sur la trame en 5 temps avec 2 relances, hypothèses liées et ce qu'on cherche, questions de rebond pour les 6 secondaires, fiche à chaud et analyse. Recherche approfondie sourcée (NN/g, Erika Hall, The Mom Test, CNIL)."
         }
       ]
     },

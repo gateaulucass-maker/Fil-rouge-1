@@ -32,6 +32,7 @@ Les fichiers d'une leçon portent son numéro en préfixe : `2-1-question-1-acte
 - [20 hypothèses notées, top 3 et objectif](S1-2026-2027/03-outils-nocode-ia/interne/lucas/2-1-hypotheses-parent-enfant.html) (HTML, brouillon de Lucas) — score risque × incertitude, 3 plus risquées par cible, seuils pour les contredire, objectif de recherche.
 - [Nos 20 hypothèses, classées](S1-2026-2027/02-besoins/interne/clement/2-2-hypotheses-classees.html) (HTML, brouillon de Clément) — 10 hypothèses sur le parent, 10 sur l'enfant, formule « Nous pensons que … parce que … », classées de la plus risquée à la moins risquée, avec les 6 prioritaires proposées. À valider en équipe.
 - [Nos 20 hypothèses, d'après la veille](S1-2026-2027/02-besoins/interne/clement/2-2-hypotheses-veille.html) (HTML, brouillon de Clément) — seconde version : ce que le parent et l'enfant font aujourd'hui face aux bracelets, montres, téléassistance, gazettes et abonnements, chaque hypothèse appuyée sur la veille de la phase 1, classées par risque, 6 prioritaires.
+- [Plan de recherche complet et guides d'entretien](S1-2026-2027/02-besoins/interne/camille/2-3-plan-recherche-guides-camille.html) (HTML, brouillon de Camille) — atelier 2 : le plan en 6 cartes, chaque hypothèse reliée à ses questions, la posture d'entretien, un guide parent (45 min) et un guide enfant (40 min) de 11 questions sur la trame en 5 temps, 2 relances par question, questions de rebond pour les hypothèses secondaires, fiche à chaud et analyse, sources.
 
 ### Bloc 01 · Veille
 
