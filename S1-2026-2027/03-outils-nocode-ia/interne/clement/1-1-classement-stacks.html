@@ -122,6 +122,8 @@ tr.elim td{border-top:2px solid var(--fg);background:var(--soft)}
 .filters.sub{border-top:0;padding-top:2px}
 .row.B .fill{background:#c9b48a}
 .row.C .fill{background:#aab1bd}
+.col.X{background:#5c6675}
+.row.X .fill{background:#5c6675}
 .compo{min-width:560px;margin:4px 0 14px;font-size:14px}
 .compo td:first-child{width:26%}
 .compo td:nth-child(2){font-weight:700;width:26%}
@@ -167,7 +169,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <div class="k">Brique par brique</div>
 <div>
 <h2>Chaque outil seul, couche par couche</h2>
-<p>Une stack, c’est trois couches : ce qui construit les écrans, ce qui garde les données, ce qui automatise. Ici chaque outil est noté seul, sur les critères de sa couche, de 0 à 5. Le score de la couche est la moyenne, ramenée sur 100. C’est là qu’on voit où un critère se joue, et quelle brique on choisit.</p>
+<p>Une stack, c’est trois couches : ce qui construit les écrans, ce qui garde les données, ce qui automatise. Ici chaque outil est noté seul, sur les critères de sa couche, de 0 à 5. Le score de la couche est la moyenne, ramenée sur 100. C’est là qu’on voit où un critère se joue, et quelle brique on choisit. Les outils en gris ne sont dans aucune des 4 stacks : d’autres langages et services, ajoutés pour comparer.</p>
 <p class="legend">
 <span><span class="tag ok">testé</span> on l’a fait, avec une preuve</span>
 <span><span class="tag src">documenté</span> une page officielle ou une source l’annonce</span>
@@ -221,7 +223,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <div class="tablewrap"><table class="compo">
 <thead><tr><th>Partie</th><th>Technologie</th><th>Ce qu’elle fait</th></tr></thead>
 <tbody>
-<tr><td>Site vitrine et achat</td><td>Next.js</td><td>Les pages du site et le formulaire de commande, en TypeScript.</td></tr>
+<tr><td>Site vitrine et achat</td><td>Next.js</td><td>Le site qui vend le cadre et l’appli : présentation, choix du format, commande. En TypeScript, hébergé avec l’appli de l’aidant.</td></tr>
 <tr><td>Écran du cadre</td><td>React</td><td>Une appli web plein écran sur la tablette, portrait ou paysage, qui garde les contenus en mémoire.</td></tr>
 <tr><td>Appli de l’aidant</td><td>Next.js, installable sur le téléphone (PWA)</td><td>Envoyer photos, vidéos et messages ; recevoir le toucher et régler l’alerte.</td></tr>
 <tr><td>Base, comptes, fichiers, temps réel</td><td>Supabase, région Europe</td><td>Familles, contenus, dernier toucher, accord du parent pour l’alerte.</td></tr>
@@ -309,6 +311,19 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     n8nDocs:{t:"n8n : documentation (webhook, déclencheur planifié)",u:"https://docs.n8n.io/"},
     supaFn:{t:"Supabase : fonctions Edge",u:"https://supabase.com/docs/guides/functions"},
     supaCron:{t:"Supabase : tâches planifiées (pg_cron)",u:"https://supabase.com/docs/guides/cron"},
+    soSurvey:{t:"Stack Overflow : enquête développeurs 2025 (frameworks les plus utilisés)",u:"https://survey.stackoverflow.co/2025/"},
+    nuxt:{t:"Nuxt : documentation",u:"https://nuxt.com/docs"},
+    svelte:{t:"SvelteKit : documentation",u:"https://svelte.dev/docs/kit"},
+    flutter:{t:"Flutter : documentation",u:"https://docs.flutter.dev/"},
+    django:{t:"Django : documentation",u:"https://docs.djangoproject.com/"},
+    wp:{t:"WordPress",u:"https://wordpress.org/"},
+    woo:{t:"WooCommerce",u:"https://woocommerce.com/"},
+    neon:{t:"Neon : prix et plan gratuit",u:"https://neon.com/pricing"},
+    firebase:{t:"Firebase : prix et quotas",u:"https://firebase.google.com/pricing"},
+    fbfn:{t:"Firebase : Cloud Functions",u:"https://firebase.google.com/docs/functions"},
+    vcron:{t:"Vercel : tâches planifiées (cron)",u:"https://vercel.com/docs/cron-jobs"},
+    gha:{t:"GitHub Actions : documentation et quotas",u:"https://docs.github.com/en/actions"},
+    process:{t:"Notre process de veille (Neon à Francfort, GitHub Actions le jeudi)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/1-1-process-veille.html"},
     makePrix:{t:"Make : prix et plan gratuit",u:"https://www.make.com/en/pricing"},
     bench:{t:"Benchmark des stacks (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-benchmark-stacks.html"},
     usages:{t:"Les 4 usages à tester (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html"},
@@ -375,33 +390,79 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 
   // Brique par brique : chaque outil seul, sur les critères de sa couche. eu : "oui" | "non" | "chk".
   var LAYERS = [
-    {id:"build", n:"Construction", what:"ce qui fait les écrans : le site, l’écran du cadre, l’appli de l’aidant",
-     crit:[{id:"site",n:"Site vitrine"},{id:"cadre",n:"Écran du cadre"},{id:"aidant",n:"Appli aidant"},{id:"simp",n:"Simplicité"},{id:"cout",n:"Coût"}],
+    {id:"build", n:"Construction", what:"ce qui fait les écrans : le site vitrine qui vend le cadre et l’appli, l’écran du cadre, l’appli de l’aidant",
+     crit:[{id:"site",n:"Site vitrine (vente)"},{id:"cadre",n:"Écran du cadre"},{id:"aidant",n:"Appli aidant"},{id:"simp",n:"Simplicité"},{id:"cout",n:"Coût"},{id:"eco",n:"Écosystème et aide"}],
      bricks:[
-      {id:"react", n:"React + Next.js", col:"A", sub:"code · stack A", eu:{v:"chk",st:"est",why:"Le code s’héberge où on veut : Vercel en région Francfort ou un serveur européen. À choisir et à vérifier.",src:["vercel"]}, notes:{
-        site:{v:5,st:"doc",why:"Next.js est fait pour les sites web : pages, formulaires, rendu côté serveur.",src:["next"]},
+      {id:"react", n:"React + Next.js", col:"A", sub:"code JavaScript · stack A", eu:{v:"chk",st:"est",why:"Le code s’héberge où on veut : Vercel en région Francfort ou un serveur européen. À choisir et à vérifier.",src:["vercel"]}, notes:{
+        site:{v:5,st:"doc",why:"Next.js est fait pour les sites web : pages, formulaires, rendu côté serveur. Le site qui vend le cadre et l’appli se fait avec.",src:["next"]},
         cadre:{v:4,st:"est",why:"Plein écran et rotation libres en code. Lisibilité à 3 mètres et tenue sur une vieille tablette à tester.",src:["bench"]},
         aidant:{v:3,st:"doc",why:"Appli web installable (PWA). Les notifications push web marchent sur Android, et sur iPhone seulement depuis iOS 16.4 et en appli installée sur l’écran d’accueil.",src:["push"]},
         simp:{v:2,st:"est",why:"C’est du code. Claude Code l’écrit, mais la relecture et les corrections reposent sur Clément ; pas d’éditeur visuel pour Camille et Lucas.",src:["bench"]},
-        cout:{v:5,st:"doc",why:"React et Next.js sont libres et gratuits. L’hébergement est compté à part.",src:["next","vercel"]}}},
+        cout:{v:5,st:"doc",why:"React et Next.js sont libres et gratuits. L’hébergement est compté à part.",src:["next","vercel"]},
+        eco:{v:5,st:"doc",why:"Le framework web le plus utilisé dans l’enquête Stack Overflow 2025 : le plus de tutoriels, de composants prêts, et ce que Claude écrit le mieux.",src:["soSurvey"]}}},
+      {id:"vue", n:"Vue + Nuxt", col:"X", sub:"code JavaScript · pour comparer", eu:{v:"chk",st:"est",why:"Comme React : s’héberge où on veut.",src:["vercel"]}, notes:{
+        site:{v:5,st:"doc",why:"Nuxt fait la même chose que Next.js pour Vue : pages, formulaires, rendu serveur.",src:["nuxt"]},
+        cadre:{v:4,st:"est",why:"Identique à React : plein écran et rotation libres en code.",src:["bench"]},
+        aidant:{v:3,st:"doc",why:"PWA, mêmes limites de notifications sur iPhone que pour React.",src:["push"]},
+        simp:{v:3,st:"est",why:"Réputé plus lisible que React pour débuter : les fichiers ressemblent à du HTML.",src:["nuxt"]},
+        cout:{v:5,st:"doc",why:"Libre et gratuit.",src:["nuxt"]},
+        eco:{v:3,st:"est",why:"Communauté solide mais deux à trois fois plus petite que React ; moins de composants prêts.",src:["soSurvey"]}}},
+      {id:"svelte", n:"Svelte + SvelteKit", col:"X", sub:"code JavaScript · pour comparer", eu:{v:"chk",st:"est",why:"Comme React : s’héberge où on veut.",src:["vercel"]}, notes:{
+        site:{v:5,st:"doc",why:"SvelteKit fait pages, formulaires et rendu serveur.",src:["svelte"]},
+        cadre:{v:4,st:"est",why:"Identique à React. Pages très légères, un plus sur une vieille tablette.",src:["bench"]},
+        aidant:{v:3,st:"doc",why:"PWA, mêmes limites de notifications sur iPhone.",src:["push"]},
+        simp:{v:3,st:"est",why:"Moins de code à écrire que React pour le même écran.",src:["svelte"]},
+        cout:{v:5,st:"doc",why:"Libre et gratuit.",src:["svelte"]},
+        eco:{v:2,st:"est",why:"Communauté bien plus petite ; moins d’exemples et de composants.",src:["soSurvey"]}}},
+      {id:"flutter", n:"Flutter (Dart)", col:"X", sub:"code · pour comparer", eu:{v:"chk",st:"est",why:"L’app tourne sur la tablette et le téléphone ; les données sont chez Supabase. Push via Firebase à vérifier.",src:["flutter"]}, notes:{
+        site:{v:2,st:"est",why:"Flutter sait faire du web, mais c’est lourd et mal adapté à un site de vente.",src:["flutter"]},
+        cadre:{v:4,st:"est",why:"Vraie app Android plein écran sur la tablette, verrouillable en kiosque.",src:["flutter"]},
+        aidant:{v:5,st:"doc",why:"App native Android et iPhone, notifications push natives, publication sur les stores.",src:["flutter"]},
+        simp:{v:2,st:"est",why:"Un langage de plus, Dart, que personne ne connaît. Deux publications sur les stores à gérer.",src:["flutter"]},
+        cout:{v:5,st:"doc",why:"Libre et gratuit ; comptes développeur des stores à part.",src:["flutter"]},
+        eco:{v:4,st:"est",why:"Grande communauté mobile, portée par Google.",src:["soSurvey"]}}},
+      {id:"django", n:"Python + Django", col:"X", sub:"code Python · déjà pratiqué par l’équipe", eu:{v:"chk",st:"est",why:"S’héberge où on veut, sur un serveur européen.",src:["django"]}, notes:{
+        site:{v:4,st:"est",why:"Très bon pour un site avec formulaires et comptes ; l’interface riche demande du JavaScript en plus.",src:["django"]},
+        cadre:{v:3,st:"est",why:"Le diaporama et la rotation restent du JavaScript dans la page ; Django ne sert qu’à livrer les contenus.",src:["bench"]},
+        aidant:{v:2,st:"est",why:"PWA possible, mais notifications et temps réel à coder à la main.",src:["push"]},
+        simp:{v:3,st:"est",why:"Le seul langage que l’équipe a déjà pratiqué avec Claude : 19 scripts de veille.",src:["process"]},
+        cout:{v:5,st:"doc",why:"Libre et gratuit.",src:["django"]},
+        eco:{v:4,st:"est",why:"Communauté large et stable, beaucoup de documentation en français.",src:["soSurvey"]}}},
+      {id:"vanilla", n:"HTML, CSS et JavaScript seuls", col:"X", sub:"sans framework · déjà pratiqué pour les rendus", eu:{v:"chk",st:"est",why:"Des fichiers statiques : n’importe quel hébergeur européen.",src:["bench"]}, notes:{
+        site:{v:4,st:"est",why:"Une vitrine simple, oui. Commande, comptes et paiement sont à coder à la main ou à déléguer à un service.",src:["bench"]},
+        cadre:{v:4,st:"est",why:"L’écran du cadre est une page plein écran : ça suffit. C’est le format de tous nos rendus.",src:["bench"]},
+        aidant:{v:2,st:"est",why:"PWA possible, mais tout est à écrire soi-même : état, cache, notifications.",src:["push"]},
+        simp:{v:3,st:"est",why:"Rien à installer, lisible par tous. Devient lourd dès que l’appli grossit.",src:["bench"]},
+        cout:{v:5,st:"doc",why:"Gratuit.",src:["bench"]},
+        eco:{v:3,st:"est",why:"Tout le web, mais pas de composants prêts ni de structure imposée.",src:["soSurvey"]}}},
+      {id:"wp", n:"WordPress + WooCommerce", col:"X", sub:"site vitrine seulement · pour comparer", eu:{v:"chk",st:"est",why:"Dépend de l’hébergeur choisi ; beaucoup sont européens.",src:["wp"]}, notes:{
+        site:{v:5,st:"doc",why:"Le standard des sites vitrines avec boutique : thèmes, paiement, commandes, sans coder.",src:["wp","woo"]},
+        cadre:{v:1,st:"est",why:"Pas fait pour ça.",src:["bench"]},
+        aidant:{v:1,st:"est",why:"Pas fait pour ça.",src:["bench"]},
+        simp:{v:4,st:"est",why:"Camille et Lucas peuvent modifier le site sans code.",src:["wp"]},
+        cout:{v:3,st:"doc",why:"Logiciel gratuit, mais hébergement, thème et extensions payants s’additionnent.",src:["wp"]},
+        eco:{v:5,st:"doc",why:"Près de la moitié des sites web du monde : agences, thèmes, extensions partout.",src:["wp"]}}},
       {id:"ff", n:"FlutterFlow", col:"D", sub:"no-code · stack D", eu:{v:"chk",st:"est",why:"Lieu des données de l’éditeur à demander à FlutterFlow. L’app, elle, parle à Supabase en Europe.",src:["ffDocs"]}, notes:{
         site:{v:2,st:"est",why:"Publication web possible, mais l’outil est pensé pour des applis, pas pour un site de vente.",src:["bench"]},
         cadre:{v:3,st:"est",why:"App mobile affichée sur une tablette : plein écran possible, les deux sens et la vidéo à vérifier.",src:["bench"]},
         aidant:{v:4,st:"doc",why:"Vraie app mobile, installable sur les stores. Les notifications push passent par Firebase, à brancher en plus de Supabase.",src:["ffDocs"]},
         simp:{v:3,st:"est",why:"Éditeur visuel, mais une vraie courbe d’apprentissage. Lucas l’a retenu pour le plan de démo.",src:["demo"]},
-        cout:{v:3,st:"doc",why:"Gratuit pour construire ; publier sur les stores ou récupérer le code demande un plan payant.",src:["ff"]}}},
+        cout:{v:3,st:"doc",why:"Gratuit pour construire ; publier sur les stores ou récupérer le code demande un plan payant.",src:["ff"]},
+        eco:{v:3,st:"est",why:"Communauté active mais fermée à l’outil ; on dépend de son éditeur.",src:["ffDocs"]}}},
       {id:"softr", n:"Softr", col:"C", sub:"no-code · stack C", eu:{v:"chk",st:"est",why:"Éditeur allemand, mais le lieu d’hébergement des sites n’est pas relevé. À demander.",src:["softr"]}, notes:{
         site:{v:5,st:"doc",why:"Softr sert à faire des sites et des portails : c’est son métier.",src:["softr"]},
         cadre:{v:2,st:"est",why:"Pages web, plein écran possible, mais pensé pour un portail, pas pour un diaporama à 3 mètres.",src:["bench"]},
         aidant:{v:3,st:"est",why:"Portail web pour l’aidant, installable comme une PWA. Notifications sur téléphone à vérifier.",src:["bench"]},
         simp:{v:4,st:"est",why:"Parmi les plus simples pour un portail : blocs prêts, connexion directe à Airtable.",src:["bench"]},
-        cout:{v:3,st:"doc",why:"Plan gratuit limité ; les fonctions utiles passent vite en payant.",src:["softr"]}}},
+        cout:{v:3,st:"doc",why:"Plan gratuit limité ; les fonctions utiles passent vite en payant.",src:["softr"]},
+        eco:{v:2,st:"est",why:"Petite communauté, blocs limités à ce que l’éditeur propose.",src:["softr"]}}},
       {id:"glide", n:"Glide", col:"B", sub:"no-code · stack B", eu:{v:"non",st:"doc",why:"Serveurs aux États-Unis, pas d’option européenne.",src:["glideGdpr"]}, notes:{
         site:{v:1,st:"est",why:"Glide construit des applis, pas des sites de vente.",src:["bench"]},
         cadre:{v:2,st:"est",why:"App façon mobile ; plein écran sur tablette et rotation à tester.",src:["bench"]},
         aidant:{v:3,st:"est",why:"App web type mobile pour l’aidant. Notifications push réservées aux plans payants, à vérifier.",src:["glideFree"]},
         simp:{v:5,st:"est",why:"C’est l’argument de Glide : une appli en quelques heures à partir d’un tableau.",src:["glideFree"]},
-        cout:{v:3,st:"doc",why:"Plan gratuit ; les prix payants sont contestés selon les sources.",src:["glideFree"]}}}
+        cout:{v:3,st:"doc",why:"Plan gratuit ; les prix payants sont contestés selon les sources.",src:["glideFree"]},
+        eco:{v:2,st:"est",why:"Petite communauté, fermée à l’outil.",src:["glideFree"]}}}
      ]},
     {id:"base", n:"Base de données", what:"ce qui garde les familles, les contenus, le dernier toucher, et sert les fichiers",
      crit:[{id:"fich",n:"Fichiers vidéo"},{id:"lim",n:"Limites"},{id:"api",n:"API et temps réel"},{id:"cout",n:"Coût"}],
@@ -420,7 +481,17 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
         fich:{v:2,st:"est",why:"Stockage de fichiers limité en gratuit ; chiffre non relevé.",src:["glideFree"]},
         lim:{v:2,st:"doc",why:"Lignes et mises à jour limitées sur le plan gratuit.",src:["glideFree"]},
         api:{v:2,st:"est",why:"API réservée aux plans payants ; pas de temps réel vers un outil externe.",src:["glideFree"]},
-        cout:{v:3,st:"doc",why:"Inclus dans Glide.",src:["glideFree"]}}}
+        cout:{v:3,st:"doc",why:"Inclus dans Glide.",src:["glideFree"]}}},
+      {id:"neon", n:"PostgreSQL sur Neon", col:"X", sub:"la base de notre veille · pour comparer", eu:{v:"oui",st:"teste",why:"Notre base de veille y tourne depuis le 1er octobre, projet créé en région Francfort.",src:["process"]}, notes:{
+        fich:{v:1,st:"doc",why:"Pas de stockage de fichiers : il faudrait un service à côté pour les photos et vidéos.",src:["neon"]},
+        lim:{v:3,st:"doc",why:"0,5 Go de base en gratuit ; se met en veille après inactivité, comme Supabase.",src:["neon"]},
+        api:{v:2,st:"est",why:"Une base seule : pas d’API générée, pas de temps réel, pas de comptes. Tout est à coder.",src:["neon"]},
+        cout:{v:4,st:"doc",why:"Gratuit pour nos volumes.",src:["neon"]}}},
+      {id:"firebase", n:"Firebase (Google)", col:"X", sub:"pour comparer", eu:{v:"chk",st:"doc",why:"Régions européennes possibles pour la base et les fichiers, mais Google reste l’hébergeur : à vérifier avec la grille réglementaire.",src:["firebase"]}, notes:{
+        fich:{v:3,st:"est",why:"Stockage de fichiers inclus ; les conditions du plan gratuit ont changé récemment, à vérifier.",src:["firebase"]},
+        lim:{v:3,st:"est",why:"Quotas gratuits confortables pour trois familles ; les fonctions demandent le plan payant.",src:["firebase"]},
+        api:{v:5,st:"doc",why:"Temps réel natif, comptes, notifications push, fonctions : tout est là.",src:["firebase"]},
+        cout:{v:3,st:"doc",why:"Gratuit pour la base, mais carte bancaire et plan Blaze dès qu’on veut des fonctions.",src:["firebase"]}}}
      ]},
     {id:"auto", n:"Automatisation", what:"ce qui reçoit le toucher, prévient l’aidant et applique la règle des 48 heures",
      crit:[{id:"hook",n:"Webhooks"},{id:"temps",n:"Règle dans le temps"},{id:"notif",n:"Notifications"},{id:"quota",n:"Quota"},{id:"cout",n:"Coût"}],
@@ -448,7 +519,25 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
         temps:{v:3,st:"doc",why:"Déclencheur planifié inclus, mais 2 étapes par Zap en gratuit.",src:["zapierPrix"]},
         notif:{v:3,st:"est",why:"E-mail et services tiers ; à tester.",src:["zapierPrix"]},
         quota:{v:1,st:"doc",why:"100 tâches par mois en gratuit.",src:["zapierPrix"]},
-        cout:{v:2,st:"doc",why:"Il faut payer, environ 20 $ par mois, pour les webhooks.",src:["zapierPrix"]}}}
+        cout:{v:2,st:"doc",why:"Il faut payer, environ 20 $ par mois, pour les webhooks.",src:["zapierPrix"]}}},
+      {id:"vcron", n:"Vercel Cron + routes Next.js", col:"X", sub:"code · pour comparer", eu:{v:"chk",st:"est",why:"Région des fonctions à régler sur Francfort ; à vérifier.",src:["vercel"]}, notes:{
+        hook:{v:5,st:"doc",why:"Une route API de Next.js est une adresse HTTP : le cadre lui envoie le toucher.",src:["next"]},
+        temps:{v:3,st:"doc",why:"Tâches planifiées incluses, mais une seule fois par jour sur le plan gratuit ; chaque heure demande le plan Pro.",src:["vcron"]},
+        notif:{v:4,st:"est",why:"Web Push ou e-mail depuis la route, comme avec Supabase.",src:["push"]},
+        quota:{v:4,st:"doc",why:"Largement suffisant en gratuit pour trois familles.",src:["vercel"]},
+        cout:{v:4,st:"doc",why:"Gratuit pour un essai non commercial ; Pro à environ 20 $ par mois ensuite.",src:["vercel"]}}},
+      {id:"gha", n:"Python + GitHub Actions", col:"X", sub:"la veille du jeudi · déjà pratiqué", eu:{v:"chk",st:"doc",why:"Les machines de GitHub tournent aux États-Unis par défaut : les données de l’alerte y passeraient.",src:["gha"]}, notes:{
+        hook:{v:2,st:"est",why:"Pas fait pour recevoir un toucher en direct : un déclenchement externe existe, mais avec des minutes de délai.",src:["gha"]},
+        temps:{v:4,st:"teste",why:"C’est exactement ce qui lance notre veille chaque jeudi à 7 h 45. Délai de quelques minutes possible.",src:["process"]},
+        notif:{v:3,st:"est",why:"E-mail ou push via une API, en Python.",src:["gha"]},
+        quota:{v:4,st:"doc",why:"2 000 minutes par mois en gratuit sur un dépôt privé, sans limite sur un dépôt public.",src:["gha"]},
+        cout:{v:5,st:"doc",why:"Gratuit.",src:["gha"]}}},
+      {id:"fbfn", n:"Firebase Cloud Functions", col:"X", sub:"code · pour comparer", eu:{v:"chk",st:"doc",why:"Régions européennes disponibles, hébergeur Google : à vérifier.",src:["fbfn"]}, notes:{
+        hook:{v:5,st:"doc",why:"Une fonction est une adresse HTTP.",src:["fbfn"]},
+        temps:{v:5,st:"doc",why:"Fonctions planifiées intégrées.",src:["fbfn"]},
+        notif:{v:5,st:"doc",why:"Notifications push natives (FCM) vers Android et iPhone, sans service tiers.",src:["fbfn"]},
+        quota:{v:4,st:"doc",why:"2 millions d’appels par mois inclus.",src:["firebase"]},
+        cout:{v:3,st:"doc",why:"Plan Blaze obligatoire, avec carte bancaire, même si la facture reste à zéro.",src:["firebase"]}}}
      ]}
   ];
 
@@ -610,7 +699,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     d.scrollIntoView({behavior:"smooth",block:"nearest"});
   }
   var lf=document.getElementById("lfilters");
-  lf.innerHTML=LAYERS.map(function(L,i){return '<button type="button" data-l="'+L.id+'" aria-pressed="'+(i===0)+'" title="'+esc(L.what)+'">'+esc(L.n)+'</button>'}).join("")+'<span class="sep"></span><span class="date">3 couches · 10 outils</span>';
+  lf.innerHTML=LAYERS.map(function(L,i){return '<button type="button" data-l="'+L.id+'" aria-pressed="'+(i===0)+'" title="'+esc(L.what)+'">'+esc(L.n)+'</button>'}).join("")+'<span class="sep"></span><span class="date">'+LAYERS.length+' couches · '+LAYERS.reduce(function(a,L){return a+L.bricks.length},0)+' outils</span>';
   lf.querySelectorAll("button").forEach(function(btn){btn.addEventListener("click",function(){
     layer=LAYERS.filter(function(L){return L.id===btn.dataset.l})[0]; bcur="total"; bopen=null;
     lf.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===btn?"true":"false")});
@@ -621,7 +710,8 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
   var best=LAYERS.map(function(L){var bs=L.bricks.map(function(b){return {b:b,v:brickScore(b,L)}}).sort(function(a,b){return b.v-a.v});return {L:L,b:bs[0].b,v:bs[0].v}});
   document.getElementById("layers-verdict").innerHTML='<p><b>Ce que ça dit sur la stack à construire.</b> La meilleure brique de chaque couche est '+
     best.map(function(x){return '<b>'+esc(x.b.n)+'</b> ('+x.v+')'}).join(', ')+
-    '. Mises bout à bout, elles donnent la stack A. Softr fait un site vitrine aussi bien que Next.js et plus simplement, et Glide est le plus simple de tous : mais les bases et les automatisations qui vont avec tombent sur l’Europe ou sur les webhooks. Si le code bloque, on ne change que la brique de construction : FlutterFlow sur la même base, avec n8n pour l’automatisation, c’est la stack D.</p>';
+    '. Mises bout à bout, elles donnent la stack A. Softr fait un site vitrine aussi bien que Next.js et plus simplement, et Glide est le plus simple de tous : mais les bases et les automatisations qui vont avec tombent sur l’Europe ou sur les webhooks. Si le code bloque, on ne change que la brique de construction : FlutterFlow sur la même base, avec n8n pour l’automatisation, c’est la stack D.</p>'+
+    '<p style="margin-top:8px"><b>Les autres langages sont là pour comparer</b>, en gris : on construit en React et JavaScript, c’est décidé. Vue ou Svelte feraient le même travail avec une communauté plus petite. Python est le seul langage que l’équipe a déjà pratiqué avec Claude, mais il ne porte ni le temps réel ni les notifications. Flutter en code gagne sur l’appli native et perd sur le site. WordPress ne sert qu’au site vitrine qui vend le cadre et l’appli : il reste une option pour cette seule brique, si on veut que Camille et Lucas le modifient sans code.</p>';
 
   // échelle
   document.getElementById("scale").innerHTML=CRIT.map(function(c){return '<tr><td>'+esc(c.n)+'</td><td class="p">'+c.w+' %</td><td>'+esc(c.s5)+'</td><td>'+esc(c.s3)+'</td><td>'+esc(c.s1)+'</td></tr>'}).join("");
