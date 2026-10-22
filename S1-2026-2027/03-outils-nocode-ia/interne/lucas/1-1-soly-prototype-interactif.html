@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soly, prototype interactif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --cr: #fff6e0; --be: #f6d775; --ca: #2e1e14; --no: #5c4636; --li: #b7a3e0; --w: #ffffff; --soft: #fdefc4; --line: #ecdca8;
+  --bri: "Bricolage Grotesque", "Arial Black", Arial, sans-serif; --atk: "Atkinson Hyperlegible", Arial, sans-serif; --mono: "IBM Plex Mono", Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--cr); color: var(--ca); font: 16px/1.45 var(--atk); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; cursor: pointer; }
+.wrap { max-width: 1280px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); padding-block: 20px 48px; }
+.top { display:flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; justify-content: space-between; }
+.top p { margin: 0; font: 12px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--no); }
+.stage { display:grid; grid-template-columns: 1.35fr 1fr; gap: clamp(20px, 4vw, 56px); align-items: start; margin-top: 22px; }
+.stage > div { min-width: 0; }
+.lab { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--no); display:block; margin-bottom: 10px; }
+
+/* ---------- le mur et le cadre ---------- */
+.wall { background: linear-gradient(180deg, #efe3c8, #e6d6b4); border-radius: 20px; padding: clamp(28px, 6vw, 70px) clamp(20px, 5vw, 60px) 90px; position: relative; overflow: hidden; }
+.wall::after { content:""; position:absolute; left: 0; right: 0; bottom: 0; height: 64px; background: linear-gradient(180deg, #cdb58c, #b99d70); }
+.frame { position: relative; z-index: 1; background: var(--be); padding: 4.5%; border-radius: 16px; box-shadow: 0 24px 50px rgba(46,30,20,.3); cursor: pointer; border: 0; width: 100%; display:block; }
+.frame:focus-visible { outline: 3px solid var(--ca); outline-offset: 4px; }
+.screen { position: relative; aspect-ratio: 4/3; border-radius: 6px; overflow: hidden; background: #000; }
+.slide { position:absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.2s ease; }
+.slide.on { opacity: 1; }
+.fnote { position:absolute; right: 4%; bottom: 5%; max-width: 46%; background: var(--cr); padding: 10px 14px; border-radius: 8px; font-family: var(--bri); font-weight: 800; font-size: clamp(14px, 2vw, 24px); line-height: 1.05; letter-spacing: -.01em; text-align: left; opacity: 0; transform: translateY(8px); transition: .5s ease; }
+.fnote.on { opacity: 1; transform: none; }
+.fnote small { display:block; font: 400 12px var(--atk); color: var(--no); margin-top: 4px; }
+.mosaic { position:absolute; inset: 0; display:grid; grid-template-columns: 1fr 1fr; gap: 3px; background: var(--be); opacity: 0; transition: opacity .8s; }
+.mosaic.on { opacity: 1; }
+.mosaic div { background-size: cover; background-position: center; position: relative; }
+.mosaic span { position:absolute; left: 6px; bottom: 6px; background: var(--cr); font-size: 11px; padding: 1px 6px; border-radius: 4px; }
+.mosaic b { position:absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--cr); padding: 6px 12px; border-radius: 999px; font: 800 14px var(--bri); z-index: 2; white-space: nowrap; }
+.sun { position:absolute; left: 50%; top: 50%; width: 120px; height: 120px; margin: -60px; border-radius: 50%; background: radial-gradient(circle, rgba(246,215,117,.95), rgba(246,215,117,0) 70%); opacity: 0; pointer-events: none; }
+.sun.on { animation: sun 2.2s ease-out; }
+@keyframes sun { 0% { opacity: 0; transform: scale(.4); } 30% { opacity: 1; } 100% { opacity: 0; transform: scale(2.6); } }
+.sunmsg { position:absolute; left: 50%; top: 8%; transform: translateX(-50%); background: var(--cr); padding: 6px 14px; border-radius: 999px; font: 800 15px var(--bri); opacity: 0; transition: .4s; white-space: nowrap; }
+.sunmsg.on { opacity: 1; }
+.glow { position:absolute; left: 12%; right: 12%; bottom: -12px; height: 7px; border-radius: 7px; background: var(--li); opacity: 0; box-shadow: 0 0 24px 8px rgba(183,163,224,.9); transition: opacity .3s; }
+.glow.on { opacity: 1; animation: pulse 1.2s ease-in-out 3; }
+@keyframes pulse { 50% { opacity: .45; } }
+.engr { position:absolute; left: 0; right: 0; bottom: 1.2%; text-align: center; font: 800 11px var(--bri); letter-spacing: -.02em; opacity: .65; }
+.hint { position: relative; z-index: 1; margin-top: 26px; display:flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; }
+.pill { background: var(--ca); color: var(--cr); border: 0; border-radius: 999px; padding: 10px 16px; font-weight: 700; font-size: 14px; }
+.pill.l { background: var(--cr); color: var(--ca); }
+.who { position:absolute; z-index: 1; left: 20px; top: 16px; font: 12px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--no); }
+@media (prefers-reduced-motion: reduce) { .glow.on, .sun.on { animation: none; } .slide { transition: none; } }
+
+/* ---------- le téléphone ---------- */
+.phone { width: 340px; max-width: 100%; aspect-ratio: 9/19; margin: 0 auto; border: 11px solid #1d1712; border-radius: 48px; background: var(--cr); position: relative; overflow: hidden; box-shadow: 0 26px 60px rgba(46,30,20,.28); }
+.phone::before { content:""; position:absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 96px; height: 26px; border-radius: 16px; background: #1d1712; z-index: 20; }
+.sb { height: 44px; display:flex; justify-content: space-between; align-items: center; padding: 8px 26px 0; font: 700 12.5px var(--atk); position: relative; z-index: 5; }
+.view { position:absolute; inset: 44px 0 0 0; padding: 8px 18px 16px; display:none; flex-direction: column; gap: 12px; overflow-y: auto; }
+.view.on { display:flex; animation: in .28s ease-out; }
+@keyframes in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+.view.tabbed { padding-bottom: 84px; }
+h3 { font-family: var(--bri); font-weight: 800; font-size: 25px; letter-spacing: -.03em; line-height: 1.05; margin: 2px 0 0; }
+.sub { font-size: 13.5px; color: var(--no); margin: 0; }
+.step { font: 12px var(--mono); color: var(--no); }
+.bar { height: 5px; background: var(--line); border-radius: 5px; overflow: hidden; }
+.bar i { display:block; height: 100%; background: var(--ca); border-radius: 5px; }
+.btn { border: 0; border-radius: 999px; padding: 14px; font-weight: 700; font-size: 15.5px; background: var(--ca); color: var(--cr); width: 100%; }
+.btn.y { background: var(--be); color: var(--ca); }
+.btn.g { background: transparent; border: 2px solid var(--ca); color: var(--ca); }
+.btn:disabled { opacity: .4; cursor: default; }
+.mt { margin-top: auto; }
+.card { background: var(--w); border: 1px solid var(--line); border-radius: 18px; padding: 12px 14px; }
+.card.y { background: var(--be); border-color: var(--be); }
+.card.s { background: var(--soft); border-color: var(--soft); }
+.field { background: var(--w); border: 1.5px solid var(--line); border-radius: 14px; padding: 12px 14px; font-size: 15px; width: 100%; font-family: var(--atk); color: var(--ca); }
+.field:focus { outline: 2px solid var(--ca); border-color: var(--ca); }
+label.k { font-size: 12.5px; color: var(--no); margin-bottom: -6px; }
+.chips { display:flex; flex-wrap: wrap; gap: 6px; }
+.chip { border: 0; background: var(--soft); border-radius: 999px; padding: 8px 13px; font-size: 13.5px; font-weight: 700; }
+.chip.on { background: var(--ca); color: var(--cr); }
+.sig { display:flex; gap: 12px; align-items: center; }
+.sig i { width: 16px; height: 16px; border-radius: 50%; background: var(--li); flex: none; box-shadow: 0 0 0 6px rgba(183,163,224,.3); }
+.sig.off i { background: var(--line); box-shadow: none; }
+.sig b { display:block; font-size: 15px; line-height: 1.2; } .sig small { font-size: 12.5px; color: var(--no); }
+.mini { background: var(--be); padding: 7px; border-radius: 12px; }
+.mini div { aspect-ratio: 4/3; background-size: cover; background-position: center; border-radius: 6px; position: relative; }
+.mini span { position:absolute; right: 6px; bottom: 6px; background: var(--cr); font: 800 11px var(--bri); padding: 4px 7px; border-radius: 5px; max-width: 60%; }
+.gal { display:grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.gal button { border: 0; padding: 0; aspect-ratio: 1; border-radius: 10px; background-size: cover; background-position: center; position: relative; }
+.gal button.sel { outline: 4px solid var(--ca); outline-offset: -4px; }
+.gal button.sel::after { content: "✓"; position:absolute; right: 5px; top: 5px; width: 22px; height: 22px; border-radius: 50%; background: var(--ca); color: var(--cr); font-size: 13px; line-height: 22px; text-align: center; }
+.grid3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.grid3 div { aspect-ratio: 1; background-size: cover; background-position: center; border-radius: 10px; }
+.row { display:flex; justify-content: space-between; align-items: center; gap: 10px; }
+.tog { width: 48px; height: 28px; border-radius: 999px; background: var(--line); border: 0; position: relative; flex: none; transition: background .2s; }
+.tog::after { content:""; position:absolute; left: 3px; top: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--w); transition: left .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+.tog[aria-checked="true"] { background: var(--ca); }
+.tog[aria-checked="true"]::after { left: 23px; }
+.set { border-bottom: 1px solid var(--line); padding: 10px 0; }
+.set:last-child { border-bottom: 0; }
+.set b { display:block; font-size: 15px; } .set small { font-size: 12.5px; color: var(--no); }
+.seg { display:flex; background: var(--soft); border-radius: 999px; padding: 3px; }
+.seg button { border: 0; background: none; border-radius: 999px; padding: 6px 10px; font-size: 13px; font-weight: 700; }
+.seg button.on { background: var(--ca); color: var(--cr); }
+.cam { border-radius: 18px; background: #241b14; aspect-ratio: 1; display:flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.cam .t { width: 58%; aspect-ratio: 1; border: 3px solid var(--be); border-radius: 18px; }
+.cam .scanline { position:absolute; left: 21%; right: 21%; height: 3px; background: var(--be); top: 25%; animation: scan 1.6s ease-in-out infinite alternate; box-shadow: 0 0 10px var(--be); }
+@keyframes scan { to { top: 72%; } }
+.cam.ok { background: var(--be); }
+.cam.ok .t, .cam.ok .scanline { display:none; }
+.cam .done { display:none; font: 800 20px var(--bri); text-align: center; }
+.cam.ok .done { display:block; }
+.qr { width: 160px; height: 160px; margin: 0 auto; border: 10px solid var(--w); border-radius: 14px; background:
+  conic-gradient(from 90deg at 30% 30%, var(--ca) 25%, transparent 0) 0 0 / 22px 22px,
+  conic-gradient(from 0deg at 60% 60%, var(--ca) 25%, transparent 0) 0 0 / 30px 30px, var(--w); }
+.code { text-align: center; font: 800 26px var(--bri); letter-spacing: .08em; }
+.wa { background: #25d366; color: #08331a; }
+.tabbar { position:absolute; left: 0; right: 0; bottom: 0; display:flex; justify-content: space-around; padding: 8px 8px 16px; background: rgba(255,246,224,.97); border-top: 1px solid var(--line); z-index: 6; }
+.tabbar button { border: 0; background: none; font-size: 11.5px; display:flex; flex-direction: column; align-items: center; gap: 2px; color: var(--no); padding: 2px 6px; }
+.tabbar button b { font-size: 18px; width: 46px; height: 28px; line-height: 28px; border-radius: 999px; font-weight: 400; color: var(--ca); }
+.tabbar button.on { color: var(--ca); font-weight: 700; }
+.tabbar button.on b { background: var(--be); }
+.tabbar[hidden] { display:none; }
+.banner { position:absolute; left: 10px; right: 10px; top: -110px; z-index: 30; background: rgba(255,246,224,.98); border-radius: 18px; padding: 12px 14px; box-shadow: 0 10px 30px rgba(46,30,20,.25); display:flex; gap: 10px; align-items: center; transition: top .4s cubic-bezier(.2,.9,.3,1.2); border: 0; text-align: left; width: auto; }
+.banner.on { top: 40px; }
+.banner b { display:block; font-size: 13.5px; } .banner span { font-size: 13.5px; }
+.toast { position:absolute; left: 50%; bottom: 96px; transform: translate(-50%, 20px); background: var(--ca); color: var(--cr); padding: 10px 16px; border-radius: 999px; font-weight: 700; font-size: 14px; opacity: 0; transition: .3s; z-index: 25; white-space: nowrap; pointer-events: none; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+.alertc { background: var(--w); border: 2px solid var(--ca); border-radius: 18px; padding: 14px; }
+.side { margin-top: 18px; display:flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.foot { margin-top: 40px; font-size: 13px; color: var(--no); border-top: 1px solid var(--line); padding-top: 12px; }
+.foot a { color: var(--ca); }
+@media (max-width: 900px) { .stage { grid-template-columns: 1fr; } .phone { width: 320px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+  <svg viewBox="0 0 190 64" width="150" role="img" aria-label="Soly"><circle cx="31" cy="32" r="29" fill="#f6d775"/><rect x="17" y="19" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="31" cy="49" r="4.2" fill="#b7a3e0"/><text x="72" y="45" font-family="Bricolage Grotesque, Arial" font-weight="800" font-size="40" letter-spacing="-1.5" fill="#2e1e14">soly</text></svg>
+  <p>Prototype interactif · tout est cliquable · données fictives</p>
+</div>
+
+<div class="stage">
+  <div>
+    <span class="lab">Chez Jeanne · le Soly au mur</span>
+    <div class="wall">
+      <span class="who">Salon de Jeanne, 81 ans</span>
+      <button class="frame" id="frame" aria-label="Toucher le cadre pour envoyer un Soly">
+        <div class="screen" id="screen">
+          <div class="mosaic" id="mosaic"></div>
+          <div class="fnote" id="fnote"></div>
+          <div class="sun" id="sun"></div>
+          <div class="sunmsg" id="sunmsg"></div>
+        </div>
+        <span class="engr">soly</span>
+        <i class="glow" id="glow"></i>
+      </button>
+      <div class="hint"><button class="pill" id="touchBtn">✋ Toucher le cadre (Jeanne)</button></div>
+    </div>
+  </div>
+
+  <div>
+    <span class="lab">Le téléphone de Léa, sa fille</span>
+    <div class="phone" id="phone">
+      <div class="sb"><span id="clock">9:41</span><span>●●● ▮</span></div>
+      <button class="banner" id="banner"><svg viewBox="0 0 60 60" width="34" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#f6d775"/><rect x="16" y="17" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="30" cy="47" r="4.2" fill="#b7a3e0"/></svg><div><b id="bannerT">Soly · maintenant</b><span id="bannerM">Maman t'a envoyé un Soly ☀</span></div></button>
+      <div class="toast" id="toast"></div>
+
+      <!-- onboarding -->
+      <section class="view on" data-v="welcome">
+        <div class="mini" style="margin-top:6px"><div style="background-image:url(img-da/l3.jpg)"></div></div>
+        <h3 style="font-size:31px">Toute la famille au même mur.</h3>
+        <p class="sub" style="font-size:15px">Envoie tes photos et tes mots doux au Soly de ta mère. Elle n'a rien à faire, juste à toucher le cadre pour te faire signe.</p>
+        <div class="card s" style="text-align:center;font-weight:700">Sans abonnement · sans caméra · sans micro</div>
+        <button class="btn mt" data-go="account">C'est parti</button>
+        <button class="btn g" data-go="home" data-skip>J'ai déjà un compte</button>
+      </section>
+
+      <section class="view" data-v="account">
+        <span class="step">Étape 1 sur 5</span><div class="bar"><i style="width:20%"></i></div>
+        <h3>Ton compte</h3>
+        <label class="k" for="fn">Ton prénom</label><input class="field" id="fn" value="Léa" autocomplete="off">
+        <label class="k" for="em">Ton e-mail</label><input class="field" id="em" placeholder="adresse fictive pour le test" autocomplete="off">
+        <div class="card s" style="font-size:13.5px">Tes photos restent en Europe et ne servent jamais à de la publicité.</div>
+        <button class="btn mt" data-go="scan">Continuer</button>
+      </section>
+
+      <section class="view" data-v="scan">
+        <span class="step">Étape 2 sur 5</span><div class="bar"><i style="width:40%"></i></div>
+        <h3>Relie le Soly</h3>
+        <p class="sub">Allume le cadre chez ta mère : un code apparaît. Scanne-le.</p>
+        <div class="cam" id="cam"><div class="t"></div><div class="scanline"></div><div class="done">✓ Soly de Jeanne relié</div></div>
+        <button class="btn y" id="scanBtn">Scanner le code</button>
+        <button class="btn mt" data-go="parent" id="scanNext" disabled>Continuer</button>
+      </section>
+
+      <section class="view" data-v="parent">
+        <span class="step">Étape 3 sur 5</span><div class="bar"><i style="width:60%"></i></div>
+        <h3>Pour qui est le Soly ?</h3>
+        <label class="k" for="pn">Son prénom</label><input class="field" id="pn" value="Jeanne" autocomplete="off">
+        <label class="k" for="pc">Comment tu l'appelles</label><input class="field" id="pc" value="Maman" autocomplete="off">
+        <label class="k">Sens du cadre</label>
+        <div class="chips" data-chips><button class="chip on">Paysage</button><button class="chip">Portrait</button></div>
+        <button class="btn mt" data-go="alert">Continuer</button>
+      </section>
+
+      <section class="view" data-v="alert">
+        <span class="step">Étape 4 sur 5</span><div class="bar"><i style="width:80%"></i></div>
+        <h3>À décider avec <span class="pName">Jeanne</span></h3>
+        <div class="card y" style="font-size:15px">À lire ensemble : « Si tu ne touches pas le cadre pendant 2 jours, je serai prévenue. »</div>
+        <div class="card row"><div><b><span class="pName">Jeanne</span> est d'accord</b><br><small class="sub">L'option reste désactivée sinon.</small></div><button class="tog" role="switch" aria-checked="false" id="alertTog" aria-label="Activer l'alerte"></button></div>
+        <p class="sub">Modifiable à tout moment, à sa demande.</p>
+        <button class="btn mt" data-go="carousel">Continuer</button>
+      </section>
+
+      <section class="view" data-v="carousel">
+        <span class="step">Étape 5 sur 5</span><div class="bar"><i style="width:100%"></i></div>
+        <h3>Ses premiers souvenirs</h3>
+        <p class="sub">Choisis 3 photos qu'elle aime. Elles défileront toutes les 15 s.</p>
+        <div class="gal" id="startGal"></div>
+        <button class="btn mt" id="startBtn" disabled>Allumer le Soly de <span class="pName">Jeanne</span></button>
+      </section>
+
+      <!-- app -->
+      <section class="view tabbed" data-v="home">
+        <div class="row"><h3>Le Soly de <span class="pName">Jeanne</span></h3><svg viewBox="0 0 60 60" width="34" aria-hidden="true"><circle cx="30" cy="30" r="29" fill="#f6d775"/><rect x="16" y="17" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="30" cy="47" r="4.2" fill="#b7a3e0"/></svg></div>
+        <div class="card sig off" id="sigCard"><i></i><div><b id="sigT">Pas encore de Soly aujourd'hui</b><small id="sigS">Il arrive quand <span class="pName">Jeanne</span> touche le cadre</small></div></div>
+        <button class="card y" style="text-align:left;border:0" id="dayCard"><b>☀ Moment du jour</b> · pas encore arrivé<br><small>Tu seras prévenue à une heure surprise</small></button>
+        <span class="sub">En ce moment au mur</span>
+        <div class="mini"><div id="homeMini"><span id="homeNote" hidden></span></div></div>
+        <button class="btn" data-go="send">＋ Hop, au mur</button>
+        <button class="btn g" id="backSoly">☀ Renvoyer un Soly</button>
+      </section>
+
+      <section class="view tabbed" data-v="send">
+        <h3>Hop, au mur</h3>
+        <p class="sub">Choisis une photo.</p>
+        <div class="gal" id="sendGal"></div>
+        <label class="k" for="note">Un mot doux ? (facultatif)</label>
+        <input class="field" id="note" maxlength="40" placeholder="On pense à toi !" autocomplete="off">
+        <button class="btn" id="sendBtn" disabled>Envoyer chez <span class="pName">Jeanne</span></button>
+        <p class="sub" style="text-align:center">Recadrée automatiquement pour le cadre.</p>
+      </section>
+
+      <section class="view tabbed" data-v="wall">
+        <h3>Au mur</h3>
+        <p class="sub">Ce qui défile chez <span class="pName">Jeanne</span>, de la plus récente à la plus ancienne.</p>
+        <div class="grid3" id="wallGrid"></div>
+        <div class="card s" style="font-size:13.5px">Envoyé par Léa, Hugo et Sophie.</div>
+      </section>
+
+      <section class="view tabbed" data-v="family">
+        <h3>La smala</h3>
+        <p class="sub">Invite frères, sœurs et petits-enfants.</p>
+        <div class="qr" aria-label="QR code fictif"></div>
+        <div class="code">JEA-4827</div>
+        <button class="btn wa" id="waBtn">Partager sur WhatsApp</button>
+        <div class="card"><b>Déjà là</b><br><small class="sub">Léa (toi) · Hugo, 15 ans · Sophie</small></div>
+      </section>
+
+      <section class="view tabbed" data-v="settings">
+        <h3>Réglages</h3>
+        <div class="card">
+          <div class="set row"><div><b>Une photo toutes les</b></div><div class="seg" data-seg="dur"><button>10 s</button><button class="on">15 s</button><button>30 s</button></div></div>
+          <div class="set row"><div><b>Luminosité auto</b><small>Plus douce le soir</small></div><button class="tog" role="switch" aria-checked="true" aria-label="Luminosité auto"></button></div>
+          <div class="set row"><div><b>Mode nuit</b><small>De 22 h à 7 h</small></div><button class="tog" role="switch" aria-checked="true" aria-label="Mode nuit"></button></div>
+          <div class="set row"><div><b>Alerte 2 jours</b><small>Seulement si <span class="pName">Jeanne</span> est d'accord</small></div><button class="tog" role="switch" aria-checked="false" id="alertTog2" aria-label="Alerte 2 jours"></button></div>
+          <div class="set row"><div><b>Lueur au dos (LED)</b><small>Option</small></div><button class="tog" role="switch" aria-checked="false" aria-label="Lueur au dos"></button></div>
+        </div>
+      </section>
+
+      <section class="view" data-v="moment">
+        <span class="step">17:42 · moment du jour</span>
+        <h3>Montre à <span class="pCall">Maman</span> ce que tu fais !</h3>
+        <p class="sub">2 minutes, sur le vif. Toute la famille reçoit la même notification.</p>
+        <div class="cam" id="cam2" style="background-image:url(img-da/c3.jpg);background-size:cover;background-position:center"></div>
+        <button class="btn" id="shootBtn">◉ Prendre le moment</button>
+        <button class="btn g" data-go="home">Plus tard</button>
+      </section>
+
+      <section class="view" data-v="alertRecv">
+        <h3>Pas de Soly depuis 2 jours</h3>
+        <div class="alertc"><b><span class="pName">Jeanne</span> n'a pas touché le cadre depuis samedi 10 h 12.</b><br><small class="sub">C'est peut-être une sortie ou une visite. Un simple appel suffit souvent.</small></div>
+        <button class="btn">Appeler <span class="pName">Jeanne</span></button>
+        <button class="btn g">Prévenir Hugo</button>
+        <button class="btn y mt" data-go="home">Tout va bien</button>
+      </section>
+
+      <nav class="tabbar" id="tabbar" hidden>
+        <button data-tab="home" class="on"><b>⌂</b>Accueil</button>
+        <button data-tab="send"><b>＋</b>Envoyer</button>
+        <button data-tab="wall"><b>▦</b>Au mur</button>
+        <button data-tab="family"><b>☺</b>Smala</button>
+        <button data-tab="settings"><b>⚙</b>Réglages</button>
+      </nav>
+    </div>
+    <div class="side">
+      <button class="pill l" id="simDay">☀ Simuler le moment du jour</button>
+      <button class="pill l" id="sim48">Simuler 2 jours sans Soly</button>
+      <button class="pill l" id="reset">Recommencer</button>
+    </div>
+  </div>
+</div>
+
+<p class="foot">Prototype de démonstration du produit Soly (DA Soleil), à partir de <a href="1-1-maquette-app-v2-soly.html">la maquette V2</a>. Personnages et données fictifs. Photos Unsplash, maquette seulement. Aucune donnée n'est envoyée nulle part : tout se passe dans la page.</p>
+</div>
+
+<script>
+(function () {
+  var PH = ["g5","d4","c3","c4","d2","s4","s5","g1","d3","g3","s1","c1"];
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var url = function (k) { return "url(img-da/" + k + ".jpg)"; };
+  var state = { wall: [], idx: 0, timer: null, lastSoly: null, view: "welcome" };
+  var parentName = function () { return ($("#pn").value || "Jeanne").trim(); };
+  var parentCall = function () { return ($("#pc").value || "Maman").trim(); };
+
+  function syncNames() {
+    $$(".pName").forEach(function (e) { e.textContent = parentName(); });
+    $$(".pCall").forEach(function (e) { e.textContent = parentCall(); });
+  }
+  ["#pn", "#pc"].forEach(function (s) { $(s).addEventListener("input", syncNames); });
+
+  function go(v) {
+    $$(".view").forEach(function (s) { s.classList.toggle("on", s.dataset.v === v); });
+    state.view = v;
+    var tabs = ["home", "send", "wall", "family", "settings"];
+    $("#tabbar").hidden = tabs.indexOf(v) < 0;
+    $$("#tabbar button").forEach(function (b) { b.classList.toggle("on", b.dataset.tab === v); });
+    if (v === "wall") renderWallGrid();
+  }
+  $$("[data-go]").forEach(function (b) { b.addEventListener("click", function () {
+    if (b.hasAttribute("data-skip") && !state.wall.length) startWall(["g5", "d4", "c4"]);
+    go(b.dataset.go);
+  }); });
+  $$("#tabbar button").forEach(function (b) { b.addEventListener("click", function () { go(b.dataset.tab); }); });
+  $$("[data-chips]").forEach(function (g) { g.addEventListener("click", function (e) {
+    if (e.target.classList.contains("chip")) { g.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("on"); }); e.target.classList.add("on"); }
+  }); });
+  $$("[data-seg]").forEach(function (g) { g.addEventListener("click", function (e) {
+    if (e.target.tagName === "BUTTON") { g.querySelectorAll("button").forEach(function (c) { c.classList.remove("on"); }); e.target.classList.add("on"); }
+  }); });
+  $$(".tog").forEach(function (t) { t.addEventListener("click", function () {
+    var v = t.getAttribute("aria-checked") !== "true"; t.setAttribute("aria-checked", v);
+    if (t.id === "alertTog") $("#alertTog2").setAttribute("aria-checked", v);
+    if (t.id === "alertTog2") $("#alertTog").setAttribute("aria-checked", v);
+  }); });
+
+  function toast(m) { var t = $("#toast"); t.textContent = m; t.classList.add("on"); clearTimeout(t._t); t._t = setTimeout(function () { t.classList.remove("on"); }, 2200); }
+  function banner(title, msg) {
+    $("#bannerT").textContent = title; $("#bannerM").textContent = msg;
+    var b = $("#banner"); b.classList.add("on"); clearTimeout(b._t); b._t = setTimeout(function () { b.classList.remove("on"); }, 3600);
+  }
+  $("#banner").addEventListener("click", function () { $("#banner").classList.remove("on"); if ($("#tabbar").hidden === false || state.wall.length) go("home"); });
+
+  // scan
+  $("#scanBtn").addEventListener("click", function () {
+    var c = $("#cam"); setTimeout(function () { c.classList.add("ok"); $("#scanNext").disabled = false; $("#scanBtn").hidden = true; }, 1300);
+    $("#scanBtn").textContent = "Lecture du code…";
+  });
+
+  // galeries
+  function gallery(el, max, onChange) {
+    el.innerHTML = "";
+    PH.slice(0, 9).forEach(function (k) {
+      var b = document.createElement("button"); b.style.backgroundImage = url(k); b.dataset.k = k; b.setAttribute("aria-label", "Photo " + k);
+      b.addEventListener("click", function () {
+        var sel = el.querySelectorAll(".sel");
+        if (b.classList.contains("sel")) b.classList.remove("sel");
+        else { if (sel.length >= max) sel[0].classList.remove("sel"); b.classList.add("sel"); }
+        onChange(Array.prototype.map.call(el.querySelectorAll(".sel"), function (x) { return x.dataset.k; }));
+      });
+      el.appendChild(b);
+    });
+  }
+  var startSel = [];
+  gallery($("#startGal"), 3, function (s) { startSel = s; $("#startBtn").disabled = s.length < 1; $("#startBtn").firstChild.textContent = s.length ? "Allumer le Soly de " : "Allumer le Soly de "; });
+  $("#startBtn").addEventListener("click", function () { startWall(startSel); go("home"); toast("Le Soly est allumé ☀"); });
+  var sendSel = [];
+  gallery($("#sendGal"), 1, function (s) { sendSel = s; $("#sendBtn").disabled = !s.length; });
+
+  // le cadre
+  function startWall(list) {
+    state.wall = list.map(function (k) { return { k: k, note: "" }; });
+    state.idx = 0; buildSlides(); show(0); loop();
+  }
+  function buildSlides() {
+    $$("#screen .slide").forEach(function (s) { s.remove(); });
+    state.wall.forEach(function (w, i) {
+      var d = document.createElement("div"); d.className = "slide"; d.style.backgroundImage = url(w.k); d.dataset.i = i;
+      $("#screen").insertBefore(d, $("#mosaic"));
+    });
+  }
+  function show(i) {
+    if (!state.wall.length) return;
+    state.idx = i % state.wall.length;
+    $$("#screen .slide").forEach(function (s) { s.classList.toggle("on", +s.dataset.i === state.idx); });
+    var w = state.wall[state.idx], n = $("#fnote");
+    if (w.note) { n.innerHTML = ""; n.appendChild(document.createTextNode(w.note)); var sm = document.createElement("small"); sm.textContent = w.from || "Léa"; n.appendChild(sm); n.classList.add("on"); }
+    else n.classList.remove("on");
+    $("#homeMini").style.backgroundImage = url(w.k);
+    var hn = $("#homeNote"); if (w.note) { hn.textContent = w.note; hn.hidden = false; } else hn.hidden = true;
+  }
+  function loop() { clearInterval(state.timer); state.timer = setInterval(function () { if (!$("#mosaic").classList.contains("on")) show(state.idx + 1); }, 6000); }
+  function renderWallGrid() {
+    var g = $("#wallGrid"); g.innerHTML = "";
+    state.wall.forEach(function (w) { var d = document.createElement("div"); d.style.backgroundImage = url(w.k); g.appendChild(d); });
+  }
+
+  $("#sendBtn").addEventListener("click", function () {
+    if (!state.wall.length) startWall([]);
+    state.wall.unshift({ k: sendSel[0], note: $("#note").value.trim(), from: ($("#fn").value || "Léa").trim() });
+    buildSlides(); show(0); loop();
+    $("#note").value = ""; $$("#sendGal .sel").forEach(function (b) { b.classList.remove("sel"); }); $("#sendBtn").disabled = true;
+    go("home"); toast("Au mur chez " + parentName() + " ✓");
+  });
+
+  // le toucher : Jeanne envoie un Soly
+  function touch() {
+    if (!state.wall.length) { toast("Allume d'abord le Soly depuis l'appli"); return; }
+    var g = $("#glow"); g.classList.remove("on"); void g.offsetWidth; g.classList.add("on");
+    setTimeout(function () { g.classList.remove("on"); }, 3800);
+    state.lastSoly = new Date();
+    var c = $("#sigCard"); c.classList.remove("off");
+    $("#sigT").textContent = parentCall() + " t'a envoyé un Soly";
+    $("#sigS").textContent = "À l'instant · elle a vu ta photo";
+    setTimeout(function () { banner("Soly · maintenant", parentCall() + " t'a envoyé un Soly ☀"); }, 900);
+  }
+  $("#frame").addEventListener("click", touch);
+  $("#touchBtn").addEventListener("click", touch);
+
+  // Léa renvoie un Soly
+  $("#backSoly").addEventListener("click", function () {
+    var s = $("#sun"), m = $("#sunmsg");
+    m.textContent = ($("#fn").value || "Léa").trim() + " pense à toi ☀"; m.classList.add("on");
+    s.classList.remove("on"); void s.offsetWidth; s.classList.add("on");
+    setTimeout(function () { m.classList.remove("on"); }, 3000);
+    toast("Soly envoyé à " + parentName());
+  });
+
+  // moment du jour
+  function simDay() {
+    if (!state.wall.length) startWall(["g5", "d4", "c4"]);
+    banner("Soly · moment du jour", "☀ C'est le moment ! Montre à " + parentCall() + " ce que tu fais.");
+    go("moment");
+  }
+  $("#simDay").addEventListener("click", simDay);
+  $("#dayCard").addEventListener("click", simDay);
+  $("#shootBtn").addEventListener("click", function () {
+    var m = $("#mosaic"); m.innerHTML = "";
+    [["c3", "Léa · 17 h 42"], ["g5", "Hugo · 17 h 43"], ["d2", "Sophie · 17 h 45"], ["s5", "Lucas · 17 h 46"]].forEach(function (p) {
+      var d = document.createElement("div"); d.style.backgroundImage = url(p[0]); var s = document.createElement("span"); s.textContent = p[1]; d.appendChild(s); m.appendChild(d);
+    });
+    var b = document.createElement("b"); b.textContent = "Le moment du jour"; m.appendChild(b);
+    m.classList.add("on"); setTimeout(function () { m.classList.remove("on"); }, 9000);
+    go("home"); toast("Ton moment est au mur ✓");
+    var dc = $("#dayCard"); dc.innerHTML = "<b>☀ Moment du jour</b> · 4 photos au mur<br><small>Léa, Hugo, Sophie, Lucas</small>";
+  });
+
+  // alerte
+  $("#sim48").addEventListener("click", function () {
+    if ($("#alertTog2").getAttribute("aria-checked") !== "true") { if (!state.wall.length) startWall(["g5","d4","c4"]); go("settings"); toast("Active d'abord l'alerte 2 jours"); return; }
+    banner("Soly", "Pas de Soly de " + parentCall() + " depuis 2 jours");
+    go("alertRecv");
+  });
+
+  $("#waBtn").addEventListener("click", function () { toast("Lien d'invitation copié (fictif)"); });
+  $("#reset").addEventListener("click", function () { location.reload(); });
+
+  // horloge
+  function tick() { var d = new Date(); $("#clock").textContent = d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0"); }
+  tick(); setInterval(tick, 30000);
+
+  // écran d'attente du cadre avant l'installation
+  (function idle() {
+    var d = document.createElement("div"); d.className = "slide on"; d.style.background = "#fff6e0";
+    d.innerHTML = '<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#2e1e14;font:800 clamp(18px,2.6vw,30px) var(--bri)"><span>Bonjour !</span><span style="font:400 14px var(--atk)">Code pour relier ce Soly</span><span style="letter-spacing:.12em">482 731</span></div>';
+    $("#screen").insertBefore(d, $("#mosaic"));
+  })();
+})();
+</script>
+</body>
+</html>

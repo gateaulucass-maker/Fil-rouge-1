@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T16:55",
+  "mise_a_jour": "2026-10-22T17:03",
   "phases": [
     {
       "id": "P0",
@@ -782,6 +782,14 @@
           "date": "2026-10-22",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-maquette-app-v2-soly.html",
           "note": "Nom retenu par l'équipe : Soly. Les 25 écrans de la V1 habillés : logo, palette Soleil, Bricolage + Atkinson, vraies photos, geste « un Soly », ton tutoyé. V1 conservée."
+        },
+        {
+          "titre": "Prototype interactif Soly (cadre + appli)",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-22",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-soly-prototype-interactif.html",
+          "note": "Cadre au mur cliquable (toucher = lueur + notification) et téléphone cliquable : installation en 5 étapes, accueil, envoi avec mot doux qui s'affiche au mur, Au mur, Smala (QR), réglages, moment du jour en mosaïque, alerte 2 jours. DA Soleil, données fictives."
         }
       ]
     },
