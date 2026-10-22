@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nos 20 hypothèses</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Grille suisse des rendus du dépôt : rail gauche pour le numéro, colonne de contenu à droite, filets noirs, typographie contrastée. Thème clair unique, comme les rendus. */
+:root{--cream:#f4eee1;--paper:#faf6ec;--ink:#111526;--muted:#5d6172;--blue:#1d3bc1;--blue-soft:#dfe3f2;--line:#d3ccba;--sans:"Archivo",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+body{background:var(--cream);color:var(--ink);font:17px/1.55 var(--sans);margin:0}
+main{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:48px 80px}
+header{display:grid;gap:28px;padding-bottom:48px}
+.eyebrow{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-weight:800;font-size:clamp(44px,8.5vw,112px);line-height:.92;letter-spacing:-.035em;margin:0;max-width:11ch;text-wrap:balance}
+.key{border-top:6px solid var(--blue);padding-top:18px;display:grid;gap:10px;max-width:30em}
+.key span{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.key p{margin:0;font-size:clamp(22px,3vw,34px);font-weight:700;line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.toc{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none;font:500 14px var(--mono)}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}.toc a:hover{color:var(--blue);border-color:var(--blue)}
+.method{border-top:2px solid var(--ink);padding-top:14px;display:grid;gap:8px;max-width:68ch}.method span{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.method p{margin:0;font-size:16px}.why dd{font-weight:600;color:var(--blue)}
+.six{border-top:3px solid var(--ink)}.six .kicker{margin:0}.top{margin:0 0 18px;padding:0;list-style:none;display:grid;gap:10px;max-width:72ch}.top li{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:8px;font-size:17px;font-weight:600;line-height:1.4;border-bottom:1px solid var(--line);padding-bottom:10px}.top b{color:var(--blue)}.note{margin:0;font-size:13px;color:var(--muted)}.q.garde .qnum{background:var(--blue);color:#fff;padding:2px 10px;display:inline-block}
+.legend{font:13px var(--mono);color:var(--muted);margin:0}
+.part{border-top:3px solid var(--ink);padding-block:28px 8px;display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:0 32px}
+.part h2{font-size:clamp(30px,4.4vw,54px);font-weight:800;margin:0;line-height:1;letter-spacing:-.025em}
+.part p{margin:0;color:var(--muted);max-width:60ch}
+.q{scroll-margin-top:16px;display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:0 32px;border-top:1px solid var(--line);padding-block:22px 28px}
+.rail{min-width:0}
+.qnum{display:block;font-weight:800;color:var(--blue)}
+.qnum.w{font-size:clamp(34px,4.6vw,56px);line-height:.95;letter-spacing:-.03em}
+.kicker{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:8px 0 0}
+.qbody{min-width:0;display:grid;gap:16px}
+.hyp{margin:0;font-size:clamp(19px,2.2vw,24px);font-weight:700;line-height:1.3;letter-spacing:-.01em;max-width:34em;text-wrap:pretty}
+.hyp b{color:var(--blue)}
+.id{margin:0;border-top:2px solid var(--ink);max-width:72ch}
+.id div{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr);gap:14px;border-bottom:1px solid var(--line);padding-block:10px}
+.id dt{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.id dd{margin:0;font-size:15px;line-height:1.5}
+.b{display:inline-block;font:500 10px var(--mono);border:1px solid;padding:0 4px;margin-right:4px;vertical-align:2px}
+.b.f{color:var(--blue)}.b.h{color:var(--muted)}
+.ref{font:500 12px var(--mono);color:var(--blue);white-space:nowrap}
+.sum{margin:0;font-size:clamp(18px,2.2vw,24px);font-weight:700;line-height:1.3;max-width:34em;padding-left:20px;border-left:6px solid var(--blue)}
+.sources{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:16px 32px;border-top:3px solid var(--ink);padding-top:28px;margin-top:40px}
+.sources h2{font-size:clamp(24px,3vw,32px);font-weight:800;margin:0;letter-spacing:-.02em}
+.sources ul{margin:0;padding:0;list-style:none;columns:2 320px;column-gap:36px;font-size:13px}
+.sources li{break-inside:avoid;margin-bottom:6px}.sources a{color:var(--ink)}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media (max-width:760px){.q,.part,.sources{grid-template-columns:minmax(0,1fr);gap:10px}.id div{grid-template-columns:minmax(0,1fr);gap:2px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">Besoins utilisateurs · Séance 2 · Atelier 1 · PFR Générations Connectées · 22 octobre 2026</div>
+<h1>Nos 20 hypothèses, classées</h1>
+<div class="key"><span>La formule</span><p>Nous pensons que [cible] [comportement] parce que [raison].</p></div>
+<div class="method"><span>Comment on a classé</span><p>Deux questions par hypothèse. <b>Si elle est fausse, qu'est-ce qui tombe ?</b> La problématique ou le modèle économique (tout tombe), une fonction centrale (le produit change de nature), une fonction en option (on l'ajuste), ou un détail (on corrige). <b>Quelle preuve a-t-on ?</b> À dégâts égaux, une hypothèse sans preuve (H) passe devant une hypothèse que la veille appuie (F). La plus risquée est en premier.</p></div>
+<ul class="toc"><li><a href="#six">Les 6 prioritaires</a></li><li><a href="#parent">Le parent</a></li><li><a href="#P1">1. P1</a></li><li><a href="#P5">2. P5</a></li><li><a href="#P2">3. P2</a></li><li><a href="#P4">4. P4</a></li><li><a href="#P10">5. P10</a></li><li><a href="#P6">6. P6</a></li><li><a href="#P7">7. P7</a></li><li><a href="#P8">8. P8</a></li><li><a href="#P3">9. P3</a></li><li><a href="#P9">10. P9</a></li><li><a href="#enfant">L'enfant</a></li><li><a href="#E1">1. E1</a></li><li><a href="#E5">2. E5</a></li><li><a href="#E6">3. E6</a></li><li><a href="#E2">4. E2</a></li><li><a href="#E7">5. E7</a></li><li><a href="#E10">6. E10</a></li><li><a href="#E3">7. E3</a></li><li><a href="#E8">8. E8</a></li><li><a href="#E9">9. E9</a></li><li><a href="#E4">10. E4</a></li><li><a href="#sources">Sources</a></li></ul>
+<p class="legend">F = appuyée par la veille · H = hypothèse de l'équipe · codes = sources en bas de page · brouillon de travail, à retravailler en équipe.</p>
+</header>
+<section class="q six" id="six"><div class="rail"><span class="qnum w">6</span><p class="kicker">Hypothèses prioritaires</p></div><div class="qbody">
+<h3 class="kicker">Le parent</h3><ol class="top"><li><span class="ref">P1</span><span><b>Nous pensons que</b> le parent qui vit seul touche le cadre au moins une fois par jour, sans rappel, pendant des semaines <b>parce que</b> ce geste a pour lui un sens d'affection (« je pense à toi ») qui se suffit à lui-même.</span></li><li><span class="ref">P5</span><span><b>Nous pensons que</b> le parent accepte, à l'installation, que chacun de ses touchers prévienne son enfant, et ne revient pas sur ce choix <b>parce qu'</b>il vit ce signal comme quelque chose qu'il donne, pas comme un compte qu'il rend.</span></li><li><span class="ref">P2</span><span><b>Nous pensons que</b> le parent regarde les photos qui défilent plusieurs fois par jour, en passant, sans chercher de bouton pour revenir en arrière, zoomer ou choisir <b>parce qu'</b>il attend des nouvelles de sa famille sans vouloir manipuler quoi que ce soit, comme avec une gazette papier.</span></li></ol>
+<h3 class="kicker">L'enfant</h3><ol class="top"><li><span class="ref">E1</span><span><b>Nous pensons que</b> l'enfant aidant n'envoie pas à son parent les photos qu'il prend dans la journée, alors qu'il les partage ailleurs (groupe familial, réseaux), <b>parce qu'</b>il n'y pense pas au moment où il prend la photo, et non parce qu'il lui manque un outil pour les envoyer.</span></li><li><span class="ref">E5</span><span><b>Nous pensons que</b> l'enfant aidant paie environ 100 € à l'achat puis un abonnement mensuel, sans attendre d'aide, <b>parce qu'</b>il paie déjà de petits abonnements de lien pour son parent et qu'aucune aide publique ne couvre un parent autonome.</span></li><li><span class="ref">E6</span><span><b>Nous pensons que</b> l'enfant aidant achète un objet de lien pour son parent avant tout incident, souvent pour une occasion, <b>parce que</b> la culpabilité de ne pas donner assez de nouvelles le pousse davantage que la peur d'une chute.</span></li></ol>
+<p class="note">Les 3 plus risquées par cible, proposées. Le détail et le classement complet suivent. À valider avec Lucas et Camille.</p>
+</div></section>
+<div class="part" id="parent"><h2>Le parent</h2><p>La personne âgée qui vit seule chez elle, autonome, souvent 75 ans et plus. Elle ne paie pas, elle vit avec l'objet. Classées de la plus risquée à la moins risquée.</p></div>
+<section class="q garde" id="P1">
+<div class="rail"><span class="qnum w">1</span><p class="kicker">P1 · Le toucher devient quotidien</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> le parent qui vit seul touche le cadre au moins une fois par jour, sans rappel, pendant des semaines <b>parce que</b> ce geste a pour lui un sens d'affection (« je pense à toi ») qui se suffit à lui-même.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">VD 04</span> : les Friendship Lamps et le bouton « 1 bit » montrent qu'un seul geste devient un rituel (au réveil, au coucher), mais chez des couples et des familles, jamais chez des seniors seuls ; pour le parent âgé, c'est H.</dd></div>
+<div><dt>Si c'est faux</dt><dd>le « je suis là » ne remonte presque jamais chez l'enfant, et l'alerte des 48 h se déclenche sur de simples oublis.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Tout repose dessus : sans toucher quotidien, ni « je suis là », ni alerte des 48 h. Et aucune preuve chez un senior seul.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q garde" id="P5">
+<div class="rail"><span class="qnum w">2</span><p class="kicker">P5 · Accepter qu&#x27;on sache qu&#x27;il est là</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> le parent accepte, à l'installation, que chacun de ses touchers prévienne son enfant, et ne revient pas sur ce choix <b>parce qu'</b>il vit ce signal comme quelque chose qu'il donne, pas comme un compte qu'il rend.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">VD 04</span> : chez les seniors, donner du soutien est associé à une meilleure santé, recevoir non (Brown) ; mais avec les bracelets Hey, « répondre devient vite une obligation » ; <span class="ref">IP « Résumé quotidien »</span> : l'équipe a écarté « Maman a vu tes photos » comme du contrôle.</dd></div>
+<div><dt>Si c'est faux</dt><dd>la notification « Maman est là » <span class="ref">MA parcours 3</span>, seul retour quotidien qui rassure l'enfant, disparaît ou devient une source de gêne pour le parent.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si le parent vit le signal comme un contrôle, il refuse l&#x27;objet ou coupe le toucher : le lien devient surveillance. Aucune preuve.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q garde" id="P2">
+<div class="rail"><span class="qnum w">3</span><p class="kicker">P2 · Regarder sans rien manipuler</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> le parent regarde les photos qui défilent plusieurs fois par jour, en passant, sans chercher de bouton pour revenir en arrière, zoomer ou choisir <b>parce qu'</b>il attend des nouvelles de sa famille sans vouloir manipuler quoi que ce soit, comme avec une gazette papier.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">MR 18, 19</span> <span class="ref">FV 100</span> : la gazette Famileo est « attendue avec impatience » par des grands-parents qui ne manipulent rien ; <span class="ref">AW F</span> : Famileo marche parce que le senior n'a rien à faire ; <span class="ref">RF Ardoiz</span> : la tablette à apprendre a décliné (cause supposée, H).</dd></div>
+<div><dt>Si c'est faux</dt><dd>le principe « rien à installer, rien à apprendre, aucune appli parent » <span class="ref">VR 01</span> ne tient plus : il faudrait des commandes sur le cadre, donc un écran à apprendre.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>C&#x27;est le principe « rien à apprendre ». La veille l&#x27;appuie fort (Famileo), donc moins risquée que P1 et P5 malgré son poids.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P4">
+<div class="rail"><span class="qnum w">4</span><p class="kicker">P4 · Un écran branché au mur</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> le parent laisse l'enfant fixer au mur de sa pièce de vie un écran relié à une prise, et ne le décroche ni ne le débranche dans les semaines qui suivent <b>parce que</b> la lumière, le fil et la place prise ne le gênent pas assez pour qu'il y touche.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">VD 03</span> : le câble est « le point faible de tous les cadres sur secteur » et plus de la moitié des 80 ans et plus ont ou ont eu une cataracte (éblouissement) ; <span class="ref">VD 04</span> : un test de bouilloire connectée relève la crainte d'être réveillé la nuit. L'acceptation par le parent est H.</dd></div>
+<div><dt>Si c'est faux</dt><dd>un cadre débranché ne montre plus rien et n'envoie plus de toucher ; la pose au mur sans perçage <span class="ref">CR 03</span> ne sert à rien si le parent refuse l'emplacement.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Un cadre débranché ou décroché ne fait plus rien. Gêne réelle possible (fil, lumière la nuit), acceptation non prouvée.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P10">
+<div class="rail"><span class="qnum w">5</span><p class="kicker">P10 · Rester fidèle sans nouveauté</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> le parent continue de regarder et de toucher le cadre même quand aucune nouvelle photo n'arrive pendant une semaine <b>parce que</b> les photos déjà reçues de sa famille lui font encore plaisir.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 77</span> : un tiers des utilisateurs d'objets connectés les abandonnent en six mois (grand public, 2014) ; <span class="ref">CR 04</span> : sans envoi depuis 10 jours, le carrousel continue avec les anciennes photos ; <span class="ref">IP raison 5</span> : « un cadre vivant est un cadre utilisé ». La réaction du parent à un cadre qui ne change plus est H.</dd></div>
+<div><dt>Si c'est faux</dt><dd>tout le Cadre dépend de la régularité des envois de la famille ; une semaine creuse suffit à faire décrocher le parent, puis à arrêter le toucher.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si une semaine sans photo fait décrocher le parent, tout dépend de la régularité de la famille, que l&#x27;on ne maîtrise pas.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P6">
+<div class="rail"><span class="qnum w">6</span><p class="kicker">P6 · Activer soi-même les 48 h</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> le parent, quand on lui lit la phrase à l'installation, accepte l'alerte des 48 h et la laisse active <b>parce qu'</b>il craint davantage de rester seul au sol sans que personne le sache que d'être surveillé.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AV 02</span> : une nuit passée au sol faute d'alerte ; <span class="ref">VD 06</span> : l'alarme peut « limiter plutôt que libérer » (Bostrom, 45 personnes) et l'appli « Are You Dead? » a été retirée après des critiques ; <span class="ref">MR 13</span> : 87 % voient la téléassistance comme un marqueur de dépendance (2016, source faible). Le choix du parent face à notre phrase est H.</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'alerte, seule part de réassurance « sécurité » du Cadre <span class="ref">VR 04</span>, reste éteinte chez la plupart des parents et l'enfant n'a plus que le lien.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Importante pour la promesse de réassurance, mais l&#x27;alerte est en option : le produit survit sans elle, comme cadre de lien.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P7">
+<div class="rail"><span class="qnum w">7</span><p class="kicker">P7 · Prévenir de ses absences</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> le parent ne quitte pas son domicile plus de deux jours sans que son enfant le sache déjà <b>parce que</b> ses séjours hors de chez lui (hôpital, famille, vacances) passent presque toujours par ses proches.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b h">H</span> . Seul appui indirect : <span class="ref">VD 06</span> : des services comparables (Snug) prévoient un mode vacances, signe que les absences créent des alertes ; <span class="ref">MR 36</span> <span class="ref">AV 10</span> : les fausses alertes font perdre la confiance et jeter l'objet.</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'alerte des 48 h part chaque fois que le parent s'absente, l'enfant apprend à l'ignorer, et elle ne sert plus le jour où elle compte.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si c&#x27;est faux, l&#x27;alerte part pour rien et on la coupe. Grave pour l&#x27;alerte, pas pour le cadre lui-même.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P8">
+<div class="rail"><span class="qnum w">8</span><p class="kicker">P8 · Un objet de famille qu&#x27;on montre</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> le parent garde le cadre dans la pièce où il reçoit et le montre à ses visiteurs <b>parce qu'</b>un cadre en bois, fait si possible d'un objet de la famille, ne le désigne pas comme quelqu'un de dépendant.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 82</span> : une grand-mère montre « fièrement à ses voisines » son journal mensuel ; <span class="ref">AV 04</span> : « Personne n'aimerait avoir ça au poignet » ; <span class="ref">VD 08</span> : Graham Pullin, l'objet ne doit pas ressembler à un appareil pour personnes âgées. Le poids de la récup pour le parent <span class="ref">CR 03</span> <span class="ref">BR 02</span> est H.</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'idée « un cadeau, pas un appareil de senior » <span class="ref">IP raison 3</span> et la récup comme marque <span class="ref">CR 01</span> ne pèsent rien côté parent ; un cadre caché dans la chambre est moins vu et moins touché.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Touche la marque et la place du cadre dans la maison, pas son fonctionnement.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P3">
+<div class="rail"><span class="qnum w">9</span><p class="kicker">P3 · Répondre par le téléphone</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> le parent se contente du toucher comme seule réponse sur le cadre et ne réclame ni d'écrire, ni d'appeler, ni d'enregistrer sa voix depuis l'objet <b>parce que</b> son vrai canal de réponse à la famille reste le téléphone qu'il a déjà.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 86</span> : une grand-mère appelle chaque mois pour remercier après la gazette ; <span class="ref">AV 03</span> : une mère de 91 ans tombée se traîne jusqu'au téléphone pour appeler sa fille. Que le parent ne demande rien de plus sur le cadre, c'est H.</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'écart de l'appel, de la vidéo et de la voix <span class="ref">VR 03</span> est remis en cause, et avec lui l'argument « sans micro ni caméra, il ne peut rien surveiller » <span class="ref">VD 08</span>.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si le parent réclame de répondre depuis le cadre, on ajoute des fonctions : le produit change, il ne tombe pas.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P9">
+<div class="rail"><span class="qnum w">10</span><p class="kicker">P9 · Lire les petits mots de loin</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> le parent lit les petits mots affichés sur les photos depuis son fauteuil, sans se lever ni aller chercher ses lunettes, avant qu'ils disparaissent <b>parce que</b> le texte en grand avec le prénom de l'expéditeur suffit à sa vue.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">VD 03</span> : cataracte fréquente après 80 ans, lettres d'au moins 2 cm pour 2 m ; <span class="ref">VD 05</span> : un texte qui disparaît seul n'est pas fiable pour une personne âgée (règle WCAG) ; <span class="ref">VD 07</span> : plus de 65 % des plus de 65 ans entendent mal. Que la taille prévue suffise est H.</dd></div>
+<div><dt>Si c'est faux</dt><dd>les petits mots et le prénom de l'expéditeur <span class="ref">CR 04</span>, ce qui rend une photo personnelle, ne passent pas ; il ne reste qu'un diaporama.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si le texte est trop petit, on le corrige par le design. Faible risque.</dd></div>
+</dl>
+</div>
+</section>
+<div class="part" id="enfant"><h2>L'enfant</h2><p>L'aidant, 50 à 65 ans, souvent à distance. Il paie, décide, installe, et envoie les contenus. Classées de la plus risquée à la moins risquée.</p></div>
+<section class="q garde" id="E1">
+<div class="rail"><span class="qnum w">1</span><p class="kicker">E1 · L&#x27;oubli plutôt que l&#x27;outil</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant n'envoie pas à son parent les photos qu'il prend dans la journée, alors qu'il les partage ailleurs (groupe familial, réseaux), <b>parce qu'</b>il n'y pense pas au moment où il prend la photo, et non parce qu'il lui manque un outil pour les envoyer.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">CR 02</span> la problématique pose l'oubli comme cause et demande de le vérifier, <span class="ref">RF Famileo</span> l'idée de Famileo naît d'une grand-mère exclue des échanges WhatsApp de la famille, <span class="ref">FV 83</span> « elles manquent des moments importants de la famille ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>la problématique d'équipe tombe ; le moment du jour (rappel quotidien) ne règle rien si le vrai blocage est l'outil, le temps ou l'envie.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>C&#x27;est la problématique elle-même. Si l&#x27;enfant n&#x27;envoie pas pour une autre raison que l&#x27;oubli, le moment du jour ne règle rien.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q garde" id="E5">
+<div class="rail"><span class="qnum w">2</span><p class="kicker">E5 · Payer environ 100 € et un abonnement</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant paie environ 100 € à l'achat puis un abonnement mensuel, sans attendre d'aide, <b>parce qu'</b>il paie déjà de petits abonnements de lien pour son parent et qu'aucune aide publique ne couvre un parent autonome.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">MR Q1 persona payeur</span> abonnements de lien de 5,99 à 17,99 € par mois, <span class="ref">MR Q1 payeur</span> pas d'aide directe pour un parent autonome, <span class="ref">RF leçon 2</span> l'abonnement avec service marche ; mais <span class="ref">AV 18</span> un abonnement non annoncé est vécu comme « du vol », et l'équipe n'est pas alignée : <span class="ref">CR 03</span> environ 100 € avec abonnement, <span class="ref">MA écran 1</span> « sans abonnement ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>le modèle économique tombe ; ni l'achat seul ni l'abonnement seul ne sont testés, et l'album de l'année inclus dans l'abonnement <span class="ref">CR 08</span> perd son support.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Le modèle économique. Sans accord sur 100 € plus un abonnement, pas d&#x27;entreprise. L&#x27;équipe elle-même n&#x27;est pas alignée.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q garde" id="E6">
+<div class="rail"><span class="qnum w">3</span><p class="kicker">E6 · Acheter par culpabilité, avant l&#x27;incident</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant achète un objet de lien pour son parent avant tout incident, souvent pour une occasion, <b>parce que</b> la culpabilité de ne pas donner assez de nouvelles le pousse davantage que la peur d'une chute.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AW F</span> chez Famileo « le payeur est celui qui culpabilise », <span class="ref">MR Q1 persona payeur</span> culpabilité et épuisement ; mais <span class="ref">MR Q1 décideur</span> 61 % des achats de téléassistance suivent une chute (2016, source peu fiable) : le déclencheur connu est l'incident, pas la culpabilité.</dd></div>
+<div><dt>Si c'est faux</dt><dd>les ventes n'arrivent qu'après une chute, au moment où l'enfant cherche de la sécurité et non un cadre photo ; le positionnement « cadeau de lien » <span class="ref">IP raison 3</span> ne déclenche rien.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si l&#x27;achat ne vient qu&#x27;après une chute, personne n&#x27;achète un cadre de lien : le positionnement « cadeau » ne déclenche rien.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E2">
+<div class="rail"><span class="qnum w">4</span><p class="kicker">E2 · Répondre au moment du jour</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant prend et envoie une photo dans les minutes qui suivent la notification quotidienne, la plupart des jours, <b>parce qu'</b>une demande courte et ponctuelle lève l'oubli sans ajouter de tâche à une charge mentale déjà lourde.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 62</span> un utilisateur de Famileo réclame des notifications « pour ne pas oublier l'échéance » ; à l'inverse <span class="ref">FV 72</span> l'appli devenue « une corvée » et <span class="ref">FV 53</span> l'aidant épuisé par les sollicitations montrent la limite ; le délai de 2 minutes est H <span class="ref">MA écran 17</span>.</dd></div>
+<div><dt>Si c'est faux</dt><dd>le cadre ne reçoit presque rien de neuf, le moment du jour (cœur de l'appli, <span class="ref">CR 05</span>) devient une notification de plus, coupée.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Le cœur de l&#x27;appli. Sans réponse au moment du jour, le cadre se vide et le parent décroche (voir P10).</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E7">
+<div class="rail"><span class="qnum w">5</span><p class="kicker">E7 · Confiance sans caméra</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant se contente d'un objet sans caméra ni micro pour savoir que son parent va bien, et ne demande pas à voir la pièce, <b>parce qu'</b>il ne veut pas que son parent se sente surveillé et risque de refuser l'objet.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">MR Q5</span> 87 % voient la téléassistance comme un marqueur de dépendance (2016), <span class="ref">AW F</span> Famileo marche parce que le senior « ne se sent pas surveillé » ; mais <span class="ref">FV 87</span> un parent se dit « rassuré de savoir où se trouve [sa] fille à chaque instant » : le besoin de voir existe ailleurs.</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'enfant réclamera une caméra ou un capteur, le cadre bascule dans la surveillance écartée <span class="ref">VR 03</span>, et la promesse « lien, jamais surveillance » <span class="ref">CR 01</span> ne tient plus.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si l&#x27;enfant réclame une caméra, on bascule dans la surveillance qu&#x27;on a écartée : le produit change de nature.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E10">
+<div class="rail"><span class="qnum w">6</span><p class="kicker">E10 · Arrêter quand le cadre se vide</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant résilie quand plus personne n'envoie et que le cadre tourne sur de vieilles photos, plutôt qu'à cause du prix, <b>parce qu'</b>il paie pour voir son parent recevoir des nouvelles, et que le prix devient visible seulement quand ce retour disparaît.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 85</span> « je pensais arrêter au bout d'un an, mais ils ont réclamé la gazette », <span class="ref">FV 86</span> la grand-mère qui appelle chaque mois pour remercier, <span class="ref">FV 72</span> corvée puis « on passera à la concurrence » ; <span class="ref">RF Famileo</span> le taux de résiliation n'est pas prouvé.</dd></div>
+<div><dt>Si c'est faux</dt><dd>si le prix fait arrêter, l'abonnement est le mauvais modèle ; si c'est la corvée, c'est l'appli qu'il faut alléger ; le choix « rien reçu depuis 10 jours, le carrousel continue » <span class="ref">CR 04</span> peut masquer la panne de lien.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Dit pourquoi on perd un client. Si c&#x27;est le prix, l&#x27;abonnement est le mauvais modèle ; si c&#x27;est la corvée, c&#x27;est l&#x27;appli.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E3">
+<div class="rail"><span class="qnum w">7</span><p class="kicker">E3 · « Je suis là » sans rappeler</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant garde activée la notification « Maman est là » et ne rappelle pas son parent quand il la reçoit, <b>parce qu'</b>il cherche une preuve de présence légère qui lui évite d'appeler tous les jours, pas une conversation de plus.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b h">H</span> <span class="ref">MR Q1 persona payeur</span> « garder le lien sans appeler tous les jours » est une hypothèse d'équipe ; seul repère F indirect : <span class="ref">VD Friendship Lamps</span> un toucher qui allume la lampe de l'autre, usage en rituel ; décision produit <span class="ref">VR 04</span> « elle informe, elle n'appelle pas de réponse ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>le seul geste du parent perd son sens côté enfant ; soit la notification est coupée, soit elle crée l'inquiétude les jours où elle tarde, et le lien devient un pointage.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si la notification crée de l&#x27;inquiétude ou est coupée, le toucher perd son sens côté enfant. Grave, mais réparable par le réglage.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E8">
+<div class="rail"><span class="qnum w">8</span><p class="kicker">E8 · Entraîner fratrie et petits-enfants</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant invite ses frères et sœurs et les petits-enfants dans la semaine qui suit l'installation, et qu'ils envoient eux aussi, <b>parce que</b> la famille se parle déjà sur un groupe de messagerie et qu'il ne veut pas porter seul la vie du cadre.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 90</span> « le partage de la rédaction est top », <span class="ref">FV 83</span> un petit-enfant contributeur, <span class="ref">RF Famileo</span> coût partageable par cagnotte ; mais <span class="ref">MR Q1 persona payeur</span> 39 % des aidants pivots sont seuls à aider dans leur fratrie ; le parcours d'invitation est H <span class="ref">MA écrans 21 à 25</span>.</dd></div>
+<div><dt>Si c'est faux</dt><dd>le cadre ne vit que par un seul expéditeur, le carrousel se répète, et le moment du jour « en même temps pour toute la famille » <span class="ref">MA écran 17</span> n'a plus d'intérêt.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Un cadre nourri par une seule personne vit moins bien, mais il vit.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E9">
+<div class="rail"><span class="qnum w">9</span><p class="kicker">E9 · Installer seul chez le parent</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant installe lui-même le cadre lors d'une seule visite (réseau, code, fixation au mur, accord sur l'alerte lu avec son parent), <b>parce qu'</b>il voit son parent assez souvent et accepte de faire le technicien une fois, pas chaque semaine.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AV 20</span> l'aidant « devient le technicien », <span class="ref">AV 04</span> et <span class="ref">AV 11</span> mise en route jugée « un cauchemar », <span class="ref">FV 37</span> la mise en service d'un bracelet demande « une à deux semaines de présence d'un proche », <span class="ref">AV 17</span> la maison change tout ; <span class="ref">VD fixation</span> conseille tasseau ou vis, pas d'adhésif seul, contre l'adhésif retenu <span class="ref">BR 02</span>.</dd></div>
+<div><dt>Si c'est faux</dt><dd>il faut un installateur ou une visite de plus, l'achat à distance tombe, et le cadre décroché ou déconnecté déclenche de fausses alertes à 48 h.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si l&#x27;enfant ne peut pas installer seul, on ajoute un service ou une visite : un coût, pas une chute du produit.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E4">
+<div class="rail"><span class="qnum w">10</span><p class="kicker">E4 · Alerte rare plutôt que suivi</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant accepte de n'être prévenu qu'après 48 h sans toucher, et ne demande pas de suivi heure par heure, <b>parce qu'</b>il préfère une alerte rare et fiable à des alertes fréquentes qui se révèlent fausses.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AV 10</span> « elle sonne toute seule… poubelle », <span class="ref">FV 37</span> les fausses alertes « lassent l'entourage », <span class="ref">MR Q5</span> 5 à 15 % de fausses alertes ; mais <span class="ref">AV 02</span> une nuit au sol et <span class="ref">AV 16</span> « le moindre choc déclenche l'alarme » rassurent d'autres aidants : le signal est partagé.</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'option alerte ne rassure pas ; il faudrait des capteurs ou un délai court, ce que le cadre sans caméra ni capteur ne sait pas faire <span class="ref">VR 04</span>.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>L&#x27;alerte est en option et le délai se règle. Si l&#x27;enfant veut plus court, on ajuste.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" style="border-top:3px solid var(--ink);margin-top:24px"><div class="rail"><span class="qnum w">Suite</span></div><div class="qbody"><p class="sum">Étape 3 : garder les 3 plus risquées par cible (les rangs 1 à 3 ci-dessus, à valider en équipe), puis écrire l'objectif de recherche en une phrase.</p></div></section>
+<div class="sources" id="sources"><h2>Sources du dépôt</h2><ul><li><span class="ref">VF</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/1-1-fiche-veille-finale.html">Fiche de veille finale</a></li><li><span class="ref">MQ</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/2-1-analyse-marche-questions-1-5.html">Analyse du marché, questions 1 à 5</a></li><li><span class="ref">MR</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/2-1-fiche-marche-redigee.html">Fiche marché rédigée</a></li><li><span class="ref">AW</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/1-1-apple-watch-vs-famileo.html">Apple Watch / Famileo</a></li><li><span class="ref">Q1</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/2-1-question-1-acteurs.html">Qui utilise, qui paie, qui influence</a></li><li><span class="ref">RF</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/interne/lucas/1-1-reussites-faillites-silvertech.html">Réussites et faillites silver tech (Lucas)</a></li><li><span class="ref">FV</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/interne/commun/veille-silvertech/rapports/fiche-veille.md">Éléments de veille validés</a></li><li><span class="ref">AV</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/02-besoins/interne/camille/2-1-avis-bracelet-chute.html">20 avis clients, bracelet détecteur de chute (Camille)</a></li><li><span class="ref">CR</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-global-projet.html">Compte rendu global du projet, 16 octobre (Camille)</a></li><li><span class="ref">VR</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-le-cadre-version-retenue.html">Le Cadre, version retenue, 15 octobre (Clément)</a></li><li><span class="ref">BR</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-brainstorm-cadre.html">Compte rendu du brainstorm (Camille)</a></li><li><span class="ref">VD</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-design-le-cadre.html">Veille design d&#x27;objet (Lucas)</a></li><li><span class="ref">MA</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-maquette-app-v1.html">Maquette de l&#x27;appli famille V1 (Lucas)</a></li><li><span class="ref">IP</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/interne/clement/idee-produit-le-cadre.html">Fiche produit longue, Le Cadre (Clément)</a></li></ul></div>
+</main>
+
+</body>
+</html>

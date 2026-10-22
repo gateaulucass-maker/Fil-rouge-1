@@ -24,6 +24,10 @@ Les fichiers d'une leçon portent son numéro en préfixe : `2-1-question-1-acte
 
 - [20 avis clients sur le bracelet détecteur de chute](S1-2026-2027/02-besoins/interne/camille/2-1-avis-bracelet-chute.html) (HTML, brouillon de Camille) — avis Trustpilot et Amazon.fr notés par critère comportemental, intérêt et émotion, verbatim marquant par carte, et hypothèse à vérifier en entretien.
 
+#### Séance 2 · Hypothèses et objectif de recherche
+
+- [Nos 20 hypothèses, classées](S1-2026-2027/02-besoins/interne/clement/2-2-hypotheses-classees.html) (HTML, brouillon de Clément) — 10 hypothèses sur le parent, 10 sur l'enfant, formule « Nous pensons que … parce que … », classées de la plus risquée à la moins risquée, avec les 6 prioritaires proposées. À valider en équipe.
+
 ### Bloc 01 · Veille
 
 #### Leçon 1.1 · Veille
