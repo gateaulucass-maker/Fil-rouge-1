@@ -279,6 +279,35 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 </div>
 </section>
 
+<section id="protocole">
+<div class="grid">
+<div class="k">Le protocole des tests</div>
+<div>
+<h2>Ce qu’on rejoue sur chaque stack, usage par usage</h2>
+<p>Règles du cours : pas de produit complet, des essais courts, avec le même fonctionnement dans chaque stack. Le résultat attendu s’écrit avant de commencer. Chaque test a un cas invalide. Les données sont fictives. Une capture ou une courte vidéo garde la preuve. Une simulation reste une simulation : si un accès bloque l’essai, on le note, avec l’obstacle et le prochain essai. Un écran dessiné ne prouve pas que l’application reçoit, enregistre puis affiche un événement.</p>
+<div class="tablewrap"><table class="usages">
+<thead><tr><th>Usage</th><th>Ce qu’on teste</th><th>Test à jouer</th><th>Résultat attendu</th><th>Cas invalide</th><th>Preuve</th></tr></thead>
+<tbody>
+<tr><td>1 · Site vitrine et achat</td><td>La stack sait-elle porter un site vitrine qui vend le cadre et l’appli, avec une commande gardée et retrouvée ?</td><td>Un visiteur fictif lit la présentation, choisit le format, saisit un prénom de parent et une adresse fictifs, valide.</td><td>La commande est enregistrée, un récapitulatif s’affiche, on la retrouve dans la base. Pas de vrai paiement : simulé, et on le dit.</td><td>Commande sans adresse ou sans e-mail : refusée avec un message clair, rien d’enregistré.</td><td>Capture de la page et de la ligne dans la base.</td></tr>
+<tr><td>2 · Écran du cadre</td><td>La stack sait-elle afficher photos, vidéos et messages en plein écran, dans les deux sens, et prendre en compte le toucher ?</td><td>L’enfant envoie une photo, une vidéo, un message. On les regarde sur l’écran du cadre en portrait puis en paysage. Le parent fictif touche l’écran.</td><td>Chaque contenu apparaît bien dimensionné dans les deux sens. Le toucher fait apparaître un petit signe de confirmation.</td><td>Fichier trop lourd ou format non pris en charge : refusé côté enfant avec un message simple, le cadre garde le contenu précédent.</td><td>Photo de l’écran dans les deux sens, courte vidéo du toucher. Tant que la tablette n’a pas son système, dans un navigateur sur un autre appareil.</td></tr>
+<tr><td>3 · Vue de l’aidant, la chaîne cœur</td><td>Le test commun du cours : un événement part du cadre, est reçu, enregistré, puis montré à l’aidant.</td><td>Le parent touche le cadre ; le message JSON part vers la fonction ; l’heure du dernier toucher est gardée ; l’appli de l’aidant reçoit la notification. On chronomètre.</td><td>L’aidant reçoit « votre parent est là » en quelques secondes, et le dernier toucher s’affiche dans son appli.</td><td>Toucher sans identifiant de cadre ou sans heure : rejeté, sans fausse notification. Le même événement envoyé deux fois ne crée qu’une seule notification.</td><td>Courte vidéo de bout en bout, temps mesuré, capture de la base.</td></tr>
+<tr><td>4 · Alertes</td><td>La stack sait-elle déclencher une règle dans le temps, une seule fois, et seulement si le parent l’a acceptée ?</td><td>Délai réglé à quelques minutes. Deux familles fictives : l’une a accepté l’alerte, l’autre non. Plus aucun toucher n’arrive.</td><td>Les aidants de la première famille reçoivent une alerte, une seule. Ceux de la seconde, aucune. Un nouveau toucher remet le compteur à zéro.</td><td>L’automatisation plante en cours de route : une alerte part-elle au redémarrage, et pas en double ?</td><td>Capture de l’alerte reçue et de la règle, avec les heures.</td></tr>
+</tbody></table></div>
+<p>Le message fictif que le cadre envoie, et que la fonction doit accepter, refuser ou dédoublonner :</p>
+<pre style="margin:0 0 14px;padding:12px 14px;background:var(--soft);border-left:3px solid var(--blue);font:13.5px/1.5 var(--mono);white-space:pre-wrap">{"cadre_id": "cadre-demo-01", "type": "toucher", "horodatage": "2026-10-20T08:12:00+02:00"}</pre>
+<h3>Les données fictives à préparer avant</h3>
+<ul>
+<li>2 familles fictives : un parent, un ou deux aidants, l’accord pour l’alerte (oui pour l’une, non pour l’autre).</li>
+<li>Contenus : 10 photos libres de droits (5 en portrait, 5 en paysage), 2 vidéos courtes, 5 messages.</li>
+<li>Touchers : une liste avec l’heure, dont une famille sans toucher depuis plus de 48 heures, et un événement envoyé deux fois.</li>
+<li>Commandes : une complète, une sans adresse, une sans e-mail.</li>
+<li>Fichiers à tester : une vidéo très lourde et un format non pris en charge.</li>
+</ul>
+<p>Pour chaque usage et chaque stack, on garde le résultat, la limite et la prochaine étape, avec l’un des trois statuts. Le toucher sur les stacks A et D d’abord ; si A passe, D n’a pas besoin des quatre.</p>
+</div>
+</div>
+</section>
+
 <section>
 <div class="grid">
 <div class="k">Et après</div>
@@ -290,7 +319,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <div class="step"><span class="k">Après chaque test</span><p>La note passe en « testé », la capture va dans <code>captures-ia/</code> à côté de cette page, et son lien s’affiche sous le statut dans le détail. Si le code en React et Next.js échoue sur un usage ou prend beaucoup trop de temps, D passe devant : c’est le plan B.</p></div>
 <div class="step"><span class="k">6 novembre · rendu</span><p>La version avec les tests part dans <code>rendus/</code> pour le PDF de groupe.</p></div>
 </div>
-<p style="margin-top:14px">Pages liées : <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html">les 4 usages à tester</a> (le protocole), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-architecture-donnees-cadre.html">architecture et données</a> (Camille), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html">plan de la démo</a> (Lucas).</p>
+<p style="margin-top:14px">Pages liées : <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-architecture-donnees-cadre.html">architecture et données</a> (Camille), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html">plan de la démo</a> (Lucas).</p>
 </div>
 </div>
 </section>
@@ -357,8 +386,8 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     ghaDispatch:{t:"GitHub Actions : événements qui déclenchent un workflow (repository_dispatch)",u:"https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows"},
     process:{t:"Notre process de veille (Neon à Francfort, GitHub Actions le jeudi)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/1-1-process-veille.html"},
     makePrix:{t:"Make : prix et plan gratuit",u:"https://www.make.com/en/pricing"},
-    bench:{t:"Notre lecture du 16 octobre (benchmark, fusionné dans cette page le 22)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html"},
-    usages:{t:"Les 4 usages à tester (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html"},
+    bench:{t:"Notre lecture du 16 octobre (benchmark et 4 usages, fusionnés dans cette page le 22)",u:"#protocole"},
+    usages:{t:"Le protocole des tests, dans cette page",u:"#protocole"},
     demo:{t:"Plan de la démo du cadre (Lucas, 15 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html"}
   };
 
@@ -588,7 +617,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
   function proof(n){return n.preuve ? '<small><a href="'+esc(n.preuve)+'" target="_blank" rel="noopener">voir la preuve</a></small>' : ''}
   function esc(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
   function dots(v){var h='<span class="dots" aria-hidden="true">';for(var i=1;i<=5;i++)h+='<i class="'+(i<=v?'on':'')+'"></i>';return h+'</span>'}
-  function srcLinks(ids){return ids.map(function(i){var s=SRC[i];return '<a href="'+s.u+'" target="_blank" rel="noopener">'+esc(s.t)+'</a>'}).join(" · ")}
+  function srcLinks(ids){return ids.map(function(i){var s=SRC[i];var ext=s.u.charAt(0)!=="#";return '<a href="'+s.u+'"'+(ext?' target="_blank" rel="noopener"':'')+'>'+esc(s.t)+'</a>'}).join(" · ")}
 
   var current="total", open=null;
 

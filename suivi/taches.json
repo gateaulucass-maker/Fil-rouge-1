@@ -719,7 +719,7 @@
           "statut": "a_faire",
           "qui": "Camille",
           "date": "2026-10-22",
-          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-classement-stacks.html#protocole",
           "note": "Exigée par le sujet (« test de faisabilité de la chaîne cœur, preuve rapide »). Un simulateur envoie le toucher en JSON, une fonction Edge Supabase l'enregistre, l'aidant reçoit la notification ; avec le message invalide et le doublon. Vidéo de 30 s, temps mesuré, capture de la table. Préalable : compte Supabase, projet en région Francfort. Code préparé avec Claude Code. Cible 29/10."
         },
         {

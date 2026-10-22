@@ -187,6 +187,36 @@ Format du cadre : {{format}}</pre></div>
 <p>Second cas invalide : la photo sans personne. Attendu : un cadrage quand même, sans inventer de personne.</p>
 <p>Preuve : pour trois photos, la photo d'origine et la photo recadrée côte à côte ; la réponse JSON de chaque outil pour les 10.</p>
 </div></div></section>
+<section>
+<div class="grid">
+<div class="k">Les briques IA du sujet</div>
+<div>
+<p>Le sujet note les briques IA <b>dans le produit</b>, pas les IA comme outils de travail : « 2-3 briques IA testées sur les cas d’usage du projet ; prompts et réglages documentés ; limites et garde-fous ». Il nomme trois cas : le résumé d’activité pour l’aidant, la détection simple d’anomalie de routine, et le compagnon conversationnel côté senior. Le Cadre n’a ni voix ni échange en direct : on écarte le compagnon, et on l’écrit. Voici les brouillons des trois briques, à lancer avec une clé d’API d’essai, jamais depuis l’appli : la clé ne doit pas être visible.</p>
+<h3>Brique 1 · Résumé de la semaine pour l’aidant</h3>
+<p>Réglages : température basse (0 à 0,3), réponse courte. Jeu de test : 4 semaines fictives, calme, active, un jour sans toucher, semaine presque vide. Garde-fous : rien d’inventé, aucun mot médical, ton neutre.</p>
+<div class="pre"><button type="button" class="copy" data-for="b101">Copier</button><pre id="b101">Tu écris pour un proche un résumé de la semaine d’un cadre photo familial.
+Tu reçois, jour par jour, l’heure des touchers sur le cadre et les contenus affichés.
+Règles :
+- 3 phrases au maximum, en français simple, ton chaleureux et neutre.
+- Tu ne parles que de ce qui est dans les données. Tu n’inventes rien.
+- Tu ne fais aucune supposition sur la santé, le moral ou l’état de la personne.
+- Tu n’utilises jamais les mots : santé, chute, malade, surveiller, inquiétant.
+- Si un jour n’a aucun toucher, tu le dis simplement, sans dramatiser.
+Données de la semaine : {{donnees}}</pre></div>
+<h3>Brique 2 · Recadrage selon le format du cadre</h3>
+<p>C’est le thème 4 ci-dessus : même prompt, réglages température 0, réponse en JSON pour que le code la lise. Jeu de test : 10 photos fictives, 5 de chaque sens. Garde-fous : aucune reconnaissance des personnes, la photo d’origine est gardée.</p>
+<h3>Brique 3 · Écart de routine, en option</h3>
+<p>Réglages : température 0, réponse en JSON. Jeu de test : 20 journées fictives dont 5 anomalies, comparées à la règle fixe des 48 h. Si la règle fixe suffit, on le dit. Jamais « chute » ni « santé ».</p>
+<div class="pre"><button type="button" class="copy" data-for="b103">Copier</button><pre id="b103">Tu compares les touchers d’aujourd’hui sur un cadre photo à l’habitude.
+Habitude des 14 derniers jours : {{habitude}}
+Touchers d’aujourd’hui : {{aujourdhui}}
+Réponds uniquement en JSON :
+{"ecart": true/false, "explication": "une phrase factuelle, sans aucun mot médical"}</pre></div>
+<p>Pour chaque brique, la fiche du cours : cas d’usage, outil et modèle, prompt, réglages, exemples d’entrée et de sortie, limites, garde-fous, coût par appel. Fini quand 2 ou 3 fiches sont complètes, avec des sorties réelles en capture et au moins un échec corrigé.</p>
+</div>
+</div>
+</section>
+
 <section><div class="grid"><div class="k">Les garde-fous, à écrire dans le PDF</div><div>
 <div class="tablewrap"><table><thead><tr><th>Risque</th><th>Garde-fou</th></tr></thead><tbody><tr><td>L'IA invente</td><td>prompts qui l'interdisent, température basse, relecture sur le jeu de test</td></tr><tr><td>Glissement vers le médical</td><td>la liste de mots interdits du contexte commun, la même que la grille des risques réglementaires</td></tr><tr><td>Photos de la famille</td><td>aucune reconnaissance de visage ; photos fictives pendant les tests ; la photo d'origine est toujours gardée</td></tr><tr><td>Clé d'API visible</td><td>jamais dans l'appli ni dans le dépôt ; variables d'environnement côté serveur</td></tr><tr><td>Panne ou coût</td><td>coût par appel noté ; l'alerte des 48 heures ne dépend d'aucune IA, elle part quand même</td></tr><tr><td>Transparence</td><td>dire quand un texte est écrit par une IA (AI Act, article 50)</td></tr></tbody></table></div>
 </div></div></section>
