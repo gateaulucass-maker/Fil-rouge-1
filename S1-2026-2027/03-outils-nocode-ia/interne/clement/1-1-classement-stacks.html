@@ -156,7 +156,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 </div>
 
 <h1>Classement <span>des stacks</span></h1>
-<p class="lead">Les quatre combinaisons du benchmark, notées critère par critère et classées sur 100. Chaque note dit d’où elle vient. La stack A, en code avec React, Next.js, Supabase et n8n, reste devant, mais rien n’est encore testé.</p>
+<p class="lead">Les quatre combinaisons du benchmark, notées critère par critère et classées sur 100. Chaque note dit d’où elle vient. La stack A, en code avec React, Next.js et Supabase, reste devant, mais rien n’est encore testé.</p>
 
 <div class="box">
 <p><b class="h">Provisoire.</b> Aucune note ne vient d’un test réel : tout est lu dans la documentation ou estimé à partir de ce qu’on sait. Les tests des 4 usages sont prévus le 29 octobre. Chaque résultat remplacera une estimation par une note « testé », et le classement se recalculera.</p>
@@ -216,8 +216,8 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <div class="k">Celle qu’on garde</div>
 <div>
 <div class="keepbox">
-<h3>Stack A · React + Next.js + Supabase + n8n</h3>
-<p>C’est avec ça qu’on construit Le Cadre. Première du classement avec <b id="keep-score">71</b> sur 100, devant la stack D qui a la même base et la même automatisation.</p>
+<h3>Stack A · React + Next.js + Supabase</h3>
+<p>C’est avec ça qu’on construit Le Cadre. Première du classement avec <b id="keep-score">71</b> sur 100, devant la stack D qui a la même base. Pas d’outil d’automatisation à part : les règles sont écrites en code, dans Supabase.</p>
 <div class="tablewrap"><table class="compo">
 <thead><tr><th>Partie</th><th>Technologie</th><th>Ce qu’elle fait</th></tr></thead>
 <tbody>
@@ -225,18 +225,18 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <tr><td>Écran du cadre</td><td>React</td><td>Une appli web plein écran sur la tablette, portrait ou paysage, qui garde les contenus en mémoire.</td></tr>
 <tr><td>Appli de l’aidant</td><td>Next.js, installable sur le téléphone (PWA)</td><td>Envoyer photos, vidéos et messages ; recevoir le toucher et régler l’alerte.</td></tr>
 <tr><td>Base, comptes, fichiers, temps réel</td><td>Supabase, région Europe</td><td>Familles, contenus, dernier toucher, accord du parent pour l’alerte.</td></tr>
-<tr><td>Automatisation</td><td>n8n</td><td>Le webhook du toucher, la notification à l’aidant, la règle des 48 heures.</td></tr>
+<tr><td>Automatisation</td><td>Code, dans Supabase</td><td>Une fonction Edge reçoit le toucher et envoie la notification ; une tâche planifiée (pg_cron) vérifie chaque heure la règle des 48 heures. En TypeScript et SQL, pas d’outil en plus.</td></tr>
 <tr><td>Hébergement du site et des applis</td><td>À choisir en Europe</td><td>Vercel en région Francfort ou un serveur européen. C’est le point qui reste à vérifier pour le critère éliminatoire.</td></tr>
 <tr><td>Outil de travail</td><td>Claude Code</td><td>Écrit le code à partir de nos consignes. Usage déclaré dans le rendu. Ce n’est pas un maillon de la stack : le produit tourne sans lui.</td></tr>
 </tbody></table></div>
 <ul>
-<li>Elle passe le critère éliminatoire : Supabase en région européenne, n8n à Francfort ou chez nous. Reste à choisir l’hébergement de l’appli en Europe.</li>
+<li>Elle passe le critère éliminatoire : Supabase en région européenne, et les règles tournent dedans. Reste à choisir l’hébergement du site et de l’appli en Europe.</li>
 <li>Aucun blocage sur les webhooks, là où Glide et Zapier bloquent sans payer.</li>
 <li>L’écart avec D vient de deux critères estimés : capacités et affichage. Ce sont justement ceux que les tests du 29 octobre vont mesurer.</li>
 </ul>
 <p><span class="tag chk">provisoire</span> Ce choix est une base de travail, pas une décision. Il ne vaut qu’avec les tests.</p>
 </div>
-<div class="def"><p><b>Pourquoi Claude Code n’est plus dans le nom.</b> Un outil qui écrit du code n’est pas une stack : la stack, c’est ce qui fait tourner le produit. Le benchmark du 16 octobre et le compte rendu de Camille disaient « Claude Code + … ». À écrire partout de la même façon désormais : React + Next.js + Supabase + n8n, construit avec Claude Code.</p></div>
+<div class="def"><p><b>Pourquoi Claude Code n’est plus dans le nom.</b> Un outil qui écrit du code n’est pas une stack : la stack, c’est ce qui fait tourner le produit. Le benchmark du 16 octobre et le compte rendu de Camille disaient « Claude Code + … ». À écrire partout de la même façon désormais : React + Next.js + Supabase, règles en code, construit avec Claude Code. Décision du 22 octobre : pas de n8n, l’automatisation se fait en code.</p></div>
 </div>
 </div>
 </section>
@@ -307,6 +307,8 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     supaDocs:{t:"Supabase : documentation (API, temps réel, webhooks de base)",u:"https://supabase.com/docs"},
     airtableApi:{t:"Airtable : API web et webhooks",u:"https://airtable.com/developers/web/api/introduction"},
     n8nDocs:{t:"n8n : documentation (webhook, déclencheur planifié)",u:"https://docs.n8n.io/"},
+    supaFn:{t:"Supabase : fonctions Edge",u:"https://supabase.com/docs/guides/functions"},
+    supaCron:{t:"Supabase : tâches planifiées (pg_cron)",u:"https://supabase.com/docs/guides/cron"},
     makePrix:{t:"Make : prix et plan gratuit",u:"https://www.make.com/en/pricing"},
     bench:{t:"Benchmark des stacks (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-benchmark-stacks.html"},
     usages:{t:"Les 4 usages à tester (Clément, 16 octobre)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html"},
@@ -325,25 +327,25 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 
   // statut : "teste" | "doc" | "est"
   var STACKS = [
-    {id:"A", n:"A · React + Next.js + Supabase + n8n", short:"A · React / Next.js", rest:"Supabase + n8n", sub:"notre voie · en code, écrit avec Claude Code", role:"keep",
-     eu:{ok:true, st:"doc", why:"Supabase : région européenne et DPA. n8n : Francfort ou un serveur à nous. L’hébergement du site Next.js et de l’appli React reste à choisir en Europe.", src:["supaGdpr","n8nCmp"]},
+    {id:"A", n:"A · React + Next.js + Supabase", short:"A · React / Next.js", rest:"Supabase, règles en code", sub:"notre voie · en code, écrit avec Claude Code", role:"keep",
+     eu:{ok:true, st:"doc", why:"Supabase : région européenne et DPA ; les fonctions et les tâches planifiées tournent dans la même région. L’hébergement du site Next.js et de l’appli React reste à choisir en Europe.", src:["supaGdpr","supaFn"]},
      notes:{
-       cap:  {v:4, st:"est", why:"En code, les 4 usages sont faisables : page web pour la vitrine, affichage plein écran pour le cadre, appli de l’aidant, règle d’alerte dans n8n. Rien d’essayé, d’où 4 et pas 5.", src:["bench"]},
-       inter:{v:4, st:"doc", why:"n8n reçoit des webhooks, et le code appelle n’importe quelle API. À confirmer sur le test commun du toucher.", src:["n8nCmp"]},
+       cap:  {v:4, st:"est", why:"En code, les 4 usages sont faisables : page web pour la vitrine, affichage plein écran pour le cadre, appli de l’aidant, règle d’alerte en tâche planifiée dans Supabase. Rien d’essayé, d’où 4 et pas 5.", src:["bench","supaCron"]},
+       inter:{v:4, st:"doc", why:"Une fonction Edge de Supabase reçoit le toucher en HTTP, et le code appelle n’importe quelle API. À confirmer sur le test commun du toucher.", src:["supaFn"]},
        aff:  {v:4, st:"est", why:"Affichage libre en code : plein écran, rotation selon le sens du cadre. Lisibilité à 3 mètres à tester sur la tablette.", src:["bench"]},
        simp: {v:3, st:"est", why:"Du code React et Next.js, écrit avec Claude Code : dépend de la qualité de nos consignes et du temps passé à corriger. Pas d’éditeur visuel pour Camille et Lucas.", src:["bench"]},
-       cout: {v:3, st:"doc", why:"React, Next.js, Supabase gratuits. n8n gratuit installé chez nous, ou environ 20 € par mois en cloud. Hébergement Vercel gratuit pour un essai, payant pour un usage commercial. L’abonnement Claude est un coût de l’outil de travail, pas de la stack.", src:["supaPrix","n8nPrix","vercel"]},
+       cout: {v:3, st:"doc", why:"React, Next.js, Supabase gratuits, fonctions et tâches planifiées comprises dans le plan gratuit. Hébergement Vercel gratuit pour un essai, payant pour un usage commercial. L’abonnement Claude est un coût de l’outil de travail, pas de la stack.", src:["supaPrix","n8nPrix","vercel"]},
        lim:  {v:3, st:"doc", why:"Supabase se met en veille après une semaine sans activité. L’hébergement de l’appli reste à choisir.", src:["supaPrix"]},
        stock:{v:3, st:"doc", why:"Supabase : 1 Go de fichiers sur le plan gratuit. Suffisant pour la démo avec des vidéos de 30 s compressées.", src:["supaPrix"]}
      }},
     {id:"D", n:"D · FlutterFlow + Supabase + n8n", short:"D · FlutterFlow", rest:"Supabase + n8n", sub:"no-code, vraie app · plan B", role:"planb",
-     eu:{ok:true, st:"doc", why:"Supabase et n8n comme en A. FlutterFlow : lieu des données à demander.", src:["supaGdpr","n8nCmp"]},
+     eu:{ok:true, st:"doc", why:"Supabase comme en A. n8n : Francfort ou un serveur à nous. FlutterFlow : lieu des données à demander.", src:["supaGdpr","n8nCmp"]},
      notes:{
        cap:  {v:3, st:"est", why:"Fait une vraie app pour l’aidant. Publication web possible mais pas pensée pour un site vitrine. Écran du cadre et notifications sur téléphone à confirmer.", src:["bench","demo"]},
-       inter:{v:4, st:"doc", why:"n8n reçoit des webhooks, comme en A. FlutterFlow sait appeler une API. À confirmer en test.", src:["n8nCmp"]},
+       inter:{v:4, st:"doc", why:"n8n reçoit des webhooks. FlutterFlow sait appeler une API. À confirmer en test.", src:["n8nCmp"]},
        aff:  {v:3, st:"est", why:"App mobile affichée sur une tablette : plein écran possible, les deux sens et la vidéo à vérifier.", src:["bench"]},
        simp: {v:3, st:"est", why:"Éditeur visuel, mais une courbe d’apprentissage réelle. Lucas l’a retenu pour le plan de démo, ce qui joue en sa faveur.", src:["demo"]},
-       cout: {v:3, st:"doc", why:"FlutterFlow et Supabase gratuits pour construire ; publier ou travailler à plusieurs demande un plan payant. n8n comme en A.", src:["ff","n8nPrix"]},
+       cout: {v:3, st:"doc", why:"FlutterFlow et Supabase gratuits pour construire ; publier ou travailler à plusieurs demande un plan payant. n8n gratuit installé chez nous, ou environ 20 € par mois en cloud.", src:["ff","n8nPrix"]},
        lim:  {v:3, st:"doc", why:"Supabase en veille après une semaine. FlutterFlow gratuit : un seul éditeur à la fois.", src:["supaPrix","ff"]},
        stock:{v:3, st:"doc", why:"Supabase : 1 Go de fichiers, comme en A.", src:["supaPrix"]}
      }},
@@ -407,7 +409,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
       {id:"supa", n:"Supabase", col:"A", sub:"stacks A et D", eu:{v:"oui",st:"doc",why:"Région européenne au choix et accord de traitement (DPA).",src:["supaGdpr"]}, notes:{
         fich:{v:3,st:"doc",why:"1 Go de fichiers sur le plan gratuit : des vidéos de 30 s compressées, à purger.",src:["supaPrix"]},
         lim:{v:3,st:"doc",why:"500 Mo de base, mise en veille après une semaine sans activité.",src:["supaPrix"]},
-        api:{v:5,st:"doc",why:"API REST générée, temps réel, comptes, et webhooks de base de données vers n8n.",src:["supaDocs"]},
+        api:{v:5,st:"doc",why:"API REST générée, temps réel, comptes, fonctions Edge et tâches planifiées dans la base.",src:["supaDocs"]},
         cout:{v:4,st:"doc",why:"Gratuit pour la démo ; Pro à environ 25 $ par mois.",src:["supaPrix"]}}},
       {id:"airtable", n:"Airtable", col:"C", sub:"stack C", eu:{v:"non",st:"doc",why:"États-Unis ; l’Europe est réservée au plan Enterprise.",src:["airtable"]}, notes:{
         fich:{v:3,st:"doc",why:"1 Go de fichiers par base.",src:["airtablePrix"]},
@@ -423,7 +425,13 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     {id:"auto", n:"Automatisation", what:"ce qui reçoit le toucher, prévient l’aidant et applique la règle des 48 heures",
      crit:[{id:"hook",n:"Webhooks"},{id:"temps",n:"Règle dans le temps"},{id:"notif",n:"Notifications"},{id:"quota",n:"Quota"},{id:"cout",n:"Coût"}],
      bricks:[
-      {id:"n8n", n:"n8n", col:"A", sub:"stacks A et D", eu:{v:"oui",st:"doc",why:"Cloud à Francfort, ou installé sur un serveur à nous.",src:["n8nCmp"]}, notes:{
+      {id:"code", n:"Code dans Supabase", col:"A", sub:"stack A · fonctions Edge et pg_cron", eu:{v:"oui",st:"doc",why:"Tourne dans le projet Supabase, donc dans la région européenne choisie.",src:["supaGdpr"]}, notes:{
+        hook:{v:5,st:"doc",why:"Une fonction Edge est une adresse HTTP : le cadre lui envoie le toucher. Le code appelle ensuite ce qu’il veut.",src:["supaFn"]},
+        temps:{v:5,st:"doc",why:"pg_cron planifie une requête ou une fonction toutes les heures : qui n’a pas touché depuis 48 h, et qui a accepté l’alerte.",src:["supaCron"]},
+        notif:{v:4,st:"est",why:"Notification web (Web Push) envoyée depuis la fonction, ou e-mail. À tester sur Android et iPhone.",src:["push"]},
+        quota:{v:4,st:"doc",why:"Fonctions comprises dans le plan gratuit, largement au-dessus de nos besoins ; la base se met en veille après une semaine sans activité.",src:["supaPrix"]},
+        cout:{v:5,st:"doc",why:"Rien à payer en plus de Supabase. Le coût, c’est le temps d’écrire et de relire le code.",src:["supaPrix"]}}},
+      {id:"n8n", n:"n8n", col:"D", sub:"stack D", eu:{v:"oui",st:"doc",why:"Cloud à Francfort, ou installé sur un serveur à nous.",src:["n8nCmp"]}, notes:{
         hook:{v:5,st:"doc",why:"Webhooks entrants et sortants gratuits, sans limite en auto-hébergé.",src:["n8nDocs","n8nCmp"]},
         temps:{v:5,st:"doc",why:"Déclencheur planifié (cron) pour vérifier le dernier toucher toutes les heures.",src:["n8nDocs"]},
         notif:{v:4,st:"est",why:"E-mail direct ; push sur téléphone via un service tiers (ntfy, OneSignal) à brancher et tester.",src:["n8nDocs"]},
@@ -613,7 +621,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
   var best=LAYERS.map(function(L){var bs=L.bricks.map(function(b){return {b:b,v:brickScore(b,L)}}).sort(function(a,b){return b.v-a.v});return {L:L,b:bs[0].b,v:bs[0].v}});
   document.getElementById("layers-verdict").innerHTML='<p><b>Ce que ça dit sur la stack à construire.</b> La meilleure brique de chaque couche est '+
     best.map(function(x){return '<b>'+esc(x.b.n)+'</b> ('+x.v+')'}).join(', ')+
-    '. Mises bout à bout, elles donnent la stack A. Softr fait un site vitrine aussi bien que Next.js et plus simplement, et Glide est le plus simple de tous : mais les bases et les automatisations qui vont avec tombent sur l’Europe ou sur les webhooks. Si le code bloque, on ne change que la brique de construction : FlutterFlow sur la même base et la même automatisation, c’est la stack D.</p>';
+    '. Mises bout à bout, elles donnent la stack A. Softr fait un site vitrine aussi bien que Next.js et plus simplement, et Glide est le plus simple de tous : mais les bases et les automatisations qui vont avec tombent sur l’Europe ou sur les webhooks. Si le code bloque, on ne change que la brique de construction : FlutterFlow sur la même base, avec n8n pour l’automatisation, c’est la stack D.</p>';
 
   // échelle
   document.getElementById("scale").innerHTML=CRIT.map(function(c){return '<tr><td>'+esc(c.n)+'</td><td class="p">'+c.w+' %</td><td>'+esc(c.s5)+'</td><td>'+esc(c.s3)+'</td><td>'+esc(c.s1)+'</td></tr>'}).join("");

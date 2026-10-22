@@ -22,7 +22,7 @@ Les fichiers d'une leçon portent son numéro en préfixe : `2-1-question-1-acte
 
 #### Leçon 1.1 · Écosystème no-code et IA
 
-- [Classement des stacks](S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-classement-stacks.html) (HTML, brouillon de Clément, à relire par Lucas) — les 4 stacks du benchmark notées sur 8 critères et classées sur 100, façon vals.ai : barres, filtre par critère, détail au clic, chaque note avec son statut (testé, documenté, estimé) et sa source ; B et C éliminées (données hors Europe) ; stack A (React + Next.js + Supabase + n8n, construite avec Claude Code) devant, provisoire jusqu'aux tests du 29/10.
+- [Classement des stacks](S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-classement-stacks.html) (HTML, brouillon de Clément, à relire par Lucas) — les 4 stacks du benchmark notées sur 8 critères et classées sur 100, façon vals.ai : d'abord chaque outil seul par couche (construction, base, automatisation), puis les stacks complètes ; colonnes, filtre par critère, détail au clic, chaque note avec son statut (testé, documenté, estimé) et sa source ; B et C éliminées (données hors Europe) ; stack A (React + Next.js + Supabase, règles en code, construite avec Claude Code) devant, provisoire jusqu'aux tests du 29/10.
 - [Benchmark des stacks](S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-benchmark-stacks.html) (HTML, brouillon de Clément) — les 4 combinaisons, les 4 usages du cours, les critères pondérés et les sources.
 
 ### Bloc 02 · Besoins utilisateurs
