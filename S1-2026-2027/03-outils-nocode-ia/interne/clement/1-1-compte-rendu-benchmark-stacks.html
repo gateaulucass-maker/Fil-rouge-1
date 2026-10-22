@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Compte rendu du benchmark</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse de l'équipe : grille 3/9, étiquettes mono, fond blanc, bleu et orange. */
+:root{--bg:#ffffff;--fg:#111418;--muted:#5f6670;--hair:#dcdfe3;--soft:#f3f4f6;--blue:#1f3fbf;--blue-soft:#eef1fb;--orange:#e8571c;--orange-soft:#fdf0ea;--green:#1d7a4a;--green-soft:#e8f4ed;
+--display:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px),min(4vw,48px));padding-right:max(16px,env(safe-area-inset-right,0px),min(4vw,48px));padding-block:clamp(28px,6vw,72px) 64px}
+.k{font:11.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:6px 28px;border-top:2px solid var(--fg);padding-top:12px}
+h1{margin:clamp(24px,4vw,44px) 0 0;font-weight:800;font-size:clamp(36px,6.5vw,84px);line-height:.95;letter-spacing:-.04em;text-wrap:balance;max-width:16ch}
+h1 span{color:var(--blue)}
+.lead{margin:24px 0 0;max-width:62ch;font-size:clamp(18px,2vw,22px);font-weight:700;line-height:1.3;letter-spacing:-.012em}
+.grid{display:grid;grid-template-columns:3fr 9fr;gap:0 24px}.grid>*{min-width:0}
+section{margin-top:clamp(36px,5vw,64px)}section>.grid{border-top:1px solid var(--fg);padding-top:14px}
+section>.grid>.k{font-size:13px;color:var(--fg);font-weight:500;line-height:1.3}
+h3{margin:26px 0 8px;font-size:18px;font-weight:800;letter-spacing:-.02em}
+p{margin:0 0 12px;max-width:70ch}
+ul,ol{margin:0 0 14px;padding-left:22px;max-width:72ch}li{margin:4px 0}
+a{color:var(--blue);word-break:break-word}
+code{font:13.5px var(--mono);background:var(--soft);padding:1px 5px}
+.tablewrap{overflow-x:auto;margin:6px 0 16px}
+table{width:100%;min-width:640px;border-collapse:collapse;font-size:14.5px}
+th{text-align:left;font:11.5px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:8px 12px 8px 0;border-bottom:1px solid var(--fg);font-weight:400;vertical-align:bottom}
+td{vertical-align:top;padding:9px 12px 9px 0;border-bottom:1px solid var(--hair)}
+td:first-child{font-weight:700}
+footer{margin-top:56px;border-top:1px solid var(--hair);padding-top:12px}
+@media (max-width:760px){.grid{grid-template-columns:1fr}.grid>.k{margin-bottom:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta k"></div>
+<h1>Compte rendu <span>du benchmark</span></h1>
+<p class="lead">PFR Générations Connectées · Bloc 03 · Leçon 1.1 · Le Cadre Clément, 22 octobre 2026. Brouillon, à relire par Lucas avant le 24 octobre.</p>
+
+<p>Ce document raconte ce qui a été fait sur le benchmark des stacks, les décisions prises en route, les résultats au 22 octobre, et ce qu'il reste à faire. Il est écrit pour quelqu'un qui n'a pas suivi le projet.</p>
+<section><div class="grid"><div class="k">En une page</div><div>
+<ul><li><b>La question</b> : avec quels outils construire Le Cadre, pour un produit qui marche, en respectant les 4 usages du cours (site vitrine qui vend, écran du cadre, appli de l'aidant, alertes) et le critère éliminatoire des données en Europe ?</li><li><b>La méthode</b> : 4 stacks comparées sur 7 critères pondérés plus un critère éliminatoire, puis chaque outil noté seul dans sa couche (construction, base, automatisation), avec une échelle écrite et un statut par note : testé, documenté ou estimé.</li><li><b>Le résultat</b> : la stack A, React + Next.js + Supabase avec les règles écrites en code, est devant avec 71 sur 100. FlutterFlow sur la même base est le plan B à 64. Glide et Softr sont éliminées : leurs données sortent d'Europe.</li><li><b>La réserve</b> : aucune note de stack n'est encore testée. Les tests sont prévus le 29 octobre.</li></ul>
+</div></div></section>
+<section><div class="grid"><div class="k">Ce qui a été fait, dans l'ordre</div><div>
+<div class="tablewrap"><table><thead><tr><th>Date</th><th>Document</th><th>Ce qu'il apporte</th></tr></thead><tbody><tr><td>15 octobre</td><td>Le Cadre, version retenue</td><td>le produit fixé : cadre au mur, appli pour l'enfant, aucune appli pour le parent, un toucher qui dit « je suis là », alerte après 48 h si le parent l'accepte</td></tr><tr><td>16 octobre</td><td>Les 4 usages à tester</td><td>ce que chaque usage du cours veut dire pour Le Cadre, le test à rejouer sur chaque stack, les données fictives, les 3 statuts</td></tr><tr><td>16 octobre</td><td>Benchmark des stacks</td><td>les 4 combinaisons, le tableau des 4 usages, les critères et leurs poids, une première lecture bon / moyen / bloquant, les sources. Fusionné dans le classement le 22 octobre, la page n'existe plus que dans l'historique git</td></tr><tr><td>22 octobre</td><td>Classement des stacks</td><td>les notes chiffrées avec leur statut et leur source, le classement visuel façon vals.ai, la comparaison brique par brique, les décisions du jour</td></tr><tr><td>22 octobre</td><td>Prompts de la boîte à outils IA</td><td>un prompt par thème pour tester les IA, grille et fiche communes</td></tr></tbody></table></div>
+<p>Les pages, en ligne :</p>
+<ul><li>Classement des stacks : <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-classement-stacks.html">…/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-classement-stacks.html</a> (version de travail : <a href="https://claude.ai/artifact/WHLSKt2jd1t2FJEi1MDjrp">claude.ai/artifact/WHLSKt2jd1t2FJEi1MDjrp</a>)</li><li>Les 4 usages à tester : <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html">…/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html</a></li><li>Version retenue : <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-le-cadre-version-retenue.html">…/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-le-cadre-version-retenue.html</a></li></ul>
+</div></div></section>
+<section><div class="grid"><div class="k">Les 4 stacks comparées</div><div>
+<div class="tablewrap"><table><thead><tr><th>Stack</th><th>Construction</th><th>Base</th><th>Automatisation</th><th>Statut</th></tr></thead><tbody><tr><td>A</td><td>React (écran du cadre), Next.js (site vitrine, appli de l'aidant en PWA)</td><td>Supabase, région Europe</td><td>code dans Supabase : fonctions Edge et pg_cron</td><td>retenue, provisoire</td></tr><tr><td>D</td><td>FlutterFlow</td><td>Supabase</td><td>n8n</td><td>plan B</td></tr><tr><td>B</td><td>Glide</td><td>Glide Tables</td><td>Make</td><td>éliminée, Glide aux États-Unis</td></tr><tr><td>C</td><td>Softr</td><td>Airtable</td><td>Zapier</td><td>éliminée, Airtable et Zapier aux États-Unis</td></tr></tbody></table></div>
+<p>A et D ont la même base. La différence se joue sur la construction, en code ou en no-code, et sur l'automatisation, en code ou avec n8n. Le cours demande au moins 3 combinaisons : on en compare 4.</p>
+</div></div></section>
+<section><div class="grid"><div class="k">Les critères, les poids, l'échelle</div><div>
+<p>Sept critères pondérés, qui font 100, et un critère éliminatoire.</p>
+<div class="tablewrap"><table><thead><tr><th>Critère</th><th>Poids</th><th>5</th><th>3</th><th>1</th></tr></thead><tbody><tr><td>Capacités</td><td>20 %</td><td>couvre les 4 usages sans contournement</td><td>3 usages, le 4e avec un contournement</td><td>un seul usage</td></tr><tr><td>Interopérabilité</td><td>20 %</td><td>webhooks gratuits et API libre</td><td>webhooks limités ou payants sur un maillon</td><td>pas de webhook sans payer</td></tr><tr><td>Affichage adapté au cadre</td><td>15 %</td><td>plein écran, deux sens, lisible à 3 m</td><td>plein écran, un sens ou la vidéo à bricoler</td><td>téléphone seulement</td></tr><tr><td>Simplicité</td><td>15 %</td><td>l'essai en une demi-journée sans aide</td><td>une journée avec la documentation</td><td>plusieurs jours ou compétence absente</td></tr><tr><td>Coûts</td><td>10 %</td><td>gratuit pour la démo</td><td>moins de 25 € par mois</td><td>plusieurs abonnements</td></tr><tr><td>Limites</td><td>10 %</td><td>rien de gênant pour 2 familles pendant un mois</td><td>une limite à surveiller</td><td>une limite atteinte en test</td></tr><tr><td>Stockage des vidéos</td><td>10 %</td><td>plus de 5 Go</td><td>autour de 1 Go</td><td>moins de 200 Mo</td></tr><tr><td>Données en Europe</td><td>éliminatoire</td><td>oui, non, ou à vérifier</td><td></td><td></td></tr></tbody></table></div>
+<p>Le score est la somme des notes multipliées par leur poids, ramenée sur 100. Chaque note porte un statut :</p>
+<ul><li><b>testé</b> : on l'a fait nous-mêmes, avec une capture ;</li><li><b>documenté</b> : une page officielle ou une source l'annonce, pas essayé ;</li><li><b>estimé</b> : notre lecture, sans test ni source ferme.</li></ul>
+<p>L'échelle est écrite avant les notes, pour que le jury puisse contester une note et pas la méthode.</p>
+</div></div></section>
+<section><div class="grid"><div class="k">Les résultats au 22 octobre</div><div>
+<h3>Les stacks complètes</h3>
+<div class="tablewrap"><table><thead><tr><th>Stack</th><th>Capacités</th><th>Interop.</th><th>Affichage</th><th>Simplicité</th><th>Coûts</th><th>Limites</th><th>Vidéos</th><th>Score</th></tr></thead><tbody><tr><td>A · React + Next.js + Supabase</td><td>4 e</td><td>4 d</td><td>4 e</td><td>3 e</td><td>3 d</td><td>3 d</td><td>3 d</td><td><b>71</b></td></tr><tr><td>D · FlutterFlow + Supabase + n8n</td><td>3 e</td><td>4 d</td><td>3 e</td><td>3 e</td><td>3 d</td><td>3 d</td><td>3 d</td><td><b>64</b></td></tr><tr><td>B · Glide + Make, éliminée</td><td>2 e</td><td>2 d</td><td>2 e</td><td>4 e</td><td>3 d</td><td>3 d</td><td>2 e</td><td>50</td></tr><tr><td>C · Softr + Airtable + Zapier, éliminée</td><td>3 e</td><td>1 d</td><td>2 e</td><td>4 e</td><td>2 d</td><td>2 d</td><td>3 d</td><td>48</td></tr></tbody></table></div>
+<p>d = documenté, e = estimé. Sur les 32 notes, 19 sont documentées, 13 estimées, 0 testée. Les critères Capacités, Affichage et Simplicité sont estimés pour toutes les stacks : ce sont ceux que les tests du 29 octobre mesurent.</p>
+<h3>Brique par brique</h3>
+<p>Chaque outil noté seul, sur les critères de sa couche, moyenne ramenée sur 100. Les outils en gris dans la page ne sont dans aucune des 4 stacks : ajoutés pour comparer.</p>
+<p><b>Construction</b> (site vitrine, écran du cadre, appli aidant, simplicité, coût, écosystème et aide)</p>
+<div class="tablewrap"><table><thead><tr><th>Outil</th><th>Score</th><th>Pour comparer</th></tr></thead><tbody><tr><td>React + Next.js</td><td>80</td><td>stack A, retenu</td></tr><tr><td>Vue + Nuxt</td><td>77</td><td>oui</td></tr><tr><td>Flutter en code (Dart)</td><td>73</td><td>oui</td></tr><tr><td>Svelte + SvelteKit</td><td>73</td><td>oui</td></tr><tr><td>Python + Django</td><td>70</td><td>oui, seul langage déjà pratiqué par l'équipe</td></tr><tr><td>HTML, CSS, JavaScript seuls</td><td>70</td><td>oui</td></tr><tr><td>Softr</td><td>67</td><td>stack C, héberge en Allemagne</td></tr><tr><td>WordPress + WooCommerce</td><td>63</td><td>oui, site vitrine seulement</td></tr><tr><td>FlutterFlow</td><td>63</td><td>stack D</td></tr><tr><td>Glide</td><td>57</td><td>stack B, hors Europe</td></tr></tbody></table></div>
+<p><b>Base de données</b> (fichiers vidéo, limites, API et temps réel, coût)</p>
+<div class="tablewrap"><table><thead><tr><th>Outil</th><th>Score</th><th></th></tr></thead><tbody><tr><td>Supabase</td><td>75</td><td>stacks A et D</td></tr><tr><td>Firebase</td><td>65</td><td>pour comparer, hébergeur Google, fichiers payants</td></tr><tr><td>Airtable</td><td>60</td><td>stack C, hors Europe</td></tr><tr><td>PostgreSQL sur Neon</td><td>50</td><td>la base de notre veille, à Francfort : première case « testé »</td></tr><tr><td>Glide Tables</td><td>45</td><td>stack B, hors Europe</td></tr></tbody></table></div>
+<p><b>Automatisation</b> (webhooks, règle dans le temps, notifications, quota, coût)</p>
+<div class="tablewrap"><table><thead><tr><th>Outil</th><th>Score</th><th></th></tr></thead><tbody><tr><td>Code dans Supabase</td><td>92</td><td>stack A, retenu</td></tr><tr><td>n8n</td><td>88</td><td>stack D</td></tr><tr><td>Firebase Cloud Functions</td><td>88</td><td>pour comparer</td></tr><tr><td>Vercel Cron + routes Next.js</td><td>80</td><td>pour comparer</td></tr><tr><td>Python + GitHub Actions</td><td>72</td><td>la veille du jeudi : deuxième case « testé »</td></tr><tr><td>Make</td><td>68</td><td>stack B, passe l'Europe</td></tr><tr><td>Zapier</td><td>40</td><td>stack C, hors Europe</td></tr></tbody></table></div>
+<p>Sur les 137 notes des briques, 85 sont documentées, 50 estimées, 2 testées. La passe documentaire du 22 octobre a sorti 10 cases de l’estimation : Glide (site, notifications, fichiers), FlutterFlow (publication web, lieu de l’éditeur), Softr (hébergement en Allemagne, notifications), Firebase (fichiers et plan Blaze), GitHub Actions (déclenchement externe).</p>
+<p>Ce que la lecture par couche apprend, et que le tableau des stacks ne montrait pas :</p>
+<ul><li>la meilleure brique de chaque couche donne la stack A ;</li><li>Make passe le critère Europe. Ce qui élimine la stack B, c'est Glide. De même, Softr héberge en Allemagne : ce qui élimine la stack C, c'est Airtable et Zapier ;</li><li>Softr fait un site vitrine aussi bien que Next.js, et plus simplement. Il perd sur le cadre et sur l'appli ;</li><li>WordPress reste une option pour la seule brique du site vitrine, si on veut que Camille et Lucas le modifient sans code.</li></ul>
+</div></div></section>
+<section><div class="grid"><div class="k">Les décisions prises le 22 octobre</div><div>
+<ol><li><b>Claude Code n'est pas un maillon de la stack.</b> Un outil qui écrit du code n'est pas ce qui fait tourner le produit. La stack A se nomme par ses briques : React, Next.js, Supabase. Claude Code est l'outil de travail, usage déclaré dans le rendu.</li><li><b>Pas de n8n dans la stack A.</b> L'automatisation se fait en code, dans Supabase : une fonction Edge reçoit le toucher et envoie la notification, une tâche pg_cron vérifie chaque heure la règle des 48 heures. n8n reste dans la stack D.</li><li><b>On construit en React et JavaScript.</b> Les autres langages sont dans le comparatif pour montrer qu'on a regardé, pas pour hésiter.</li><li><b>La tablette récupérée, une Samsung Galaxy Tab A 2019, reçoit l'OS maison de l'équipe</b>, en cours d'installation au 22 octobre. Tant qu'elle n'est pas prête, l'écran du cadre se teste dans un navigateur sur un autre appareil, et la chaîne cœur n'a pas besoin d'elle : le simulateur d'objet envoie le toucher. Le plan B si l'OS ne tient pas dans les délais : Android avec une appli kiosque.</li><li><b>Il y a trois choses à construire</b>, pas deux : le site vitrine qui vend le cadre et l'appli, l'écran du cadre, l'appli de l'aidant.</li></ol>
+</div></div></section>
+<section><div class="grid"><div class="k">Ce qui reste à aligner dans les documents de l'équipe</div><div>
+<div class="tablewrap"><table><thead><tr><th>Document</th><th>Ce qu'il dit encore</th><th>Ce qu'il devrait dire</th></tr></thead><tbody><tr><td>Architecture et données (Camille)</td><td>Claude Code + React + Next + Supabase, 3 stacks comparées</td><td>même nom que le classement ; 4 stacks</td></tr><tr><td>Plan de la démo (Lucas)</td><td>FlutterFlow + Supabase + LiveKit + Mistral, tablette neuve</td><td>c'est la stack D, plan B ; tablette récupérée avec l'OS maison</td></tr></tbody></table></div>
+</div></div></section>
+<section><div class="grid"><div class="k">Ce qu'il reste à faire</div><div>
+<div class="tablewrap"><table><thead><tr><th>Quand</th><th>Quoi</th><th>Qui</th></tr></thead><tbody><tr><td>avant le 24 octobre</td><td>relire les notes, contester celles qui semblent fausses, en écrivant le désaccord dans la case</td><td>Lucas</td></tr><tr><td>dès le compte Supabase</td><td>la preuve de la chaîne cœur sur la stack A : un simulateur envoie le toucher, une fonction Edge l'enregistre, l'aidant reçoit la notification, avec le cas invalide et le doublon ; filmée et chronométrée</td><td>Camille, code préparé avec Claude Code</td></tr><tr><td>29 octobre</td><td>les 4 usages sur A puis D ; chaque résultat passe en « testé » avec sa capture ; le classement se recalcule. L'écran du cadre se teste dans un navigateur si la tablette n'est pas prête</td><td>Lucas et Clément</td></tr><tr><td>29 octobre</td><td>les prompts de la boîte à outils IA sur Claude, ChatGPT, Gemini, Mistral et un outil spécialisé par thème</td><td>Lucas et Clément, Camille pour ses 2 thèmes</td></tr><tr><td>avant le 6 novembre</td><td>la version testée du classement part dans <code>rendus/</code> ; pages 2, 3 et 5 du PDF</td><td>Clément</td></tr></tbody></table></div>
+<p>Si le code en React et Next.js échoue sur un usage, ou prend beaucoup trop de temps, on ne change que la brique de construction : FlutterFlow sur la même base, c'est la stack D.</p>
+</div></div></section>
+<section><div class="grid"><div class="k">Sources</div><div>
+<p>38 sources sont listées dans la page du classement, avec leur lien. Les principales :</p>
+<ul><li>officielles : Supabase (conformité GDPR, prix, fonctions Edge, pg_cron), Next.js, Nuxt, SvelteKit, Flutter, Django, Vercel (prix, cron), Firebase (prix, fonctions), Neon, Make (zones de données, prix), Glide (GDPR), Airtable (résidence des données, API), GitHub Actions, MDN (Push API), enquête Stack Overflow 2025 ;</li><li>tierces, à confirmer sur les pages officielles pendant les tests : Jet Admin (prix de Zapier et d'Airtable), CostBench (plan gratuit de Glide), VP0 (prix de FlutterFlow), Sliplane (prix de n8n), Virtua (comparatif n8n, Zapier, Make) ;</li><li>internes : les 4 usages à tester, le plan de la démo de Lucas, le process de veille (Neon à Francfort, GitHub Actions le jeudi).</li></ul>
+<p>Relevé des 15 et 16 octobre pour les prix et les limites, complété le 22 octobre pour les outils ajoutés.</p>
+</div></div></section>
+<footer class="k">Compte rendu du benchmark des stacks · Clément · brouillon dans interne/clement · version Markdown remplacée par cette page le 22 octobre 2026</footer>
+</div>
+</body>
+</html>
