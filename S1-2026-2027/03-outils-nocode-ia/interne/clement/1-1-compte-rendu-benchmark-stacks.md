@@ -89,17 +89,17 @@ Chaque outil noté seul, sur les critères de sa couche, moyenne ramenée sur 10
 | Svelte + SvelteKit | 73 | oui |
 | Python + Django | 70 | oui, seul langage déjà pratiqué par l'équipe |
 | HTML, CSS, JavaScript seuls | 70 | oui |
-| Softr | 63 | stack C |
+| Softr | 67 | stack C, héberge en Allemagne |
 | WordPress + WooCommerce | 63 | oui, site vitrine seulement |
-| FlutterFlow | 60 | stack D |
-| Glide | 53 | stack B, hors Europe |
+| FlutterFlow | 63 | stack D |
+| Glide | 57 | stack B, hors Europe |
 
 **Base de données** (fichiers vidéo, limites, API et temps réel, coût)
 
 | Outil | Score | |
 |---|---|---|
 | Supabase | 75 | stacks A et D |
-| Firebase | 70 | pour comparer, hébergeur Google |
+| Firebase | 65 | pour comparer, hébergeur Google, fichiers payants |
 | Airtable | 60 | stack C, hors Europe |
 | PostgreSQL sur Neon | 50 | la base de notre veille, à Francfort : première case « testé » |
 | Glide Tables | 45 | stack B, hors Europe |
@@ -116,12 +116,12 @@ Chaque outil noté seul, sur les critères de sa couche, moyenne ramenée sur 10
 | Make | 68 | stack B, passe l'Europe |
 | Zapier | 40 | stack C, hors Europe |
 
-Sur les 137 notes des briques, 75 sont documentées, 60 estimées, 2 testées.
+Sur les 137 notes des briques, 85 sont documentées, 50 estimées, 2 testées. La passe documentaire du 22 octobre a sorti 10 cases de l’estimation : Glide (site, notifications, fichiers), FlutterFlow (publication web, lieu de l’éditeur), Softr (hébergement en Allemagne, notifications), Firebase (fichiers et plan Blaze), GitHub Actions (déclenchement externe).
 
 Ce que la lecture par couche apprend, et que le tableau des stacks ne montrait pas :
 
 - la meilleure brique de chaque couche donne la stack A ;
-- Make passe le critère Europe. Ce qui élimine la stack B, c'est Glide ;
+- Make passe le critère Europe. Ce qui élimine la stack B, c'est Glide. De même, Softr héberge en Allemagne : ce qui élimine la stack C, c'est Airtable et Zapier ;
 - Softr fait un site vitrine aussi bien que Next.js, et plus simplement. Il perd sur le cadre et sur l'appli ;
 - WordPress reste une option pour la seule brique du site vitrine, si on veut que Camille et Lucas le modifient sans code.
 
@@ -130,7 +130,7 @@ Ce que la lecture par couche apprend, et que le tableau des stacks ne montrait p
 1. **Claude Code n'est pas un maillon de la stack.** Un outil qui écrit du code n'est pas ce qui fait tourner le produit. La stack A se nomme par ses briques : React, Next.js, Supabase. Claude Code est l'outil de travail, usage déclaré dans le rendu.
 2. **Pas de n8n dans la stack A.** L'automatisation se fait en code, dans Supabase : une fonction Edge reçoit le toucher et envoie la notification, une tâche pg_cron vérifie chaque heure la règle des 48 heures. n8n reste dans la stack D.
 3. **On construit en React et JavaScript.** Les autres langages sont dans le comparatif pour montrer qu'on a regardé, pas pour hésiter.
-4. **La tablette récupérée, une Samsung Galaxy Tab A 2019, reste sous Android** avec une appli kiosque qui lance l'écran du cadre au démarrage, en plein écran, verrouillé. Pas de système Linux maison.
+4. **La tablette récupérée, une Samsung Galaxy Tab A 2019, reçoit l'OS maison de l'équipe**, en cours d'installation au 22 octobre. Tant qu'elle n'est pas prête, l'écran du cadre se teste dans un navigateur sur un autre appareil, et la chaîne cœur n'a pas besoin d'elle : le simulateur d'objet envoie le toucher. Le plan B si l'OS ne tient pas dans les délais : Android avec une appli kiosque.
 5. **Il y a trois choses à construire**, pas deux : le site vitrine qui vend le cadre et l'appli, l'écran du cadre, l'appli de l'aidant.
 
 ## Ce qui reste à aligner dans les documents de l'équipe
@@ -138,8 +138,7 @@ Ce que la lecture par couche apprend, et que le tableau des stacks ne montrait p
 | Document | Ce qu'il dit encore | Ce qu'il devrait dire |
 |---|---|---|
 | Architecture et données (Camille) | Claude Code + React + Next + Supabase, 3 stacks comparées | même nom que le classement ; 4 stacks |
-| Architecture et données (Camille) | OS Linux maison sur la tablette | Android et appli kiosque |
-| Plan de la démo (Lucas) | FlutterFlow + Supabase + LiveKit + Mistral, tablette neuve | c'est la stack D, plan B ; tablette récupérée |
+| Plan de la démo (Lucas) | FlutterFlow + Supabase + LiveKit + Mistral, tablette neuve | c'est la stack D, plan B ; tablette récupérée avec l'OS maison |
 
 ## Ce qu'il reste à faire
 
@@ -147,7 +146,7 @@ Ce que la lecture par couche apprend, et que le tableau des stacks ne montrait p
 |---|---|---|
 | avant le 24 octobre | relire les notes, contester celles qui semblent fausses, en écrivant le désaccord dans la case | Lucas |
 | dès le compte Supabase | le test commun du toucher sur la stack A : schéma, fonction Edge, page du cadre, page aidant, notification sur le téléphone, avec le cas invalide et le doublon | Clément, code préparé avec Claude Code |
-| 29 octobre | les 4 usages sur A puis D ; chaque résultat passe en « testé » avec sa capture ; le classement se recalcule | Lucas et Clément |
+| 29 octobre | les 4 usages sur A puis D ; chaque résultat passe en « testé » avec sa capture ; le classement se recalcule. L'écran du cadre se teste dans un navigateur si la tablette n'est pas prête | Lucas et Clément |
 | 29 octobre | les prompts de la boîte à outils IA sur Claude, ChatGPT, Gemini, Mistral et un outil spécialisé par thème | Lucas et Clément, Camille pour ses 2 thèmes |
 | avant le 6 novembre | la version testée du classement part dans `rendus/` ; pages 2, 3 et 5 du PDF | Clément |
 

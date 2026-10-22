@@ -227,7 +227,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <tbody>
 <tr><td>1 · Site vitrine et achat</td><td><span class="tag chk">à vérifier</span><small>Un site Next.js. Hébergement à choisir en Europe.</small></td><td><span class="tag chk">à vérifier</span><small>Glide construit des applis, pas des sites de vente.</small></td><td><span class="tag src">source</span><small>Softr sert à faire des sites et des portails.</small></td><td><span class="tag chk">à vérifier</span><small>Publication web possible, mais pas pensée pour une vitrine.</small></td></tr>
 <tr><td>2 · Écran du cadre</td><td><span class="tag chk">à vérifier</span><small>Affichage libre en code, mais rien d’essayé.</small></td><td><span class="tag chk">à vérifier</span><small>App façon mobile, à tester en plein écran.</small></td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span></td></tr>
-<tr><td>3 · Appli de l’aidant</td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span><small>Notifications possibles sans payer ?</small></td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span><small>Notifications sur téléphone à confirmer.</small></td></tr>
+<tr><td>3 · Appli de l’aidant</td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span><small>Notifications possibles sans payer ?</small></td><td><span class="tag src">source</span><small>Softr : portail en PWA, notifications push depuis les workflows.</small></td><td><span class="tag chk">à vérifier</span><small>Notifications sur téléphone à confirmer.</small></td></tr>
 <tr><td>4 · Alertes</td><td><span class="tag chk">à vérifier</span><small>Une fonction Edge de Supabase reçoit le webhook, une tâche planifiée vérifie les 48 h. Pas essayé.</small></td><td><span class="tag chk">à vérifier</span><small>Make reçoit des webhooks. Workflows de Glide payants selon un site tiers.</small></td><td><span class="tag src">source</span><small>Zapier gratuit ne reçoit pas de webhooks : bloquant sans payer.</small></td><td><span class="tag chk">à vérifier</span><small>n8n comme en A.</small></td></tr>
 </tbody></table></div>
 </div>
@@ -344,6 +344,17 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     fbfn:{t:"Firebase : Cloud Functions",u:"https://firebase.google.com/docs/functions"},
     vcron:{t:"Vercel : tâches planifiées (cron)",u:"https://vercel.com/docs/cron-jobs"},
     gha:{t:"GitHub Actions : documentation et quotas",u:"https://docs.github.com/en/actions"},
+    glidePush:{t:"Glide : annonce des notifications push (plans payants)",u:"https://community.glideapps.com/t/push-notifications-are-now-in-glide/59755"},
+    glideFiles:{t:"Glide : stockage de fichiers par plan",u:"https://www.glideapps.com/docs/essentials/security-and-user-data/files"},
+    glideTerms:{t:"Glide : conditions d’utilisation (applis publiques par défaut, paiements Stripe)",u:"https://www.glideapps.com/legal/terms"},
+    glideStore:{t:"Glide : pas de publication sur les stores",u:"https://help.glideapps.com/en/articles/10021560-is-glide-able-to-push-to-app-store"},
+    ffWeb:{t:"FlutterFlow : publication web (hébergement gratuit, PWA)",u:"https://docs.flutterflow.io/deployment/web-publishing/"},
+    ffTos:{t:"FlutterFlow : conditions d’utilisation (service opéré depuis les États-Unis)",u:"https://www.flutterflow.io/tos"},
+    ffOwn:{t:"FlutterFlow : propriété des données, l’app tourne sans FlutterFlow",u:"https://docs.flutterflow.io/misc/application-data-ownership/"},
+    softrSec:{t:"Softr : sécurité et hébergement (données en Allemagne)",u:"https://www.softr.io/security"},
+    softrPush:{t:"Softr : annonce des notifications push (PWA)",u:"https://community.softr.io/t/push-notifications-chart-color-coding-and-new-integrations/16658"},
+    fbStorage:{t:"Firebase : Cloud Storage réservé au plan Blaze (annonce de septembre 2024)",u:"https://firebase.google.com/docs/storage/faqs-storage-changes-announced-sept-2024"},
+    ghaDispatch:{t:"GitHub Actions : événements qui déclenchent un workflow (repository_dispatch)",u:"https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows"},
     process:{t:"Notre process de veille (Neon à Francfort, GitHub Actions le jeudi)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/1-1-process-veille.html"},
     makePrix:{t:"Make : prix et plan gratuit",u:"https://www.make.com/en/pricing"},
     bench:{t:"Notre lecture du 16 octobre (benchmark, fusionné dans cette page le 22)",u:"https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html"},
@@ -375,7 +386,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
        stock:{v:3, st:"doc", why:"Supabase : 1 Go de fichiers sur le plan gratuit. Suffisant pour la démo avec des vidéos de 30 s compressées.", src:["supaPrix"]}
      }},
     {id:"D", n:"D · FlutterFlow + Supabase + n8n", short:"D · FlutterFlow", rest:"Supabase + n8n", sub:"no-code, vraie app · plan B", role:"planb",
-     eu:{ok:true, st:"doc", why:"Supabase comme en A. n8n : Francfort ou un serveur à nous. FlutterFlow : lieu des données à demander.", src:["supaGdpr","n8nCmp"]},
+     eu:{ok:true, st:"doc", why:"Supabase comme en A. n8n : Francfort ou un serveur à nous. FlutterFlow : éditeur aux États-Unis, mais l’app construite tourne sans lui ; à trancher avec la grille réglementaire.", src:["supaGdpr","n8nCmp","ffTos"]},
      notes:{
        cap:  {v:3, st:"est", why:"Fait une vraie app pour l’aidant. Publication web possible mais pas pensée pour un site vitrine. Écran du cadre et notifications sur téléphone à confirmer.", src:["bench","demo"]},
        inter:{v:4, st:"doc", why:"n8n reçoit des webhooks. FlutterFlow sait appeler une API. À confirmer en test.", src:["n8nCmp"]},
@@ -463,24 +474,24 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
         simp:{v:4,st:"est",why:"Camille et Lucas peuvent modifier le site sans code.",src:["wp"]},
         cout:{v:3,st:"doc",why:"Logiciel gratuit, mais hébergement, thème et extensions payants s’additionnent.",src:["wp"]},
         eco:{v:5,st:"doc",why:"Près de la moitié des sites web du monde : agences, thèmes, extensions partout.",src:["wp"]}}},
-      {id:"ff", n:"FlutterFlow", col:"D", sub:"no-code · stack D", eu:{v:"chk",st:"est",why:"Lieu des données de l’éditeur à demander à FlutterFlow. L’app, elle, parle à Supabase en Europe.",src:["ffDocs"]}, notes:{
-        site:{v:2,st:"est",why:"Publication web possible, mais l’outil est pensé pour des applis, pas pour un site de vente.",src:["bench"]},
+      {id:"ff", n:"FlutterFlow", col:"D", sub:"no-code · stack D", eu:{v:"chk",st:"doc",why:"L’éditeur est opéré depuis les États-Unis, d’après ses conditions d’utilisation. L’app construite tourne sans FlutterFlow et parle à Supabase en Europe ; reste à trancher avec la grille réglementaire ce que l’éditeur voit pendant la construction.",src:["ffTos","ffOwn"]}, notes:{
+        site:{v:3,st:"doc",why:"Publication web documentée, hébergement et sous-domaine gratuits, réglage PWA. Mais l’outil est pensé pour des applis, pas pour un site de vente.",src:["ffWeb"]},
         cadre:{v:3,st:"est",why:"App mobile affichée sur une tablette : plein écran possible, les deux sens et la vidéo à vérifier.",src:["bench"]},
         aidant:{v:4,st:"doc",why:"Vraie app mobile, installable sur les stores. Les notifications push passent par Firebase, à brancher en plus de Supabase.",src:["ffDocs"]},
         simp:{v:3,st:"est",why:"Éditeur visuel, mais une vraie courbe d’apprentissage. Lucas l’a retenu pour le plan de démo.",src:["demo"]},
         cout:{v:3,st:"doc",why:"Gratuit pour construire ; publier sur les stores ou récupérer le code demande un plan payant.",src:["ff"]},
         eco:{v:3,st:"est",why:"Communauté active mais fermée à l’outil ; on dépend de son éditeur.",src:["ffDocs"]}}},
-      {id:"softr", n:"Softr", col:"C", sub:"no-code · stack C", eu:{v:"chk",st:"est",why:"Éditeur allemand, mais le lieu d’hébergement des sites n’est pas relevé. À demander.",src:["softr"]}, notes:{
+      {id:"softr", n:"Softr", col:"C", sub:"no-code · stack C", eu:{v:"oui",st:"doc",why:"Softr dit héberger toutes les données en Allemagne, sur AWS en région européenne. Ce qui élimine la stack C, c’est Airtable et Zapier.",src:["softrSec"]}, notes:{
         site:{v:5,st:"doc",why:"Softr sert à faire des sites et des portails : c’est son métier.",src:["softr"]},
         cadre:{v:2,st:"est",why:"Pages web, plein écran possible, mais pensé pour un portail, pas pour un diaporama à 3 mètres.",src:["bench"]},
-        aidant:{v:3,st:"est",why:"Portail web pour l’aidant, installable comme une PWA. Notifications sur téléphone à vérifier.",src:["bench"]},
+        aidant:{v:4,st:"doc",why:"Portail installable en PWA, avec des notifications push envoyées depuis les workflows ; sur iPhone, après installation sur l’écran d’accueil.",src:["softrPush"]},
         simp:{v:4,st:"est",why:"Parmi les plus simples pour un portail : blocs prêts, connexion directe à Airtable.",src:["bench"]},
         cout:{v:3,st:"doc",why:"Plan gratuit limité ; les fonctions utiles passent vite en payant.",src:["softr"]},
         eco:{v:2,st:"est",why:"Petite communauté, blocs limités à ce que l’éditeur propose.",src:["softr"]}}},
       {id:"glide", n:"Glide", col:"B", sub:"no-code · stack B", eu:{v:"non",st:"doc",why:"Serveurs aux États-Unis, pas d’option européenne.",src:["glideGdpr"]}, notes:{
-        site:{v:1,st:"est",why:"Glide construit des applis, pas des sites de vente.",src:["bench"]},
+        site:{v:2,st:"doc",why:"Appli web publique par défaut, et un modèle de panier qui passe par Stripe à configurer. Mais ce n’est pas un site vitrine, et Glide ne publie pas sur les stores.",src:["glideTerms","glideStore"]},
         cadre:{v:2,st:"est",why:"App façon mobile ; plein écran sur tablette et rotation à tester.",src:["bench"]},
-        aidant:{v:3,st:"est",why:"App web type mobile pour l’aidant. Notifications push réservées aux plans payants, à vérifier.",src:["glideFree"]},
+        aidant:{v:3,st:"doc",why:"App web type mobile pour l’aidant. Les notifications push sont annoncées pour les plans payants seulement ; des fils de 2025 parlent d’un retrait de la fonction, à confirmer en test.",src:["glidePush"]},
         simp:{v:5,st:"est",why:"C’est l’argument de Glide : une appli en quelques heures à partir d’un tableau.",src:["glideFree"]},
         cout:{v:3,st:"doc",why:"Plan gratuit ; les prix payants sont contestés selon les sources.",src:["glideFree"]},
         eco:{v:2,st:"est",why:"Petite communauté, fermée à l’outil.",src:["glideFree"]}}}
@@ -499,7 +510,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
         api:{v:4,st:"doc",why:"API web complète et webhooks. Pas de temps réel natif.",src:["airtableApi"]},
         cout:{v:3,st:"doc",why:"Gratuit limité ; Team à environ 20 $ par utilisateur et par mois.",src:["airtablePrix"]}}},
       {id:"gtables", n:"Glide Tables", col:"B", sub:"stack B", eu:{v:"non",st:"doc",why:"Comme Glide : États-Unis.",src:["glideGdpr"]}, notes:{
-        fich:{v:2,st:"est",why:"Stockage de fichiers limité en gratuit ; chiffre non relevé.",src:["glideFree"]},
+        fich:{v:2,st:"doc",why:"500 Mo de fichiers sur le plan gratuit, 10 Go à partir du plan Explorer.",src:["glideFiles"]},
         lim:{v:2,st:"doc",why:"Lignes et mises à jour limitées sur le plan gratuit.",src:["glideFree"]},
         api:{v:2,st:"est",why:"API réservée aux plans payants ; pas de temps réel vers un outil externe.",src:["glideFree"]},
         cout:{v:3,st:"doc",why:"Inclus dans Glide.",src:["glideFree"]}}},
@@ -509,8 +520,8 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
         api:{v:2,st:"est",why:"Une base seule : pas d’API générée, pas de temps réel, pas de comptes. Tout est à coder.",src:["neon"]},
         cout:{v:4,st:"doc",why:"Gratuit pour nos volumes.",src:["neon"]}}},
       {id:"firebase", n:"Firebase (Google)", col:"X", sub:"pour comparer", eu:{v:"chk",st:"doc",why:"Régions européennes possibles pour la base et les fichiers, mais Google reste l’hébergeur : à vérifier avec la grille réglementaire.",src:["firebase"]}, notes:{
-        fich:{v:3,st:"est",why:"Stockage de fichiers inclus ; les conditions du plan gratuit ont changé récemment, à vérifier.",src:["firebase"]},
-        lim:{v:3,st:"est",why:"Quotas gratuits confortables pour trois familles ; les fonctions demandent le plan payant.",src:["firebase"]},
+        fich:{v:2,st:"doc",why:"Le stockage de fichiers demande le plan Blaze avec carte bancaire : nouveaux projets depuis 2024, tous depuis février 2026. Un volume gratuit reste inclus ensuite.",src:["fbStorage"]},
+        lim:{v:3,st:"doc",why:"Quotas gratuits confortables pour trois familles, mais fichiers et fonctions demandent le plan Blaze.",src:["fbStorage","firebase"]},
         api:{v:5,st:"doc",why:"Temps réel natif, comptes, notifications push, fonctions : tout est là.",src:["firebase"]},
         cout:{v:3,st:"doc",why:"Gratuit pour la base, mais carte bancaire et plan Blaze dès qu’on veut des fonctions.",src:["firebase"]}}}
      ]},
@@ -548,7 +559,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
         quota:{v:4,st:"doc",why:"Largement suffisant en gratuit pour trois familles.",src:["vercel"]},
         cout:{v:4,st:"doc",why:"Gratuit pour un essai non commercial ; Pro à environ 20 $ par mois ensuite.",src:["vercel"]}}},
       {id:"gha", n:"Python + GitHub Actions", col:"X", sub:"la veille du jeudi · déjà pratiqué", eu:{v:"chk",st:"doc",why:"Les machines de GitHub tournent aux États-Unis par défaut : les données de l’alerte y passeraient.",src:["gha"]}, notes:{
-        hook:{v:2,st:"est",why:"Pas fait pour recevoir un toucher en direct : un déclenchement externe existe, mais avec des minutes de délai.",src:["gha"]},
+        hook:{v:2,st:"doc",why:"Un déclenchement externe existe (repository_dispatch, avec un jeton GitHub), mais un workflow met des dizaines de secondes à des minutes à démarrer : pas pour un toucher en direct.",src:["ghaDispatch"]},
         temps:{v:4,st:"teste",why:"C’est exactement ce qui lance notre veille chaque jeudi à 7 h 45. Délai de quelques minutes possible.",src:["process"]},
         notif:{v:3,st:"est",why:"E-mail ou push via une API, en Python.",src:["gha"]},
         quota:{v:4,st:"doc",why:"2 000 minutes par mois en gratuit sur un dépôt privé, sans limite sur un dépôt public.",src:["gha"]},
