@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trois univers DA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.thesis { margin-top: 32px; border-left: 4px solid var(--orange); padding: 4px 0 4px 18px; max-width: 70ch; }
+.thesis p { margin: 6px 0 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; }
+.prod, .spec2 { display:grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; }
+.spec2 { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+.prod > div, .spec2 > div { border-top: 3px solid var(--blue); padding-top: 10px; }
+.prod p, .spec2 p { margin: 6px 0 0; font-size: 15px; }
+.ideas { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.idea { border-top: 4px solid var(--fg); padding: 12px 0 8px; display:flex; flex-direction:column; min-width:0; }
+.ihead { display:flex; justify-content:space-between; align-items:baseline; gap: 8px; }
+.inum { font: 800 44px/1 var(--display); color: var(--orange); letter-spacing: -.05em; }
+.eff { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; white-space: nowrap; }
+.eff.e1 { background: var(--blue-soft); color: var(--blue); }
+.eff.e2 { background: var(--soft); color: var(--fg); }
+.eff.e3 { background: var(--orange-soft); color: var(--orange); }
+.idea h3 { margin: 10px 0 6px; font-size: 20px; letter-spacing: -.015em; }
+.idea p { margin: 0 0 10px; font-size: 15px; }
+.idea dl { margin: auto 0 0; font-size: 13px; border-top: 1px solid var(--hair); padding-top: 8px; }
+.idea dt { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.idea dd { margin: 0 0 6px; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+td b { font-weight: 700; }
+@media (max-width: 1000px) { .ideas { grid-template-columns: repeat(2, 1fr); } .prod { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .ideas, .prod, .spec2 { grid-template-columns: 1fr; } }
+
+.uni { margin-top: clamp(48px, 7vw, 88px); background: var(--ub); color: var(--uf); }
+.u-wrap { padding: clamp(24px, 5vw, 64px) clamp(16px, 4vw, 48px); }
+.u-head { display:flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px; border-bottom: 1px solid var(--uf); padding-bottom: 14px; }
+.u-n, .u-k { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--um); }
+.u-k { display:block; margin: 28px 0 10px; }
+.u-t { margin: 0; font-family: var(--ud); font-weight: var(--udw); font-size: clamp(48px, 9vw, 120px); line-height: .9; letter-spacing: -.02em; color: var(--uf); }
+.u-s { font-family: var(--ud); font-size: clamp(20px, 2.4vw, 30px); color: var(--um); }
+.u-pitch { display:grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-top: 20px; align-items: start; }
+.u-pitch p { font-family: var(--uo); font-size: clamp(18px, 1.8vw, 22px); line-height: 1.45; max-width: 58ch; margin: 0; }
+.u-feel { display:flex; flex-wrap: wrap; gap: 8px; }
+.u-feel span { font-family: var(--uo); font-weight: 700; background: var(--us); color: var(--uf); padding: 8px 14px; }
+.mood { display:grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 180px 180px; gap: 8px; margin-top: 28px; }
+.md { background-size: cover; background-position: center; }
+.md0 { grid-row: 1 / 3; }
+.md3, .md4 { }
+.u-grid2 { display:grid; grid-template-columns: 1fr 2fr; gap: 32px; }
+.u-grid2 > div, .u-grid3 > div { min-width: 0; }
+.u-logo { background: var(--us); min-height: 150px; display:flex; align-items:center; justify-content:center; padding: 16px; }
+.u-logo svg { max-width: 100%; }
+.pal2 { display:grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.pal2 > div { min-width: 0; font-family: var(--uo); }
+.sw2 { height: 96px; border: 1px solid rgba(128,128,128,.25); }
+.pal2 b { display:block; margin-top: 6px; font-size: 14px; }
+.pal2 span { display:block; font: 11px var(--mono); color: var(--um); }
+.pal2 em { display:block; font-style: normal; font-size: 12.5px; color: var(--um); }
+.u-spec { display:grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; background: var(--us); padding: 20px 24px; }
+.u-big { font-family: var(--ud); font-weight: var(--udw); font-size: clamp(80px, 12vw, 150px); line-height: .85; }
+.u-disp { font-family: var(--ud); font-weight: var(--udw); font-size: clamp(28px, 3.6vw, 46px); line-height: 1.02; margin: 0 0 10px; letter-spacing: -.01em; }
+.u-body { font-family: var(--uo); font-size: 16px; color: var(--um); margin: 0; max-width: 60ch; }
+.sup { display:grid; grid-template-columns: 1.6fr .75fr; grid-template-areas: "web app" "frame ig"; gap: 20px; }
+.sup figure { margin: 0; min-width: 0; }
+.sup figcaption { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--um); margin-top: 8px; }
+.sup-web { grid-area: web; } .sup-app { grid-area: app; justify-self: center; } .sup-frame { grid-area: frame; align-self: center; } .sup-ig { grid-area: ig; }
+.web2 { background: var(--ub); border: 1px solid rgba(128,128,128,.3); overflow: hidden; }
+.w-nav { display:flex; gap: 16px; align-items: center; padding: 10px 18px; font-family: var(--uo); font-size: 13px; flex-wrap: wrap; }
+.w-nav svg { margin-right: auto; }
+.w-cta { background: var(--uf); color: var(--ub); padding: 6px 12px; font-weight: 700; }
+.w-hero { height: 340px; background-size: cover; background-position: center; position: relative; display:flex; align-items: flex-end; }
+.w-txt { background: var(--ub); color: var(--uf); padding: 18px 22px; margin: 0 0 22px 22px; max-width: 70%; }
+.w-txt h4 { margin: 0 0 10px; font-family: var(--ud); font-weight: var(--udw); font-size: clamp(24px, 3vw, 38px); line-height: 1.02; }
+.w-btn { display:inline-block; background: var(--uf); color: var(--ub); font-family: var(--uo); font-weight: 700; font-size: 14px; padding: 9px 14px; }
+.ph2 { width: 230px; max-width: 100%; aspect-ratio: 9/19; border: 8px solid #111; border-radius: 34px; overflow: hidden; background: var(--ub); }
+.u-heritage .ph2 { background: #f2ebdd; }
+.a-in { height: 100%; padding: 26px 13px 13px; display:flex; flex-direction: column; gap: 10px; font-family: var(--uo); color: var(--uf); }
+.u-heritage .a-in { color: #17130f; }
+.a-top b { font-family: var(--ud); font-weight: var(--udw); font-size: 22px; }
+.a-photo { height: 46%; background-size: cover; background-position: center; border-radius: 12px; }
+.a-sig { display:flex; gap: 10px; align-items: center; background: var(--us); border-radius: 12px; padding: 10px; }
+.u-heritage .a-sig { background: #e8dfcd; }
+.a-sig i { width: 14px; height: 14px; border-radius: 50%; background: var(--ua); flex: none; box-shadow: 0 0 0 5px color-mix(in srgb, var(--ua) 25%, transparent); }
+.a-sig b { display:block; font-size: 15px; } .a-sig small { font-size: 11.5px; opacity: .75; }
+.a-btn { margin-top: auto; background: var(--uf); color: var(--ub); text-align: center; font-weight: 700; padding: 12px; border-radius: 12px; font-size: 14px; }
+.u-heritage .a-btn { background: #17130f; color: #f2ebdd; }
+.u-soleil .a-btn { border-radius: 999px; }
+.fr2 { position: relative; padding: 16px; background: #c9b79c; box-shadow: inset 0 0 0 3px rgba(0,0,0,.12), 0 14px 30px rgba(0,0,0,.25); }
+.u-heritage .fr2 { background: linear-gradient(135deg,#a77f43,#e2c48a 30%,#9a7238 60%,#d8b779); }
+.u-soleil .fr2 { background: #f6d775; border-radius: 14px; }
+.fr2-in { aspect-ratio: 4/3; background-size: cover; background-position: center; position: relative; }
+.u-soleil .fr2-in { border-radius: 6px; }
+.fr2-note { position:absolute; right: 12px; bottom: 12px; background: var(--ub); color: var(--uf); font-family: var(--ud); font-weight: var(--udw); font-size: clamp(16px, 2vw, 24px); padding: 10px 14px; line-height: 1; }
+.fr2-note small { display:block; font-family: var(--uo); font-weight: 400; font-size: 12px; margin-top: 4px; color: var(--um); }
+.fr2 > i { position:absolute; left: 22%; right: 22%; bottom: -10px; height: 6px; border-radius: 6px; background: var(--ua); box-shadow: 0 0 18px 4px color-mix(in srgb, var(--ua) 60%, transparent); }
+.ig2 { background: #fff; color: #111; padding: 10px; font-family: -apple-system, Arial, sans-serif; }
+.ig2-h { display:flex; gap: 10px; align-items: center; margin-bottom: 10px; }
+.ig2-av { width: 52px; height: 52px; border-radius: 50%; overflow: hidden; background: var(--ub); display:flex; align-items:center; justify-content:center; flex: none; border: 1px solid #ddd; }
+.ig2-h b { font-size: 13px; display:block; } .ig2-h small { font-size: 11px; color: #555; }
+.ig2-g { display:grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.igt { aspect-ratio: 4/5; background-size: cover; background-position: center; }
+.igx { background: var(--ub); color: var(--uf); display:flex; align-items: center; padding: 8px; }
+.u-soleil .igx:nth-child(5) { background: var(--us); }
+.igx p { margin: 0; font-family: var(--ud); font-weight: var(--udw); font-size: 14px; line-height: 1.05; }
+.u-grid3 { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; font-family: var(--uo); }
+.u-grid3 p { font-size: 15px; margin: 0; }
+.u-grid3 ul { margin: 0; padding-left: 18px; font-size: 15px; }
+.u-grid3 li { padding: 4px 0; }
+.u-grid3 ul.ko li::marker { content: "× "; }
+.cmp td:first-child { width: auto; font: inherit; color: inherit; }
+.dt { letter-spacing: 3px; color: var(--blue); } .dt .off { color: var(--hair); }
+tr.tot td { font-weight: 800; border-top: 1px solid var(--fg); font-size: 18px; }
+.unav { display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
+.unav a { display:block; text-decoration: none; color: inherit; min-width: 0; }
+.unav .th { height: 150px; display:flex; align-items: flex-end; padding: 12px 14px; font-size: 28px; }
+.unav span { font: 12px var(--mono); color: var(--muted); text-transform: uppercase; display:block; margin-top: 6px; }
+@media (max-width: 960px) {
+  .sup { grid-template-columns: 1fr; grid-template-areas: "web" "app" "frame" "ig"; }
+  .u-grid3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .u-pitch, .u-grid2 { grid-template-columns: 1fr; }
+  .mood { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 120px 120px; }
+  .md0 { grid-row: auto; grid-column: 1 / -1; }
+  .pal2 { grid-template-columns: repeat(3, 1fr); }
+  .u-spec { grid-template-columns: 1fr; }
+  .w-txt { max-width: none; margin: 0 12px 12px; }
+  .unav { grid-template-columns: 1fr; }
+}
+.u-papier { --ub:#faf8f5; --us:#efe9e1; --uf:#161412; --um:#4a4540; --ua:#c98a3a; --ud:'Atkinson Hyperlegible', Arial, sans-serif; --udw:700; --uo:'Atkinson Hyperlegible', Arial, sans-serif; }
+.u-heritage { --ub:#17130f; --us:#241e18; --uf:#f2ebdd; --um:#c9bda8; --ua:#c8a063; --ud:'Instrument Serif', Georgia, serif; --udw:400; --uo:'Atkinson Hyperlegible', Arial, sans-serif; }
+.u-soleil { --ub:#fff6e0; --us:#f6d775; --uf:#2e1e14; --um:#5c4636; --ua:#b7a3e0; --ud:'Bricolage Grotesque', Arial, sans-serif; --udw:800; --uo:'Atkinson Hyperlegible', Arial, sans-serif; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span>
+  <span>Bloc 03 · Outils no-code et IA</span>
+  <span>Direction artistique · trois univers</span>
+  <span>Lucas (DA), équipe Clément, Camille, Lucas</span>
+  <span>22 octobre 2026</span>
+</div>
+<h1>Trois univers <span>pour Le Cadre</span></h1>
+<p class="lead">La silvertech parle d'alerte et de santé, en bleu. Nous parlons de famille. Voici trois façons de le dire, chacune complète&nbsp;: logo, palette, typographie, photo, site, appli, cadre au mur et Instagram.</p>
+<div class="thesis"><span class="k">Ce qui ne change pas d'un univers à l'autre</span><p>Le produit reste le même&nbsp;: un cadre au mur, des photos de la famille, <b>un point de lumière quand le parent touche le cadre</b>. Dans les trois univers, ce point a sa propre couleur, réservée au lien. Le texte lu par le parent est toujours en <b>Atkinson Hyperlegible</b>, contrasté. On ne change que l'émotion.</p></div>
+<div class="unav"><a href="#papier"><div class="th" style="background:#faf8f5;color:#161412;font-family:'Atkinson Hyperlegible', Arial, sans-serif;font-weight:700;border-bottom:8px solid #c98a3a">Papier</div><span>Univers 01 · L'épure chaude</span></a><a href="#heritage"><div class="th" style="background:#17130f;color:#f2ebdd;font-family:'Instrument Serif', Georgia, serif;font-weight:400;border-bottom:8px solid #c8a063">Héritage</div><span>Univers 02 · La galerie de famille</span></a><a href="#soleil"><div class="th" style="background:#fff6e0;color:#2e1e14;font-family:'Bricolage Grotesque', Arial, sans-serif;font-weight:800;border-bottom:8px solid #b7a3e0">Soleil</div><span>Univers 03 · La tribu en couleur</span></a></div>
+</div>
+
+<section class="uni u-papier" id="papier">
+ <div class="u-wrap">
+  <div class="u-head"><span class="u-n">Univers 01</span><h2 class="u-t">Papier</h2><span class="u-s">L'épure chaude</span></div>
+  <div class="u-pitch"><p>Ce que ChatGPT a fait pour l'IA, Le Cadre le fait pour la famille&nbsp;: l'interface disparaît, il ne reste que les photos et un point de lumière. Une marque calme, claire, qui se lit à trois mètres et ne fait jamais peur.</p><div class="u-feel"><span>Calme</span><span>Clair</span><span>Adulte</span><span>Lisible</span></div></div>
+  <div class="mood"><div class="md md0" style="background-image:url(img-da/l3.jpg)"></div><div class="md md1" style="background-image:url(img-da/g4.jpg)"></div><div class="md md2" style="background-image:url(img-da/s2.jpg)"></div><div class="md md3" style="background-image:url(img-da/f3.jpg)"></div><div class="md md4" style="background-image:url(img-da/d3.jpg)"></div></div>
+  <div class="u-grid2">
+   <div><span class="u-k">Logo</span><div class="u-logo"><svg viewBox="0 0 220 60" width="250" aria-label="Logo Papier"><rect x="3" y="9" width="40" height="34" rx="7" fill="none" stroke="#161412" stroke-width="4"/><circle cx="23" cy="52" r="4.5" fill="#c98a3a"/><text x="58" y="38" font-family="Atkinson Hyperlegible, Arial" font-weight="700" font-size="30" fill="#161412">le cadre</text></svg></div></div>
+   <div><span class="u-k">Palette</span><div class="pal2"><div><div class="sw2" style="background:#faf8f5"></div><b>Papier</b><span>#faf8f5</span><em>fond</em></div><div><div class="sw2" style="background:#efe9e1"></div><b>Sable</b><span>#efe9e1</span><em>surfaces</em></div><div><div class="sw2" style="background:#161412"></div><b>Encre</b><span>#161412</span><em>texte, boutons</em></div><div><div class="sw2" style="background:#4a4540"></div><b>Gris chaud</b><span>#4a4540</span><em>secondaire</em></div><div><div class="sw2" style="background:#c98a3a"></div><b>Ambre</b><span>#c98a3a</span><em>la lueur seule</em></div></div></div>
+  </div>
+  <div class="u-type"><span class="u-k">Typographie</span><div class="u-spec"><div class="u-big">Aa</div><div><p class="u-disp">Vos photos chez eux.<br>Leur signe chez vous.</p><p class="u-body">Atkinson Hyperlegible pour les titres · Atkinson Hyperlegible pour le texte. Une seule famille, comme les marques tech épurées. Dessinée pour la basse vision par le Braille Institute.</p></div></div></div>
+  <span class="u-k">Les supports</span>
+  <div class="sup">
+   <figure class="sup-web"><div class="web2"><div class="w-nav"><svg viewBox="0 0 220 60" width="120" aria-label="Logo Papier"><rect x="3" y="9" width="40" height="34" rx="7" fill="none" stroke="#161412" stroke-width="4"/><circle cx="23" cy="52" r="4.5" fill="#c98a3a"/><text x="58" y="38" font-family="Atkinson Hyperlegible, Arial" font-weight="700" font-size="30" fill="#161412">le cadre</text></svg><span>L'objet</span><span>Comment ça marche</span><span class="w-cta">Offrir</span></div><div class="w-hero" style="background-image:url(img-da/g4.jpg)"><div class="w-txt"><h4>Vos photos chez eux.<br>Leur signe chez vous.</h4><span class="w-btn">Découvrir Le Cadre</span></div></div></div><figcaption>Site · page d'accueil</figcaption></figure>
+   <figure class="sup-app"><div class="ph2"><div class="a-in"><div class="a-top"><b>Bonjour Léa</b></div><div class="a-photo" style="background-image:url(img-da/s2.jpg)"></div><div class="a-sig"><i></i><div><b>Maman est là</b><small>il y a 12 min</small></div></div><div class="a-btn">Mettre une photo au mur</div></div></div><figcaption>Appli · accueil</figcaption></figure>
+   <figure class="sup-frame"><div class="fr2"><div class="fr2-in" style="background-image:url(img-da/d3.jpg)"><div class="fr2-note">On pense à toi&nbsp;!<small>Léa</small></div></div><i></i></div><figcaption>Le cadre au mur</figcaption></figure>
+   <figure class="sup-ig"><div class="ig2"><div class="ig2-h"><div class="ig2-av"><svg viewBox="0 0 220 60" width="46" aria-label="Logo Papier"><rect x="3" y="9" width="40" height="34" rx="7" fill="none" stroke="#161412" stroke-width="4"/><circle cx="23" cy="52" r="4.5" fill="#c98a3a"/><text x="58" y="38" font-family="Atkinson Hyperlegible, Arial" font-weight="700" font-size="30" fill="#161412">le cadre</text></svg></div><div><b>lecadre.papier</b><small>L'épure chaude</small></div></div><div class="ig2-g"><div class="igt" style="background-image:url(img-da/l3.jpg)"></div><div class="igt igx"><p>Maman est là.</p></div><div class="igt" style="background-image:url(img-da/g4.jpg)"></div><div class="igt" style="background-image:url(img-da/f3.jpg)"></div><div class="igt igx"><p>Un toucher suffit.</p></div><div class="igt" style="background-image:url(img-da/s2.jpg)"></div><div class="igt igx"><p>Où accrocher<br>le cadre&nbsp;?</p></div><div class="igt" style="background-image:url(img-da/d3.jpg)"></div><div class="igt" style="background-image:url(img-da/g3.jpg)"></div></div></div><figcaption>Instagram · grille</figcaption></figure>
+  </div>
+  <div class="u-grid3">
+   <div><span class="u-k">Ton</span><p>«&nbsp;Maman est là.&nbsp;» · «&nbsp;Mettre au mur&nbsp;» · «&nbsp;Un petit mot, si tu veux&nbsp;»</p><span class="u-k">Références</span><p>ChatGPT, Anthropic, Muji, Aesop pour la sobriété</p><span class="u-k">Pour qui</span><p>L'enfant de 40 à 60 ans, urbain, habitué aux applis épurées, qui veut un objet beau et sans complication.</p></div>
+   <div><span class="u-k">Pourquoi ça marche</span><ul><li>Le plus lisible pour les seniors (contraste AAA, une seule police hyperlisible).</li><li>Sort du bleu de la silvertech sans tomber dans le décoratif.</li><li>Laisse toute la place aux photos de la famille, qui sont la vraie couleur.</li></ul></div>
+   <div><span class="u-k">Les risques</span><ul class="ko"><li>Discret&nbsp;: la marque repose sur la qualité des photos et de la typo.</li><li>Moins spectaculaire en publicité qu'un univers plus marqué.</li></ul></div>
+  </div>
+ </div>
+</section>
+<section class="uni u-heritage" id="heritage">
+ <div class="u-wrap">
+  <div class="u-head"><span class="u-n">Univers 02</span><h2 class="u-t">Héritage</h2><span class="u-s">La galerie de famille</span></div>
+  <div class="u-pitch"><p>Chaque famille a son musée&nbsp;: le couloir des photos de mariage, le cadre doré du salon. Héritage en fait une marque. Fond noir velours, or patiné, serif d'exposition&nbsp;: Le Cadre devient l'objet précieux qu'on se transmet.</p><div class="u-feel"><span>Précieux</span><span>Intemporel</span><span>Émouvant</span><span>Cadeau</span></div></div>
+  <div class="mood"><div class="md md0" style="background-image:url(img-da/f4.jpg)"></div><div class="md md1" style="background-image:url(img-da/g1.jpg)"></div><div class="md md2" style="background-image:url(img-da/h3.jpg)"></div><div class="md md3" style="background-image:url(img-da/l4.jpg)"></div><div class="md md4" style="background-image:url(img-da/f6.jpg)"></div></div>
+  <div class="u-grid2">
+   <div><span class="u-k">Logo</span><div class="u-logo"><svg viewBox="0 0 240 70" width="250" aria-label="Logo Héritage"><rect x="2" y="4" width="56" height="62" fill="none" stroke="#c8a063" stroke-width="1.5"/><rect x="8" y="10" width="44" height="50" fill="none" stroke="#c8a063" stroke-width="0.8"/><text x="30" y="46" text-anchor="middle" font-family="Instrument Serif, Georgia" font-style="italic" font-size="30" fill="#f2ebdd">C</text><text x="72" y="45" font-family="Instrument Serif, Georgia" font-size="34" fill="#f2ebdd">Le Cadre</text><text x="73" y="62" font-family="Atkinson Hyperlegible, Arial" font-size="8.5" letter-spacing="3" fill="#c8a063">MAISON DE FAMILLE</text></svg></div></div>
+   <div><span class="u-k">Palette</span><div class="pal2"><div><div class="sw2" style="background:#17130f"></div><b>Velours</b><span>#17130f</span><em>fond</em></div><div><div class="sw2" style="background:#241e18"></div><b>Noyer</b><span>#241e18</span><em>surfaces</em></div><div><div class="sw2" style="background:#f2ebdd"></div><b>Ivoire</b><span>#f2ebdd</span><em>texte</em></div><div><div class="sw2" style="background:#c9bda8"></div><b>Lin</b><span>#c9bda8</span><em>secondaire</em></div><div><div class="sw2" style="background:#c8a063"></div><b>Or patiné</b><span>#c8a063</span><em>lueur, filets</em></div></div></div>
+  </div>
+  <div class="u-type"><span class="u-k">Typographie</span><div class="u-spec"><div class="u-big">Aa</div><div><p class="u-disp">Le portrait de famille,<br><i>enfin vivant.</i></p><p class="u-body">Instrument Serif pour les titres · Atkinson Hyperlegible pour le texte. Une serif d'exposition pour l'émotion (titres, signature), l'hyperlisible pour tout ce que lit le parent.</p></div></div></div>
+  <span class="u-k">Les supports</span>
+  <div class="sup">
+   <figure class="sup-web"><div class="web2"><div class="w-nav"><svg viewBox="0 0 240 70" width="120" aria-label="Logo Héritage"><rect x="2" y="4" width="56" height="62" fill="none" stroke="#c8a063" stroke-width="1.5"/><rect x="8" y="10" width="44" height="50" fill="none" stroke="#c8a063" stroke-width="0.8"/><text x="30" y="46" text-anchor="middle" font-family="Instrument Serif, Georgia" font-style="italic" font-size="30" fill="#f2ebdd">C</text><text x="72" y="45" font-family="Instrument Serif, Georgia" font-size="34" fill="#f2ebdd">Le Cadre</text><text x="73" y="62" font-family="Atkinson Hyperlegible, Arial" font-size="8.5" letter-spacing="3" fill="#c8a063">MAISON DE FAMILLE</text></svg><span>L'objet</span><span>Comment ça marche</span><span class="w-cta">Offrir</span></div><div class="w-hero" style="background-image:url(img-da/g1.jpg)"><div class="w-txt"><h4>Le portrait de famille,<br><i>enfin vivant.</i></h4><span class="w-btn">Découvrir Le Cadre</span></div></div></div><figcaption>Site · page d'accueil</figcaption></figure>
+   <figure class="sup-app"><div class="ph2"><div class="a-in"><div class="a-top"><b>Bonjour Léa</b></div><div class="a-photo" style="background-image:url(img-da/g2.jpg)"></div><div class="a-sig"><i></i><div><b>Maman est là</b><small>il y a 12 min</small></div></div><div class="a-btn">Mettre une photo au mur</div></div></div><figcaption>Appli · accueil</figcaption></figure>
+   <figure class="sup-frame"><div class="fr2"><div class="fr2-in" style="background-image:url(img-da/s6.jpg)"><div class="fr2-note">On pense à toi&nbsp;!<small>Léa</small></div></div><i></i></div><figcaption>Le cadre au mur</figcaption></figure>
+   <figure class="sup-ig"><div class="ig2"><div class="ig2-h"><div class="ig2-av"><svg viewBox="0 0 240 70" width="46" aria-label="Logo Héritage"><rect x="2" y="4" width="56" height="62" fill="none" stroke="#c8a063" stroke-width="1.5"/><rect x="8" y="10" width="44" height="50" fill="none" stroke="#c8a063" stroke-width="0.8"/><text x="30" y="46" text-anchor="middle" font-family="Instrument Serif, Georgia" font-style="italic" font-size="30" fill="#f2ebdd">C</text><text x="72" y="45" font-family="Instrument Serif, Georgia" font-size="34" fill="#f2ebdd">Le Cadre</text><text x="73" y="62" font-family="Atkinson Hyperlegible, Arial" font-size="8.5" letter-spacing="3" fill="#c8a063">MAISON DE FAMILLE</text></svg></div><div><b>lecadre.heritage</b><small>La galerie de famille</small></div></div><div class="ig2-g"><div class="igt" style="background-image:url(img-da/g1.jpg)"></div><div class="igt igx"><p><i>On pense à toi.</i></p></div><div class="igt" style="background-image:url(img-da/f4.jpg)"></div><div class="igt" style="background-image:url(img-da/h3.jpg)"></div><div class="igt" style="background-image:url(img-da/l4.jpg)"></div><div class="igt igx"><p><i>Le premier<br>cadre de famille<br>connecté.</i></p></div><div class="igt" style="background-image:url(img-da/s3.jpg)"></div><div class="igt igx"><p><i>Transmettre.</i></p></div><div class="igt" style="background-image:url(img-da/f6.jpg)"></div></div></div><figcaption>Instagram · grille</figcaption></figure>
+  </div>
+  <div class="u-grid3">
+   <div><span class="u-k">Ton</span><p>«&nbsp;Votre mère a vu votre photo.&nbsp;» · «&nbsp;Ajouter au cadre&nbsp;» · «&nbsp;Écrire une dédicace&nbsp;»</p><span class="u-k">Références</span><p>Galeries et musées (signalétique du V&A), maisons de joaillerie, éditions d'art</p><span class="u-k">Pour qui</span><p>L'enfant qui offre un cadeau qui compte, pour une occasion, souvent avec frères et sœurs.</p></div>
+   <div><span class="u-k">Pourquoi ça marche</span><ul><li>Prolonge directement le cadre ancien doré choisi par l'équipe.</li><li>Le plus fort en cadeau&nbsp;: Noël, anniversaires, fête des mères.</li><li>Très reconnaissable sur Instagram&nbsp;: grille sombre, unique dans la silvertech.</li></ul></div>
+   <div><span class="u-k">Les risques</span><ul class="ko"><li>Fond sombre&nbsp;: à réserver au marketing, l'appli et le cadre restent clairs.</li><li>Le noir et l'or peuvent évoquer le deuil s'ils sont mal dosés.</li><li>Positionnement plus cher, à assumer.</li></ul></div>
+  </div>
+ </div>
+</section>
+<section class="uni u-soleil" id="soleil">
+ <div class="u-wrap">
+  <div class="u-head"><span class="u-n">Univers 03</span><h2 class="u-t">Soleil</h2><span class="u-s">La tribu en couleur</span></div>
+  <div class="u-pitch"><p>La famille, c'est du bruit, des rires, des dimanches. Soleil est l'univers le plus vivant&nbsp;: jaune beurre, cacao, une typo grasse et joyeuse. Le Cadre n'est plus un objet pour les vieux, c'est le point de ralliement de toute la tribu, petits-enfants compris.</p><div class="u-feel"><span>Joyeux</span><span>Généreux</span><span>Moderne</span><span>Collectif</span></div></div>
+  <div class="mood"><div class="md md0" style="background-image:url(img-da/c3.jpg)"></div><div class="md md1" style="background-image:url(img-da/d2.jpg)"></div><div class="md md2" style="background-image:url(img-da/g5.jpg)"></div><div class="md md3" style="background-image:url(img-da/s4.jpg)"></div><div class="md md4" style="background-image:url(img-da/d4.jpg)"></div></div>
+  <div class="u-grid2">
+   <div><span class="u-k">Logo</span><div class="u-logo"><svg viewBox="0 0 230 64" width="250" aria-label="Logo Soleil"><circle cx="30" cy="32" r="26" fill="#f6d775"/><rect x="17" y="20" width="26" height="22" rx="5" fill="none" stroke="#2e1e14" stroke-width="3.5"/><circle cx="30" cy="49" r="4" fill="#b7a3e0"/><text x="66" y="42" font-family="Bricolage Grotesque, Arial" font-weight="800" font-size="31" fill="#2e1e14" letter-spacing="-1">lecadre</text></svg></div></div>
+   <div><span class="u-k">Palette</span><div class="pal2"><div><div class="sw2" style="background:#fff6e0"></div><b>Crème</b><span>#fff6e0</span><em>fond</em></div><div><div class="sw2" style="background:#f6d775"></div><b>Beurre</b><span>#f6d775</span><em>couleur de marque</em></div><div><div class="sw2" style="background:#2e1e14"></div><b>Cacao</b><span>#2e1e14</span><em>texte</em></div><div><div class="sw2" style="background:#5c4636"></div><b>Noisette</b><span>#5c4636</span><em>secondaire</em></div><div><div class="sw2" style="background:#b7a3e0"></div><b>Lilas</b><span>#b7a3e0</span><em>la lueur, le lien</em></div></div></div>
+  </div>
+  <div class="u-type"><span class="u-k">Typographie</span><div class="u-spec"><div class="u-big">Aa</div><div><p class="u-disp">Toute la famille<br>au même mur.</p><p class="u-body">Bricolage Grotesque pour les titres · Atkinson Hyperlegible pour le texte. Une grotesque grasse et un peu espiègle pour l'énergie (tendance Koto, Franki), l'hyperlisible pour le texte courant.</p></div></div></div>
+  <span class="u-k">Les supports</span>
+  <div class="sup">
+   <figure class="sup-web"><div class="web2"><div class="w-nav"><svg viewBox="0 0 230 64" width="120" aria-label="Logo Soleil"><circle cx="30" cy="32" r="26" fill="#f6d775"/><rect x="17" y="20" width="26" height="22" rx="5" fill="none" stroke="#2e1e14" stroke-width="3.5"/><circle cx="30" cy="49" r="4" fill="#b7a3e0"/><text x="66" y="42" font-family="Bricolage Grotesque, Arial" font-weight="800" font-size="31" fill="#2e1e14" letter-spacing="-1">lecadre</text></svg><span>L'objet</span><span>Comment ça marche</span><span class="w-cta">Offrir</span></div><div class="w-hero" style="background-image:url(img-da/c4.jpg)"><div class="w-txt"><h4>Toute la famille<br>au même mur.</h4><span class="w-btn">Découvrir Le Cadre</span></div></div></div><figcaption>Site · page d'accueil</figcaption></figure>
+   <figure class="sup-app"><div class="ph2"><div class="a-in"><div class="a-top"><b>Bonjour Léa</b></div><div class="a-photo" style="background-image:url(img-da/g5.jpg)"></div><div class="a-sig"><i></i><div><b>Maman est là</b><small>il y a 12 min</small></div></div><div class="a-btn">Mettre une photo au mur</div></div></div><figcaption>Appli · accueil</figcaption></figure>
+   <figure class="sup-frame"><div class="fr2"><div class="fr2-in" style="background-image:url(img-da/c3.jpg)"><div class="fr2-note">On pense à toi&nbsp;!<small>Léa</small></div></div><i></i></div><figcaption>Le cadre au mur</figcaption></figure>
+   <figure class="sup-ig"><div class="ig2"><div class="ig2-h"><div class="ig2-av"><svg viewBox="0 0 230 64" width="46" aria-label="Logo Soleil"><circle cx="30" cy="32" r="26" fill="#f6d775"/><rect x="17" y="20" width="26" height="22" rx="5" fill="none" stroke="#2e1e14" stroke-width="3.5"/><circle cx="30" cy="49" r="4" fill="#b7a3e0"/><text x="66" y="42" font-family="Bricolage Grotesque, Arial" font-weight="800" font-size="31" fill="#2e1e14" letter-spacing="-1">lecadre</text></svg></div><div><b>lecadre.soleil</b><small>La tribu en couleur</small></div></div><div class="ig2-g"><div class="igt" style="background-image:url(img-da/c3.jpg)"></div><div class="igt igx"><p>Dimanche,<br>tout le monde<br>au mur&nbsp;!</p></div><div class="igt" style="background-image:url(img-da/d2.jpg)"></div><div class="igt" style="background-image:url(img-da/g5.jpg)"></div><div class="igt igx"><p>Mamie est là ●</p></div><div class="igt" style="background-image:url(img-da/s5.jpg)"></div><div class="igt igx"><p>3 générations,<br>1 cadre.</p></div><div class="igt" style="background-image:url(img-da/d4.jpg)"></div><div class="igt" style="background-image:url(img-da/s4.jpg)"></div></div></div><figcaption>Instagram · grille</figcaption></figure>
+  </div>
+  <div class="u-grid3">
+   <div><span class="u-k">Ton</span><p>«&nbsp;Mamie est là&nbsp;!&nbsp;» · «&nbsp;Hop, au mur&nbsp;» · «&nbsp;Un mot doux&nbsp;?&nbsp;»</p><span class="u-k">Références</span><p>Franki (Koto), Madeleine (Studio Hi Ho) pour le jaune beurre, marques grand public joyeuses</p><span class="u-k">Pour qui</span><p>Les familles nombreuses et connectées, où petits-enfants et enfants envoient ensemble.</p></div>
+   <div><span class="u-k">Pourquoi ça marche</span><ul><li>Le plus fédérateur&nbsp;: parle aussi aux petits-enfants et au moment du jour.</li><li>Le jaune beurre est une tendance forte en 2026 et aucun acteur silvertech ne l'utilise.</li><li>Excellent pour les réseaux et la publicité&nbsp;: on le voit de loin.</li></ul></div>
+   <div><span class="u-k">Les risques</span><ul class="ko"><li>Moins premium, plus grand public.</li><li>Risque de faire «&nbsp;animation de maison de retraite&nbsp;» si les visuels sont mal choisis.</li><li>Le jaune vieillit vite&nbsp;: il faudra le faire évoluer.</li></ul></div>
+  </div>
+ </div>
+</section>
+<div class="wrap" style="padding-top:0">
+<section id="choix"><div class="grid"><div class="k"><span class="num">04</span> · Le choix</div><div>
+<h2>Comparer les trois univers</h2>
+<div class="tablewrap"><table class="cmp"><thead><tr><th>Critère</th><th>Papier</th><th>Héritage</th><th>Soleil</th></tr></thead><tbody><tr><td>Se distinguer de la silvertech</td><td><span class="dt">●●●<span class="off"></span></span></td><td><span class="dt">●●●<span class="off"></span></span></td><td><span class="dt">●●●<span class="off"></span></span></td></tr><tr><td>Lisibilité pour le parent</td><td><span class="dt">●●●<span class="off"></span></span></td><td><span class="dt">●●<span class="off">●</span></span></td><td><span class="dt">●●<span class="off">●</span></span></td></tr><tr><td>Force en cadeau</td><td><span class="dt">●●<span class="off">●</span></span></td><td><span class="dt">●●●<span class="off"></span></span></td><td><span class="dt">●●<span class="off">●</span></span></td></tr><tr><td>Cohérence avec le cadre ancien doré</td><td><span class="dt">●●<span class="off">●</span></span></td><td><span class="dt">●●●<span class="off"></span></span></td><td><span class="dt">●<span class="off">●●</span></span></td></tr><tr><td>Parle aux petits-enfants</td><td><span class="dt">●<span class="off">●●</span></span></td><td><span class="dt">●<span class="off">●●</span></span></td><td><span class="dt">●●●<span class="off"></span></span></td></tr><tr><td>Impact sur Instagram</td><td><span class="dt">●●<span class="off">●</span></span></td><td><span class="dt">●●●<span class="off"></span></span></td><td><span class="dt">●●●<span class="off"></span></span></td></tr><tr><td>Facile à produire pour nous</td><td><span class="dt">●●●<span class="off"></span></span></td><td><span class="dt">●●<span class="off">●</span></span></td><td><span class="dt">●●<span class="off">●</span></span></td></tr><tr class="tot"><td>Total sur 21</td><td>16</td><td>17</td><td>16</td></tr></tbody></table></div>
+<p class="note" style="margin-top:10px">Notes de 1 à 3, proposées par la DA, à discuter en équipe.</p>
+<h3 class="sub">Ma recommandation de DA</h3>
+<ol class="next">
+ <li><b>Papier pour le produit</b>&nbsp;: l'appli et l'écran du cadre. Son total (16) est juste derrière, mais il gagne sur les deux critères qui comptent le plus pour un produit utilisé chaque jour&nbsp;: la lisibilité pour le parent et la facilité de production. Il laisse les photos parler.</li>
+ <li><b>Héritage comme édition cadeau</b>&nbsp;: la même marque, en version noir et or, pour le cadre ancien doré, la boîte cadeau et les campagnes de Noël et de la fête des mères. C'est lui qui a le meilleur total (17 sur 21) grâce au cadeau, au cadre doré et à Instagram.</li>
+ <li><b>Soleil, à garder pour plus tard</b>&nbsp;: très fort sur les réseaux et pour les petits-enfants, mais il éloigne de l'objet précieux. On peut reprendre son jaune pour le moment du jour.</li>
+</ol>
+<p>Si l'équipe ne veut garder qu'un seul univers&nbsp;: <b>Papier</b>. C'est celui qui tient la promesse «&nbsp;un signe, pas une surveillance&nbsp;» avec le moins d'effets.</p>
+<h3 class="sub">À trancher en équipe</h3>
+<ol class="next"><li>Un univers, ou Papier avec une édition Héritage&nbsp;?</li><li>Le nom définitif («&nbsp;Le Cadre&nbsp;» ou «&nbsp;CBW&nbsp;»), avant de finaliser le logo.</li><li>Le cadre physique (Camille)&nbsp;: bois clair pour Papier, doré pour Héritage, laqué jaune pour Soleil.</li></ol>
+<p class="note" style="margin-top:18px">Photos&nbsp;: Unsplash, licence Unsplash (usage libre, crédit apprécié), utilisées ici seulement pour des maquettes de travail&nbsp;; à remplacer par nos propres photos avant toute publication. Liens vers chaque photo&nbsp;: <a href="https://unsplash.com/photos/VpGeuzRDYAo">c3</a>, <a href="https://unsplash.com/photos/QQCjocCgwjE">c4</a>, <a href="https://unsplash.com/photos/Hsqpg-3yY0g">d2</a>, <a href="https://unsplash.com/photos/BQPi8F_UON0">d3</a>, <a href="https://unsplash.com/photos/cfGG0niafjc">d4</a>, <a href="https://unsplash.com/photos/Qj5vwUj2rK0">f3</a>, <a href="https://unsplash.com/photos/WbH2fNjw1UA">f4</a>, <a href="https://unsplash.com/photos/ApvKYFtxfn0">f6</a>, <a href="https://unsplash.com/photos/L4nwL3195U0">g1</a>, <a href="https://unsplash.com/photos/y0OAmd_COUM">g2</a>, <a href="https://unsplash.com/photos/k-S0z1k9uIM">g3</a>, <a href="https://unsplash.com/photos/FiIgXyC3t84">g4</a>, <a href="https://unsplash.com/photos/eZGLwvgZ09w">g5</a>, <a href="https://unsplash.com/photos/n85taMiq0S4">h3</a>, <a href="https://unsplash.com/photos/Kh4tedFdHz4">l3</a>, <a href="https://unsplash.com/photos/Hl3fvUU48Lw">l4</a>, <a href="https://unsplash.com/photos/GGfcS4OJgWI">s2</a>, <a href="https://unsplash.com/photos/yA_0LNsSIHs">s3</a>, <a href="https://unsplash.com/photos/IihDS3WZGlY">s4</a>, <a href="https://unsplash.com/photos/uaMY0hlkx-I">s5</a>, <a href="https://unsplash.com/photos/ek2c4mMYl4c">s6</a>. Polices&nbsp;: Atkinson Hyperlegible, Instrument Serif, Bricolage Grotesque (Google Fonts). Logos, écrans, site et grilles sont des maquettes&nbsp;; aucun compte créé. Prolonge 1-1-direction-artistique.html et 1-1-veille-da-marche.html. IA utilisée&nbsp;: Claude (Claude Code) pour la recherche d'images, les maquettes et la rédaction.</p>
+</div></div></section>
+<footer class="k">PFR Générations Connectées · Trois univers DA · 22 octobre 2026</footer>
+</div>
+</body>
+</html>

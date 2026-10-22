@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T15:39",
+  "mise_a_jour": "2026-10-22T15:51",
   "phases": [
     {
       "id": "P0",
@@ -748,8 +748,8 @@
           "statut": "en_cours",
           "qui": "Lucas",
           "date": "2026-10-22",
-          "note": "DA v1 « Papier » : veille de 6 sources branding (BP&O, The Brand Identity, Koto, Visuelle, SearchSystem, GraphicDesign&) et 8 projets, plateforme de marque, logo, 5 couleurs, Atkinson Hyperlegible, photo, mouvement, ton, appli, écran du cadre, site, Instagram, boîte. Reste : nom, signature, cadre physique à valider en équipe.",
-          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-direction-artistique.html"
+          "note": "3 univers complets avec vraies photos (Unsplash) : Papier (épure chaude), Héritage (galerie de famille, noir et or), Soleil (tribu, jaune beurre). Logo, palette, typo, site, appli, cadre, Instagram, comparaison. Reco : Papier pour le produit + édition Héritage. Reste : choix en équipe, nom.",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-da-trois-univers.html"
         }
       ]
     },
