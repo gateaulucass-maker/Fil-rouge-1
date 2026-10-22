@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maquette Soly V2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap">
+<style>
+/* Maquette fil de fer : pas de direction artistique, gris neutres, un seul accent pour les repères. */
+:root {
+  --bg: #ffffff; --fg: #16181c; --muted: #6b7078; --line: #d9dce1; --soft: #f2f3f5; --mid: #c7cbd1;
+  --pin: #1f3fbf; --ok: #1e7a46; --warn: #b4530f; --open: #8a2be2;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 var(--font); }
+.wrap { max-width: 1280px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); padding-block: 32px 64px; }
+header .k, .k { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+h1 { margin: 10px 0 6px; font-size: clamp(30px, 5vw, 48px); letter-spacing: -.03em; line-height: 1.05; }
+.intro { max-width: 70ch; color: #333; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 14px 0 0; font-size: 13px; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 1px 7px; border-radius: 3px; color: #fff; vertical-align: 1px; }
+.tag.ok { background: var(--ok); } .tag.warn { background: var(--warn); } .tag.open { background: var(--open); }
+
+/* parcours */
+.flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin: 28px 0 8px; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.flow > div { flex: 1 1 200px; padding: 14px 16px; border-right: 1px solid var(--line); min-width: 0; }
+.flow > div:last-child { border-right: 0; }
+.flow h3 { margin: 4px 0 6px; font-size: 16px; }
+.flow ol { margin: 0; padding-left: 18px; font-size: 13.5px; color: #333; }
+.flow a { color: var(--pin); text-decoration: none; }
+
+h2 { margin: 48px 0 6px; font-size: 26px; letter-spacing: -.02em; border-top: 2px solid var(--fg); padding-top: 12px; }
+h2 + p { margin-top: 0; color: var(--muted); }
+
+/* grille d'écrans */
+.screens { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 36px 28px; margin-top: 18px; }
+.item { min-width: 0; }
+.item > .k { display: block; margin-bottom: 8px; }
+.item h3 { margin: 14px 0 6px; font-size: 17px; }
+.legend { margin: 0; padding: 0; list-style: none; font-size: 13.5px; }
+.legend li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; padding: 5px 0; border-top: 1px solid var(--soft); }
+.legend .n { width: 20px; height: 20px; border-radius: 50%; background: var(--pin); color: #fff; font: 600 11px/20px var(--font); text-align: center; }
+
+/* téléphone */
+.phone { width: 270px; height: 560px; margin: 0 auto; border: 9px solid #1b1c1f; border-radius: 38px; background: #fff; position: relative; overflow: hidden; box-shadow: 0 10px 30px -12px rgba(0,0,0,.35); }
+.phone::before { content: ""; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 80px; height: 20px; border-radius: 12px; background: #1b1c1f; z-index: 3; }
+.sb { height: 34px; display: flex; justify-content: space-between; align-items: center; padding: 6px 18px 0; font: 600 11px var(--font); }
+.scr { padding: 6px 14px 14px; height: calc(100% - 34px); display: flex; flex-direction: column; gap: 9px; position: relative; }
+.title { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.sub { font-size: 12px; color: var(--muted); }
+.box { border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; font-size: 12.5px; position: relative; background: #fff; }
+.box.soft { background: var(--soft); border-color: transparent; }
+.row { display: flex; gap: 8px; align-items: center; }
+.btn { border-radius: 10px; padding: 10px; text-align: center; font-weight: 600; font-size: 13px; position: relative; }
+.btn.pri { background: #2a2d33; color: #fff; }
+.btn.sec { background: var(--soft); color: var(--fg); }
+.btn.ghost { border: 1px solid var(--line); }
+.field { border: 1px solid var(--mid); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; color: var(--muted); position: relative; }
+.ph { background: repeating-linear-gradient(45deg, #e6e8eb 0 8px, #eef0f2 8px 16px); border-radius: 8px; display: grid; place-items: center; color: var(--muted); font-size: 11px; position: relative; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: var(--ok); }
+.chip { display: inline-block; padding: 3px 8px; border-radius: 20px; background: var(--soft); font-size: 11.5px; }
+.chip.on { background: #2a2d33; color: #fff; }
+.toggle { width: 34px; height: 20px; border-radius: 12px; background: #2a2d33; position: relative; flex: none; }
+.toggle::after { content: ""; position: absolute; right: 2px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; }
+.toggle.off { background: var(--mid); } .toggle.off::after { left: 2px; right: auto; }
+.tabbar { margin-top: auto; display: flex; justify-content: space-around; border-top: 1px solid var(--line); padding-top: 8px; font-size: 10.5px; color: var(--muted); text-align: center; position: relative; }
+.tabbar b { display: block; font-size: 15px; color: var(--fg); font-weight: 400; }
+.tabbar .on { color: var(--fg); font-weight: 600; }
+.mini-frame { border: 6px solid #9a9da3; border-radius: 3px; background: #fff; padding: 6px; }
+.mini-frame .ph { border-radius: 0; }
+.notif { background: rgba(240,241,243,.97); border-radius: 14px; padding: 10px 12px; font-size: 12px; box-shadow: 0 6px 18px rgba(0,0,0,.15); position: relative; }
+.lock { background: linear-gradient(#5c6470, #2c3138); color: #fff; }
+.lock .sb { color: #fff; }
+.big-time { text-align: center; font-size: 52px; font-weight: 300; color: #fff; margin: 10px 0 2px; }
+.qr { width: 120px; height: 120px; margin: 4px auto; background:
+  linear-gradient(90deg, #222 10%, transparent 10% 20%, #222 20% 30%, transparent 30% 50%, #222 50% 60%, transparent 60% 80%, #222 80% 90%, transparent 90%),
+  linear-gradient(#222 10%, transparent 10% 30%, #222 30% 40%, transparent 40% 60%, #222 60% 70%, transparent 70% 90%, #222 90%);
+  background-blend-mode: multiply; border: 6px solid #fff; outline: 1px solid var(--line); position: relative; }
+.camera { background: #1d1f23; border-radius: 10px; flex: 1; position: relative; display: grid; place-items: center; }
+.camera .target { width: 130px; height: 130px; border: 2px solid #fff; border-radius: 14px; }
+.card { background: #fbfaf6; border-left: 3px solid #9a9da3; padding: 6px 8px; font-size: 12px; }
+.alert { border: 1.5px solid var(--warn); }
+
+/* repères numérotés */
+.p { position: relative; }
+.pin { position: absolute; top: -7px; right: -7px; width: 18px; height: 18px; border-radius: 50%; background: var(--pin); color: #fff; font: 600 10.5px/18px var(--font); text-align: center; z-index: 4; box-shadow: 0 0 0 2px #fff; }
+.pin.l { right: auto; left: -7px; }
+
+.notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 14px; }
+.notes > div { border-top: 3px solid var(--fg); padding-top: 10px; font-size: 14px; }
+.notes h3 { margin: 4px 0 6px; font-size: 16px; }
+.notes ul { margin: 0; padding-left: 18px; }
+footer { margin-top: 56px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 13px; color: var(--muted); }
+footer a { color: var(--pin); }
+@media (max-width: 860px) { .notes { grid-template-columns: 1fr; } }
+
+/* ===== V2 : DA Soleil, marque Soly ===== */
+:root {
+  --bg: #fff6e0; --fg: #2e1e14; --muted: #5c4636; --line: #ecdca8; --soft: #fdefc4; --mid: #d9c79a;
+  --pin: #6a4fb3; --be: #f6d775; --li: #b7a3e0;
+  --font: "Atkinson Hyperlegible", -apple-system, Arial, sans-serif; --bri: "Bricolage Grotesque", "Arial Black", Arial, sans-serif;
+}
+body { background: var(--bg); }
+h1, h2, .title, .flow h3, .item h3, .notes h3 { font-family: var(--bri); font-weight: 800; letter-spacing: -.03em; }
+h1 { font-size: clamp(34px, 5.4vw, 64px); line-height: .98; margin: 6px 0 10px; }
+h1 span { background: var(--be); padding: 0 .1em; }
+h2 { font-size: clamp(28px, 3.4vw, 40px); border-top: 3px solid var(--fg); }
+.brandbar { display:grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; background: var(--be); padding: 24px 28px; border-radius: 18px; margin-top: 14px; }
+.brandbar .intro { color: var(--fg); font-size: 16.5px; margin: 0; }
+.bb-logo { background: var(--bg); border-radius: 14px; padding: 18px 20px; }
+.dabar { display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; }
+.dabar > div { background: #fff; border-radius: 14px; padding: 12px 14px; min-width: 0; }
+.dabar .tp { margin: 4px 0 0; font-size: 14px; }
+.dabar small { font-size: 12.5px; color: var(--muted); }
+.sws { display:flex; margin: 6px 0 4px; }
+.sws i { flex: 1; height: 26px; border: 1px solid rgba(46,30,20,.12); }
+.pinx { display:inline-block; width: 18px; height: 18px; border-radius: 50%; background: var(--pin); color: #fff; font: 700 10.5px/18px var(--font); text-align: center; }
+.flow { border-color: var(--line); border-radius: 16px; background: #fff; }
+.flow > div { border-color: var(--line); }
+.flow a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--be); text-decoration-thickness: 3px; }
+.legend li { border-color: var(--line); }
+.phone { background: var(--bg); border-color: #1d1712; }
+.phone::before { background: #1d1712; }
+.title { font-size: 20px; }
+.box { background: #fff; border-color: var(--line); border-radius: 14px; }
+.box.soft { background: var(--soft); }
+.btn { border-radius: 999px; font-weight: 700; padding: 11px; }
+.btn.pri { background: var(--fg); color: var(--bg); }
+.btn.sec { background: var(--be); }
+.btn.ghost { border-color: var(--fg); }
+.field { background: #fff; border-color: var(--line); border-radius: 12px; }
+.chip { background: var(--soft); }
+.chip.on { background: var(--fg); color: var(--bg); }
+.toggle { background: var(--fg); } .toggle.off { background: var(--mid); }
+.dot { background: var(--li); box-shadow: 0 0 0 3px rgba(183,163,224,.35); }
+.tabbar { border-color: var(--line); color: var(--muted); }
+.tabbar .on { color: var(--fg); }
+.tabbar .on b { background: var(--be); border-radius: 999px; }
+.mini-frame { border: 7px solid var(--be); border-radius: 10px; background: var(--be); padding: 0; }
+.mini-frame .ph { border-radius: 4px; }
+.notif { background: rgba(255,246,224,.96); color: var(--fg); border-radius: 16px; }
+.lock { background: linear-gradient(180deg, #5c4636, #2e1e14); }
+.camera { background: #2a211a; border-radius: 16px; }
+.camera .target { border-color: var(--be); }
+.card { background: #fff; border-left-color: var(--be); }
+.ph { background: var(--soft) center / cover no-repeat; color: var(--fg); }
+.ph.photo { color: transparent; }
+.ph.photo .cap2 { position: absolute; left: 6px; bottom: 6px; right: 6px; color: var(--fg); background: rgba(255,246,224,.92); border-radius: 6px; padding: 2px 6px; font-size: 10px; line-height: 1.3; }
+.ph.mark { color: #fff; font-weight: 700; font-size: 16px; text-shadow: 0 1px 3px rgba(0,0,0,.5); }
+.ph.plus { background: var(--be); color: var(--fg); font-size: 20px; }
+.notes > div { border-top-color: var(--fg); }
+footer a { color: var(--fg); }
+@media (max-width: 860px) { .brandbar { grid-template-columns: 1fr; } .dabar { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="k">PFR Générations Connectées · Bloc 03 · Leçon 1.1 · Équipe Clément, Camille, Lucas · V2 du 22 octobre 2026 · DA Lucas</span>
+  <div class="brandbar">
+    <div class="bb-logo"><svg viewBox="0 0 190 64" width="220" role="img" aria-label="Soly"><circle cx="31" cy="32" r="29" fill="#f6d775"/><rect x="17" y="19" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="31" cy="49" r="4.2" fill="#b7a3e0"/><text x="72" y="45" font-family="Bricolage Grotesque, Arial" font-weight="800" font-size="40" letter-spacing="-1.5" fill="#2e1e14">soly</text></svg></div>
+    <div class="bb-txt"><h1>La maquette de l'appli, <span>habillée Soly</span></h1>
+    <p class="intro">La maquette fil de fer du 16 octobre (25 écrans, 6 parcours), reprise avec le nom <b>Soly</b> et la DA <b>Soleil</b>. Les écrans, les parcours et les décisions ne changent pas : on change la voix et le visage. Le toucher du parent s'appelle maintenant <b>un Soly</b> : « Maman t'a envoyé un Soly ».</p></div>
+  </div>
+  <div class="dabar">
+    <div><span class="k">Palette</span><div class="sws"><i style="background:#fff6e0"></i><i style="background:#f6d775"></i><i style="background:#2e1e14"></i><i style="background:#5c4636"></i><i style="background:#b7a3e0"></i></div><small>Crème, beurre, cacao, noisette, lilas (la lueur seulement)</small></div>
+    <div><span class="k">Typographies</span><p class="tp"><b>Bricolage Grotesque</b> titres · Atkinson Hyperlegible textes</p></div>
+    <div><span class="k">Ton</span><p class="tp">On tutoie, on sourit, des verbes simples : « Hop, au mur », « un mot doux ».</p></div>
+    <div><span class="k">Photos</span><p class="tp">Vraies scènes de famille, lumière chaude (Unsplash, maquette seulement).</p></div>
+  </div>
+  <div class="tags">
+    <span><span class="tag ok">décidé</span> validé par l'équipe</span>
+    <span><span class="tag warn">proposé</span> idée issue de la veille, à valider</span>
+    <span><span class="tag open">ouvert</span> question encore à trancher</span>
+    <span><span class="pinx">1</span> repère qui renvoie à la légende sous l'écran</span>
+  </div>
+</header>
+
+<div class="flow">
+  <div><span class="k">Parcours 1</span><h3>Installer</h3><ol><li><a href="#e1">Bienvenue</a></li><li><a href="#e2">Créer son compte</a></li><li><a href="#e4">Scanner le cadre</a></li><li><a href="#e3">Le parent et le cadre</a></li><li><a href="#e5">L'alerte, avec le parent</a></li><li><a href="#e6">Le carrousel de départ</a></li></ol></div>
+  <div><span class="k">Parcours 1 bis</span><h3>Inviter la famille</h3><ol start="21"><li><a href="#e21">Inviter la famille</a></li><li><a href="#e22">Le message WhatsApp</a></li><li><a href="#e23">Rejoindre (petit-enfant)</a></li><li><a href="#e24">Son premier moment</a></li><li><a href="#e25">La famille</a></li></ol></div>
+  <div><span class="k">Parcours 2</span><h3>Partager au quotidien</h3><ol start="7"><li><a href="#e7">Accueil</a></li><li><a href="#e8">Envoyer</a></li><li><a href="#e9">Aperçu sur le cadre</a></li><li><a href="#e10">Écrire un message</a></li><li><a href="#e11">Ce qui défile</a></li></ol></div>
+  <div><span class="k">Parcours 2 bis</span><h3>Le moment du jour</h3><ol start="17"><li><a href="#e17">La notification du jour</a></li><li><a href="#e18">Photo sur le vif</a></li><li><a href="#e19">Envoyé</a></li><li><a href="#e20">Sur le cadre</a></li></ol></div>
+  <div><span class="k">Parcours 3</span><h3>Le lien</h3><ol start="12"><li><a href="#e12">Notification « Maman t'a envoyé un Soly »</a></li><li><a href="#e13">Renvoyer un Soly</a></li></ol></div>
+  <div><span class="k">Parcours 4</span><h3>Alerte et réglages</h3><ol start="14"><li><a href="#e14">Réglage de l'alerte</a></li><li><a href="#e15">Alerte reçue</a></li><li><a href="#e16">Réglages du cadre</a></li></ol></div>
+</div>
+
+<!-- ============================================================ INSTALLER -->
+<h2>1 · Installer</h2>
+<p>L'enfant installe tout. Le parent n'a ni appli ni compte.</p>
+<div class="screens">
+
+<div class="item" id="e1"><span class="k">Écran 1 · Bienvenue</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="ph p" style="height:190px">illustration : un cadre au mur<span class="pin">1</span></div>
+  <div class="p" style="margin-top:2px"><svg viewBox="0 0 190 64" width="132" role="img" aria-label="Soly"><circle cx="31" cy="32" r="29" fill="#f6d775"/><rect x="17" y="19" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="31" cy="49" r="4.2" fill="#b7a3e0"/><text x="72" y="45" font-family="Bricolage Grotesque, Arial" font-weight="800" font-size="40" letter-spacing="-1.5" fill="#2e1e14">soly</text></svg></div><div class="title" style="font-size:22px;line-height:1.05">Toute la famille au même mur.</div>
+  <div class="sub p">Envoyez vos photos, vidéos et mots doux au Soly de votre parent. Lui n'a rien à faire, juste à toucher le cadre pour vous faire signe.<span class="pin">2</span></div>
+  <div class="box soft p" style="text-align:center">Sans abonnement<span class="pin">4</span></div>
+  <div style="margin-top:auto" class="btn pri p">Commencer<span class="pin">3</span></div>
+  <div class="btn ghost">J'ai déjà un compte</div>
+</div></div>
+<h3>Bienvenue</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Une image du cadre au mur : on comprend l'objet avant l'appli.</span></li>
+  <li><span class="n">2</span><span>La promesse en une phrase : le parent n'a rien à faire. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">3</span><span>Un seul bouton principal, pour aller droit au but.</span></li>
+  <li><span class="n">4</span><span>Modèle économique : achat unique, sans frais d'abonnement. <span class="tag ok">décidé</span></span></li>
+</ul></div>
+
+<div class="item" id="e2"><span class="k">Écran 2 · Créer son compte</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="sub">Étape 1 sur 5</div>
+  <div class="title">Votre compte</div>
+  <div class="field">Votre prénom : Sophie</div>
+  <div class="field p">Adresse e-mail (fictive)<span class="pin">1</span></div>
+  <div class="field">Mot de passe</div>
+  <div class="box soft p">Vos photos restent en Europe et ne sont jamais utilisées pour de la publicité.<span class="pin">2</span></div>
+  <div style="margin-top:auto" class="btn pri">Continuer</div>
+  <div class="sub" style="text-align:center">Ou continuer avec Apple / Google</div>
+</div></div>
+<h3>Créer son compte</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Le compte est celui de l'enfant (l'aidant). Adresse fictive pour les tests.</span></li>
+  <li><span class="n">2</span><span>Une phrase de confiance dès le début : données en Europe. <span class="tag warn">proposé</span></span></li>
+</ul></div>
+
+<div class="item" id="e4"><span class="k">Écran 3 · Scanner le cadre</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="sub">Étape 2 sur 5</div>
+  <div class="title">Scanner le cadre</div>
+  <div class="sub">Allumez le cadre chez Jeanne : un code apparaît sur son écran. Scannez-le pour relier le cadre et le téléphone.</div>
+  <div class="camera p"><div class="target"></div><span class="pin">1</span></div>
+  <div class="box soft p">Pas de caméra ? Tapez le code à 6 chiffres affiché sur le cadre.<span class="pin">2</span></div>
+  <div class="box p"><span class="dot"></span> Cadre de Jeanne relié, connecté au wifi<span class="pin">3</span></div>
+</div></div>
+<h3>Scanner le cadre</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Juste après la connexion, on scanne le code affiché par le cadre : les deux appareils sont reliés tout de suite, pendant la prise en main avec les grands-parents. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Une solution de secours sans scanner.</span></li>
+  <li><span class="n">3</span><span>Confirmation claire : le cadre est relié. Le wifi se règle sur le cadre ou depuis l'appli. <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e3"><span class="k">Écran 4 · Le parent et le cadre</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="sub">Étape 3 sur 5</div>
+  <div class="title">Pour qui est le cadre ?</div>
+  <div class="field p">Prénom du parent : Jeanne<span class="pin">1</span></div>
+  <div class="field p">Comment il vous appelle : Maman<span class="pin">2</span></div>
+  <div class="sub">Sens du cadre au mur</div>
+  <div class="row p"><span class="chip on">Paysage</span><span class="chip">Portrait</span><span class="sub">ou détecté seul</span><span class="pin">3</span></div>
+  <div class="sub">Habillage du cadre</div>
+  <div class="row p" style="flex-wrap:wrap"><span class="chip on">Bois récupéré</span><span class="chip">Doré ancien</span><span class="chip">Noir</span><span class="pin">4</span></div>
+  <div style="margin-top:auto" class="btn pri">Continuer</div>
+</div></div>
+<h3>Le parent et le cadre</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Le prénom du parent, fictif pendant les tests.</span></li>
+  <li><span class="n">2</span><span>Le nom affiché dans les notifications : « Maman t'a envoyé un Soly ». <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">3</span><span>Horizontal ou vertical : l'affichage s'adapte tout seul. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">4</span><span>L'habillage choisi à l'achat, rappelé ici pour l'aperçu. Bois récupéré <span class="tag ok">décidé</span>, autres gammes <span class="tag warn">proposé</span></span></li>
+</ul></div>
+
+<div class="item" id="e5"><span class="k">Écran 5 · L'alerte, avec le parent</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="sub">Étape 4 sur 5</div>
+  <div class="title">Une option à décider avec Jeanne</div>
+  <div class="box soft p">À lire ensemble : « Si tu ne touches pas le cadre pendant 2 jours, je serai prévenue. »<span class="pin">1</span></div>
+  <div class="box p"><div class="row" style="justify-content:space-between"><span><b>Jeanne est d'accord</b><br><span class="sub">Activer l'alerte</span></span><span class="toggle off"></span></div><span class="pin">2</span></div>
+  <div class="sub p">Désactivée par défaut. Modifiable à tout moment, à la demande de Jeanne.<span class="pin">3</span></div>
+  <div style="margin-top:auto" class="btn pri">Continuer</div>
+  <div class="btn ghost">Plus tard</div>
+</div></div>
+<h3>L'alerte, décidée avec le parent</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Une phrase à lire au parent, en clair : il sait ce que fait l'option. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">2</span><span>L'alerte n'existe que si le parent l'accepte à l'installation. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">3</span><span>Le réglage se change depuis l'appli, à la demande du parent. <span class="tag ok">décidé</span> Désactivée par défaut <span class="tag warn">proposé</span></span></li>
+</ul></div>
+
+<div class="item" id="e6"><span class="k">Écran 6 · Le carrousel de départ</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="sub">Étape 5 sur 5</div>
+  <div class="title">Le carrousel de départ</div>
+  <div class="sub p">Choisissez des souvenirs que Jeanne aime : mariage, enfants, vacances.<span class="pin">1</span></div>
+  <div class="mini-frame p"><div class="ph" style="height:104px">aperçu sur le cadre</div><span class="pin">2</span></div>
+  <div class="row" style="justify-content:center;gap:5px"><span class="dot" style="background:#2a2d33"></span><span class="dot" style="background:var(--mid)"></span><span class="dot" style="background:var(--mid)"></span><span class="dot" style="background:var(--mid)"></span></div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px" class="p">
+    <div class="ph" style="height:46px">✓</div><div class="ph" style="height:46px">✓</div><div class="ph" style="height:46px">✓</div><div class="ph" style="height:46px">＋</div>
+    <span class="pin">3</span>
+  </div>
+  <div class="sub">Une photo toutes les 15 s</div>
+  <div style="margin-top:auto" class="btn pri p">Allumer le Soly de Jeanne<span class="pin">4</span></div>
+</div></div>
+<h3>Le carrousel de départ</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Le cadre démarre avec des souvenirs de famille, jamais vide. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Aperçu du carrousel tel qu'il tournera sur le cadre.</span></li>
+  <li><span class="n">3</span><span>Les photos choisies, à compléter à tout moment.</span></li>
+  <li><span class="n">4</span><span>Fin de l'installation : le carrousel démarre sur le cadre, puis on arrive sur l'accueil.</span></li>
+</ul></div>
+</div>
+
+<!-- ============================================================ INVITER -->
+<h2>1 bis · Inviter la famille</h2>
+<p>Juste après avoir relié le cadre, l'aidant invite les autres : enfants, petits-enfants. Chacun crée son compte et reçoit lui aussi le moment du jour. Le parent voit ainsi des photos de toute la famille, de toutes les générations.</p>
+<div class="screens">
+
+<div class="item" id="e21"><span class="k">Écran 21 · Inviter la famille</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="title">Qui d'autre pense à Jeanne ?</div>
+  <div class="sub">Invitez ses enfants et petits-enfants. Plus vous êtes, plus le cadre est vivant.</div>
+  <div class="qr p" style="width:104px;height:104px"><span class="pin">1</span></div>
+  <div class="box soft p" style="text-align:center"><span class="sub">Code de la famille</span><br><b style="font:700 18px var(--mono);letter-spacing:.15em">JEA-4827</b><span class="pin">2</span></div>
+  <div class="btn pri p" style="background:#1f7a4a">Partager sur WhatsApp<span class="pin">3</span></div>
+  <div class="btn ghost">Copier le lien · SMS · e-mail</div>
+  <div class="sub" style="text-align:center">Passer pour l'instant</div>
+</div></div>
+<h3>Inviter la famille</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Un QR code à scanner si la personne est à côté (repas de famille). <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Un code court de la famille, le même pour tous. <span class="tag ok">décidé</span> Format exact <span class="tag open">ouvert</span></span></li>
+  <li><span class="n">3</span><span>Un lien partagé sur WhatsApp, là où la famille se parle déjà : tout le monde rejoint en un clic. <span class="tag ok">décidé</span></span></li>
+</ul></div>
+
+<div class="item" id="e22"><span class="k">Écran 22 · Le message WhatsApp</span>
+<div class="phone"><div class="sb"><span>9:43</span><span>●●●</span></div><div class="scr" style="background:#efe7dd">
+  <div class="row" style="background:#1f7a4a;color:#fff;margin:-6px -14px 4px;padding:8px 14px;font-size:13px"><b>Famille Martin 👨‍👩‍👧‍👦</b></div>
+  <div class="box p" style="align-self:flex-end;max-width:88%;background:#dcf5c8;border:0">Mamie a un nouveau cadre photo ! Rejoignez-le pour lui envoyer vos moments du jour ☀<span class="pin">1</span></div>
+  <div class="box p" style="align-self:flex-end;max-width:88%;background:#dcf5c8;border:0"><div class="ph" style="height:60px;margin-bottom:6px">aperçu : le cadre de Jeanne</div><b>Rejoindre le cadre de Jeanne</b><br><span class="sub">lecadre.app/rejoindre/JEA-4827</span><span class="pin">2</span></div>
+  <div class="box" style="max-width:80%;background:#fff;border:0">Trop bien, je rejoins ! 😍<br><span class="sub">Léa</span></div>
+</div></div>
+<h3>Le message WhatsApp</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Un message déjà écrit, chaleureux, que l'aidant peut modifier avant d'envoyer. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">2</span><span>Le lien contient le code : en cliquant, on arrive directement dans la bonne famille, sans rien taper. <span class="tag ok">décidé</span> Adresse du lien fictive.</span></li>
+</ul></div>
+
+<div class="item" id="e23"><span class="k">Écran 23 · Rejoindre (côté petit-enfant)</span>
+<div class="phone"><div class="sb"><span>9:45</span><span>●●●</span></div><div class="scr">
+  <div class="title">Rejoindre le cadre de Jeanne</div>
+  <div class="box soft p">Invitée par Sophie · code JEA-4827 déjà rempli<span class="pin">1</span></div>
+  <div class="field">Votre prénom : Léa</div>
+  <div class="sub">Pour Jeanne, vous êtes :</div>
+  <div class="row p" style="flex-wrap:wrap"><span class="chip">Enfant</span><span class="chip on">Petit-enfant</span><span class="chip">Autre proche</span><span class="pin">2</span></div>
+  <div class="field">Adresse e-mail (fictive)</div>
+  <div class="box soft p">Moins de 15 ans ? Un parent valide le compte.<span class="pin">3</span></div>
+  <div style="margin-top:auto" class="btn pri p">Rejoindre la famille<span class="pin">4</span></div>
+</div></div>
+<h3>Rejoindre la famille</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Le lien ouvre l'appli (ou la page de téléchargement) avec le code déjà rempli. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Le lien de parenté, pour afficher « Léa, ta petite-fille » sur le cadre. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">3</span><span><b>Point de vigilance RGPD</b> : en France, un enfant de moins de 15 ans ne peut pas consentir seul au traitement de ses données ; il faut l'accord d'un parent. <span class="tag open">ouvert</span></span></li>
+  <li><span class="n">4</span><span>L'aidant principal valide-t-il chaque nouveau membre ? <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e24"><span class="k">Écran 24 · Son premier moment</span>
+<div class="phone"><div class="sb"><span>9:46</span><span>●●●</span></div><div class="scr">
+  <div class="title">Bienvenue Léa 👋</div>
+  <div class="box p" style="border-color:#2a2d33"><b>⚡ Le moment du jour</b><br><span class="sub">Une fois par jour, une notification surprise : 2 minutes pour montrer à Mamie ce que tu fais.</span><span class="pin">1</span></div>
+  <div class="mini-frame p"><div class="ph" style="height:110px">le cadre de Jeanne en ce moment</div><span class="pin">2</span></div>
+  <div class="box soft p">Tu peux aussi envoyer une photo, une vidéo ou un petit mot.<span class="pin">3</span></div>
+  <div style="margin-top:auto" class="btn pri">C'est parti</div>
+</div></div>
+<h3>Son premier moment</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Les petits-enfants reçoivent aussi la notification du moment du jour, comme sur BeReal. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Ils voient ce que Mamie a sous les yeux : ça donne envie de participer.</span></li>
+  <li><span class="n">3</span><span>Les autres envois restent possibles. <span class="tag warn">proposé</span> Un ton plus jeune (tutoiement) pour les petits-enfants. <span class="tag warn">proposé</span></span></li>
+</ul></div>
+
+<div class="item" id="e25"><span class="k">Écran 25 · La famille</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="title">La famille de Jeanne</div>
+  <div class="box p"><b>Sophie</b> · fille · aidante principale<span class="pin">1</span></div>
+  <div class="box">Lucas · fils · aidant</div>
+  <div class="box p">Léa · petite-fille<span class="pin">2</span></div>
+  <div class="box">Hugo · petit-fils</div>
+  <div class="box soft p" style="text-align:center">＋ Inviter quelqu'un<span class="pin">3</span></div>
+  <div class="sub p">Seuls les aidants reçoivent « Maman t'a envoyé un Soly » et l'alerte.<span class="pin">4</span></div>
+  <div class="tabbar"><span><b>⌂</b>Accueil</span><span><b>＋</b>Envoyer</span><span><b>▦</b>Le cadre</span><span class="on"><b>⚙</b>Réglages</span></div>
+</div></div>
+<h3>La famille</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>L'aidant principal : celui qui a installé le cadre et gère les réglages.</span></li>
+  <li><span class="n">2</span><span>Les petits-enfants envoient photos et moments du jour. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">3</span><span>Réinviter à tout moment avec le même lien WhatsApp.</span></li>
+  <li><span class="n">4</span><span>Qui reçoit le toucher et l'alerte : les aidants seulement, ou toute la famille ? <span class="tag open">ouvert</span></span></li>
+</ul></div>
+</div>
+
+<!-- ============================================================ QUOTIDIEN -->
+<h2>2 · Partager au quotidien</h2>
+<p>Envoyer une photo, une vidéo ou un mot en quelques secondes, et voir ce que le parent verra.</p>
+<div class="screens">
+
+<div class="item" id="e7"><span class="k">Écran 7 · Accueil</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="row" style="justify-content:space-between"><div class="title">Le Soly de Jeanne</div><svg viewBox="0 0 60 60" width="30" aria-hidden="true" style="vertical-align:-5px"><circle cx="30" cy="30" r="29" fill="#f6d775"/><rect x="16" y="17" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="30" cy="47" r="4.2" fill="#b7a3e0"/></svg></div>
+  <div class="box p"><div class="row"><span class="dot"></span><b>Maman t'a envoyé un Soly</b></div><span class="sub">Ce matin, 8 h 12 · elle a vu ta photo</span><span class="pin">1</span></div>
+  <div class="box p" style="border-color:#2a2d33"><b>⚡ Moment du jour</b> · pas encore arrivé<br><span class="sub">Vous serez prévenu, à une heure surprise</span><span class="pin l">6</span></div>
+  <div class="mini-frame p"><div class="ph" style="height:110px">photo en cours sur le cadre</div><span class="pin">2</span></div>
+  <div class="row p" style="justify-content:space-between"><span class="sub">Cadre connecté</span><span class="sub">Alerte : activée</span><span class="pin">3</span></div>
+  <div class="btn pri p">＋ Hop, au mur<span class="pin">4</span></div>
+  <div class="tabbar p"><span class="on"><b>⌂</b>Accueil</span><span><b>＋</b>Envoyer</span><span><b>▦</b>Le cadre</span><span><b>⚙</b>Réglages</span><span class="pin">5</span></div>
+</div></div>
+<h3>Accueil</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Le dernier toucher du parent, en haut. <span class="tag ok">décidé</span> Afficher l'heure précise ou « ce matin » : <span class="tag open">ouvert</span> (la veille conseille de rester vague pour ne pas surveiller).</span></li>
+  <li><span class="n">2</span><span>Ce qui s'affiche en ce moment sur le cadre, dans son sens. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">3</span><span>L'état technique seulement : connecté, et si l'alerte est activée. Jamais l'activité du parent.</span></li>
+  <li><span class="n">4</span><span>L'action principale : envoyer.</span></li>
+  <li><span class="n">5</span><span>Quatre onglets, pas plus.</span></li>
+  <li><span class="n">6</span><span>L'état du moment du jour : en attente, à faire, ou envoyé. <span class="tag ok">décidé</span></span></li>
+</ul></div>
+
+<div class="item" id="e8"><span class="k">Écran 8 · Envoyer</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="title">Envoyer à Jeanne</div>
+  <div class="box p" style="padding:14px;border-color:#2a2d33"><b>⚡ Le moment du jour</b><br><span class="sub">Disponible quand la notification arrive</span><span class="pin l">5</span></div>
+  <div class="box p" style="padding:14px"><b>🖼 Une photo</b><br><span class="sub">Depuis votre galerie ou l'appareil photo</span><span class="pin">1</span></div>
+  <div class="box p" style="padding:14px"><b>▶ Une vidéo</b><br><span class="sub">30 secondes maximum</span><span class="pin">2</span></div>
+  <div class="box p" style="padding:14px"><b>✎ Un petit mot</b><br><span class="sub">Quelques secondes sur la photo, ou en description</span><span class="pin">3</span></div>
+  <div class="box soft p">Pas d'appel ni de message vocal : le cadre reste un objet de nouvelles.<span class="pin">4</span></div>
+  <div class="tabbar"><span><b>⌂</b>Accueil</span><span class="on"><b>＋</b>Envoyer</span><span><b>▦</b>Le cadre</span><span><b>⚙</b>Réglages</span></div>
+</div></div>
+<h3>Envoyer</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Photo. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Vidéo. <span class="tag ok">décidé</span> Comment l'afficher sans dénaturer le cadre (lecture auto, son), durée et poids : <span class="tag open">ouvert</span></span></li>
+  <li><span class="n">3</span><span>Le petit mot reste, mais discret pour ne pas dénaturer le cadre photo : pop-up temporaire ou description de photo. <span class="tag ok">décidé</span> Ergonomie exacte : <span class="tag open">ouvert</span></span></li>
+  <li><span class="n">4</span><span>Appels et vocaux écartés. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">5</span><span>Le moment du jour passe en premier : la photo sur le vif. <span class="tag ok">décidé</span> Garder aussi l'envoi depuis la galerie (photos choisies) ? <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e9"><span class="k">Écran 9 · Aperçu sur le cadre</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="title">Aperçu</div>
+  <div class="sub">Voici ce que Jeanne verra :</div>
+  <div class="mini-frame p"><div class="ph" style="height:140px">photo recadrée pour le cadre</div><span class="pin">1</span></div>
+  <div class="row p"><span class="chip on">Recadrage auto</span><span class="chip">Photo entière</span><span class="pin">2</span></div>
+  <div class="field p">Ajouter une légende (facultatif)<span class="pin">3</span></div>
+  <div style="margin-top:auto" class="btn pri p">Envoyer au cadre<span class="pin">4</span></div>
+  <div class="sub" style="text-align:center">Fichier trop lourd ? On vous le dit ici, simplement.</div>
+</div></div>
+<h3>Aperçu sur le cadre</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>L'aperçu dans le vrai sens du cadre (paysage ou portrait).</span></li>
+  <li><span class="n">2</span><span>Recadrage automatique par l'IA, sans couper les visages, avec la possibilité d'afficher la photo entière. <span class="tag ok">décidé</span> Brique IA à tester.</span></li>
+  <li><span class="n">3</span><span>Une légende courte, facultative.</span></li>
+  <li><span class="n">4</span><span>Envoi. Un fichier refusé affiche un message simple (cas invalide du test 2 de Clément).</span></li>
+</ul></div>
+
+<div class="item" id="e10"><span class="k">Écran 10 · Écrire un mot</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="title">Un petit mot</div>
+  <div class="field p" style="height:64px">Bisous de Biarritz, on pense à toi !<span class="pin">1</span></div>
+  <div class="sub">80 caractères maximum</div>
+  <div class="sub">Comment l'afficher ?</div>
+  <div class="row p" style="flex-wrap:wrap"><span class="chip on">Pop-up quelques secondes</span><span class="chip">Description sous la photo</span><span class="pin">2</span></div>
+  <div class="mini-frame p"><div class="ph" style="height:96px;align-items:end;padding:8px"><div class="card" style="width:100%">Bisous de Biarritz, on pense à toi !<br><span class="sub">Sophie</span></div></div><span class="pin">3</span></div>
+  <div style="margin-top:auto" class="btn pri">Envoyer</div>
+</div></div>
+<h3>Écrire un mot</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Un texte très court : le cadre reste d'abord visuel.</span></li>
+  <li><span class="n">2</span><span>Deux façons gardées par l'équipe : une pop-up qui disparaît seule, ou une description attachée à une photo. <span class="tag ok">décidé</span> Laquelle par défaut : <span class="tag open">ouvert</span></span></li>
+  <li><span class="n">3</span><span>Aperçu sur le cadre. Ergonomie de l'affichage à finaliser (prochaine étape du brainstorm). <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e11"><span class="k">Écran 11 · Ce qui défile sur le cadre</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="title">Sur le cadre</div>
+  <div class="row p"><span class="chip on">Tout</span><span class="chip">Photos</span><span class="chip">Vidéos</span><span class="chip">Mots</span><span class="pin">1</span></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px" class="p">
+    <div class="ph" style="height:62px"></div><div class="ph" style="height:62px">▶</div><div class="ph" style="height:62px">✎</div>
+    <div class="ph" style="height:62px"></div><div class="ph" style="height:62px"></div><div class="ph" style="height:62px">👁‍🗨</div>
+    <div class="ph" style="height:62px"></div><div class="ph" style="height:62px"></div><div class="ph" style="height:62px"></div>
+    <span class="pin">2</span>
+  </div>
+  <div class="box soft p">Appui long sur un contenu : masquer du cadre, ou supprimer.<span class="pin">3</span></div>
+  <div class="sub p">Envoyé par Sophie · Lucas · Léa<span class="pin">4</span></div>
+  <div class="tabbar"><span><b>⌂</b>Accueil</span><span><b>＋</b>Envoyer</span><span class="on"><b>▦</b>Le cadre</span><span><b>⚙</b>Réglages</span></div>
+</div></div>
+<h3>Ce qui défile sur le cadre</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Filtrer par type de contenu.</span></li>
+  <li><span class="n">2</span><span>Tout ce qui tourne sur le cadre, dans l'ordre. L'œil barré = contenu masqué.</span></li>
+  <li><span class="n">3</span><span>Masquer une photo sans la supprimer. Le parent peut-il masquer lui-même ? <span class="tag open">ouvert</span></span></li>
+  <li><span class="n">4</span><span>Enfants et petits-enfants peuvent envoyer, une fois invités. <span class="tag ok">décidé</span> Combien de contenus garder ? <span class="tag open">ouvert</span></span></li>
+</ul></div>
+</div>
+
+<!-- ============================================================ MOMENT DU JOUR -->
+<h2>2 bis · Le moment du jour</h2>
+<p>Comme BeReal : une fois par jour, à une heure surprise, la famille reçoit une notification et prend une photo sur le vif. Le parent voit le moment présent, pas une photo choisie et retouchée.</p>
+<div class="screens">
+
+<div class="item" id="e17"><span class="k">Écran 17 · La notification du jour</span>
+<div class="phone lock"><div class="sb"><span></span><span>●●●</span></div><div class="scr">
+  <div class="big-time">14:37</div>
+  <div class="sub" style="text-align:center;color:#dfe3e8">mardi 27 octobre</div>
+  <div class="notif p" style="margin-top:18px"><b>⚡ Le Cadre</b> · maintenant<br><b>C'est le moment !</b> Montrez à Maman ce que vous faites, là, maintenant.<span class="pin">1</span></div>
+  <div class="notif p" style="opacity:.85">2 minutes pour prendre la photo<span class="pin">2</span></div>
+</div></div>
+<h3>La notification du jour</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Une seule notification par jour, à une heure différente chaque jour, en même temps pour toute la famille. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Un temps court pour rester sur le vif (2 minutes, comme BeReal). Durée exacte : <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e18"><span class="k">Écran 18 · Photo sur le vif</span>
+<div class="phone"><div class="sb"><span>14:37</span><span>●●●</span></div><div class="scr" style="background:#1d1f23;color:#fff">
+  <div class="row p" style="justify-content:space-between"><b>Le moment du jour</b><span style="font:600 14px var(--mono)">1:48</span><span class="pin">1</span></div>
+  <div class="row p" style="justify-content:center"><span class="chip on">Photo</span><span class="chip" style="background:#3a3d44;color:#ddd">Vidéo rapide</span><span class="pin">5</span></div>
+  <div class="camera p" style="background:#3a3d44"><span style="color:#cfd3d8;font-size:12px">ce que vous voyez, maintenant</span><div class="p" style="position:absolute;top:10px;left:10px;width:70px;height:92px;border:2px solid #fff;border-radius:8px;background:#55595f;display:grid;place-items:center;font-size:10px;color:#ddd">vous<span class="pin">2</span></div></div>
+  <div class="row" style="justify-content:center;gap:28px;margin-top:6px"><span style="font-size:11px;color:#aaa">⚡</span><span class="p" style="width:58px;height:58px;border-radius:50%;border:4px solid #fff;display:inline-block"><span class="pin">3</span></span><span style="font-size:11px;color:#aaa">↺</span></div>
+  <div class="p" style="font-size:11.5px;color:#bbb;text-align:center">Pas de galerie, pas de filtre.<span class="pin">4</span></div>
+</div></div>
+<h3>Photo sur le vif</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Le compte à rebours, visible mais pas stressant.</span></li>
+  <li><span class="n">2</span><span>Les deux caméras en même temps, comme BeReal : ce qu'on voit et son visage. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">3</span><span>Un seul gros bouton pour prendre la photo.</span></li>
+  <li><span class="n">4</span><span>On ne choisit pas une photo dans la galerie : c'est le moment présent. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">5</span><span>Une photo ou une vidéo rapide. <span class="tag ok">décidé</span> Durée de la vidéo : <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e19"><span class="k">Écran 19 · Envoyé</span>
+<div class="phone"><div class="sb"><span>14:38</span><span>●●●</span></div><div class="scr">
+  <div class="title">C'est parti pour le cadre ✓</div>
+  <div class="mini-frame p"><div class="ph" style="height:130px">votre photo du moment</div><span class="pin">1</span></div>
+  <div class="field p">Un mot avec ? « Pause café au bureau » (facultatif)<span class="pin">2</span></div>
+  <div class="box soft p">Aujourd'hui : Sophie ✓ · Lucas ✓ · Léa, pas encore<span class="pin">3</span></div>
+  <div class="sub p">Envoyée après les 2 minutes ? Elle part quand même, marquée « plus tard ».<span class="pin">4</span></div>
+  <div class="tabbar"><span class="on"><b>⌂</b>Accueil</span><span><b>＋</b>Envoyer</span><span><b>▦</b>Le cadre</span><span><b>⚙</b>Réglages</span></div>
+</div></div>
+<h3>Envoyé</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>La photo part directement au cadre, telle quelle.</span></li>
+  <li><span class="n">2</span><span>Une légende courte, facultative, pour dire où on est. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">3</span><span>On voit qui de la famille a déjà partagé son moment. <span class="tag warn">proposé</span> (sans classement ni série)</span></li>
+  <li><span class="n">4</span><span>Une photo en retard est-elle acceptée ? <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e20"><span class="k">Écran 20 · Sur le cadre</span>
+<div class="phone" style="border-color:#9a9da3;border-radius:6px;height:300px;margin-top:130px"><div class="scr" style="height:100%;padding:10px;gap:6px">
+  <div class="p" style="font:600 11px var(--font);color:#555">Le moment du jour · mardi<span class="pin">1</span></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;flex:1" class="p">
+    <div class="ph" style="height:auto;align-items:end;padding:4px;font-size:10px">Sophie · 14 h 38</div>
+    <div class="ph" style="height:auto;align-items:end;padding:4px;font-size:10px">Lucas · 14 h 39</div>
+    <div class="ph" style="height:auto;align-items:end;padding:4px;font-size:10px">Léa, ta petite-fille · 14 h 40</div>
+    <div class="ph" style="height:auto;align-items:end;padding:4px;font-size:10px">Hugo · 14 h 41</div>
+    <span class="pin">2</span>
+  </div>
+</div></div>
+<h3>Ce que voit le parent</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Les photos du moment arrivent sur le cadre avec un petit titre « Le moment du jour ». <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">2</span><span>Plusieurs proches : une mosaïque du même instant, puis chaque photo rejoint le défilement de 15 s. Mosaïque ou une par une : <span class="tag open">ouvert</span></span></li>
+</ul></div>
+</div>
+
+<!-- ============================================================ LIEN -->
+<h2>3 · Le lien</h2>
+<p>Le seul geste du parent : un toucher sur le cadre, qui dit « je suis là ».</p>
+<div class="screens">
+
+<div class="item" id="e12"><span class="k">Écran 12 · Notification</span>
+<div class="phone lock"><div class="sb"><span></span><span>●●●</span></div><div class="scr">
+  <div class="big-time">8:12</div>
+  <div class="sub" style="text-align:center;color:#dfe3e8">jeudi 22 octobre</div>
+  <div class="notif p" style="margin-top:18px"><svg viewBox="0 0 60 60" width="18" aria-hidden="true" style="vertical-align:-5px"><circle cx="30" cy="30" r="29" fill="#f6d775"/><rect x="16" y="17" width="28" height="23" rx="6" fill="none" stroke="#2e1e14" stroke-width="3.6"/><circle cx="30" cy="47" r="4.2" fill="#b7a3e0"/></svg> <b>Soly</b> · maintenant<br>Maman t'a envoyé un Soly ☀<span class="pin">1</span></div>
+  <div class="notif p" style="opacity:.85">Appuie pour lui renvoyer un Soly<span class="pin">2</span></div>
+</div></div>
+<h3>Notification « Maman t'a envoyé un Soly »</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Quand le parent touche le cadre, l'enfant reçoit une notification simple. Elle informe, elle n'appelle pas de réponse. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Possibilité de répondre par une lueur. <span class="tag warn">proposé</span></span></li>
+</ul></div>
+
+<div class="item" id="e13"><span class="k">Écran 13 · Renvoyer un Soly</span>
+<div class="phone"><div class="sb"><span>8:12</span><span>●●●</span></div><div class="scr">
+  <div class="title">Maman t'a envoyé un Soly</div>
+  <div class="sub">Ce matin, 8 h 12</div>
+  <div class="mini-frame p" style="border-color:#e2b65a;box-shadow:0 0 18px 4px rgba(226,182,90,.6)"><div class="ph" style="height:120px">le cadre s'illumine chez Jeanne</div><span class="pin">1</span></div>
+  <div class="btn pri p" style="margin-top:6px">☀ Renvoyer un Soly<span class="pin">2</span></div>
+  <div class="sub p" style="text-align:center">Pas de « vu », pas de compteur.<span class="pin">3</span></div>
+  <div class="tabbar"><span class="on"><b>⌂</b>Accueil</span><span><b>＋</b>Envoyer</span><span><b>▦</b>Le cadre</span><span><b>⚙</b>Réglages</span></div>
+</div></div>
+<h3>Renvoyer un Soly</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Chez le parent, une lueur signale qu'un proche pense à lui : à l'écran, ou par des LED à l'arrière du cadre qui éclairent le mur. <span class="tag ok">décidé</span> LED proposées en option.</span></li>
+  <li><span class="n">2</span><span>Un seul bouton, facultatif.</span></li>
+  <li><span class="n">3</span><span>Jamais d'accusé de lecture ni de statistiques : le toucher reste un don, pas un pointage. <span class="tag warn">proposé</span></span></li>
+</ul></div>
+
+<div class="item"><span class="k">Côté cadre · pour mémoire</span>
+<div class="phone" style="border-color:#9a9da3;border-radius:6px;height:300px;margin-top:130px"><div class="scr" style="height:100%;padding:10px;justify-content:center">
+  <div class="ph p" style="height:100%;box-shadow:inset 0 0 0 3px #e2b65a">photo qui défile · 15 s<span class="pin">1</span></div>
+</div></div>
+<h3>Ce que voit le parent</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Le cadre au mur : photos qui défilent, toucher n'importe où, petit signe qui confirme : notification à l'écran et lueur des LED à l'arrière du cadre (option). Détail dans la page <a href="1-1-le-cadre-ancien-vivant.html" style="color:var(--pin)">Le Cadre vivant</a>. Forme du signe : <span class="tag open">ouvert</span></span></li>
+</ul></div>
+</div>
+
+<!-- ============================================================ ALERTE ET RÉGLAGES -->
+<h2>4 · Alerte et réglages</h2>
+<p>L'alerte reste une option choisie par le parent. L'enfant règle tout le reste.</p>
+<div class="screens">
+
+<div class="item" id="e14"><span class="k">Écran 14 · Réglage de l'alerte</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="title">Alerte</div>
+  <div class="box p"><div class="row" style="justify-content:space-between"><span><b>Alerte activée</b><br><span class="sub">Accord de Jeanne le 22/10</span></span><span class="toggle"></span></div><span class="pin">1</span></div>
+  <div class="box p">Prévenir après <b>48 h</b> sans toucher<span class="pin">2</span></div>
+  <div class="box p">Prévenus en premier : <b>Sophie, Lucas</b><span class="pin">3</span></div>
+  <div class="box p"><div class="row" style="justify-content:space-between"><span>Mode vacances<br><span class="sub">jusqu'au 3 novembre</span></span><span class="toggle off"></span></div><span class="pin">4</span></div>
+  <div class="box soft p">Si personne ne réagit : à définir<span class="pin">5</span></div>
+  <div class="tabbar"><span><b>⌂</b>Accueil</span><span><b>＋</b>Envoyer</span><span><b>▦</b>Le cadre</span><span class="on"><b>⚙</b>Réglages</span></div>
+</div></div>
+<h3>Réglage de l'alerte</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Activée seulement avec l'accord du parent, date gardée. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>Plus de 48 h sans toucher. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">3</span><span>Les aidants sont prévenus en premier. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">4</span><span>Une pause quand le parent part, avec une date de fin. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">5</span><span>Et ensuite : qui appelle les secours, et quand ? <span class="tag open">ouvert</span></span></li>
+</ul></div>
+
+<div class="item" id="e15"><span class="k">Écran 15 · Alerte reçue</span>
+<div class="phone"><div class="sb"><span>10:05</span><span>●●●</span></div><div class="scr">
+  <div class="box alert p"><b>Pas de toucher depuis 2 jours</b><br><span class="sub">Peut-être un simple oubli. Le cadre de Jeanne est toujours connecté.</span><span class="pin">1</span></div>
+  <div class="btn pri p">📞 Appeler Jeanne<span class="pin">2</span></div>
+  <div class="btn sec p">Je m'en occupe<span class="pin">3</span></div>
+  <div class="btn ghost">Tout va bien, fausse alerte</div>
+  <div class="sub p">Lucas a aussi été prévenu.<span class="pin">4</span></div>
+</div></div>
+<h3>Alerte reçue</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>Un ton neutre, jamais « inquiétant », « chute » ou « santé ». L'état technique aide à comprendre (cadre débranché ?). <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">2</span><span>Appeler avec le téléphone de l'aidant (pas depuis le cadre).</span></li>
+  <li><span class="n">3</span><span>« Je m'en occupe » prévient les autres aidants, pour éviter que tout le monde appelle. <span class="tag warn">proposé</span></span></li>
+  <li><span class="n">4</span><span>Les autres aidants voient qui s'en occupe.</span></li>
+</ul></div>
+
+<div class="item" id="e16"><span class="k">Écran 16 · Réglages du cadre</span>
+<div class="phone"><div class="sb"><span>9:41</span><span>●●●</span></div><div class="scr">
+  <div class="title">Réglages du cadre</div>
+  <div class="box p">Durée par photo : <b>15 s</b><span class="pin">1</span></div>
+  <div class="box p"><div class="row" style="justify-content:space-between"><span>Luminosité automatique</span><span class="toggle"></span></div><span class="pin">2</span></div>
+  <div class="box p">Mode veille : lumière douce de <b>21 h</b> à <b>7 h</b><span class="pin">3</span></div>
+  <div class="box p">Notifications · Mise en route<span class="pin l">6</span></div>
+  <div class="box p"><div class="row" style="justify-content:space-between"><span>LED à l'arrière (option)</span><span class="toggle"></span></div><span class="pin l">7</span></div>
+  <div class="box p">Son des vidéos : <b>bas</b><span class="pin">4</span></div>
+  <div class="box p">Famille : <b>3 personnes</b> peuvent envoyer<span class="pin">5</span></div>
+  <div class="box soft">Wifi · Aide · Données</div>
+  <div class="tabbar"><span><b>⌂</b>Accueil</span><span><b>＋</b>Envoyer</span><span><b>▦</b>Le cadre</span><span class="on"><b>⚙</b>Réglages</span></div>
+</div></div>
+<h3>Réglages du cadre</h3>
+<ul class="legend">
+  <li><span class="n">1</span><span>15 secondes par photo par défaut. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">2</span><span>La luminosité suit la pièce. <span class="tag ok">décidé</span> (capteur de présence : envisagé avec prudence par l'équipe)</span></li>
+  <li><span class="n">3</span><span>Mode veille adapté : le soir, les photos continuent, plus douces. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">4</span><span>Son des vidéos : réglage simple. Lecture auto ou au toucher : <span class="tag open">ouvert</span></span></li>
+  <li><span class="n">5</span><span>Voir et inviter la famille (écran 25). <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">6</span><span>Les notifications (toucher, moment du jour) et la mise en route du cadre. <span class="tag ok">décidé</span></span></li>
+  <li><span class="n">7</span><span>La lueur des LED à l'arrière, si le cadre a l'option. <span class="tag ok">décidé</span> comme option.</span></li>
+</ul></div>
+</div>
+
+<h2>À retenir pour la V2</h2>
+<div class="notes">
+  <div><h3>Ce qu'il faut trancher</h3><ul><li>Ergonomie du petit mot : pop-up ou description par défaut</li><li>Affichage des vidéos sur le cadre</li><li>Heure exacte du toucher ou « ce matin » ?</li><li>Moment du jour : durée (2 min ?), photo en retard, mosaïque ou une par une, garder l'envoi depuis la galerie</li><li>Petits-enfants de moins de 15 ans : accord parental (RGPD)</li><li>L'aidant valide-t-il chaque nouveau membre ?</li><li>Qui reçoit le toucher et l'alerte : aidants seulement ou toute la famille ?</li><li>Durée et poids des vidéos</li><li>Le parent peut-il masquer une photo ?</li><li>Suite de l'alerte si personne ne réagit</li></ul></div>
+  <div><h3>Ce que les outils doivent savoir faire</h3><ul><li>Envoyer photo, vidéo, mot vers le cadre</li><li>Recevoir le toucher et notifier en quelques secondes</li><li>Règle d'alerte dans le temps, une seule fois</li><li>Relier un cadre par un code</li><li>Inviter par un lien WhatsApp qui contient le code de la famille</li><li>Plusieurs comptes par famille, avec des rôles (aidant, proche)</li><li>Envoyer une notification par jour à une heure aléatoire, à toute la famille en même temps</li><li>Données en Europe</li></ul></div>
+  <div><h3>Prochaines étapes</h3><ul><li>Uniformiser les écrans 3, 4 et le carrousel (fait dans cette version, à relire)</li><li>Finaliser l'affichage du petit mot et des pop-ups</li><li>Passer les décisions dans la fiche produit</li><li>Construire ces écrans dans la stack A (Claude Code) puis D (FlutterFlow) pour les tests</li><li>Donner une direction artistique en V2</li></ul></div>
+</div>
+
+<footer><b>V2 :</b> nom Soly et DA Soleil appliqués à la V1 (1-1-maquette-app-v1.html, inchangée), voir aussi <a href="1-1-soly-mise-en-situation.html">la mise en situation Soly</a> et <a href="1-1-da-trois-univers.html">les trois univers</a>. Photos Unsplash (licence Unsplash), pour maquette seulement. Sources : <a href="../clement/1-1-le-cadre-version-retenue.html">Le Cadre, version retenue</a> et <a href="../clement/1-1-quatre-usages-a-tester.html">les 4 usages à tester</a> (Clément), <a href="../camille/1-1-compte-rendu-brainstorm-cadre.html">compte rendu du brainstorm</a> (Camille), <a href="1-1-veille-design-le-cadre.html">veille design pour Le Cadre</a> (Lucas). Données fictives. Maquette réalisée avec l'aide de Claude (IA), à relire par l'équipe.</footer>
+</div>
+
+<script>
+(function () {
+  var pics = ["g5","d4","c3","c4","d2","s4","s5","l3","g1","d3","g3","s1","c1","g4"];
+  var i = 0;
+  document.querySelectorAll('.phone .ph').forEach(function (el) {
+    var label = '';
+    el.childNodes.forEach(function (n) { if (n.nodeType === 3) label += n.textContent; });
+    label = label.trim();
+    if (label === '＋') { el.classList.add('plus'); return; }
+    var k = /cadre au mur/.test(label) ? 'l3' : pics[i++ % pics.length];
+    el.style.backgroundImage = 'url(img-da/' + k + '.jpg)';
+    if (label === '✓' || label === '▶' || label === '✎' || label.length <= 3) { el.classList.add('mark'); return; }
+    el.classList.add('photo');
+    if (label) { var c = document.createElement('span'); c.className = 'cap2'; c.textContent = label; el.appendChild(c); }
+  });
+})();
+</script>
+</body>
+</html>

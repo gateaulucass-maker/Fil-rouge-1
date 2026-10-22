@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T16:41",
+  "mise_a_jour": "2026-10-22T16:55",
   "phases": [
     {
       "id": "P0",
@@ -774,6 +774,14 @@
           "date": "2026-10-22",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-nom-cadro-logo.html",
           "note": "5 noms autour du cadre (Cadro, Tablo, Pola, Muro, Cadoo). Reco : Cadro, logo dont le o est un cadre avec la lueur lilas. Reste : choix équipe, INPI, domaine."
+        },
+        {
+          "titre": "Maquette de l'appli V2 : marque Soly et DA Soleil",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-22",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-maquette-app-v2-soly.html",
+          "note": "Nom retenu par l'équipe : Soly. Les 25 écrans de la V1 habillés : logo, palette Soleil, Bricolage + Atkinson, vraies photos, geste « un Soly », ton tutoyé. V1 conservée."
         }
       ]
     },
