@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nos 20 hypothèses, d'après la veille</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Grille suisse des rendus du dépôt : rail gauche pour le numéro, colonne de contenu à droite, filets noirs, typographie contrastée. Thème clair unique, comme les rendus. */
+:root{--cream:#f4eee1;--paper:#faf6ec;--ink:#111526;--muted:#5d6172;--blue:#1d3bc1;--blue-soft:#dfe3f2;--line:#d3ccba;--sans:"Archivo",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+body{background:var(--cream);color:var(--ink);font:17px/1.55 var(--sans);margin:0}
+main{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:48px 80px}
+header{display:grid;gap:28px;padding-bottom:48px}
+.eyebrow{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-weight:800;font-size:clamp(44px,8.5vw,112px);line-height:.92;letter-spacing:-.035em;margin:0;max-width:11ch;text-wrap:balance}
+.key{border-top:6px solid var(--blue);padding-top:18px;display:grid;gap:10px;max-width:30em}
+.key span{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.key p{margin:0;font-size:clamp(22px,3vw,34px);font-weight:700;line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.toc{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none;font:500 14px var(--mono)}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}.toc a:hover{color:var(--blue);border-color:var(--blue)}
+.method{border-top:2px solid var(--ink);padding-top:14px;display:grid;gap:8px;max-width:68ch}.method span{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.method p{margin:0;font-size:16px}.why dd{font-weight:600;color:var(--blue)}
+.six{border-top:3px solid var(--ink)}.six .kicker{margin:0}.top{margin:0 0 18px;padding:0;list-style:none;display:grid;gap:10px;max-width:72ch}.top li{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:8px;font-size:17px;font-weight:600;line-height:1.4;border-bottom:1px solid var(--line);padding-bottom:10px}.top b{color:var(--blue)}.note{margin:0;font-size:13px;color:var(--muted)}.q.garde .qnum{background:var(--blue);color:#fff;padding:2px 10px;display:inline-block}
+.legend{font:13px var(--mono);color:var(--muted);margin:0}
+.part{border-top:3px solid var(--ink);padding-block:28px 8px;display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:0 32px}
+.part h2{font-size:clamp(30px,4.4vw,54px);font-weight:800;margin:0;line-height:1;letter-spacing:-.025em}
+.part p{margin:0;color:var(--muted);max-width:60ch}
+.q{scroll-margin-top:16px;display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:0 32px;border-top:1px solid var(--line);padding-block:22px 28px}
+.rail{min-width:0}
+.qnum{display:block;font-weight:800;color:var(--blue)}
+.qnum.w{font-size:clamp(34px,4.6vw,56px);line-height:.95;letter-spacing:-.03em}
+.kicker{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:8px 0 0}
+.qbody{min-width:0;display:grid;gap:16px}
+.hyp{margin:0;font-size:clamp(19px,2.2vw,24px);font-weight:700;line-height:1.3;letter-spacing:-.01em;max-width:34em;text-wrap:pretty}
+.hyp b{color:var(--blue)}
+.id{margin:0;border-top:2px solid var(--ink);max-width:72ch}
+.id div{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr);gap:14px;border-bottom:1px solid var(--line);padding-block:10px}
+.id dt{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.id dd{margin:0;font-size:15px;line-height:1.5}
+.b{display:inline-block;font:500 10px var(--mono);border:1px solid;padding:0 4px;margin-right:4px;vertical-align:2px}
+.b.f{color:var(--blue)}.b.h{color:var(--muted)}
+.ref{font:500 12px var(--mono);color:var(--blue);white-space:nowrap}
+.sum{margin:0;font-size:clamp(18px,2.2vw,24px);font-weight:700;line-height:1.3;max-width:34em;padding-left:20px;border-left:6px solid var(--blue)}
+.sources{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:16px 32px;border-top:3px solid var(--ink);padding-top:28px;margin-top:40px}
+.sources h2{font-size:clamp(24px,3vw,32px);font-weight:800;margin:0;letter-spacing:-.02em}
+.sources ul{margin:0;padding:0;list-style:none;columns:2 320px;column-gap:36px;font-size:13px}
+.sources li{break-inside:avoid;margin-bottom:6px}.sources a{color:var(--ink)}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media (max-width:760px){.q,.part,.sources{grid-template-columns:minmax(0,1fr);gap:10px}.id div{grid-template-columns:minmax(0,1fr);gap:2px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">Besoins utilisateurs · Séance 2 · Atelier 1 · PFR Générations Connectées · 22 octobre 2026</div>
+<h1>Nos 20 hypothèses, d'après la veille</h1>
+<div class="key"><span>La formule</span><p>Nous pensons que [cible] [comportement] parce que [raison].</p></div>
+<div class="method"><span>Comment on a classé</span><p>Deux questions par hypothèse. <b>Si elle est fausse, qu'est-ce qui tombe ?</b> La problématique ou le modèle économique (tout tombe), une fonction centrale (le produit change de nature), une fonction en option (on l'ajuste), ou un détail (on corrige). <b>Quelle preuve a-t-on ?</b> À dégâts égaux, une hypothèse sans preuve (H) passe devant une hypothèse que la veille appuie (F). La plus risquée est en premier.</p></div>
+<ul class="toc"><li><a href="#six">Les 6 prioritaires</a></li><li><a href="#parent">Le parent</a></li><li><a href="#P9">1. P9</a></li><li><a href="#P5">2. P5</a></li><li><a href="#P1">3. P1</a></li><li><a href="#P4">4. P4</a></li><li><a href="#P6">5. P6</a></li><li><a href="#P8">6. P8</a></li><li><a href="#P2">7. P2</a></li><li><a href="#P7">8. P7</a></li><li><a href="#P3">9. P3</a></li><li><a href="#P10">10. P10</a></li><li><a href="#enfant">L'enfant</a></li><li><a href="#E8">1. E8</a></li><li><a href="#E1">2. E1</a></li><li><a href="#E6">3. E6</a></li><li><a href="#E5">4. E5</a></li><li><a href="#E10">5. E10</a></li><li><a href="#E9">6. E9</a></li><li><a href="#E2">7. E2</a></li><li><a href="#E3">8. E3</a></li><li><a href="#E7">9. E7</a></li><li><a href="#E4">10. E4</a></li><li><a href="#sources">Sources</a></li></ul>
+<p class="legend">F = appuyée par la veille · H = hypothèse de l'équipe · codes = sources en bas de page · brouillon de travail, à retravailler en équipe.</p>
+</header>
+<section class="q six" id="six"><div class="rail"><span class="qnum w">6</span><p class="kicker">Hypothèses prioritaires</p></div><div class="qbody">
+<h3 class="kicker">Le parent</h3><ol class="top"><li><span class="ref">P9</span><span><b>Nous pensons que</b> les seniors acceptent de donner une information sur eux (leur position, un signe de vie) quand ils décident eux-mêmes de le faire pour rassurer leurs proches, et la refusent quand l'enfant l'impose <b>parce que</b> c'est le fait de choisir qui fait la différence entre rassurer et être surveillé.</span></li><li><span class="ref">P5</span><span><b>Nous pensons que</b> les grands-parents qui reçoivent une gazette familiale la lisent et l'attendent, mais répondent à la famille par un coup de téléphone et pas par le service <b>parce que</b> le téléphone reste leur façon naturelle de dire merci et de donner des nouvelles.</span></li><li><span class="ref">P1</span><span><b>Nous pensons que</b> les seniors qui ont un bracelet ou un pendentif d'alerte le retirent ou le laissent de côté dès qu'ils reçoivent du monde <b>parce qu'</b>ils l'associent à la dépendance et ne veulent pas être vus avec.</span></li></ol>
+<h3 class="kicker">L'enfant</h3><ol class="top"><li><span class="ref">E8</span><span><b>Nous pensons que</b> l'enfant aidant partage ses photos dans les groupes familiaux et sur les réseaux mais n'en envoie presque pas à son parent, <b>parce que</b> le parent n'est pas sur ces outils et que rien ne le lui rappelle au moment où il partage.</span></li><li><span class="ref">E1</span><span><b>Nous pensons que</b> l'enfant aidant achète un service de lien (gazette, journal familial) pour son parent sans attendre d'incident, souvent comme cadeau, alors qu'il n'achète une téléassistance qu'après une chute, <b>parce que</b> le lien répond à un manque de nouvelles qu'il ressent déjà, tandis que la sécurité répond à une peur que seul l'accident rend concrète.</span></li><li><span class="ref">E6</span><span><b>Nous pensons que</b> l'enfant aidant paie sans difficulté un petit abonnement de lien annoncé dès le départ, mais renvoie ou résilie dès qu'il découvre un coût caché (SIM, option, abonnement imposé après l'achat), <b>parce qu'</b>il juge le prix sur sa lisibilité plus que sur son montant.</span></li></ol>
+<p class="note">Les 3 plus risquées par cible, proposées. Le détail et le classement complet suivent. À valider avec Lucas et Camille.</p>
+</div></section>
+<div class="part" id="parent"><h2>Le parent</h2><p>La personne âgée qui vit seule chez elle, autonome, souvent 75 ans et plus. Elle ne paie pas, elle vit avec l'objet. Classées de la plus risquée à la moins risquée.</p></div>
+<section class="q garde" id="P9">
+<div class="rail"><span class="qnum w">1</span><p class="kicker">P9 · Partager quand c&#x27;est son choix</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> les seniors acceptent de donner une information sur eux (leur position, un signe de vie) quand ils décident eux-mêmes de le faire pour rassurer leurs proches, et la refusent quand l'enfant l'impose <b>parce que</b> c'est le fait de choisir qui fait la différence entre rassurer et être surveillé.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> pour l'acceptation : <span class="ref">FV 84</span> « Il est important qu'on sache où je me trouve pour rassurer la famille » ; [Q1 Décideur] le senior « doit accepter ». H pour le refus quand c'est imposé : aucun élément de la veille ne le montre.</dd></div>
+<div><dt>Si c'est faux</dt><dd>le consentement du parent à l'installation ne suffit pas à rendre un signal acceptable, ou au contraire le parent accepte tout ce que l'enfant installe.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>La base de tout : lien, pas surveillance. Si le choix du parent ne change rien à son acceptation, le consentement à l&#x27;installation ne protège de rien. Le refus quand c&#x27;est imposé n&#x27;a aucune preuve.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q garde" id="P5">
+<div class="rail"><span class="qnum w">2</span><p class="kicker">P5 · Recevoir sans répondre par l&#x27;outil</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> les grands-parents qui reçoivent une gazette familiale la lisent et l'attendent, mais répondent à la famille par un coup de téléphone et pas par le service <b>parce que</b> le téléphone reste leur façon naturelle de dire merci et de donner des nouvelles.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 86</span> « ma grand-mère m'appelle chaque mois pour me remercier après réception de sa gazette » ; <span class="ref">FV 100</span> les grands-parents « attendent chaque parution avec impatience » ; <span class="ref">VF Réussites et échecs</span> « Limite : le senior ne répond pas ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>le retour du parent vers la famille, que la veille désigne comme le manque du marché <span class="ref">VF Notre piste</span>, passe déjà par un autre canal ou n'est pas attendu.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>C&#x27;est le manque du marché que vise le produit : le parent reçoit mais ne répond pas par le service. Si c&#x27;est faux, le retour vers la famille existe déjà ailleurs.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q garde" id="P1">
+<div class="rail"><span class="qnum w">3</span><p class="kicker">P1 · Le bracelet porté seulement seul</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> les seniors qui ont un bracelet ou un pendentif d'alerte le retirent ou le laissent de côté dès qu'ils reçoivent du monde <b>parce qu'</b>ils l'associent à la dépendance et ne veulent pas être vus avec.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 70</span> 90 % portent le dispositif surtout quand ils sont seuls, <span class="ref">FV 17</span> 87 % voient la téléassistance comme un marqueur de dépendance, <span class="ref">AV 04</span> « Personne n'aimerait avoir ça au poignet ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'argument « rien à porter, rien qui désigne » perd sa force face à la téléassistance, et notre case « lien discret » sur la carte <span class="ref">MR Carte</span> n'a plus d'avantage.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>L&#x27;argument « rien à porter, rien qui désigne » repose dessus. Si le bracelet ne gêne pas, la téléassistance garde l&#x27;avantage.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P4">
+<div class="rail"><span class="qnum w">4</span><p class="kicker">P4 · La montre oubliée sur sa base</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> les seniors équipés d'une montre à détection de chute finissent par ne plus la remettre au poignet après la recharge <b>parce que</b> la recharge presque quotidienne leur demande de penser à un geste qu'ils oublient.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AW E</span> 18 h d'autonomie, recharge presque quotidienne ; <span class="ref">AW F</span> « ça échoue dès qu'il y a oubli, complexité ou isolement » ; <span class="ref">MR Q3</span> « il faut les recharger, penser à les porter ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'effort côté senior n'est plus la cause principale d'abandon, et le principe « zéro effort » <span class="ref">MR Notre place</span> devient un confort, pas une différence.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Le principe « zéro effort ». Si l&#x27;oubli de recharge n&#x27;est pas la cause d&#x27;abandon, ce n&#x27;est plus une différence, juste un confort.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P6">
+<div class="rail"><span class="qnum w">5</span><p class="kicker">P6 · L&#x27;écran appris avec quelqu&#x27;un</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> les seniors débutants n'adoptent une tablette que si quelqu'un les aide en personne au départ (un guichet, un proche) <b>parce qu'</b>ils n'apprennent pas seuls un écran nouveau.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b h">H</span> appuyée sur <span class="ref">RF Ardoiz</span> (hypothèse de l'équipe : sans guichet pour accompagner, l'outil perd sa raison d'être) ; <span class="ref">VF Réussites et échecs</span> tempère : « rien ne prouve que la tablette elle-même ait été rejetée », 110 000 seniors équipés.</dd></div>
+<div><dt>Si c'est faux</dt><dd>un écran simple peut être adopté sans accompagnement, et la promesse « rien à apprendre » n'est plus une condition d'adoption mais un plus.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Le principe « rien à apprendre ». Si un senior adopte seul un écran simple, la condition devient un plus. Appui faible (Ardoiz).</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P8">
+<div class="rail"><span class="qnum w">6</span><p class="kicker">P8 · Accepter seulement après la chute</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> les parents refusent un dispositif de sécurité tant qu'ils ne sont pas tombés, et ne l'acceptent qu'après une chute <b>parce qu'</b>avant, ils ne se sentent pas concernés par le risque.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 17</span> 61 % des achats de téléassistance suivent une chute (2016, source faible) ; <span class="ref">FV 30</span> montres freinées par « le déni du risque » ; <span class="ref">MQ Q3</span> « avant, on attend ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>les parents acceptent un objet « avant », et une offre préventive n'a pas à convaincre contre le déni ; à l'inverse, si c'est vrai, un objet présenté comme sécurité sera refusé par les parents qui ne sont pas encore tombés.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si les parents n&#x27;acceptent un objet qu&#x27;après une chute, tout objet vendu comme sécurité est refusé avant : à savoir pour le positionnement.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P2">
+<div class="rail"><span class="qnum w">7</span><p class="kicker">P2 · Le réflexe après une chute</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> les seniors qui tombent chez eux essaient d'abord d'appeler un proche au téléphone plutôt que d'appuyer sur le bouton de leur bracelet <b>parce qu'</b>ils font confiance à leur famille avant un centre ou un appareil.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AV 03</span> une mère de 91 ans se traîne la nuit jusqu'au téléphone pour appeler sa fille ; [AV, dernière page] hypothèse de Camille « son premier réflexe est d'appeler un proche ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'idée que la famille est le premier recours (le substitut principal <span class="ref">MR Q3</span>) s'affaiblit, et un objet tourné vers la famille plutôt que vers un centre a moins de sens.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Famille avant centre ou appareil. Si c&#x27;est faux, un objet tourné vers la famille plutôt que vers un centre a moins de sens.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P7">
+<div class="rail"><span class="qnum w">8</span><p class="kicker">P7 · Ne pas payer soi-même</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> les parents autonomes ne souscrivent pas eux-mêmes un abonnement à un service connecté et laissent ce coût à leurs enfants <b>parce que</b> leurs revenus sont serrés et qu'aucune aide ne les couvre tant qu'ils sont autonomes.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">RF Coyali</span> « nos utilisateurs, souvent des personnes âgées avec des revenus modestes, n'avaient pas toujours les moyens de payer » ; <span class="ref">MR Q1</span> pas d'aide directe pour un parent autonome (APA en GIR 1 à 4). Signal contraire : <span class="ref">FV 85</span> un grand-parent qui paie lui-même une gazette ; et <span class="ref">FV 80</span> le prix ne freine que 29 %.</dd></div>
+<div><dt>Si c'est faux</dt><dd>le parent pourrait être acheteur lui-même, et le modèle « l'enfant paie, le parent reçoit » <span class="ref">RF Famileo</span> n'est plus le seul possible.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si le parent peut payer lui-même, le modèle « l&#x27;enfant paie » n&#x27;est plus le seul : ça ouvre, ça ne fait pas tomber.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P3">
+<div class="rail"><span class="qnum w">9</span><p class="kicker">P3 · Appuyer pour parler</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> les seniors abonnés à la téléassistance appuient sur le bouton surtout pour parler à quelqu'un ou être rassurés, pas pour une urgence <b>parce qu'</b>ils cherchent une voix humaine dans leur journée.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> pour le chiffre, H pour la raison : <span class="ref">FV 1</span> et <span class="ref">RF Présence Verte</span> 2 % seulement des appels ou alertes vont jusqu'aux secours ; <span class="ref">MR Q5</span> l'équipe en déduit, sans preuve, qu'ils cherchent à parler.</dd></div>
+<div><dt>Si c'est faux</dt><dd>le besoin de contact quotidien que Le Cadre veut nourrir n'est pas démontré par la téléassistance, et ces 98 % d'appels relèvent peut-être de fausses alertes ou d'erreurs.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Le chiffre est sûr (2 % d&#x27;appels aux secours), la raison est à nous. Si c&#x27;est faux, le besoin de contact reste à prouver autrement.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="P10">
+<div class="rail"><span class="qnum w">10</span><p class="kicker">P10 · Débrancher ce qui sonne pour rien</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> les seniors retirent ou débranchent un appareil d'alerte qui sonne sans raison, surtout la nuit, <b>parce que</b> l'alarme intempestive les dérange et les inquiète plus qu'elle ne les rassure.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AV 05</span> l'appareil sonne à minuit, « désagréable pour une personne âgée seule » ; <span class="ref">AV 10</span> « sonne toute seul […] poubelle » ; <span class="ref">AV 12</span> gestes du quotidien qui déclenchent ; <span class="ref">FV 70</span> le déclenchement accidentel est une raison de non-port.</dd></div>
+<div><dt>Si c'est faux</dt><dd>les fausses alertes gênent surtout l'aidant et pas le parent, et la fiabilité compte pour l'enfant seul <span class="ref">MR Notre place</span>.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Les fausses alertes gênent le parent. Si c&#x27;est faux, elles ne gênent que l&#x27;enfant : ça ne change pas le produit, seulement l&#x27;argument.</dd></div>
+</dl>
+</div>
+</section>
+<div class="part" id="enfant"><h2>L'enfant</h2><p>L'aidant, 50 à 65 ans, souvent à distance. Il paie, décide, installe, et envoie les contenus. Classées de la plus risquée à la moins risquée.</p></div>
+<section class="q garde" id="E8">
+<div class="rail"><span class="qnum w">1</span><p class="kicker">E8 · Oublier le parent au moment de partager</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant partage ses photos dans les groupes familiaux et sur les réseaux mais n'en envoie presque pas à son parent, <b>parce que</b> le parent n'est pas sur ces outils et que rien ne le lui rappelle au moment où il partage.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">RF Famileo</span> l'idée naît « d'une grand-mère exclue des échanges WhatsApp de la famille », <span class="ref">FV 83</span> les personnes âgées « manquent des moments importants de la famille », <span class="ref">FV 62</span> un utilisateur réclame des notifications « pour ne pas oublier l'échéance ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>la cause posée par l'équipe (l'oubli au moment de partager) tombe ; si l'enfant envoie déjà, ou si le blocage est le temps ou l'envie, un rappel quotidien ne change rien.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>La problématique elle-même. Si l&#x27;enfant envoie déjà, ou si le blocage est le temps ou l&#x27;envie, un rappel ne change rien.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q garde" id="E1">
+<div class="rail"><span class="qnum w">2</span><p class="kicker">E1 · Le lien acheté sans incident</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant achète un service de lien (gazette, journal familial) pour son parent sans attendre d'incident, souvent comme cadeau, alors qu'il n'achète une téléassistance qu'après une chute, <b>parce que</b> le lien répond à un manque de nouvelles qu'il ressent déjà, tandis que la sécurité répond à une peur que seul l'accident rend concrète.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">MR Q1 décideur</span> 61 % des achats de téléassistance suivent une chute (2016, source peu fiable) et <span class="ref">MR Q3 ne rien faire</span> « la famille et son téléphone » suffit « jusqu'à la première chute » ; à l'inverse <span class="ref">RF Famileo</span> 2 000 à 3 000 nouvelles familles par mois par bouche-à-oreille et <span class="ref">FV 88</span> « Très beau cadeau pour ma grand-mère ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>Le Cadre ne se vend qu'après une chute, au moment où l'enfant cherche un détecteur et pas un objet de lien ; le marché des parents autonomes non équipés <span class="ref">MR Q2 SAM</span> reste fermé.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Le marché. Si l&#x27;enfant n&#x27;achète qu&#x27;après une chute, personne n&#x27;achète un objet de lien pour un parent autonome. Le seul chiffre date de 2016.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q garde" id="E6">
+<div class="rail"><span class="qnum w">3</span><p class="kicker">E6 · Un prix lisible plutôt qu&#x27;un petit prix</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant paie sans difficulté un petit abonnement de lien annoncé dès le départ, mais renvoie ou résilie dès qu'il découvre un coût caché (SIM, option, abonnement imposé après l'achat), <b>parce qu'</b>il juge le prix sur sa lisibilité plus que sur son montant.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AV 18</span> abonnement SMS non annoncé : « À 70 € l'abonnement SMS pour un an, c'est du vol », <span class="ref">MR Q4 hybride</span> l'achat plus l'abonnement « rend le prix total moins lisible », <span class="ref">FV 37</span> le « sans abonnement » cache un forfait SIM ; à l'inverse <span class="ref">FV 85</span> Famileo jugé « peu onéreuse » à 5,99 à 17,99 € par mois <span class="ref">MR Q4</span>, et <span class="ref">VF A5</span> l'empilement tablette, forfait et service d'Ardoiz « n'a pas tenu ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>c'est le montant total qui bloque, et un objet d'environ 100 € plus un abonnement pèse plus que la gazette seule ; le modèle achat plus abonnement est à revoir.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Le modèle économique. Si c&#x27;est le montant qui bloque et pas sa lisibilité, achat plus abonnement est à revoir.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E5">
+<div class="rail"><span class="qnum w">4</span><p class="kicker">E5 · Pas de caméra chez le parent</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant n'installe ni caméra ni localisation chez son parent autonome, alors qu'il localise volontiers ses propres enfants, <b>parce qu'</b>il craint que son parent le vive comme une surveillance et refuse l'objet.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 87</span> un parent « rassuré de savoir où se trouve [sa] fille à chaque instant » et <span class="ref">FV 95</span> « savoir où est notre enfant » : la surveillance est acceptée vers les enfants ; vers le parent âgé, <span class="ref">MR Q5</span> 87 % voient la téléassistance comme un marqueur de dépendance (2016) et <span class="ref">AW F</span> Famileo marche parce que le senior « ne se sent pas surveillé ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'enfant réclame de voir ou de localiser son parent, et « sans caméra ni micro » devient un manque face aux écrans avec visio ou aux capteurs, au lieu d'un argument.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>La nature du produit. Si l&#x27;enfant réclame de voir ou de localiser son parent, « sans caméra » devient un manque.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E10">
+<div class="rail"><span class="qnum w">5</span><p class="kicker">E10 · Continuer à payer tant que le parent réagit</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant renouvelle un abonnement de lien tant que son parent lui montre qu'il en profite (appel de remerciement, joie racontée), et l'arrête quand ce retour disparaît, <b>parce qu'</b>il paie pour la réaction de son parent, pas pour le service lui-même.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 86</span> « Ma grand-mère m'appelle chaque mois pour me remercier », <span class="ref">FV 85</span> « Je pensais arrêter au bout d'un an, mais ils ont réclamé la gazette en chœur », <span class="ref">FV 88</span> « Je compte renouveler » ; <span class="ref">VF A2 Famileo</span> limite relevée : « le senior ne répond pas » ; <span class="ref">RF Famileo</span> le taux de résiliation n'est pas connu.</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'enfant arrête pour le prix ou par lassitude, même quand le parent réagit ; le geste de réponse du parent ne suffit pas à garder l'abonnement.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Dit pourquoi on garde un client : la réaction du parent. Si c&#x27;est faux, le retour du parent ne suffit pas à tenir l&#x27;abonnement.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E9">
+<div class="rail"><span class="qnum w">6</span><p class="kicker">E9 · Lâcher l&#x27;appli quand elle devient une corvée</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant cesse d'alimenter un service de lien dès que l'envoi lui prend plus de quelques gestes, <b>parce qu'</b>il concilie déjà l'aide avec son travail et ses enfants et n'a pas de temps à ajouter.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 72</span> Famileo « devenu une corvée… On passera à la concurrence », <span class="ref">FV 64</span> et <span class="ref">FV 99</span> petites frictions de mise en page côté famille, <span class="ref">FV 53</span> un aidant dérangé au travail par son parent ; <span class="ref">VF veille du 05/10</span> plus de la moitié des aidants concilient aide et activité professionnelle (UNAF), <span class="ref">VF A4 opportunité 3</span> 36 % des aidants disent avoir besoin de répit.</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'enfant continue même quand c'est long, et l'effort côté famille n'est pas ce qui vide le cadre : il faut chercher la cause ailleurs (envie, retour du parent).</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si l&#x27;enfant lâche dès que l&#x27;envoi coûte quelques gestes, l&#x27;appli doit tenir en un geste. Grave, mais réparable par le design.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E2">
+<div class="rail"><span class="qnum w">7</span><p class="kicker">E2 · Renvoyer l&#x27;objet à la mise en route</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant renvoie ou range un bracelet ou une montre d'alerte dès la mise en route, quand il faut une carte SIM, une appli ou un code, <b>parce qu'</b>il refuse de devenir le technicien de l'objet chez son parent, souvent à distance.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AV 04</span> « Obligation de télécharger une appli, d'acheter une carte SIM… bref un cauchemar », <span class="ref">AV 13</span> bracelet « retourné avant même d'y installer une carte SIM », <span class="ref">AV 11</span> abonnement payé et bracelet jamais activé, <span class="ref">AV 20</span> le code PIN à retirer ; <span class="ref">FV 37</span> la mise en service demande « une à deux semaines de présence d'un proche ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>la simplicité d'installation cesse d'être un argument face aux bracelets et cadres wi-fi moins chers, et la question « qui installe chez un parent à 300 km ? » <span class="ref">VF A5</span> n'est plus un frein à lever.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>La mise en route. Si l&#x27;enfant installe sans se plaindre, la simplicité n&#x27;est plus un argument. Un coût, pas une chute.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E3">
+<div class="rail"><span class="qnum w">8</span><p class="kicker">E3 · Désactiver après les fausses alertes</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant coupe, débranche ou jette un dispositif d'alerte après quelques alarmes sans raison, <b>parce qu'</b>une alerte qui le réveille ou le dérange pour rien lui fait perdre confiance plus vite qu'une alerte manquée.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AV 10</span> « Elle sonne toute seul… poubelle », <span class="ref">AV 05</span> alarme chaque nuit à minuit, <span class="ref">AV 12</span> « détection des gestes trop sensible », <span class="ref">FV 37</span> « fausses alertes qui lassent l'entourage », <span class="ref">MR Q3</span> 5 à 15 % de fausses alertes ; mais <span class="ref">AV 16</span> « le moindre choc déclenche l'alarme » rassure un autre aidant : le seuil varie selon l'aidant.</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'aidant tolère des alertes fréquentes, et le principe « des notifications rares et utiles » <span class="ref">MR Notre place</span> ne différencie plus Le Cadre d'un détecteur sensible.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Le seuil de fausses alertes. Si l&#x27;enfant les tolère, « rare et fiable » ne différencie plus. Ça touche l&#x27;alerte, en option.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E7">
+<div class="rail"><span class="qnum w">9</span><p class="kicker">E7 · Partager l&#x27;envoi et le coût en famille</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant fait participer ses frères, sœurs et ses propres enfants à un service de lien, et partage son coût avec eux, <b>parce qu'</b>un rendez-vous commun lui évite de porter seul les nouvelles du parent.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">FV 100</span> « Toute la famille participe activement chaque mois », <span class="ref">FV 99</span> « partage en fratrie plus léger que sur les réseaux habituels », <span class="ref">FV 83</span> un petit-enfant contributeur, <span class="ref">RF Famileo</span> coût partageable par cagnotte ; mais <span class="ref">MR Q1 persona payeur</span> 39 % des aidants pivots sont seuls à aider dans leur fratrie et <span class="ref">FV 67</span> une aidante « seule de sa fratrie » près de sa mère.</dd></div>
+<div><dt>Si c'est faux</dt><dd>un seul expéditeur fait vivre le cadre, il se répète vite, et l'abonnement famille partagé par la fratrie <span class="ref">VF A5</span> n'a plus de sens.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Si l&#x27;enfant reste seul à envoyer, le cadre vit moins bien, mais il vit.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" id="E4">
+<div class="rail"><span class="qnum w">10</span><p class="kicker">E4 · Être prévenu soi-même</p></div>
+<div class="qbody">
+<p class="hyp"><b>Nous pensons que</b> l'enfant aidant juge un dispositif d'alerte sur une seule chose, avoir été prévenu lui-même et à temps, et qu'il préfère une alerte qui sonne sur son propre téléphone à un centre d'écoute, <b>parce qu'</b>il veut agir lui-même et ne fait pas confiance à un intermédiaire pour le joindre.</p>
+<dl class="id">
+<div><dt>D'où ça vient</dt><dd><span class="b f">F</span> <span class="ref">AV 08</span> « le portable se met directement à sonner comme une véritable sirène », <span class="ref">AV 15</span> « mon papa malade peux m'appeler », <span class="ref">AV 19</span> « j'ai toujours été averti », <span class="ref">AV 01</span> « faute d'avoir été prévenue », <span class="ref">AV 09</span> alerte silencieuse sur iPhone verrouillé jugée « inutile » ; mais <span class="ref">RF leçon 2</span> les réussites de la téléassistance reposent sur un humain derrière le produit, et <span class="ref">FV 37</span> les proches sont « peu joignables la nuit ».</dd></div>
+<div><dt>Si c'est faux</dt><dd>l'aidant attend un service humain qui répond à sa place, et un objet qui prévient seulement la famille, sans personne derrière, perd face à la téléassistance.</dd></div>
+<div class="why"><dt>Pourquoi ce rang</dt><dd>Centre d&#x27;écoute ou téléphone de l&#x27;enfant : touche la chaîne d&#x27;alerte, en option, pas le cadre.</dd></div>
+</dl>
+</div>
+</section>
+<section class="q" style="border-top:3px solid var(--ink);margin-top:24px"><div class="rail"><span class="qnum w">Suite</span></div><div class="qbody"><p class="sum">Étape 3 : garder les 3 plus risquées par cible (les rangs 1 à 3 ci-dessus, à valider en équipe), puis écrire l'objectif de recherche en une phrase.</p></div></section>
+<div class="sources" id="sources"><h2>Sources du dépôt</h2><ul><li><span class="ref">VF</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/1-1-fiche-veille-finale.html">Fiche de veille finale</a></li><li><span class="ref">MQ</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/2-1-analyse-marche-questions-1-5.html">Analyse du marché, questions 1 à 5</a></li><li><span class="ref">MR</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/2-1-fiche-marche-redigee.html">Fiche marché rédigée</a></li><li><span class="ref">AW</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/1-1-apple-watch-vs-famileo.html">Apple Watch / Famileo</a></li><li><span class="ref">Q1</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/rendus/2-1-question-1-acteurs.html">Qui utilise, qui paie, qui influence</a></li><li><span class="ref">RF</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/interne/lucas/1-1-reussites-faillites-silvertech.html">Réussites et faillites silver tech (Lucas)</a></li><li><span class="ref">FV</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/interne/commun/veille-silvertech/rapports/fiche-veille.md">Éléments de veille validés</a></li><li><span class="ref">AV</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/02-besoins/interne/camille/2-1-avis-bracelet-chute.html">20 avis clients, bracelet détecteur de chute (Camille)</a></li><li><span class="ref">CR</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-global-projet.html">Compte rendu global du projet, 16 octobre (Camille)</a></li><li><span class="ref">VR</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-le-cadre-version-retenue.html">Le Cadre, version retenue, 15 octobre (Clément)</a></li><li><span class="ref">BR</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-brainstorm-cadre.html">Compte rendu du brainstorm (Camille)</a></li><li><span class="ref">VD</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-design-le-cadre.html">Veille design d&#x27;objet (Lucas)</a></li><li><span class="ref">MA</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-maquette-app-v1.html">Maquette de l&#x27;appli famille V1 (Lucas)</a></li><li><span class="ref">IP</span> <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/01-veille/interne/clement/idee-produit-le-cadre.html">Fiche produit longue, Le Cadre (Clément)</a></li></ul></div>
+</main>
+
+</body>
+</html>
