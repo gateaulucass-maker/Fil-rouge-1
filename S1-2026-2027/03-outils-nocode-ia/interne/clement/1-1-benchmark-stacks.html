@@ -79,22 +79,23 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <span>PFR Générations Connectées</span>
 <span>Bloc 03 · Outils no-code et IA</span>
 <span>Équipe <b>Clément, Camille, Lucas</b></span>
-<span>Version provisoire · <b>16 octobre 2026</b></span>
+<span>Version provisoire · <b>16 octobre 2026</b>, mise à jour le 22</span>
 </div>
 
 <h1>Benchmark <span>des stacks</span></h1>
-<p class="lead">Quatre combinaisons d’outils comparées sur nos critères : celle avec Claude Code, et les trois avec un outil no-code pour construire. Une est gardée pour l’instant, en attendant les tests.</p>
+<p class="lead">Quatre combinaisons d’outils comparées sur nos critères : celle en code (React, Next.js, Supabase), et les trois avec un outil no-code pour construire. Une est gardée pour l’instant, en attendant les tests.</p>
+<div class="def"><p><b>Mise à jour du 22 octobre.</b> La stack A ne s’appelle plus « Claude Code + Supabase + n8n ». Claude Code est l’outil avec lequel on écrit le code, pas un maillon de la stack, et l’automatisation se fait en code dans Supabase plutôt qu’avec n8n. Les notes chiffrées, le classement et la comparaison brique par brique sont dans <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-classement-stacks.html">la page du classement</a>.</p></div>
 
 <section>
 <div class="grid">
 <div class="k">Les 4 stacks</div>
 <div>
-<h2>Claude Code face aux outils no-code</h2>
+<h2>Le code face aux outils no-code</h2>
 <div class="stacks">
-<div class="stack keep"><h3>A · Claude Code</h3><p class="sub">notre voie</p><dl>
-<div class="r"><dt>Build</dt><dd>Claude Code</dd></div>
+<div class="stack keep"><h3>A · React + Next.js</h3><p class="sub">notre voie · en code</p><dl>
+<div class="r"><dt>Build</dt><dd>React, Next.js</dd></div>
 <div class="r"><dt>Base</dt><dd>Supabase</dd></div>
-<div class="r"><dt>Automatisation</dt><dd>n8n</dd></div></dl></div>
+<div class="r"><dt>Automatisation</dt><dd>Code dans Supabase</dd></div></dl></div>
 <div class="stack"><h3>B · Glide</h3><p class="sub">no-code, rapide</p><dl>
 <div class="r"><dt>Build</dt><dd>Glide</dd></div>
 <div class="r"><dt>Base</dt><dd>Glide Tables</dd></div>
@@ -108,7 +109,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <div class="r"><dt>Base</dt><dd>Supabase</dd></div>
 <div class="r"><dt>Automatisation</dt><dd>n8n</dd></div></dl></div>
 </div>
-<div class="def"><p><b>À noter.</b> A et D ont la même base et la même automatisation (Supabase et n8n). La seule différence est l’outil de construction : Claude Code d’un côté, FlutterFlow de l’autre. La comparaison est donc nette sur le build. Le sujet demande au moins 3 combinaisons : on en compare 4.</p></div>
+<div class="def"><p><b>À noter.</b> A et D ont la même base, Supabase. Elles diffèrent sur la construction, du code d’un côté, FlutterFlow de l’autre, et sur l’automatisation, du code dans Supabase d’un côté, n8n de l’autre. La comparaison code contre no-code est donc nette. Le sujet demande au moins 3 combinaisons : on en compare 4.</p></div>
 </div>
 </div>
 </section>
@@ -121,12 +122,12 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <p>Le cours demande des combinaisons capables de couvrir le parcours d’achat (le site vitrine), l’usage senior (l’écran du cadre), la vue de l’aidant (l’appli connectée au cadre) et les alertes. Chaque case porte l’un des trois statuts du cours.</p>
 <p><span class="tag ok" style="background:var(--green-soft)">testé</span> on l’a fait, avec une preuve &nbsp; <span class="tag src">source</span> une page l’annonce, pas essayé &nbsp; <span class="tag chk">à vérifier</span> ni test ni source fiable</p>
 <div class="tablewrap"><table>
-<thead><tr><th>Usage</th><th>A · Claude Code + Supabase + n8n</th><th>B · Glide + Make</th><th>C · Softr + Airtable + Zapier</th><th>D · FlutterFlow + Supabase + n8n</th></tr></thead>
+<thead><tr><th>Usage</th><th>A · React + Next.js + Supabase</th><th>B · Glide + Make</th><th>C · Softr + Airtable + Zapier</th><th>D · FlutterFlow + Supabase + n8n</th></tr></thead>
 <tbody>
-<tr><td>1 · Site vitrine et achat</td><td><span class="tag chk">à vérifier</span><small>Une page web écrite par Claude Code. Hébergement à choisir en Europe.</small></td><td><span class="tag chk">à vérifier</span><small>Glide construit des applis, pas des sites de vente.</small></td><td><span class="tag src">source</span><small>Softr sert à faire des sites et des portails.</small></td><td><span class="tag chk">à vérifier</span><small>Publication web possible, mais pas pensée pour une vitrine.</small></td></tr>
+<tr><td>1 · Site vitrine et achat</td><td><span class="tag chk">à vérifier</span><small>Un site Next.js. Hébergement à choisir en Europe.</small></td><td><span class="tag chk">à vérifier</span><small>Glide construit des applis, pas des sites de vente.</small></td><td><span class="tag src">source</span><small>Softr sert à faire des sites et des portails.</small></td><td><span class="tag chk">à vérifier</span><small>Publication web possible, mais pas pensée pour une vitrine.</small></td></tr>
 <tr><td>2 · Écran du cadre</td><td><span class="tag chk">à vérifier</span><small>Affichage libre en code, mais rien d’essayé.</small></td><td><span class="tag chk">à vérifier</span><small>App façon mobile, à tester en plein écran.</small></td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span></td></tr>
 <tr><td>3 · Appli de l’aidant</td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span><small>Notifications possibles sans payer ?</small></td><td><span class="tag chk">à vérifier</span></td><td><span class="tag chk">à vérifier</span><small>Notifications sur téléphone à confirmer.</small></td></tr>
-<tr><td>4 · Alertes</td><td><span class="tag chk">à vérifier</span><small>n8n reçoit des webhooks. Pas essayé.</small></td><td><span class="tag chk">à vérifier</span><small>Make reçoit des webhooks. Workflows de Glide payants selon un site tiers.</small></td><td><span class="tag src">source</span><small>Zapier gratuit ne reçoit pas de webhooks : bloquant sans payer.</small></td><td><span class="tag chk">à vérifier</span><small>n8n comme en A.</small></td></tr>
+<tr><td>4 · Alertes</td><td><span class="tag chk">à vérifier</span><small>Une fonction Edge de Supabase reçoit le webhook, une tâche planifiée vérifie les 48 h. Pas essayé.</small></td><td><span class="tag chk">à vérifier</span><small>Make reçoit des webhooks. Workflows de Glide payants selon un site tiers.</small></td><td><span class="tag src">source</span><small>Zapier gratuit ne reçoit pas de webhooks : bloquant sans payer.</small></td><td><span class="tag chk">à vérifier</span><small>n8n comme en A.</small></td></tr>
 </tbody></table></div>
 <p class="k" style="margin-top:10px;text-transform:none;letter-spacing:0">Aucune case n’est « testé » : on n’a encore rien essayé. Le détail des tests est sur <a href="https://claude.ai/artifact/25XSWSHmih8CjyruxDY5Uj">la page des 4 usages</a>.</p>
 </div>
@@ -141,16 +142,16 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <p>Les cases « à tester » restent vides tant qu’on n’a pas joué les tests des 4 usages : on ne met pas de note sans preuve. Les « bon », « moyen » et « bloquant » sont une lecture des sources, pas encore des résultats.</p>
 <p><span class="tag ok">bon</span> <span class="tag mid">moyen</span> <span class="tag ko">bloquant</span> <span class="tag na">à tester</span></p>
 <div class="tablewrap"><table>
-<thead><tr><th>Critère</th><th>Poids</th><th>A · Claude Code + Supabase + n8n</th><th>B · Glide + Make</th><th>C · Softr + Airtable + Zapier</th><th>D · FlutterFlow + Supabase + n8n</th></tr></thead>
+<thead><tr><th>Critère</th><th>Poids</th><th>A · React + Next.js + Supabase</th><th>B · Glide + Make</th><th>C · Softr + Airtable + Zapier</th><th>D · FlutterFlow + Supabase + n8n</th></tr></thead>
 <tbody>
 <tr><td>Capacités</td><td class="p">20 %</td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td></tr>
-<tr><td>Interopérabilité</td><td class="p">20 %</td><td><span class="tag ok">bon</span><small>n8n reçoit des webhooks, et le code peut appeler n’importe quelle API. À confirmer en test.</small></td><td><span class="tag na">à tester</span><small>Make reçoit des webhooks, mais les workflows de Glide sont absents du plan gratuit (site tiers).</small></td><td><span class="tag ko">bloquant</span><small>Zapier gratuit ne reçoit pas de webhooks.</small></td><td><span class="tag ok">bon</span><small>n8n reçoit des webhooks. À confirmer en test.</small></td></tr>
+<tr><td>Interopérabilité</td><td class="p">20 %</td><td><span class="tag ok">bon</span><small>Une fonction Edge de Supabase reçoit les webhooks, et le code peut appeler n’importe quelle API. À confirmer en test.</small></td><td><span class="tag na">à tester</span><small>Make reçoit des webhooks, mais les workflows de Glide sont absents du plan gratuit (site tiers).</small></td><td><span class="tag ko">bloquant</span><small>Zapier gratuit ne reçoit pas de webhooks.</small></td><td><span class="tag ok">bon</span><small>n8n reçoit des webhooks. À confirmer en test.</small></td></tr>
 <tr><td>Affichage adapté au cadre</td><td class="p">15 %</td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td></tr>
-<tr><td>Simplicité</td><td class="p">15 %</td><td><span class="tag na">à tester</span><small>Dépend de la qualité de nos consignes à Claude Code.</small></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td></tr>
-<tr><td>Coûts</td><td class="p">10 %</td><td><span class="tag mid">moyen</span><small>Claude Code demande un abonnement Claude payant (à vérifier pour chacun de nous). Supabase gratuit ; n8n gratuit installé, ou environ 20 €/mois en cloud.</small></td><td><span class="tag mid">moyen</span><small>Glide et Make ont un plan gratuit ; les prix payants de Glide sont contestés.</small></td><td><span class="tag mid">moyen</span><small>Il faut payer Zapier (environ 20 $/mois) pour recevoir des webhooks.</small></td><td><span class="tag mid">moyen</span><small>FlutterFlow et Supabase gratuits ; n8n comme en A.</small></td></tr>
+<tr><td>Simplicité</td><td class="p">15 %</td><td><span class="tag na">à tester</span><small>Du code écrit avec Claude Code : dépend de la qualité de nos consignes et du temps de correction.</small></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td><td><span class="tag na">à tester</span></td></tr>
+<tr><td>Coûts</td><td class="p">10 %</td><td><span class="tag mid">moyen</span><small>React, Next.js et Supabase gratuits, fonctions et tâches planifiées comprises. Hébergement Vercel gratuit pour l’essai. L’abonnement Claude est un coût de l’outil de travail, pas de la stack.</small></td><td><span class="tag mid">moyen</span><small>Glide et Make ont un plan gratuit ; les prix payants de Glide sont contestés.</small></td><td><span class="tag mid">moyen</span><small>Il faut payer Zapier (environ 20 $/mois) pour recevoir des webhooks.</small></td><td><span class="tag mid">moyen</span><small>FlutterFlow et Supabase gratuits ; n8n comme en A.</small></td></tr>
 <tr><td>Limites</td><td class="p">10 %</td><td><span class="tag mid">moyen</span><small>Supabase se met en veille après 1 semaine sans activité. L’hébergement de l’appli reste à choisir.</small></td><td><span class="tag mid">moyen</span><small>Make : 1 000 crédits par mois.</small></td><td><span class="tag ko">serré</span><small>Airtable : 1 000 lignes. Zapier : 100 tâches par mois.</small></td><td><span class="tag mid">moyen</span><small>Supabase se met en veille après 1 semaine. FlutterFlow : 1 éditeur.</small></td></tr>
 <tr><td>Stockage des vidéos</td><td class="p">10 %</td><td><span class="tag mid">moyen</span><small>Supabase : 1 Go de fichiers.</small></td><td><span class="tag na">à tester</span></td><td><span class="tag mid">moyen</span><small>Airtable : 1 Go de fichiers par base.</small></td><td><span class="tag mid">moyen</span><small>Supabase : 1 Go de fichiers.</small></td></tr>
-<tr class="elim"><td>Données en Europe<br><span class="k">éliminatoire</span></td><td class="p">oui / non</td><td><span class="tag ok">oui</span><small>Supabase : région européenne et DPA. n8n : Francfort ou serveur de notre choix. À vérifier : l’hébergement de l’appli.</small></td><td><span class="tag ko">non</span><small>Serveurs aux États-Unis, pas d’option européenne.</small></td><td><span class="tag ko">non</span><small>Airtable : États-Unis, Europe en Enterprise seulement. Zapier : États-Unis par défaut.</small></td><td><span class="tag ok">oui</span><small>Supabase et n8n comme en A. FlutterFlow : à demander.</small></td></tr>
+<tr class="elim"><td>Données en Europe<br><span class="k">éliminatoire</span></td><td class="p">oui / non</td><td><span class="tag ok">oui</span><small>Supabase : région européenne et DPA. Les fonctions tournent dans la même région. À vérifier : l’hébergement du site et de l’appli.</small></td><td><span class="tag ko">non</span><small>Serveurs aux États-Unis, pas d’option européenne.</small></td><td><span class="tag ko">non</span><small>Airtable : États-Unis, Europe en Enterprise seulement. Zapier : États-Unis par défaut.</small></td><td><span class="tag ok">oui</span><small>Supabase et n8n comme en A. FlutterFlow : à demander.</small></td></tr>
 </tbody></table></div>
 <p class="k" style="margin-top:10px;text-transform:none;letter-spacing:0">Lecture : aucune note chiffrée avant les tests. Ce tableau montre déjà où les stacks se séparent : l’hébergement et les webhooks.</p>
 </div>
@@ -163,16 +164,16 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <div>
 <h2>Pour l’instant : la stack A</h2>
 <div class="keepbox">
-<h3>Claude Code + Supabase + n8n</h3>
+<h3>React + Next.js + Supabase, règles en code</h3>
 <ul>
 <li>C’est l’outil avec lequel on va construire Le Cadre.</li>
 <li>Elle passe le critère éliminatoire sur l’hébergement en Europe, d’après la documentation, et n’a pas de blocage sur les webhooks.</li>
-<li>Comparée à la stack D (même base, même automatisation), la différence vient du seul outil de construction : la comparaison est claire.</li>
+<li>Comparée à la stack D (même base), la différence vient de la construction, code ou FlutterFlow, et de l’automatisation, code ou n8n : la comparaison code contre no-code est claire.</li>
 </ul>
 <p><span class="tag mid">provisoire</span> Ce choix est une base de travail, pas une décision. Il ne vaut qu’avec les tests.</p>
 </div>
 <div class="box"><p><b class="h">Ce qui peut encore la faire tomber</b></p>
-<p>L’hébergement européen de l’appli construite avec Claude Code n’est pas encore choisi ni vérifié. Et si Claude Code échoue sur un des 5 tests, ou y passe beaucoup trop de temps, la stack D (FlutterFlow, même base et même automatisation) est le plan B.</p></div>
+<p>L’hébergement européen du site et de l’appli n’est pas encore choisi ni vérifié. Et si le code échoue sur un des 5 tests, ou y prend beaucoup trop de temps, la stack D (FlutterFlow et n8n, même base) est le plan B.</p></div>
 <p style="margin-top:16px"><b>Prochaine étape :</b> jouer le test commun sur les 4 stacks (le toucher, de l’envoi à la notification de l’aidant, avec un cas invalide et un doublon), en commençant par A et D. Chaque résultat passe en « testé », avec sa capture. Détail sur <a href="https://claude.ai/artifact/25XSWSHmih8CjyruxDY5Uj">la page des 4 usages</a>.</p>
 </div>
 </div>

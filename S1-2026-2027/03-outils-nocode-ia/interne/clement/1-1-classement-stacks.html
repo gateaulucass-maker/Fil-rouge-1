@@ -266,7 +266,7 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
 <div class="steps">
 <div class="step"><span class="k">Jusqu’au 24 octobre</span><p>Lucas relit les notes et conteste celles qu’il juge fausses. Un désaccord s’écrit dans la case, on ne fait pas la moyenne.</p></div>
 <div class="step"><span class="k">29 octobre · tests</span><p>Le test commun joué sur A et D d’abord : le toucher, de l’envoi à la notification de l’aidant, avec un cas invalide et un doublon. Puis le site vitrine, l’écran du cadre, l’alerte.</p></div>
-<div class="step"><span class="k">Après chaque test</span><p>La note passe en « testé » avec sa capture. Si le code en React et Next.js échoue sur un usage ou prend beaucoup trop de temps, D passe devant : c’est le plan B.</p></div>
+<div class="step"><span class="k">Après chaque test</span><p>La note passe en « testé », la capture va dans <code>captures-ia/</code> à côté de cette page, et son lien s’affiche sous le statut dans le détail. Si le code en React et Next.js échoue sur un usage ou prend beaucoup trop de temps, D passe devant : c’est le plan B.</p></div>
 <div class="step"><span class="k">6 novembre · rendu</span><p>La version avec les tests part dans <code>rendus/</code> pour le PDF de groupe.</p></div>
 </div>
 <p style="margin-top:14px">Pages liées : <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-benchmark-stacks.html">le benchmark des stacks</a> (les critères et les sources), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-quatre-usages-a-tester.html">les 4 usages à tester</a> (le protocole), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/camille/1-1-compte-rendu-architecture-donnees-cadre.html">architecture et données</a> (Camille), <a href="https://gateaulucass-maker.github.io/Fil-rouge-1/S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-plan-demo-cadre.html">plan de la démo</a> (Lucas).</p>
@@ -552,6 +552,8 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     var k={teste:0,doc:0,est:0}; CRIT.forEach(function(c){k[s.notes[c.id].st]++}); k[s.eu.st]++; return k;
   }
   function tag(st){return '<span class="tag '+ST[st][0]+'">'+ST[st][1]+'</span>'}
+  // Quand un test est fait : st:"teste" et preuve:"captures-ia/....png" (chemin relatif à ce dossier) ; le lien s'affiche sous le statut.
+  function proof(n){return n.preuve ? '<small><a href="'+esc(n.preuve)+'" target="_blank" rel="noopener">voir la preuve</a></small>' : ''}
   function esc(t){return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
   function dots(v){var h='<span class="dots" aria-hidden="true">';for(var i=1;i<=5;i++)h+='<i class="'+(i<=v?'on':'')+'"></i>';return h+'</span>'}
   function srcLinks(ids){return ids.map(function(i){var s=SRC[i];return '<a href="'+s.u+'" target="_blank" rel="noopener">'+esc(s.t)+'</a>'}).join(" · ")}
@@ -613,9 +615,9 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     var h='<div class="detail '+s.role+'" id="detail-'+s.id+'"><div class="detail-head"><div><h3>'+esc(s.n)+'</h3><p>'+(s.eu.ok?'Score total '+total(s)+' sur 100.':'Hors classement : données hors Europe. Score pour information : '+total(s)+' sur 100.')+'</p></div><button class="close" type="button" id="close">Fermer</button></div>';
     h+='<div class="tablewrap"><table><thead><tr><th>Critère</th><th>Poids</th><th>Note</th><th>Source</th><th>Pourquoi</th></tr></thead><tbody>';
     CRIT.forEach(function(c){var n=s.notes[c.id];
-      h+='<tr><td>'+esc(c.n)+'</td><td class="p">'+c.w+' %</td><td class="n">'+n.v+'<span>/5</span>'+dots(n.v)+'</td><td>'+tag(n.st)+'</td><td>'+esc(n.why)+'<small>'+srcLinks(n.src)+'</small></td></tr>';
+      h+='<tr><td>'+esc(c.n)+'</td><td class="p">'+c.w+' %</td><td class="n">'+n.v+'<span>/5</span>'+dots(n.v)+'</td><td>'+tag(n.st)+proof(n)+'</td><td>'+esc(n.why)+'<small>'+srcLinks(n.src)+'</small></td></tr>';
     });
-    h+='<tr class="elim"><td>Données en Europe</td><td class="p">éliminatoire</td><td class="n">'+(s.eu.ok?'oui':'non')+'</td><td>'+tag(s.eu.st)+'</td><td>'+esc(s.eu.why)+'<small>'+srcLinks(s.eu.src)+'</small></td></tr>';
+    h+='<tr class="elim"><td>Données en Europe</td><td class="p">éliminatoire</td><td class="n">'+(s.eu.ok?'oui':'non')+'</td><td>'+tag(s.eu.st)+proof(s.eu)+'</td><td>'+esc(s.eu.why)+'<small>'+srcLinks(s.eu.src)+'</small></td></tr>';
     h+='</tbody></table></div></div>';
     d.innerHTML=h;
     document.getElementById("close").addEventListener("click",function(){open=null;render();renderDetail()});
@@ -690,9 +692,9 @@ footer{margin-top:64px;border-top:1px solid var(--hair);padding-top:12px}
     var h='<div class="detail '+role+'"><div class="detail-head"><div><h3>'+esc(b.n)+'</h3><p>'+(b.eu.v==="non"?'Hors classement : données hors Europe. Score pour information : ':'Score de la couche '+esc(layer.n)+' : ')+brickScore(b,layer)+' sur 100.</p></div><button class="close" type="button" id="bclose">Fermer</button></div>';
     h+='<div class="tablewrap"><table><thead><tr><th>Critère</th><th>Note</th><th>Source</th><th>Pourquoi</th></tr></thead><tbody>';
     layer.crit.forEach(function(c){var n=b.notes[c.id];
-      h+='<tr><td>'+esc(c.n)+'</td><td class="n">'+n.v+'<span>/5</span>'+dots(n.v)+'</td><td>'+tag(n.st)+'</td><td>'+esc(n.why)+'<small>'+srcLinks(n.src)+'</small></td></tr>';
+      h+='<tr><td>'+esc(c.n)+'</td><td class="n">'+n.v+'<span>/5</span>'+dots(n.v)+'</td><td>'+tag(n.st)+proof(n)+'</td><td>'+esc(n.why)+'<small>'+srcLinks(n.src)+'</small></td></tr>';
     });
-    h+='<tr class="elim"><td>Données en Europe</td><td class="n">'+EUW[b.eu.v]+'</td><td>'+tag(b.eu.st)+'</td><td>'+esc(b.eu.why)+'<small>'+srcLinks(b.eu.src)+'</small></td></tr>';
+    h+='<tr class="elim"><td>Données en Europe</td><td class="n">'+EUW[b.eu.v]+'</td><td>'+tag(b.eu.st)+proof(b.eu)+'</td><td>'+esc(b.eu.why)+'<small>'+srcLinks(b.eu.src)+'</small></td></tr>';
     h+='</tbody></table></div></div>';
     d.innerHTML=h;
     document.getElementById("bclose").addEventListener("click",function(){bopen=null;renderBricks();renderBrickDetail()});

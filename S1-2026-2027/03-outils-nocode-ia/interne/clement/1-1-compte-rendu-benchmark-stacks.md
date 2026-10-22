@@ -138,7 +138,6 @@ Ce que la lecture par couche apprend, et que le tableau des stacks ne montrait p
 
 | Document | Ce qu'il dit encore | Ce qu'il devrait dire |
 |---|---|---|
-| Benchmark du 16 octobre (Clément) | stack A = Claude Code + Supabase + n8n | React + Next.js + Supabase, règles en code |
 | Architecture et données (Camille) | Claude Code + React + Next + Supabase, 3 stacks comparées | même nom que le classement ; 4 stacks |
 | Architecture et données (Camille) | OS Linux maison sur la tablette | Android et appli kiosque |
 | Plan de la démo (Lucas) | FlutterFlow + Supabase + LiveKit + Mistral, tablette neuve | c'est la stack D, plan B ; tablette récupérée |
