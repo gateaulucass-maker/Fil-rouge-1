@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T10:49",
+  "mise_a_jour": "2026-10-22T11:32",
   "phases": [
     {
       "id": "P0",
@@ -677,11 +677,11 @@
         },
         {
           "titre": "Atelier 1 : 20 hypothèses parent et enfant, classées, objectif de recherche",
-          "statut": "en_cours",
-          "qui": "Lucas",
+          "statut": "termine",
+          "qui": "Équipe",
           "date": "2026-10-22",
-          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/2-1-hypotheses-parent-enfant.html",
-          "note": "Score risque × incertitude, 3 plus risquées par cible (P2, P1, P3 / E1, E4, E2), top 3 à tester d'abord (P2, E1, P1), seuils pour les contredire. À retravailler en groupe."
+          "lien": "S1-2026-2027/02-besoins/rendus/2-2-hypotheses-critiques-equipe.html",
+          "note": "Rendu retenu : compte rendu de Camille qui fusionne les fiches de Clément (2 versions), Lucas et Camille en 20 hypothèses sourcées et 6 critiques (P1 choix du parent, P2 répondre par la voix, P4 écran accompagné / E1 oubli de partager, E2 achat avant l'incident, E3 corvée), avec l'objectif de recherche. Brouillons de chacun dans interne/."
         }
       ]
     },

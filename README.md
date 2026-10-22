@@ -26,6 +26,9 @@ Les fichiers d'une leçon portent son numéro en préfixe : `2-1-question-1-acte
 
 #### Séance 2 · Hypothèses et objectif de recherche
 
+- **[Plan de recherche, partie 1 : objectif et 6 hypothèses critiques](S1-2026-2027/02-besoins/rendus/2-2-hypotheses-critiques-equipe.html)** (HTML, rendu de l'équipe, rédigé par Camille) — **la version retenue de l'atelier 1** : 20 hypothèses fusionnées à partir des fiches de Clément, Lucas et Camille (14 lien, 6 sécurité), chacune sourcée dans la veille, les 6 critiques (3 parent, 3 enfant) avec ce que le marché soutient ou contredit, ce que ça remet en cause dans Le Cadre, la question d'entretien et le seuil qui la rendrait fausse, et l'objectif de recherche en une phrase.
+- [Nos hypothèses, version marché](S1-2026-2027/02-besoins/interne/camille/2-2-hypotheses-marche-camille.html) (HTML, brouillon de Camille) — 20 hypothèses tirées uniquement de la veille, 70 % lien et 30 % sécurité, 6 prioritaires, et trois règles pour les rendre testables.
+- [20 hypothèses notées, top 3 et objectif](S1-2026-2027/03-outils-nocode-ia/interne/lucas/2-1-hypotheses-parent-enfant.html) (HTML, brouillon de Lucas) — score risque × incertitude, 3 plus risquées par cible, seuils pour les contredire, objectif de recherche.
 - [Nos 20 hypothèses, classées](S1-2026-2027/02-besoins/interne/clement/2-2-hypotheses-classees.html) (HTML, brouillon de Clément) — 10 hypothèses sur le parent, 10 sur l'enfant, formule « Nous pensons que … parce que … », classées de la plus risquée à la moins risquée, avec les 6 prioritaires proposées. À valider en équipe.
 - [Nos 20 hypothèses, d'après la veille](S1-2026-2027/02-besoins/interne/clement/2-2-hypotheses-veille.html) (HTML, brouillon de Clément) — seconde version : ce que le parent et l'enfant font aujourd'hui face aux bracelets, montres, téléassistance, gazettes et abonnements, chaque hypothèse appuyée sur la veille de la phase 1, classées par risque, 6 prioritaires.
 
