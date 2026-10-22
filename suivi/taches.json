@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T15:25",
+  "mise_a_jour": "2026-10-22T15:39",
   "phases": [
     {
       "id": "P0",
@@ -748,8 +748,8 @@
           "statut": "en_cours",
           "qui": "Lucas",
           "date": "2026-10-22",
-          "note": "Veille DA faite (15 marques, 6 familles de couleurs, typos, règles seniors). Piste A écartée par Lucas (vert et orange). Piste D « Papier » recommandée : épure OpenAI + neutres chauds, ambre réservé à la lueur, Atkinson Hyperlegible. Reste : valider en équipe et définir la DA.",
-          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-veille-da-marche.html"
+          "note": "DA v1 « Papier » : veille de 6 sources branding (BP&O, The Brand Identity, Koto, Visuelle, SearchSystem, GraphicDesign&) et 8 projets, plateforme de marque, logo, 5 couleurs, Atkinson Hyperlegible, photo, mouvement, ton, appli, écran du cadre, site, Instagram, boîte. Reste : nom, signature, cadre physique à valider en équipe.",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-direction-artistique.html"
         }
       ]
     },

@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Direction artistique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.thesis { margin-top: 32px; border-left: 4px solid var(--orange); padding: 4px 0 4px 18px; max-width: 70ch; }
+.thesis p { margin: 6px 0 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; }
+.prod, .spec2 { display:grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; }
+.spec2 { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+.prod > div, .spec2 > div { border-top: 3px solid var(--blue); padding-top: 10px; }
+.prod p, .spec2 p { margin: 6px 0 0; font-size: 15px; }
+.ideas { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.idea { border-top: 4px solid var(--fg); padding: 12px 0 8px; display:flex; flex-direction:column; min-width:0; }
+.ihead { display:flex; justify-content:space-between; align-items:baseline; gap: 8px; }
+.inum { font: 800 44px/1 var(--display); color: var(--orange); letter-spacing: -.05em; }
+.eff { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; white-space: nowrap; }
+.eff.e1 { background: var(--blue-soft); color: var(--blue); }
+.eff.e2 { background: var(--soft); color: var(--fg); }
+.eff.e3 { background: var(--orange-soft); color: var(--orange); }
+.idea h3 { margin: 10px 0 6px; font-size: 20px; letter-spacing: -.015em; }
+.idea p { margin: 0 0 10px; font-size: 15px; }
+.idea dl { margin: auto 0 0; font-size: 13px; border-top: 1px solid var(--hair); padding-top: 8px; }
+.idea dt { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.idea dd { margin: 0 0 6px; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+td b { font-weight: 700; }
+@media (max-width: 1000px) { .ideas { grid-template-columns: repeat(2, 1fr); } .prod { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .ideas, .prod, .spec2 { grid-template-columns: 1fr; } }
+
+:root { --pa:#faf8f5; --sa:#efe9e1; --en:#161412; --gr:#4a4540; --am:#c98a3a; --li:#e2dbd1; --atk:"Atkinson Hyperlegible", Arial, sans-serif; }
+.toc2 { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--fg); margin-top: 28px; display:flex; gap: 4px 16px; flex-wrap: wrap; padding: 10px 0; font: 12px var(--mono); text-transform: uppercase; letter-spacing: .04em; }
+.toc2 a { color: var(--fg); text-decoration: none; }
+.toc2 a:hover { color: var(--blue); }
+.ref { display:grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.ref > div { border-top: 1px solid var(--hair); padding: 14px 0; min-width: 0; }
+.ref h3 { margin: 0 0 2px; font-size: 18px; }
+.ref p { margin: 6px 0 0; font-size: 15px; }
+.ref .les { color: var(--blue); font-weight: 500; }
+.ref a { color: var(--blue); }
+.tr { display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px 24px; }
+.tr > div { border-top: 3px solid var(--fg); padding-top: 10px; min-width: 0; }
+.tr h3 { margin: 6px 0; font-size: 18px; line-height: 1.25; }
+.tr p { font-size: 15px; margin: 0 0 6px; }
+.platform { display:grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--fg); }
+.platform > div { padding: 14px 18px 14px 0; border-right: 1px solid var(--hair); min-width: 0; }
+.platform > div:last-child { border-right: 0; }
+.platform p { font-size: 15px; }
+.big-idea { margin-top: 24px; background: var(--pa); color: var(--en); padding: clamp(24px, 5vw, 56px); font-family: var(--atk); }
+.big-idea span { font: 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--gr); }
+.big-idea h3 { margin: 8px 0 12px; font-size: clamp(30px, 5vw, 60px); line-height: 1.02; letter-spacing: -.02em; font-weight: 700; }
+.big-idea h3 i { display:inline-block; width: .32em; height: .32em; border-radius: 50%; background: var(--am); vertical-align: .12em; margin-left: .08em; }
+.big-idea p { max-width: 56ch; font-size: 18px; color: var(--gr); }
+.tags3 { display:flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.tags3 span { font-family: var(--atk); font-size: 17px; background: var(--sa); color: var(--en); padding: 8px 14px; }
+.logos { display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; }
+.lg { display:flex; align-items: center; justify-content: center; min-height: 170px; background: var(--pa); }
+.lg.dk { background: var(--en); }
+.lg.sa { background: var(--sa); }
+.lg-k { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-top: 6px; display:block; }
+.dd { display:grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 18px; }
+.dd ul { margin: 6px 0 0; padding-left: 18px; font-size: 15px; }
+.dd li { padding: 3px 0; }
+.dd .no { color: var(--orange); }
+.pal { display:grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.pal > div { min-width: 0; }
+.chip { height: 110px; border: 1px solid var(--hair); display:flex; align-items: flex-end; padding: 8px; font: 12px var(--mono); }
+.pal b { display:block; margin-top: 8px; }
+.pal p { margin: 2px 0 0; font-size: 14px; }
+.pal .hx { font: 12px var(--mono); color: var(--muted); }
+.prop { display:flex; height: 26px; margin-top: 18px; border: 1px solid var(--hair); }
+.spec-t { font-family: var(--atk); background: var(--pa); color: var(--en); padding: 24px; }
+.spec-t .aa { font-size: clamp(64px, 10vw, 128px); font-weight: 700; line-height: 1; letter-spacing: -.02em; }
+.spec-t .abc { font-size: 22px; margin-top: 10px; word-break: break-word; }
+.spec-t .il { font-size: 32px; margin-top: 6px; }
+.scale td:first-child { width: auto; font: inherit; color: inherit; }
+.scale td.smp { font-family: var(--atk); color: var(--en); }
+.photos { display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.photos div { aspect-ratio: 4/5; position: relative; }
+.photos span { position:absolute; left: 8px; bottom: 8px; font: 11px var(--mono); background: var(--pa); color: var(--en); padding: 2px 6px; }
+.i1 { background: linear-gradient(160deg,#d9c3a5 0%,#a98b6c 45%,#6b5240 100%); }
+.i2 { background: linear-gradient(200deg,#e8d9c2 0%,#c2a07a 50%,#7a5d45 100%); }
+.i3 { background: linear-gradient(140deg,#cfd3c8 0%,#a4a08e 45%,#615b4d 100%); }
+.i4 { background: linear-gradient(180deg,#efe9e1 0%,#d8cbb8 60%,#b59c7e 100%); }
+.i5 { background: linear-gradient(120deg,#f0d9b5 0%,#c99f6d 50%,#86603f 100%); }
+.i6 { background: linear-gradient(200deg,#d4c8bb 0%,#9a8b7c 55%,#4f443b 100%); }
+.motion { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.mo { background: var(--pa); color: var(--en); height: 150px; position: relative; display:flex; align-items:center; justify-content:center; overflow: hidden; }
+.mo .dot { width: 18px; height: 18px; border-radius: 50%; background: var(--am); animation: glow 2.4s ease-in-out infinite; }
+@keyframes glow { 0%,100% { box-shadow: 0 0 0 0 rgba(201,138,58,.45); } 50% { box-shadow: 0 0 0 22px rgba(201,138,58,0); } }
+.mo .xf { width: 60%; aspect-ratio: 4/3; position: relative; }
+.mo .xf div { position:absolute; inset: 0; animation: xf 6s ease-in-out infinite; }
+.mo .xf div:last-child { animation-delay: 3s; opacity: 0; }
+@keyframes xf { 0%,40% { opacity: 1; } 50%,90% { opacity: 0; } 100% { opacity: 1; } }
+.mo .send { font-family: var(--atk); font-weight: 700; background: var(--en); color: var(--pa); padding: 10px 18px; animation: press 3s ease-in-out infinite; }
+@keyframes press { 0%,70%,100% { transform: scale(1); } 75% { transform: scale(.96); } }
+@media (prefers-reduced-motion: reduce) { .mo * { animation: none !important; } .mo .xf div:last-child { opacity: 0; } }
+.voice td:first-child { width: auto; font: inherit; color: inherit; }
+.voice td.ok { font-family: var(--atk); font-weight: 700; color: var(--fg); }
+.voice td.ko { color: var(--orange); text-decoration: line-through; }
+.screens { display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; justify-items: center; }
+.screens figure { margin: 0; text-align: center; min-width: 0; }
+.screens figcaption { font: 12px var(--mono); color: var(--muted); margin-top: 10px; text-transform: uppercase; letter-spacing: .05em; }
+.ph { width: 230px; max-width: 100%; aspect-ratio: 9/19; border: 8px solid #1b1a19; border-radius: 34px; background: var(--pa); overflow: hidden; }
+.ph-in { height: 100%; padding: 26px 14px 14px; display:flex; flex-direction: column; gap: 10px; font-family: var(--atk); color: var(--en); text-align: left; }
+.ap-top { display:flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 18px; }
+.ap-x { font-weight: 400; font-size: 13px; color: var(--gr); }
+.ap-card { background: var(--sa); padding: 10px; border-radius: 14px; display:flex; flex-direction: column; gap: 6px; }
+.ap-k { font-size: 12px; color: var(--gr); }
+.ap-img { height: 110px; border-radius: 8px; }
+.ap-img.big { height: 220px; }
+.ap-s { font-size: 11.5px; color: var(--gr); }
+.ap-s.c { text-align: center; }
+.ap-signal { display:flex; gap: 10px; align-items: center; border: 1px solid var(--li); border-radius: 14px; padding: 10px; }
+.ap-signal i { width: 14px; height: 14px; border-radius: 50%; background: var(--am); box-shadow: 0 0 0 5px rgba(201,138,58,.18); flex: none; }
+.ap-signal b { display:block; font-size: 15px; }
+.ap-signal span { font-size: 11.5px; color: var(--gr); }
+.ap-btn { margin-top: auto; background: var(--en); color: var(--pa); text-align: center; font-weight: 700; padding: 13px; border-radius: 14px; font-size: 15px; }
+.ap-field { border: 1px solid var(--li); border-radius: 12px; padding: 10px; font-size: 12px; color: var(--gr); }
+.ap-field span { display:block; color: var(--en); font-size: 14px; margin-top: 4px; }
+.lock { height: 100%; margin: -26px -14px -14px; padding: 40px 12px; background: linear-gradient(180deg,#3b342e,#1d1916); color: var(--pa); display:flex; flex-direction: column; align-items: center; }
+.lk-h { font-size: 52px; font-weight: 700; letter-spacing: -.02em; }
+.lk-d { font-size: 13px; opacity: .8; }
+.notif { margin-top: 26px; width: 100%; background: rgba(250,248,245,.94); color: var(--en); border-radius: 16px; padding: 10px; display:flex; gap: 8px; align-items: flex-start; text-align: left; }
+.notif svg { background: var(--pa); border-radius: 6px; flex: none; }
+.notif b { display:block; font-size: 14px; }
+.notif span { font-size: 12px; color: var(--gr); }
+.fr { position: relative; padding: 14px; background: #c9b79c; box-shadow: inset 0 0 0 3px #b39f80, 0 12px 30px rgba(22,20,18,.18); }
+.fr-in { background: var(--pa); padding: 12px; display:grid; grid-template-columns: 1.3fr 1fr; gap: 12px; align-items: center; aspect-ratio: 4/3; }
+.fr-img { height: 100%; }
+.fr-note { font-family: var(--atk); font-weight: 700; font-size: clamp(14px, 1.8vw, 22px); line-height: 1.15; color: var(--en); }
+.fr-note span { display:block; font-weight: 400; font-size: 12px; color: var(--gr); margin-top: 6px; }
+.fr-glow { position:absolute; left: 20%; right: 20%; bottom: -10px; height: 6px; border-radius: 6px; background: var(--am); box-shadow: 0 0 18px 4px rgba(201,138,58,.55); }
+.web { border: 1px solid var(--hair); background: var(--pa); color: var(--en); font-family: var(--atk); overflow: hidden; }
+.web-bar { display:flex; gap: 6px; align-items: center; padding: 8px 10px; background: var(--sa); }
+.web-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--li); }
+.web-bar span { margin-left: 10px; font: 11px var(--mono); color: var(--gr); }
+.web-nav { display:flex; flex-wrap: wrap; gap: 6px 20px; align-items: center; padding: 14px 24px; font-size: 14px; border-bottom: 1px solid var(--li); }
+.web-nav svg { margin-right: auto; }
+.web-cta { background: var(--en); color: var(--pa); padding: 8px 14px; font-weight: 700; }
+.web-hero { display:grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: clamp(24px, 4vw, 48px) 24px; align-items: center; }
+.web-hero > div { min-width: 0; }
+.web-k { font-size: 13px; color: var(--gr); }
+.web-hero h4 { margin: 8px 0 12px; font-size: clamp(28px, 4vw, 50px); line-height: 1.04; letter-spacing: -.02em; }
+.web-hero p { font-size: 17px; color: var(--gr); max-width: 40ch; }
+.web-btn { display:inline-block; margin-top: 8px; background: var(--en); color: var(--pa); padding: 12px 20px; font-weight: 700; }
+.web-pic { padding: 10px 10px 20px; }
+.sitemap { counter-reset: s; margin: 0; padding: 0; list-style: none; display:grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.sitemap li { border-top: 1px solid var(--hair); padding: 10px 0; font-size: 15px; }
+.sitemap li b { display:block; }
+.ig-wrap { display:grid; grid-template-columns: 360px 1fr; gap: 32px; align-items: start; }
+.ig-wrap > div { min-width: 0; }
+.ig { border: 1px solid var(--hair); background: #fff; color: #111; padding: 16px; font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; max-width: 100%; }
+.ig-head { display:flex; gap: 16px; align-items: center; }
+.ig-av { width: 72px; height: 72px; border-radius: 50%; background: var(--pa); display:flex; align-items:center; justify-content:center; border: 1px solid var(--li); flex: none; }
+.ig-stats b { font-size: 15px; }
+.ig-stats span { display:block; font-size: 13px; font-weight: 600; margin-top: 2px; }
+.ig-stats p { margin: 4px 0 0; font-size: 12.5px; line-height: 1.4; }
+.ig-hl { display:flex; gap: 14px; margin: 14px 0; font-size: 11px; }
+.ig-hl span { display:flex; flex-direction: column; align-items: center; gap: 4px; }
+.ig-hl i { width: 46px; height: 46px; border-radius: 50%; background: var(--pa); border: 1px solid var(--li); position: relative; }
+.ig-hl i::after { content:""; position:absolute; left: 50%; top: 50%; width: 9px; height: 9px; margin: -4.5px; border-radius: 50%; background: var(--am); }
+.ig-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.ig-t { aspect-ratio: 4/5; position: relative; overflow: hidden; }
+.ig-t > span { position:absolute; left: 4px; top: 4px; font: 9px var(--mono); text-transform: uppercase; background: rgba(250,248,245,.9); color: var(--en); padding: 1px 4px; }
+.ig-m, .ig-c { background: var(--pa); display:flex; flex-direction: column; justify-content: center; padding: 10px; font-family: var(--atk); color: var(--en); }
+.ig-c { background: var(--sa); }
+.ig-m p, .ig-c p { margin: 0; font-weight: 700; font-size: 15px; line-height: 1.1; }
+.ig-c small { display:block; font-weight: 400; font-size: 11px; color: var(--gr); margin-top: 4px; }
+.ig-m i, .ig-c i { position:absolute; right: 10px; bottom: 10px; width: 8px; height: 8px; border-radius: 50%; background: var(--am); }
+.pill { display:grid; grid-template-columns: repeat(2, 1fr); gap: 0 24px; }
+.pill > div { border-top: 1px solid var(--hair); padding: 12px 0; min-width: 0; }
+.pill h3 { margin: 0; font-size: 17px; display:flex; justify-content: space-between; gap: 8px; }
+.pill h3 span { font: 500 14px var(--mono); color: var(--blue); }
+.pill p { font-size: 14.5px; margin: 4px 0 0; }
+.pack { display:grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.box { background: #d9c6a6; aspect-ratio: 4/3; position: relative; display:flex; align-items:center; justify-content:center; box-shadow: inset 0 0 0 10px #ccb894; }
+.box .lid { background: var(--pa); padding: 18px 22px; text-align: center; font-family: var(--atk); color: var(--en); }
+.box .lid p { margin: 8px 0 0; font-size: 14px; color: var(--gr); }
+.pack ol { margin: 0; padding-left: 20px; font-size: 15px; }
+.pack li { padding: 5px 0; }
+@media (max-width: 900px) {
+  .screens { grid-template-columns: 1fr; }
+  .ig-wrap { grid-template-columns: 1fr; }
+  .web-hero { grid-template-columns: 1fr; }
+  .tr { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .ref, .tr, .platform, .dd, .sitemap, .pill, .pack, .motion { grid-template-columns: 1fr; }
+  .platform > div { border-right: 0; border-bottom: 1px solid var(--hair); }
+  .logos { grid-template-columns: 1fr 1fr; }
+  .logos > div:first-child { grid-column: 1 / -1; }
+  .pal { grid-template-columns: repeat(2, 1fr); }
+  .photos { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span>
+  <span>Bloc 03 · Outils no-code et IA</span>
+  <span>Direction artistique · v1</span>
+  <span>Lucas (DA), équipe Clément, Camille, Lucas</span>
+  <span>22 octobre 2026</span>
+</div>
+<h1>Le Cadre, <span>direction artistique</span></h1>
+<p class="lead">De la veille des studios de branding à un système complet&nbsp;: idée de marque, logo, couleurs, typo, photo, mouvement, ton, puis l'appli mobile, le site web, Instagram et la boîte. Piste «&nbsp;Papier&nbsp;»&nbsp;: l'épure d'OpenAI, réchauffée.</p>
+<div class="stats">
+  <div><span class="k">Sources de veille</span><b>6</b></div>
+  <div><span class="k">Projets de référence</span><b>8</b></div>
+  <div><span class="k">Couleurs, dont une vive</span><b class="b">5</b></div>
+  <div><span class="k">Supports dessinés</span><b class="o">5</b></div>
+</div>
+<nav class="toc2"><a href="#s01">01 Veille</a><a href="#s02">02 Tendances</a><a href="#s03">03 Plateforme</a><a href="#s04">04 Logo</a><a href="#s05">05 Couleurs</a><a href="#s06">06 Typo</a><a href="#s07">07 Photo</a><a href="#s08">08 Mouvement</a><a href="#s09">09 Ton</a><a href="#s10">10 Appli</a><a href="#s11">11 Cadre</a><a href="#s12">12 Site</a><a href="#s13">13 Instagram</a><a href="#s14">14 Boîte</a><a href="#s15">15 À valider</a></nav>
+
+<section id="s01"><div class="grid"><div class="k"><span class="num">01</span> · Veille</div><div><h2>Six sources à suivre, et ce qu'elles nous apprennent</h2><p>Les sources proposées par l’équipe, lues le 22 octobre 2026. Pour chacune&nbsp;: ce que c’est, et pourquoi on la suit.</p><div class="ref"><div><h3>BP&O</h3><span class="k">Branding, Packaging and Opinion</span><p>Le blog critique de Richard Baird&nbsp;: chaque identité est analysée, pas seulement montrée.</p><p class="les">Pour comprendre pourquoi une marque marche.</p><p class="note"><a href="https://bpando.org/">bpando.org</a></p></div><div><h3>The Brand Identity</h3><span class="k">Projets, interviews, ressources</span><p>Plateforme de référence des studios du monde entier, avec un regard sur la stratégie.</p><p class="les">Pour les cas proches du nôtre (santé, objets, IA).</p><p class="note"><a href="https://the-brandidentity.com/">the-brandidentity.com</a></p></div><div><h3>Koto</h3><span class="k">Agence internationale de marque</span><p>Studio de Londres et Sydney&nbsp;: Microsoft Copilot+PC, Fitbit Ace LTE, Tripadvisor, Franki.</p><p class="les">Le niveau à viser pour une marque tech chaleureuse.</p><p class="note"><a href="https://koto.studio/">koto.studio</a></p></div><div><h3>Visuelle</h3><span class="k">Plateforme de design graphique</span><p>Vitrine des meilleurs studios et projets d'identité visuelle.</p><p class="les">Pour la culture visuelle et les mises en page.</p><p class="note"><a href="https://visuelle.co.uk/">visuelle.co.uk</a></p></div><div><h3>SearchSystem</h3><span class="k">Archive graphique</span><p>Archive classée par studio, client, type d'objet et année, du poster à la signalétique.</p><p class="les">Pour la typo, la signalétique et la lisibilité.</p><p class="note"><a href="https://searchsystem.co/">searchsystem.co</a></p></div><div><h3>GraphicDesign&</h3><span class="k">Graphic design and everything in between</span><p>Éditeur qui montre les liens entre le design graphique et tout le reste.</p><p class="les">Pour sortir du graphisme pur&nbsp;: objet, usage, vie.</p><p class="note"><a href="https://www.creativereview.co.uk/graphicdesign-everything/">www.creativereview.co.uk/graphicdesign-everything</a></p></div></div><h3 class="sub">Huit projets récents qui parlent de notre sujet</h3><p>Choisis parmi les publications d’octobre 2026 parce qu’ils touchent un de nos enjeux&nbsp;: une technologie dans un lieu de vie, la chaleur, l’humain derrière l’IA, l’objet qu’on garde.</p><div class="ref"><div><h3>Red Antler pour Rovex</h3><span class="k">The Brand Identity, 16/10/2026</span><p>Un robot qui déplace les patients à l'hôpital, et une marque pensée pour ne pas ressembler à du matériel médical&nbsp;: abordable pour les patients, crédible pour la direction.</p><p class="les">Pour nous&nbsp;: Exactement notre défi&nbsp;: une technologie chez une personne âgée qui ne doit jamais avoir l'air médicale.</p><p class="note"><a href="https://the-brandidentity.com/project/how-red-antlers-brand-helps-rovexs-robot-feel-familiar-in-hospitals">Lire</a></p></div><div><h3>La psychologie des objets</h3><span class="k">The Brand Identity, 09/10/2026</span><p>Pourquoi on garde certains objets de marque et on oublie les autres&nbsp;: ceux qu'on garde sont un signe d'appartenance à un groupe.</p><p class="les">Pour nous&nbsp;: Le Cadre doit être l'objet d'une famille, pas d'une marque&nbsp;: le logo se fait discret sur l'objet.</p><p class="note"><a href="https://the-brandidentity.com/insight/the-psychology-of-stuff-why-people-get-attached-to-branded-objects">Lire</a></p></div><div><h3>Together pour Clusia</h3><span class="k">The Brand Identity, 16/10/2026</span><p>Une marque d'audit par IA qui met en avant les personnes derrière le travail, avec un symbole simple tiré du nom (une haie, une plante).</p><p class="les">Pour nous&nbsp;: Notre symbole vient aussi du nom&nbsp;: un cadre, et le point de lumière du lien.</p><p class="note"><a href="https://the-brandidentity.com/project/together-gives-clusia-a-four-petal-mark-showing-ai-and-people-at-work">Lire</a></p></div><div><h3>Studio Hi Ho pour Madeleine</h3><span class="k">The Brand Identity, 19/10/2026</span><p>Un beurre fait à la main&nbsp;: papier kraft, jaune beurre, gestes lents. Le savoir-faire raconté par les matières.</p><p class="les">Pour nous&nbsp;: Les neutres chauds et une seule couleur douce suffisent à dire «&nbsp;fait avec soin&nbsp;»&nbsp;: la piste Papier va dans ce sens.</p><p class="note"><a href="https://the-brandidentity.com/project/studio-hi-ho-pairs-kraft-and-butter-yellow-in-madeleines-packaging">Lire</a></p></div><div><h3>Koto pour Franki</h3><span class="k">BP&O, 06/10/2026</span><p>Une appli de découverte de restaurants que BP&O juge vivante, humaine et «&nbsp;juste assez mignonne&nbsp;».</p><p class="les">Pour nous&nbsp;: Le bon dosage pour notre appli&nbsp;: chaleureuse sans être enfantine, ce qui est le piège de la silvertech.</p><p class="note"><a href="https://bpando.org/2026/10/06/koto-franki-restaurant-app-brand-design/">Lire</a></p></div><div><h3>DNCO pour le Vermont</h3><span class="k">BP&O, octobre 2026</span><p>Une marque de tourisme construite autour d'une idée&nbsp;: transformer l'affection en action.</p><p class="les">Pour nous&nbsp;: Notre idée en trois mots&nbsp;: penser à quelqu'un, et le lui faire savoir d'un geste.</p><p class="note"><a href="https://bpando.org/">Lire</a></p></div><div><h3>SearchSystem&nbsp;: la signalétique</h3><span class="k">searchsystem.co, archive 2019 à 2026</span><p>Archive de projets graphiques&nbsp;: beaucoup de signalétique de musées et d'hôpitaux (V&A, MIT Museum, clinique de Karlsruhe par Büro Uebele).</p><p class="les">Pour nous&nbsp;: La signalétique enseigne la lisibilité à distance&nbsp;: c'est notre contrainte sur l'écran du cadre, lu à 2 ou 3 mètres.</p><p class="note"><a href="https://searchsystem.co/">Lire</a></p></div><div><h3>Koto&nbsp;: la marque longévité</h3><span class="k">koto.studio, OFF Brand</span><p>Koto (Microsoft Copilot+PC, Fitbit Ace, Tripadvisor) publie sur la «&nbsp;longévité, nouvelle frontière de la santé&nbsp;» et sur l'utilité du site web à l'ère de l'IA.</p><p class="les">Pour nous&nbsp;: Le vieillissement devient un sujet de marque désirable, pas seulement médical. Et le site reste la vitrine de référence.</p><p class="note"><a href="https://koto.studio/">Lire</a></p></div></div></div></div></section>
+
+<section id="s02"><div class="grid"><div class="k"><span class="num">02</span> · Tendances</div><div><h2>Six tendances du branding en 2026</h2><div class="tr"><div><span class="num">01</span><h3>Des marques d'objets, pas d'appareils</h3><p>La tech qui entre dans les lieux de vie (hôpital, maison) se déguise en objet familier.</p><span class="note">Vu chez&nbsp;: Rovex, Fjord (DutchScot)</span></div><div><span class="num">02</span><h3>Les matières racontent</h3><p>Kraft, papier, bois, butter yellow&nbsp;: la chaleur vient des matières et des neutres, pas des couleurs vives.</p><span class="note">Vu chez&nbsp;: Madeleine, Ancestrel Wine</span></div><div><span class="num">03</span><h3>L'humain derrière l'IA</h3><p>Les marques d'IA montrent les personnes, pas les machines.</p><span class="note">Vu chez&nbsp;: Clusia, Copilot+PC (Koto)</span></div><div><span class="num">04</span><h3>Le minimalisme avec un sourire</h3><p>Une base sobre et un détail espiègle ou tendre qui rend la marque attachante.</p><span class="note">Vu chez&nbsp;: Napoli on the Road, Franki</span></div><div><span class="num">05</span><h3>L'identité par les mots</h3><p>Le ton et le nom font autant que le logo&nbsp;; on soigne chaque phrase.</p><span class="note">Vu chez&nbsp;: Thomas Pokorn (The Brand Identity)</span></div><div><span class="num">06</span><h3>Le site redevient central</h3><p>À l'ère de l'IA, le site est l'endroit où la marque est entière et maîtrisée.</p><span class="note">Vu chez&nbsp;: Grafik, Koto OFF Brand</span></div></div><p class="note" style="margin-top:14px">Synthèse de la veille ci-dessus. Le Cadre s’inscrit dans les tendances 01, 02 et 04&nbsp;: un objet familier, des matières chaudes, une base sobre avec un détail tendre (la lueur).</p></div></div></section>
+
+<section id="s03"><div class="grid"><div class="k"><span class="num">03</span> · Plateforme</div><div><h2>L'idée de marque</h2><div class="big-idea"><span>L'idée</span><h3>Un signe, pas une surveillance<i></i></h3><p>Le Cadre montre les photos de la famille chez le parent, et lui laisse un seul geste pour répondre. Toute la marque tient dans ce point de lumière&nbsp;: quelqu'un pense à quelqu'un.</p><div class="tags3"><span>Vos photos chez eux. Leur signe chez vous.</span><span>Un toucher suffit.</span><span>La famille, au mur.</span></div></div>
+<div class="platform" style="margin-top:24px"><div><span class="k">Mission</span><p>Garder les parents âgés dans le fil de la famille, sans rien leur demander d'autre qu'un regard et un toucher.</p></div><div><span class="k">Personnalité</span><p><b>Calme</b> (jamais d'urgence), <b>tendre</b> (le point de lumière), <b>simple</b> (une chose à la fois), <b>adulte</b> (jamais enfantin ni médical).</p></div><div><span class="k">Ce qu'on n'est pas</span><p>Pas une téléassistance, pas une tablette pour seniors, pas un réseau social. Pas de bleu santé, pas de rouge alerte, pas de photo de banque d'images.</p></div></div>
+<p class="note" style="margin-top:12px">Les trois phrases sont des propositions de signature. Le nom «&nbsp;Le Cadre&nbsp;» est le nom de travail&nbsp;: à confirmer (ou remplacer par «&nbsp;CBW&nbsp;») avant de finaliser le logo.</p></div></div></section>
+
+<section id="s04"><div class="grid"><div class="k"><span class="num">04</span> · Logo</div><div><h2>Un cadre et un point de lumière</h2><p>Le symbole dessine ce que fait le produit&nbsp;: un cadre arrondi (l'objet) et, dessous, le point ambré (la lueur du toucher). Le nom est écrit en minuscules en Atkinson Hyperlegible gras&nbsp;: lisible, sans majuscule autoritaire.</p>
+<div class="logos"><div><div class="lg"><svg viewBox="0 0 220 60" width="260" role="img" aria-label="Logo Le Cadre"><rect x="3" y="9" width="40" height="34" rx="7" fill="none" stroke="#161412" stroke-width="4"/><circle cx="23" cy="52" r="4.5" fill="#c98a3a"/><text x="58" y="38" font-family="Atkinson Hyperlegible, Arial, sans-serif" font-weight="700" font-size="30" fill="#161412" letter-spacing="-.5">le cadre</text></svg></div><span class="lg-k">Logo principal sur papier</span></div><div><div class="lg dk"><svg viewBox="0 0 60 60" width="90" aria-hidden="true"><rect x="13" y="12" width="34" height="28" rx="6" fill="none" stroke="#faf8f5" stroke-width="3.5"/><circle cx="30" cy="48" r="4" fill="#c98a3a"/></svg></div><span class="lg-k">Symbole sur encre</span></div><div><div class="lg sa"><svg viewBox="0 0 60 60" width="90" aria-hidden="true"><rect x="13" y="12" width="34" height="28" rx="6" fill="none" stroke="#161412" stroke-width="3.5"/><circle cx="30" cy="48" r="4" fill="#c98a3a"/></svg></div><span class="lg-k">Symbole sur sable&nbsp;: profil Instagram, icône d'appli</span></div></div>
+<div class="dd"><div><span class="k">À faire</span><ul><li>Garder le point toujours ambré, sur tous les fonds.</li><li>Laisser autour du logo un espace égal à la hauteur du cadre.</li><li>Sur l'objet, seulement le symbole, gravé ou imprimé petit au dos.</li></ul></div><div><span class="k">À ne pas faire</span><ul class="no"><li>Mettre le logo sur l'écran du cadre&nbsp;: l'écran est aux photos.</li><li>Changer la couleur du point ou en ajouter un deuxième.</li><li>Écrire le nom en majuscules ou dans une autre police.</li></ul></div></div></div></div></section>
+
+<section id="s05"><div class="grid"><div class="k"><span class="num">05</span> · Couleurs</div><div><h2>Cinq couleurs, une seule vive</h2><div class="pal"><div><div class="chip" style="background:#faf8f5;color:#161412">60 %</div><b>Papier</b><span class="hx">#faf8f5</span><p>Fond de tout&nbsp;: appli, site, boîte.</p><p class="note">Encre dessus&nbsp;: 17,3:1</p></div><div><div class="chip" style="background:#efe9e1;color:#161412">25 %</div><b>Sable</b><span class="hx">#efe9e1</span><p>Surfaces, cartes, zones calmes.</p><p class="note">Encre dessus&nbsp;: 15,2:1</p></div><div><div class="chip" style="background:#161412;color:#faf8f5">10 %</div><b>Encre</b><span class="hx">#161412</span><p>Texte, logo, boutons principaux.</p><p class="note">AAA partout</p></div><div><div class="chip" style="background:#4a4540;color:#faf8f5"></div><b>Gris chaud</b><span class="hx">#4a4540</span><p>Texte secondaire, légendes.</p><p class="note">Sur papier&nbsp;: 8,9:1</p></div><div><div class="chip" style="background:#c98a3a;color:#161412">5 %</div><b>Ambre lueur</b><span class="hx">#c98a3a</span><p>Seulement la lueur et «&nbsp;je suis là&nbsp;».</p><p class="note">Jamais pour du texte (2,8:1)</p></div></div>
+<div class="prop"><span style="flex:60;background:#faf8f5"></span><span style="flex:25;background:#efe9e1"></span><span style="flex:10;background:#161412"></span><span style="flex:5;background:#c98a3a"></span></div>
+<p class="note" style="margin-top:8px">Proportions d'usage&nbsp;: 60 papier, 25 sable, 10 encre, 5 ambre. Contrastes calculés selon le WCAG 2.2. L'alerte des 48 h utilise l'encre, jamais une couleur d'alarme. Les photos de famille sont la vraie couleur de la marque.</p></div></div></section>
+
+<section id="s06"><div class="grid"><div class="k"><span class="num">06</span> · Typo</div><div><h2>Une seule police&nbsp;: Atkinson Hyperlegible</h2><div class="spec-t"><div class="aa">Aa Il1 O0</div><div class="abc">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>1 2 3 · 4 5 6 · 7 8 9 · 0 «&nbsp;!&nbsp;?&nbsp;» € é è à ç</div><div class="il">Maman est là. <i>On pense à toi.</i></div></div>
+<p style="margin-top:14px">Dessinée par le Braille Institute pour les personnes malvoyantes&nbsp;: les lettres qui se confondent (I, l, 1&nbsp;; O, 0) sont différenciées. Sans empattement comme chez OpenAI, gratuite sur Google Fonts, avec gras et italique. Une seule famille pour toute la marque, comme les marques tech épurées.</p>
+<div class="tablewrap"><table class="scale"><thead><tr><th>Usage</th><th>Exemple</th><th>Taille · graisse</th><th>Règle</th></tr></thead><tbody><tr><td><b>Cadre · petit mot</b></td><td class="smp" style="font-size:34px;font-weight:700">Maman est là</td><td>40 px · 700</td><td>Lu à 2 ou 3 m. Jamais moins de 32 px sur le cadre.</td></tr><tr><td><b>Titre site</b></td><td class="smp" style="font-size:34px;font-weight:700">Maman est là</td><td>56 px · 700</td><td>Une phrase courte, interlignage 1,05.</td></tr><tr><td><b>Titre appli</b></td><td class="smp" style="font-size:28px;font-weight:700">Maman est là</td><td>28 px · 700</td><td>Le nom de l'écran ou la question posée.</td></tr><tr><td><b>Texte</b></td><td class="smp" style="font-size:18px;font-weight:400">Maman est là</td><td>18 px · 400</td><td>Corps de l'appli et du site. Jamais moins de 16 px.</td></tr><tr><td><b>Légende</b></td><td class="smp" style="font-size:15px;font-weight:400">Maman est là</td><td>15 px · 400</td><td>Gris chaud. Heures, noms, aides.</td></tr></tbody></table></div></div></div></section>
+
+<section id="s07"><div class="grid"><div class="k"><span class="num">07</span> · Photo</div><div><h2>De vraies familles, de la vraie lumière</h2><div class="photos"><div class="i1"><span>Un dimanche</span></div><div class="i3"><span>Les mains</span></div><div class="i5"><span>La lumière du soir</span></div><div class="i4"><span>L'objet au mur</span></div></div>
+<p class="note" style="margin-top:8px">Aplats de couleur à la place des photos, pour illustrer l'ambiance.</p>
+<div class="dd"><div><span class="k">On montre</span><ul><li>Des moments de famille ordinaires&nbsp;: un goûter, un jardin, un appel de dimanche.</li><li>La lumière naturelle, chaude, un peu de grain.</li><li>Le cadre dans de vrais intérieurs, avec leurs objets.</li><li>Des mains, des détails, plutôt que des visages posés.</li></ul></div><div><span class="k">On ne montre jamais</span><ul class="no"><li>Les seniors souriants face à une tablette, typiques des banques d'images.</li><li>Un hôpital, une blouse, un bracelet, un fauteuil médicalisé.</li><li>La solitude ou la tristesse pour faire peur.</li><li>Des visages réels sans accord écrit (et jamais de mineur sans accord parental).</li></ul></div></div></div></div></section>
+
+<section id="s08"><div class="grid"><div class="k"><span class="num">08</span> · Mouvement</div><div><h2>Tout bouge lentement</h2><div class="motion"><div><div class="mo"><div class="dot"></div></div><span class="lg-k">La lueur · 2,4 s, va-et-vient doux</span></div><div><div class="mo"><div class="xf"><div class="i1"></div><div class="i3"></div></div></div><span class="lg-k">Le cadre · fondu de 1,5 s toutes les 15 s</span></div><div><div class="mo"><div class="send">Envoyer au cadre</div></div><span class="lg-k">Le bouton · léger enfoncement</span></div></div>
+<p style="margin-top:14px">Pas de rebond, pas de clignotement, pas de son par défaut. Les mouvements sont des fondus et des pulsations, comme une lampe qui respire. Ils s'arrêtent si l'appareil demande moins d'animations.</p></div></div></section>
+
+<section id="s09"><div class="grid"><div class="k"><span class="num">09</span> · Ton</div><div><h2>Parler comme une famille</h2><p>On tutoie dans l'appli (c'est la famille qui l'utilise), on vouvoie sur le site et dans la boîte (on s'adresse à un acheteur). Des phrases courtes, des mots de tous les jours, jamais de jargon technique ni médical.</p>
+<div class="tablewrap"><table class="voice"><thead><tr><th>Moment</th><th>On écrit</th><th>On n'écrit jamais</th></tr></thead><tbody><tr><td>Le cadre</td><td class="ok">Maman a vu ta photo.</td><td class="ko">Notification de lecture confirmée.</td></tr><tr><td>Je suis là</td><td class="ok">Maman est là.</td><td class="ko">Signal reçu.</td></tr><tr><td>Ta famille</td><td class="ok">Les proches de Maman</td><td class="ko">Utilisateurs connectés</td></tr><tr><td>Envoyer</td><td class="ok">Mettre au mur</td><td class="ko">Uploader le contenu</td></tr><tr><td>Si tu veux</td><td class="ok">Prévenir si je n'ai pas de signe pendant 2 jours</td><td class="ko">Alerte d'inactivité 48 h</td></tr><tr><td>Un petit mot</td><td class="ok">Écrire un petit mot</td><td class="ko">Message texte</td></tr></tbody></table></div></div></div></section>
+
+<section id="s10"><div class="grid"><div class="k"><span class="num">10</span> · Appli</div><div><h2>L'appli de la famille</h2><div class="screens"><figure><div class="ph"><div class="ph-in"><div class="ap-top"><span>Bonjour Léa</span><svg viewBox="0 0 60 60" width="26" aria-hidden="true"><rect x="13" y="12" width="34" height="28" rx="6" fill="none" stroke="#161412" stroke-width="3.5"/><circle cx="30" cy="48" r="4" fill="#c98a3a"/></svg></div>
+<div class="ap-card"><span class="ap-k">Au mur chez Maman</span><div class="ap-img i1"></div><span class="ap-s">Photo du dimanche · vue à 10 h 12</span></div>
+<div class="ap-signal"><i></i><div><b>Maman est là</b><span>il y a 12 min</span></div></div>
+<div class="ap-btn">Mettre une photo au mur</div></div></div><figcaption>Accueil</figcaption></figure><figure><div class="ph"><div class="ph-in"><div class="ap-top"><span>Mettre au mur</span><span class="ap-x">Fermer</span></div>
+<div class="ap-img i2 big"></div>
+<div class="ap-field">Un petit mot (si tu veux)<span>«&nbsp;On pense à toi, à dimanche&nbsp;!&nbsp;»</span></div>
+<div class="ap-btn">Envoyer au cadre</div>
+<span class="ap-s c">Le cadre recadre la photo tout seul</span></div></div><figcaption>Mettre au mur</figcaption></figure><figure><div class="ph"><div class="ph-in"><div class="lock"><span class="lk-h">10:24</span><span class="lk-d">jeudi 22 octobre</span>
+<div class="notif"><svg viewBox="0 0 60 60" width="22" aria-hidden="true"><rect x="13" y="12" width="34" height="28" rx="6" fill="none" stroke="#161412" stroke-width="3.5"/><circle cx="30" cy="48" r="4" fill="#c98a3a"/></svg><div><b>Maman est là</b><span>Elle a touché le cadre en voyant ta photo.</span></div></div></div></div></div><figcaption>Notification</figcaption></figure></div>
+<ol class="next" style="margin-top:20px"><li><b>Un écran, une action.</b> Un seul bouton noir par écran&nbsp;; le reste est du texte ou des photos.</li><li><b>Le signe du parent en haut de l'accueil</b>, avec le point ambré&nbsp;: c'est ce que l'enfant vient chercher.</li><li><b>Coins arrondis à 14 px</b>, comme le cadre du logo&nbsp;; pas d'ombre, des filets sable.</li><li><b>Icône d'appli</b>&nbsp;: le symbole sur sable.</li></ol>
+<p class="note">Ces écrans habillent les écrans e7, e8 et e12 de la maquette fil de fer (1-1-maquette-app-v1.html).</p></div></div></section>
+
+<section id="s11"><div class="grid"><div class="k"><span class="num">11</span> · Cadre</div><div><h2>L'écran du cadre au mur</h2><div style="max-width:560px"><div class="fr"><div class="fr-in"><div class="fr-img i3"></div><div class="fr-note">On pense à toi,<br>à dimanche&nbsp;!<span>Léa</span></div></div><i class="fr-glow"></i></div></div>
+<ol class="next" style="margin-top:24px"><li><b>La photo occupe l'écran.</b> Aucun logo, aucune heure, aucun bouton.</li><li><b>Le petit mot</b> apparaît à côté de la photo, en 40 px gras, avec le prénom de l'expéditeur.</li><li><b>La lueur</b> s'allume sous le cadre quand le parent touche, puis s'éteint en fondu.</li><li><b>Au repos</b>, jamais d'écran noir&nbsp;: une photo toutes les 15 s, luminosité baissée le soir.</li></ol></div></div></section>
+
+<section id="s12"><div class="grid"><div class="k"><span class="num">12</span> · Site</div><div><h2>Le site web</h2><div class="web"><div class="web-bar"><i></i><i></i><i></i><span>lecadre.fr</span></div>
+<div class="web-nav"><svg viewBox="0 0 220 60" width="110" role="img" aria-label="Logo Le Cadre"><rect x="3" y="9" width="40" height="34" rx="7" fill="none" stroke="#161412" stroke-width="4"/><circle cx="23" cy="52" r="4.5" fill="#c98a3a"/><text x="58" y="38" font-family="Atkinson Hyperlegible, Arial, sans-serif" font-weight="700" font-size="30" fill="#161412" letter-spacing="-.5">le cadre</text></svg><span>L'objet</span><span>Comment ça marche</span><span>Pour la famille</span><span class="web-cta">Offrir Le Cadre</span></div>
+<div class="web-hero"><div><span class="web-k">Un cadre pour la maison de vos parents</span><h4>Vos photos chez eux.<br>Leur signe chez vous.</h4><p>Un cadre au mur qui reçoit les photos de la famille. Un toucher suffit pour dire «&nbsp;je suis là&nbsp;». Sans appli pour vos parents, sans abonnement.</p><span class="web-btn">Découvrir l'objet</span></div><div class="web-pic"><div class="fr"><div class="fr-in"><div class="fr-img i3"></div><div class="fr-note">On pense à toi,<br>à dimanche&nbsp;!<span>Léa</span></div></div><i class="fr-glow"></i></div></div></div></div>
+<h3 class="sub">Les pages</h3><ol class="sitemap"><li><b>Accueil</b>La promesse, le cadre au mur, un toucher en vidéo, «&nbsp;Offrir Le Cadre&nbsp;».</li><li><b>L'objet</b>Les matières, les tailles, horizontal ou vertical, la pose.</li><li><b>Comment ça marche</b>Les 4 étapes&nbsp;: recevoir, accrocher, inviter, envoyer.</li><li><b>Pour la famille</b>L'appli, le moment du jour, les petits-enfants.</li><li><b>Confiance</b>Pas de caméra, pas de micro, données en Europe, alerte seulement si le parent l'accepte.</li><li><b>Acheter</b>Achat unique, sans abonnement, livraison, retour.</li></ol>
+<p class="note" style="margin-top:12px">Comme le notent Koto et Grafik, le site reste l'endroit où la marque est entière&nbsp;: il porte la page «&nbsp;Confiance&nbsp;», qu'aucun réseau social ne peut porter.</p></div></div></section>
+
+<section id="s13"><div class="grid"><div class="k"><span class="num">13</span> · Instagram</div><div><h2>Le profil Instagram</h2><div class="ig-wrap"><div><div class="ig"><div class="ig-head"><div class="ig-av"><svg viewBox="0 0 60 60" width="64" aria-hidden="true"><rect x="13" y="12" width="34" height="28" rx="6" fill="none" stroke="#161412" stroke-width="3.5"/><circle cx="30" cy="48" r="4" fill="#c98a3a"/></svg></div><div class="ig-stats"><b>lecadre.famille</b><span>Le Cadre</span><p>Le cadre au mur chez vos parents.<br>Vos photos chez eux, leur signe chez vous.<br>Sans appli pour eux, sans abonnement.<br>lecadre.fr</p></div></div>
+<div class="ig-hl"><span><i></i>L'objet</span><span><i></i>Installer</span><span><i></i>Vos mots</span><span><i></i>Questions</span></div>
+<div class="ig-grid"><div class="ig-t ig-p i1"><span>photo</span></div><div class="ig-t ig-m"><p>Maman est là.</p><i></i><span>mot</span></div><div class="ig-t ig-p i3"><span>photo</span></div><div class="ig-t ig-p i4"><span>objet</span></div><div class="ig-t ig-p i2"><span>photo</span></div><div class="ig-t ig-m"><p>On pense à toi,<br>à dimanche.</p><i></i><span>mot</span></div><div class="ig-t ig-c"><p>Où accrocher<br>le cadre&nbsp;?<small>1,35 m du sol</small></p><i></i><span>conseil</span></div><div class="ig-t ig-p i5"><span>photo</span></div><div class="ig-t ig-p i6"><span>objet</span></div></div></div></div><div>
+<div class="row" style="display:grid;grid-template-columns:14ch 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair)"><dt class="k">Nom</dt><dd style="margin:0">@lecadre.famille (à vérifier, disponibilité non testée)</dd></div>
+<div class="row" style="display:grid;grid-template-columns:14ch 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair)"><dt class="k">Photo</dt><dd style="margin:0">Le symbole sur sable, centré.</dd></div>
+<div class="row" style="display:grid;grid-template-columns:14ch 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair)"><dt class="k">Bio</dt><dd style="margin:0">Trois lignes&nbsp;: ce que c'est, la promesse, les deux garanties. Puis le lien du site.</dd></div>
+<div class="row" style="display:grid;grid-template-columns:14ch 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair)"><dt class="k">À la une</dt><dd style="margin:0">L'objet, Installer, Vos mots, Questions. Couvertures papier avec le point ambré.</dd></div>
+<div class="row" style="display:grid;grid-template-columns:14ch 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair)"><dt class="k">Grille</dt><dd style="margin:0">Format 4:5. On alterne une photo, un petit mot sur papier, une photo&nbsp;: la grille respire comme le cadre.</dd></div>
+<div class="row" style="display:grid;grid-template-columns:14ch 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair)"><dt class="k">Rythme</dt><dd style="margin:0">3 posts par semaine, des stories le dimanche («&nbsp;la photo de la semaine&nbsp;»), 1 reel par semaine&nbsp;: un toucher, une lueur, 6 secondes.</dd></div>
+<div class="row" style="display:grid;grid-template-columns:14ch 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair)"><dt class="k">Cible</dt><dd style="margin:0">Les enfants de 40 à 65 ans, qui achètent. Instagram et Facebook en priorité&nbsp;; pas TikTok au lancement.</dd></div>
+<h3 class="sub">Les quatre piliers de contenu</h3><div class="pill"><div><h3>Les moments<span>40 %</span></h3><p>Photos de familles (avec accord) et scènes de vie au cadre&nbsp;: un goûter, un dimanche, une photo qui arrive.</p><p class="note">Photo carrée, aucune retouche lourde, une légende courte.</p></div><div><h3>Les petits mots<span>25 %</span></h3><p>Phrases vraies que les familles s'envoient, posées sur papier, en Atkinson Hyperlegible.</p><p class="note">Fond papier ou sable, texte encre, point ambré.</p></div><div><h3>L'objet<span>20 %</span></h3><p>Le cadre au mur, ses matières, la lueur, le montage, l'atelier.</p><p class="note">Lumière naturelle, plans serrés sur la matière.</p></div><div><h3>Les conseils<span>15 %</span></h3><p>Carrousels utiles&nbsp;: où accrocher le cadre, comment inviter la famille, garder le lien à distance.</p><p class="note">5 à 7 slides, une idée par slide.</p></div></div></div></div></div></div></section>
+
+<section id="s14"><div class="grid"><div class="k"><span class="num">14</span> · Boîte</div><div><h2>La boîte et le premier contact</h2><div class="pack"><div class="box"><div class="lid"><svg viewBox="0 0 220 60" width="170" role="img" aria-label="Logo Le Cadre"><rect x="3" y="9" width="40" height="34" rx="7" fill="none" stroke="#161412" stroke-width="4"/><circle cx="23" cy="52" r="4.5" fill="#c98a3a"/><text x="58" y="38" font-family="Atkinson Hyperlegible, Arial, sans-serif" font-weight="700" font-size="30" fill="#161412" letter-spacing="-.5">le cadre</text></svg><p>Pour la maison de Maman</p></div></div><div><ol><li><b>Carton kraft</b> et papier recyclé, sans plastique&nbsp;: la matière dit le soin, comme chez Madeleine (Studio Hi Ho).</li><li><b>Un espace à écrire à la main</b> sur le couvercle&nbsp;: «&nbsp;Pour la maison de …&nbsp;». La boîte devient un cadeau.</li><li><b>À l'ouverture</b>&nbsp;: le cadre, une carte «&nbsp;Commencez ici&nbsp;» avec le QR code d'installation, et une carte vierge pour un premier petit mot.</li><li><b>Le cadre physique</b>&nbsp;: bois clair ou cadre ancien, au choix de l'équipe (Camille)&nbsp;; le symbole seulement au dos.</li></ol></div></div></div></div></section>
+
+<section id="s15"><div class="grid"><div class="k"><span class="num">15</span> · À valider</div><div><h2>Ce que l'équipe doit trancher</h2><ol class="next"><li><b>Le nom</b>&nbsp;: «&nbsp;Le Cadre&nbsp;» ou «&nbsp;CBW&nbsp;»&nbsp;? Le logo et le compte Instagram en dépendent.</li><li><b>La signature</b>&nbsp;: une des trois phrases de la plateforme (je propose «&nbsp;Vos photos chez eux. Leur signe chez vous.&nbsp;»).</li><li><b>Le cadre physique</b>&nbsp;: bois clair ou cadre ancien doré&nbsp;? Les deux vont avec le papier&nbsp;; Camille tranche avec la tablette choisie.</li><li><b>Le tutoiement</b> dans l'appli&nbsp;: à confirmer en équipe.</li><li><b>La suite</b>&nbsp;: appliquer la DA à toute la maquette de l'appli, puis préparer 9 premiers posts Instagram.</li></ol>
+<p class="note" style="margin-top:16px">Statut&nbsp;: DA v1 proposée par Lucas, à valider en équipe. Prolonge la veille DA du marché (1-1-veille-da-marche.html, piste D «&nbsp;Papier&nbsp;»). Sources&nbsp;: BP&O, The Brand Identity, Koto, Visuelle, SearchSystem, GraphicDesign& (Creative Review), consultés le 22/10/2026&nbsp;; contrastes WCAG 2.2&nbsp;; Atkinson Hyperlegible, Braille Institute. Logo, écrans et grille sont des maquettes de travail&nbsp;; aucune photo réelle, aucun compte créé. IA utilisée&nbsp;: Claude (Claude Code) pour la veille, la synthèse et les maquettes.</p></div></div></section>
+
+<footer class="k">PFR Générations Connectées · Direction artistique v1 · 22 octobre 2026</footer>
+</div>
+</body>
+</html>
