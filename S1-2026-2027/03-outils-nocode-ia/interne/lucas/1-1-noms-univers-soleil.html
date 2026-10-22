@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Noms univers Soleil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.thesis { margin-top: 32px; border-left: 4px solid var(--orange); padding: 4px 0 4px 18px; max-width: 70ch; }
+.thesis p { margin: 6px 0 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; }
+.prod, .spec2 { display:grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; }
+.spec2 { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+.prod > div, .spec2 > div { border-top: 3px solid var(--blue); padding-top: 10px; }
+.prod p, .spec2 p { margin: 6px 0 0; font-size: 15px; }
+.ideas { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.idea { border-top: 4px solid var(--fg); padding: 12px 0 8px; display:flex; flex-direction:column; min-width:0; }
+.ihead { display:flex; justify-content:space-between; align-items:baseline; gap: 8px; }
+.inum { font: 800 44px/1 var(--display); color: var(--orange); letter-spacing: -.05em; }
+.eff { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; white-space: nowrap; }
+.eff.e1 { background: var(--blue-soft); color: var(--blue); }
+.eff.e2 { background: var(--soft); color: var(--fg); }
+.eff.e3 { background: var(--orange-soft); color: var(--orange); }
+.idea h3 { margin: 10px 0 6px; font-size: 20px; letter-spacing: -.015em; }
+.idea p { margin: 0 0 10px; font-size: 15px; }
+.idea dl { margin: auto 0 0; font-size: 13px; border-top: 1px solid var(--hair); padding-top: 8px; }
+.idea dt { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.idea dd { margin: 0 0 6px; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+td b { font-weight: 700; }
+@media (max-width: 1000px) { .ideas { grid-template-columns: repeat(2, 1fr); } .prod { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .ideas, .prod, .spec2 { grid-template-columns: 1fr; } }
+
+:root { --cr:#fff6e0; --be:#f6d775; --ca:#2e1e14; --no:#5c4636; --li:#b7a3e0; --bri:'Bricolage Grotesque', Arial, sans-serif; --atk:'Atkinson Hyperlegible', Arial, sans-serif; }
+.solhero { background: var(--be); color: var(--ca); padding: clamp(24px, 5vw, 56px); margin-top: 28px; }
+.solhero h2 { font-family: var(--bri); font-weight: 800; font-size: clamp(36px, 6vw, 72px); line-height: .95; letter-spacing: -.03em; margin: 0 0 12px; }
+.solhero p { font-family: var(--atk); font-size: 19px; max-width: 60ch; margin: 0; }
+.sys { display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.sy { background: var(--cr); color: var(--ca); padding: 20px; min-width: 0; border-top: 6px solid var(--be); }
+.sy.reco { background: var(--be); border-top-color: var(--ca); }
+.sy-n { font-family: var(--bri); font-weight: 800; font-size: clamp(40px, 5vw, 60px); letter-spacing: -.04em; line-height: 1; margin: 12px 0 6px; display:flex; align-items: center; gap: 10px; }
+.sy-n i { width: .42em; height: .42em; border-radius: 50%; background: var(--li); flex: none; }
+.sy-g { font-family: var(--atk); font-size: 17px; }
+.sy p { font-family: var(--atk); font-size: 15px; margin: 12px 0; }
+.notif { display:flex; gap: 10px; align-items: center; background: #fff; border-radius: 14px; padding: 10px 12px; box-shadow: 0 4px 14px rgba(46,30,20,.12); font-family: -apple-system, Arial, sans-serif; }
+.ni { width: 34px; height: 34px; border-radius: 9px; background: var(--be); display:flex; align-items:center; justify-content:center; flex: none; }
+.ni i { width: 12px; height: 12px; border-radius: 50%; background: var(--li); }
+.notif b { display:block; font-size: 13px; } .notif span { font-size: 13px; color: #333; }
+.ncs { display:grid; grid-template-columns: repeat(2, 1fr); gap: 0 28px; }
+.nc { display:grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 16px 0; border-top: 1px solid var(--hair); min-width: 0; }
+.nc > div { min-width: 0; }
+.nl { background: var(--cr); color: var(--ca); display:flex; align-items: center; justify-content: center; gap: 8px; min-height: 96px; font-family: var(--bri); font-weight: 800; font-size: 28px; letter-spacing: -.03em; padding: 8px; text-align: center; }
+.nl i { width: 14px; height: 14px; border-radius: 50%; background: var(--be); box-shadow: 0 0 0 4px var(--li); flex: none; }
+.nh { display:flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.nh b { font-size: 20px; }
+.nb p { margin: 4px 0 0; font-size: 15px; }
+.nb .ph { font-family: var(--atk); font-weight: 700; }
+.nb .vg { color: var(--muted); font-size: 13.5px; }
+.st { color: var(--blue); letter-spacing: 2px; white-space: nowrap; } .st .off { color: var(--hair); }
+@media (max-width: 960px) { .sys, .ncs { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .nc { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta k"><span><b>PFR Générations Connectées</b></span><span>Bloc 03 · Outils no-code et IA</span><span>Direction artistique · nom de marque</span><span>Lucas (DA), équipe Clément, Camille, Lucas</span><span>22 octobre 2026</span></div>
+<h1>Des noms <span>au soleil</span></h1>
+<p class="lead">L'équipe préfère l'univers Soleil («&nbsp;la tribu en couleur&nbsp;»). Voici dix noms dans le même esprit&nbsp;: joyeux, français, faits pour toute la famille, et trois systèmes complets «&nbsp;marque + nom du geste&nbsp;».</p>
+<div class="solhero"><h2>Un nom pour la marque,<br>un mot pour le geste.</h2><p>Dans l'univers Soleil, le nom de la marque dit la famille, et le toucher du parent a son propre petit mot, celui qu'on prononce à la maison&nbsp;: «&nbsp;Mamie t'a envoyé un coucou&nbsp;». C'est ce mot qui fera parler du produit.</p></div>
+
+<section id="s01"><div class="grid"><div class="k"><span class="num">01</span> · Les systèmes</div><div>
+<h2>Trois systèmes marque + geste</h2>
+<div class="sys"><div class="sy reco"><span class="k">Recommandé</span><div class="sy-n"><i></i>smala</div><div class="sy-g">le geste&nbsp;: <b>un coucou</b></div><p>La marque nomme la famille, le geste nomme le lien. «&nbsp;Mamie t'a envoyé un coucou&nbsp;» sur l'appli Smala.</p><div class="notif"><div class="ni"><i></i></div><div><b>Smala</b><span>Mamie t'a envoyé un coucou.</span></div></div></div><div class="sy"><span class="k">Alternative</span><div class="sy-n"><i></i>tournesol</div><div class="sy-g">le geste&nbsp;: <b>un rayon</b></div><p>Le logo est tout trouvé (le soleil et sa fleur). «&nbsp;Tu as reçu un rayon de Papa.&nbsp;»</p><div class="notif"><div class="ni"><i></i></div><div><b>Tournesol</b><span>Mamie t'a envoyé un rayon.</span></div></div></div><div class="sy"><span class="k">Alternative</span><div class="sy-n"><i></i>ribambelle</div><div class="sy-g">le geste&nbsp;: <b>un bisou</b></div><p>Le plus tendre. «&nbsp;Un bisou de Mamie&nbsp;» dans l'appli Ribambelle.</p><div class="notif"><div class="ni"><i></i></div><div><b>Ribambelle</b><span>Mamie t'a envoyé un bisou.</span></div></div></div></div>
+<p style="margin-top:18px"><b>Mon choix&nbsp;: Smala, et le geste «&nbsp;un coucou&nbsp;».</b> «&nbsp;Smala&nbsp;», c'est mot pour mot le concept de l'univers Soleil&nbsp;: la grande famille joyeuse, petits-enfants compris. Deux syllabes, connu de tous les Français, impossible à confondre avec un produit médical. Et «&nbsp;coucou&nbsp;» est le geste le plus naturel du monde&nbsp;: le parent ne «&nbsp;valide&nbsp;» rien, il fait coucou.</p>
+</div></div></section>
+
+<section id="s02"><div class="grid"><div class="k"><span class="num">02</span> · Les dix noms</div><div>
+<h2>Dix noms dans l'esprit Soleil</h2>
+<p class="note">Chaque nom est montré comme un logo de l'univers Soleil (Bricolage Grotesque, crème, beurre, lilas). Note sur 5&nbsp;: joie, sens, facilité à dire en famille, originalité.</p>
+<div class="ncs"><div class="nc"><div class="nl"><i></i><span>smala</span></div><div class="nb"><div class="nh"><b>Smala</b><span class="st">●●●●●<span class="off"></span></span></div><p>La smala, c'est la grande famille bruyante et joyeuse. Exactement le concept «&nbsp;la tribu en couleur&nbsp;».</p><p class="ph">«&nbsp;Toute la smala au même mur.&nbsp;»</p><p class="vg">Mot d'argot connu de tous&nbsp;; à vérifier à l'INPI.</p></div></div><div class="nc"><div class="nl"><i></i><span>coucou</span></div><div class="nb"><div class="nh"><b>Coucou</b><span class="st">●●●●●<span class="off"></span></span></div><p>Le premier mot qu'on dit en arrivant chez ses parents. Il nomme aussi le geste.</p><p class="ph">«&nbsp;J'ai reçu un coucou de Mamie.&nbsp;»</p><p class="vg">Utilisé par des applis de messagerie.</p></div></div><div class="nc"><div class="nl"><i></i><span>ribambelle</span></div><div class="nb"><div class="nh"><b>Ribambelle</b><span class="st">●●●●<span class="off">●</span></span></div><p>Une ribambelle de petits-enfants&nbsp;: la famille nombreuse qui défile au mur.</p><p class="ph">«&nbsp;Toute la ribambelle chez Papi.&nbsp;»</p><p class="vg">Long (4 syllabes)&nbsp;; nom de boutiques existantes.</p></div></div><div class="nc"><div class="nl"><i></i><span>tournesol</span></div><div class="nb"><div class="nh"><b>Tournesol</b><span class="st">●●●●<span class="off">●</span></span></div><p>La fleur qui se tourne vers le soleil, comme le parent vers sa famille. Jaune, évident pour le logo.</p><p class="ph">«&nbsp;Le Tournesol de Maman a bougé.&nbsp;»</p><p class="vg">Une association française connue s'appelle déjà Tournesol (tournesol.app).</p></div></div><div class="nc"><div class="nl"><i></i><span>bisou</span></div><div class="nb"><div class="nh"><b>Bisou</b><span class="st">●●●●<span class="off">●</span></span></div><p>Le mot tendre de toutes les familles françaises.</p><p class="ph">«&nbsp;Un bisou de Mamie&nbsp;!&nbsp;»</p><p class="vg">Très utilisé (cosmétique, mode).</p></div></div><div class="nc"><div class="nl"><i></i><span>clin d'œil</span></div><div class="nb"><div class="nh"><b>Clin d'œil</b><span class="st">●●●●<span class="off">●</span></span></div><p>Un petit signe complice, sans un mot&nbsp;: c'est le toucher sur le cadre.</p><p class="ph">«&nbsp;Maman m'a fait un clin d'œil.&nbsp;»</p><p class="vg">Apostrophe et œ&nbsp;: difficile en adresse web.</p></div></div><div class="nc"><div class="nl"><i></i><span>dimanche</span></div><div class="nb"><div class="nh"><b>Dimanche</b><span class="st">●●●●<span class="off">●</span></span></div><p>Le déjeuner du dimanche chez les parents, le moment de la famille.</p><p class="ph">«&nbsp;Chaque jour un peu dimanche.&nbsp;»</p><p class="vg">Mot courant, dépôt avec complément.</p></div></div><div class="nc"><div class="nl"><i></i><span>rayon</span></div><div class="nb"><div class="nh"><b>Rayon</b><span class="st">●●●<span class="off">●●</span></span></div><p>Un rayon de soleil&nbsp;; «&nbsp;un rayon de Maman&nbsp;».</p><p class="ph">«&nbsp;Tu as reçu un rayon.&nbsp;»</p><p class="vg">Évoque aussi le rayon de supermarché.</p></div></div><div class="nc"><div class="nl"><i></i><span>mimosa</span></div><div class="nb"><div class="nh"><b>Mimosa</b><span class="st">●●●<span class="off">●●</span></span></div><p>La fleur jaune de février, la douceur, la fête des grands-mères.</p><p class="ph">«&nbsp;Le Mimosa de Mamie.&nbsp;»</p><p class="vg">Nom très utilisé (restaurants, cosmétiques).</p></div></div><div class="nc"><div class="nl"><i></i><span>hop</span></div><div class="nb"><div class="nh"><b>Hop</b><span class="st">●●●<span class="off">●●</span></span></div><p>L'élan joyeux&nbsp;: «&nbsp;Hop, au mur&nbsp;!&nbsp;».</p><p class="ph">«&nbsp;Hop, c'est envoyé.&nbsp;»</p><p class="vg">Trop court pour être trouvé en ligne.</p></div></div></div>
+</div></div></section>
+
+<section id="s03"><div class="grid"><div class="k"><span class="num">03</span> · À vérifier</div><div>
+<h2>Avant de trancher</h2>
+<ol class="next">
+ <li><b>INPI</b>&nbsp;: chercher Smala, Coucou et Ribambelle sur data.inpi.fr, classes 9 (appareils) et 38 (télécommunications).</li>
+ <li><b>Adresse web et Instagram</b>&nbsp;: vérifier smala.fr, la-smala.fr, @smala.famille.</li>
+ <li><b>Test en entretien</b>&nbsp;: dire «&nbsp;Smala&nbsp;» et «&nbsp;un coucou&nbsp;» à quelques parents et enfants, sans explication, et noter ce qu'ils imaginent.</li>
+ <li><b>Logo</b>&nbsp;: une fois le nom choisi, je l'intègre à l'univers Soleil (logo, site, appli, Instagram).</li>
+</ol>
+<p class="note" style="margin-top:16px">Statut&nbsp;: propositions de Lucas pour l'équipe. Aucune disponibilité vérifiée&nbsp;; les noms déjà utilisés cités (Tournesol, applis Coucou) sont à confirmer. Complète 1-1-pistes-de-noms.html et 1-1-da-trois-univers.html. IA utilisée&nbsp;: Claude (Claude Code) pour proposer et classer les noms.</p>
+</div></div></section>
+<footer class="k">PFR Générations Connectées · Noms univers Soleil · 22 octobre 2026</footer>
+</div>
+</body>
+</html>
