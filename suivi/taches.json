@@ -711,7 +711,7 @@
           "statut": "a_valider",
           "qui": "Clément",
           "date": "2026-10-22",
-          "note": "Page faite par Clément le 22/10 : 4 stacks notées sur 8 critères (échelle écrite), classées sur 100 avec barres, filtre par critère, détail au clic ; chaque note porte son statut (testé, documenté, estimé) et sa source. A 71, D 64 ; B et C éliminées (données hors Europe). Aucune note testée pour l'instant. À relire par Lucas avant le 24/10.",
+          "note": "Page faite par Clément le 22/10 : 4 stacks notées sur 8 critères (échelle écrite), classées sur 100 avec barres, filtre par critère, détail au clic ; chaque note porte son statut (testé, documenté, estimé) et sa source. Stack A nommée par ses briques (React + Next.js + Supabase + n8n, construit avec Claude Code) : 71 ; D 64 ; B et C éliminées (données hors Europe). Aucune note testée pour l'instant. À relire par Lucas avant le 24/10.",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-classement-stacks.html"
         },
         {
