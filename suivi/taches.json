@@ -719,7 +719,8 @@
           "statut": "en_cours",
           "qui": "Lucas et Clément",
           "date": "2026-10-22",
-          "note": "4 thèmes : même prompt, captures, note, outil retenu. Cible 29/10."
+          "note": "4 thèmes : même prompt, captures, note, outil retenu. Cible 29/10. Prompts écrits par Clément le 22/10 (contexte commun, un prompt par thème, résultat attendu, cas invalide, preuve, grille de notation, fiche du cours, données fictives, garde-fous) : à lancer sur Claude, ChatGPT, Gemini, Mistral et un outil spécialisé par thème.",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/clement/1-1-prompts-boite-a-outils-ia.md"
         },
         {
           "titre": "Boîte à outils IA : tests réels par thème (visuels, analyse d'entretiens)",
