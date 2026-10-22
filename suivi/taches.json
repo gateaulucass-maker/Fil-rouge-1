@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-22T11:32",
+  "mise_a_jour": "2026-10-22T12:03",
   "phases": [
     {
       "id": "P0",
@@ -682,6 +682,14 @@
           "date": "2026-10-22",
           "lien": "S1-2026-2027/02-besoins/rendus/2-2-hypotheses-critiques-equipe.html",
           "note": "Rendu retenu : compte rendu de Camille qui fusionne les fiches de Clément (2 versions), Lucas et Camille en 20 hypothèses sourcées et 6 critiques (P1 choix du parent, P2 répondre par la voix, P4 écran accompagné / E1 oubli de partager, E2 achat avant l'incident, E3 corvée), avec l'objectif de recherche. Brouillons de chacun dans interne/."
+        },
+        {
+          "titre": "Atelier 2 : deux guides d'entretien parent et enfant (12 + 12 questions)",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-10-22",
+          "lien": "S1-2026-2027/02-besoins/interne/lucas/2-3-guides-entretien.html",
+          "note": "Marché, pas produit. Trame en 5 temps, 6 axes justifiés, profils adaptatifs, relances selon la réponse, 20 hypothèses couvertes, seuils de contradiction, phrases à éviter, éthique. À relire en équipe avant l'annexe."
         }
       ]
     },

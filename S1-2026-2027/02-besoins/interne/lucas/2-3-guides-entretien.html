@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guides d'entretien</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Style suisse : grille, étiquettes mono, fond blanc, bleu et orange en accents. */
+:root {
+  --bg: #ffffff;
+  --fg: #111418;
+  --muted: #5f6670;
+  --hair: #dcdfe3;
+  --soft: #f3f4f6;
+  --blue: #1f3fbf;
+  --blue-soft: #eef1fb;
+  --orange: #e8571c;
+  --orange-soft: #fdf0ea;
+  --display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.55 var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 48px);
+  padding-block: clamp(28px, 6vw, 72px) 64px;
+}
+.k {
+  font: 11.5px var(--mono);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.meta {
+  display: flex; flex-wrap: wrap; gap: 6px 28px;
+  border-top: 2px solid var(--fg);
+  padding-top: 12px;
+}
+.meta b { color: var(--fg); font-weight: 500; }
+h1 {
+  margin: clamp(24px, 4vw, 44px) 0 0;
+  font-weight: 800;
+  font-size: clamp(40px, 7.5vw, 96px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+h1 span { color: var(--blue); }
+.grid { display: grid; grid-template-columns: 3fr 9fr; gap: 0 24px; }
+.grid > * { min-width: 0; }
+.lead {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+}
+section { margin-top: clamp(48px, 7vw, 88px); }
+section > .grid { border-top: 1px solid var(--fg); padding-top: 14px; }
+h2 {
+  margin: 0 0 18px;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+p { margin: 0 0 12px; max-width: 68ch; }
+.num { font: 500 13px var(--mono); color: var(--blue); }
+
+/* Chiffres clés */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--hair); margin-top: 32px; }
+.stats div { padding: 14px 16px 14px 0; border-right: 1px solid var(--hair); }
+.stats div:last-child { border-right: 0; }
+.stats b { display: block; font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.stats b.o { color: var(--orange); }
+.stats b.b { color: var(--blue); }
+
+/* Fiche produit */
+.spec { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 32px; }
+.spec dl { margin: 0; }
+.row { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hair); }
+.row dt { font: 11.5px/1.9 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.row dd { margin: 0; }
+
+/* Points de vigilance */
+.alert { display: grid; gap: 0; }
+.al { display: grid; grid-template-columns: 4ch 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.al .n { font: 800 22px var(--display); color: var(--orange); }
+.al h3 { margin: 0 0 4px; font-size: 18px; letter-spacing: -.01em; }
+.al p { margin: 0 0 4px; }
+.al .fix { color: var(--blue); font-weight: 500; }
+
+/* Tableau des réponses */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font: 11.5px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--fg); }
+td { vertical-align: top; padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); }
+td:first-child { font: 500 13px var(--mono); color: var(--blue); width: 4ch; }
+td.src { width: 11ch; }
+.tag { display: inline-block; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 6px; white-space: nowrap; }
+.tag.eq { background: var(--soft); color: var(--fg); }
+.tag.reco { background: var(--blue-soft); color: var(--blue); }
+.tag.warn { background: var(--orange-soft); color: var(--orange); }
+tr.theme td { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: .07em; color: var(--fg); background: var(--soft); padding: 8px 10px; width: auto; }
+
+/* Prix */
+.prices { width: 100%; }
+.offer { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+.offer > div { border-top: 3px solid var(--blue); padding-top: 12px; }
+.offer > div.o { border-color: var(--orange); }
+.offer b.p { display: block; font-size: 40px; font-weight: 800; letter-spacing: -.04em; line-height: 1.1; }
+.offer ul { margin: 8px 0 0; padding-left: 18px; }
+
+ol.next { margin: 0; padding-left: 22px; max-width: 68ch; }
+ol.next li { padding: 6px 0; }
+.src-list { font: 13px/1.7 var(--mono); color: var(--muted); }
+.src-list a { color: var(--blue); }
+footer { margin-top: 64px; border-top: 1px solid var(--hair); padding-top: 12px; }
+
+@media (max-width: 760px) {
+  .grid { grid-template-columns: 1fr; }
+  .grid > .k { margin-bottom: 10px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats div:nth-child(2) { border-right: 0; }
+  .spec, .offer { grid-template-columns: 1fr; }
+  td.src { width: auto; }
+}
+
+h3.sub { margin: 28px 0 10px; font-size: 20px; letter-spacing: -.015em; }
+.note { font-size: 14px; color: var(--muted); }
+.toc { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:28px; font:12px var(--mono); }
+.toc a { color: var(--blue); text-decoration:none; border-bottom:1px solid var(--hair); }
+.thesis { margin-top: 32px; border-left: 4px solid var(--orange); padding: 4px 0 4px 18px; max-width: 70ch; }
+.thesis p { margin: 6px 0 0; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.45; }
+.prod, .spec2 { display:grid; grid-template-columns: repeat(4, 1fr); gap: 0 20px; }
+.spec2 { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+.prod > div, .spec2 > div { border-top: 3px solid var(--blue); padding-top: 10px; }
+.prod p, .spec2 p { margin: 6px 0 0; font-size: 15px; }
+.ideas { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+.idea { border-top: 4px solid var(--fg); padding: 12px 0 8px; display:flex; flex-direction:column; min-width:0; }
+.ihead { display:flex; justify-content:space-between; align-items:baseline; gap: 8px; }
+.inum { font: 800 44px/1 var(--display); color: var(--orange); letter-spacing: -.05em; }
+.eff { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .05em; padding: 2px 7px; white-space: nowrap; }
+.eff.e1 { background: var(--blue-soft); color: var(--blue); }
+.eff.e2 { background: var(--soft); color: var(--fg); }
+.eff.e3 { background: var(--orange-soft); color: var(--orange); }
+.idea h3 { margin: 10px 0 6px; font-size: 20px; letter-spacing: -.015em; }
+.idea p { margin: 0 0 10px; font-size: 15px; }
+.idea dl { margin: auto 0 0; font-size: 13px; border-top: 1px solid var(--hair); padding-top: 8px; }
+.idea dt { font: 11px var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.idea dd { margin: 0 0 6px; }
+.src-list h4 { margin: 14px 0 2px; font: 500 12px var(--mono); text-transform: uppercase; letter-spacing:.06em; color: var(--fg); }
+td b { font-weight: 700; }
+@media (max-width: 1000px) { .ideas { grid-template-columns: repeat(2, 1fr); } .prod { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .ideas, .prod, .spec2 { grid-template-columns: 1fr; } }
+
+.q { border-top: 1px solid var(--fg); padding: 16px 0 10px; display:grid; grid-template-columns: 6ch 1fr; gap: 0 16px; }
+.q > div { min-width: 0; }
+.q .id { font: 800 24px var(--display); color: var(--blue); letter-spacing: -.03em; }
+.q.crit .id { color: var(--orange); }
+.q h3 { margin: 4px 0 8px; font-size: clamp(19px, 2vw, 23px); letter-spacing: -.015em; line-height: 1.25; max-width: 50ch; text-wrap: balance; }
+.q .row { grid-template-columns: 17ch 1fr; }
+.q .row dd b { color: var(--orange); }
+ul.br { margin: 0; padding: 0; list-style: none; }
+ul.br li { padding: 2px 0; }
+.si { font: 500 13px var(--mono); color: var(--blue); }
+.axes { display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 8px; }
+.axes > div { border-top: 3px solid var(--blue); padding-top: 10px; min-width: 0; }
+.axes > div.o { border-color: var(--orange); }
+.axes h3 { margin: 6px 0 6px; font-size: 18px; letter-spacing: -.01em; line-height: 1.25; }
+.axes p { font-size: 15px; }
+.funnel { display:grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 8px; }
+.funnel > div { border-left: 1px solid var(--hair); padding: 8px 12px; min-width: 0; }
+.funnel > div:first-child { border-left: 0; padding-left: 0; }
+.funnel b { display:block; font-size: 17px; }
+.funnel span { font-size: 14px; color: var(--muted); }
+.prof { display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.prof > div { min-width: 0; }
+.cmp td:first-child { width: auto; font: 500 13px var(--mono); }
+.ask li { padding: 6px 0; }
+@media (max-width: 760px) {
+  .axes, .prof { grid-template-columns: 1fr; }
+  .funnel { grid-template-columns: 1fr; }
+  .funnel > div { border-left: 0; border-top: 1px solid var(--hair); padding-left: 0; }
+  .q { grid-template-columns: 1fr; }
+  .q .row { grid-template-columns: 1fr; gap: 2px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="meta k">
+  <span><b>PFR Générations Connectées</b></span>
+  <span>Bloc 02 · Besoins utilisateurs</span>
+  <span>Séance 2 · Atelier 2</span>
+  <span>Équipe Clément, Camille, Lucas</span>
+  <span>22 octobre 2026</span>
+</div>
+<h1>Deux guides d'entretien, <span>12 questions chacun</span></h1>
+<p class="lead">Atelier 2 «&nbsp;Deux guides, deux publics&nbsp;»&nbsp;: un guide pour le parent, un pour l'enfant, sur la trame en 5 temps, écrits à partir des 20 hypothèses de l'équipe et surtout des 6 critiques. On interroge le marché, pas notre produit&nbsp;: Le Cadre n'est jamais montré ni cité pendant l'entretien.</p>
+<div class="stats">
+  <div><span class="k">Questions parent</span><b>12</b></div>
+  <div><span class="k">Questions enfant</span><b>12</b></div>
+  <div><span class="k">Hypothèses couvertes</span><b class="o">20 / 20</b></div>
+  <div><span class="k">Durée visée</span><b class="b">35 min</b></div>
+</div>
+<div class="thesis"><span class="k">Le principe</span><p>Chaque question demande <b>un fait vécu</b> («&nbsp;la dernière fois que…&nbsp;»), jamais un avis sur un futur produit («&nbsp;aimeriez-vous…&nbsp;»). Les relances changent selon <b>le profil</b> de la personne et <b>sa réponse</b>&nbsp;: c'est ce qui rend le guide adaptatif. Chaque hypothèse critique a sa question, et on sait d'avance <b>ce qui la contredirait</b>.</p></div>
+<div class="tablewrap" style="margin-top:28px"><table><thead><tr><th>Consigne de l'atelier 2</th><th>Dans nos guides</th></tr></thead><tbody>
+<tr><td style="width:auto;font:inherit;color:inherit">Chaque hypothèse donne au moins une question</td><td>Les 20 sont couvertes&nbsp;: 6 par une question principale, 14 par une question ou une relance (section 06).</td></tr>
+<tr><td style="width:auto;font:inherit;color:inherit">Questions ouvertes, au passé, sans jargon</td><td>Toutes au passé ou sur un fait vécu&nbsp;; ni «&nbsp;aidant&nbsp;», ni «&nbsp;senior&nbsp;», ni «&nbsp;dispositif&nbsp;» devant la personne.</td></tr>
+<tr><td style="width:auto;font:inherit;color:inherit">Parent&nbsp;: quotidien, autonomie, objets, ce qui rassure</td><td>P01 quotidien · P06, P07, P08 autonomie · P05 objets utilisés ou abandonnés · P11 ce qui rassure.</td></tr>
+<tr><td style="width:auto;font:inherit;color:inherit">Enfant&nbsp;: inquiétudes, rituels, achats tentés, déclencheur</td><td>E01, E02 inquiétudes · E05, E06, E07 rituels · E08, E10 achats tentés · E09 ce qui déclencherait un achat.</td></tr>
+<tr><td style="width:auto;font:inherit;color:inherit">2 relances par question clé</td><td>De 2 à 4 relances adaptatives par question, choisies selon la réponse et le profil.</td></tr>
+<tr><td style="width:auto;font:inherit;color:inherit">À produire&nbsp;: 2 guides de 10 à 12 questions, en annexe du dossier</td><td>12 + 12, imprimables tels quels pour l'annexe.</td></tr>
+</tbody></table></div>
+<nav class="toc"><a href="#s01">01 Nos choix</a><a href="#s02">02 Le déroulé</a><a href="#s03">03 Le profil d'abord</a><a href="#s04">04 Guide parent</a><a href="#s05">05 Guide enfant</a><a href="#s06">06 Couverture</a><a href="#s07">07 À ne pas dire</a><a href="#s08">08 Éthique et logistique</a><a href="#s09">09 À trancher</a></nav>
+
+<section id="s01"><div class="grid"><div class="k"><span class="num">01</span> · Nos choix</div><div>
+<h2>Six axes de stratégie, et pourquoi</h2>
+<div class="axes">
+ <div class="o"><span class="k">Axe 1</span><h3>Le marché, pas le produit</h3><p>Si on montre Le Cadre, les gens sont polis et disent oui. On cherche ce qu'ils font aujourd'hui&nbsp;: c'est ce qui dira si le besoin existe. Le produit sera testé plus tard, avec le prototype.</p></div>
+ <div class="o"><span class="k">Axe 2</span><h3>Des faits passés, pas des intentions</h3><p>«&nbsp;La dernière fois que…&nbsp;» donne un souvenir précis&nbsp;; «&nbsp;est-ce que vous…&nbsp;» donne une image idéale de soi. On applique la règle des exemples du cours à chaque question.</p></div>
+ <div class="o"><span class="k">Axe 3</span><h3>Une question par hypothèse critique</h3><p>P1, P2, P4, E1, E2 et E3 ont chacune une question dédiée (en orange) avec un seuil de contradiction repris du compte rendu de l'équipe. Le reste du guide donne le contexte.</p></div>
+ <div><span class="k">Axe 4</span><h3>L'entonnoir</h3><p>On part de la journée, puis le lien, puis les objets, puis le choix, et l'aide en dernier. Les sujets sensibles (dépendance, surveillance) arrivent quand la confiance est là.</p></div>
+ <div><span class="k">Axe 5</span><h3>Le miroir parent et enfant</h3><p>Trois paires de questions se répondent (P09 et E01, P03 et E04, P09 et E11). En interrogeant un parent et son enfant, on voit l'écart entre ce que l'un croit et ce que l'autre vit.</p></div>
+ <div><span class="k">Axe 6</span><h3>70 % lien, 30 % sécurité</h3><p>La règle de l'équipe. Une seule question d'aide côté parent (P10), deux côté enfant (E02, E11)&nbsp;; la sécurité ne revient qu'en relance, si la personne en parle. Sinon on revient avec un entretien sur la téléassistance, pas sur le lien.</p></div>
+</div>
+</div></div></section>
+
+<section id="s02"><div class="grid"><div class="k"><span class="num">02</span> · Le déroulé</div><div>
+<h2>Un entonnoir en cinq temps</h2>
+<div class="funnel">
+ <div><span class="k">5 min</span><b>Ouvrir</b><span>La journée, les signaux. Mettre en confiance.</span></div>
+ <div><span class="k">10 min</span><b>Le lien</b><span>Nouvelles, photos, réponses, partage. P2, E1.</span></div>
+ <div><span class="k">8 min</span><b>Objets ou tenir</b><span>Ce qu'on garde, ce qu'on lâche. P4, E3.</span></div>
+ <div><span class="k">8 min</span><b>Choisir ou acheter</b><span>Imposé ou choisi, ce qui fait acheter. P1, E2.</span></div>
+ <div><span class="k">4 min</span><b>Clore</b><span>L'imprévu, et qui rencontrer ensuite.</span></div>
+</div>
+<p class="note" style="margin-top:14px">Les questions de couverture sont en orange. Si le temps manque, on les garde et on saute les autres. Avec un parent fatigué, on s'arrête à 25 minutes&nbsp;: P03, P06 et P07 suffisent pour ses trois hypothèses critiques.</p>
+</div></div></section>
+
+<section id="s03"><div class="grid"><div class="k"><span class="num">03</span> · Le profil d'abord</div><div>
+<h2>Ce qu'on repère dans les 5 premières minutes</h2>
+<p>Le guide est adaptatif&nbsp;: la question d'ouverture sert aussi à classer la personne. Le profil choisit les relances, pas les questions. Tout le monde a les mêmes questions principales, sinon on ne peut pas comparer.</p>
+<div class="prof">
+ <div><span class="k">Parent</span><div class="tablewrap"><table class="cmp"><tbody>
+  <tr><td>Connecté</td><td>Utilise une tablette ou un smartphone au moins chaque semaine. On creuse ce qu'il en fait (P05, P06).</td></tr>
+  <tr><td>Hors ligne</td><td>Téléphone fixe ou mobile simple. On creuse le papier, la télé, les visites (P04, P05).</td></tr>
+  <tr><td>Entouré</td><td>Plusieurs contacts par semaine. On creuse qui prend l'initiative (P02).</td></tr>
+  <tr><td>Isolé</td><td>Peu de contacts. On reste doux, on ne force pas, on raccourcit.</td></tr>
+ </tbody></table></div></div>
+ <div><span class="k">Enfant</span><div class="tablewrap"><table class="cmp"><tbody>
+  <tr><td>À distance</td><td>Plus d'une heure de trajet. On creuse les signaux à distance (E01, E06).</td></tr>
+  <tr><td>Proche</td><td>Passe le voir chaque semaine. On creuse ce que les visites remplacent.</td></tr>
+  <tr><td>Seul aidant</td><td>Enfant unique ou seul à s'occuper du parent. On creuse la charge (E05, E07).</td></tr>
+  <tr><td>Déjà acheteur</td><td>A déjà acheté un objet ou un service pour le parent. On creuse le moment de l'achat (E08, E10).</td></tr>
+ </tbody></table></div></div>
+</div>
+</div></div></section>
+
+<section id="s04"><div class="grid"><div class="k"><span class="num">04</span> · Guide parent</div><div>
+<h2>Le parent, 12 questions</h2>
+<p>Cible&nbsp;: parent de 75 ans et plus, autonome, qui vit seul chez lui. On le vouvoie, on parle de «&nbsp;vos enfants&nbsp;», jamais de «&nbsp;personne âgée&nbsp;» ni d'«&nbsp;aidant&nbsp;». Phrase d'accueil&nbsp;: «&nbsp;Je fais une étude pour mon école sur la façon dont les familles gardent le contact. Il n'y a pas de bonne ou de mauvaise réponse, c'est votre expérience qui m'intéresse.&nbsp;»</p>
+<h3 class="sub">Ouvrir</h3>
+<div class="q"><span class="id">P01</span><div>
+<span class="k">Ouvrir · Contexte, P6, P7</span>
+<h3>«&nbsp;Racontez-moi votre journée d'hier, du réveil au coucher.&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Question du cours, gardée telle quelle&nbsp;: elle met en confiance et donne les moments de contact sans qu'on les demande. On note chaque personne citée et chaque écran utilisé.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si il cite un enfant ou un appel</span> → «&nbsp;À quel moment&nbsp;? Qui a appelé l'autre&nbsp;?&nbsp;»</li><li><span class="si">Si la journée est vide de contacts</span> → ne pas insister&nbsp;; passer à 02 et revenir plus tard sur la semaine plutôt que la veille</li><li><span class="si">Si il cite un écran (télé, tablette, téléphone)</span> → le noter pour 05 et 06</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Sert à remplir le profil (connecté ou hors ligne), pas à valider.</dd></div></dl></div></div>
+<h3 class="sub">Le lien aujourd'hui</h3>
+<div class="q"><span class="id">P02</span><div>
+<span class="k">Le lien aujourd'hui · P2</span>
+<h3>«&nbsp;La dernière fois que vous avez eu des nouvelles d'un de vos enfants ou petits-enfants, comment c'est arrivé&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>On part d'un fait récent et précis. On cherche qui prend l'initiative et par quel canal, sans parler de photos ni d'objet.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si par téléphone</span> → «&nbsp;Qui a appelé&nbsp;? C'est souvent comme ça&nbsp;?&nbsp;»</li><li><span class="si">Si par photo ou message</span> → «&nbsp;Sur quoi l'avez-vous reçue&nbsp;? Vous l'avez montrée à quelqu'un&nbsp;?&nbsp;»</li><li><span class="si">Si il ne se souvient pas</span> → élargir&nbsp;: «&nbsp;Et la semaine dernière&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Les nouvelles arrivent surtout à l'initiative du parent&nbsp;: le lien ne dépend pas des envois des enfants.</dd></div></dl></div></div>
+<div class="q crit"><span class="id">P03</span><div>
+<span class="k">Le lien aujourd'hui · P2 critique</span>
+<h3>«&nbsp;Et juste après, qu'avez-vous fait&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>C'est le cœur de P2&nbsp;: le parent répond-il, et par quel moyen&nbsp;? On ne propose aucune réponse possible pour ne pas l'orienter.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si il a rappelé</span> → «&nbsp;Pour dire quoi&nbsp;? Qu'est-ce qui vous a donné envie d'appeler&nbsp;?&nbsp;»</li><li><span class="si">Si il n'a rien fait</span> → «&nbsp;C'est habituel&nbsp;? Vous auriez aimé lui dire quelque chose&nbsp;?&nbsp;»</li><li><span class="si">Si il a répondu par écrit ou par un signe</span> → «&nbsp;Comment&nbsp;? Qui vous a montré&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd><b>Fausse si</b> la plupart ne répondent pas du tout, ou répondent autrement que par la voix.</dd></div></dl></div></div>
+<div class="q"><span class="id">P04</span><div>
+<span class="k">Le lien aujourd'hui · P5, P3</span>
+<h3>«&nbsp;Montrez-moi la dernière photo de famille qu'on vous a donnée ou envoyée. Où est-elle aujourd'hui&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>On demande un objet réel plutôt qu'un avis&nbsp;: imprimée sur le frigo, rangée dans un tiroir ou restée dans le téléphone. Le lieu dit ce qu'il en fait et s'il la montre.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si elle est exposée</span> → «&nbsp;Qui l'a mise là&nbsp;? Vous la montrez quand on vous rend visite&nbsp;?&nbsp;»</li><li><span class="si">Si elle est dans le téléphone</span> → «&nbsp;Comment faites-vous pour la revoir&nbsp;?&nbsp;»</li><li><span class="si">Si il n'en a pas</span> → «&nbsp;Et avant, quand on vous en donnait&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Les photos reçues ne sont ni gardées ni montrées&nbsp;: l'image n'est pas le bon support du lien.</dd></div></dl></div></div>
+<h3 class="sub">Objets et écrans</h3>
+<div class="q"><span class="id">P05</span><div>
+<span class="k">Objets et écrans · P3, P4, P8, P10</span>
+<h3>«&nbsp;Quels objets utilisez-vous tous les jours&nbsp;? Lesquels avez-vous abandonnés&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Question du cours, centrée ici sur l'abandon&nbsp;: un objet abandonné en dit plus qu'un objet aimé. On fait raconter le moment de l'arrêt.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si il cite un objet abandonné</span> → «&nbsp;Quand l'avez-vous laissé&nbsp;? Qu'est-ce qui s'est passé ce jour-là&nbsp;?&nbsp;»</li><li><span class="si">Si profil hors ligne</span> → s'arrêter sur la télé, la radio, le téléphone fixe&nbsp;: ce qui marche sans manipulation</li><li><span class="si">Si profil connecté</span> → s'arrêter sur la tablette ou le smartphone&nbsp;: pour quoi exactement&nbsp;?</li><li><span class="si">Si il cite un bracelet ou un appareil qui sonne</span> → «&nbsp;Quand l'enlevez-vous&nbsp;? Il vous est arrivé de le débrancher&nbsp;?&nbsp;» (P8, P10)</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Les objets gardés demandent des manipulations régulières&nbsp;: la simplicité n'est pas la condition d'adoption.</dd></div></dl></div></div>
+<div class="q crit"><span class="id">P06</span><div>
+<span class="k">Objets et écrans · P4 critique</span>
+<h3>«&nbsp;Le dernier appareil que vous avez appris à utiliser&nbsp;: comment ça s'est passé&nbsp;? Qui vous a aidé, et combien de temps&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Teste P4 sur un fait réel. On mesure qui accompagne, combien de visites et ce qui a fait tenir ou lâcher.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si un proche l'a aidé</span> → «&nbsp;Combien de fois est-il venu&nbsp;? Qu'est-ce qui aurait manqué sans lui&nbsp;?&nbsp;»</li><li><span class="si">Si il a appris seul</span> → «&nbsp;Comment avez-vous fait&nbsp;? Qu'est-ce qui vous a donné envie&nbsp;?&nbsp;»</li><li><span class="si">Si aucun appareil récent</span> → «&nbsp;Et un appareil qu'on vous a offert et que vous n'utilisez pas&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd><b>Fausse si</b> plusieurs parents ont adopté seuls un écran (tablette, smartphone) pour voir leur famille.</dd></div></dl></div></div>
+<h3 class="sub">Choisir ou subir</h3>
+<div class="q crit"><span class="id">P07</span><div>
+<span class="k">Choisir ou subir · P1 critique</span>
+<h3>«&nbsp;Est-ce qu'un proche a déjà installé ou réglé quelque chose chez vous sans vous le demander&nbsp;? Qu'en avez-vous fait&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>La question la plus directe sur P1, mais par un fait passé. On ne prononce jamais le mot surveillance&nbsp;: c'est à lui de l'apporter.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si oui, il l'a gardé</span> → «&nbsp;Qu'est-ce qui a fait que vous l'avez gardé&nbsp;?&nbsp;»</li><li><span class="si">Si oui, il l'a retiré ou débranché</span> → «&nbsp;Quand&nbsp;? Vous en avez parlé avec la personne&nbsp;?&nbsp;»</li><li><span class="si">Si jamais</span> → «&nbsp;Et quelque chose que vous avez choisi vous-même pour vos enfants&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd><b>Fausse si</b> les parents ne font aucune différence entre ce qu'ils ont choisi et ce qu'on leur a installé.</dd></div></dl></div></div>
+<div class="q"><span class="id">P08</span><div>
+<span class="k">Choisir ou subir · P1, P5</span>
+<h3>«&nbsp;Qu'est-ce qui vous fait sentir chez vous, libre&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Question du cours. Elle dit ce qu'un objet ne doit jamais toucher et ce qui, au contraire, fait partie de «&nbsp;chez soi&nbsp;».</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si il parle d'objets ou de photos</span> → «&nbsp;Lesquels&nbsp;? Qui vous les a donnés&nbsp;?&nbsp;»</li><li><span class="si">Si il parle de ne pas être dérangé</span> → «&nbsp;Qu'est-ce qui vous enlèverait cette impression&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Sert à comprendre, pas à valider.</dd></div></dl></div></div>
+<div class="q"><span class="id">P09</span><div>
+<span class="k">Choisir ou subir · P1</span>
+<h3>«&nbsp;Vos enfants savent-ils comment vous allez au quotidien&nbsp;? Comment le savent-ils&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Miroir de la question 01 du guide enfant. On compare ensuite ce que dit le parent et ce que dit son enfant.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si c'est lui qui le dit</span> → «&nbsp;Y a-t-il des choses que vous préférez ne pas leur dire&nbsp;? Pourquoi&nbsp;?&nbsp;»</li><li><span class="si">Si ils le devinent ou vérifient</span> → «&nbsp;Comment&nbsp;? Ça vous convient&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Le parent accepte que l'enfant vérifie sans lui demander&nbsp;: P1 perd de sa force.</dd></div></dl></div></div>
+<h3 class="sub">L'aide</h3>
+<div class="q"><span class="id">P10</span><div>
+<span class="k">L'aide · P7, P6, P9</span>
+<h3>«&nbsp;La dernière fois que vous avez eu besoin d'aide, comment ça s'est passé&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Question du cours. Seule question sécurité du guide parent&nbsp;: on cherche qui il appelle en premier, un proche ou un service, et ce qu'il attendait vraiment.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si il a appelé un proche</span> → «&nbsp;Pourquoi cette personne&nbsp;? Qu'est-ce qu'elle a fait&nbsp;?&nbsp;»</li><li><span class="si">Si il a utilisé un bouton ou un service</span> → «&nbsp;Qu'est-ce que vous attendiez quand vous avez appuyé&nbsp;?&nbsp;»</li><li><span class="si">Si il n'a appelé personne</span> → «&nbsp;Qu'est-ce qui vous a retenu&nbsp;?&nbsp;»</li><li><span class="si">Si il a un dispositif d'alerte</span> → «&nbsp;Qu'est-ce qui vous a décidé à le prendre&nbsp;? C'était avant ou après cette fois-là&nbsp;?&nbsp;» (P9)</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Le premier réflexe est un service et non la famille.</dd></div></dl></div></div>
+<h3 class="sub">Ce qui rassure</h3>
+<div class="q"><span class="id">P11</span><div>
+<span class="k">Ce qui rassure · P6, P2, P5</span>
+<h3>«&nbsp;Racontez-moi un moment récent où vous vous êtes senti tranquille, rassuré. Qu'est-ce qui s'était passé&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Thème demandé par l'atelier 2 côté parent. On cherche la source réelle de la tranquillité&nbsp;: une voix, une visite, un objet, une habitude. Cela dit ce qu'un objet de lien peut ou non apporter.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si une voix ou un appel</span> → «&nbsp;Qui&nbsp;? Qu'est-ce qu'il a dit qui vous a fait du bien&nbsp;?&nbsp;»</li><li><span class="si">Si une visite ou une photo</span> → «&nbsp;Qu'est-ce qui vous est resté ensuite&nbsp;? Vous l'avez montrée à quelqu'un&nbsp;?&nbsp;»</li><li><span class="si">Si rien ne lui vient</span> → «&nbsp;Et à l'inverse, la dernière fois que vous étiez inquiet&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>La tranquillité ne vient jamais de la famille&nbsp;: le lien n'est pas ce qui rassure le parent.</dd></div></dl></div></div>
+<h3 class="sub">Clore</h3>
+<div class="q"><span class="id">P12</span><div>
+<span class="k">Clore · Toutes</span>
+<h3>«&nbsp;Y a-t-il quelque chose dont on n'a pas parlé et qui compte pour vous dans vos liens avec votre famille&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Laisse la place à ce qu'on n'a pas prévu. Puis on demande&nbsp;: «&nbsp;Qui d'autre devrais-je rencontrer&nbsp;?&nbsp;»</dd></div></dl></div></div>
+</div></div></section>
+
+<section id="s05"><div class="grid"><div class="k"><span class="num">05</span> · Guide enfant</div><div>
+<h2>L'enfant, 12 questions</h2>
+<p>Cible&nbsp;: enfant de 40 à 65 ans qui a un parent autonome de 75 ans et plus. On dit «&nbsp;votre mère&nbsp;» ou «&nbsp;votre père&nbsp;» selon le cas. Phrase d'accueil&nbsp;: «&nbsp;Je fais une étude pour mon école sur la façon dont les familles gardent le contact avec un parent âgé. Je ne vends rien. Je vais surtout vous demander de me raconter des moments précis.&nbsp;»</p>
+<h3 class="sub">Ouvrir</h3>
+<div class="q"><span class="id">E01</span><div>
+<span class="k">Ouvrir · Contexte, E6</span>
+<h3>«&nbsp;Comment savez-vous que votre mère ou votre père va bien&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Question du cours, gardée telle quelle. Elle révèle les signaux qu'il utilise déjà, sans parler d'objet.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si il l'appelle</span> → «&nbsp;Qui appelle qui&nbsp;? À quelle fréquence&nbsp;? Ça a changé depuis un an&nbsp;?&nbsp;»</li><li><span class="si">Si il passe le voir</span> → le noter «&nbsp;proche&nbsp;»&nbsp;; revenir sur la distance en 06</li><li><span class="si">Si par un voisin ou un tiers</span> → «&nbsp;Qui&nbsp;? Comment c'est organisé&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Sert à remplir le profil (proche ou à distance, seul ou en fratrie).</dd></div></dl></div></div>
+<div class="q"><span class="id">E02</span><div>
+<span class="k">Ouvrir · E2, E6, E10</span>
+<h3>«&nbsp;Racontez-moi la dernière fois que vous vous êtes inquiété pour lui.&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Question du cours. L'inquiétude est souvent le moment où l'on achète&nbsp;: on garde en tête le lien avec 08.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si après un incident (chute, hôpital)</span> → «&nbsp;Qu'avez-vous fait ensuite&nbsp;? Vous avez acheté ou installé quelque chose&nbsp;?&nbsp;»</li><li><span class="si">Si à cause d'un silence</span> → «&nbsp;Combien de temps sans nouvelles&nbsp;? Qu'avez-vous fait&nbsp;?&nbsp;»</li><li><span class="si">Si prévenu par un appareil ou un centre</span> → «&nbsp;Qui vous a prévenu&nbsp;? Vous auriez voulu l'être autrement&nbsp;?&nbsp;» (E10)</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>On le compare ensuite à 08&nbsp;: l'inquiétude et l'achat arrivent-ils au même moment&nbsp;?</dd></div></dl></div></div>
+<h3 class="sub">Partager</h3>
+<div class="q crit"><span class="id">E03</span><div>
+<span class="k">Partager · E1 critique</span>
+<h3>«&nbsp;Prenez votre téléphone&nbsp;: les cinq dernières photos que vous avez prises, à qui les avez-vous envoyées&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>On observe au lieu de demander&nbsp;: la galerie ne ment pas. C'est le test le plus direct de E1 et il prend deux minutes.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si pas au parent</span> → «&nbsp;Qu'est-ce qui a fait que non&nbsp;?&nbsp;» (on laisse venir&nbsp;: oubli, temps, outil, envie)</li><li><span class="si">Si au parent aussi</span> → «&nbsp;Par où&nbsp;? Il vous a répondu&nbsp;? Comment&nbsp;?&nbsp;»</li><li><span class="si">Si il refuse de montrer</span> → «&nbsp;Sans les montrer&nbsp;: à qui en général&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd><b>Fausse si</b> la majorité envoie déjà des photos au parent chaque semaine.</dd></div></dl></div></div>
+<div class="q"><span class="id">E04</span><div>
+<span class="k">Partager · E1, P2</span>
+<h3>«&nbsp;La dernière fois que votre parent a vu une photo de vous ou des petits-enfants, comment l'a-t-il eue&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Complète 03 côté parent&nbsp;: par la poste, sur le téléphone, en visite. Et sa réaction, que l'enfant a vue ou entendue.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si il a réagi</span> → «&nbsp;Comment l'avez-vous su&nbsp;? Un appel, un message&nbsp;?&nbsp;»</li><li><span class="si">Si pas de réaction</span> → «&nbsp;Ça vous a fait quoi&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Le parent ne reçoit presque jamais de photo, mais l'enfant ne le vit pas comme un manque.</dd></div></dl></div></div>
+<h3 class="sub">Tenir</h3>
+<div class="q crit"><span class="id">E05</span><div>
+<span class="k">Tenir · E3 critique</span>
+<h3>«&nbsp;Racontez-moi une habitude que vous avez avec votre parent depuis longtemps. Et une que vous avez arrêtée&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>E3 est la plus risquée. On compare une habitude tenue et une abandonnée pour trouver ce qui fait lâcher&nbsp;: le temps, la répétition, l'absence de retour.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si une habitude tenue</span> → «&nbsp;Depuis quand&nbsp;? Qu'est-ce qui fait que vous la tenez&nbsp;?&nbsp;»</li><li><span class="si">Si une habitude arrêtée</span> → «&nbsp;Quand&nbsp;? Qu'est-ce qui s'est passé à ce moment-là&nbsp;?&nbsp;»</li><li><span class="si">Si il a pris un service (Famileo ou autre)</span> → «&nbsp;Vous l'utilisez encore&nbsp;? À quelle fréquence au début et maintenant&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd><b>Fausse si</b> 3 aidants sur 5 tiennent un geste hebdomadaire depuis plus de 3 mois.</dd></div></dl></div></div>
+<div class="q"><span class="id">E06</span><div>
+<span class="k">Tenir · E3, E1</span>
+<h3>«&nbsp;Décrivez-moi votre semaine dernière&nbsp;: à quels moments avez-vous pensé à votre parent&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>On cherche les moments où le lien pourrait se glisser sans effort, et ceux où il n'y a aucune place.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si profil à distance</span> → «&nbsp;Et quand vous y pensez, vous faites quoi&nbsp;?&nbsp;»</li><li><span class="si">Si profil proche</span> → «&nbsp;Ces visites, elles sont prévues ou improvisées&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Il pense à son parent sans rien en faire&nbsp;: c'est le passage à l'acte qui manque, pas le rappel.</dd></div></dl></div></div>
+<div class="q"><span class="id">E07</span><div>
+<span class="k">Tenir · E7, E3</span>
+<h3>«&nbsp;Comment en parlez-vous avec vos frères et sœurs&nbsp;? Qui fait quoi&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Question du cours. Elle dit si la charge est partagée, ce qui protège de E3, ou portée par une seule personne.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si fratrie organisée</span> → «&nbsp;Comment c'est réparti&nbsp;? Un groupe, un outil&nbsp;?&nbsp;»</li><li><span class="si">Si il est seul (enfant unique ou seul aidant)</span> → «&nbsp;Comment vous faites quand vous ne pouvez pas&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>La charge est déjà bien partagée et personne ne se sent seul.</dd></div></dl></div></div>
+<h3 class="sub">Acheter</h3>
+<div class="q crit"><span class="id">E08</span><div>
+<span class="k">Acheter · E2 critique, E8</span>
+<h3>«&nbsp;Avez-vous déjà acheté quelque chose pour aider votre parent ou garder le lien&nbsp;? Qu'est-ce que c'est devenu&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Question du cours. On fait raconter ce qui s'est passé juste avant l'achat&nbsp;: un incident, ou un manque de nouvelles&nbsp;?</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si oui</span> → «&nbsp;Qu'est-ce qui s'est passé juste avant&nbsp;? Qui a payé&nbsp;? Qui l'a installé&nbsp;?&nbsp;»</li><li><span class="si">Si objet abandonné</span> → «&nbsp;Quand&nbsp;? Qui l'a arrêté, vous ou lui&nbsp;?&nbsp;»</li><li><span class="si">Si jamais</span> → «&nbsp;Qu'est-ce qui pourrait vous y faire penser&nbsp;?&nbsp;» (une seule fois, puis on passe)</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd><b>Fausse si</b> les achats racontés suivent presque tous un incident ou une hospitalisation.</dd></div></dl></div></div>
+<div class="q"><span class="id">E09</span><div>
+<span class="k">Acheter · E2, E5</span>
+<h3>«&nbsp;La dernière fois que vous avez cherché une solution pour lui, même sans rien acheter&nbsp;: qu'est-ce qui vous a fait chercher, et qu'avez-vous regardé&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Thème demandé par l'atelier 2&nbsp;: ce qui déclencherait un achat. On le demande au passé, par une recherche réelle, pour ne pas obtenir un «&nbsp;oui, j'achèterais&nbsp;» imaginé.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si il a cherché après un incident</span> → «&nbsp;Qu'avez-vous trouvé&nbsp;? Qu'est-ce qui vous a arrêté ou décidé&nbsp;?&nbsp;»</li><li><span class="si">Si il a cherché pour garder le lien ou pour un cadeau</span> → «&nbsp;Pour quelle occasion&nbsp;? Seul ou avec la famille&nbsp;? Combien vouliez-vous y mettre&nbsp;?&nbsp;»</li><li><span class="si">Si jamais cherché</span> → «&nbsp;Le dernier cadeau que vous lui avez fait, comment l'avez-vous choisi&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Toutes les recherches racontées suivent une chute ou un souci de santé&nbsp;: le lien seul ne déclenche pas l'achat.</dd></div></dl></div></div>
+<div class="q"><span class="id">E10</span><div>
+<span class="k">Acheter · E4, E5, E8, E9</span>
+<h3>«&nbsp;Y a-t-il un abonnement ou un service que vous avez pris pour lui, puis arrêté&nbsp;? Qu'est-ce qui vous a décidé&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Vérifie ce qui fait payer dans la durée&nbsp;: la réaction du parent, le prix, un coût découvert après.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si arrêté pour le prix</span> → «&nbsp;Le prix avait changé, ou c'était dès le début&nbsp;?&nbsp;»</li><li><span class="si">Si arrêté car le parent ne s'en servait pas</span> → «&nbsp;Comment l'avez-vous vu&nbsp;?&nbsp;»</li><li><span class="si">Si arrêté pour des fausses alertes ou une installation pénible</span> → «&nbsp;Combien de fois avant d'arrêter&nbsp;? Qui l'a décidé&nbsp;?&nbsp;» (E8, E9)</li><li><span class="si">Si rien pris</span> → passer à 11</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>Les arrêts ne viennent ni du prix ni de l'absence de réaction.</dd></div></dl></div></div>
+<h3 class="sub">Rassurer ou surveiller</h3>
+<div class="q"><span class="id">E11</span><div>
+<span class="k">Rassurer ou surveiller · E6, P1</span>
+<h3>«&nbsp;Y a-t-il des choses que vous aimeriez savoir sur sa journée et que vous ne lui demandez pas&nbsp;? Pourquoi&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Miroir de la question 09 du guide parent&nbsp;: ce que l'enfant voudrait savoir, et la limite qu'il s'impose lui-même.</dd></div><div class="row"><dt>Relances</dt><dd><ul class="br"><li><span class="si">Si il cite la santé ou les chutes</span> → «&nbsp;Qu'est-ce qui vous retient de lui demander&nbsp;?&nbsp;»</li><li><span class="si">Si il cite le moral ou la solitude</span> → «&nbsp;Comment vous le devinez aujourd'hui&nbsp;?&nbsp;»</li></ul></dd></div><div class="row"><dt>Ce qui la contredit</dt><dd>L'enfant installe déjà caméra ou localisation sans gêne.</dd></div></dl></div></div>
+<h3 class="sub">Clore</h3>
+<div class="q"><span class="id">E12</span><div>
+<span class="k">Clore · Toutes</span>
+<h3>«&nbsp;Y a-t-il quelque chose dont on n'a pas parlé et qui compte dans votre lien avec votre parent&nbsp;?&nbsp;»</h3><dl>
+<div class="row"><dt>Pourquoi</dt><dd>Laisse la place à l'imprévu. Puis on demande&nbsp;: «&nbsp;Qui d'autre devrais-je rencontrer&nbsp;?&nbsp;» (un frère, une sœur, le parent lui-même)</dd></div></dl></div></div>
+</div></div></section>
+
+<section id="s06"><div class="grid"><div class="k"><span class="num">06</span> · Couverture</div><div>
+<h2>Quelle question teste quelle hypothèse</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Hyp.</th><th>Hypothèse critique (compte rendu de l'équipe)</th><th>Question principale</th><th>Appui</th></tr></thead><tbody>
+<tr><td>P1</td><td>Le senior accepte de partager quand il choisit, refuse quand c'est imposé</td><td>P07</td><td>P08, P09, E11</td></tr>
+<tr><td>P2</td><td>Le senior apprécie les nouvelles mais répond par la voix</td><td>P03</td><td>P02, E04</td></tr>
+<tr><td>P4</td><td>Un écran ne s'adopte que si quelqu'un accompagne au départ</td><td>P06</td><td>P05</td></tr>
+<tr><td>E1</td><td>Les enfants partagent leurs photos partout, sauf avec leur parent</td><td>E03</td><td>E04, E06</td></tr>
+<tr><td>E2</td><td>Le lien s'achète avant l'incident, la sécurité après</td><td>E08</td><td>E02, E09</td></tr>
+<tr><td>E3</td><td>Les enfants lâchent un service qui demande une action régulière</td><td>E05</td><td>E06, E07, E10</td></tr>
+</tbody></table></div>
+<h3 class="sub">Les 14 autres hypothèses ont aussi leur question</h3>
+<div class="tablewrap"><table><thead><tr><th>Hyp.</th><th>En bref</th><th>Où</th></tr></thead><tbody>
+<tr><td>P3</td><td>Aucune manipulation</td><td>P05</td></tr>
+<tr><td>P5</td><td>Objet de famille montré, pas objet de «&nbsp;vieux&nbsp;»</td><td>P04, P08</td></tr>
+<tr><td>P6</td><td>Une voix plus qu'un secours</td><td>P10, P11</td></tr>
+<tr><td>P7</td><td>Un proche avant un service</td><td>P10</td></tr>
+<tr><td>P8</td><td>Bracelet retiré devant les autres</td><td>P05, relance</td></tr>
+<tr><td>P9</td><td>Pas de sécurité avant la chute</td><td>P10, relance</td></tr>
+<tr><td>P10</td><td>Appareil qui sonne pour rien, débranché</td><td>P05, relance</td></tr>
+<tr><td>E4</td><td>Payer pour la réaction du parent</td><td>E10, E04</td></tr>
+<tr><td>E5</td><td>Prix lisible, coût caché</td><td>E09, E10</td></tr>
+<tr><td>E6</td><td>Pas de caméra chez le parent</td><td>E11</td></tr>
+<tr><td>E7</td><td>Frères, sœurs et petits-enfants</td><td>E07</td></tr>
+<tr><td>E8</td><td>Ne pas devenir le technicien</td><td>E08, E10</td></tr>
+<tr><td>E9</td><td>Fausses alertes</td><td>E10, relance</td></tr>
+<tr><td>E10</td><td>Être prévenu soi-même</td><td>E02, relance</td></tr>
+</tbody></table></div>
+<p class="note" style="margin-top:14px">Les hypothèses sécurité (P8 à P10, E9, E10) n'ont pas de question principale mais une relance, déclenchée seulement si la personne en parle d'elle-même&nbsp;: on respecte la règle des 70 / 30.</p>
+</div></div></section>
+
+<section id="s07"><div class="grid"><div class="k"><span class="num">07</span> · À ne pas dire</div><div>
+<h2>Les phrases qui faussent l'entretien</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Éviter</th><th>Pourquoi</th><th>Dire plutôt</th></tr></thead><tbody>
+<tr><td>«&nbsp;Aimeriez-vous un cadre qui…&nbsp;»</td><td>Tout le monde dit oui à une idée gentille.</td><td>«&nbsp;La dernière fois que…, qu'avez-vous fait&nbsp;?&nbsp;»</td></tr>
+<tr><td>«&nbsp;Vous vous sentez seul&nbsp;?&nbsp;»</td><td>Question fermée qui blesse, réponse «&nbsp;non&nbsp;» par fierté.</td><td>«&nbsp;Racontez-moi votre journée d'hier.&nbsp;»</td></tr>
+<tr><td>«&nbsp;Vous trouvez ça compliqué, la technologie&nbsp;?&nbsp;»</td><td>Confirme le cliché «&nbsp;trop vague&nbsp;» du cours.</td><td>«&nbsp;Le dernier appareil que vous avez appris…&nbsp;»</td></tr>
+<tr><td>«&nbsp;Vous ne voudriez pas être surveillé&nbsp;?&nbsp;»</td><td>Le mot impose la réponse.</td><td>«&nbsp;Quelqu'un a déjà installé quelque chose chez vous…&nbsp;»</td></tr>
+<tr><td>«&nbsp;Combien seriez-vous prêt à payer&nbsp;?&nbsp;»</td><td>Un prix imaginé ne dit rien d'un achat réel.</td><td>«&nbsp;Le dernier achat pour lui, qu'est-ce qui s'est passé juste avant&nbsp;?&nbsp;»</td></tr>
+<tr><td>Expliquer notre idée en fin d'entretien</td><td>Ça transforme les réponses déjà données en politesse.</td><td>Ne rien montrer&nbsp;; le prototype aura ses propres tests.</td></tr>
+</tbody></table></div>
+<p class="note" style="margin-top:14px">Trois relances qui marchent partout&nbsp;: «&nbsp;C'est-à-dire&nbsp;?&nbsp;», «&nbsp;Vous pouvez me donner un exemple&nbsp;?&nbsp;», et un silence de 5 secondes.</p>
+</div></div></section>
+
+<section id="s08"><div class="grid"><div class="k"><span class="num">08</span> · Éthique et logistique</div><div>
+<h2>Avec quelles règles, et qui fait quoi</h2>
+<div class="spec">
+<dl>
+ <div class="row"><dt>Consentement</dt><dd>Oral et écrit avant de commencer, enregistrement seulement si accord, droit d'arrêter à tout moment.</dd></div>
+ <div class="row"><dt>Anonymat</dt><dd>Prénoms remplacés (Parent 1, Enfant 1), aucune adresse ni numéro, rien de réel dans le dépôt public.</dd></div>
+ <div class="row"><dt>Suppression</dt><dd>Enregistrements effacés après la prise de notes, au plus tard au rendu.</dd></div>
+ <div class="row"><dt>Fragilité</dt><dd>Si le parent est ému ou fatigué, on arrête&nbsp;; on ne pose jamais de question sur la santé.</dd></div>
+</dl>
+<dl>
+ <div class="row"><dt>Binôme</dt><dd>Un qui mène, un qui note mot pour mot. On tourne entre Clément, Camille et Lucas.</dd></div>
+ <div class="row"><dt>Où</dt><dd>Parent chez lui de préférence (on voit les objets, P04)&nbsp;; enfant en visio ou en face à face.</dd></div>
+ <div class="row"><dt>Combien</dt><dd>Proposition&nbsp;: 5 parents et 5 enfants, dont au moins 2 paires parent et enfant de la même famille.</dd></div>
+ <div class="row"><dt>Après</dt><dd>Débrief de 10 minutes juste après&nbsp;: pour chaque hypothèse critique, confirmée, contredite ou floue.</dd></div>
+</dl>
+</div>
+</div></div></section>
+
+<section id="s09"><div class="grid"><div class="k"><span class="num">09</span> · À trancher</div><div>
+<h2>Ce qu'il nous reste à décider</h2>
+<ol class="next ask">
+ <li><b>Combien d'entretiens et dans quels délais&nbsp;?</b> Je propose 5 + 5 avant le 6 novembre. Qui avons-nous déjà dans notre entourage&nbsp;?</li>
+ <li><b>Les paires parent et enfant.</b> Interroger un parent et son propre enfant est le plus riche (axe 5), mais séparément, pour qu'aucun n'entende l'autre.</li>
+ <li><b>EHPAD ou domicile&nbsp;?</b> Notre cible vit chez elle. L'EHPAD proposé par Camille sert pour le prototype, pas pour ces entretiens.</li>
+ <li><b>Enregistrer ou non.</b> L'enregistrement aide à citer mot pour mot, mais freine certains seniors. On peut décider au cas par cas.</li>
+ <li><b>Prix et abonnement.</b> Le compte rendu note que ce n'est pas tranché. Les guides ne parlent pas de prix&nbsp;: ce choix se fera avec les résultats de E08 et E10.</li>
+</ol>
+<p class="note" style="margin-top:20px">Statut&nbsp;: proposition de Lucas, à relire avec Clément et Camille. Base&nbsp;: compte rendu global de l'atelier 1 (rendus/2-2-hypotheses-critiques-equipe.html) et exemples «&nbsp;Des questions qui marchent&nbsp;» de la séance 2. IA utilisée&nbsp;: Claude (Claude Code) pour proposer et structurer les questions&nbsp;; choix à valider en équipe. Aucune donnée réelle.</p>
+</div></div></section>
+
+<footer class="k">PFR Générations Connectées · Bloc 02 · Séance 2 · Guides d'entretien parent et enfant · 22 octobre 2026</footer>
+</div>
+</body>
+</html>
