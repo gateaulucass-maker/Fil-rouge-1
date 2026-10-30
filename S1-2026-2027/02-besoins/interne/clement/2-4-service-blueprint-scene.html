@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Le Cadre en scène</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Mise en page : récit à gauche qui défile, scène isométrique collée à droite ; la caméra suit le texte. */
+:root{
+  color-scheme:light;
+  --paper:#f7f6fb;      /* fond de page, gris lilas très pâle */
+  --ink:#1b1f3b;        /* traits et texte */
+  --muted:#5a5f80;
+  --accent:#1d3bc1;     /* bleu des blueprints */
+  --floor:#e3e0f0;      /* plateau */
+  --floor-side:#c9c4e0;
+  --wood:#b07a4a; --kraft:#cfa271; --cream:#fbf6ea;
+  --enfant:#1d3bc1; --parent:#f2a283; --proche:#5cbf8f; --equipe:#ffffff;
+  --fictif:#8a5a00; --fictif-bg:#fff2cf;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --hand:"Caveat","Bradley Hand","Segoe Print",cursive;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* en-tête */
+header.top{padding-block:clamp(28px,5vw,56px) 8px;max-width:1500px;margin-inline:auto}
+.eyebrow{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-wrap:wrap;gap:4px 24px;margin:0}
+h1{font:800 clamp(44px,8vw,112px)/.92 var(--display);letter-spacing:-.045em;margin:28px 0 0;max-width:12ch;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{font:700 clamp(19px,2vw,24px)/1.32 var(--display);letter-spacing:-.01em;max-width:44ch;margin:22px 0 0;border-left:6px solid var(--accent);padding-left:18px}
+
+/* récit + scène */
+.story{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(20px,3vw,48px);max-width:1500px;margin-inline:auto;padding-block:24px 0}
+.steps{min-width:0}
+.stage{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;display:flex;align-items:center;min-width:0}
+.stage-inner{position:relative;width:100%;height:min(86vh,860px);background:#fff;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);overflow:hidden}
+.stage svg{width:100%;height:100%;display:block}
+.where{position:absolute;left:14px;top:12px;font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:#fff;padding:7px 9px}
+.legend{position:absolute;left:14px;bottom:12px;display:flex;background:rgba(255,255,255,.92);padding:6px 10px;border:1.5px solid var(--ink);flex-wrap:wrap;gap:6px 14px;font:500 12.5px/1.2 var(--display);color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--ink);vertical-align:-2px;margin-right:5px}
+
+.step{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding-block:24px}
+.step:first-child{min-height:60vh}
+.layer{font:500 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.step h2{font:800 clamp(30px,3.4vw,44px)/1.02 var(--display);letter-spacing:-.03em;margin:10px 0 0;text-wrap:balance}
+.step h3{font:700 22px/1.2 var(--display);letter-spacing:-.015em;margin:8px 0 0;text-wrap:balance}
+.step p{margin:12px 0 0;max-width:42ch}
+.moments{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.moments li{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start}
+.moments b{font:500 12px/26px var(--mono);color:#fff;background:var(--ink);text-align:center;height:26px}
+.moments span{min-width:0}
+.tag{display:inline-block;font:500 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 6px;margin-left:6px;vertical-align:2px;color:var(--fictif);background:var(--fictif-bg)}
+.tag.src{color:var(--accent);background:#e7ebfb}
+.who{display:inline-block;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink);margin-right:6px;vertical-align:-1px}
+
+/* fin */
+.end{max-width:1500px;margin-inline:auto;padding-block:48px 64px}
+.end h2{font:800 clamp(30px,4vw,52px)/1 var(--display);letter-spacing:-.035em;margin:0;max-width:20ch;text-wrap:balance}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;background:var(--ink);border:2px solid var(--ink);margin-top:28px}
+.grid4>div{background:#fff;padding:18px 18px 20px;min-width:0}
+.grid4 h3{font:700 19px/1.2 var(--display);margin:6px 0 10px}
+.grid4 ul{margin:0;padding-left:18px;font-size:15.5px}
+.grid4 li+li{margin-top:6px}
+.sources{margin-top:28px;font-size:14.5px;color:var(--muted);max-width:80ch}
+
+@media (max-width:900px){
+  .story{grid-template-columns:minmax(0,1fr)}
+  .stage{order:-1;height:auto;top:env(safe-area-inset-top,0px);z-index:2;padding-block:8px;background:var(--paper)}
+  .stage-inner{height:46vh;box-shadow:4px 4px 0 var(--ink)}
+  .step{min-height:64vh}
+  .legend{display:none}
+  .grid4{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+@media (max-width:520px){.grid4{grid-template-columns:minmax(0,1fr)}}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+</style>
+
+<header class="top wrap">
+  <p class="eyebrow"><span>Service blueprint · Le Cadre</span><span>PFR Générations Connectées</span><span>Version scène · 30 octobre 2026</span></p>
+  <h1>Le Cadre, <em>en scène</em></h1>
+  <p class="lead">Une appli pour la famille, un cadre photo chez le parent. Voici tout le service sur un seul plateau : devant, la famille ; puis ce qu’elle voit, ce que fait notre équipe en coulisse, et les outils qui font tout tourner.</p>
+</header>
+
+<main class="story wrap">
+  <div class="steps" id="steps">
+
+    <section class="step" data-view="all">
+      <span class="layer">Vue d’ensemble</span>
+      <h2>Quatre couches, une seule histoire</h2>
+      <p>Lisez la scène de gauche à droite : c’est le temps, de la pub au premier mois. Du premier plan vers le fond : ce que vit la famille, ce qu’elle voit et touche, ce que fait notre équipe, puis les outils.</p>
+      <p><span class="who" style="background:var(--enfant)"></span>l’enfant qui achète · <span class="who" style="background:var(--parent)"></span>le parent · <span class="who" style="background:var(--proche)"></span>les proches · <span class="who" style="background:#fff"></span>notre équipe et nos partenaires</p>
+      <p style="font-size:15px;color:var(--muted)">Scénario illustratif : le prix, la pub, le site, les e-mails et les outils sont inventés pour rendre le parcours concret. <span class="tag">fictif</span></p>
+    </section>
+
+    <section class="step" data-view="journey" data-x0="-2" data-x1="14">
+      <span class="layer">1 · Parcours de la famille</span>
+      <h2>Découvrir</h2>
+      <ul class="moments">
+        <li><b>01</b><span>« Pas de nouvelles, bonne nouvelle ? » L’enfant appelle son parent le dimanche et s’inquiète en semaine.</span></li>
+        <li><b>02</b><span>Il voit une pub entre deux stories ; le pharmacien de son parent lui tend aussi un dépliant.</span></li>
+      </ul>
+    </section>
+    <section class="step" data-view="journey" data-x0="12" data-x1="29">
+      <span class="layer">1 · Parcours de la famille</span>
+      <h2>Acheter et recevoir</h2>
+      <ul class="moments">
+        <li><b>03</b><span>Il lit le site : rien à installer pour son parent ? Pas de caméra ? Combien ?</span></li>
+        <li><b>04</b><span>Il en parle à son parent, puis à son frère.</span></li>
+        <li><b>05</b><span>Il commande sur son téléphone et paie 149 €. <span class="tag">prix fictif</span></span></li>
+        <li><b>06</b><span>Il installe l’appli dès l’e-mail de confirmation, puis récupère le colis.</span></li>
+      </ul>
+    </section>
+    <section class="step" data-view="journey" data-x0="28" data-x1="48">
+      <span class="layer">1 · Parcours de la famille</span>
+      <h2>Installer, puis faire vivre</h2>
+      <ul class="moments">
+        <li><b>07</b><span>Chez son parent : il branche le cadre, tape le wifi, entre le code dans l’appli.</span></li>
+        <li><b>08</b><span>Le parent lit « Voulez-vous voir leurs photos ? » et touche « D’accord », seul.</span></li>
+        <li><b>09</b><span>Les proches rejoignent la famille ; un petit-enfant envoie la première photo.</span></li>
+      </ul>
+    </section>
+    <section class="step" data-view="journey" data-x0="46" data-x1="62">
+      <span class="layer">1 · Parcours de la famille</span>
+      <h2>Le quotidien, puis l’après-vente</h2>
+      <ul class="moments">
+        <li><b>10</b><span>Chaque jour, à une heure surprise, toute la famille reçoit « C’est le moment ! ».</span></li>
+        <li><b>11</b><span>Un souci : le cadre est hors ligne depuis 24 h. L’enfant suit l’aide ; chez le parent, les photos restent affichées.</span></li>
+        <li><b>12</b><span>Le premier mois : il donne son avis et garde le cadre.</span></li>
+      </ul>
+    </section>
+
+    <section class="step" data-view="front" data-x0="-2" data-x1="15">
+      <span class="layer">2 · Avant-scène : ce que la famille voit et touche</span>
+      <h2>La pub et la pharmacie</h2>
+      <p>Deux portes d’entrée : la pub qui vise les enfants aidants, et la pharmacie partenaire, qui présente le cadre au comptoir. <span class="tag">fictif</span></p>
+      <p>Les prescripteurs viennent de notre veille : médecin, pharmacie, mutuelle, bouche-à-oreille. <span class="tag src">veille</span></p>
+    </section>
+    <section class="step" data-view="front" data-x0="14" data-x1="29">
+      <span class="layer">2 · Avant-scène : ce que la famille voit et touche</span>
+      <h2>Le site, les e-mails, le colis</h2>
+      <p>Le site répond aux trois questions qui freinent : rien à installer pour le parent, pas de caméra ni de micro, sans abonnement. Ensuite, un e-mail de confirmation, un SMS de livraison et une boîte avec une carte en trois étapes. <span class="tag">fictif</span></p>
+    </section>
+    <section class="step" data-view="front" data-x0="28" data-x1="49">
+      <span class="layer">2 · Avant-scène : ce que la famille voit et touche</span>
+      <h2>Le cadre et l’appli</h2>
+      <p>Chez le parent, le cadre affiche « Bonjour », puis l’écran d’accord, lisible à 2 m. Les photos arrivent avec le prénom de l’envoyeur, 8 s, sans son. <span class="tag src">parcours v2</span></p>
+      <p>Dans l’appli : relier le cadre, inviter la famille, envoyer, et la notification du jour. <span class="tag src">maquette de Lucas</span></p>
+    </section>
+    <section class="step" data-view="front" data-x0="48" data-x1="62">
+      <span class="layer">2 · Avant-scène : ce que la famille voit et touche</span>
+      <h2>Le service client</h2>
+      <p>Il répond au chat du site (« Non, pas de caméra »), aide à l’installation si besoin, guide pour la box quand le cadre est hors ligne, et accepte un retour sous 30 jours. <span class="tag">fictif</span></p>
+    </section>
+
+    <section class="step" data-view="back" data-x0="-2" data-x1="21">
+      <span class="layer">3 · Coulisses : notre équipe</span>
+      <h2>Faire connaître, préparer</h2>
+      <p>Une campagne vise les enfants aidants de 45 à 65 ans ; l’équipe signe avec des pharmacies et des mutuelles. À l’atelier, chaque cadre est relié à un code, puis testé avant de partir.</p>
+    </section>
+    <section class="step" data-view="back" data-x0="20" data-x1="37">
+      <span class="layer">3 · Coulisses : notre équipe</span>
+      <h2>Emballer, expédier</h2>
+      <p>La commande est validée, un cadre réservé, emballé avec son câble et sa carte de démarrage, puis expédié sous 48 h. <span class="tag">fictif</span></p>
+    </section>
+    <section class="step" data-view="back" data-x0="36" data-x1="62">
+      <span class="layer">3 · Coulisses : notre équipe</span>
+      <h2>Veiller sur chaque cadre</h2>
+      <p>L’équipe surveille l’envoi des photos et repère les cadres hors ligne depuis 24 h. Elle lit les avis et gère les retours.</p>
+    </section>
+
+    <section class="step" data-view="support" data-x0="-2" data-x1="23">
+      <span class="layer">4 · Processus support : les outils</span>
+      <h2>Vendre en ligne</h2>
+      <p>Une régie pub pour les réseaux sociaux, un site vendeur avec chat, un paiement en ligne. <span class="tag">outils à choisir</span></p>
+    </section>
+    <section class="step" data-view="support" data-x0="22" data-x1="37">
+      <span class="layer">4 · Processus support : les outils</span>
+      <h2>Livrer</h2>
+      <p>Un transporteur, avec suivi par SMS jusqu’à la porte de l’enfant. <span class="tag">fictif</span></p>
+    </section>
+    <section class="step" data-view="support" data-x0="36" data-x1="62">
+      <span class="layer">4 · Processus support : les outils</span>
+      <h2>Faire arriver les photos</h2>
+      <p>Le serveur reçoit les photos et les pousse vers le cadre en 20 à 80 s (estimé, pas encore mesuré). Il envoie aussi la notification du jour, les e-mails et l’alerte « hors ligne ». <span class="tag src">parcours v2</span></p>
+    </section>
+
+    <section class="step" data-view="thread">
+      <span class="layer">Ce qui relie les couches</span>
+      <h2>Une photo, de bout en bout</h2>
+      <ul class="moments">
+        <li><b>A</b><span>Un proche touche « Envoyer » dans l’appli.</span></li>
+        <li><b>B</b><span>La photo passe par le serveur.</span></li>
+        <li><b>C</b><span>Elle s’affiche sur le cadre avec son prénom, 20 à 80 s plus tard.</span></li>
+        <li><b>D</b><span>Le parent la voit, sans rien toucher.</span></li>
+      </ul>
+      <p>Si un seul maillon casse, c’est la promesse entière qui tombe : c’est pour ça que l’équipe surveille chaque cadre.</p>
+    </section>
+  </div>
+
+  <div class="stage" aria-label="Scène isométrique du service">
+    <div class="stage-inner">
+      <svg id="scene" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Le service du Cadre en quatre couches : parcours de la famille, avant-scène, coulisses, processus support"></svg>
+      <span class="where" id="where">Vue d’ensemble</span>
+      <div class="legend"><span><i style="background:var(--enfant)"></i>l’enfant</span><span><i style="background:var(--parent)"></i>le parent</span><span><i style="background:var(--proche)"></i>les proches</span><span><i style="background:#fff"></i>équipe, partenaires</span></div>
+    </div>
+  </div>
+</main>
+
+<section class="end wrap">
+  <h2>Le blueprint, en résumé</h2>
+  <div class="grid4">
+    <div><span class="layer">1 · Parcours</span><h3>Ce que vit la famille</h3><ul><li>Découvre par la pub ou la pharmacie</li><li>Commande, reçoit le colis</li><li>Installe ; le parent dit oui</li><li>Les proches envoient chaque jour</li><li>Un souci, le premier mois</li></ul></div>
+    <div><span class="layer">2 · Avant-scène</span><h3>Ce qu’elle voit</h3><ul><li>Pub, dépliant, site</li><li>E-mail, SMS, boîte</li><li>Le cadre : code, accord, photos</li><li>L’appli : relier, inviter, envoyer</li><li>Le service client</li></ul></div>
+    <div><span class="layer">3 · Coulisses</span><h3>Ce que fait l’équipe</h3><ul><li>Campagne et partenariats</li><li>Relie et teste chaque cadre</li><li>Emballe et expédie sous 48 h</li><li>Surveille envois et cadres hors ligne</li><li>Lit les avis, gère les retours</li></ul></div>
+    <div><span class="layer">4 · Support</span><h3>Les outils</h3><ul><li>Régie pub, site, paiement</li><li>Transporteur et SMS</li><li>Serveur photos vers le cadre</li><li>Notifications et e-mails</li><li>Alerte « hors ligne depuis 24 h »</li></ul></div>
+  </div>
+  <p class="sources">Sources : qui paie, qui prescrit et ce qui freine viennent de la veille et de l’analyse de marché de l’équipe ; les écrans de l’appli, de la maquette de Lucas ; les écrans du cadre et les frictions, du parcours v2 de Camille. La pub, le site, les e-mails, le prix et les outils sont fictifs. Format inspiré des blueprints « théâtre » (avant-scène, coulisses) ; illustration dessinée pour Le Cadre.</p>
+</section>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const S=22, C30=Math.cos(Math.PI/6), S30=0.5;
+const P=(x,y,z=0)=>[(x-y)*C30*S,(x+y)*S30*S-z*S];
+const pts=a=>a.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+const INK='#1b1f3b';
+const col={enfant:'#1d3bc1',parent:'#f2a283',proche:'#5cbf8f',equipe:'#ffffff',wood:'#b07a4a',woodD:'#8c5c33',kraft:'#cfa271',kraftD:'#b5865a',cream:'#fbf6ea',screen:'#2a3350',lilac:'#d9cdf2',accent:'#1d3bc1',grey:'#e9e7f2',greyD:'#cfcbe2',red:'#c8372d',green:'#1d9a6c'};
+const svg=document.getElementById('scene');
+const layers={};
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e;}
+function shade(hex,f){const n=parseInt(hex.slice(1),16);let r=n>>16,g=n>>8&255,b=n&255;r=Math.round(r*f);g=Math.round(g*f);b=Math.round(b*f);return '#'+((1<<24)+(Math.min(255,r)<<16)+(Math.min(255,g)<<8)+Math.min(255,b)).toString(16).slice(1);}
+// boîte isométrique : faces gauche (y+d), droite (x+w), dessus
+function box(g,x,y,z,w,d,h,c,o={}){const sw=o.sw||1.4;
+  el('polygon',{points:pts([P(x,y+d,z),P(x+w,y+d,z),P(x+w,y+d,z+h),P(x,y+d,z+h)]),fill:o.left||shade(c,.88),stroke:INK,'stroke-width':sw,'stroke-linejoin':'round'},g);
+  el('polygon',{points:pts([P(x+w,y,z),P(x+w,y+d,z),P(x+w,y+d,z+h),P(x+w,y,z+h)]),fill:o.right||shade(c,.74),stroke:INK,'stroke-width':sw,'stroke-linejoin':'round'},g);
+  el('polygon',{points:pts([P(x,y,z+h),P(x+w,y,z+h),P(x+w,y+d,z+h),P(x,y+d,z+h)]),fill:o.top||c,stroke:INK,'stroke-width':sw,'stroke-linejoin':'round'},g);}
+// repère local sur la face gauche (y+d) : u le long de x, v vers le bas
+function faceL(g,x,y,z,d,h){const o=P(x,y+d,z+h);return el('g',{transform:`matrix(${C30*S},${S30*S},0,${S},${o[0]},${o[1]})`},g);}
+function faceTop(g,x,y,z){const o=P(x,y,z);return el('g',{transform:`matrix(${C30*S},${S30*S},${-C30*S},${S30*S},${o[0]},${o[1]})`},g);}
+function txt(g,x,y,s,size,o={}){const t=el('text',{x,y,'font-size':size,'font-family':o.font||'Archivo, Arial, sans-serif','font-weight':o.w||700,fill:o.fill||INK},g);if(o.anchor)t.setAttribute('text-anchor',o.anchor);t.textContent=s;return t;}
+function rr(g,x,y,w,h,r,fill,o={}){return el('rect',{x,y,width:w,height:h,rx:r,fill,stroke:o.stroke||'none','stroke-width':o.sw||0.04,'vector-effect':o.nse?'non-scaling-stroke':''},g);}
+// personnage dessiné au trait, debout au point (x,y) du sol
+function person(g,x,y,shirt,o={}){const [px,py]=P(x,y,o.z||0);const k=o.k||1; const gg=el('g',{transform:`translate(${px},${py}) scale(${k})`},g);
+  const sit=o.sit;
+  if(!sit){el('path',{d:'M-4 0 L-3 -16 M4 0 L3 -16',stroke:INK,'stroke-width':3.2,'stroke-linecap':'round'},gg);
+    el('path',{d:'M-6 1 h5 M2 1 h5',stroke:INK,'stroke-width':2.6,'stroke-linecap':'round'},gg);}
+  else{el('path',{d:'M-4 -12 L5 -12 L6 0 M-3 -12 L3 -12 L4 0',stroke:INK,'stroke-width':3,'stroke-linecap':'round',fill:'none'},gg);}
+  const top=sit?-30:-34;
+  el('path',{d:`M-7 ${top+18} Q-8 ${top+2} 0 ${top} Q8 ${top+2} 7 ${top+18} Z`,fill:shirt,stroke:INK,'stroke-width':1.6,'stroke-linejoin':'round'},gg);
+  // bras
+  const arm=o.arm||'down';
+  if(arm==='phone'){el('path',{d:`M6 ${top+4} Q9 ${top+12} 3 ${top+12}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);rr(gg,0,top+7,5,8,1,col.screen,{stroke:INK,sw:1});}
+  else if(arm==='carry'){el('path',{d:`M-6 ${top+5} Q-3 ${top+12} 2 ${top+12} M6 ${top+5} Q4 ${top+11} 2 ${top+12}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);
+    el('polygon',{points:`-6,${top+9} 8,${top+9} 8,${top+19} -6,${top+19}`,fill:col.kraft,stroke:INK,'stroke-width':1.3},gg);}
+  else if(arm==='paper'){el('path',{d:`M6 ${top+4} Q11 ${top+9} 11 ${top+11}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);rr(gg,9,top+6,6,8,0.5,'#fff',{stroke:INK,sw:1});}
+  else if(arm==='point'){el('path',{d:`M6 ${top+4} L14 ${top-2}`,stroke:INK,'stroke-width':2.4,'stroke-linecap':'round'},gg);}
+  else{el('path',{d:`M-6 ${top+4} L-7 ${top+15} M6 ${top+4} L7 ${top+15}`,stroke:INK,'stroke-width':2.4,'stroke-linecap':'round'},gg);}
+  // tête
+  el('circle',{cx:0,cy:top-6,r:6,fill:'#fff',stroke:INK,'stroke-width':1.6},gg);
+  if(o.hair==='grey'){el('path',{d:`M-6 ${top-7} Q-5 ${top-14} 0 ${top-13} Q6 ${top-14} 6 ${top-6} Q3 ${top-10} -6 ${top-7} Z`,fill:'#d6d6dc',stroke:INK,'stroke-width':1.2},gg);}
+  else if(o.hair==='long'){el('path',{d:`M-6 ${top-5} Q-7 ${top-14} 0 ${top-13} Q7 ${top-14} 6 ${top-5} L6 ${top+2} L3 ${top-6} Q-1 ${top-10} -4 ${top-6} L-6 ${top+2} Z`,fill:INK},gg);}
+  else{el('path',{d:`M-6 ${top-7} Q-4 ${top-14} 1 ${top-13} Q6 ${top-12} 6 ${top-6} Q2 ${top-10} -6 ${top-7} Z`,fill:INK},gg);}
+  if(o.headset){el('path',{d:`M-7 ${top-6} Q0 ${top-17} 7 ${top-6}`,stroke:INK,'stroke-width':1.6,fill:'none'},gg);el('path',{d:`M-7 ${top-5} Q-6 ${top+1} -1 ${top}`,stroke:INK,'stroke-width':1.3,fill:'none'},gg);}
+  return gg;}
+// panneau vertical (écran géant, comme un décor de théâtre)
+function panel(g,x,y,w,h,frame,draw,z=0){box(g,x,y,z,w,0.35,h,frame,{left:frame});const f=faceL(g,x,y,z,0.35,h);draw(f,w,h);return f;}
+function phoneFace(f,w,h,draw){rr(f,0.12,0.12,w-0.24,h-0.24,0.28,col.screen);rr(f,0.24,0.42,w-0.48,h-0.66,0.16,'#fff');rr(f,w/2-0.35,0.2,0.7,0.12,0.06,'#111');draw(f);}
+function arrow(g,a,b,bend){const [x1,y1]=P(...a),[x2,y2]=P(...b);const mx=(x1+x2)/2,my=(y1+y2)/2+bend;el('path',{d:`M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}`,fill:'none',stroke:INK,'stroke-width':1.6,'marker-end':'url(#ah)'},g);}
+
+// ---- définitions ----
+const defs=el('defs',{});
+const m=el('marker',{id:'ah',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse'},defs);el('path',{d:'M0 0 L10 5 L0 10 Z',fill:INK},m);
+const m2=el('marker',{id:'ahb',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'},defs);el('path',{d:'M0 0 L10 5 L0 10 Z',fill:col.accent},m2);
+
+// ---- plateau ----
+const X0=-2,X1=62,Y0=0,Y1=40;
+const base=el('g',{id:'floor'});
+box(base,X0,Y0,-0.7,X1-X0,Y1-Y0,0.7,'#e3e0f0',{left:'#c9c4e0',right:'#b9b3d6',sw:1.6});
+const BANDS=[{id:'support',y0:0,y1:10,label:'Processus support'},{id:'back',y0:10,y1:20,label:'Coulisses'},{id:'front',y0:20,y1:30,label:'Avant-scène'},{id:'journey',y0:30,y1:40,label:'Parcours de la famille'}];
+const tints={};
+for(const b of BANDS){tints[b.id]=el('polygon',{points:pts([P(X0,b.y0),P(X1,b.y0),P(X1,b.y1),P(X0,b.y1)]),fill:'#1d3bc1',opacity:0,class:'tint'},base);}
+// lignes pointillées et étiquettes manuscrites
+const lines=el('g',{id:'lines'});
+for(const yy of [10,20,30]){const a=P(X0-4,yy),b=P(X1+5,yy);el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:INK,'stroke-width':2,'stroke-dasharray':'10 8'},lines);}
+const lab={};
+for(const b of BANDS){const p=P(X1+6.5,(b.y0+b.y1)/2);const t=el('text',{x:p[0],y:p[1],'font-family':'Caveat, cursive','font-weight':700,'font-size':30,fill:INK,transform:`rotate(0)`},lines);t.textContent=b.label;lab[b.id]=t;}
+
+// ---- éléments, du fond vers l'avant ----
+const items=[]; // {band, depth, draw(g), tag:[x,y,z,text]}
+const add=(band,depth,draw,tag)=>items.push({band,depth,draw,tag});
+
+// SUPPORT (y 0..10)
+add('support',8,g=>{box(g,5,3,0,3,2,2.6,'#9aa3c7');const f=faceL(g,5,3,0,2,2.6);rr(f,0.25,0.3,2.5,1.4,0.1,'#fff');rr(f,0.45,0.5,2.1,0.55,0.05,col.lilac);rr(f,0.45,1.2,1.2,0.16,0.04,col.accent);rr(f,0.45,1.45,1.6,0.1,0.03,'#c5c9dc');rr(f,0.25,1.9,2.5,0.5,0.06,'#7f89b3');},[6.5,4,3.2,'Régie pub, site vendeur']);
+add('support',20,g=>{box(g,15.5,4,0,1.3,1.3,1.3,'#ffffff');box(g,15.75,4.25,1.3,0.8,0.8,0.25,'#3b4256');const f=faceTop(g,15.85,4.35,1.56);rr(f,0.05,0.05,0.5,0.25,0.03,'#9fe1bf');box(g,17.2,4.6,0,0.9,0.12,0.6,'#1d3bc1');},[16.2,4.6,2.4,'Paiement en ligne']);
+add('support',31,g=>{box(g,24.5,3,0.35,4.4,3,2.8,'#3d4fd1');const f=faceL(g,24.5,3,0.35,3,2.8);txt(f,0.35,1.5,'Le Cadre',0.75,{fill:'#fff'});box(g,28.9,3,0.35,1.9,3,1.9,'#ffffff');const w=faceL(g,28.9,3,0.35,3,1.9);rr(w,0.3,0.25,1.2,0.6,0.08,'#bcd3ef');
+  for(const [wx,wy] of [[25.6,6],[29.8,6]]){const c=P(wx,wy,0.35);el('ellipse',{cx:c[0],cy:c[1],rx:9,ry:7,fill:INK},g);el('ellipse',{cx:c[0],cy:c[1],rx:4,ry:3,fill:'#ccc'},g);}
+  box(g,22.2,6.6,0,1.1,1.1,0.9,col.kraft);box(g,22.4,6.8,0.9,0.8,0.8,0.7,col.kraft);},[27,4.5,3.8,'Transporteur, suivi SMS']);
+add('support',33.5,g=>person(g,32,7.2,'#fff',{arm:'carry'}),null);
+add('support',43,g=>{box(g,38.5,3,0,1.5,1.7,3.4,'#2c3150');box(g,40.3,3,0,1.5,1.7,3.4,'#2c3150');
+  for(const bx of [38.5,40.3]){const f=faceL(g,bx,3,0,1.7,3.4);for(let i=0;i<5;i++){rr(f,0.15,0.3+i*0.6,1.2,0.38,0.05,'#454b70');el('circle',{cx:1.15,cy:0.49+i*0.6,r:0.07,fill:i%2?'#5cbf8f':'#9fe1bf'},f);}}
+  const c=P(40,3.2,4.6);el('path',{d:`M${c[0]-26} ${c[1]} a10 10 0 0 1 12 -12 a14 14 0 0 1 26 2 a9 9 0 0 1 4 17 h-38 a8 8 0 0 1 -4 -7z`,fill:'#fff',stroke:INK,'stroke-width':1.5},g);},[40.5,4,5.3,'Serveur photos : 20 à 80 s']);
+add('support',55,g=>{box(g,50.8,4.4,0,0.35,0.35,1.7,'#9aa3c7');box(g,50.3,3.9,1.7,1.35,1.2,0.9,col.accent);const f=faceL(g,50.3,3.9,1.7,1.2,0.9);rr(f,0.2,0.3,0.9,0.12,0.05,'#fff');
+  box(g,53.4,4.2,0,1.2,1.2,1.2,'#fff');const b=P(54,4.8,2.4);el('path',{d:`M${b[0]-8} ${b[1]} q0 -12 8 -12 q8 0 8 12 l3 4 h-22 z`,fill:'#ffd36b',stroke:INK,'stroke-width':1.4},g);el('circle',{cx:b[0],cy:b[1]+7,r:2.4,fill:INK},g);},[52.5,4.5,3.6,'Notifications, e-mails, alerte hors ligne']);
+
+// COULISSES (y 10..20)
+add('back',17,g=>{box(g,4,12,0,3.4,1.6,1.1,'#ffffff');panel(g,4.6,12.2,2,1.5,'#3b4256',(f,w,h)=>{rr(f,0.12,0.12,w-0.24,h-0.24,0.05,'#fff');[0.5,0.8,0.65,1.05].forEach((v,i)=>rr(f,0.3+i*0.38,h-0.25-v,0.24,v,0.02,i===3?col.accent:col.lilac));},1.1);
+  // panneau posé sur le bureau : remonter
+  },[5.6,13,3,'Campagne, partenariats']);
+add('back',20,g=>person(g,6,15.6,'#fff',{arm:'point'}),null);
+add('back',29,g=>{box(g,14.5,12,0,4.4,2,1.1,col.wood);for(const [fx] of [[15],[16.4],[17.8]]){box(g,fx,12.6,1.1,1,0.18,0.75,col.wood);const f=faceL(g,fx,12.6,1.1,0.18,0.75);rr(f,0.08,0.08,0.84,0.59,0.02,'#fbf6ea');}
+  const f2=faceL(g,15,12.6,1.1,0.18,0.75);txt(f2,0.5,0.45,'482 913',0.17,{anchor:'middle',fill:col.accent});},[16.7,13,2.6,'Relie et teste chaque cadre']);
+add('back',33,g=>person(g,17.2,15.8,'#fff',{arm:'down'}),null);
+add('back',38,g=>{box(g,23.5,12,0,1.4,1.4,1.2,col.kraft);box(g,25,12,0,1.4,1.4,1.2,col.kraft);box(g,23.8,12.2,1.2,1.2,1.1,1,col.kraft);box(g,27,13.5,0,1.8,1.4,0.9,'#fff');},[25,12.5,3,'Emballe, expédie sous 48 h']);
+add('back',43,g=>person(g,27.5,16,'#fff',{arm:'carry'}),null);
+add('back',55,g=>{box(g,41,12,0,3.6,1.6,1.1,'#ffffff');
+  panel(g,41.3,12.1,1.5,1.3,'#3b4256',(f,w,h)=>{rr(f,0.1,0.1,w-0.2,h-0.2,0.04,'#fff');for(let i=0;i<4;i++){el('circle',{cx:0.3,cy:0.3+i*0.22,r:0.06,fill:i===1?'#c8372d':'#1d9a6c'},f);rr(f,0.42,0.26+i*0.22,0.8,0.08,0.02,'#c5c9dc');}},1.1);
+  panel(g,43,12.1,1.5,1.3,'#3b4256',(f,w,h)=>{rr(f,0.1,0.1,w-0.2,h-0.2,0.04,'#fff');el('polyline',{points:'0.25,0.95 0.5,0.7 0.75,0.8 1.0,0.45 1.25,0.5',fill:'none',stroke:col.accent,'stroke-width':0.06},f);},1.1);},[43,12.5,3.2,'Surveille envois et cadres hors ligne']);
+add('back',58,g=>person(g,43.4,15.5,'#fff',{arm:'down'}),null);
+add('back',66,g=>{box(g,53,12,0,3,1,2.2,col.wood);box(g,53.2,12.1,0.9,1.1,0.8,0.7,col.kraft);box(g,54.6,12.1,0.9,1.2,0.8,0.5,'#fff');box(g,53.2,12.1,1.6,2.6,0.8,0.08,col.woodD);},[54.5,12.5,3,'Lit les avis, gère les retours']);
+add('back',71,g=>person(g,55.5,15.6,'#fff',{arm:'phone',hair:'long'}),null);
+
+// AVANT-SCÈNE (y 20..30)
+add('front',26,g=>{box(g,2.6,22,0,3.6,1.7,1.3,'#ffffff');const f=faceL(g,2.6,22,0,1.7,1.3);rr(f,0.2,0.25,3.2,0.25,0.05,'#1d9a6c');
+  box(g,6.6,23.6,0,0.25,0.25,2.4,'#9aa3c7');box(g,6.1,23.4,2.4,1.2,0.2,1.4,'#1d9a6c');const s=faceL(g,6.1,23.4,2.4,0.2,1.4);el('path',{d:'M0.5 0.3 h0.2 v0.25 h0.25 v0.2 h-0.25 v0.25 h-0.2 v-0.25 h-0.25 v-0.2 h0.25z',fill:'#fff'},s);
+  box(g,3,23.2,1.3,0.7,0.12,0.9,'#fff');const d=faceL(g,3,23.2,1.3,0.12,0.9);rr(d,0,0,0.7,0.1,0,col.accent);rr(d,0.15,0.3,0.4,0.28,0.02,col.wood);},[4.5,22.5,3.4,'Pharmacie partenaire, dépliant']);
+add('front',24,g=>person(g,4,21.4,'#fff',{arm:'paper'}),null);
+add('front',34,g=>{panel(g,9.5,24,2.3,4.2,'#2c3150',(f,w,h)=>phoneFace(f,w,h,f=>{rr(f,0.36,0.65,0.3,0.3,0.15,col.accent);txt(f,0.75,0.86,'lecadre',0.2);rr(f,0.24,1.1,w-0.48,1.35,0,'#f3e9da');rr(f,0.7,1.35,0.9,0.72,0.04,col.wood);rr(f,0.78,1.43,0.74,0.56,0,col.lilac);rr(f,0.24,2.45,w-0.48,0.36,0,col.accent);txt(f,0.38,2.69,'En savoir plus',0.18,{fill:'#fff'});txt(f,0.36,3.1,'Vos photos chez vos',0.15,{w:500});txt(f,0.36,3.32,'parents, le jour même.',0.15,{w:500});}));},[10.6,24.2,4.9,'La pub']);
+add('front',40,g=>{panel(g,15,24,2.3,4.2,'#2c3150',(f,w,h)=>phoneFace(f,w,h,f=>{rr(f,0.36,0.6,w-0.72,0.24,0.12,'#ece6da');txt(f,w/2,0.77,'lecadre.fr',0.14,{anchor:'middle',w:500});txt(f,0.36,1.1,'Vos photos',0.24,{w:800});txt(f,0.36,1.36,'chez vos parents',0.24,{w:800});rr(f,0.62,1.55,1.05,0.8,0.04,col.wood);rr(f,0.7,1.63,0.89,0.64,0,col.lilac);
+   ['Rien à installer','Pas de caméra','Sans abonnement'].forEach((s,i)=>{el('circle',{cx:0.42,cy:2.6+i*0.22,r:0.05,fill:col.green},f);txt(f,0.52,2.65+i*0.22,s,0.14,{w:500});});txt(f,0.36,3.45,'149 €',0.26,{w:800});rr(f,1.15,3.27,0.85,0.26,0.08,col.accent);txt(f,1.575,3.45,'Commander',0.13,{anchor:'middle',fill:'#fff'});}));},[16.1,24.2,4.9,'Le site vendeur']);
+add('front',46,g=>{panel(g,20.5,24,2.3,4.2,'#2c3150',(f,w,h)=>phoneFace(f,w,h,f=>{txt(f,w/2,0.85,'Transporteur',0.17,{anchor:'middle'});rr(f,0.36,1.05,1.5,0.7,0.14,'#eef0f6');txt(f,0.48,1.3,'Votre colis Le Cadre',0.13,{w:500});txt(f,0.48,1.5,'arrive demain, 9 h-13 h.',0.13,{w:500});rr(f,0.36,1.9,1.4,0.5,0.14,'#eef0f6');txt(f,0.48,2.2,'Colis livré.',0.13,{w:500});
+   rr(f,0.36,2.6,w-0.72,0.9,0.08,'#fff',{stroke:'#cfd3e6',sw:0.03});txt(f,0.46,2.85,'Votre Cadre est commandé',0.12);txt(f,0.46,3.05,'Installez l’appli dès',0.12,{w:500});txt(f,0.46,3.24,'maintenant.',0.12,{w:500});}));},[21.6,24.2,4.9,'E-mail, SMS']);
+add('front',52,g=>{box(g,24.3,26,0,1.8,1.4,1.1,col.kraft);const f=faceL(g,24.3,26,0,1.4,1.1);txt(f,0.25,0.65,'Le Cadre',0.32,{fill:'#fff'});box(g,24.3,26,1.1,1.8,1.4,0.04,col.kraftD);},[25.2,26.5,1.9,'Le colis et sa carte']);
+add('front',56,g=>{box(g,29.5,22.6,0,6,0.4,4.4,'#fbf6ea');box(g,30.3,23,0,4.2,1.3,1.2,col.wood);
+  box(g,31,23.25,1.2,2.8,0.3,1.95,col.wood);const f=faceL(g,31,23.25,1.2,0.3,1.95);rr(f,0.14,0.14,2.52,1.67,0,'#fbf6ea');txt(f,1.4,0.6,'Bonjour',0.34,{anchor:'middle',w:800});txt(f,1.4,0.92,'Voulez-vous voir leurs photos ?',0.15,{anchor:'middle'});rr(f,0.45,1.15,0.85,0.3,0.06,col.accent);txt(f,0.875,1.35,'D’accord',0.13,{anchor:'middle',fill:'#fff'});rr(f,1.5,1.15,0.85,0.3,0.06,'#fff',{stroke:col.accent,sw:0.03});txt(f,1.925,1.35,'Plus tard',0.13,{anchor:'middle',fill:col.accent});
+  el('circle',{cx:1.15,cy:1.4,r:0.13,fill:'rgba(29,59,193,.35)',stroke:col.accent,'stroke-width':0.03},f);
+  box(g,30.6,23.05,1.2,0.35,0.35,0.6,'#5cbf8f');},[32.4,23,4.9,'Le cadre chez le parent']);
+add('front',62,g=>{panel(g,39.5,24,2.3,4.2,'#2c3150',(f,w,h)=>phoneFace(f,w,h,f=>{txt(f,0.36,0.9,'Envoyer',0.26,{w:800});rr(f,0.36,1.05,w-0.72,1.25,0.08,col.lilac);txt(f,w/2,1.72,'PHOTO',0.12,{anchor:'middle',fill:'#5a5f80'});rr(f,0.36,2.42,w-0.72,0.5,0.06,'#fff',{stroke:'#9aa0bb',sw:0.03});txt(f,0.46,2.72,'Bisous !',0.15,{w:500});rr(f,0.36,3.25,w-0.72,0.34,0.08,col.accent);txt(f,w/2,3.47,'Envoyer',0.15,{anchor:'middle',fill:'#fff'});el('circle',{cx:w-0.5,cy:3.5,r:0.13,fill:'rgba(29,59,193,.35)',stroke:'#fff','stroke-width':0.03},f);}));},[40.6,24.2,4.9,'L’appli : envoyer']);
+add('front',68,g=>{panel(g,44.6,24,2.3,4.2,'#2c3150',(f,w,h)=>{rr(f,0.12,0.12,w-0.24,h-0.24,0.28,'#2a3350');txt(f,w/2,1.05,'14:37',0.5,{anchor:'middle',fill:'#fff',w:800});rr(f,0.25,1.45,w-0.5,1.0,0.14,'#fff');txt(f,0.38,1.7,'LE CADRE · MAINTENANT',0.1,{fill:'#5a5f80',font:'IBM Plex Mono, monospace',w:500});txt(f,0.38,1.95,'C’est le moment !',0.17);txt(f,0.38,2.17,'Montrez-lui ce que',0.13,{w:500});txt(f,0.38,2.35,'vous faites, maintenant.',0.13,{w:500});txt(f,w/2,2.9,'2 minutes pour la photo',0.13,{anchor:'middle',fill:'#fff'});});},[45.7,24.2,4.9,'Notification du jour']);
+add('front',76,g=>{box(g,51.5,22,0,3.6,1.7,1.1,'#ffffff');panel(g,52,22.2,1.6,1.25,'#3b4256',(f,w,h)=>{rr(f,0.1,0.1,w-0.2,h-0.2,0.04,'#fff');rr(f,0.2,0.25,0.9,0.22,0.08,'#eef0f6');rr(f,0.45,0.6,0.95,0.22,0.08,'#dbe3ff');},1.1);
+  const b=P(55.6,22.5,3.2);el('path',{d:`M${b[0]} ${b[1]} h70 a6 6 0 0 1 6 6 v14 a6 6 0 0 1 -6 6 h-56 l-8 7 v-7 h-6 a6 6 0 0 1 -6 -6 v-14 a6 6 0 0 1 6 -6z`,fill:'#fff',stroke:INK,'stroke-width':1.4},g);txt(g,b[0]+6,b[1]+17,'Pas de caméra.',8.5,{w:700});},[53.3,22.5,3,'Service client']);
+add('front',74,g=>person(g,53.4,21.4,'#fff',{arm:'down',headset:true}),null);
+
+// PARCOURS (y 30..40)
+add('journey',38,g=>{person(g,3.5,35,col.enfant,{arm:'phone'});const p=P(3.5,35,2.6);el('path',{d:`M${p[0]+6} ${p[1]-26} h96 a8 8 0 0 1 8 8 v16 a8 8 0 0 1 -8 8 h-80 l-10 8 v-8 h-6 a8 8 0 0 1 -8 -8 v-16 a8 8 0 0 1 8 -8z`,fill:'#fff',stroke:INK,'stroke-width':1.4},g);
+  txt(g,p[0]+14,p[1]-13,'Pas de nouvelles,',9,{font:'Caveat, cursive',w:700});txt(g,p[0]+14,p[1]-2,'bonne nouvelle ?',9,{font:'Caveat, cursive',w:700});},[3.5,35,-1.1,'Le déclic']);
+add('journey',43,g=>person(g,8.5,34.5,col.enfant,{arm:'paper'}),[8.5,34.5,2.2,'Pub ou pharmacie']);
+add('journey',50,g=>{box(g,14,33.8,0,1.3,1.3,0.75,'#9aa3c7');box(g,14,33.8,0.75,0.3,1.3,1,'#9aa3c7');person(g,14.8,34.8,col.enfant,{arm:'phone',sit:true,z:0.75});},[14.6,34.4,2.8,'Visite le site, commande']);
+add('journey',58,g=>person(g,22,35.2,col.enfant,{arm:'carry'}),[22,35.2,2.3,'Reçoit le colis']);
+add('journey',66,g=>{box(g,30.3,33.4,0,1.8,1.8,0.85,'#f2c9b5');box(g,30.3,33.4,0.85,0.35,1.8,1.25,'#f2c9b5');person(g,31.3,34.4,col.parent,{sit:true,hair:'grey',z:0.85,arm:'point'});person(g,34.4,35.6,col.enfant,{arm:'phone'});},[32.3,34.6,2.9,'Installe ; le parent dit oui']);
+add('journey',80,g=>{person(g,40.5,35,col.proche,{arm:'phone',hair:'long'});person(g,43,36.3,col.proche,{arm:'phone'});const p=P(41.6,35,3.1);rr(g,p[0]-6,p[1]-16,16,12,1.5,col.lilac,{stroke:INK,sw:1.2});},[41.8,35.6,2.6,'Les proches envoient']);
+add('journey',88,g=>{person(g,48.5,35.4,col.enfant,{arm:'phone'});const p=P(48.5,35.4,2.7);el('circle',{cx:p[0]+14,cy:p[1]-6,r:7,fill:'#ffd36b',stroke:INK,'stroke-width':1.3},g);},[48.5,35.4,2.3,'C’est le moment !']);
+add('journey',95,g=>{person(g,55,35.6,col.enfant,{arm:'phone'});const p=P(55,35.6,2.8);txt(g,p[0]+10,p[1]-4,'★★★★',10,{fill:'#f2a900'});},[55,35.6,2.3,'Un souci, puis le premier mois']);
+add('journey',99,g=>{g.dataset.nocam=1;arrow(g,[5,38.2],[7.5,38.2],-10);arrow(g,[10,38.2],[13,38.2],-10);arrow(g,[16.5,38.2],[20.5,38.2],-12);arrow(g,[23.5,38.4],[29.5,38.4],-14);arrow(g,[36,38.6],[39.5,38.6],-12);arrow(g,[44.5,38.8],[47.5,38.8],-10);arrow(g,[50,38.8],[54,38.8],-10);},null);
+
+// ---- dessin par couche, du fond vers l'avant ----
+for(const b of BANDS){layers[b.id]=el('g',{class:'band',id:'band-'+b.id});}
+const order={support:0,back:1,front:2,journey:3};
+items.sort((a,b)=>order[a.band]-order[b.band]||a.depth-b.depth).forEach(it=>{const g=el('g',{},layers[it.band]);it.draw(g);it.g=g;
+  const bb=g.getBBox();it.bb=[bb.x,bb.y,bb.x+bb.width,bb.y+bb.height];const X=bb.x+bb.width/2,Y=bb.y+bb.height;it.ix=(X/(C30*S)+Y/(S30*S))/2;});
+// étiquettes
+const tagLayer=el('g',{id:'tags'});const tagsBy={};
+for(const it of items){if(!it.tag)continue;const [x,y,z,s]=it.tag;const p=P(x,y,z);const g=el('g',{class:'tagbox','data-band':it.band,opacity:0},tagLayer);
+  const t=txt(g,p[0],p[1],s,11.5,{anchor:'middle',w:700});const bb=t.getBBox();el('rect',{x:bb.x-6,y:bb.y-3,width:bb.width+12,height:bb.height+6,rx:3,fill:'#fff',stroke:INK,'stroke-width':1.2},g).parentNode.insertBefore(g.lastChild,t);
+  (tagsBy[it.band]=tagsBy[it.band]||[]).push(g);it.tagG=g;const tb=g.getBBox();it.tb=[tb.x,tb.y,tb.x+tb.width,tb.y+tb.height];}
+// fil d'une photo, de bout en bout
+const thread=el('g',{id:'thread',opacity:0});
+const tp=[P(42.2,35.6,2.2),P(40.6,24.2,4.2),P(40.6,4,3.6),P(32.4,23.2,3.8),P(31.3,34.4,2.6)];
+const td=`M${tp[0]} C${tp[0][0]+40},${tp[0][1]-120} ${tp[1][0]+60},${tp[1][1]-40} ${tp[1]} S${tp[2][0]+80},${tp[2][1]+40} ${tp[2]} S${tp[3][0]+40},${tp[3][1]-80} ${tp[3]} S${tp[4][0]+20},${tp[4][1]-60} ${tp[4]}`;
+el('path',{d:td,fill:'none',stroke:'#fff','stroke-width':9,'stroke-linecap':'round'},thread);
+const tpath=el('path',{d:td,fill:'none',stroke:col.accent,'stroke-width':4,'stroke-linecap':'round','stroke-dasharray':'2 10','marker-end':'url(#ahb)'},thread);
+['A','B','C','D'].forEach((L,i)=>{const p=[tp[0],tp[2],tp[3],tp[4]][i];el('circle',{cx:p[0],cy:p[1],r:13,fill:col.accent,stroke:'#fff','stroke-width':3},thread);txt(thread,p[0],p[1]+4.5,L,13,{anchor:'middle',fill:'#fff',w:800});});
+
+// ---- caméra ----
+function bboxOf(x0,x1,y0,y1,zTop){const c=[P(x0,y0),P(x1,y0),P(x1,y1),P(x0,y1),P(x0,y0,zTop),P(x1,y0,zTop)];const xs=c.map(p=>p[0]),ys=c.map(p=>p[1]);return [Math.min(...xs),Math.min(...ys),Math.max(...xs),Math.max(...ys)];}
+const full=bboxOf(X0,X1,Y0,Y1,5.5);
+// inclure les étiquettes manuscrites à droite
+const lb=lines.getBBox();full[2]=Math.max(full[2],lb.x+lb.width);full[3]=Math.max(full[3],P(X0,Y1,-0.7)[1]);
+function viewFor(step){const v=step.dataset.view;
+  if(v==='thread'){const b=thread.getBBox();const pad=60;return [b.x-pad,b.y-pad-30,b.width+2*pad,b.height+2*pad+30];}
+  if(v==='all'){const pad=24;return [full[0]-pad,full[1]-pad,full[2]-full[0]+2*pad,full[3]-full[1]+2*pad];}
+  const x0=+step.dataset.x0,x1=+step.dataset.x1;let u=null;
+  for(const it of items){if(it.band!==v||it.g.dataset.nocam||it.ix<x0||it.ix>x1)continue;for(const b of [it.bb,it.tb]){if(!b)continue;u=u?[Math.min(u[0],b[0]),Math.min(u[1],b[1]),Math.max(u[2],b[2]),Math.max(u[3],b[3])]:b.slice();}}
+  if(!u){const b=BANDS.find(x=>x.id===v);u=bboxOf(x0,x1,b.y0,b.y1,4);}
+  const pad=46;let w=u[2]-u[0]+2*pad,h=u[3]-u[1]+2*pad;const mw=520;if(w<mw){u[0]-=(mw-w)/2;w=mw;}
+  return [u[0]-pad,u[1]-pad,w,h];}
+let cur=null, anim=null;
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function setVB(v){svg.setAttribute('viewBox',v.map(n=>n.toFixed(1)).join(' '));}
+function goTo(target){if(!cur||reduce){cur=target;setVB(cur);return;}const from=cur.slice(),t0=performance.now(),D=950;cancelAnimationFrame(anim);
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  const tick=now=>{const t=Math.min(1,(now-t0)/D),e=ease(t);cur=from.map((f,i)=>f+(target[i]-f)*e);setVB(cur);if(t<1)anim=requestAnimationFrame(tick);};anim=requestAnimationFrame(tick);}
+const whereEl=document.getElementById('where');
+const names={all:'Vue d’ensemble',journey:'1 · Parcours de la famille',front:'2 · Avant-scène',back:'3 · Coulisses',support:'4 · Processus support',thread:'Une photo, de bout en bout'};
+function activate(step){const v=step.dataset.view;goTo(viewFor(step));whereEl.textContent=names[v];
+  for(const b of BANDS){const on=(v==='all'||v==='thread'||v===b.id);layers[b.id].style.opacity=on?1:0.22;tints[b.id].setAttribute('opacity',v===b.id?0.06:0);lab[b.id].style.opacity=on?1:0.3;}
+  const x0=+step.dataset.x0,x1=+step.dataset.x1;for(const it of items){if(!it.tagG)continue;it.tagG.setAttribute('opacity',(it.band===v&&it.ix>=x0-0.5&&it.ix<=x1+0.5)?1:0);}
+  thread.setAttribute('opacity',v==='thread'?1:0);}
+document.querySelectorAll('.band, .tagbox, #thread, #lines text').forEach(n=>n.style.transition=reduce?'none':'opacity .5s ease');
+const steps=[...document.querySelectorAll('.step')];
+activate(steps[0]);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)activate(e.target);});},{rootMargin:window.matchMedia('(max-width:900px)').matches?'-62% 0px -30% 0px':'-45% 0px -45% 0px'});
+steps.forEach(s=>io.observe(s));
+// animation du fil
+if(!reduce){let off=0;(function loop(){off=(off-0.6)%120;tpath.setAttribute('stroke-dashoffset',off);requestAnimationFrame(loop);})();}
+})();
+</script>
+
+</body>
+</html>

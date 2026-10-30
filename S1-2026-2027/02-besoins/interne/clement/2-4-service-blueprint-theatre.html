@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>Le Cadre, le théâtre</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&family=Caveat:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Mise en page : récit à gauche, scène fixe à droite vue toujours du même angle ; on avance de zone en zone, comme dans le schéma du théâtre. */
+:root{
+  color-scheme:light;
+  --paper:#f6f5fb; --ink:#1b1f3b; --muted:#5a5f80; --accent:#1d3bc1;
+  --z1:#e4d6fb; --z2:#e3e8fb; --z3:#fdd9c7; --z4:#fff0a8;
+  --fictif:#8a5a00; --fictif-bg:#fff2cf;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif; --hand:"Caveat","Bradley Hand",cursive; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--display);-webkit-font-smoothing:antialiased}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{max-width:1560px;margin-inline:auto;padding-block:clamp(28px,5vw,56px) 10px}
+.eyebrow{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-wrap:wrap;gap:4px 24px;margin:0}
+h1{font:900 clamp(46px,8.5vw,128px)/.9 var(--display);letter-spacing:-.05em;margin:26px 0 0;max-width:11ch;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{font:700 clamp(19px,2vw,25px)/1.3 var(--display);letter-spacing:-.012em;max-width:46ch;margin:22px 0 0;border-left:6px solid var(--accent);padding-left:18px}
+
+.story{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(20px,3vw,44px);max-width:1560px;margin-inline:auto;padding-block:20px 0}
+.steps{min-width:0}
+.stage{position:sticky;top:env(safe-area-inset-top,0px);height:100vh;display:flex;align-items:center;min-width:0}
+.stage-inner{position:relative;width:100%;height:min(88vh,880px);background:#fff;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);overflow:hidden}
+.stage svg{width:100%;height:100%;display:block}
+.zones{position:absolute;left:12px;right:12px;top:12px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.zones button{all:unset;cursor:pointer;border:1.5px solid var(--ink);background:#fff;padding:7px 9px;font:700 13px/1.15 var(--display);min-width:0;transition:background .35s,color .35s}
+.zones button small{display:block;font:500 10px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.zones button.on{background:var(--ink);color:#fff}
+.zones button.on small{color:#c9cdf0}
+.zones button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.legend{position:absolute;left:12px;bottom:10px;display:flex;flex-wrap:wrap;gap:4px 12px;background:rgba(255,255,255,.94);padding:6px 10px;border:1.5px solid var(--ink);font:500 12px/1.2 var(--display);color:var(--muted)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--ink);vertical-align:-2px;margin-right:5px}
+
+.step{min-height:84vh;display:flex;flex-direction:column;justify-content:center;padding-block:28px}
+.step.intro{min-height:66vh}
+.kicker{font:500 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.step h2{font:800 clamp(32px,3.4vw,46px)/1.02 var(--display);letter-spacing:-.03em;margin:8px 0 0;text-wrap:balance}
+.step p{margin:12px 0 0;max-width:42ch}
+.chip{display:inline-block;width:14px;height:14px;border:1.5px solid var(--ink);vertical-align:-2px;margin-right:8px}
+.list{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:9px}
+.list li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:start;font-size:15.5px;line-height:1.42}
+.list b{font:500 11.5px/24px var(--mono);height:24px;text-align:center;background:var(--ink);color:#fff}
+.tag{display:inline-block;font:500 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 5px;margin-left:5px;vertical-align:2px;color:var(--fictif);background:var(--fictif-bg)}
+.tag.src{color:var(--accent);background:#e7ebfb}
+
+.end{max-width:1560px;margin-inline:auto;padding-block:56px 72px}
+.end h2{font:900 clamp(32px,4.4vw,60px)/1 var(--display);letter-spacing:-.04em;margin:0;max-width:18ch;text-wrap:balance}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;background:var(--ink);border:2px solid var(--ink);margin-top:26px}
+.grid4>div{background:#fff;padding:18px 18px 20px;min-width:0}
+.grid4 h3{font:800 20px/1.15 var(--display);margin:8px 0 10px}
+.grid4 ul{margin:0;padding-left:18px;font-size:15px}
+.grid4 li+li{margin-top:6px}
+.sources{margin-top:24px;font-size:14.5px;color:var(--muted);max-width:86ch}
+@media (max-width:960px){
+  .story{grid-template-columns:minmax(0,1fr)}
+  .stage{order:-1;height:auto;z-index:3;padding-block:8px;background:var(--paper)}
+  .stage-inner{height:50vh;box-shadow:4px 4px 0 var(--ink)}
+  .legend{display:none}
+  .zones button{padding:5px 6px;font-size:11px}
+  .zones button small{display:none}
+  .step{min-height:70vh}
+  .grid4{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+@media (max-width:520px){.grid4{grid-template-columns:minmax(0,1fr)}}
+</style>
+
+<header class="top wrap">
+  <p class="eyebrow"><span>Service blueprint · Le Cadre</span><span>PFR Générations Connectées</span><span>Version théâtre · 30 octobre 2026</span></p>
+  <h1>Le Cadre, <em>comme au théâtre</em></h1>
+  <p class="lead">Une appli pour la famille, un cadre photo chez le parent. Devant, la famille vit son parcours ; sur scène, ce qu’elle voit et touche ; derrière le rideau, notre équipe ; tout au fond, les outils.</p>
+</header>
+
+<main class="story wrap">
+  <div class="steps" id="steps">
+    <section class="step intro" data-zone="all">
+      <span class="kicker">Vue d’ensemble</span>
+      <h2>Quatre zones, de l’avant vers le fond</h2>
+      <p>Le plateau se lit comme une salle de spectacle. Au premier plan, la famille. Puis la scène, ce qu’elle voit et touche. Derrière, les coulisses. Tout au fond, les outils qui font tourner le service.</p>
+      <p style="font-size:15px;color:var(--muted)">Scénario illustratif : le prix, la pub, le site, les e-mails et les outils sont inventés pour rendre le parcours concret.<span class="tag">fictif</span></p>
+    </section>
+
+    <section class="step" data-zone="z1" data-sub="a">
+      <span class="kicker">Zone 1 · Le parcours de la famille</span>
+      <h2>Découvrir, acheter, recevoir</h2>
+      <ul class="list">
+        <li><b>01</b><span>« Pas de nouvelles, bonne nouvelle ? » L’enfant s’inquiète en semaine.</span></li>
+        <li><b>02</b><span>Il voit une pub ; le pharmacien de son parent lui tend un dépliant.</span></li>
+        <li><b>03</b><span>Sur le canapé, il lit le site, en parle à son parent et à son frère, puis commande : 149 €.<span class="tag">prix fictif</span></span></li>
+        <li><b>04</b><span>Il installe l’appli dès l’e-mail de confirmation, puis récupère le colis.</span></li>
+      </ul>
+    </section>
+    <section class="step" data-zone="z1" data-sub="b">
+      <span class="kicker">Zone 1 · Le parcours de la famille</span>
+      <h2>Installer, puis faire vivre</h2>
+      <ul class="list">
+        <li><b>05</b><span>Chez son parent, il branche le cadre, tape le wifi, entre le code dans l’appli.</span></li>
+        <li><b>06</b><span>Le parent, dans son fauteuil, touche « D’accord ». Il n’a ni appli ni compte.</span></li>
+        <li><b>07</b><span>Les proches rejoignent la famille et envoient des photos, chaque jour à l’heure de la notification.</span></li>
+        <li><b>08</b><span>Un souci, le premier mois : l’enfant suit l’aide, donne son avis, garde le cadre.</span></li>
+      </ul>
+    </section>
+    <section class="step" data-zone="z2">
+      <span class="kicker">Zone 2 · La scène : ce que la famille voit</span>
+      <h2>Les écrans, le cadre, ceux qui répondent</h2>
+      <ul class="list">
+        <li><b>Pub</b><span>« Vos photos chez vos parents, le jour même. »<span class="tag">fictif</span></span></li>
+        <li><b>Site</b><span>Rien à installer, pas de caméra, sans abonnement, « Commander ».<span class="tag">fictif</span></span></li>
+        <li><b>Cadre</b><span>« Bonjour », le code, l’écran d’accord lisible à 2 m, puis les photos avec le prénom, 8 s, sans son.<span class="tag src">parcours v2</span></span></li>
+        <li><b>Appli</b><span>Relier, inviter, envoyer, et la notification du jour « C’est le moment ! ».<span class="tag src">maquette de Lucas</span></span></li>
+        <li><b>Aide</b><span>Le chat du site et le service client : « Non, pas de caméra », « Redémarrez la box ».<span class="tag">fictif</span></span></li>
+      </ul>
+    </section>
+    <section class="step" data-zone="z3">
+      <span class="kicker">Zone 3 · Les coulisses : notre équipe</span>
+      <h2>Ce que la famille ne voit pas</h2>
+      <ul class="list">
+        <li><b>A</b><span>Une campagne vise les enfants aidants de 45 à 65 ans ; l’équipe signe avec pharmacies et mutuelles.</span></li>
+        <li><b>B</b><span>À l’atelier, chaque cadre est relié à un code et testé.</span></li>
+        <li><b>C</b><span>Il est emballé avec son câble et sa carte en trois étapes, puis expédié sous 48 h.<span class="tag">fictif</span></span></li>
+        <li><b>D</b><span>L’équipe surveille l’envoi des photos et repère les cadres hors ligne depuis 24 h.</span></li>
+      </ul>
+    </section>
+    <section class="step" data-zone="z4">
+      <span class="kicker">Zone 4 · Les processus support : les outils</span>
+      <h2>Ce qui fait tourner le service</h2>
+      <ul class="list">
+        <li><b>A</b><span>Régie pub, site vendeur avec chat, paiement en ligne.<span class="tag">outils à choisir</span></span></li>
+        <li><b>B</b><span>Le transporteur, avec un SMS de suivi.<span class="tag">fictif</span></span></li>
+        <li><b>C</b><span>Le serveur photos : il pousse chaque photo vers le cadre en 20 à 80 s (estimé).<span class="tag src">parcours v2</span></span></li>
+        <li><b>D</b><span>Les notifications, les e-mails et l’alerte « hors ligne depuis 24 h ».</span></li>
+      </ul>
+    </section>
+    <section class="step" data-zone="thread">
+      <span class="kicker">Ce qui relie les zones</span>
+      <h2>Une photo, de la salle au fond, et retour</h2>
+      <ul class="list">
+        <li><b>1</b><span>Un proche touche « Envoyer » dans l’appli.</span></li>
+        <li><b>2</b><span>La photo part au fond, sur le serveur.</span></li>
+        <li><b>3</b><span>Elle revient sur scène : le cadre l’affiche avec le prénom, 20 à 80 s plus tard.</span></li>
+        <li><b>4</b><span>Le parent la voit depuis son fauteuil, sans rien toucher.</span></li>
+      </ul>
+    </section>
+  </div>
+  <div class="stage">
+    <div class="stage-inner">
+      <svg id="scene" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Le service Le Cadre vu comme un théâtre : la famille, la scène, les coulisses, les outils"></svg>
+      <nav class="zones" id="zones" aria-label="Aller à une zone">
+        <button type="button" data-go="z1"><small>Zone 1</small>La famille</button>
+        <button type="button" data-go="z2"><small>Zone 2</small>La scène</button>
+        <button type="button" data-go="z3"><small>Zone 3</small>Les coulisses</button>
+        <button type="button" data-go="z4"><small>Zone 4</small>Les outils</button>
+      </nav>
+      <div class="legend"><span><i style="background:#1d3bc1"></i>l’enfant</span><span><i style="background:#f2a283"></i>le parent</span><span><i style="background:#5cbf8f"></i>les proches</span><span><i style="background:#fff"></i>équipe, partenaires</span></div>
+    </div>
+  </div>
+</main>
+
+<section class="end wrap">
+  <h2>Le blueprint, zone par zone</h2>
+  <div class="grid4">
+    <div><span class="kicker">Zone 1</span><h3>La famille</h3><ul><li>Découvre par la pub ou la pharmacie</li><li>Lit le site, en parle, commande</li><li>Reçoit le colis, installe</li><li>Le parent dit oui, seul</li><li>Les proches envoient chaque jour</li><li>Un souci, le premier mois</li></ul></div>
+    <div><span class="kicker">Zone 2</span><h3>La scène</h3><ul><li>Pub, dépliant, site</li><li>E-mail, SMS, colis</li><li>Le cadre : code, accord, photos</li><li>L’appli : relier, inviter, envoyer</li><li>Chat et service client</li></ul></div>
+    <div><span class="kicker">Zone 3</span><h3>Les coulisses</h3><ul><li>Campagne, partenariats</li><li>Relie et teste chaque cadre</li><li>Emballe, expédie sous 48 h</li><li>Surveille envois et cadres hors ligne</li><li>Lit les avis, gère les retours</li></ul></div>
+    <div><span class="kicker">Zone 4</span><h3>Les outils</h3><ul><li>Régie pub, site, paiement</li><li>Transporteur et SMS</li><li>Serveur photos vers le cadre</li><li>Notifications, e-mails</li><li>Alerte « hors ligne depuis 24 h »</li></ul></div>
+  </div>
+  <p class="sources">Contenu : le service blueprint v4 de l’équipe. Qui paie, qui prescrit et ce qui freine viennent de la veille ; les écrans de l’appli, de la maquette de Lucas ; les écrans du cadre et les frictions, du parcours v2 de Camille. La pub, le site, les e-mails, les SMS, le prix et les outils sont fictifs. Format inspiré des blueprints « théâtre » ; illustration dessinée pour Le Cadre.</p>
+</section>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';const S=22,C30=Math.cos(Math.PI/6);
+const P=(x,y,z=0)=>[(x-y)*C30*S,(x+y)*.5*S-z*S];
+const pts=a=>a.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+const INK='#1b1f3b';
+const K={enfant:'#1d3bc1',parent:'#f2a283',proche:'#5cbf8f',wood:'#b07a4a',woodD:'#8c5c33',kraft:'#cfa271',kraftD:'#b5865a',screen:'#2a3350',lilac:'#d9cdf2',accent:'#1d3bc1',steel:'#9aa3c7',dark:'#2c3150',green:'#1d9a6c',red:'#c8372d',sun:'#ffd36b',curtain:'#3446c9'};
+const svg=document.getElementById('scene');
+function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)if(a[k]!==undefined&&a[k]!=='')e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;}
+function shade(hex,f){const v=parseInt(hex.slice(1),16);const c=[v>>16,v>>8&255,v&255].map(x=>Math.min(255,Math.round(x*f)));return '#'+c.map(x=>x.toString(16).padStart(2,'0')).join('');}
+function box(g,x,y,z,w,d,h,c,o={}){const sw=o.sw||1.4;
+ el('polygon',{points:pts([P(x,y+d,z),P(x+w,y+d,z),P(x+w,y+d,z+h),P(x,y+d,z+h)]),fill:o.left||shade(c,.9),stroke:INK,'stroke-width':sw,'stroke-linejoin':'round'},g);
+ el('polygon',{points:pts([P(x+w,y,z),P(x+w,y+d,z),P(x+w,y+d,z+h),P(x+w,y,z+h)]),fill:o.right||shade(c,.76),stroke:INK,'stroke-width':sw,'stroke-linejoin':'round'},g);
+ el('polygon',{points:pts([P(x,y,z+h),P(x+w,y,z+h),P(x+w,y+d,z+h),P(x,y+d,z+h)]),fill:o.top||c,stroke:INK,'stroke-width':sw,'stroke-linejoin':'round'},g);}
+const faceL=(g,x,y,z,d,h)=>{const o=P(x,y+d,z+h);return el('g',{transform:`matrix(${C30*S},${.5*S},0,${S},${o[0]},${o[1]})`},g);};
+const faceR=(g,x,y,z,w,h)=>{const o=P(x+w,y,z+h);return el('g',{transform:`matrix(${-C30*S},${.5*S},0,${S},${o[0]},${o[1]})`},g);};
+const faceTop=(g,x,y,z)=>{const o=P(x,y,z);return el('g',{transform:`matrix(${C30*S},${.5*S},${-C30*S},${.5*S},${o[0]},${o[1]})`},g);};
+function T(g,x,y,s,size,o={}){const t=el('text',{x,y,'font-size':size,'font-family':o.mono?'IBM Plex Mono, monospace':o.hand?'Caveat, cursive':'Archivo, Arial, sans-serif','font-weight':o.w||700,fill:o.fill||INK,'text-anchor':o.anchor},g);t.textContent=s;return t;}
+function R(g,x,y,w,h,r,fill,o={}){return el('rect',{x,y,width:w,height:h,rx:r,fill,stroke:o.stroke,'stroke-width':o.sw},g);}
+const dot=(g,cx,cy,r,fill,o={})=>el('circle',{cx,cy,r,fill,stroke:o.stroke,'stroke-width':o.sw},g);
+
+function person(g,x,y,shirt,o={}){const [px,py]=P(x,y,o.z||0);const gg=el('g',{transform:`translate(${px.toFixed(1)},${py.toFixed(1)}) scale(${o.k||1.15})`},g);
+ const sit=o.sit;el('ellipse',{cx:1,cy:1,rx:9,ry:3.5,fill:INK,opacity:.12},gg);
+ if(!sit){el('path',{d:'M-4 0 L-3.4 -16 M4 0 L3.4 -16',stroke:INK,'stroke-width':3.4,'stroke-linecap':'round'},gg);el('path',{d:'M-6.5 1 h5 M2 1 h5',stroke:INK,'stroke-width':2.6,'stroke-linecap':'round'},gg);}
+ else el('path',{d:'M-4 -13 L5 -12 L5.5 0 M-3 -13 L3 -12 L2.5 0',stroke:INK,'stroke-width':3,'stroke-linecap':'round',fill:'none'},gg);
+ const t=sit?-31:-35;
+ el('path',{d:`M-7.5 ${t+19} Q-8.5 ${t+2} 0 ${t} Q8.5 ${t+2} 7.5 ${t+19} Z`,fill:shirt,stroke:INK,'stroke-width':1.6,'stroke-linejoin':'round'},gg);
+ if(o.cardigan)el('path',{d:`M0 ${t+1} L0 ${t+19}`,stroke:INK,'stroke-width':1},gg);
+ const a=o.arm||'down';
+ if(a==='phone'){el('path',{d:`M6.5 ${t+4} Q10 ${t+12} 3 ${t+12}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);R(gg,-.5,t+6,5.5,8.5,1,K.screen,{stroke:INK,sw:1});R(gg,.5,t+7,3.5,6,.6,'#9fb4ff');}
+ else if(a==='ear'){el('path',{d:`M6.5 ${t+4} Q11 ${t-1} 5 ${t-5}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);R(gg,3,t-10,4,7,1,K.screen,{stroke:INK,sw:1});el('path',{d:`M-6.5 ${t+4} L-7 ${t+15}`,stroke:INK,'stroke-width':2.4,'stroke-linecap':'round'},gg);}
+ else if(a==='carry'){el('path',{d:`M-6.5 ${t+5} Q-3 ${t+12} 2 ${t+12} M6.5 ${t+5} Q4 ${t+11} 2 ${t+12}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);el('polygon',{points:`-7,${t+9} 9,${t+9} 9,${t+20} -7,${t+20}`,fill:K.kraft,stroke:INK,'stroke-width':1.3},gg);}
+ else if(a==='paper'){el('path',{d:`M6.5 ${t+4} Q11 ${t+9} 11 ${t+11}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);R(gg,9,t+5,7,9,.5,'#fff',{stroke:INK,sw:1});R(gg,10,t+6,5,1.4,0,K.accent);}
+ else if(a==='point'){el('path',{d:`M6.5 ${t+4} L15 ${t-3}`,stroke:INK,'stroke-width':2.4,'stroke-linecap':'round'},gg);el('path',{d:`M-6.5 ${t+4} L-7 ${t+15}`,stroke:INK,'stroke-width':2.4,'stroke-linecap':'round'},gg);}
+ else if(a==='type'){el('path',{d:`M-6.5 ${t+5} Q-2 ${t+14} 4 ${t+13} M6.5 ${t+5} Q9 ${t+13} 8 ${t+14}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);}
+ else el('path',{d:`M-6.5 ${t+4} L-7.5 ${t+16} M6.5 ${t+4} L7.5 ${t+16}`,stroke:INK,'stroke-width':2.4,'stroke-linecap':'round'},gg);
+ dot(gg,0,t-6,6.2,'#fff',{stroke:INK,sw:1.6});
+ if(o.hair==='grey'){el('path',{d:`M-6.2 ${t-6} Q-6 ${t-14} 0 ${t-13.5} Q6.5 ${t-14} 6.2 ${t-5} Q4 ${t-10} -6.2 ${t-6} Z`,fill:'#d9d9e0',stroke:INK,'stroke-width':1.2},gg);el('circle',{cx:4.5,cy:t-14,r:2.4,fill:'#d9d9e0',stroke:INK,'stroke-width':1.1},gg);}
+ else if(o.hair==='long')el('path',{d:`M-6.2 ${t-5} Q-7 ${t-14} 0 ${t-13.5} Q7 ${t-14} 6.2 ${t-5} L6.5 ${t+3} L3 ${t-6} Q-1 ${t-10} -4 ${t-6} L-6.5 ${t+3} Z`,fill:INK},gg);
+ else if(o.hair==='cap'){el('path',{d:`M-6.5 ${t-7} Q0 ${t-15} 6.5 ${t-7} Z`,fill:K.accent,stroke:INK,'stroke-width':1.2},gg);el('path',{d:`M5 ${t-8} h6`,stroke:INK,'stroke-width':2.2},gg);}
+ else el('path',{d:`M-6.2 ${t-7} Q-4 ${t-14} 1 ${t-13.5} Q6.5 ${t-12.5} 6.2 ${t-6} Q2 ${t-10} -6.2 ${t-7} Z`,fill:INK},gg);
+ if(o.headset){el('path',{d:`M-7 ${t-6} Q0 ${t-17} 7 ${t-6}`,stroke:INK,'stroke-width':1.6,fill:'none'},gg);el('path',{d:`M-7 ${t-5} Q-6 ${t+1} -1 ${t}`,stroke:INK,'stroke-width':1.3,fill:'none'},gg);}
+ if(o.glasses)el('path',{d:`M-4.5 ${t-6} h3 M1.5 ${t-6} h3`,stroke:INK,'stroke-width':1.4},gg);
+ return gg;}
+function bubble(g,x,y,z,lines,o={}){const [px,py]=P(x,y,z);const w=o.w||(Math.max(...lines.map(l=>l.length))*5.9+16),h=lines.length*13+12;const bx=px+(o.dx??8),by=py-h-(o.dy||8);
+ el('path',{d:`M${bx} ${by} h${w} a7 7 0 0 1 7 7 v${h-14} a7 7 0 0 1 -7 7 h${-w+24} l-10 9 v-9 h-14 a7 7 0 0 1 -7 -7 v${-(h-14)} a7 7 0 0 1 7 -7z`,fill:'#fff',stroke:INK,'stroke-width':1.4},g);
+ lines.forEach((l,i)=>T(g,bx+3,by+17+i*13,l,13,{hand:true}));}
+function panel(g,x,y,z,w,h,frame,draw){box(g,x,y,z,w,.35,h,frame,{left:frame});const f=faceL(g,x,y,z,.35,h);draw(f,w,h);return f;}
+function phone(g,x,y,z,w,h,draw,o={}){box(g,x+w/2-.15,y+.1,z,.3,.2,.6,K.steel);box(g,x+w/2-.6,y-.1,z,1.2,.6,.12,K.steel);
+ panel(g,x,y,z+.6,w,h,K.dark,(f,W,H)=>{R(f,.1,.1,W-.2,H-.2,.26,'#1f2442');R(f,.2,.36,W-.4,H-.58,.15,o.bg||'#fff');R(f,W/2-.32,.17,.64,.11,.05,'#0b0e1d');draw(f,W,H);});}
+const tap=(f,cx,cy)=>dot(f,cx,cy,.15,'rgba(29,59,193,.35)',{stroke:K.accent,sw:.035});
+const btn=(f,x,y,w,label,o={})=>{R(f,x,y,w,.3,.08,o.ghost?'#fff':(o.c||K.accent),{stroke:o.ghost?K.accent:undefined,sw:.025});T(f,x+w/2,y+.21,label,.14,{anchor:'middle',fill:o.ghost?K.accent:'#fff'});return [x+w-.12,y+.25];};
+const mini=(f,x,y,w)=>{const h=w*.68;R(f,x,y,w,h,.03,K.wood);R(f,x+.06,y+.06,w-.12,h-.12,0,K.lilac);R(f,x+.06,y+h-.22,w-.12,.16,0,'rgba(18,22,46,.65)');};
+const SCREEN={
+ ad(f,W){dot(f,.48,.66,.13,K.accent);T(f,.68,.64,'lecadre',.15);T(f,.68,.8,'Sponsorisé',.1,{w:500,fill:'#5a5f80'});R(f,.2,.95,W-.4,1.35,0,'#f3e9da');mini(f,.62,1.2,1.1);R(f,.2,2.3,W-.4,.34,0,K.accent);T(f,.34,2.52,'En savoir plus',.15,{fill:'#fff'});tap(f,W-.4,2.55);T(f,.32,2.92,'Vos photos chez vos',.13,{w:500});T(f,.32,3.1,'parents, le jour même.',.13,{w:500});T(f,.32,3.28,'Rien à installer.',.13,{w:500});},
+ site(f,W){R(f,.32,.5,W-.64,.22,.11,'#ece6da');T(f,W/2,.65,'lecadre.fr',.12,{anchor:'middle',w:500});T(f,.32,.98,'Vos photos',.21,{w:800});T(f,.32,1.2,'chez vos parents',.21,{w:800});mini(f,.62,1.32,1.1);['Rien à installer pour eux','Pas de caméra ni de micro','Sans abonnement'].forEach((s,i)=>{dot(f,.38,2.2+i*.2,.04,K.green);T(f,.48,2.24+i*.2,s,.12,{w:500});});T(f,.32,3.05,'149 €',.24,{w:800});tap(f,...btn(f,.32,3.2,W-.64,'Commander'));},
+ envoyer(f,W){T(f,.32,.75,'Envoyer',.18,{w:800});R(f,.32,.9,W-.64,1.25,.08,K.lilac);T(f,W/2,1.58,'PHOTO',.1,{anchor:'middle',mono:true,fill:'#5a5f80',w:500});R(f,.32,2.25,W-.64,.45,.06,'#fff',{stroke:'#a9aec6',sw:.02});T(f,.42,2.52,'Bisous !',.14,{w:500});tap(f,...btn(f,.32,3.2,W-.64,'Envoyer'));},
+ jour(f,W){T(f,W/2,1.0,'14:37',.42,{anchor:'middle',fill:'#fff',w:800});R(f,.25,1.3,W-.5,1.0,.12,'rgba(255,255,255,.93)');T(f,.38,1.52,'LE CADRE · MAINTENANT',.085,{mono:true,fill:'#5a5f80',w:500});T(f,.38,1.75,'C’est le moment !',.15);T(f,.38,1.94,'Montrez-lui ce que',.11,{w:500});T(f,.38,2.1,'vous faites, maintenant.',.11,{w:500});tap(f,W-.5,2.2);T(f,W/2,2.7,'2 minutes pour la photo',.12,{anchor:'middle',fill:'#fff'});}
+};
+
+// ===================== PLATEAU =====================
+// Axe long : y (bas-gauche → haut-droite quand y diminue). Zones de l'avant vers le fond.
+const XW0=-1, XW1=17, YF=61, YB=-1;
+const ZONES=[{id:'z1',y0:45.5,y1:YF,label:'Parcours de la famille',short:'La famille'},{id:'z2',y0:28.5,y1:45.5,label:'Avant-scène',short:'La scène'},{id:'z3',y0:14.5,y1:28.5,label:'Coulisses',short:'Les coulisses'},{id:'z4',y0:YB,y1:14.5,label:'Processus support',short:'Les outils'}];
+const defs=el('defs',{});
+el('path',{d:'M0 0 L10 5 L0 10 Z',fill:INK},el('marker',{id:'ah',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:7,markerHeight:7,orient:'auto-start-reverse'},defs));
+el('path',{d:'M0 0 L10 5 L0 10 Z',fill:K.accent},el('marker',{id:'ahb',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'},defs));
+const glow=el('radialGradient',{id:'glow'},defs);el('stop',{offset:0,'stop-color':'#fff3b0','stop-opacity':.9},glow);el('stop',{offset:1,'stop-color':'#fff3b0','stop-opacity':0},glow);
+
+const base=el('g',{id:'base'});
+box(base,XW0,YB,-.8,XW1-XW0,YF-YB,.8,'#dedbee',{left:'#c4bfdc',right:'#b1abd1',sw:1.8});
+const zoneTint={};
+for(const z of ZONES)zoneTint[z.id]=el('polygon',{points:pts([P(XW0,z.y0),P(XW1,z.y0),P(XW1,z.y1),P(XW0,z.y1)]),fill:'#ffffff',opacity:0},base);
+const lines=el('g',{id:'lines'});
+for(const yy of [45.5,28.5,14.5]){const a=P(XW0-4,yy),b=P(XW1+4.5,yy);el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:INK,'stroke-width':2.4,'stroke-dasharray':'12 9'},lines);}
+const zLab={};
+ZONES.forEach(z=>{const yy=z.id==='z1'?55:z.y0+ (z.id==='z4'?6:6);const p=P(XW1+4.2,yy);zLab[z.id]=T(lines,p[0],p[1],z.label,34,{hand:true});});
+
+const items=[];
+const add=(zone,depth,draw,sub)=>items.push({zone,depth,draw,sub});
+
+// ---------- ZONE 1 : la famille ----------
+// tapis du salon du parent
+add('z1',0,g=>{const f=faceTop(g,5.6,46.6,0);R(f,0,0,9.6,5.6,.35,'#f6e3d5',{stroke:'#d9b8a1',sw:.06});R(f,.35,.35,8.9,4.9,.25,'none',{stroke:'#e5c6af',sw:.05});},'b');
+// 01 le déclic
+add('z1',2.5+57.5,g=>{person(g,2.5,57.5,K.enfant,{arm:'phone'});bubble(g,2.5,57.5,2.5,['Pas de nouvelles,','bonne nouvelle ?']);},'a');
+// 02 pharmacie partenaire
+add('z1',6+54.4,g=>{box(g,5.2,54.2,0,3.4,1.4,1.25,'#ffffff');const f=faceL(g,5.2,54.2,0,1.4,1.25);R(f,.2,.22,3.0,.22,.04,K.green);T(f,.25,.85,'Pharmacie',.28,{w:800,fill:K.green});person(g,6.4,53.6,'#fff',{arm:'paper'});box(g,8.2,53.4,0,.25,.25,2.6,K.steel);box(g,7.75,53.2,2.6,1.15,.2,1.15,K.green);const s=faceL(g,7.75,53.2,2.6,.2,1.15);el('path',{d:'M.48 .27 h.2 v.22 h.22 v.2 h-.22 v.22 h-.2 v-.22 h-.22 v-.2 h.22z',fill:'#fff'},s);},'a');
+add('z1',7+57,g=>person(g,7,57,K.enfant,{arm:'paper'}),'a');
+// 03 le canapé : site, commande
+add('z1',11.5+56.6,g=>{box(g,10.4,56,0,2.6,1.3,.75,'#aab2d6');box(g,10.4,56,.75,2.6,.35,.9,'#aab2d6');box(g,10.4,56,.75,.35,1.3,.45,'#9aa3cf');box(g,12.65,56,.75,.35,1.3,.45,'#9aa3cf');person(g,11.8,56.9,K.enfant,{sit:true,z:.75,arm:'phone'});bubble(g,11.8,56.9,2.4,['149 €, sans','abonnement…'],{dx:6});},'a');
+// 04 le colis et la porte
+add('z1',14.6+52.6,g=>{box(g,15.4,50.4,0,.3,1.9,3.3,'#ffffff');box(g,15.4,50.6,0,.18,1.5,3.0,K.wood,{left:K.wood});person(g,14.4,52.8,K.enfant,{arm:'carry'});},'a');
+// 05-06 chez le parent : fauteuil face à la scène
+add('z1',9+48.8,g=>{box(g,8.2,48,0,1.8,1.8,.85,'#f2c9b5');box(g,8.2,48,.85,1.8,.38,1.25,'#f2c9b5');box(g,8.2,48,.85,.3,1.8,.45,'#eab79f');box(g,9.7,48,.85,.3,1.8,.45,'#eab79f');person(g,9.1,48.9,K.parent,{sit:true,z:.85,hair:'grey',cardigan:true,glasses:true,arm:'point'});},'b');
+add('z1',11.8+49.3,g=>person(g,11.8,49.6,K.enfant,{arm:'phone'}),'b');
+add('z1',6.6+47.4,g=>{box(g,6.2,47,0,.7,.7,1.6,'#9fd3b4');const c=P(6.55,47.35,1.8);el('ellipse',{cx:c[0],cy:c[1],rx:14,ry:10,fill:'#5cbf8f',stroke:INK,'stroke-width':1.3},g);box(g,13.6,47.3,0,1.2,1.2,.9,K.wood);box(g,14,47.6,.9,.35,.35,1.2,'#e9e7f2');const l=P(14.2,47.8,2.3);el('path',{d:`M${l[0]-8} ${l[1]} L${l[0]+8} ${l[1]} L${l[0]+5} ${l[1]-10} L${l[0]-5} ${l[1]-10}Z`,fill:'#ffe9a8',stroke:INK,'stroke-width':1.2},g);},'b');
+// 07 les proches
+add('z1',2.4+49.2,g=>{person(g,2,48.6,K.proche,{arm:'phone',hair:'long'});person(g,3.6,49.8,K.proche,{arm:'phone',hair:'cap'});bubble(g,3.6,49.8,2.4,['C’est le moment !'],{dx:6});},'b');
+// flèches du parcours
+add('z1',99,g=>{g.dataset.nocam=1;const A=(a,b,bend)=>{const p=P(...a),q=P(...b);el('path',{d:`M${p[0]} ${p[1]} Q${(p[0]+q[0])/2} ${(p[1]+q[1])/2+bend} ${q[0]} ${q[1]}`,fill:'none',stroke:INK,'stroke-width':1.7,'marker-end':'url(#ah)'},g);};
+ A([3.4,59.4],[6,58.9],16);A([8.2,58.8],[10.4,58.3],16);A([13.4,58],[14.6,54.2],18);A([14.2,51.4],[12.6,50.6],-14);A([10.9,50.8],[5,50.7],22);},'x');
+
+// ---------- ZONE 2 : la scène ----------
+add('z2',1,g=>{box(g,.6,29.4,0,15.8,14.6,1,K.wood,{top:'#c98f5b'});const f=faceL(g,.6,29.4,0,14.6,1);for(let i=1;i<16;i++)el('line',{x1:i,y1:0,x2:i,y2:1,stroke:K.woodD,'stroke-width':.03},f);
+ const ft=faceTop(g,.6,29.4,1);for(let i=1;i<10;i++)el('line',{x1:0,y1:i*1.46,x2:15.8,y2:i*1.46,stroke:'#b07a4a','stroke-width':.04},ft);
+ // mur du fond, sombre
+ box(g,.6,29.4,1,15.8,.5,6.4,'#3a3f57',{left:'#2f3449'});});
+// rideaux sur les côtés de l'ouverture
+add('z2',1.2+44,g=>{box(g,.6,42.2,1,1.3,1.6,6.6,K.curtain);const f=faceL(g,.6,42.2,1,1.6,6.6);for(let i=1;i<6;i++)el('line',{x1:i*.22,y1:0,x2:i*.22,y2:6.6,stroke:'#1f2c8f','stroke-width':.05},f);});
+add('z2',16+44,g=>{box(g,15.1,42.2,1,1.3,1.6,6.6,K.curtain);const f=faceL(g,15.1,42.2,1,1.6,6.6);for(let i=1;i<6;i++)el('line',{x1:i*.22,y1:0,x2:i*.22,y2:6.6,stroke:'#1f2c8f','stroke-width':.05},f);});
+// téléphones géants du décor
+add('z2',3+31,g=>phone(g,1.8,30.6,1,2.4,4.4,(f,W,H)=>SCREEN.ad(f,W,H)));
+add('z2',6+31,g=>phone(g,4.6,30.6,1,2.4,4.4,(f,W,H)=>SCREEN.site(f,W,H)));
+add('z2',12+31,g=>phone(g,10.8,30.6,1,2.4,4.4,(f,W,H)=>SCREEN.envoyer(f,W,H)));
+add('z2',15+31,g=>phone(g,13.5,30.6,1,2.4,4.4,(f,W,H)=>SCREEN.jour(f,W,H),{bg:'#2a3350'}));
+// le cadre, au centre de la scène
+add('z2',8.5+37,g=>{box(g,5.9,36.4,1,4.8,1.5,1.2,K.wood);const fb=faceL(g,5.9,36.4,1,1.5,1.2);R(fb,.15,.2,2.1,.8,.04,'none',{stroke:K.woodD,sw:.04});R(fb,2.55,.2,2.1,.8,.04,'none',{stroke:K.woodD,sw:.04});dot(fb,2.25,.6,.05,K.woodD);dot(fb,2.55,.6,.05,K.woodD);
+ box(g,6.3,36.9,2.2,4,.32,2.75,K.wood);const f=faceL(g,6.3,36.9,2.2,.32,2.75);const W=3.74,H=2.49;R(f,.13,.13,W,H,0,'#cfe1f3');el('path',{d:`M.13 ${H+.13} L1.1 1.2 L1.9 1.75 L2.6 1.25 L${W+.13} ${H+.13} Z`,fill:'#9fc9a8'},f);dot(f,3.0,.6,.24,K.sun);R(f,.13,H-.33,W,.46,0,'rgba(18,22,46,.74)');T(f,.3,H+.04,'Prénom · « Bisous ! »',.24,{fill:'#fff'});
+ box(g,10.5,36.8,2.2,.4,.4,.7,'#5cbf8f');});
+// service client sur le côté de la scène
+add('z2',3.4+41,g=>{box(g,1.8,40.6,1,3,1.3,1.05,'#ffffff');box(g,2.3,40.7,2.05,.16,.16,.35,'#3b4256');panel(g,1.7,40.6,2.4,1.4,1.0,'#3b4256',(f,W,H)=>{R(f,.08,.08,W-.16,H-.16,.03,'#fff');R(f,.2,.25,.7,.16,.06,'#eef0f6');R(f,.5,.5,.75,.16,.06,'#dbe3ff');});person(g,4.1,40.2,'#fff',{z:1,arm:'type',headset:true});});
+// accord : petit panneau près du cadre
+add('z2',3.6+35,g=>{box(g,3.95,35.3,1,.3,.3,1.5,K.steel);box(g,2.6,35,2.5,3.0,.24,1.9,'#3b4256');const f=faceL(g,2.6,35,2.5,.24,1.9);R(f,.1,.1,2.8,1.7,0,'#fbf6ea');T(f,1.5,.5,'Bonjour',.3,{anchor:'middle',w:900});T(f,1.5,.82,'Voulez-vous voir',.2,{anchor:'middle'});T(f,1.5,1.06,'leurs photos ?',.2,{anchor:'middle'});R(f,.35,1.25,1.1,.36,.08,K.accent);T(f,.9,1.5,'D’accord',.17,{anchor:'middle',fill:'#fff'});R(f,1.6,1.25,1.1,.36,.08,'#fff',{stroke:K.accent,sw:.03});T(f,2.15,1.5,'Plus tard',.17,{anchor:'middle',fill:K.accent});tap(f,1.32,1.55);});
+// projecteurs au-dessus de l'avant-scène
+add('z2',60,g=>{g.dataset.nocam=1;const a=P(1.2,44.2,8.6),b=P(16.2,44.2,8.6);el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:INK,'stroke-width':3},g);
+ for(let i=0;i<6;i++){const x=2.4+i*2.6;const p=P(x,44.2,8.4);const gg=el('g',{transform:`translate(${p[0]},${p[1]})`},g);el('ellipse',{cx:0,cy:12,rx:26,ry:10,fill:'url(#glow)',class:'lampglow'},gg);el('path',{d:'M-5 -2 L5 -2 L7 9 L-7 9 Z',fill:'#3b4256',stroke:INK,'stroke-width':1.3},gg);el('ellipse',{cx:0,cy:9,rx:7,ry:2.6,fill:'#fff3b0',stroke:INK,'stroke-width':1.1},gg);}});
+
+// ---------- ZONE 3 : les coulisses ----------
+add('z3',3+17,g=>{box(g,1.4,16.6,0,3.2,1.3,1.05,'#ffffff');box(g,2.4,16.8,1.05,.16,.16,.35,'#3b4256');panel(g,1.8,16.6,1.4,1.6,1.1,'#3b4256',(f,W,H)=>{R(f,.08,.08,W-.16,H-.16,.03,'#fff');[.3,.5,.4,.7].forEach((v,i)=>R(f,.25+i*.3,H-.15-v,.2,v,.02,i===3?K.accent:'#b7c2f0'));});person(g,3.9,18.6,'#fff',{arm:'point'});});
+add('z3',4+23,g=>{box(g,1.2,22,0,4.4,1.6,1.05,K.wood);[[1.5],[2.8],[4.1]].forEach(([dx],k)=>{box(g,dx,22.4,1.05,1,.18,.72,K.wood);const f=faceL(g,dx,22.4,1.05,.18,.72);R(f,.07,.07,.86,.58,0,'#fbf6ea');if(k===1)T(f,.5,.42,'482 913',.17,{anchor:'middle',w:900,fill:K.accent});});person(g,3.2,24.6,'#fff',{arm:'type',hair:'long'});});
+add('z3',9+23,g=>{box(g,7.4,21.6,0,1.3,1.3,1.1,K.kraft);box(g,8.8,21.6,0,1.3,1.3,1.1,K.kraft);box(g,7.6,21.8,1.1,1.1,1,.95,K.kraft);box(g,10.4,22.6,0,1,.9,.8,'#ffffff');person(g,9.6,24.6,'#fff',{arm:'carry'});});
+add('z3',7+17,g=>{box(g,6.4,15.8,0,3,1,2.3,K.wood);box(g,6.6,15.9,.95,1.1,.8,.7,K.kraft);box(g,8.1,15.9,.95,1.2,.8,.5,'#ffffff');box(g,6.4,15.8,1.7,3,1,.08,K.woodD);person(g,8.6,18,'#fff',{arm:'phone',hair:'long'});});
+// décor peint (comme au théâtre)
+add('z3',13+16,g=>{box(g,11.4,15.6,0,3.6,.3,4.2,'#ffffff');const f=faceL(g,11.4,15.6,0,.3,4.2);el('path',{d:'M0 4.2 L0 2.4 Q1 1.6 1.8 2.3 Q2.6 3 3.6 2.1 L3.6 4.2 Z',fill:'#3446c9'},f);box(g,12.2,16.3,0,.15,.6,4.6,K.wood);});
+add('z3',13+20,g=>{box(g,11.2,19.6,0,3.4,1.3,1.05,'#ffffff');box(g,11.9,19.8,1.05,.16,.16,.35,'#3b4256');box(g,13.4,19.8,1.05,.16,.16,.35,'#3b4256');
+ panel(g,11.3,19.6,1.4,1.4,1,'#3b4256',(f,W,H)=>{R(f,.08,.08,W-.16,H-.16,.03,'#fff');for(let i=0;i<4;i++){dot(f,.25,.22+i*.18,.05,i===1?K.red:K.green);R(f,.36,.18+i*.18,.85,.07,.03,i===1?'#f3b8b2':'#c5c9dc');}});
+ panel(g,12.8,19.6,1.4,1.4,1,'#3b4256',(f,W,H)=>{R(f,.08,.08,W-.16,H-.16,.03,'#fff');T(f,.15,.36,'Hors ligne',.15,{fill:K.red});T(f,.15,.58,'depuis 24 h',.12,{w:500});});
+ person(g,13,21.8,'#fff',{arm:'point',glasses:true});});
+
+// ---------- ZONE 4 : les outils ----------
+const rack=(g,x,y,h)=>{box(g,x,y,0,1.3,1.5,h||3.2,'#2c3150');const f=faceL(g,x,y,0,1.5,h||3.2);for(let i=0;i<5;i++){R(f,.12,.25+i*.58,1.06,.36,.04,'#454b70');dot(f,1.02,.43+i*.58,.06,i%2?'#5cbf8f':'#9fe1bf');}};
+add('z4',5+10,g=>{box(g,1.6,8.4,.38,4.2,3,2.8,K.curtain);const f=faceL(g,1.6,8.4,.38,3,2.8);T(f,.35,1.5,'Le Cadre',.75,{fill:'#fff',w:900});box(g,5.8,8.4,.38,1.9,3,1.9,'#ffffff');const w=faceL(g,5.8,8.4,.38,3,1.9);R(w,.25,.25,1.3,.6,.08,'#bcd3ef');
+ for(const wx of [2.7,6.6]){const c=P(wx,11.5,.38);el('ellipse',{cx:c[0],cy:c[1],rx:10,ry:7.5,fill:INK},g);el('ellipse',{cx:c[0],cy:c[1],rx:4.5,ry:3.2,fill:'#ccc'},g);}
+ box(g,2.2,12.6,0,1.1,1.1,.9,K.kraft);box(g,3.5,12.4,0,1,1,.8,K.kraft);box(g,2.4,12.8,.9,.8,.8,.7,K.kraft);person(g,5.4,13.2,'#fff',{arm:'carry',hair:'cap'});});
+add('z4',4+3,g=>{box(g,2.6,2.6,0,1.3,1.3,1.3,'#ffffff');box(g,2.85,2.85,1.3,.8,.8,.25,'#3b4256');const f=faceTop(g,2.95,2.95,1.56);R(f,.05,.05,.5,.25,.03,'#9fe1bf');box(g,4.2,3.3,0,1,.14,.62,K.accent);box(g,1,1.6,0,1.4,1.4,2.4,K.steel);const g2=faceL(g,1,1.6,0,1.4,2.4);R(g2,.15,.25,1.1,.8,.06,'#fff');T(g2,.7,.78,'www',.24,{anchor:'middle',w:900,fill:K.accent});R(g2,.15,1.3,1.1,.5,.06,'#7f89b3');T(g2,.7,1.66,'PUB',.22,{anchor:'middle',fill:'#fff',w:900});});
+add('z4',12+3,g=>{rack(g,9.6,1.8);rack(g,11.3,1.8);rack(g,13,1.8,2.6);const c=P(11.6,2,4.5);el('path',{d:`M${c[0]-28} ${c[1]} a11 11 0 0 1 13 -13 a15 15 0 0 1 28 2 a10 10 0 0 1 4 18 h-41 a9 9 0 0 1 -4 -7z`,fill:'#fff',stroke:INK,'stroke-width':1.6},g);T(g,c[0]-2,c[1]-1,'photos',10,{anchor:'middle',fill:K.accent});});
+add('z4',15+8,g=>{box(g,14.4,7.4,0,1,1,1.2,'#ffffff');const b=P(14.9,7.9,2.5);el('path',{d:`M${b[0]-9} ${b[1]} q0 -13 9 -13 q9 0 9 13 l3 4 h-24 z`,fill:K.sun,stroke:INK,'stroke-width':1.4},g);dot(g,b[0],b[1]+7,2.6,INK);
+ box(g,12.4,9,0,.3,.3,1.6,K.steel);box(g,11.9,8.5,1.6,1.3,1.2,.9,K.accent);const f=faceL(g,11.9,8.5,1.6,1.2,.9);R(f,.2,.3,.9,.12,.05,'#fff');});
+add('z4',9+11,g=>person(g,9.4,11.8,'#fff',{arm:'phone',glasses:true}));
+
+// ===================== DESSIN =====================
+const zoneG={};for(const z of ZONES)zoneG[z.id]=el('g',{id:'zone-'+z.id});
+// ordre de peinture : du fond (z4) vers l'avant (z1)
+const ord={z4:0,z3:1,z2:2,z1:3};
+items.sort((a,b)=>ord[a.zone]-ord[b.zone]||a.depth-b.depth).forEach(it=>{const g=el('g',{},zoneG[it.zone]);it.draw(g);it.g=g;const bb=g.getBBox();it.bb=[bb.x,bb.y,bb.x+bb.width,bb.y+bb.height];});
+// fil d'une photo
+const thread=el('g',{id:'thread',opacity:0});
+const tp=[P(3.6,49.8,2.4),P(12,30.6,5.6),P(11.6,2,4.2),P(8.3,37.2,5.0),P(9.1,48.9,2.6)];
+const td=`M${tp[0]} C${tp[0][0]+40},${tp[0][1]-160} ${tp[1][0]-60},${tp[1][1]+40} ${tp[1]} C${tp[1][0]+40},${tp[1][1]-80} ${tp[2][0]-20},${tp[2][1]+60} ${tp[2]} C${tp[2][0]-120},${tp[2][1]+40} ${tp[3][0]+30},${tp[3][1]-150} ${tp[3]} C${tp[3][0]-40},${tp[3][1]+60} ${tp[4][0]-30},${tp[4][1]-70} ${tp[4]}`;
+el('path',{d:td,fill:'none',stroke:'#fff','stroke-width':11,'stroke-linecap':'round'},thread);
+const tpath=el('path',{d:td,fill:'none',stroke:K.accent,'stroke-width':5,'stroke-linecap':'round','stroke-dasharray':'2 12','marker-end':'url(#ahb)'},thread);
+[['1',tp[0]],['2',tp[2]],['3',tp[3]],['4',tp[4]]].forEach(([L,p])=>{dot(thread,p[0],p[1],15,K.accent,{stroke:'#fff',sw:3});T(thread,p[0],p[1]+5,L,15,{anchor:'middle',fill:'#fff',w:900});});
+
+// ===================== CAMÉRA (même angle, on avance de zone en zone) =====================
+const union=(a,b)=>a?[Math.min(a[0],b[0]),Math.min(a[1],b[1]),Math.max(a[2],b[2]),Math.max(a[3],b[3])]:b.slice();
+const fbb=svg.getBBox();const FULL=[fbb.x-24,fbb.y-24,fbb.width+48,fbb.height+48];
+function zoneView(z,sub){let u=null;const Z=ZONES.find(q=>q.id===z);for(const q of [P(XW0,Z.y0),P(XW1,Z.y0),P(XW1,Z.y1),P(XW0,Z.y1)])u=union(u,[q[0],q[1],q[0],q[1]]);
+ for(const it of items){if(it.zone!==z||it.g.dataset.nocam)continue;u=union(u,it.bb);}
+ const lb=zLab[z].getBBox();u=union(u,[lb.x,lb.y,lb.x+lb.width,lb.y+lb.height]);
+ const pad=40;return [u[0]-pad,u[1]-pad-60,u[2]-u[0]+2*pad,u[3]-u[1]+2*pad+60];}
+let cur=null,anim=null;const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const setVB=v=>svg.setAttribute('viewBox',v.map(x=>x.toFixed(1)).join(' '));
+function goTo(t){if(!cur||reduce){cur=t.slice();setVB(cur);return;}const f=cur.slice(),t0=performance.now(),D=1200;cancelAnimationFrame(anim);const e=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+ const tick=now=>{const k=Math.min(1,(now-t0)/D),q=e(k);cur=f.map((a,i)=>a+(t[i]-a)*q);setVB(cur);if(k<1)anim=requestAnimationFrame(tick);};anim=requestAnimationFrame(tick);}
+const zonesNav=document.getElementById('zones');
+zonesNav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const s=document.querySelector(`.step[data-zone="${b.dataset.go}"]`);s&&s.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});});
+function activate(st){const z=st.dataset.zone,sub=st.dataset.sub;
+ if(z==='all'||z==='thread')goTo(FULL);else goTo(zoneView(z,sub));
+ for(const it of items){let on=1;if(z!=='all'&&z!=='thread'){on=it.zone===z?1:.22;if(on===1&&sub&&it.sub&&it.sub!=='x'&&it.sub!==sub)on=.45;}it.g.style.opacity=on;}
+ for(const q of ZONES){zLab[q.id].style.opacity=(z==='all'||z==='thread'||z===q.id)?1:.3;zoneTint[q.id].setAttribute('opacity',z===q.id?.55:0);}
+ thread.setAttribute('opacity',z==='thread'?1:0);
+ [...zonesNav.children].forEach(b=>b.classList.toggle('on',b.dataset.go===z));}
+if(!reduce){for(const it of items)it.g.style.transition='opacity .6s ease';thread.style.transition='opacity .5s';}
+const steps=[...document.querySelectorAll('.step')];
+activate(steps[0]);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)activate(e.target);}),{rootMargin:matchMedia('(max-width:960px)').matches?'-64% 0px -28% 0px':'-45% 0px -45% 0px'});
+steps.forEach(s=>io.observe(s));
+if(!reduce){let off=0;(function loop(){off=(off-.7)%140;tpath.setAttribute('stroke-dashoffset',off);requestAnimationFrame(loop);})();}
+})();
+</script>
+
+</body>
+</html>
