@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soly, maquette interactive v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--aube:#fffaf0;--creme:#fff3d9;--encre:#1f1a17;--cafe:#6a5f55;--soleil:#ffd36e;--peche:#ffc9a3;--lilas:#c9b8f0;--ligne:#f0e3c8;--alerte:#1f1a17;--gp:linear-gradient(160deg,#ffe7a8,#ffc9a3 55%,#d6c6f5);--halo:radial-gradient(closest-side,rgba(255,211,110,.5),rgba(255,201,163,.22) 40%,rgba(201,184,240,.08) 75%,rgba(201,184,240,0))}
+*{box-sizing:border-box;margin:0}
+html{background:var(--aube)}
+body{color:var(--encre);font:17px/1.5 "Atkinson Hyperlegible",system-ui,sans-serif;padding:40px 24px 96px}
+h1,h2,h3,.lx{font-family:Lexend,system-ui,sans-serif;font-weight:600;letter-spacing:-.03em}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.w{max-width:1240px;margin:0 auto}
+.eb{font:12px Lexend,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--cafe)}
+h1{font-size:clamp(32px,5vw,52px);line-height:1.05;margin:8px 0 10px}
+.lead{color:var(--cafe);max-width:760px;font-size:19px}
+.logo{display:inline-flex;align-items:flex-end;font:600 28px Lexend,sans-serif;letter-spacing:-.03em}
+.logo i{width:.17em;height:.17em;border-radius:50%;background:var(--soleil);margin-left:.04em}
+
+/* scénarios */
+.scen{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 6px}
+.pill{font:500 14px Lexend,sans-serif;background:var(--creme);border:1px solid var(--ligne);border-radius:99px;padding:9px 16px;min-height:40px}
+.pill:hover{border-color:var(--encre)}
+.pill.d{background:var(--encre);color:var(--aube);border-color:var(--encre)}
+.hint{font-size:15px;color:var(--cafe)}
+
+/* scène */
+.stage>*{min-width:0}.stage{display:grid;grid-template-columns:minmax(0,1fr) 392px;gap:32px;margin-top:22px;align-items:start}
+.pane-t{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.pane-t b{font:600 16px Lexend,sans-serif;letter-spacing:-.02em}
+.pane-t span{font-size:14px;color:var(--cafe)}
+
+/* le cadre */
+.wall{background:var(--halo) no-repeat 50% 40%/120% 120%,var(--creme);border-radius:28px;padding:44px 36px 28px;position:relative;overflow:hidden}
+.led{position:absolute;inset:0;background:radial-gradient(60% 55% at 50% 48%,transparent 55%,var(--lilas) 100%);opacity:0;transition:opacity .6s;pointer-events:none}
+.wall.led-on .led{opacity:.55}
+.wall.portrait .frame{aspect-ratio:7/10;max-width:300px;margin:0 auto}.wall.ts1 #pop,.wall.ts1 .slide .cap{font-size:clamp(20px,2.6vw,26px)}.wall.ts2 #pop,.wall.ts2 .slide .cap{font-size:clamp(26px,3.4vw,34px)}.frame{display:block;width:100%;aspect-ratio:10/7;border:16px solid var(--encre);border-radius:14px;background:var(--aube);position:relative;overflow:hidden;cursor:pointer;transition:box-shadow .6s}
+.wall.glow .frame{box-shadow:0 0 0 10px rgba(201,184,240,.55),0 0 60px 20px rgba(201,184,240,.8);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 18px rgba(201,184,240,.35),0 0 90px 36px rgba(201,184,240,.6)}}
+.frame:focus-visible{outline:3px solid var(--encre);outline-offset:4px}
+.cm{position:absolute;inset:0;opacity:0;transition:opacity .7s;pointer-events:none}
+.cm.on{opacity:1}
+.c-wait{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--aube);text-align:center}
+.c-wait .bj{font:600 38px Lexend,sans-serif;letter-spacing:-.03em}
+.c-wait .cp{font-size:20px;color:var(--cafe)}
+.c-wait .code{font:600 64px Lexend,sans-serif;letter-spacing:.02em}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.1s}
+.slide.on{opacity:1}
+.slide.mot{background:var(--peche);display:flex;align-items:center;justify-content:center;padding:8%;text-align:center;font:600 clamp(20px,3.2vw,34px)/1.2 Lexend,sans-serif;letter-spacing:-.02em}
+.slide .pl{position:absolute;right:16px;top:16px;width:46px;height:46px;border-radius:50%;background:var(--aube);display:grid;place-items:center}
+.slide .cap{position:absolute;left:16px;right:16px;bottom:16px;background:var(--aube);border-radius:14px;padding:10px 16px;font-size:clamp(15px,2vw,20px);display:none}
+.slide.on .cap.s{display:block}
+.pop{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);background:var(--aube);border-radius:20px;padding:20px 28px;font:600 clamp(18px,2.8vw,28px)/1.25 Lexend,sans-serif;letter-spacing:-.02em;text-align:center;max-width:80%;opacity:0;transition:.4s;z-index:3}
+.pop small{display:block;font:400 15px "Atkinson Hyperlegible";color:var(--cafe);margin-top:6px;letter-spacing:0}
+.pop.on{opacity:1;transform:translate(-50%,-50%)}
+.ok{position:absolute;left:50%;bottom:7%;transform:translate(-50%,12px);background:var(--encre);color:var(--aube);border-radius:99px;padding:10px 22px;font:500 16px Lexend,sans-serif;opacity:0;transition:.4s;z-index:3;white-space:nowrap}
+.ok.on{opacity:1;transform:translate(-50%,0)}
+.c-mo{background:var(--aube);padding:18px 22px;display:flex;flex-direction:column;gap:12px}
+.c-mo h4{font:600 clamp(16px,2.2vw,22px) Lexend,sans-serif;letter-spacing:-.02em}
+.mg{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;min-height:0}
+.mt{background:var(--creme);border-radius:12px;background-size:cover;background-position:center;position:relative;opacity:.25;transition:opacity .6s}
+.mt.on{opacity:1}
+.mt span{position:absolute;left:8px;bottom:8px;right:8px;background:var(--aube);border-radius:8px;padding:2px 8px;font-size:clamp(11px,1.4vw,14px)}
+.c-off{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--aube);font:600 28px Lexend,sans-serif;text-align:center}
+.c-off small{font:400 18px "Atkinson Hyperlegible";color:var(--cafe)}
+.night{position:absolute;inset:0;background:rgba(31,26,23,.62);opacity:0;transition:opacity .8s;pointer-events:none;z-index:4}
+.wall.veille .night{opacity:1}
+.dot{position:absolute;right:14px;bottom:14px;width:14px;height:14px;border-radius:50%;background:var(--soleil);z-index:5;opacity:0}
+.wall.glow .dot{opacity:1;animation:pulse2 1.6s infinite}
+@keyframes pulse2{50%{transform:scale(1.6);opacity:.5}}
+.wnote{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px;font-size:15px;color:var(--cafe)}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+
+/* le téléphone */
+.phone{width:392px;height:812px;background:var(--encre);border-radius:52px;padding:10px;position:sticky;top:16px}
+.in{position:relative;width:100%;height:100%;background:var(--aube);border-radius:42px;overflow:hidden;display:flex;flex-direction:column}
+.sb{height:46px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 28px 6px;font:600 15px Lexend,sans-serif;position:relative;z-index:6}
+.sb .dd{letter-spacing:2px}
+.vp{flex:1;position:relative;min-height:0}
+.v{position:absolute;inset:0;padding:6px 20px 28px;display:none;flex-direction:column;gap:12px;overflow-y:auto;animation:fin .35s}
+.v.on{display:flex}
+@keyframes fin{from{opacity:0;transform:translateY(8px)}}
+.v::-webkit-scrollbar{width:0}
+.step{font-size:14px;color:var(--cafe)}
+.h1{font:600 28px/1.08 Lexend,sans-serif;letter-spacing:-.03em}
+.sub{font-size:15px;color:var(--cafe)}
+.card{background:var(--creme);border-radius:16px;padding:12px 16px;font-size:15px;text-align:left;width:100%;display:block}
+.card b{font-family:Lexend,sans-serif;font-weight:600;letter-spacing:-.02em}
+.card small{display:block;color:var(--cafe);font-size:14px;margin-top:2px}
+button.card:hover,.row:hover{outline:2px solid var(--encre)}
+.row{background:var(--creme);border:1px solid var(--ligne);border-radius:16px;padding:14px 16px;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;min-height:52px}
+.row small{display:block;color:var(--cafe);font-size:14px}
+.row b{font-family:Lexend,sans-serif;font-weight:600}
+.fld{display:grid;gap:6px;font-size:14px;color:var(--cafe)}
+.fld b{color:var(--encre);font:600 14px Lexend,sans-serif}
+input.t,textarea.t{width:100%;font:17px "Atkinson Hyperlegible";background:var(--aube);border:1.5px solid var(--ligne);border-radius:14px;padding:13px 14px;color:var(--encre)}
+input.t:focus,textarea.t:focus{outline:2px solid var(--encre);border-color:var(--encre)}
+textarea.t{resize:none;height:84px}
+.btn{height:56px;border-radius:99px;font:600 17px Lexend,sans-serif;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;width:100%;flex:none;gap:8px}
+.btn.p{background:var(--encre);color:var(--aube)}
+.btn.o{border:2px solid var(--encre)}
+.btn.s{background:var(--soleil)}
+.btn[disabled]{opacity:.4;cursor:default}
+.btn.sm{height:44px;font-size:15px}
+.alt{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:none}
+.lnk{align-self:center;font:15px "Atkinson Hyperlegible",sans-serif;color:var(--cafe);text-decoration:underline;text-underline-offset:3px;min-height:44px;padding:0 12px;flex:none}
+.lnk:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+.lnk.back .svg{display:none}
+.card.act{display:flex;align-items:center;gap:12px;background:var(--aube);border:2px solid var(--encre);padding:12px 14px}
+.card.act .ico{background:var(--soleil);color:var(--encre)}
+.card.act .tx{flex:1}
+.card.act .go{font:600 14px Lexend,sans-serif;background:var(--encre);color:var(--aube);border-radius:99px;padding:6px 12px;flex:none}
+.card.ic{display:flex;align-items:center;gap:12px}
+.card.ic .ico{width:40px;height:40px;background:var(--aube)}
+.card.ic .tx{flex:1}
+.row .ico,.card .ico{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--aube);flex:none}
+.row .lab{display:flex;align-items:center;gap:12px}
+button.row::after,button.card.go::after{content:"\203A";font:600 22px Lexend,sans-serif;color:var(--cafe);margin-left:auto}
+button.row b+*{}
+div.row{background:transparent;border-style:dashed}
+.btn:focus-visible,.chip:focus-visible,.pill:focus-visible,.card:focus-visible,.row:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+.sp{flex:1}
+.st{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}.st.lil{background:var(--lilas)}.st.pe{background:var(--peche)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 15px Lexend,sans-serif;background:var(--aube);border:1.5px solid var(--ligne);border-radius:99px;padding:10px 16px;min-height:44px}
+.chip.on{background:var(--encre);color:var(--aube);border-color:var(--encre)}
+.tg{width:54px;height:32px;border-radius:99px;background:var(--ligne);position:relative;flex:none;transition:.2s}
+.tg::after{content:"";position:absolute;left:4px;top:4px;width:24px;height:24px;border-radius:50%;background:var(--aube);transition:.2s;border:1px solid rgba(31,26,23,.15)}
+.tg.on{background:var(--encre)}
+.tg.on::after{left:26px}
+.prev{width:100%;aspect-ratio:4/3;border:6px solid var(--soleil);border-radius:14px;background:var(--creme) center/cover;position:relative;flex:none}
+.prev.port{aspect-ratio:3/4;width:62%;align-self:center}
+.prev.fit{background-size:contain;background-repeat:no-repeat}
+.prev .cap{position:absolute;left:8px;right:8px;bottom:8px;background:var(--aube);border-radius:10px;padding:5px 10px;font-size:14px}
+.prev .pp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--aube);border-radius:12px;padding:8px 12px;font:600 15px Lexend,sans-serif;text-align:center;width:80%}
+.prev .pl{position:absolute;right:8px;top:8px;width:34px;height:34px;border-radius:50%;background:var(--aube);display:grid;place-items:center}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.th{aspect-ratio:1;border-radius:12px;background:var(--creme) center/cover;position:relative;border:2px solid transparent;overflow:hidden;padding:0}
+.th.on{border-color:var(--encre)}
+.th .ck{position:absolute;right:5px;top:5px;width:22px;height:22px;border-radius:50%;background:var(--encre);color:var(--aube);display:none;place-items:center;font:600 13px Lexend}
+.th.on .ck{display:grid}
+.th.hid{opacity:.35}
+.th .ic{position:absolute;left:5px;bottom:5px;width:24px;height:24px;border-radius:50%;background:var(--aube);display:grid;place-items:center}
+.th.motc{background:var(--peche);font:600 13px/1.15 Lexend;padding:8px;text-align:left;display:flex;align-items:flex-end}
+.svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+.tabbar{height:78px;flex:none;display:none;justify-content:space-around;align-items:flex-start;padding-top:8px;border-top:1px solid var(--ligne);background:var(--aube)}
+.tabbar.on{display:flex}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;font:500 13px Lexend,sans-serif;min-width:72px;padding:2px 0}
+.tab i{width:56px;height:34px;border-radius:99px;display:grid;place-items:center}
+.tab.on i{background:var(--soleil)}
+.tab.on{font-weight:600}
+.tab.plus{margin-top:-18px}
+.tab.plus i{width:64px;height:64px;border-radius:50%;background:var(--encre);color:var(--aube);border:4px solid var(--aube)}
+.tab.plus i .svg{width:28px;height:28px;stroke-width:2.6}
+.tab.plus.on i{background:var(--encre)}
+
+.banner{position:absolute;left:10px;right:10px;top:50px;background:var(--encre);color:var(--aube);border-radius:20px;padding:12px 16px;z-index:9;visibility:hidden;transform:translateY(-250%);transition:transform .45s,visibility .45s;text-align:left;font-size:15px;width:calc(100% - 20px)}
+.banner.on{visibility:visible;transform:none}
+.banner b{display:block;font:600 15px Lexend;letter-spacing:-.02em}
+.toast{position:absolute;left:20px;right:20px;top:50px;background:var(--encre);color:var(--aube);border-radius:14px;padding:12px 16px;font-size:15px;z-index:9;opacity:0;transform:translateY(-8px);transition:.3s;pointer-events:none;text-align:center}
+.toast.on{opacity:1;transform:none}
+.who{position:absolute;left:50%;top:2px;transform:translateX(-50%);font:500 13px Lexend;background:var(--lilas);border-radius:99px;padding:2px 12px;z-index:7;display:none}
+
+/* écrans verrouillés */
+.v.lock{background:var(--encre);color:var(--aube);padding:30px 18px 20px;align-items:stretch;gap:10px}
+.lock .big{font:400 78px/1 Lexend;text-align:center;margin-top:10px;letter-spacing:-.04em}
+.lock .dt{text-align:center;margin-bottom:12px;font-size:18px}
+.nt{background:var(--creme);color:var(--encre);border-radius:20px;padding:12px 16px;text-align:left;width:100%;font-size:15px}
+.nt .hd{font-size:13px;color:var(--cafe);display:flex;gap:6px;align-items:center;margin-bottom:2px}
+.nt .hd i{width:16px;height:16px;border-radius:50%;background:var(--soleil)}
+.nt b{display:block;font:600 16px Lexend;letter-spacing:-.02em}
+.nt:hover{outline:2px solid var(--soleil)}
+.unl{margin-top:auto;text-align:center;font-size:14px;color:rgba(255,250,240,.75);padding:10px}
+
+/* caméra */
+.cam{flex:1;background:var(--encre);border-radius:20px;position:relative;display:grid;place-items:center;color:var(--aube);font-size:15px;text-align:center;padding:20px;min-height:0;overflow:hidden}
+.cam .me{position:absolute;left:12px;top:12px;width:84px;height:112px;border-radius:12px;border:2px solid var(--soleil);background:var(--cafe);display:grid;place-items:center;font:500 12px Lexend}
+.cam.flash::after{content:"";position:absolute;inset:0;background:var(--aube);animation:fl .5s forwards}
+@keyframes fl{from{opacity:1}to{opacity:0}}
+.shut{width:78px;height:78px;border-radius:50%;border:4px solid var(--encre);display:grid;place-items:center;margin:0 auto;background:var(--aube)}
+.shut::after{content:"";width:58px;height:58px;border-radius:50%;background:var(--encre)}
+.timer{display:flex;justify-content:space-between;align-items:center;background:var(--creme);border-radius:16px;padding:12px 16px;font:600 17px Lexend;letter-spacing:-.02em}
+.timer b{font-size:22px}
+
+.qr{width:150px;height:150px;margin:0 auto;display:grid;grid-template-columns:repeat(15,1fr);gap:1px;padding:6px;background:var(--aube);border:1px solid var(--ligne);border-radius:8px}
+.qr i{background:var(--encre)}.qr i.z{background:var(--aube)}
+.scan{flex:1;background:var(--encre);border-radius:20px;display:grid;place-items:center;min-height:0;position:relative}
+.scan::before{content:"";width:104px;height:104px;margin-bottom:34px;border:3px solid var(--soleil);border-radius:14px;transition:.4s}
+.scan.ok::before{border-color:var(--aube);background:rgba(255,250,240,.15)}
+.scan span{position:absolute;bottom:14px;left:12px;right:12px;text-align:center;color:var(--aube);font-size:15px}
+.bub{background:var(--creme);border-radius:16px;padding:12px 16px;font-size:15px;border:1px solid var(--ligne);max-width:92%}
+.bub.me{background:var(--creme);align-self:flex-end}
+.bub small{display:block;color:var(--cafe);font-size:14px}
+.person{display:flex;gap:12px;align-items:center;background:var(--creme);border:1px solid var(--ligne);border-radius:16px;padding:10px 14px;width:100%}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:600 16px Lexend;background:var(--soleil);flex:none}
+.av.l{background:var(--lilas)}
+.person small{display:block;color:var(--cafe);font-size:14px}
+.person.go::after{content:"\203A";font:600 22px Lexend,sans-serif;color:var(--cafe);margin-left:auto}
+.person{text-align:left}
+.person b{font:600 16px Lexend;letter-spacing:-.02em}
+
+/* sections sous la scène */
+.nav{margin-top:64px}
+.nav h2,.axes h2{font-size:30px;margin-bottom:6px}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:18px}
+.grp{background:var(--creme);border-radius:24px;padding:20px}
+.grp h3{font-size:17px;margin-bottom:10px}
+.grp .chips{gap:6px}
+.grp .pill{background:var(--aube);font-size:13px;padding:7px 12px;min-height:36px}
+.axes{margin-top:64px}
+.alist{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-top:18px}
+.ax{background:var(--creme);border-radius:24px;padding:22px;display:grid;gap:8px;align-content:start}
+.ax h3{font-size:19px}
+.ax p{font-size:16px;color:var(--cafe)}
+.ax .src{font:12px Lexend;letter-spacing:.1em;text-transform:uppercase;color:var(--cafe)}
+.ax .bz{border-top:2px solid var(--ligne);padding-top:8px;color:var(--encre);font-size:16px}
+.fin{margin-top:36px;color:var(--cafe);font-size:15px;max-width:820px}
+@media(max-width:1000px){.stage{grid-template-columns:minmax(0,1fr)}.phone{position:static;margin:0 auto}}
+@media(max-width:520px){body{padding:24px 12px 64px}.phone{width:100%;max-width:100%;height:780px}.wall{padding:26px 14px 18px}.frame{border-width:10px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="w">
+<div class="eb">Fil rouge · Bloc 03 · Brouillon de Lucas</div>
+<h1>Soly, prototype interactif <span class="logo" aria-hidden="true">soly<i></i></span></h1>
+<p class="lead">Les 28 écrans de la maquette Figma et les 3 écrans du cadre, cliquables. À gauche le cadre chez le parent, à droite l'application de la famille : ce que fait l'un se voit sur l'autre. Personnages fictifs, photos de maquette.</p>
+
+<div class="scen" role="group" aria-label="Scénarios de démonstration">
+<button class="pill d" data-act="install">Parcours d'installation</button>
+<button class="pill" data-act="touch">Le parent touche le cadre</button>
+<button class="pill" data-act="momentNotif">Notification du moment du jour</button>
+<button class="pill" data-act="sim48">48 h sans toucher</button>
+<button class="pill" data-act="reset">Tout remettre à zéro</button>
+</div>
+<p class="hint">Astuce : touchez le cadre, c'est ce que fait Jeanne. Le diaporama est accéléré ×3 pour la démo (15 s réelles = 5 s ici).</p>
+
+<div class="stage">
+<div>
+  <div class="pane-t"><b>Chez Jeanne · le cadre au mur</b><span id="cstate">En attente d'un code</span></div>
+  <div class="wall" id="wall">
+    <div class="led"></div>
+    <button class="frame" id="frame" aria-label="Le cadre de Jeanne : touchez pour envoyer un Soly à la famille">
+      <div class="cm c-wait on" id="cm-wait"><div class="bj">Bonjour !</div><div class="cp">Code pour relier ce Soly</div><div class="code">482 731</div></div>
+      <div class="cm" id="cm-ph"><div id="slides"></div></div>
+      <div class="cm c-mo" id="cm-mo"><h4>Le moment du jour · mardi</h4><div class="mg" id="mg"></div></div>
+      <div class="cm c-off" id="cm-off">Je cherche le wifi...<small>Les photos reviennent dès que c'est rétabli.</small></div>
+      <div class="pop" id="pop"></div>
+      <div class="ok" id="okp">Envoyé à ta famille</div>
+      <div class="night"></div>
+      <div class="dot"></div>
+    </button>
+    <div class="wnote"><span>Cadre 10 pouces, mur du salon</span><span id="cinfo"></span></div>
+  </div>
+  <div class="ctrl" role="group" aria-label="États du cadre">
+    <button class="pill" data-act="cWait">Attente : le code</button>
+    <button class="pill" data-act="cPhotos">Photo qui défile</button>
+    <button class="pill" data-act="cGlow">Lueur : un proche pense à toi</button>
+    <button class="pill" data-act="cNight"><span class="nuit-l">Mode veille</span></button>
+    <button class="pill" data-act="cWifi"><span class="wifi-l">Couper le wifi</span></button>
+  </div>
+</div>
+
+<div>
+  <div class="pane-t"><b>Le téléphone de Sophie</b><span id="pstate">Écran 1 · 28 écrans</span></div>
+  <div class="phone"><div class="in" id="in">
+    <div class="sb"><span id="clock">9:41</span><span class="dd">...</span></div>
+    <div class="who" id="who"></div>
+    <div class="banner" id="banner" role="button" tabindex="0"></div>
+    <div class="vp" id="vp">
+
+<!-- 1 Bienvenue -->
+<section class="v on" id="v-1" data-n="1" data-time="9:41">
+  <div style="height:150px;border-radius:24px;background:var(--gp);position:relative;overflow:hidden"><div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:96px;border:10px solid var(--encre);border-radius:12px;background:var(--aube)"></div></div>
+  <div class="logo" style="font-size:34px">soly<i></i></div>
+  <div class="h1" style="font-size:32px">Toute la famille au même mur.</div>
+  <p class="sub" style="font-size:16px">Des photos et des mots doux sur le mur de votre parent.</p>
+  <div class="sp"></div>
+  <button class="btn p" data-go="2">Continuer<svg class="svg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <button class="lnk" data-act="haveAccount">J'ai déjà un compte</button>
+</section>
+
+<!-- 2 Compte -->
+<section class="v" id="v-2" data-n="2" data-time="9:41">
+  <div class="step">Étape 1 sur 6</div>
+  <div class="h1">Votre compte</div>
+  <label class="fld"><b>Votre prénom</b><input class="t" id="f-me" value="Sophie" autocomplete="off"></label>
+  <input class="t" placeholder="Adresse e-mail (fictive)" aria-label="Adresse e-mail (fictive)" autocomplete="off">
+  <input class="t" placeholder="Mot de passe" aria-label="Mot de passe" type="password" autocomplete="off">
+  <div class="card">Vos photos restent en Europe et ne sont jamais utilisées pour de la publicité.</div>
+  <div class="sp"></div>
+  <button class="btn p" data-act="account">Continuer<svg class="svg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <div class="alt"><button class="btn o sm" data-act="account">Apple</button><button class="btn o sm" data-act="account">Google</button></div>
+  <button class="lnk back" data-go="1">Retour</button>
+</section>
+
+<!-- 3 Scanner -->
+<section class="v" id="v-3" data-n="3" data-time="9:41">
+  <div class="step">Étape 2 sur 6</div>
+  <div class="h1">Scanner le cadre</div>
+  <p class="sub">Allumez le cadre chez <span class="pn">Jeanne</span> : un code apparaît sur son écran. Scannez-le pour relier le cadre et le téléphone.</p>
+  <button class="scan" id="scan" data-act="scan" aria-label="Scanner le code du cadre"><span>Touchez pour scanner</span></button>
+  <div class="card" id="scanhelp">Pas de caméra ? <a href="#" data-act="codeManual" style="color:var(--encre)">Tapez le code à 6 chiffres</a> affiché sur le cadre.</div>
+  <div class="sp"></div>
+  <button class="btn p" id="scanNext" data-go="4" disabled>Continuer<svg class="svg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <button class="lnk back" data-go="2">Retour</button>
+</section>
+
+<!-- 4 Parent et cadre -->
+<section class="v" id="v-4" data-n="4" data-time="9:41">
+  <div class="step">Étape 3 sur 6</div>
+  <div class="h1">Pour qui est le cadre ?</div>
+  <label class="fld"><b>Prénom du parent</b><input class="t" id="f-parent" value="Jeanne" autocomplete="off"></label>
+  <label class="fld"><b>Comment il ou elle vous appelle</b><input class="t" id="f-call" value="Maman" autocomplete="off"></label>
+  <p class="sub">Le sens du cadre (paysage ou portrait) est détecté seul.</p>
+  <div class="sp"></div>
+  <button class="btn p" data-act="parentOk">Continuer<svg class="svg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <button class="lnk back" data-go="3">Retour</button>
+</section>
+
+<!-- 5 Alerte avec le parent -->
+<section class="v" id="v-5" data-n="5" data-time="9:41">
+  <div class="step">Étape 4 sur 6</div>
+  <div class="h1">Une option à décider avec <span class="pn">Jeanne</span></div>
+  <div class="card">À lire ensemble : « Si tu ne touches pas le cadre pendant 2 jours, je serai prévenue. »</div>
+  <div class="row"><span><span class="pn">Jeanne</span> est d'accord<small>activer l'alerte</small></span><span class="tg" id="tg-consent" role="switch" aria-checked="false" tabindex="0" data-tg="consent"></span></div>
+  <p class="sub">Désactivée par défaut. Modifiable à tout moment, à la demande de <span class="pn">Jeanne</span>.</p>
+  <div class="sp"></div>
+  <button class="btn p" data-act="consentYes">Continuer<svg class="svg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <button class="lnk" data-act="consentLater">Plus tard</button>
+  <button class="lnk back" data-go="4">Retour</button>
+</section>
+
+<!-- 27 Autoriser les photos -->
+<section class="v" id="v-27" data-n="27" data-time="9:41">
+  <div class="step">Étape 5 sur 6</div>
+  <div class="h1">Vos photos, avec votre accord</div>
+  <div class="card"><span class="ico" style="margin-bottom:8px"><svg class="svg" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="9" cy="10.5" r="1.8"/><path d="M4 17l5-4 4 3 3-2 4 3"/></svg></span><br>Soly lit seulement les photos que vous choisissez. Rien n'est envoyé sans votre geste.</div>
+  <p class="sub">Modifiable à tout moment dans les réglages de votre téléphone.</p>
+  <div class="sp"></div>
+  <button class="btn p" data-act="galleryYes"><svg class="svg" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.5"/><path d="M4 18l5-5 4 4 3-3 4 4"/></svg>Autoriser l'accès aux photos</button>
+  <button class="lnk" data-act="galleryLater">Plus tard</button>
+</section>
+
+<!-- 6 Carrousel -->
+<section class="v" id="v-6" data-n="6" data-time="9:41">
+  <div class="step">Étape 6 sur 6</div>
+  <div class="h1">Le carrousel de départ</div>
+  <p class="sub">Choisissez des souvenirs que <span class="pn">Jeanne</span> aime : mariage, enfants, vacances.</p>
+  <div class="prev" id="car-prev" aria-label="Aperçu sur le cadre"></div>
+  <div class="grid3" id="car-grid"></div>
+  <p class="sub" id="car-n">Une photo toutes les 15 s.</p>
+  <div class="sp"></div>
+  <button class="btn p" data-act="lightUp">Allumer le Soly de <span class="pn">Jeanne</span></button>
+  <button class="lnk back" data-go="5">Retour</button>
+</section>
+
+<!-- 21 Inviter la famille -->
+<section class="v" id="v-21" data-n="21" data-time="9:41">
+  <div class="h1">Qui d'autre pense à <span class="pn">Jeanne</span> ?</div>
+  <p class="sub">Invitez ses enfants et petits-enfants. Plus vous êtes, plus le cadre est vivant.</p>
+  <div class="qr" id="qr" aria-label="QR code fictif"></div>
+  <div class="card">Code de la famille : <b>JEA-4827</b></div>
+  <button class="btn p" data-go="22"><svg class="svg" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5"/><circle cx="17" cy="6" r="2.5"/><circle cx="17" cy="18" r="2.5"/><path d="M8.2 11l6.6-3.8M8.2 13l6.6 3.8"/></svg>Partager sur WhatsApp</button>
+  <button class="row" data-act="copyLink"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg></span>Copier le lien · SMS · e-mail</span></button>
+  <div class="sp"></div>
+  <button class="btn o" data-go="7">Passer pour l'instant<svg class="svg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</section>
+
+<!-- 22 WhatsApp -->
+<section class="v" id="v-22" data-n="22" data-time="9:43">
+  <div class="lx" style="font-size:17px">Famille de <span class="pn">Jeanne</span></div>
+  <div class="bub"><span class="call-n">Maman</span> a un nouveau cadre photo ! Rejoignez-le pour lui envoyer vos moments du jour.</div>
+  <div class="card" style="height:84px;display:flex;align-items:center;justify-content:center;gap:4px;color:var(--cafe)">aperçu : le cadre <span class="de-n">de Jeanne</span></div>
+  <button class="bub" style="text-align:left" data-go="23"><b class="lx">Rejoindre le cadre de <span class="pn">Jeanne</span></b><small>soly.app/rejoindre/JEA-4827 (lien fictif)</small></button>
+  <div class="bub me">Trop bien, je rejoins !<small>Léa</small></div>
+  <div class="sp"></div>
+  <p class="sub" style="text-align:center">Touchez le lien pour voir ce que voit le petit-enfant.</p>
+  <button class="btn p" data-go="7"><svg class="svg" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>Retour sur l'app</button>
+</section>
+
+<!-- 23 Rejoindre -->
+<section class="v" id="v-23" data-n="23" data-time="9:45">
+  <div class="h1">Rejoindre le cadre de <span class="pn">Jeanne</span></div>
+  <div class="card">Invitée par <span class="me-n">Sophie</span> · code JEA-4827 déjà rempli</div>
+  <label class="fld"><b>Votre prénom</b><input class="t" id="l-name" value="Léa" autocomplete="off"></label>
+  <div class="fld"><b>Pour <span class="pn">Jeanne</span>, vous êtes :</b>
+    <div class="chips" data-grp="role"><button class="chip">Enfant</button><button class="chip on">Petit-enfant</button><button class="chip">Autre proche</button></div></div>
+  <input class="t" placeholder="Adresse e-mail (fictive)" aria-label="Adresse e-mail (fictive)" autocomplete="off">
+  <div class="card">Moins de 15 ans ? Un parent valide le compte.</div>
+  <div class="sp"></div>
+  <button class="btn p" data-act="joinLea"><svg class="svg" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3.5"/><path d="M3 20c0-3.5 3-5.5 6-5.5s6 2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.8c2 .6 3 2.2 3 5"/></svg>Rejoindre la famille</button>
+  <button class="lnk back" data-go="22">Retour</button>
+</section>
+
+<!-- 26 Attente de validation -->
+<section class="v" id="v-26" data-n="26" data-time="9:45">
+  <div class="h1">En attente de <span class="me-n">Sophie</span></div>
+  <div class="card"><span class="lea-n">Léa</span> a moins de 15 ans : un parent doit valider le compte avant le premier envoi.</div>
+  <div class="card" style="background:var(--lilas)"><span class="me-n">Sophie</span> a reçu la demande sur son téléphone.</div>
+  <div class="sp"></div>
+  <button class="btn p" data-act="validateLea">Côté <span class="me-n">Sophie</span> : je valide</button>
+  <button class="lnk back" data-go="23">Retour</button>
+</section>
+
+<!-- 24 Premier moment -->
+<section class="v" id="v-24" data-n="24" data-time="9:46">
+  <div class="h1">Bienvenue <span class="lea-n">Léa</span></div>
+  <button class="card" data-act="momentAsLea"><b>Le moment du jour</b><small>Une fois par jour, une notification surprise : 2 minutes pour montrer à <span class="call-n">Maman</span> ce que tu fais.</small></button>
+  <div class="prev" id="first-prev"><div class="pp" style="font-weight:400;font-family:inherit">le cadre de <span class="pn">Jeanne</span> en ce moment</div></div>
+  <div class="card">Tu peux aussi envoyer une photo, une vidéo ou un petit mot.</div>
+  <div class="sp"></div>
+  <button class="btn p" data-act="lea">C'est parti<svg class="svg" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  <button class="btn o" data-go="25"><svg class="svg" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3.5"/><path d="M3 20c0-3.5 3-5.5 6-5.5s6 2 6 5.5M16 5.5a3.5 3.5 0 0 1 0 7M18 14.8c2 .6 3 2.2 3 5"/></svg>Voir la famille</button>
+</section>
+
+<!-- 25 Famille -->
+<section class="v" id="v-25" data-n="25" data-time="9:41" data-tab="profile">
+  <div class="h1">La famille de <span class="pn">Jeanne</span></div>
+  <div class="person"><span class="av">S</span><span><b class="me-n">Sophie</b><small>fille · aidante principale</small></span></div>
+  <div class="person"><span class="av">L</span><span><b>Lucas</b><small>fils · aidant</small></span></div>
+  <div class="person"><span class="av l">L</span><span><b>Léa</b><small>petite-fille</small></span></div>
+  <div class="person"><span class="av l">H</span><span><b>Hugo</b><small>petit-fils</small></span></div>
+  <button class="card" data-go="21" style="text-align:center">+ Inviter quelqu'un</button>
+  <p class="sub">Seuls les aidants reçoivent « <span class="call-n">Maman</span> t'a envoyé un Soly » et l'alerte.</p>
+</section>
+
+<!-- 7 Accueil -->
+<section class="v" id="v-7" data-n="7" data-time="9:41" data-tab="home">
+  <div class="h1" style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span>Le Soly de <span class="pn">Jeanne</span></span></div>
+  <button class="card act" id="h-touch" data-go="13"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M8 12V6a1.5 1.5 0 0 1 3 0v5m0-1V4.5a1.5 1.5 0 0 1 3 0V11m0-4.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 5 0 0 1-5-3l-2-4a1.5 1.5 0 0 1 2.5-1.5L8 15"/></svg></span><span class="tx"><b id="h-touch-t"><span class="call-n">Maman</span> t'a envoyé un Soly</b><small id="h-touch-s">Ce matin, 8 h 12</small></span><span class="go">Voir</span></button>
+  <button class="card act" id="h-moment" data-act="momentCard"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/></svg></span><span class="tx"><b>Moment du jour</b><small id="h-moment-s">Pas encore arrivé. Vous serez prévenu, à une heure surprise.</small></span><span class="go">Ouvrir</span></button>
+  <div class="prev" id="h-prev" aria-label="Ce qui est en cours sur le cadre"></div>
+  <button class="row" data-go="11"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><rect x="9" y="9.5" width="6" height="5" rx="1"/></svg></span>Voir ce qui défile sur le cadre</span></button>
+  <div class="sub" id="h-status" style="display:flex;gap:18px"><span><i class="st lil"></i> Cadre connecté</span><span><i class="st pe"></i> Alerte : activée</span></div>
+  <div class="sp"></div>
+  <button class="btn p" data-go="8"><svg class="svg" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7z"/></svg>Hop, au mur</button>
+</section>
+
+<!-- 8 Envoyer -->
+<section class="v" id="v-8" data-n="8" data-time="9:41" data-tab="send">
+  <div class="h1">Envoyer à <span class="pn">Jeanne</span></div>
+  <button class="card ic go" data-act="sendMoment"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/></svg></span><span class="tx"><b>Le moment du jour</b><small id="s-moment">Disponible quand la notification arrive</small></span></button>
+  <button class="card ic go" data-act="sendPhoto"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tx"><b>Une photo</b><small>Depuis votre galerie ou votre appareil photo</small></span></button>
+  <button class="card ic go" data-act="sendVideo"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 11l5-3v8l-5-3"/></svg></span><span class="tx"><b>Une vidéo</b><small>39 secondes maximum</small></span></button>
+  <button class="card ic go" data-go="10"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><span class="tx"><b>Un petit mot</b><small>Quelques secondes sur la photo, ou en description</small></span></button>
+  <div class="card" style="background:transparent;border:1.5px dashed var(--ligne)">Pas d'appel ni de message vocal : le cadre reste un objet de nouvelles.</div>
+</section>
+
+<!-- 9 Aperçu -->
+<section class="v" id="v-9" data-n="9" data-time="9:41">
+  <div class="h1" id="p9-title">Aperçu</div>
+  <p class="sub">Voici ce que <span class="pn">Jeanne</span> verra :</p>
+  <div class="prev" id="p9-prev"></div>
+  <input type="file" id="p9-file" accept="image/*,video/*" hidden>
+  <button class="btn o" data-act="pickFile"><svg class="svg" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><circle cx="9" cy="10" r="1.5"/><path d="M5 17l5-4 4 3 2-2 3 3"/></svg>Sélectionner dans ma galerie</button>
+  <div class="chips" data-grp="fit"><button class="chip on" data-v="auto">Recadrage auto</button><button class="chip" data-v="full">Photo entière</button></div>
+  <div class="grid3" id="p9-grid" style="grid-template-columns:repeat(6,1fr);gap:6px"></div>
+  <input class="t" id="p9-cap" placeholder="Ajouter une légende (facultatif)" aria-label="Légende" maxlength="60" autocomplete="off">
+  <div class="sp"></div>
+  <button class="btn p" data-act="sendNow"><svg class="svg" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7z"/></svg>Envoyer au cadre</button>
+  <button class="btn o" data-go="8">Annuler</button>
+</section>
+
+<!-- 10 Mot -->
+<section class="v" id="v-10" data-n="10" data-time="9:41">
+  <div class="h1">Un petit mot</div>
+  <textarea class="t" id="m-text" maxlength="89" aria-label="Votre mot">Bisous de la plage, on pense à toi !</textarea>
+  <div class="sub" id="m-count">89 caractères maximum</div>
+  <div class="fld"><b>Comment l'afficher ?</b>
+    <div class="chips" data-grp="mode"><button class="chip on" data-v="popup">Pop-up quelques secondes</button><button class="chip" data-v="caption">Description sous la photo</button></div></div>
+  <div class="prev" id="m-prev"></div>
+  <div class="sp"></div>
+  <button class="btn p" data-act="sendMot"><svg class="svg" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7z"/></svg>Envoyer</button>
+  <button class="btn o" data-go="8">Annuler</button>
+</section>
+
+<!-- 11 Ce qui défile -->
+<section class="v" id="v-11" data-n="11" data-time="9:41" data-tab="home">
+  <div class="h1">Sur le cadre</div>
+  <div class="chips" data-grp="filter"><button class="chip on" data-v="all">Tout</button><button class="chip" data-v="photo">Photos</button><button class="chip" data-v="video">Vidéos</button><button class="chip" data-v="mot">Mots</button></div>
+  <div class="grid3" id="w-grid"></div>
+  <div class="card">Touchez un contenu : le masquer du cadre, ou le montrer de nouveau.</div>
+  <p class="sub" id="w-by">Envoyé par Sophie · Lucas · Léa</p>
+</section>
+
+<!-- 12 Notification parent a touché -->
+<section class="v lock" id="v-12" data-n="12" data-time="8:12">
+  <div class="big">8:12</div><div class="dt">jeudi 22 octobre</div>
+  <button class="nt" data-go="13"><div class="hd"><i></i>Soly · maintenant</div><b><span class="call-n">Maman</span> t'a envoyé un Soly</b></button>
+  <div class="nt">Appuie pour lui renvoyer un Soly</div>
+  <button class="unl" data-act="unlock">Déverrouiller</button>
+</section>
+
+<!-- 13 Renvoyer -->
+<section class="v" id="v-13" data-n="13" data-time="8:12" data-tab="home">
+  <div class="h1"><span class="call-n">Maman</span> t'a envoyé un Soly</div>
+  <div class="sub" style="margin-top:-8px">Ce matin, 8 h 12</div>
+  <div class="prev" id="r-prev"><div class="pp" style="font-weight:400;font-family:inherit">le cadre s'illumine chez <span class="pn">Jeanne</span></div></div>
+  <button class="btn p" data-act="resend"><svg class="svg" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7z"/></svg>Renvoyer un Soly</button>
+  <p class="sub">Pas de « vu », pas de compteur.</p>
+</section>
+
+<!-- 14 Réglage alerte -->
+<section class="v" id="v-14" data-n="14" data-time="9:41" data-tab="profile">
+  <div class="h1">Alerte</div>
+  <div class="row"><span>Alerte activée<small id="a-accord">Accord de <span class="pn">Jeanne</span> donné à l'installation</small></span><span class="tg on" id="tg-alert" role="switch" aria-checked="true" tabindex="0" data-tg="alertOn"></span></div>
+  <div class="row"><span>Prévenir après <b id="a-h">48 h</b> sans toucher</span><span class="chips" data-grp="hours" style="flex-wrap:nowrap;gap:4px"><button class="chip" data-v="24" style="padding:6px 10px;min-height:36px">24</button><button class="chip on" data-v="48" style="padding:6px 10px;min-height:36px">48</button><button class="chip" data-v="72" style="padding:6px 10px;min-height:36px">72</button></span></div>
+  <div class="row"><span>Prévenus en premier : <b>Sophie, Lucas</b></span></div>
+  <div class="row"><span>Mode vacances<small>jusqu'au 3 novembre</small></span><span class="tg" id="tg-vac" role="switch" aria-checked="false" tabindex="0" data-tg="vac"></span></div>
+  <div class="card">Les aidants sont prévenus en premier. Si personne ne réagit, la suite reste à décider en famille.</div>
+  <button class="btn o" data-go="16">Retour au profil</button>
+</section>
+
+<!-- 15 Alerte reçue -->
+<section class="v" id="v-15" data-n="15" data-time="10:05" data-tab="home">
+  <div class="card" style="background:var(--lilas)"><b>Pas de toucher depuis 2 jours</b><small>Peut-être un simple oubli. Le cadre de <span class="pn">Jeanne</span> est toujours connecté.</small></div>
+  <button class="btn p" data-act="handle"><svg class="svg" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Je m'en occupe</button>
+  <button class="btn o" data-act="callJ">Renvoyer un Soly à <span class="pn">Jeanne</span></button>
+  <button class="lnk" data-act="falseAlarm">Tout va bien, fausse alerte</button>
+  <p class="sub" id="al-who">Lucas a aussi été prévenu.</p>
+</section>
+
+<!-- 16 Réglages -->
+<section class="v" id="v-16" data-n="16" data-time="9:41" data-tab="profile">
+  <div class="h1">Profil et cadre</div>
+  <button class="person go" data-go="28" style="text-align:left"><span class="av me-av">S</span><span><b class="me-n">Sophie</b><small>aidante de <span class="pn">Jeanne</span> · modifier mon compte</small></span></button>
+  <div class="step">Réglages du cadre</div>
+  <button class="row" data-go="29"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><circle cx="9" cy="10" r="1.5"/><path d="M5 17l5-4 4 3 2-2 3 3"/></svg></span><span>Photos et albums<small>un nouvel album chaque semaine</small></span></span></button>
+  <button class="row" data-act="cycleDur"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span>Durée par photo</span><b id="s-dur">15 s</b></button>
+  <div class="row"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg></span>Luminosité automatique</span><span class="tg on" role="switch" aria-checked="true" tabindex="0" data-tg="auto"></span></div>
+  <button class="row" data-act="cNight"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span><span>Mode veille<small>lumière douce de 21 h à 7 h</small></span></span></button>
+  <button class="row" data-go="14"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0"/></svg></span>Alerte et mode vacances</span><b id="s-alert">activée</b></button>
+  <button class="row" data-act="soon"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0"/></svg></span>Notifications</span></button>
+  <div class="row"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></span>LED à l'arrière (option)</span><span class="tg on" role="switch" aria-checked="true" tabindex="0" data-tg="led"></span></div>
+  <button class="row" data-act="cycleTs"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M5 18L11 5l6 13M7 14h8M19 8v6M16 11h6"/></svg></span>Taille des mots à l'écran</span><b id="s-ts">Normale</b></button>
+  <button class="row" data-act="cycleVol"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M4 10h4l5-4v12l-5-4H4zM16.5 9a4 4 0 0 1 0 6"/></svg></span>Son des vidéos</span><b id="s-vol">bas</b></button>
+  <button class="row" data-go="25"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.4"/><path d="M3 19c.5-3 2.8-4.6 6-4.6s5.5 1.6 6 4.6"/></svg></span><span>Famille<small>4 personnes peuvent envoyer</small></span></span></button>
+  <button class="row" data-act="soon"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M3 9a14 14 0 0 1 18 0M6 12.5a9 9 0 0 1 12 0M9 16a4.5 4.5 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg></span>Wifi, aide et données</span></button>
+</section>
+
+<!-- 28 Compte -->
+<section class="v" id="v-28" data-n="28" data-time="9:41" data-tab="profile">
+  <button class="lnk back" data-go="16">Retour</button>
+  <div class="h1">Mon compte</div>
+  <div class="person"><span class="av me-av">S</span><span><b class="me-n">Sophie</b><small>aidante principale de <span class="pn">Jeanne</span></small></span></div>
+  <button class="row" data-act="soon"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-3.6 3.5-5.5 7-5.5s6.3 1.900 7 5.5"/></svg></span>Mon prénom et ma photo</span></button>
+  <button class="row" data-act="soon"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0"/></svg></span>Mes notifications</span></button>
+  <button class="row" data-go="25"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.4"/><path d="M3 19c.5-3 2.8-4.6 6-4.6s5.5 1.6 6 4.6"/></svg></span>La famille de <span class="pn">Jeanne</span></span></button>
+  <button class="row" data-act="soon"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>Mot de passe et sécurité</span></button>
+  <button class="row" data-act="soon"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M10 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4M14 8l4 4-4 4M18 12H9"/></svg></span>Me déconnecter</span></button>
+</section>
+
+<!-- 29 Photos et albums -->
+<section class="v" id="v-29" data-n="29" data-time="9:41" data-tab="profile">
+  <button class="lnk back" data-go="16">Retour</button>
+  <div class="h1">Photos et albums</div>
+  <div class="row"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M8 3v4M16 3v4M4 11h16"/></svg></span><span>Un album par semaine<small>de nouvelles photos chaque semaine, pour ne pas tourner en boucle</small></span></span><span class="tg on" role="switch" aria-checked="true" tabindex="0" data-tg="weekly"></span></div>
+  <button class="row" data-act="cycleSort"><span class="lab"><span class="ico"><svg class="svg" viewBox="0 0 24 24"><path d="M7 5v14M7 19l-3-3M7 19l3-3M17 19V5M17 5l-3 3M17 5l3 3"/></svg></span>Tri</span><b id="s-sort">Récentes d'abord</b></button>
+  <div class="step">Photos à garder toujours</div>
+  <p class="sub">Elles restent sur le cadre, même quand l'album change.</p>
+  <div class="grid3" id="keep-grid"></div>
+  <p class="sub" id="keep-n"></p>
+</section>
+
+<!-- 17 Notification du jour -->
+<section class="v lock" id="v-17" data-n="17" data-time="14:37">
+  <div class="big">14:37</div><div class="dt">mardi 27 octobre</div>
+  <button class="nt" data-act="openMoment"><div class="hd"><i></i>Soly · maintenant</div><b>C'est le moment !</b>Montrez à <span class="call-n">Maman</span> ce que vous faites, là, maintenant.</button>
+  <div class="nt">2 minutes pour prendre la photo</div>
+  <button class="unl" data-act="unlock">Déverrouiller</button>
+</section>
+
+<!-- 18 Photo sur le vif -->
+<section class="v" id="v-18" data-n="18" data-time="14:37">
+  <div class="timer"><span>Le moment du jour</span><b id="cd">2:00</b></div>
+  <div class="chips" data-grp="cam"><button class="chip on" data-v="photo">Photo</button></div>
+  <div class="cam" id="cam"><div class="me" id="cam-me">vous</div>ce que vous voyez, maintenant</div>
+  <button class="shut" data-act="shoot" aria-label="Prendre le moment"></button>
+  <p class="sub" style="text-align:center">Pas de galerie, pas de filtre.</p>
+  <button class="sub" style="text-align:center;text-decoration:underline" data-act="later">Plus tard</button>
+</section>
+
+<!-- 19 Envoyé -->
+<section class="v" id="v-19" data-n="19" data-time="14:38" data-tab="home">
+  <div class="h1">C'est parti pour le cadre</div>
+  <div class="prev" id="sent-prev"></div>
+  <div class="card" id="sent-today">Aujourd'hui : Sophie · Lucas, pas encore · Léa, pas encore</div>
+  <p class="sub">Envoyée après les 2 minutes ? Elle part quand même, marquée « plus tard ».</p>
+  <div class="sp"></div>
+  <button class="btn p" data-go="7"><svg class="svg" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Terminé</button>
+</section>
+
+    </div>
+    <div class="tabbar" id="tabbar" role="tablist"></div>
+    <div class="toast" id="toast" role="status"></div>
+  </div></div>
+</div>
+</div>
+
+<div class="nav">
+  <h2>Aller directement à un écran</h2>
+  <p class="hint">Chaque numéro est celui de la maquette Figma. Les écrans du cadre se pilotent avec les boutons sous le mur.</p>
+  <div class="groups" id="groups"></div>
+</div>
+
+<div class="axes">
+  <h2>Axes d'amélioration</h2>
+  <p class="lead" style="font-size:18px">Neuf pistes. Chacune dit d'où elle vient : une question déjà marquée « ouvert » dans Figma, ou une observation faite en rendant la maquette cliquable. Rien n'est testé auprès d'utilisateurs.</p>
+  <div class="alist" id="alist"></div>
+  <p class="fin">Source : annotations de la maquette Figma (statuts décidé, proposé, ouvert) et essai du prototype. À vérifier : chaque piste doit passer le test avec un parent et un aidant avant d'entrer dans la maquette.</p>
+</div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var IMG="img-da/",PH=["g5","d4","c3","c4","d2","s4","s5","g1","d3","g3","s1","c1"].map(function(n){return IMG+n+".jpg"});
+var S={paired:false,view:"1",prev:"7",parent:"Jeanne",call:"Maman",me:"Sophie",consent:false,alertOn:true,vac:false,hours:48,
+  auto:true,led:true,dur:15,vol:"bas",moment:false,momentDone:false,lastTouch:"Ce matin, 8 h 12",touched:false,wifi:true,veille:false,
+  items:[],idx:0,mode:"wait",car:[0,1,2],pickSrc:PH[3],pickType:"photo",fit:"auto",motMode:"popup",filter:"all",handled:false,viewer:"Sophie",weekly:true,keep:[0],sortI:0};
+var timers={};
+
+/* ---------- utilitaires ---------- */
+function esc(t){var d=document.createElement("div");d.textContent=t;return d.innerHTML}
+function bg(el,src){el.style.backgroundImage=src?"url("+src+")":""}
+function toast(t){var e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(timers.toast);timers.toast=setTimeout(function(){e.classList.remove("on")},2600)}
+function de(n){return /^[AEIOUYÉÈÊaeiouyéèê]/.test(n)?"d'"+n:"de "+n}
+function names(){$$(".pn").forEach(function(e){e.textContent=S.parent});$$(".call-n").forEach(function(e){e.textContent=S.call});$$(".me-n").forEach(function(e){e.textContent=S.me});$$(".lea-n").forEach(function(e){e.textContent=S.leaName||"Léa"});$$(".de-n").forEach(function(e){e.textContent=de(S.parent)})}
+var IC={home:'<svg class="svg" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>',
+ send:'<svg class="svg" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>',
+ frame:'<svg class="svg" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="3"/><rect x="9" y="9.5" width="6" height="5" rx="1"/></svg>',
+ profile:'<svg class="svg" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.6-3.6 3.4-5.5 7-5.5s6.4 1.9 7 5.5"/></svg>',
+ settings:'<svg class="svg" viewBox="0 0 24 24"><path d="M4 8h9M17 8h3M4 16h3M11 16h9"/><circle cx="15" cy="8" r="2"/><circle cx="9" cy="16" r="2"/></svg>',
+ bell:'<svg class="svg" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20a2 2 0 0 0 4 0"/></svg>',
+ moon:'<svg class="svg" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
+ clock:'<svg class="svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
+ sun:'<svg class="svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>',
+ text:'<svg class="svg" viewBox="0 0 24 24"><path d="M5 18L11 5l6 13M7 14h8M19 8v6M16 11h6"/></svg>',
+ vol:'<svg class="svg" viewBox="0 0 24 24"><path d="M4 10h4l5-4v12l-5-4H4zM16.5 9a4 4 0 0 1 0 6"/></svg>',
+ people:'<svg class="svg" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.4"/><path d="M3 19c.5-3 2.8-4.6 6-4.6s5.5 1.6 6 4.6M16 14.6c2.6 0 4.3 1.2 5 3.6"/></svg>',
+ wifi:'<svg class="svg" viewBox="0 0 24 24"><path d="M3 9a14 14 0 0 1 18 0M6 12.5a9 9 0 0 1 12 0M9 16a4.5 4.5 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg>',
+ bulb:'<svg class="svg" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg>',
+ play:'<svg class="svg" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg>',
+ eyeoff:'<svg class="svg" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M3 3l18 18M10.6 6.2A9.6 9.6 0 0 1 12 6c5 0 8.5 4 9.5 6a14 14 0 0 1-3 3.6M6.5 7.6A14 14 0 0 0 2.5 12c1 2 4.5 6 9.5 6 1.4 0 2.6-.3 3.7-.8"/></svg>'};
+var TABS=[["home","Accueil","7"],["send","Envoyer","8"],["profile","Profil","16"]];
+$("#tabbar").innerHTML=TABS.map(function(t){return '<button class="tab'+(t[0]==="send"?" plus":"")+'" role="tab" data-tab="'+t[0]+'" data-go="'+t[2]+'" aria-label="'+(t[0]==="send"?"Envoyer un souvenir":t[1])+'"><i>'+IC[t[0]]+'</i>'+(t[0]==="send"?"":t[1])+'</button>'}).join("");
+
+/* ---------- navigation du téléphone ---------- */
+var LEA={"22":1,"23":1,"24":1,"26":1};
+function go(id){
+  id=String(id);var el=$("#v-"+id);if(!el)return;
+  if(+id>=7&&!(+id>=21&&+id<=26)&&!S.paired)pair();
+  if(S.view!==id&&S.view!=="12"&&S.view!=="17")S.prev=S.view;
+  $$(".v").forEach(function(v){v.classList.remove("on")});el.classList.add("on");el.scrollTop=0;
+  S.view=id;
+  $("#clock").textContent=el.dataset.time||"9:41";
+  $("#pstate").textContent="Écran "+el.dataset.n+" · "+$$(".v").length+" écrans";
+  var tab=el.dataset.tab,tb=$("#tabbar");tb.classList.toggle("on",!!tab);
+  $$(".tab").forEach(function(t){t.classList.toggle("on",t.dataset.tab===tab)});
+  var lea=!!LEA[id]||S.viewer==="Léa";$("#who").style.display=lea?"block":"none";$("#who").textContent="Vue de "+(S.leaName||"Léa")+", petite-fille · revenir à "+S.me;
+  $("#in").querySelector(".sb").style.color=(id==="12"||id==="17")?"var(--aube)":"";
+  $("#in").querySelector(".sb").style.background=(id==="12"||id==="17")?"var(--encre)":"";
+  if(id==="3")scanReset();
+  if(id==="29")renderKeep();
+  if(id==="6")renderCar();
+  if(id==="7")renderHome();
+  if(id==="8")renderSend();
+  if(id==="9")renderP9();
+  if(id==="10")renderMot();
+  if(id==="11")renderWallList();
+  if(id==="13")renderResend();
+  if(id==="14")syncSwitches();
+  if(id==="15")renderAlertRecv();
+  if(id==="16")renderSettings();
+  if(id==="18")startCam();else stopCam();
+  if(id==="21")renderQR();
+  if(id==="24")bg($("#first-prev"),PH[4]);
+  names();
+}
+function ensurePaired(){if(!S.paired)pair()}
+function pair(){
+  if(S.paired)return;S.paired=true;
+  if(!S.items.length)S.car.forEach(function(i){S.items.push({id:"c"+i,type:"photo",src:PH[i],from:S.me,hidden:false})});
+  setMode("photos");
+}
+
+/* ---------- le cadre ---------- */
+var wall=$("#wall");
+function setMode(m){
+  if(!S.wifi&&S.paired&&m!=="wait")m="off";
+  S.mode=m;
+  var map={wait:"#cm-wait",photos:"#cm-ph",moment:"#cm-mo",off:"#cm-off"};
+  Object.keys(map).forEach(function(k){$(map[k]).classList.toggle("on",k===m)});
+  $("#cstate").textContent={wait:"En attente d'un code",photos:"Une photo toutes les "+S.dur+" s",moment:"Le moment du jour",off:"Hors ligne"}[m];
+  clearInterval(timers.loop);
+  if(m==="photos"){buildSlides();showSlide(S.idx);timers.loop=setInterval(function(){if(!document.hidden)showSlide(S.idx+1)},S.dur*1000/3)}
+  refreshInfo();
+}
+function rot(){return S.items.filter(function(i){return !i.hidden&&i.rot!==false})}
+function buildSlides(){
+  var box=$("#slides");box.innerHTML="";
+  rot().forEach(function(it){
+    var d=document.createElement("div");d.className="slide"+(it.type==="mot"?" mot":"");
+    if(it.type==="mot")d.textContent=it.text;else{d.style.backgroundImage="url("+it.src+")";if(it.fit==="full"){d.style.backgroundSize="contain";d.style.backgroundRepeat="no-repeat";d.style.backgroundColor="var(--aube)"}
+      if(it.type==="video")d.insertAdjacentHTML("beforeend",'<span class="pl">'+IC.play+'</span>');
+      if(it.note){d.insertAdjacentHTML("beforeend",'<span class="cap s">'+esc(it.note)+'</span>')}}
+    box.appendChild(d)});
+}
+function showSlide(i){
+  var l=rot(),sl=$$("#slides .slide");if(!l.length){$("#slides").innerHTML="";return}
+  S.idx=((i%l.length)+l.length)%l.length;
+  sl.forEach(function(s,k){s.classList.toggle("on",k===S.idx)});refreshInfo();
+}
+function refreshInfo(){
+  var l=rot();$("#cinfo").textContent=S.mode==="photos"&&l.length?"Photo "+(S.idx+1)+" sur "+l.length:"";
+  $("#wall").classList.toggle("led-on",S.led&&S.mode!=="wait");
+}
+function popup(text,from,ms){var p=$("#pop");p.innerHTML=esc(text)+"<small>"+esc(from)+"</small>";p.classList.add("on");clearTimeout(timers.pop);timers.pop=setTimeout(function(){p.classList.remove("on")},ms||5000)}
+function okPill(t,ms){var o=$("#okp");o.textContent=t;o.classList.add("on");clearTimeout(timers.ok);timers.ok=setTimeout(function(){o.classList.remove("on")},ms||2600)}
+function glow(ms){wall.classList.add("glow");clearTimeout(timers.glow);timers.glow=setTimeout(function(){wall.classList.remove("glow")},ms||7000)}
+
+/* le parent touche le cadre */
+function touchFrame(){
+  if(!S.paired||S.mode==="wait"||S.mode==="off"){return}
+  S.touched=true;S.lastTouch="À l'instant";wall.classList.remove("glow");
+  okPill("Envoyé à ta famille");
+  if(S.led){wall.classList.add("led-on");}
+  notifyTouch();
+}
+function showBanner(b){b.classList.add("on");b.setAttribute("aria-hidden","false");clearTimeout(timers.ban);timers.ban=setTimeout(function(){hideBanner()},5200)}
+function hideBanner(){var b=$("#banner");b.classList.remove("on");b.setAttribute("aria-hidden","true")}
+function notifyTouch(){
+  if(S.viewer!=="Sophie"||S.view==="12"||S.view==="17")return;
+  var b=$("#banner");b.innerHTML="<b>Soly · maintenant</b>"+esc(S.call)+" t'a envoyé un Soly";b.dataset.go="13";showBanner(b);
+  if(S.view==="7")renderHome();
+}
+$("#frame").addEventListener("click",touchFrame);
+
+/* moment du jour : mosaïque sur le cadre */
+function playMoment(src){
+  var who=[[S.viewer,"14 h 38",src],["Lucas","14 h 39",PH[6]]];if(S.viewer!=="Léa")who.push(["Léa","14 h 40",PH[8]]);
+  var mg=$("#mg");mg.innerHTML=who.map(function(w){return '<div class="mt" style="background-image:url('+w[2]+')"><span>'+esc(w[0])+" · "+w[1]+"</span></div>"}).join("");
+  setMode("moment");
+  $$("#mg .mt").forEach(function(t,i){setTimeout(function(){t.classList.add("on")},300+i*1700)});
+  clearTimeout(timers.mo);timers.mo=setTimeout(function(){
+    S.items.unshift({id:"m"+Date.now(),type:"photo",src:src,from:S.viewer,note:"Le moment du jour",hidden:false});S.idx=0;setMode("photos")},9500);
+}
+
+/* ---------- onboarding ---------- */
+var scanTimer;
+function scanReset(){$("#scan").classList.remove("ok");$("#scan span").textContent="Touchez pour scanner";$("#scanNext").disabled=!S.paired&&true;if(S.paired){connected()}}
+function connected(){$("#scan").classList.add("ok");$("#scan span").textContent="Cadre de "+S.parent+" relié, connecté au wifi";$("#scanNext").disabled=false}
+function doScan(){
+  var s=$("#scan");if(s.classList.contains("ok"))return;
+  $("#scan span").textContent="Lecture du code...";clearTimeout(scanTimer);
+  scanTimer=setTimeout(function(){connected();
+    $("#cm-wait .bj").textContent="Relié !";$("#cm-wait .cp").textContent="Le cadre est connecté à la famille";$("#cm-wait .code").textContent="";
+    $("#cstate").textContent="Relié, en attente du carrousel"},1300);
+}
+function renderCar(){
+  var g=$("#car-grid");g.innerHTML=PH.slice(0,6).map(function(p,i){return '<button class="th'+(S.car.indexOf(i)>-1?" on":"")+'" data-i="'+i+'" style="background-image:url('+p+')" aria-label="Photo '+(i+1)+'"><span class="ck">&#10003;</span></button>'}).join("");
+  bg($("#car-prev"),S.car.length?PH[S.car[S.car.length-1]]:"");
+  $("#car-n").textContent=S.car.length+" photo"+(S.car.length>1?"s":"")+" choisie"+(S.car.length>1?"s":"")+". Une photo toutes les "+S.dur+" s.";
+}
+$("#car-grid").addEventListener("click",function(e){var t=e.target.closest(".th");if(!t)return;var i=+t.dataset.i,k=S.car.indexOf(i);
+  if(k>-1){if(S.car.length>1)S.car.splice(k,1);else toast("Gardez au moins une photo")}else S.car.push(i);renderCar()});
+function renderQR(){var q=$("#qr");if(q.childNodes.length)return;var h="",s=7;for(var i=0;i<225;i++){var x=i%15,y=Math.floor(i/15);
+  var fin=(x<5&&y<5)||(x>9&&y<5)||(x<5&&y>9);var ring=fin&&(x%14<1||x%14>3||y%14<1||y%14>3||(x===2&&y===2));var on=fin?(ring||(x%10===2&&y%10===2)):((x*7+y*13+s*x*y)%5<2);h+='<i class="'+(on?"":"z")+'"></i>'}q.innerHTML=h}
+
+/* ---------- accueil ---------- */
+function renderHome(){
+  $("#h-touch-t").textContent=S.call+" t'a envoyé un Soly";
+  $("#h-touch-s").textContent=S.lastTouch+(S.touched?" · renvoie-lui un Soly":" · pas encore de toucher aujourd'hui");
+  $("#h-moment-s").textContent=S.momentDone?"Aujourd'hui : Sophie envoyé. Lucas, Léa et Hugo en cours.":(S.moment?"C'est le moment ! Il reste 2 minutes.":"Pas encore arrivé. Vous serez prévenu, à une heure surprise.");
+  var cur=rot()[S.idx]||rot()[0];bg($("#h-prev"),cur&&cur.type!=="mot"?cur.src:"");
+  $("#h-status").innerHTML='<span><i class="st lil"></i> '+(S.wifi?"Cadre connecté":"Cadre hors ligne")+'</span><span><i class="st pe"></i> Alerte : '+(S.consent&&S.alertOn&&!S.vac?"activée":(S.consent?"en pause":"non acceptée"))+'</span>';
+}
+var SORTS=["Récentes d'abord","Anciennes d'abord","Mélange"];
+function renderKeep(){
+  $("#keep-grid").innerHTML=PH.slice(0,6).map(function(p,i){return '<button class="th'+(S.keep.indexOf(i)>-1?" on":"")+'" data-i="'+i+'" style="background-image:url('+p+')" aria-label="Garder la photo '+(i+1)+'"><span class="ck">&#10003;</span></button>'}).join("");
+  $("#keep-n").textContent=S.keep.length?S.keep.length+" photo"+(S.keep.length>1?"s":"")+" gardée"+(S.keep.length>1?"s":"")+" en permanence.":"Aucune photo gardée en permanence.";
+  $("#s-sort").textContent=SORTS[S.sortI]}
+$("#keep-grid").addEventListener("click",function(e){var t=e.target.closest(".th");if(!t)return;var i=+t.dataset.i,k=S.keep.indexOf(i);
+  if(k>-1)S.keep.splice(k,1);else S.keep.push(i);renderKeep()});
+function renderSend(){$("#s-moment").textContent=S.moment?"C'est le moment : 2 minutes pour la photo":"Disponible quand la notification arrive"}
+
+/* ---------- envoyer : photo, vidéo, mot ---------- */
+function openPicker(type){S.pickType=type;S.fit="auto";go(9)}
+function renderP9(){
+  $("#p9-title").textContent=S.pickType==="video"?"Aperçu de la vidéo":"Aperçu";
+  var p=$("#p9-prev");bg(p,S.pickSrc);p.classList.toggle("fit",S.fit==="full");
+  p.innerHTML=(S.pickType==="video"?'<span class="pl">'+IC.play+'</span>':"")+($("#p9-cap").value?'<span class="cap">'+esc($("#p9-cap").value)+'</span>':"");
+  $("#p9-grid").innerHTML=PH.slice(0,12).filter(function(_,i){return i>=2&&i<8}).map(function(s){return '<button class="th'+(s===S.pickSrc?" on":"")+'" data-s="'+s+'" style="background-image:url('+s+')" aria-label="Choisir cette photo"></button>'}).join("");
+  $$("[data-grp=fit] .chip").forEach(function(c){c.classList.toggle("on",c.dataset.v===S.fit)});
+}
+$("#p9-file").addEventListener("change",function(e){var f=e.target.files[0];if(!f)return;S.pickType=/^video/.test(f.type)?"video":"photo";S.pickSrc=URL.createObjectURL(f);renderP9();e.target.value=""});
+$("#p9-grid").addEventListener("click",function(e){var t=e.target.closest(".th");if(!t)return;S.pickSrc=t.dataset.s;renderP9()});
+$("#p9-cap").addEventListener("input",renderP9);
+function sendNow(){
+  var cap=$("#p9-cap").value.trim();
+  S.items.unshift({id:"s"+Date.now(),type:S.pickType,src:S.pickSrc,note:cap,from:S.me,hidden:false,fit:S.fit});S.idx=0;
+  setMode("photos");
+  $("#p9-cap").value="";toast("Envoi en cours...");clearTimeout(timers.dl);timers.dl=setTimeout(function(){toast(S.wifi?"Au mur de "+S.parent+" à l'instant":"Reçu, il s'affichera quand le wifi revient")},1400);go(7);
+}
+function renderMot(){
+  var cur=rot()[S.idx]||rot()[0];var p=$("#m-prev");bg(p,cur&&cur.type!=="mot"?cur.src:"");var t=$("#m-text").value;
+  p.innerHTML=S.motMode==="popup"?'<div class="pp">'+esc(t)+'<br><small style="font:400 12px Atkinson Hyperlegible;color:var(--cafe)">'+esc(S.me)+'</small></div>':'<span class="cap">'+esc(t)+'</span>';
+  $("#m-count").textContent=(function(n){return n+" caractère"+(n>1?"s":"")+" restant"+(n>1?"s":"")})(89-t.length);
+}
+$("#m-text").addEventListener("input",renderMot);
+function sendMot(){
+  var t=$("#m-text").value.trim();if(!t){toast("Écrivez quelques mots");return}
+  var cur=rot()[S.idx];
+  if(S.motMode==="popup"){S.items.push({id:"t"+Date.now(),type:"mot",text:t,from:S.me,hidden:false,rot:false});popup(t,S.me,5500)}
+  else if(cur&&cur.type!=="mot"){cur.note=t;buildSlides();showSlide(S.idx)}
+  else{S.items.unshift({id:"t"+Date.now(),type:"mot",text:t,from:S.me,hidden:false});S.idx=0;buildSlides();showSlide(0)}
+  $("#m-text").value="";toast("Envoi en cours...");clearTimeout(timers.dl);timers.dl=setTimeout(function(){toast(S.wifi?"Mot affiché chez "+S.parent:"Reçu, il s'affichera quand le wifi revient")},1400);go(7);
+}
+
+/* ---------- ce qui défile ---------- */
+function renderWallList(){
+  var f=S.filter,g=$("#w-grid"),l=S.items.filter(function(i){return i.rot!==false&&(f==="all"||i.type===f)});
+  if(!l.length){g.innerHTML='<div class="sub" style="grid-column:1/-1">Rien ici pour l\'instant.</div>';return}
+  g.innerHTML=l.map(function(it){var id=it.id;
+    if(it.type==="mot")return '<button class="th motc'+(it.hidden?" hid":"")+'" data-id="'+id+'" aria-label="Mot : '+esc(it.text)+'">'+esc(it.text).slice(0,40)+(it.hidden?'<span class="ic">'+IC.eyeoff+'</span>':"")+'</button>';
+    return '<button class="th'+(it.hidden?" hid":"")+'" data-id="'+id+'" style="background-image:url('+it.src+')" aria-label="Photo '+(it.hidden?"masquée":"visible")+'">'+(it.type==="video"?'<span class="ic">'+IC.play+'</span>':"")+(it.hidden?'<span class="ic">'+IC.eyeoff+'</span>':"")+'</button>'}).join("");
+  $("#w-by").textContent="Envoyé par "+Object.keys(S.items.reduce(function(a,i){a[i.from]=1;return a},{})).join(" · ");
+}
+$("#w-grid").addEventListener("click",function(e){var t=e.target.closest(".th");if(!t)return;
+  var it=S.items.filter(function(i){return i.id===t.dataset.id})[0];if(!it)return;
+  var vis=rot().length;if(!it.hidden&&it.rot!==false&&vis<=1){toast("Gardez au moins un contenu sur le cadre");return}
+  it.hidden=!it.hidden;toast(it.hidden?"Masqué du cadre":"De nouveau sur le cadre");S.idx=0;
+  if(S.mode==="photos")setMode("photos");renderWallList()});
+
+/* ---------- renvoyer un soly ---------- */
+function renderResend(){var cur=rot()[S.idx]||rot()[0];bg($("#r-prev"),cur&&cur.type!=="mot"?cur.src:"");$("#r-prev").querySelector(".pp").style.display="block";
+  $("#in .v.on h1");}
+function resend(){
+  if(S.mode==="off"){S.pendingGlow=true;toast("Le cadre est hors ligne : la lueur partira au retour du wifi");return}
+  if(S.mode==="wait"){toast("Le cadre n'est pas encore allumé");return}
+  glow(7000);toast("Jeanne verra une lueur sur son cadre".replace("Jeanne",S.parent));
+}
+
+/* ---------- alerte ---------- */
+function sim48(){
+  if(!S.paired){toast("Installez d'abord le cadre");return}
+  if(S.viewer!=="Sophie"){toast("Réservé à l'aidant principal");return}
+  if(!S.consent){toast("Le parent n'a pas accepté l'alerte à l'installation");return}
+  if(!S.wifi){toast("Cadre hors ligne : pas d'alerte, ce n'est pas un signal fiable");return}
+  if(!S.alertOn||S.vac){toast(S.vac?"Mode vacances : pas d'alerte":"Alerte désactivée (écran 14)");return}
+  S.handled=false;var b=$("#banner");b.innerHTML="<b>Soly · maintenant</b>Pas de toucher depuis "+Math.round(S.hours/24)+" jours";b.dataset.go="15";showBanner(b);
+}
+function renderAlertRecv(){
+  var d=Math.round(S.hours/24);$("#v-15 .card b").textContent="Pas de toucher depuis "+d+" jours";
+  $("#al-who").textContent=S.handled?"Vous vous en occupez. Lucas est prévenu.":"Lucas a aussi été prévenu."}
+function syncSwitches(){var ac=$("#a-accord");if(ac)ac.innerHTML=S.consent?"Accord de <span class=\"pn\">"+esc(S.parent)+"</span> donné à l'installation":"Pas d'accord de <span class=\"pn\">"+esc(S.parent)+"</span> : alerte indisponible";
+  $$("[data-tg]").forEach(function(t){var k=t.dataset.tg;t.classList.toggle("on",!!S[k]);t.setAttribute("aria-checked",!!S[k])});
+  $$("[data-grp=hours] .chip").forEach(function(c){c.classList.toggle("on",+c.dataset.v===S.hours)});$("#a-h").textContent=S.hours+" h";
+}
+function applyView(){var w=$("#wall");w.classList.remove("ts0","ts1","ts2");w.classList.add("ts"+(S.ts||0));
+  if($("#s-ts"))$("#s-ts").textContent=["Normale","Grande","Très grande"][S.ts||0];}
+function renderSettings(){applyView();
+  $("#s-dur").textContent=S.dur+" s";$("#s-vol").textContent=S.vol;$("#s-alert").textContent=S.consent&&S.alertOn&&!S.vac?"activée":"en pause";syncSwitches();
+}
+
+/* ---------- moment du jour ---------- */
+var camT,camS;
+function momentNotif(){
+  if(!S.paired){toast("Installez d'abord le cadre");return}
+  S.moment=true;S.momentDone=false;go(17);
+}
+function startCam(){stopCam();var s=120;$("#cd").textContent="2:00";camS=s;
+  $("#cam-me").textContent=S.viewer==="Léa"?"vous":"vous";
+  camT=setInterval(function(){camS--;if(camS<0){clearInterval(camT);toast("Temps écoulé : la photo partira marquée « plus tard »");return}
+    $("#cd").textContent=Math.floor(camS/60)+":"+("0"+(camS%60)).slice(-2)},1000)}
+function stopCam(){clearInterval(camT)}
+function shoot(){
+  var cam=$("#cam");cam.classList.remove("flash");void cam.offsetWidth;cam.classList.add("flash");
+  var src=PH[(Math.floor(Math.random()*4))+2];S.momentSrc=src;stopCam();
+  setTimeout(function(){
+    S.moment=false;S.momentDone=true;bg($("#sent-prev"),src);
+    $("#sent-today").textContent="Aujourd'hui : "+S.viewer+" · Lucas, pas encore · Léa, pas encore";
+    if(S.viewer==="Léa")$("#sent-today").textContent="Aujourd'hui : Sophie · Lucas · Léa";
+    go(19);playMoment(src)},520);
+}
+
+/* ---------- actions ---------- */
+var A={
+  install:function(){reset(true)},
+  reset:function(){reset(false)},
+  cycleSort:function(){S.sortI=(S.sortI+1)%SORTS.length;renderKeep()},
+  touch:function(){if(!S.paired){toast("Installez d'abord le cadre");return}touchFrame()},
+  momentNotif:momentNotif,sim48:sim48,
+  haveAccount:function(){pair();go(7)},
+  account:function(){var v=$("#f-me").value.trim();S.me=v||"Sophie";names();go(3)},
+  scan:doScan,
+  codeManual:function(){doScan()},
+  parentOk:function(){S.parent=($("#f-parent").value||"Jeanne").trim();S.call=($("#f-call").value||"Maman").trim();names();go(5)},
+  consentLater:function(){S.consent=false;S.alertOn=false;go(27)},
+  consentYes:function(){S.alertOn=S.consent;go(27)},
+  galleryYes:function(){S.gallery=true;toast("Accès aux photos autorisé (démo)");go(6)},
+  galleryLater:function(){S.gallery=false;go(6)},
+  lightUp:function(){
+    S.items=[];S.car.forEach(function(i){S.items.push({id:"c"+i,type:"photo",src:PH[i],from:S.me,hidden:false})});
+    S.paired=true;S.idx=0;S.alertOn=S.consent;setMode("photos");toast("Le Soly "+de(S.parent)+" est allumé");go(21)},
+  copyLink:function(){toast("Lien copié (démo, rien n'est envoyé)")},
+  soon:function(){toast("Écran non maquetté dans ce prototype")},
+  backSophie:function(){S.viewer="Sophie";go(7)},
+  momentAsLea:function(){S.viewer="Léa";S.moment=true;go(18)},
+  joinLea:function(){var n=$("#l-name")&&$("#l-name").value.trim();S.leaName=n||"Léa";go(26)},
+  validateLea:function(){toast(S.me+" a validé le compte de "+(S.leaName||"Léa"));go(24)},
+  cycleTs:function(){S.ts=((S.ts||0)+1)%3;applyView();toast("Texte : "+["normal","grand","très grand"][S.ts])},
+  lea:function(){S.viewer="Léa";go(8)},
+  momentCard:function(){if(S.moment){go(18)}else toast("Il arrive à une heure surprise")},
+  sendMoment:function(){if(S.moment){go(18)}else toast("Disponible quand la notification arrive")},
+  pickFile:function(){$("#p9-file").click()},sendPhoto:function(){openPicker("photo")},sendVideo:function(){openPicker("video")},
+  sendNow:sendNow,sendMot:sendMot,
+  resend:resend,unlock:function(){go(S.prev&&S.prev!=="12"&&S.prev!=="17"?S.prev:7)},
+  callJ:function(){resend();go(7)},
+  handle:function(){S.handled=true;toast("Les autres aidants voient que vous vous en occupez");go(7)},
+  falseAlarm:function(){toast("Noté : fausse alerte");go(7)},
+  cycleDur:function(){S.dur=S.dur===10?15:S.dur===15?30:10;renderSettings();if(S.mode==="photos")setMode("photos");toast("Une photo toutes les "+S.dur+" s")},
+  cycleVol:function(){S.vol=S.vol==="bas"?"auto":S.vol==="auto"?"au toucher":"bas";renderSettings()},
+  openMoment:function(){S.viewer="Sophie";go(18)},
+  later:function(){toast("Pas de souci : vous pouvez encore l'envoyer « plus tard »");go(7)},
+  shoot:shoot,
+  cWait:function(){S.paired=false;showWait();toast("Cadre en attente : code affiché")},
+  cPhotos:function(){if(!S.paired){pair();}if(!S.items.length)pair();setMode("photos")},
+  cGlow:function(){if(!S.paired)pair();if(S.mode!=="photos")setMode("photos");glow(8000)},
+  cNight:function(){S.veille=!S.veille;$$(".nuit-l").forEach(function(e){e.textContent=S.veille?"Sortir de la veille":"Mode veille"});wall.classList.toggle("veille",S.veille);toast(S.veille?"Mode veille : les photos continuent, plus douces":"Mode veille coupé")},
+  cWifi:function(){if(!S.paired)pair();S.wifi=!S.wifi;if(!S.wifi){setMode("off")}else{setMode("photos");if(S.pendingGlow){S.pendingGlow=false;glow(8000)}}
+    $$(".wifi-l").forEach(function(e){e.textContent=S.wifi?"Couper le wifi":"Rétablir le wifi"});
+    if(S.view==="7")renderHome();toast(S.wifi?"Wifi rétabli":"Wifi coupé : le cadre l'indique au parent")}
+};
+function showWait(){
+  $("#cm-wait .bj").textContent="Bonjour !";$("#cm-wait .cp").textContent="Code pour relier ce Soly";$("#cm-wait .code").textContent="482 731";setMode("wait")}
+function reset(thenStart){
+  clearInterval(timers.loop);clearTimeout(timers.mo);stopCam();
+  S.paired=false;S.items=[];S.idx=0;S.moment=false;S.momentDone=false;S.touched=false;S.lastTouch="Ce matin, 8 h 12";S.alertOn=true;S.vac=false;S.hours=48;S.consent=false;S.alertOn=false;S.gallery=false;
+  S.car=[0,1,2];S.dur=15;S.weekly=true;S.keep=[0];S.sortI=0;S.wifi=true;S.viewer="Sophie";S.handled=false;wall.classList.remove("glow","veille");S.veille=false;
+  clearTimeout(timers.dl);clearTimeout(timers.glow);hideBanner();
+  S.parent="Jeanne";S.call="Maman";S.me="Sophie";S.leaName="Léa";S.ts=0;S.fit="auto";S.filter="all";S.pendingGlow=false;
+  ["f-me","f-parent","f-call","l-name"].forEach(function(id){var e=$("#"+id);if(e)e.value={"f-me":"Sophie","f-parent":"Jeanne","f-call":"Maman","l-name":"Léa"}[id]});
+  $$(".wifi-l").forEach(function(e){e.textContent="Couper le wifi"});$$(".nuit-l").forEach(function(e){e.textContent="Mode veille"});
+  names();applyView();syncSwitches();showWait();go(1);
+  if(thenStart)toast("Parcours repris au début")
+}
+
+/* ---------- événements génériques ---------- */
+document.addEventListener("click",function(e){
+  var g=e.target.closest("[data-go]");
+  if(g&&!g.disabled){e.preventDefault();go(g.dataset.go);return}
+  var a=e.target.closest("[data-act]");
+  if(a&&A[a.dataset.act]){e.preventDefault();A[a.dataset.act]()}
+});
+$("#banner").addEventListener("click",function(){hideBanner();if(this.dataset.go)go(this.dataset.go)});
+$("#banner").addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();this.click()}});
+// interrupteurs
+document.addEventListener("click",function(e){var t=e.target.closest("[data-tg]");if(!t)return;var k=t.dataset.tg;
+  if(k==="alertOn"&&!S.consent){toast("Activez d'abord l'accord de "+S.parent+" (installation, étape 4)");return}
+  S[k]=!S[k];syncSwitches();
+  if(k==="led")refreshInfo();
+  if(k==="alertOn"||k==="vac"){if(S.view==="14"){}toast(k==="vac"?(S.vac?"Mode vacances : alerte en pause":"Mode vacances terminé"):(S.alertOn?"Alerte activée":"Alerte désactivée"))}});
+document.addEventListener("keydown",function(e){var t=e.target.closest&&e.target.closest("[data-tg]");if(t&&(e.key==="Enter"||e.key===" ")){e.preventDefault();t.click()}});
+// groupes de pastilles
+document.addEventListener("click",function(e){var c=e.target.closest(".chips .chip");if(!c)return;var grp=c.closest("[data-grp]");if(!grp)return;
+  $$(".chip",grp).forEach(function(x){x.classList.toggle("on",x===c)});var k=grp.dataset.grp,v=c.dataset.v;
+  if(k==="fit"){S.fit=v;renderP9()}
+  if(k==="mode"){S.motMode=v;renderMot()}
+  if(k==="filter"){S.filter=v;renderWallList()}
+  if(k==="hours"){S.hours=+v;$("#a-h").textContent=v+" h"}});
+
+/* ---------- navigation par écran + axes ---------- */
+var GROUPS=[["1 · Installer",[["1","Bienvenue"],["2","Compte"],["3","Scanner le cadre"],["4","Le parent et le cadre"],["5","L'alerte, avec le parent"],["27","Autoriser les photos"],["6","Le carrousel de départ"]]],
+ ["1 bis · Inviter la famille",[["21","Inviter la famille"],["22","Le message WhatsApp"],["23","Rejoindre (petit-enfant)"],["24","Son premier moment"],["25","La famille"],["26","Attente de validation (moins de 15 ans)"]]],
+ ["2 · Partager au quotidien",[["7","Accueil"],["8","Envoyer"],["9","Aperçu sur le cadre"],["10","Écrire un mot"],["11","Ce qui défile"]]],
+ ["2 bis · Le moment du jour",[["17","La notification du jour"],["18","Photo sur le vif"],["19","Envoyé"]]],
+ ["3 · Le lien",[["12","Notification"],["13","Renvoyer un Soly"]]],
+ ["4 · Alerte et réglages",[["14","Réglage de l'alerte"],["15","Alerte reçue"],["16","Profil et réglages du cadre"],["28","Mon compte"],["29","Photos et albums"]]]];
+$("#groups").innerHTML=GROUPS.map(function(g){return '<div class="grp"><h3>'+g[0]+'</h3><div class="chips">'+g[1].map(function(s){return '<button class="pill" data-go="'+s[0]+'">'+s[0]+" · "+s[1]+'</button>'}).join("")+'</div></div>'}).join("")
+ +'<div class="grp"><h3>Écrans du cadre</h3><div class="chips"><button class="pill" data-act="cWait">Attente : le code</button><button class="pill" data-act="cPhotos">Photo qui défile</button><button class="pill" data-act="cGlow">Lueur</button><button class="pill" data-act="momentNotif">20 · Sur le cadre (via le moment du jour)</button></div></div>';
+
+var AX=[
+ ["Ouvert dans Figma","Qui appelle les secours, et quand ?","L'alerte s'arrête à « si personne ne réagit : à définir » (écran 14, point 5).","Proposition : le cadre n'appelle jamais les secours seul. Après 24 h sans réponse des aidants, un rappel part, puis la décision reste humaine. À tester avec un aidant."],
+ ["Observation","L'alerte n'est pas atteignable depuis les réglages","L'écran 14 existe, mais l'écran 16 n'a aucune ligne qui y mène. Dans le prototype j'ai ajouté « Alerte et mode vacances ».","Ajouter la ligne dans la maquette, ou créer un onglet Famille et alerte distinct de Réglages du cadre."],
+ ["Observation","Taille de texte et zones à toucher","Beaucoup de textes secondaires sont petits dans la maquette (notes, sous-titres). Le prototype monte à 14 px minimum et 44 px de hauteur utile.","Fixer la règle dans la DA : 14 px minimum pour l'aidant, 20 px et plus pour tout ce que le parent lit sur le cadre."],
+ ["Ouvert dans Figma","Une photo envoyée en retard est-elle acceptée ?","Écran 19, point 4. Le prototype laisse envoyer après les 2 minutes avec la mention « plus tard ».","Décider la règle et l'afficher : un compteur à zéro doit changer le libellé du bouton, pas bloquer."],
+ ["Observation","Aucun état « cadre hors ligne »","Le parent ne voit rien si le wifi tombe, l'aidant non plus. J'ai ajouté l'état dans le prototype (bouton Couper le wifi).","Dessiner l'écran du cadre « Je cherche le wifi » et une carte d'état dans l'accueil de l'app, avec un ton neutre."],
+ ["Observation","Envoyer sans savoir si c'est affiché","Pas de « vu » pour le parent (décidé), mais l'envoyeur n'a aucune confirmation que la photo est bien au mur.","Un statut de livraison simple, « Au mur de Jeanne », sans heure de lecture ni compteur : livraison, pas pointage."],
+ ["Ouvert dans Figma","Qui voit « Maman t'a envoyé un Soly » : les aidants seuls ou toute la famille ?","Écran 25, point 4. Les petits-enfants reçoivent le moment du jour, pas le toucher.","Garder aidants seuls au départ, puis tester si les petits-enfants le demandent. Sinon le toucher devient un pointage."],
+ ["Observation","Petit-enfant de moins de 15 ans","Écran 23 : « un parent valide le compte », mais aucun écran d'attente de validation.","Ajouter « En attente de Sophie » côté petit-enfant et une demande de validation côté aidant (point RGPD déjà marqué ouvert)."],
+ ["Ouvert dans Figma","Mosaïque ou une photo à la fois ?","Écran 20, point 2. Le prototype joue la mosaïque 9 s puis rejoint le défilement.","Tester les deux sur le cadre avec un parent : la mosaïque est-elle lisible à 2 mètres, sans lunettes ?"]
+];
+$("#alist").innerHTML=AX.map(function(a,i){return '<div class="ax"><div class="src">'+(i+1)+" · "+a[0]+'</div><h3>'+a[1]+'</h3><p>'+a[2]+'</p><p class="bz">'+a[3]+'</p></div>'}).join("");
+
+names();go(1);
+})();
+</script>
+</body>
+</html>
