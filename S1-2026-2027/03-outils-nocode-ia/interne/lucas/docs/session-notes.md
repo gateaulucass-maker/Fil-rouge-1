@@ -19,3 +19,4 @@
 ## 2026-11-05 : audit de la DA restylé en charte Soly
 - Hypothèse : « bonne typo, bonnes couleurs, bons CTA » = charte Soly (Lexend titres et numéros, Atkinson texte, pastilles soleil/lilas/pêche avec texte encre, CTA pilule 56 px encre + contour encre).
 - Même style de CTA appliqué à « Ouvrir la maquette seule » par cohérence. Classes propres (.audit, .st) pour ne pas toucher au CSS de Camille.
+- Titres de toute la section 05 passés de Bricolage Grotesque à Lexend (h2, h3, h4, chiffres clés, libellés), texte en Atkinson. Le reste du rendu de Camille garde sa police.
