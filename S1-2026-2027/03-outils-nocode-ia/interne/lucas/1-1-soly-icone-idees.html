@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soly, idées d'icône</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--aube:#fffaf0;--creme:#fff3d9;--encre:#1f1a17;--cafe:#6a5f55;--soleil:#ffd36e;--peche:#ffc9a3;--ligne:#f0e3c8}
+*{box-sizing:border-box}body{margin:0;background:var(--aube);color:var(--encre);font-family:'Atkinson Hyperlegible',system-ui,sans-serif}
+.w{max-width:1200px;margin:0 auto;padding:64px 32px 96px}
+h1{font:600 clamp(36px,5vw,64px)/1.05 Lexend,sans-serif;letter-spacing:-.04em;margin:0 0 16px}
+.lead{font-size:20px;color:var(--cafe);max-width:720px;line-height:1.5;margin:0 0 48px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+.card{background:var(--creme);border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:20px}
+.big{background:var(--aube);border-radius:22px;border:2px solid var(--ligne);display:flex;align-items:center;justify-content:center;height:220px}
+.big svg{width:150px;height:150px}
+.n{font:400 14px Lexend;letter-spacing:.1em;color:var(--cafe)}
+h2{font:600 26px/1.15 Lexend;letter-spacing:-.03em;margin:0}
+p{margin:0;font-size:18px;line-height:1.5;color:var(--cafe)}
+.sizes{display:flex;align-items:center;gap:16px}.sizes svg{display:block}
+.app{width:56px;height:56px;border-radius:14px;background:linear-gradient(160deg,#d6c6f5,#ffc9a3 45%,#ffe7a8);display:flex;align-items:center;justify-content:center}
+.app svg{width:34px;height:34px}
+.rec{margin-top:48px;background:var(--encre);color:var(--aube);border-radius:28px;padding:36px}
+.rec h2{color:var(--aube)}.rec p{color:#e8dcc6;margin-top:12px}
+@media(max-width:600px){.w{padding:40px 16px}.grid{grid-template-columns:1fr}}
+</style></head><body><div class="w">
+<h1>Soly, dix idées d'icône.</h1>
+<p class="lead">Un symbole qui dit « cadre » et « chaleur » d'un coup d'œil. Chaque idée est montrée en grand, puis à 48, 24 et 16 px, puis sur l'icône d'appli. Les idées sont à comparer, aucune n'est validée.</p>
+<div class="grid" id="g"></div>
+<div class="rec"><h2>Mon avis</h2><p>La 01 (le cadre au soleil) est la plus claire : un carré arrondi, un soleil, rien d'autre. Elle reprend le point du logo « Soly. » et se lit encore à 16 px. La 02 est la meilleure pour l'icône d'appli. La 04 ajoute le geste (toucher), mais perd en simplicité à petite taille. À tester : 01 + 04 côte à côte avec l'équipe.</p></div>
+</div>
+<script>
+const E='#1f1a17',Y='#ffd36e',P='#ffc9a3',A='#fffaf0';
+const fr=`<rect x="16" y="16" width="88" height="88" rx="24" fill="none" stroke="${E}" stroke-width="8"/>`;
+const I=[
+['Le cadre au soleil','Un cadre arrondi, un soleil au centre. L\'idée la plus directe : l\'objet et la chaleur. Elle répond au point du logo.',fr+`<circle cx="60" cy="60" r="16" fill="${Y}"/>`],
+['Le cadre plein','Carré encre plein, soleil au centre. Très fort en icône d\'appli : forme dense, reconnaissable de loin.',`<rect x="10" y="10" width="100" height="100" rx="30" fill="${E}"/><circle cx="60" cy="60" r="18" fill="${Y}"/>`],
+['Le lever de soleil','Un demi-soleil posé sur la ligne d\'horizon du cadre. Dit « bonjour » : le moment où on reçoit un signe.',fr+`<path d="M36 78A24 24 0 0 1 84 78Z" fill="${Y}"/><path d="M28 78H92" stroke="${E}" stroke-width="6" stroke-linecap="round"/>`],
+['Le toucher','Le soleil entouré d\'ondes douces. Le geste du produit : on touche, le signe part.',fr+`<circle cx="60" cy="60" r="10" fill="${Y}"/><circle cx="60" cy="60" r="24" fill="none" stroke="${P}" stroke-width="6"/>`],
+['Le cœur dans le cadre','Un petit cœur jaune dans le cadre. Très lisible, mais plus générique : beaucoup d\'apps familiales l\'utilisent.',fr+`<path d="M60 80C36 64 43 44 60 54C77 44 84 64 60 80Z" fill="${Y}"/>`],
+['La fenêtre','Un cadre à quatre carreaux avec le soleil dans l\'un d\'eux. On regarde chez ses proches par une fenêtre.',fr+`<path d="M60 16V104M16 60H104" stroke="${E}" stroke-width="5"/><circle cx="38" cy="38" r="9" fill="${Y}"/>`],
+['Le cadre ouvert','Un cadre dont un coin reste ouvert, le soleil dans l\'ouverture. Dit « ouvert sur la famille », sans fermeture.',`<path d="M80 16H40A24 24 0 0 0 16 40V80A24 24 0 0 0 40 104H80A24 24 0 0 0 104 80V54" fill="none" stroke="${E}" stroke-width="8" stroke-linecap="round"/><circle cx="92" cy="28" r="10" fill="${Y}"/>`],
+['Le monogramme','Un « S. » dans un carré encre : la lettre et le point du logo. Sûr et lisible, mais ne montre pas le cadre.',`<rect x="10" y="10" width="100" height="100" rx="30" fill="${E}"/><text x="52" y="82" text-anchor="middle" font-family="Lexend" font-weight="600" font-size="72" fill="${A}">S</text><circle cx="86" cy="76" r="7" fill="${Y}"/>`],
+['Le cadre accroché','Un cadre avec son fil de suspension. Dit tout de suite « objet au mur », ce qu\'on comprend mal aujourd\'hui.',`<rect x="16" y="30" width="88" height="80" rx="22" fill="none" stroke="${E}" stroke-width="8"/><path d="M40 30L60 10L80 30" fill="none" stroke="${E}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="70" r="15" fill="${Y}"/>`],
+['Deux soleils liés','Deux cercles qui se chevauchent dans le cadre : le parent et l\'enfant, reliés. Raconte le lien, pas l\'objet.',fr+`<circle cx="47" cy="60" r="15" fill="${Y}"/><circle cx="73" cy="60" r="15" fill="${P}" style="mix-blend-mode:multiply"/>`]
+];
+const g=document.getElementById('g');
+I.forEach((x,i)=>{const s=z=>`<svg viewBox="0 0 120 120" width="${z}" height="${z}">${x[2]}</svg>`;
+g.insertAdjacentHTML('beforeend',`<div class="card"><div class="big">${s(150)}</div><div class="n">${String(i+1).padStart(2,'0')}</div><h2>${x[0]}</h2><p>${x[1]}</p><div class="sizes">${s(48)}${s(24)}${s(16)}<div class="app">${s(34)}</div></div></div>`)});
+</script></body></html>
