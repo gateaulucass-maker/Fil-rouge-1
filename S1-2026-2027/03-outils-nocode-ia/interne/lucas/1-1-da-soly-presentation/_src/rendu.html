@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><!--TITLE--></title>
+<meta name="description" content="Soly, le cadre qui ensoleille la journée : <!--DESC-->. PFR Générations Connectées, Ynov B2.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --aube:#FFFAF0; --creme:#FFF3D9; --encre:#1F1A17; --cafe:#6A5F55;
+  --soleil:#FFD36E; --peche:#FFC9A3; --lilas:#C9B8F0; --ligne:#F0E3C8;
+  --gp:linear-gradient(160deg,#FFE7A8,#FFC9A3 55%,#D6C6F5);
+  --titre:"Lexend",system-ui,sans-serif;
+  --texte:"Atkinson Hyperlegible",system-ui,sans-serif;
+  --k:1; --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--aube);color:var(--encre);font:17px/1.55 var(--texte);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--titre);font-weight:500;margin:0;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--encre);outline-offset:3px;border-radius:8px}
+.w{max-width:1240px;margin:0 auto;padding:0 32px}
+.lab{font:500 13px/1.2 var(--titre);letter-spacing:.08em;text-transform:uppercase;color:var(--cafe)}
+.muted{color:var(--cafe)}
+
+/* ---------- logo ---------- */
+.sym{display:block;flex:none}
+.logo{display:inline-flex;align-items:center;gap:.32em;font:600 1em/1 var(--titre);letter-spacing:-.05em;white-space:nowrap}
+.logo .wm{display:inline-flex;align-items:baseline}
+.logo .wm i{display:inline-block;width:.19em;height:.19em;border-radius:50%;background:var(--soleil);margin-left:.06em}
+
+/* ---------- barre ---------- */
+.top{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--aube) 86%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--ligne)}
+.top .w{display:flex;align-items:center;gap:28px;height:72px}
+.top .logo{font-size:24px}
+.tabs{position:relative;display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none;height:100%;align-items:center}
+.tabs::-webkit-scrollbar{display:none}
+.tab{position:relative;font:500 15px/1 var(--titre);color:var(--cafe);padding:12px 14px;border-radius:999px;white-space:nowrap;transition:color .25s,background .25s}
+.tab:hover{color:var(--encre);background:var(--creme)}
+.tab[aria-selected="true"]{color:var(--encre)}
+.tab .n{font-variant-numeric:tabular-nums;opacity:.55;margin-right:6px;font-size:12px}
+.ink{position:absolute;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--encre);transition:transform .45s var(--ease),width .45s var(--ease);pointer-events:none}
+.ink::after{content:"";position:absolute;right:-9px;top:-3px;width:7px;height:7px;border-radius:50%;background:var(--soleil)}
+.meta{font:500 13px var(--titre);color:var(--cafe);white-space:nowrap}
+.prog{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--soleil);z-index:40}
+
+/* ---------- panneaux ---------- */
+.panel{display:none;padding:64px 0 120px}
+.panel.on{display:block;animation:pin .6s var(--ease) both}
+@keyframes pin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.head{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:48px;align-items:end;margin-bottom:56px}
+.head h2{font-size:clamp(36px,5.2vw,64px);line-height:1.04;letter-spacing:-.04em;margin-top:14px}
+.head .intro{color:var(--cafe);font-size:18px;max-width:660px;margin-top:18px}
+.head aside{border-left:1px solid var(--ligne);padding-left:20px;font-size:15px;color:var(--cafe)}
+.head aside b{display:block;font:500 13px var(--titre);letter-spacing:.08em;text-transform:uppercase;color:var(--encre);margin-bottom:6px}
+.block{margin-top:96px}
+.block>.lab{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.block>.lab::after{content:"";flex:1;height:1px;background:var(--ligne)}
+.block>h3{font-size:clamp(26px,3vw,36px);letter-spacing:-.03em;line-height:1.12;margin-bottom:28px;max-width:820px}
+
+/* apparition */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--d,0) * 70ms)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- planches ---------- */
+.pls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.pls.one{grid-template-columns:minmax(0,1fr)}
+.pls.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pl{position:relative;display:block;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:var(--aube);box-shadow:0 0 0 1px var(--ligne),0 24px 50px -32px rgba(31,26,23,.35);cursor:zoom-in;transition:transform .35s var(--ease),box-shadow .35s var(--ease);text-align:left}
+.pl:hover{transform:translateY(-4px);box-shadow:0 0 0 1px var(--encre),0 30px 60px -30px rgba(31,26,23,.45)}
+.pl .slide{pointer-events:none}
+.pl .cap{position:absolute;left:12px;bottom:12px;font:500 12px var(--titre);background:var(--encre);color:var(--aube);border-radius:999px;padding:6px 11px;opacity:0;transform:translateY(6px);transition:.3s var(--ease)}
+.pl:hover .cap,.pl:focus-visible .cap{opacity:1;transform:none}
+.slide{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;transform:scale(var(--k));transform-origin:0 0;background:var(--aube);color:var(--encre);font-family:var(--texte);font-size:16px;line-height:normal}
+.slide *{box-sizing:border-box}
+.slide h1,.slide h2,.slide h3,.slide h4,.slide p{margin:0;text-wrap:wrap}
+
+/* ---------- Projet ---------- */
+.hero{position:relative;border-radius:36px;overflow:hidden;background:var(--creme);min-height:560px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center;padding:64px}
+.hero .halo{position:absolute;width:900px;height:900px;right:-240px;top:-220px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,211,110,.55),rgba(255,201,163,.25) 45%,rgba(201,184,240,.1) 75%,transparent);animation:breathe 9s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.08) translate(-20px,14px)}}
+.hero>*{position:relative}
+.hero h1{font-size:clamp(44px,6.4vw,88px);line-height:1;letter-spacing:-.045em;margin:18px 0 22px}
+.hero p.l{font-size:19px;color:var(--cafe);max-width:520px}
+.hero .bigsym{justify-self:center;width:min(320px,70%);height:auto}
+.bigsym rect{transform-box:fill-box;transform-origin:center;animation:qin .7s var(--ease) both}
+.bigsym rect:nth-child(2){animation-delay:.12s}.bigsym rect:nth-child(3){animation-delay:.24s}.bigsym rect:nth-child(4){animation-delay:.5s}
+@keyframes qin{from{opacity:0;transform:scale(.4)}}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:24px}
+.fact{background:var(--creme);border-radius:24px;padding:28px}
+.fact b{display:block;font:500 22px/1.2 var(--titre);letter-spacing:-.02em;margin:10px 0 8px}
+.fact p{color:var(--cafe);font-size:16px}
+.map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.go{display:flex;flex-direction:column;gap:10px;text-align:left;border-radius:24px;padding:24px;border:1px solid var(--ligne);background:var(--aube);transition:background .25s,border-color .25s,transform .35s var(--ease)}
+.go:hover{background:var(--creme);border-color:var(--encre);transform:translateY(-3px)}
+.go .num{font:500 13px var(--titre);color:var(--cafe)}
+.go b{font:500 22px var(--titre);letter-spacing:-.02em}
+.go span{color:var(--cafe);font-size:15px}
+.go .arr{margin-top:auto;font:500 14px var(--titre)}
+
+/* ---------- Identité ---------- */
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.rule{background:var(--creme);border-radius:28px;padding:32px;min-height:260px;display:flex;flex-direction:column}
+.rule .n{font:500 15px var(--titre);color:var(--cafe)}
+.rule h4{font-size:26px;letter-spacing:-.03em;line-height:1.15;margin:auto 0 12px;padding-top:40px}
+.rule p{color:var(--cafe)}
+.rule .ic{width:56px;height:56px;margin-top:22px}
+.sum{margin-top:20px;border-radius:28px;padding:28px 32px;background:var(--gp);display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
+.sum b{font:500 26px var(--titre);letter-spacing:-.03em}
+.lab-logo{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:20px}
+.lstage{position:relative;border-radius:28px;min-height:420px;display:grid;place-items:center;transition:background .5s var(--ease),color .5s var(--ease);background:var(--aube);box-shadow:inset 0 0 0 1px var(--ligne);overflow:hidden}
+.lstage .logo{font-size:clamp(56px,8vw,104px);position:relative}
+.lstage .logo .sym{width:.95em;height:.95em}
+.lstage .zone{position:absolute;inset:-.62em -.62em;border:1.5px dashed currentColor;border-radius:8px;opacity:0;transition:opacity .4s;pointer-events:none}
+.lstage .zone::before,.lstage .zone::after{content:"S";position:absolute;font:600 .68em/1 var(--titre);opacity:.5}
+.lstage .zone::before{left:-.05em;top:50%;transform:translate(-110%,-50%)}
+.lstage .zone::after{right:-.05em;top:50%;transform:translate(110%,-50%)}
+.lstage.z .zone{opacity:.55}
+.lstage .bgname{position:absolute;left:24px;bottom:20px;font:500 13px var(--titre);letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.lctrl{display:flex;flex-direction:column;gap:20px;background:var(--creme);border-radius:28px;padding:28px}
+.sw-row{display:flex;flex-wrap:wrap;gap:10px}
+.bgb{width:48px;height:48px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(31,26,23,.15);transition:transform .25s var(--ease),box-shadow .25s}
+.bgb:hover{transform:scale(1.08)}
+.bgb[aria-pressed="true"]{box-shadow:0 0 0 3px var(--creme),0 0 0 5px var(--encre)}
+.tgl{display:flex;align-items:center;justify-content:space-between;gap:12px;font:500 15px var(--titre);min-height:56px;padding:0 6px 0 18px;border-radius:999px;background:var(--aube);border:1px solid var(--ligne)}
+.tgl i{width:52px;height:32px;border-radius:999px;background:var(--ligne);position:relative;transition:background .3s;flex:none}
+.tgl i::after{content:"";position:absolute;left:4px;top:4px;width:24px;height:24px;border-radius:50%;background:var(--aube);box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .3s var(--ease)}
+.tgl[aria-pressed="true"] i{background:var(--encre)}
+.tgl[aria-pressed="true"] i::after{transform:translateX(20px);background:var(--soleil)}
+.anat{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;font-size:15px;color:var(--cafe)}
+.anat b{display:block;color:var(--encre);font:500 15px var(--titre)}
+.sizes{display:flex;align-items:flex-end;gap:36px;flex-wrap:wrap}
+.sizes div{display:flex;flex-direction:column;gap:10px}
+.sizes div>span:last-child{font-size:14px;color:var(--cafe)}
+.donts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.dont{border-radius:22px;background:var(--creme);padding:26px 20px 18px;display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center}
+.dont .logo{font-size:30px;min-height:40px}
+.dont p{font:500 14px var(--titre);display:flex;gap:8px;align-items:center}
+.dont p::before{content:"";width:20px;height:20px;border-radius:50%;background:var(--encre) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6.5 6.5l7 7m0-7l-7 7' stroke='%23FFFAF0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/100%;flex:none}
+
+/* ---------- Couleurs ---------- */
+.pal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.chip-c{text-align:left;border-radius:24px;overflow:hidden;background:var(--aube);box-shadow:0 0 0 1px var(--ligne);transition:transform .35s var(--ease),box-shadow .35s}
+.chip-c:hover{transform:translateY(-4px);box-shadow:0 0 0 1px var(--encre)}
+.chip-c .sw{height:150px;position:relative;display:flex;align-items:flex-end;padding:14px 16px;font:500 14px var(--titre)}
+.chip-c .sw em{font-style:normal;opacity:0;transform:translateY(6px);transition:.3s var(--ease);background:var(--aube);color:var(--encre);border-radius:999px;padding:5px 10px;font-size:12px}
+.chip-c:hover .sw em,.chip-c:focus-visible .sw em{opacity:1;transform:none}
+.chip-c .tx{padding:16px 18px 18px}
+.chip-c b{font:500 19px var(--titre);letter-spacing:-.02em;display:flex;justify-content:space-between;gap:8px}
+.chip-c b code{font:400 14px var(--titre);color:var(--cafe)}
+.chip-c p{font-size:15px;color:var(--cafe);margin-top:4px}
+.chip-c small{display:inline-block;margin-top:10px;font:500 12px var(--titre);border-radius:999px;padding:4px 10px;background:var(--creme)}
+.grads{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px}
+.g-photo{border-radius:28px;min-height:380px;background:linear-gradient(160deg,#FFE7A8,#FFC9A3 55%,#D6C6F5);background-size:160% 160%;animation:drift 14s ease-in-out infinite alternate;padding:28px;display:flex;flex-direction:column;justify-content:flex-end}
+@keyframes drift{from{background-position:0% 0%}to{background-position:100% 100%}}
+.g-side{display:grid;gap:20px}
+.g-halo{border-radius:28px;background:var(--creme);position:relative;overflow:hidden;min-height:180px;padding:24px;display:flex;flex-direction:column;justify-content:flex-end}
+.g-halo::before{content:"";position:absolute;width:340px;height:340px;left:50%;top:40%;margin:-170px 0 0 -170px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,211,110,.6),rgba(255,201,163,.25) 45%,rgba(201,184,240,.1) 75%,transparent);animation:breathe 7s ease-in-out infinite}
+.g-halo>*{position:relative}
+.g-duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g-duo div{border-radius:24px;min-height:150px;padding:20px;display:flex;align-items:flex-end;font:500 15px var(--titre)}
+.gname{font:500 20px var(--titre);letter-spacing:-.02em}
+.gspec{font-size:14px;color:var(--encre);opacity:.75;margin-top:4px}
+.spec{border-radius:28px;background:var(--creme);padding:32px}
+.spec-ctrl{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:24px}
+.seg{display:inline-flex;background:var(--aube);border:1px solid var(--ligne);border-radius:999px;padding:4px}
+.seg button{font:500 14px var(--titre);padding:10px 16px;border-radius:999px;min-height:44px;transition:background .25s,color .25s}
+.seg button[aria-pressed="true"]{background:var(--encre);color:var(--aube)}
+.range{display:flex;align-items:center;gap:12px;font:500 14px var(--titre);color:var(--cafe);margin-left:auto}
+.range input{accent-color:var(--encre);width:180px}
+.sample{outline:none;font:500 48px/1.08 var(--titre);letter-spacing:-.03em;min-height:1.2em;transition:font-size .25s var(--ease),letter-spacing .25s;overflow-wrap:anywhere}
+.sample:focus{box-shadow:0 2px 0 var(--soleil)}
+.scale{margin-top:28px;border-top:1px solid var(--ligne)}
+.srow{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--ligne)}
+.srow .k{font:500 13px var(--titre);letter-spacing:.06em;text-transform:uppercase;color:var(--cafe)}
+.srow .k small{display:block;text-transform:none;letter-spacing:0;font-weight:400;margin-top:4px}
+.fonts{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.font{border-radius:28px;padding:32px;background:var(--aube);box-shadow:inset 0 0 0 1px var(--ligne);display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.font .aa{font-size:110px;line-height:.9;letter-spacing:-.04em}
+.font p{color:var(--cafe);font-size:16px;margin-top:8px}
+.font h4{font-size:24px;letter-spacing:-.02em}
+
+/* ---------- Interface ---------- */
+.ui-board{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.ui-card{border-radius:28px;background:var(--creme);padding:32px;display:flex;flex-direction:column;gap:20px}
+.ui-card .note{font-size:15px;color:var(--cafe);margin-top:auto}
+.btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{min-height:56px;padding:0 28px;border-radius:999px;font:500 17px var(--titre);display:inline-flex;align-items:center;gap:10px;transition:background .25s,color .25s,transform .2s}
+.btn:active{transform:scale(.97)}
+.btn.p{background:var(--encre);color:var(--aube)}
+.btn.p:hover{background:#3a322d}
+.btn.o{box-shadow:inset 0 0 0 1.5px var(--encre)}
+.btn.o:hover{background:var(--aube)}
+.btn.t{background:var(--aube)}
+.btn.t:hover{background:var(--ligne)}
+.btn .sent{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--soleil);transform:scale(0);transition:transform .35s var(--ease)}
+.btn.ok .sent{transform:scale(1)}
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pill{min-height:44px;padding:0 18px;border-radius:999px;font:500 15px var(--titre);background:var(--aube);box-shadow:inset 0 0 0 1px var(--ligne);transition:background .25s,box-shadow .25s}
+.pill[aria-pressed="true"]{background:var(--peche);box-shadow:none}
+.field{min-height:56px;border-radius:18px;border:1.5px solid var(--ligne);background:var(--aube);padding:0 20px;font:17px var(--texte);width:100%;color:var(--encre);transition:border-color .25s}
+.field:focus{outline:none;border-color:var(--encre)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mini{border-radius:20px;background:var(--aube);padding:20px;min-height:150px;display:flex;flex-direction:column;gap:6px}
+.mini i{width:12px;height:12px;border-radius:50%;margin-bottom:auto}
+.mini b{font:500 17px var(--titre);letter-spacing:-.01em;margin-top:24px}
+.mini span{font-size:14px;color:var(--cafe)}
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.dd>div{border-radius:28px;padding:32px}
+.dd .do{background:var(--creme)}
+.dd .no{background:var(--aube);box-shadow:inset 0 0 0 1px var(--ligne)}
+.dd h4{font-size:22px;display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.dd h4 i{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-style:normal}
+.dd ol{list-style:none;margin:0;padding:0;counter-reset:c}
+.dd li{counter-increment:c;display:grid;grid-template-columns:40px 1fr;padding:14px 0;border-top:1px solid var(--ligne);font-size:17px}
+.dd li::before{content:counter(c,decimal-leading-zero);font:500 14px var(--titre);color:var(--cafe);padding-top:2px}
+.moments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.mo{border-radius:28px;padding:28px;min-height:230px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.mo .h{font:500 13px var(--titre);letter-spacing:.08em}
+.mo b{font:500 24px var(--titre);letter-spacing:-.02em;margin-top:auto}
+.mo p{margin-top:8px;font-size:16px}
+
+/* ---------- Maquette ---------- */
+.mq-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:20px}
+.mq-frame{border-radius:32px;background:var(--aube);box-shadow:0 0 0 1px var(--ligne),0 40px 80px -50px rgba(31,26,23,.4);overflow:hidden}
+.mq-frame iframe{display:block;width:100%;height:1500px;border:0}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:28px}
+.step{border-radius:22px;background:var(--creme);padding:22px}
+.step .n{width:32px;height:32px;border-radius:50%;background:var(--encre);color:var(--aube);display:grid;place-items:center;font:500 14px var(--titre);margin-bottom:14px}
+.step b{display:block;font:500 18px var(--titre);letter-spacing:-.02em}
+.step span{font-size:15px;color:var(--cafe)}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+
+/* ---------- Applications / planches ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.allpl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.allpl .it{display:flex;flex-direction:column;gap:10px;transition:opacity .35s,transform .35s var(--ease)}
+.allpl .it.hide{display:none}
+.allpl .it p{font:500 14px var(--titre);display:flex;gap:10px}
+.allpl .it p span{color:var(--cafe);font-variant-numeric:tabular-nums}
+
+/* ---------- lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:50;background:rgba(31,26,23,.86);display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:24px}
+.lb.on{display:flex;animation:fade .3s ease both}
+@keyframes fade{from{opacity:0}}
+.lb .box{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 40px 100px -20px rgba(0,0,0,.6);animation:zoom .4s var(--ease) both}
+@keyframes zoom{from{transform:scale(.94);opacity:0}}
+.lb .bar{display:flex;align-items:center;gap:12px;color:var(--aube);font:500 14px var(--titre)}
+.lb .bar span{min-width:220px;text-align:center}
+.lb .rb{width:48px;height:48px;border-radius:50%;background:rgba(255,250,240,.12);color:var(--aube);display:grid;place-items:center;transition:background .2s}
+.lb .rb:hover{background:rgba(255,250,240,.24)}
+.lb .x{position:absolute;top:18px;right:18px}
+
+/* ---------- divers ---------- */
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;background:var(--encre);color:var(--aube);font:500 15px var(--titre);border-radius:999px;padding:14px 22px;z-index:60;transition:.35s var(--ease);pointer-events:none;display:flex;gap:10px;align-items:center}
+.toast::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--soleil)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.nextp{margin-top:96px;display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--ligne);padding-top:28px}
+.nextp button{display:flex;flex-direction:column;gap:6px;text-align:left;padding:8px 0}
+.nextp button:last-child{text-align:right;margin-left:auto}
+.nextp b{font:500 24px var(--titre);letter-spacing:-.02em;transition:color .2s}
+.nextp button:hover b{text-decoration:underline;text-decoration-color:var(--soleil);text-decoration-thickness:3px;text-underline-offset:6px}
+footer{border-top:1px solid var(--ligne);padding:32px 0 48px;font-size:14px;color:var(--cafe)}
+footer .w{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+
+@media (max-width:1000px){
+  .head,.hero,.lab-logo,.grads,.ui-board,.fonts{grid-template-columns:minmax(0,1fr)}
+  .head aside{border-left:0;padding-left:0;border-top:1px solid var(--ligne);padding-top:16px}
+  .pal,.donts,.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rules,.facts,.map,.moments,.cards,.allpl,.pls.three{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .hero{padding:40px}.hero .bigsym{width:200px;justify-self:start;margin-top:24px;order:-1}
+  .meta{display:none}
+}
+@media (max-width:640px){
+  .w{padding:0 16px}
+  .top .w{gap:12px}.top .logo{font-size:20px}
+  .panel{padding:40px 0 80px}
+  .rules,.facts,.map,.moments,.cards,.allpl,.pls,.pls.three,.dd,.pal,.donts,.steps,.anat{grid-template-columns:minmax(0,1fr)}
+  .hero{padding:28px;border-radius:28px;min-height:0}
+  .srow{grid-template-columns:minmax(0,1fr);gap:6px}
+  .font{grid-template-columns:minmax(0,1fr)}.font .aa{font-size:80px}
+  .range{margin-left:0;width:100%}.range input{flex:1}
+  .sample{font-size:34px}
+  .block{margin-top:64px}
+  .mq-frame iframe{height:2600px}
+  .nextp b{font-size:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+}
+@media print{
+  .top,.prog,.nextp,.filters,.lb,.toast,.spec-ctrl,.mq-bar{display:none!important}
+  .panel{display:block!important;animation:none;padding:24px 0;break-before:page}
+  .rv{opacity:1;transform:none}
+  .pl{box-shadow:0 0 0 1px var(--ligne);break-inside:avoid}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="prog" id="prog" aria-hidden="true"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="sq" clipPathUnits="objectBoundingBox"><rect width="1" height="1" rx=".3077"/></clipPath>
+    <symbol id="sym" viewBox="0 0 100 100"><g clip-path="url(#sq)"><rect class="q" width="47.12" height="47.12"/><rect class="q" x="52.88" width="47.12" height="47.12"/><rect class="q" y="52.88" width="47.12" height="47.12"/><rect x="52.88" y="52.88" width="47.12" height="47.12" fill="#FFD36E"/></g></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="w">
+    <span class="logo" aria-label="Soly"><svg class="sym" width=".95em" height=".95em" style="fill:var(--encre)"><use href="#sym"/></svg><span class="wm">Soly<i></i></span></span>
+    <nav class="tabs" role="tablist" aria-label="Sections du rendu" id="tabs">
+<!--TABS-->
+      <span class="ink" id="ink" aria-hidden="true"></span>
+    </nav>
+    <span class="meta"><!--META--></span>
+  </div>
+</header>
+
+<main class="w" id="main">
+
+<!-- ======================= PROJET ======================= -->
+<section class="panel" id="projet" role="tabpanel" aria-labelledby="t-projet">
+  <div class="hero rv">
+    <div class="halo" aria-hidden="true"></div>
+    <div>
+      <div class="lab">Direction artistique · V2<!--HERO_LAB--></div>
+      <h1>Le cadre qui ensoleille la journée.</h1>
+      <p class="l">Soly relie un parent âgé et sa famille : un cadre photo au mur du salon, une application dans la poche. Un geste suffit pour dire « je pense à toi ».</p>
+    </div>
+    <svg class="bigsym" viewBox="0 0 100 100" aria-hidden="true" style="fill:var(--encre)"><g clip-path="url(#sq)"><rect width="47.12" height="47.12"/><rect x="52.88" width="47.12" height="47.12"/><rect y="52.88" width="47.12" height="47.12"/><rect x="52.88" y="52.88" width="47.12" height="47.12" fill="#FFD36E"/></g></svg>
+  </div>
+
+  <div class="facts">
+    <div class="fact rv" style="--d:1"><span class="lab">Le produit</span><b>Cadre mural + application familiale</b><p>Les photos de la famille défilent au mur. Toucher le cadre suffit pour faire signe.</p></div>
+    <div class="fact rv" style="--d:2"><span class="lab">Pour qui</span><b>Un parent âgé, et ceux qui pensent à lui</b><p>Pas de menu, pas de petit bouton à chercher, pas de lunettes à retrouver.</p></div>
+    <div class="fact rv" style="--d:3"><span class="lab">Le ton</span><b>Chaleureux, jamais médical</b><p>Des mots de famille. Pas de surveillance, pas de vocabulaire de santé.</p></div>
+  </div>
+
+  <div class="block">
+    <div class="lab rv">Sommaire</div>
+    <h3 class="rv"><!--MAP_TITLE--></h3>
+    <div class="map">
+<!--MAP-->
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="lab rv">Planche d'ouverture</div>
+    <div class="pls one rv"><!--PL:01--></div>
+  </div>
+</section>
+
+<!-- ======================= IDENTITÉ ======================= -->
+<section class="panel" id="identite" role="tabpanel" aria-labelledby="t-identite">
+  <div class="head">
+    <div><div class="lab rv">01 · Principes et logo</div><h2 class="rv" style="--d:1">Trois règles pour rester chaleureux.</h2><p class="intro rv" style="--d:2">Lumière, rondeur, mots de famille : tout le reste en découle.</p></div>
+    <aside class="rv" style="--d:3"><b>Planches</b>02 Principes, 03 Logo, 04 Déclinaisons, 05 Construction.</aside>
+  </div>
+
+  <div class="rules">
+    <div class="rule rv" style="--d:0"><span class="n">01</span>
+      <svg class="ic" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" fill="#FFF3D9"/><circle cx="28" cy="28" r="9" fill="#FFD36E"/></svg>
+      <h4>La lumière, pas l’aplat</h4><p>Le jaune éclaire : en point, en reflet, en halo. Il ne remplit jamais un fond.</p></div>
+    <div class="rule rv" style="--d:1"><span class="n">02</span>
+      <svg class="ic" viewBox="0 0 56 56" aria-hidden="true"><rect x="2" y="12" width="52" height="32" rx="16" fill="#1F1A17"/></svg>
+      <h4>Gros et rond</h4><p>Zones tactiles de 56 px, coins de 24 px, un seul geste par écran.</p></div>
+    <div class="rule rv" style="--d:2"><span class="n">03</span>
+      <svg class="ic" viewBox="0 0 56 56" aria-hidden="true"><circle cx="21" cy="28" r="15" fill="#FFC9A3"/><circle cx="35" cy="28" r="15" fill="#C9B8F0" style="mix-blend-mode:multiply"/></svg>
+      <h4>Chaleureux, jamais médical</h4><p>Des mots de famille. Pas de surveillance, pas de vocabulaire de santé.</p></div>
+  </div>
+  <div class="sum rv"><b>Un petit signe suffit.</b><span>Lumière, rondeur, mots de famille : tout le reste en découle.</span></div>
+
+  <div class="block">
+    <div class="lab rv">Logo</div>
+    <h3 class="rv">Un cadre, un nom, un point.</h3>
+    <div class="lab-logo">
+      <div class="lstage rv" id="lstage">
+        <span class="logo" aria-label="Logo Soly"><span class="zone" aria-hidden="true"></span><svg class="sym" id="lsym" style="fill:var(--encre)"><use href="#sym"/></svg><span class="wm" id="lwm">Soly<i></i></span></span>
+        <span class="bgname" id="bgname">Sur aube</span>
+      </div>
+      <div class="lctrl rv" style="--d:1">
+        <div><div class="lab" style="margin-bottom:12px">Essayer un fond</div>
+          <div class="sw-row" id="bgs">
+            <button class="bgb" style="background:#FFFAF0" data-bg="#FFFAF0" data-fg="#1F1A17" data-n="Sur aube" aria-pressed="true" aria-label="Fond aube"></button>
+            <button class="bgb" style="background:#FFF3D9" data-bg="#FFF3D9" data-fg="#1F1A17" data-n="Sur crème" aria-pressed="false" aria-label="Fond crème"></button>
+            <button class="bgb" style="background:#1F1A17" data-bg="#1F1A17" data-fg="#FFFAF0" data-n="Sur encre" aria-pressed="false" aria-label="Fond encre"></button>
+            <button class="bgb" style="background:linear-gradient(160deg,#FFE7A8,#FFC9A3 55%,#D6C6F5)" data-bg="linear-gradient(160deg,#FFE7A8,#FFC9A3 55%,#D6C6F5)" data-fg="#1F1A17" data-n="Sur dégradé" aria-pressed="false" aria-label="Fond dégradé"></button>
+            <button class="bgb" style="background:#C9B8F0" data-bg="#C9B8F0" data-fg="#1F1A17" data-n="Sur lilas" aria-pressed="false" aria-label="Fond lilas"></button>
+            <button class="bgb" style="background:#FFC9A3" data-bg="#FFC9A3" data-fg="#1F1A17" data-n="Sur pêche" aria-pressed="false" aria-label="Fond pêche"></button>
+          </div></div>
+        <button class="tgl" id="zoneT" aria-pressed="false">Zone de protection <i></i></button>
+        <div class="anat">
+          <div><b>Le symbole</b>Un cadre coupé en quatre quarts.</div>
+          <div><b>Le mot</b>« Soly » en Lexend SemiBold.</div>
+          <div><b>Le point</b>Rond, couleur Soleil.</div>
+        </div>
+        <p class="muted" style="font-size:15px">Trois quarts encre, un quart soleil en bas à droite. Pas d’effet, pas de lueur. Le point est le soleil : il ferme la phrase, comme un geste de bonjour.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="lab rv">Construction</div>
+    <h3 class="rv">Espace, taille, interdits.</h3>
+    <div class="ui-card rv" style="margin-bottom:20px">
+      <div class="lab">Tailles minimales</div>
+      <div class="sizes">
+        <div><span class="logo" style="font-size:56px"><svg class="sym" width=".95em" height=".95em" style="fill:var(--encre)"><use href="#sym"/></svg><span class="wm">Soly<i></i></span></span><span>56 px, écran</span></div>
+        <div><span class="logo" style="font-size:36px"><svg class="sym" width=".95em" height=".95em" style="fill:var(--encre)"><use href="#sym"/></svg><span class="wm">Soly<i></i></span></span><span>36 px, petit écran</span></div>
+        <div><span class="logo" style="font-size:22px"><svg class="sym" width=".95em" height=".95em" style="fill:var(--encre)"><use href="#sym"/></svg><span class="wm">Soly<i></i></span></span><span>22 px, minimum</span></div>
+      </div>
+      <p class="note">Zone de protection : la hauteur du « S » de chaque côté.</p>
+    </div>
+    <div class="donts">
+      <div class="dont rv" style="--d:0"><span class="logo"><svg class="sym" width=".95em" height=".95em" style="fill:var(--encre)"><use href="#sym"/></svg><span class="wm">SOLY<i></i></span></span><p>Pas de majuscules</p></div>
+      <div class="dont rv" style="--d:1"><span class="logo"><svg class="sym" width=".95em" height=".95em" style="fill:var(--encre)"><use href="#sym"/></svg><span class="wm">Soly</span></span><p>Pas de point oublié</p></div>
+      <div class="dont rv" style="--d:2"><span class="logo" style="color:var(--soleil)"><svg class="sym" width=".95em" height=".95em" style="fill:var(--encre)"><use href="#sym"/></svg><span class="wm">Soly<i></i></span></span><p>Pas de texte jaune</p></div>
+      <div class="dont rv" style="--d:3"><span class="logo" style="transform:rotate(-14deg)"><svg class="sym" width=".95em" height=".95em" style="fill:var(--encre)"><use href="#sym"/></svg><span class="wm">Soly<i></i></span></span><p>Pas de rotation</p></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="lab rv">Les planches Figma</div>
+    <div class="pls rv"><!--PL:02,03,04,05--></div>
+  </div>
+</section>
+
+<!-- ======================= COULEURS & TYPO ======================= -->
+<section class="panel" id="couleurs" role="tabpanel" aria-labelledby="t-couleurs">
+  <div class="head">
+    <div><div class="lab rv">02 · Couleurs, lumière, typographie</div><h2 class="rv" style="--d:1">Chaudes, lisibles, jamais criardes.</h2><p class="intro rv" style="--d:2">Huit couleurs, deux dégradés, deux polices. Cliquez une couleur pour copier son code.</p></div>
+    <aside class="rv" style="--d:3"><b>Planches</b>06 Couleurs, 07 Gradients, 08 Lexend, 09 Atkinson.</aside>
+  </div>
+
+  <div class="pal" id="pal">
+<!--PALETTE-->
+  </div>
+
+  <div class="block">
+    <div class="lab rv">Lumière</div>
+    <h3 class="rv">La lumière se pose, elle ne brille pas.</h3>
+    <div class="grads">
+      <div class="g-photo rv"><span class="gname">Gradient photo</span><span class="gspec">160° · #FFE7A8, #FFC9A3 à 55 %, #D6C6F5</span></div>
+      <div class="g-side">
+        <div class="g-halo rv" style="--d:1"><span class="gname">Halo d’ambiance</span><span class="gspec">Derrière un écran ou un titre. Jamais sous un bouton ou une carte.</span></div>
+        <div class="g-duo rv" style="--d:2">
+          <div style="background:linear-gradient(135deg,#FFD36E,#FFC9A3)">Soleil → Pêche</div>
+          <div style="background:linear-gradient(135deg,#FFC9A3,#C9B8F0)">Pêche → Lilas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="lab rv">Typographie</div>
+    <h3 class="rv">Lexend pour parler. Atkinson pour expliquer.</h3>
+    <div class="fonts">
+      <div class="font rv"><span class="aa" style="font-family:var(--titre);font-weight:500">Aa</span><div><span class="lab">Lexend · Regular, Medium, SemiBold</span><h4 style="margin-top:8px">Lexend pour parler.</h4><p>Dessinée pour la lisibilité : formes rondes et ouvertes, chiffres nets, lecture aisée à l’écran.</p></div></div>
+      <div class="font rv" style="--d:1"><span class="aa" style="font-family:var(--texte);font-weight:700">Aa</span><div><span class="lab">Atkinson Hyperlegible · Regular, Bold</span><h4 style="margin-top:8px;font-family:var(--texte);font-weight:700">Atkinson pour expliquer.</h4><p>Conçue pour les basses visions : chaque lettre se distingue des autres.</p></div></div>
+    </div>
+    <div class="spec rv">
+      <div class="spec-ctrl">
+        <div class="seg" id="fseg" role="group" aria-label="Police">
+          <button aria-pressed="true" data-f="t">Lexend</button><button aria-pressed="false" data-f="x">Atkinson</button>
+        </div>
+        <div class="seg" id="sseg" role="group" aria-label="Style">
+          <button aria-pressed="false" data-s="76">Display</button><button aria-pressed="true" data-s="48">H1</button><button aria-pressed="false" data-s="32">H2</button><button aria-pressed="false" data-s="21">Corps L</button><button aria-pressed="false" data-s="17">Corps</button>
+        </div>
+        <label class="range">Taille <input type="range" min="17" max="96" value="48" id="fsize"> <output id="fout">48 px</output></label>
+      </div>
+      <div class="sample" id="sample" contenteditable="true" spellcheck="false" aria-label="Texte d’essai, modifiable">Un rayon de famille.</div>
+      <div class="scale">
+        <div class="srow"><span class="k">Display<small>Lexend Medium 76 · −4 %</small></span><span style="font:500 clamp(36px,5vw,76px)/1.05 var(--titre);letter-spacing:-.04em">Un rayon de famille.</span></div>
+        <div class="srow"><span class="k">H1<small>Lexend Medium 48 · −3 %</small></span><span style="font:500 clamp(28px,3.4vw,48px)/1.1 var(--titre);letter-spacing:-.03em">Un signe pour aujourd’hui</span></div>
+        <div class="srow"><span class="k">H2<small>Lexend Medium 32 · −2 %</small></span><span style="font:500 clamp(24px,2.4vw,32px)/1.15 var(--titre);letter-spacing:-.02em">Vous gardez la main</span></div>
+        <div class="srow"><span class="k">Bouton<small>Lexend Medium 17 · 0 %</small></span><span style="font:500 17px var(--titre)">Envoyer un signe</span></div>
+        <div class="srow"><span class="k">Corps L<small>Atkinson Regular 21 · 145 %</small></span><span style="font:400 21px/1.45 var(--texte)">Mamie a vu votre signe à 14 h 12. Elle vous répondra ce soir.</span></div>
+        <div class="srow"><span class="k">Corps<small>Atkinson Regular 17</small></span><span style="font:400 17px var(--texte)">Chaque matin, un nouveau cadeau de la famille apparaît sur le cadre.</span></div>
+        <div class="srow"><span class="k">Libellé<small>Lexend Medium 13 · +6 %</small></span><span style="font:500 13px var(--titre);letter-spacing:.06em">PRÉVENU SI BESOIN</span></div>
+      </div>
+      <p class="muted" style="margin-top:20px;font-size:15px"><b style="color:var(--encre)">Règles.</b> Jamais sous 17 px sur écran. Contraste minimum 4,5 : 1. Pas de texte Soleil sur fond clair.</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="lab rv">Les planches Figma</div>
+    <div class="pls rv"><!--PL:06,07,08,09--></div>
+  </div>
+</section>
+
+<!-- ======================= INTERFACE ======================= -->
+<section class="panel" id="interface" role="tabpanel" aria-labelledby="t-interface">
+  <div class="head">
+    <div><div class="lab rv">03 · Composants et usage</div><h2 class="rv" style="--d:1">Sobres, nets, sans ombre.</h2><p class="intro rv" style="--d:2">Les composants sont vivants ici : survolez, touchez, écrivez. Le fond change, c’est tout.</p></div>
+    <aside class="rv" style="--d:3"><b>Planches</b>10 Composants, 11 Mockups, 12 Cas d’usage, 13 À faire, à éviter.</aside>
+  </div>
+
+  <div class="ui-board">
+    <div class="ui-card rv"><div class="lab">Boutons</div>
+      <div class="btns"><button class="btn p" id="sendB"><span class="sent"></span><span>Envoyer un signe</span></button><button class="btn o">Voir plus</button><button class="btn t">Aujourd’hui</button></div>
+      <p class="note">Pilule de 56 px minimum. Un seul bouton principal par écran. Aucun halo au survol : le fond change, c’est tout.</p></div>
+    <div class="ui-card rv" style="--d:1"><div class="lab">Pastilles et champ</div>
+      <div class="pills" id="pills"><button class="pill" aria-pressed="true">Prévenu si besoin</button><button class="pill" aria-pressed="false">Aujourd’hui</button><button class="pill" aria-pressed="false">En famille</button></div>
+      <input class="field" placeholder="Écrire un petit mot…" aria-label="Écrire un petit mot">
+      <p class="note">Champ de 56 px, coins arrondis, bordure Ligne qui passe à Encre au focus.</p></div>
+  </div>
+  <div class="cards" style="margin-top:20px">
+    <div class="mini rv" style="background:var(--creme)"><i style="background:var(--soleil)"></i><span class="lab">Carte</span><b>Un signe pour aujourd’hui</b><span>Un geste, une photo, un mot.</span></div>
+    <div class="mini rv" style="--d:1;background:var(--creme)"><i style="background:var(--peche)"></i><span class="lab">Carte</span><b>Vous gardez la main</b><span>Vous choisissez ce que Mamie voit.</span></div>
+    <div class="mini rv" style="--d:2;background:var(--creme)"><i style="background:var(--lilas)"></i><span class="lab">Carte</span><b>Prévenu si besoin</b><span>Une alerte seulement si c’est utile.</span></div>
+  </div>
+
+  <div class="block">
+    <div class="lab rv">Cas d’usage</div>
+    <h3 class="rv">Trois moments de la journée.</h3>
+    <div class="moments">
+      <div class="mo rv" style="background:linear-gradient(160deg,#FFE7A8,#FFF3D9)"><span class="h">MATIN</span><b>Le cadre s’allume</b><p>Un nouveau rayon de la famille apparaît à 8 h, sans rien toucher.</p></div>
+      <div class="mo rv" style="--d:1;background:linear-gradient(160deg,#FFC9A3,#FFE7A8)"><span class="h">MIDI</span><b>Un signe arrive</b><p>Une photo de la petite-fille. Un geste pour répondre, c’est tout.</p></div>
+      <div class="mo rv" style="--d:2;background:linear-gradient(160deg,#D6C6F5,#FFC9A3)"><span class="h">SOIR</span><b>On vous rassure</b><p>Prévenu seulement si besoin. Sinon, la journée a juste été belle.</p></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="lab rv">Usage</div>
+    <h3 class="rv">À faire, à éviter.</h3>
+    <div class="dd">
+      <div class="do rv"><h4><i style="background:var(--encre);color:var(--aube)">✓</i>À faire</h4><ol>
+        <li>Jaune en lumière, en point, en reflet</li><li>Texte encre sur fond clair</li><li>Zones tactiles de 56 px minimum</li><li>Un mot de famille, jamais de jargon médical</li><li>Coins arrondis et marges larges</li></ol></div>
+      <div class="no rv" style="--d:1"><h4><i style="box-shadow:inset 0 0 0 1.5px var(--encre)">✕</i>À éviter</h4><ol>
+        <li>Jaune en grand aplat</li><li>Texte jaune ou lilas sur fond clair</li><li>Lueurs et ombres colorées sous les éléments</li><li>Un autre symbole, ou un cadre ajouté autour du logo</li><li>Capitales sur le nom : Soly., pas SOLY</li></ol></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="lab rv">Les planches Figma</div>
+    <div class="pls rv"><!--PL:10,11,12,13--></div>
+  </div>
+</section>
+
+<!--MAQUETTE_PANEL-->
+
+<!-- ======================= APPLICATIONS ======================= -->
+<section class="panel" id="applications" role="tabpanel" aria-labelledby="t-applications">
+  <div class="head">
+    <div><div class="lab rv"><!--APP_NUM--> · Applications</div><h2 class="rv" style="--d:1">Un univers, jusque dans les détails.</h2><p class="intro rv" style="--d:2">Le cadre au mur, l’application, les réseaux, le print. Cliquez une planche pour l’agrandir.</p></div>
+    <aside class="rv" style="--d:3"><b>Planches</b>14 à 24 : réseaux, print, écrans, le cadre.</aside>
+  </div>
+
+  <div class="block" style="margin-top:0">
+    <div class="lab rv">Le cadre</div>
+    <h3 class="rv">Un geste : on touche.</h3>
+    <div class="steps">
+      <div class="step rv"><span class="n">1</span><b>Un écran photo</b><span>Les photos de la famille défilent, comme un cadre qu’on connaît déjà.</span></div>
+      <div class="step rv" style="--d:1"><span class="n">2</span><b>Un seul geste</b><span>Toucher le cadre suffit pour faire signe à ses proches.</span></div>
+      <div class="step rv" style="--d:2"><span class="n">3</span><b>Aucun menu</b><span>Pas de petit bouton à chercher, pas de lunettes à retrouver.</span></div>
+      <div class="step rv" style="--d:3"><span class="n">4</span><b>Prêt avec un code</b><span>On le branche, un code apparaît, la famille l’associe depuis l’appli.</span></div>
+    </div>
+    <div class="pls rv"><!--PL:22,23,24,20--></div>
+  </div>
+  <div class="block">
+    <div class="lab rv">Application</div>
+    <h3 class="rv">Quatre écrans, un seul geste.</h3>
+    <div class="pls rv"><!--PL:19,18--></div>
+  </div>
+  <div class="block">
+    <div class="lab rv">Réseaux sociaux</div>
+    <h3 class="rv">Un compte qui donne le sourire.</h3>
+    <div class="pls rv"><!--PL:14,15--></div>
+  </div>
+  <div class="block">
+    <div class="lab rv">Print et objets</div>
+    <h3 class="rv">Ouvrir la boîte, c’est déjà un cadeau.</h3>
+    <div class="pls three rv"><!--PL:17,16,21--></div>
+  </div>
+</section>
+
+<!-- ======================= PLANCHES ======================= -->
+<section class="panel" id="planches" role="tabpanel" aria-labelledby="t-planches">
+  <div class="head">
+    <div><div class="lab rv">Annexe · Figma « Fil rouge B2 », page DA v2</div><h2 class="rv" style="--d:1">Les 24 planches.</h2><p class="intro rv" style="--d:2">Refaites en HTML à partir de Figma : texte réel, net à toute taille. Flèches du clavier dans l’agrandissement.</p></div>
+    <aside class="rv" style="--d:3"><b>Fidélité</b>Moins de 2 % de pixels différents par planche face aux exports Figma.</aside>
+  </div>
+  <div class="filters" id="filters" role="group" aria-label="Filtrer les planches">
+    <button class="pill" aria-pressed="true" data-g="all">Toutes</button>
+    <button class="pill" aria-pressed="false" data-g="id">Identité</button>
+    <button class="pill" aria-pressed="false" data-g="ct">Couleurs et typo</button>
+    <button class="pill" aria-pressed="false" data-g="ui">Interface</button>
+    <button class="pill" aria-pressed="false" data-g="ap">Applications</button>
+  </div>
+  <div class="allpl" id="allpl">
+<!--ALL-->
+  </div>
+</section>
+
+<nav class="nextp" id="nextp" aria-label="Section précédente et suivante"></nav>
+</main>
+
+<footer><div class="w"><span>Soly · PFR Générations Connectées · Ynov B2 · 2026 · Lucas</span><span>Sources : Figma « Fil rouge B2 » (DA v2)<!--FOOT_SRC-->. Personnages fictifs.</span></div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Planche agrandie">
+  <button class="rb x" id="lbx" aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  <div class="box" id="lbbox"></div>
+  <div class="bar"><button class="rb" id="lbp" aria-label="Planche précédente"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M11 3L5 9l6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button><span id="lbt"></span><button class="rb" id="lbn" aria-label="Planche suivante"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M7 3l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></button></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<template id="slides">
+<!--SLIDES-->
+</template>
+
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* planches : une source, des copies (ids renommés pour rester uniques) */
+var SRC={},TITLES={},uid=0;
+$$(".slide",$("#slides").content).forEach(function(s){SRC[s.dataset.s]=s;TITLES[s.dataset.s]=s.dataset.title});
+function cloneSlide(n){
+  var html=SRC[n].outerHTML,k="u"+(uid++);
+  html=html.replace(/id="([^"]+)"/g,'id="$1-'+k+'"').replace(/url\(#([^)]+)\)/g,"url(#$1-"+k+")").replace(/href="#([^"]+)"/g,'href="#$1-'+k+'"');
+  var t=document.createElement("template");t.innerHTML=html;return t.content.firstElementChild;
+}
+var ro=new ResizeObserver(function(es){es.forEach(function(e){e.target.style.setProperty("--k",e.contentRect.width/1920)})});
+$$(".pl").forEach(function(p){
+  var n=p.dataset.n;p.appendChild(cloneSlide(n));
+  var c=document.createElement("span");c.className="cap";c.textContent=n+" · "+TITLES[n]+" · agrandir";p.appendChild(c);
+  p.setAttribute("aria-label","Planche "+n+", "+TITLES[n]+", agrandir");ro.observe(p);
+});
+
+/* onglets */
+var tabs=$$(".tab"),ids=tabs.map(function(t){return t.dataset.tab}),cur=null,ink=$("#ink");
+function moveInk(){var t=$(".tab[aria-selected=true]");if(!t)return;ink.style.width=t.offsetWidth-28+"px";ink.style.transform="translateX("+(t.offsetLeft+14)+"px)"}
+function show(id,push){
+  if(ids.indexOf(id)<0)id=ids[0];
+  if(id===cur){return}
+  cur=id;
+  tabs.forEach(function(t){var on=t.dataset.tab===id;t.setAttribute("aria-selected",on);t.tabIndex=on?0:-1;if(on&&t.scrollIntoView)t.scrollIntoView({block:"nearest",inline:"center",behavior:reduce?"auto":"smooth"})});
+  $$(".panel").forEach(function(p){p.classList.toggle("on",p.id===id)});
+  if(push!==false)history.replaceState(null,"","#"+id);
+  window.scrollTo({top:0,behavior:"auto"});
+  moveInk();reveal();nextp();
+  if(id==="maquette")loadMq();
+}
+tabs.forEach(function(t,i){
+  t.addEventListener("click",function(){show(t.dataset.tab)});
+  t.addEventListener("keydown",function(e){var d=e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0;if(!d)return;e.preventDefault();var n=tabs[(i+d+tabs.length)%tabs.length];n.focus();show(n.dataset.tab)});
+});
+$$("[data-goto]").forEach(function(b){b.addEventListener("click",function(){show(b.dataset.goto)})});
+function nextp(){
+  var i=ids.indexOf(cur),h="";
+  var lbl=function(id){return $(".tab[data-tab="+id+"]").dataset.label};
+  if(i>0)h+='<button data-goto="'+ids[i-1]+'"><span class="lab">← Précédent</span><b>'+lbl(ids[i-1])+'</b></button>';
+  if(i<ids.length-1)h+='<button data-goto="'+ids[i+1]+'"><span class="lab">Suivant →</span><b>'+lbl(ids[i+1])+'</b></button>';
+  var n=$("#nextp");n.innerHTML=h;$$("[data-goto]",n).forEach(function(b){b.addEventListener("click",function(){show(b.dataset.goto)})});
+}
+addEventListener("resize",moveInk);
+addEventListener("hashchange",function(){show(location.hash.slice(1),false)});
+
+/* apparition au défilement */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
+function reveal(){$$(".panel.on .rv:not(.in)").forEach(function(el){if(reduce)el.classList.add("in");else io.observe(el)})}
+
+/* barre de progression */
+addEventListener("scroll",function(){var h=document.documentElement,m=h.scrollHeight-h.clientHeight;$("#prog").style.transform="scaleX("+(m>0?h.scrollTop/m:0)+")"},{passive:true});
+
+/* toast */
+var tt;function toast(t){var e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){e.classList.remove("on")},1800)}
+
+/* palette : copier */
+$$(".chip-c").forEach(function(c){c.addEventListener("click",function(){
+  var v=c.dataset.hex,done=function(){toast(c.dataset.name+" "+v+" copié")};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(v).then(done,function(){fallback(v);done()});else{fallback(v);done()}
+})});
+function fallback(v){var t=document.createElement("textarea");t.value=v;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{document.execCommand("copy")}catch(e){}t.remove()}
+
+/* logo : fonds et zone de protection */
+var st=$("#lstage");
+$$("#bgs .bgb").forEach(function(b){b.addEventListener("click",function(){
+  $$("#bgs .bgb").forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+  st.style.background=b.dataset.bg;st.style.color=b.dataset.fg;$("#lsym").style.fill=b.dataset.fg;$("#bgname").textContent=b.dataset.n;
+})});
+$("#zoneT").addEventListener("click",function(){var on=this.getAttribute("aria-pressed")!=="true";this.setAttribute("aria-pressed",on);st.classList.toggle("z",on)});
+
+/* typographie */
+var smp=$("#sample"),fs=$("#fsize"),fo=$("#fout");
+function setSize(v){smp.style.fontSize=v+"px";fs.value=v;fo.textContent=v+" px";smp.style.letterSpacing=(v>=70?-.04:v>=40?-.03:v>=30?-.02:0)+"em";smp.style.lineHeight=v<30?1.45:1.08}
+fs.addEventListener("input",function(){setSize(+fs.value);$$("#sseg button").forEach(function(x){x.setAttribute("aria-pressed",x.dataset.s===fs.value)})});
+$$("#sseg button").forEach(function(b){b.addEventListener("click",function(){$$("#sseg button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});setSize(+b.dataset.s)})});
+$$("#fseg button").forEach(function(b){b.addEventListener("click",function(){$$("#fseg button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});var t=b.dataset.f==="t";smp.style.fontFamily=t?"var(--titre)":"var(--texte)";smp.style.fontWeight=t?500:400})});
+
+/* composants vivants */
+$("#sendB").addEventListener("click",function(){var b=this;b.classList.add("ok");b.lastElementChild.textContent="Envoyé.";setTimeout(function(){b.classList.remove("ok");b.lastElementChild.textContent="Envoyer un signe"},1800)});
+$$("#pills .pill").forEach(function(p){p.addEventListener("click",function(){p.setAttribute("aria-pressed",p.getAttribute("aria-pressed")!=="true")})});
+
+/* filtre des planches */
+$$("#filters .pill").forEach(function(b){b.addEventListener("click",function(){
+  $$("#filters .pill").forEach(function(x){x.setAttribute("aria-pressed",x===b)});
+  $$("#allpl .it").forEach(function(it){it.classList.toggle("hide",b.dataset.g!=="all"&&it.dataset.g!==b.dataset.g)});
+})});
+
+/* agrandissement */
+var lb=$("#lb"),box=$("#lbbox"),list=[],li=0,last=null;
+function fit(){var k=Math.min((innerWidth-48)/1920,(innerHeight-120)/1080);box.style.width=1920*k+"px";box.style.height=1080*k+"px";box.style.setProperty("--k",k)}
+function openLb(p){var scope=p.closest(".allpl")?$$("#allpl .it:not(.hide) .pl"):$$(".pl",p.closest(".panel"));list=scope.map(function(x){return x.dataset.n});li=list.indexOf(p.dataset.n);last=p;draw();lb.classList.add("on");$("#lbx").focus()}
+function draw(){var n=list[li];box.innerHTML="";box.appendChild(cloneSlide(n));fit();$("#lbt").textContent=n+" / 24 · "+TITLES[n];box.style.animation="none";box.offsetWidth;box.style.animation=""}
+function closeLb(){lb.classList.remove("on");box.innerHTML="";if(last)last.focus()}
+$$(".pl").forEach(function(p){p.addEventListener("click",function(){openLb(p)})});
+$("#lbx").addEventListener("click",closeLb);
+$("#lbp").addEventListener("click",function(){li=(li-1+list.length)%list.length;draw()});
+$("#lbn").addEventListener("click",function(){li=(li+1)%list.length;draw()});
+lb.addEventListener("click",function(e){if(e.target===lb)closeLb()});
+addEventListener("resize",function(){if(lb.classList.contains("on"))fit()});
+addEventListener("keydown",function(e){
+  if(!lb.classList.contains("on"))return;
+  if(e.key==="Escape")closeLb();else if(e.key==="ArrowRight")$("#lbn").click();else if(e.key==="ArrowLeft")$("#lbp").click();
+});
+
+/* maquette (version combinée) */
+var mqDone=false;
+function loadMq(){
+  var f=$("#mq");if(!f||mqDone)return;mqDone=true;
+  addEventListener("message",function(e){if(e.source===f.contentWindow&&e.data&&e.data.soly==="mqh"){var h=+e.data.h;if(h>200&&Math.abs(h-f.offsetHeight)>2)f.style.height=h+"px"}});
+  f.srcdoc=$("#mqsrc").textContent;
+}
+
+show(location.hash.slice(1),false);
+if(document.fonts)document.fonts.ready.then(moveInk);
+})();
+</script>
+</body>
+</html>

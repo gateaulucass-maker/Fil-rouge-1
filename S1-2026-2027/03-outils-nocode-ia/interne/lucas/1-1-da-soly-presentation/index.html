@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Soly · Direction artistique</title>
+<meta name="description" content="Direction artistique de Soly, le cadre qui ensoleille la journée. 24 planches.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --aube:#FFFAF0; --creme:#FFF3D9; --encre:#1F1A17; --cafe:#6A5F55;
+  --soleil:#FFD36E; --peche:#FFC9A3; --lilas:#C9B8F0; --ligne:#F0E3C8;
+  --titre:"Lexend",system-ui,sans-serif;
+  --texte:"Atkinson Hyperlegible",system-ui,sans-serif;
+  --ui-bg:#F4EEE2; --ui-fg:var(--encre); --ui-mute:var(--cafe); --ui-line:#E4D8C2;
+  --k:1;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --ui-bg:#141110; --ui-fg:#FFFAF0; --ui-mute:#B5A99C; --ui-line:#2E2824; }
+}
+:root[data-theme="dark"]{ --ui-bg:#141110; --ui-fg:#FFFAF0; --ui-mute:#B5A99C; --ui-line:#2E2824; }
+
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--ui-bg);color:var(--ui-fg);font-family:var(--texte);-webkit-font-smoothing:antialiased;overflow:hidden}
+button{font:inherit;color:inherit}
+
+/* ---------- barre ---------- */
+.bar{position:fixed;inset:0 0 auto 0;height:56px;display:flex;align-items:center;gap:16px;padding:0 20px;z-index:20;
+  background:color-mix(in srgb,var(--ui-bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--ui-line);transition:opacity .25s}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--titre);font-weight:600;font-size:17px;letter-spacing:-.01em;white-space:nowrap}
+.brand svg{width:22px;height:22px;flex:none}
+.brand small{font-family:var(--texte);font-weight:400;font-size:13px;color:var(--ui-mute);letter-spacing:.02em}
+.now{flex:1;min-width:0;font-size:14px;color:var(--ui-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.now b{color:var(--ui-fg);font-weight:700;font-variant-numeric:tabular-nums;margin-right:10px}
+.tools{display:flex;gap:4px}
+.tools button{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;border:1px solid transparent;border-radius:999px;background:none;cursor:pointer;font-size:14px}
+.tools button:hover{border-color:var(--ui-line)}
+.tools button[aria-pressed="true"]{background:var(--ui-fg);color:var(--ui-bg)}
+.tools svg{width:18px;height:18px}
+.tools kbd{font:12px var(--texte);opacity:.55}
+.progress{position:fixed;left:0;top:55px;height:2px;background:var(--soleil);z-index:21;transition:width .3s ease}
+
+/* ---------- scène ---------- */
+.stage{position:fixed;inset:56px 0 0 0;overflow:auto;outline:none}
+.deck{position:relative}
+.cell{position:relative;width:calc(1920px * var(--k));height:calc(1080px * var(--k));overflow:hidden;border-radius:calc(14px * var(--k) + 2px)}
+.slide{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;transform:scale(var(--k));transform-origin:0 0;
+  background:var(--aube);color:var(--encre);font-family:var(--texte)}
+.slide *{box-sizing:border-box}
+
+/* mode présentation : une planche */
+[data-mode="deck"] .stage{display:grid;place-items:center;overflow:hidden}
+[data-mode="deck"] .deck{width:calc(1920px * var(--k));height:calc(1080px * var(--k))}
+[data-mode="deck"] .cell{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s .35s;box-shadow:0 30px 80px -30px rgba(31,26,23,.35)}
+[data-mode="deck"] .cell.on{opacity:1;visibility:visible;transition:opacity .35s ease}
+[data-mode="deck"] .cell .num{display:none}
+
+/* vue d'ensemble */
+[data-mode="grid"] .deck{display:grid;grid-template-columns:repeat(var(--cols),calc(1920px * var(--k)));gap:28px 20px;justify-content:center;padding:32px 20px 60px}
+[data-mode="grid"] .cell{cursor:pointer;overflow:visible;border-radius:0}
+[data-mode="grid"] .cell .clip{position:absolute;inset:0;overflow:hidden;border-radius:10px;outline:1px solid var(--ui-line);transition:outline-color .2s,transform .2s}
+[data-mode="grid"] .cell:hover .clip{outline:2px solid var(--ui-fg);transform:translateY(-2px)}
+[data-mode="grid"] .cell.on .clip{outline:2px solid var(--soleil)}
+.cell .num{position:absolute;left:0;top:calc(100% + 6px);font-size:12px;color:var(--ui-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.cell .num b{color:var(--ui-fg);margin-right:6px;font-variant-numeric:tabular-nums}
+.clip{position:absolute;inset:0;overflow:hidden}
+
+/* lecture continue */
+[data-mode="read"] .deck{display:flex;flex-direction:column;align-items:center;gap:40px;padding:32px 16px 80px}
+[data-mode="read"] .cell{box-shadow:0 20px 60px -30px rgba(31,26,23,.3)}
+[data-mode="read"] .cell .num{display:none}
+
+/* flèches (présentation) */
+.nav{position:fixed;top:50%;z-index:15;width:44px;height:44px;margin-top:-22px;border-radius:999px;border:1px solid var(--ui-line);
+  background:color-mix(in srgb,var(--ui-bg) 80%,transparent);cursor:pointer;display:grid;place-items:center;transition:opacity .25s}
+.nav svg{width:20px;height:20px}
+.nav.prev{left:14px}.nav.next{right:14px}
+.nav:disabled{opacity:0;pointer-events:none}
+[data-mode]:not([data-mode="deck"]) .nav{display:none}
+
+/* plein écran : interface discrète */
+:fullscreen .bar, :fullscreen .nav{opacity:0}
+:fullscreen .bar:hover{opacity:1}
+:fullscreen .stage{inset:0}
+:fullscreen .progress{top:0}
+
+/* une seule planche (vérification) */
+[data-raw] body{overflow:hidden;background:#fff}
+[data-raw] .bar,[data-raw] .nav,[data-raw] .progress{display:none}
+[data-raw] .stage{inset:0;overflow:hidden;display:block}
+[data-raw] .cell{border-radius:0;box-shadow:none!important;opacity:1!important;visibility:visible!important}
+
+@media (max-width:760px){
+  .bar{gap:8px;padding:0 12px}
+  .brand small,.tools kbd,.tools .lbl{display:none}
+  .now{text-align:right}
+  .nav{width:36px;height:36px;margin-top:-18px}.nav.prev{left:6px}.nav.next{right:6px}
+}
+
+/* impression / PDF : une planche par page */
+@page{size:1920px 1080px;margin:0}
+@media print{
+  html,body{height:auto;overflow:visible;background:#fff}
+  .bar,.nav,.progress{display:none!important}
+  .stage{position:static;overflow:visible;display:block!important}
+  .deck{display:block!important;padding:0!important;width:auto!important;height:auto!important}
+  .cell{position:relative!important;width:1920px!important;height:1080px!important;opacity:1!important;visibility:visible!important;
+    box-shadow:none!important;border-radius:0!important;break-after:page;inset:auto!important}
+  .cell .clip{outline:none!important;transform:none!important;border-radius:0!important}
+  .cell .num{display:none}
+  .slide{transform:none!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="brand">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M47 3H30A27 27 0 0 0 3 30v17h44zM53 3v44h44V30A27 27 0 0 0 70 3zM3 53v17a27 27 0 0 0 27 27h17V53z"/><path fill="#FFD36E" d="M53 53h44v17a27 27 0 0 1-27 27H53z"/></svg>
+    Soly <small>Direction artistique · v2</small>
+  </div>
+  <div class="now" id="now"></div>
+  <nav class="tools" aria-label="Affichage">
+    <button id="bDeck" title="Présentation (P)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="13" rx="2"/><path d="M8 21h8"/></svg><span class="lbl">Présenter</span></button>
+    <button id="bGrid" title="Vue d'ensemble (G)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg><span class="lbl">Ensemble</span></button>
+    <button id="bRead" title="Lecture continue (L)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="8" rx="1.5"/><rect x="4" y="14" width="16" height="7" rx="1.5"/></svg><span class="lbl">Lecture</span></button>
+    <button id="bFull" title="Plein écran (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    <button id="bPrint" title="Exporter en PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 17v3h16v-3"/></svg><span class="lbl">PDF</span></button>
+  </nav>
+</header>
+<div class="progress" id="progress"></div>
+<button class="nav prev" id="prev" aria-label="Planche précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg></button>
+<button class="nav next" id="next" aria-label="Planche suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg></button>
+
+<main class="stage" id="stage" tabindex="-1">
+<div class="deck" id="deck">
+<section class="slide" data-s="01" data-title="Couverture">
+<style>
+.slide[data-s="01"] .lg{display:inline-flex;align-items:center;flex:none}
+.slide[data-s="01"] .sy{position:relative;display:block;overflow:hidden;flex:none}
+.slide[data-s="01"] .sy i{position:absolute;display:block;width:var(--a);height:var(--a)}
+.slide[data-s="01"] .wm{display:flex;align-items:flex-start;font-family:var(--titre);font-weight:600;letter-spacing:-.05em;line-height:1.25;white-space:nowrap;flex:none}
+.slide[data-s="01"] .wm svg{margin-left:.05em;display:block;flex:none;overflow:visible}
+.slide[data-s="01"]  .e{position:absolute;left:1305px;top:-209px;width:920px;height:920px}
+.slide[data-s="01"]  .pg{position:absolute;inset:0;padding:80px 96px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;overflow:hidden}
+.slide[data-s="01"]  .top{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap;position:relative}
+.slide[data-s="01"]  .bot{font:500 15px/normal var(--titre);letter-spacing:.6px;color:var(--cafe);white-space:nowrap;position:relative}
+.slide[data-s="01"]  .mid{display:flex;flex-direction:column;gap:28px;position:relative}
+.slide[data-s="01"]  .tag{width:900px;font:500 48px/56px var(--titre);letter-spacing:-1.44px;color:var(--encre)}
+.slide[data-s="01"]  .mid .lg{gap:95.2px}
+</style>
+<div class="pg"><svg class="e" viewBox="0 0 920 920"><defs><linearGradient id="gc" x1="690.016" y1="551.505" x2="375.553" y2="-312.808" gradientUnits="userSpaceOnUse"><stop stop-color="#FFE7A8"/><stop offset=".55" stop-color="#FFC9A3"/><stop offset="1" stop-color="#D6C6F5"/></linearGradient></defs><circle cx="460" cy="460" r="460" fill="url(#gc)"/></svg>
+<div class="top">DIRECTION ARTISTIQUE · V2</div>
+<div class="mid"><span class="lg" style="gap:95.2px;"><span class="sy" style="width:323px;height:323px;border-radius:99.387px;--a:152.188px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:170.819px;top:0;background:#1F1A17"></i><i style="left:0;top:170.819px;background:#1F1A17"></i><i style="left:170.819px;top:170.819px;background:#FFD36E"></i></span><span class="wm" style="font-size:340px;color:#1F1A17">Soly<svg width="68px" height="425px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span><div class="tag">Le cadre qui ensoleille la journée.</div></div>
+<div class="bot">PFR Générations Connectées · Ynov B2 · 2026</div></div>
+</section>
+
+<section class="slide" data-s="02" data-title="Principes">
+<style>
+.slide[data-s="02"] .lg{display:inline-flex;align-items:center;flex:none}
+.slide[data-s="02"] .sy{position:relative;display:block;overflow:hidden;flex:none}
+.slide[data-s="02"] .sy i{position:absolute;display:block;width:var(--a);height:var(--a)}
+.slide[data-s="02"] .wm{display:flex;align-items:flex-start;font-family:var(--titre);font-weight:600;letter-spacing:-.05em;line-height:1.25;white-space:nowrap;flex:none}
+.slide[data-s="02"] .wm svg{margin-left:.05em;display:block;flex:none;overflow:visible}
+.slide[data-s="02"] .pg{position:absolute;inset:0;padding:72px 96px;display:flex;flex-direction:column;align-items:flex-start}
+.slide[data-s="02"] .hd{width:1728px;height:38px;display:flex;align-items:center;justify-content:space-between;flex:none}
+.slide[data-s="02"] .lab{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="02"] .rt{display:flex;align-items:center;gap:24px}
+.slide[data-s="02"] .cnt{font:500 15px/normal var(--titre);letter-spacing:.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="02"] .rt .lg{gap:8.4px}
+.slide[data-s="02"] h1{position:relative;top:1px;margin:44px 0 48px;width:1500px;flex:none;font:500 76px/82px var(--titre);letter-spacing:-3.04px;color:var(--encre)}
+.slide[data-s="02"] .bd{position:relative;width:1728px;height:724px;flex:none}
+.slide[data-s="02"]  .cols{display:flex;gap:64px}
+.slide[data-s="02"]  .col{width:533.333px;border-top:2px solid var(--encre);padding:32px 0;display:flex;flex-direction:column;gap:24px;box-sizing:border-box;height:auto}
+.slide[data-s="02"]  .col .n{font:500 20px/normal var(--titre);letter-spacing:.8px;color:var(--cafe)}
+.slide[data-s="02"]  .col .t{position:relative;top:1px;width:480px;font:500 44px/50px var(--titre);letter-spacing:-1.32px;color:var(--encre)}
+.slide[data-s="02"]  .col .p{width:480px;font:400 24px/34.8px var(--texte);color:var(--cafe)}
+.slide[data-s="02"]  .ban{position:absolute;left:0;top:380px;width:1728px;height:344px;background:var(--creme);border-radius:32px;overflow:hidden}
+.slide[data-s="02"]  .ban .a{position:absolute;left:64px;top:104px;font:600 64px/normal var(--titre);letter-spacing:-1.73px;color:var(--encre);white-space:nowrap}
+.slide[data-s="02"]  .ban .b{position:absolute;left:64px;top:200px;font:400 24px/normal var(--titre);color:var(--cafe);white-space:nowrap}
+.slide[data-s="02"]  .ban svg{position:absolute;left:1512px;top:112px}
+</style>
+<div class="pg"><div class="hd"><span class="lab">01 · PRINCIPES</span><span class="rt"><span class="cnt">02 / 24</span><span class="lg" style="gap:8.4px;"><span class="sy" style="width:28.5px;height:28.5px;border-radius:8.769px;--a:13.428px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:15.072px;top:0;background:#1F1A17"></i><i style="left:0;top:15.072px;background:#1F1A17"></i><i style="left:15.072px;top:15.072px;background:#FFD36E"></i></span><span class="wm" style="font-size:30px;color:#1F1A17">Soly<svg width="6px" height="37.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></span></div><h1>Trois règles pour rester chaleureux.</h1><div class="bd"><div class="cols"><div class="col"><div class="n">01</div><div class="t">La lumière, pas l’aplat</div><div class="p">Le jaune éclaire : en point, en reflet, en halo. Il ne remplit jamais un fond.</div></div><div class="col"><div class="n">02</div><div class="t">Gros et rond</div><div class="p">Zones tactiles de 56 px, coins de 24 px, un seul geste par écran.</div></div><div class="col"><div class="n">03</div><div class="t">Chaleureux, jamais médical</div><div class="p">Des mots de famille. Pas de surveillance, pas de vocabulaire de santé.</div></div></div><div class="ban"><div class="a">Un petit signe suffit.</div><div class="b">Lumière, rondeur, mots de famille : tout le reste en découle.</div><svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="60" fill="#FFD36E"/></svg></div></div></div>
+</section>
+
+<section class="slide" data-s="03" data-title="Logo">
+<style>
+.slide[data-s="03"] .lg{display:inline-flex;align-items:center;flex:none}
+.slide[data-s="03"] .sy{position:relative;display:block;overflow:hidden;flex:none}
+.slide[data-s="03"] .sy i{position:absolute;display:block;width:var(--a);height:var(--a)}
+.slide[data-s="03"] .wm{display:flex;align-items:flex-start;font-family:var(--titre);font-weight:600;letter-spacing:-.05em;line-height:1.25;white-space:nowrap;flex:none}
+.slide[data-s="03"] .wm svg{margin-left:.05em;display:block;flex:none;overflow:visible}
+.slide[data-s="03"] .pg{position:absolute;inset:0;padding:72px 96px;display:flex;flex-direction:column;align-items:flex-start}
+.slide[data-s="03"] .hd{width:1728px;height:38px;display:flex;align-items:center;justify-content:space-between;flex:none}
+.slide[data-s="03"] .lab{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="03"] .rt{display:flex;align-items:center;gap:24px}
+.slide[data-s="03"] .cnt{font:500 15px/normal var(--titre);letter-spacing:.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="03"] .rt .lg{gap:8.4px}
+.slide[data-s="03"] h1{position:relative;top:1px;margin:44px 0 48px;width:1500px;flex:none;font:500 76px/82px var(--titre);letter-spacing:-3.04px;color:var(--encre)}
+.slide[data-s="03"] .bd{position:relative;width:1728px;height:724px;flex:none}
+.slide[data-s="03"]  .bd{display:flex;gap:48px}
+.slide[data-s="03"]  .main{width:1080px;height:724px;background:var(--creme);border-radius:32px;display:flex;align-items:center;justify-content:center;flex:none}
+.slide[data-s="03"]  .main .lg{gap:84px}
+.slide[data-s="03"]  .side{width:600px;padding:8px 0;display:flex;flex-direction:column;gap:28px;box-sizing:border-box;flex:none}
+.slide[data-s="03"]  .side .k{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe)}
+.slide[data-s="03"]  .side .p1{font:400 26px/37.7px var(--texte);color:var(--encre)}
+.slide[data-s="03"]  .side .p2{font:400 22px/31.9px var(--texte);color:var(--cafe)}
+</style>
+<div class="pg"><div class="hd"><span class="lab">02 · LOGO</span><span class="rt"><span class="cnt">03 / 24</span><span class="lg" style="gap:8.4px;"><span class="sy" style="width:28.5px;height:28.5px;border-radius:8.769px;--a:13.428px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:15.072px;top:0;background:#1F1A17"></i><i style="left:0;top:15.072px;background:#1F1A17"></i><i style="left:15.072px;top:15.072px;background:#FFD36E"></i></span><span class="wm" style="font-size:30px;color:#1F1A17">Soly<svg width="6px" height="37.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></span></div><h1>Un cadre, un nom, un point.</h1><div class="bd"><div class="main"><span class="lg" style="gap:84px;"><span class="sy" style="width:285px;height:285px;border-radius:87.694px;--a:134.283px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:150.722px;top:0;background:#1F1A17"></i><i style="left:0;top:150.722px;background:#1F1A17"></i><i style="left:150.722px;top:150.722px;background:#FFD36E"></i></span><span class="wm" style="font-size:300px;color:#1F1A17">Soly<svg width="60px" height="375px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></div><div class="side"><div class="k">SOLY.</div><div class="p1">Le logo se compose d’un symbole et d’un mot : un cadre coupé en quatre quarts, puis « Soly » en Lexend SemiBold, suivi d’un point rond couleur Soleil.</div><div class="p2">Le point est le soleil. Il ferme la phrase, comme un geste de bonjour : simple, lisible de loin, facile à reproduire.</div><div class="p2">Trois quarts encre, un quart soleil en bas à droite. Pas d’effet, pas de lueur.</div></div></div></div>
+</section>
+
+<section class="slide" data-s="04" data-title="Déclinaisons">
+<style>
+.slide[data-s="04"] .lg{display:inline-flex;align-items:center;flex:none}
+.slide[data-s="04"] .sy{position:relative;display:block;overflow:hidden;flex:none}
+.slide[data-s="04"] .sy i{position:absolute;display:block;width:var(--a);height:var(--a)}
+.slide[data-s="04"] .wm{display:flex;align-items:flex-start;font-family:var(--titre);font-weight:600;letter-spacing:-.05em;line-height:1.25;white-space:nowrap;flex:none}
+.slide[data-s="04"] .wm svg{margin-left:.05em;display:block;flex:none;overflow:visible}
+.slide[data-s="04"] .pg{position:absolute;inset:0;padding:72px 96px;display:flex;flex-direction:column;align-items:flex-start}
+.slide[data-s="04"] .hd{width:1728px;height:38px;display:flex;align-items:center;justify-content:space-between;flex:none}
+.slide[data-s="04"] .lab{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="04"] .rt{display:flex;align-items:center;gap:24px}
+.slide[data-s="04"] .cnt{font:500 15px/normal var(--titre);letter-spacing:.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="04"] .rt .lg{gap:8.4px}
+.slide[data-s="04"] h1{position:relative;top:1px;margin:44px 0 48px;width:1500px;flex:none;font:500 76px/82px var(--titre);letter-spacing:-3.04px;color:var(--encre)}
+.slide[data-s="04"] .bd{position:relative;width:1728px;height:724px;flex:none}
+.slide[data-s="04"]  .bd{display:flex;flex-direction:column;gap:24px}
+.slide[data-s="04"]  .row{display:flex;gap:24px}
+.slide[data-s="04"]  .tl{width:560px;height:350px;border-radius:28px;padding:28px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;flex:none}
+.slide[data-s="04"]  .tl .l{font:500 13px/normal var(--titre);letter-spacing:1.04px;white-space:nowrap}
+.slide[data-s="04"]  .tl .c{width:504px;display:flex;justify-content:center}
+.slide[data-s="04"]  .tl .e{font:500 13px/normal var(--titre);white-space:pre}
+</style>
+<div class="pg"><div class="hd"><span class="lab">02 · LOGO</span><span class="rt"><span class="cnt">04 / 24</span><span class="lg" style="gap:8.4px;"><span class="sy" style="width:28.5px;height:28.5px;border-radius:8.769px;--a:13.428px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:15.072px;top:0;background:#1F1A17"></i><i style="left:0;top:15.072px;background:#1F1A17"></i><i style="left:15.072px;top:15.072px;background:#FFD36E"></i></span><span class="wm" style="font-size:30px;color:#1F1A17">Soly<svg width="6px" height="37.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></span></div><h1>Déclinaisons.</h1><div class="bd"><div class="row"><div class="tl" style="background:#FFFAF0;color:#1F1A17;border:1.5px solid #F0E3C8"><div class="l">SUR AUBE</div><div class="c"><span class="lg" style="gap:30.8px;"><span class="sy" style="width:104.5px;height:104.5px;border-radius:32.155px;--a:49.237px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:55.265px;top:0;background:#1F1A17"></i><i style="left:0;top:55.265px;background:#1F1A17"></i><i style="left:55.265px;top:55.265px;background:#FFD36E"></i></span><span class="wm" style="font-size:110px;color:#1F1A17">Soly<svg width="22px" height="137.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></div><div class="e"> </div></div><div class="tl" style="background:#FFF3D9;color:#1F1A17;"><div class="l">SUR CRÈME</div><div class="c"><span class="lg" style="gap:30.8px;"><span class="sy" style="width:104.5px;height:104.5px;border-radius:32.155px;--a:49.237px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:55.265px;top:0;background:#1F1A17"></i><i style="left:0;top:55.265px;background:#1F1A17"></i><i style="left:55.265px;top:55.265px;background:#FFD36E"></i></span><span class="wm" style="font-size:110px;color:#1F1A17">Soly<svg width="22px" height="137.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></div><div class="e"> </div></div><div class="tl" style="background:#1F1A17;color:#FFFAF0;"><div class="l">SUR ENCRE</div><div class="c"><span class="lg" style="gap:30.8px;"><span class="sy" style="width:104.5px;height:104.5px;border-radius:32.155px;--a:49.237px"><i style="left:0;top:0;background:#FFFAF0"></i><i style="left:55.265px;top:0;background:#FFFAF0"></i><i style="left:0;top:55.265px;background:#FFFAF0"></i><i style="left:55.265px;top:55.265px;background:#FFD36E"></i></span><span class="wm" style="font-size:110px;color:#FFFAF0">Soly<svg width="22px" height="137.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></div><div class="e"> </div></div></div><div class="row"><div class="tl" style="background:linear-gradient(-12.810852473329774deg,#FFE7A8 36.037%,#FFC9A3 78.939%,#D6C6F5 114.04%);color:#1F1A17;"><div class="l">SUR DÉGRADÉ</div><div class="c"><span class="lg" style="gap:30.8px;"><span class="sy" style="width:104.5px;height:104.5px;border-radius:32.155px;--a:49.237px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:55.265px;top:0;background:#1F1A17"></i><i style="left:0;top:55.265px;background:#1F1A17"></i><i style="left:55.265px;top:55.265px;background:#FFD36E"></i></span><span class="wm" style="font-size:110px;color:#1F1A17">Soly<svg width="22px" height="137.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#1F1A17"/></svg></span></span></div><div class="e"> </div></div><div class="tl" style="background:#C9B8F0;color:#1F1A17;"><div class="l">SUR LILAS</div><div class="c"><span class="lg" style="gap:30.8px;"><span class="sy" style="width:104.5px;height:104.5px;border-radius:32.155px;--a:49.237px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:55.265px;top:0;background:#1F1A17"></i><i style="left:0;top:55.265px;background:#1F1A17"></i><i style="left:55.265px;top:55.265px;background:#FFD36E"></i></span><span class="wm" style="font-size:110px;color:#1F1A17">Soly<svg width="22px" height="137.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFFAF0"/></svg></span></span></div><div class="e"> </div></div><div class="tl" style="background:#FFC9A3;color:#1F1A17;"><div class="l">SUR PÊCHE</div><div class="c"><span class="lg" style="gap:30.8px;"><span class="sy" style="width:104.5px;height:104.5px;border-radius:32.155px;--a:49.237px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:55.265px;top:0;background:#1F1A17"></i><i style="left:0;top:55.265px;background:#1F1A17"></i><i style="left:55.265px;top:55.265px;background:#FFD36E"></i></span><span class="wm" style="font-size:110px;color:#1F1A17">Soly<svg width="22px" height="137.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFFAF0"/></svg></span></span></div><div class="e"> </div></div></div></div></div>
+</section>
+
+<section class="slide" data-s="05" data-title="Construction">
+<style>
+.slide[data-s="05"] .lg{display:inline-flex;align-items:center;flex:none}
+.slide[data-s="05"] .sy{position:relative;display:block;overflow:hidden;flex:none}
+.slide[data-s="05"] .sy i{position:absolute;display:block;width:var(--a);height:var(--a)}
+.slide[data-s="05"] .wm{display:flex;align-items:flex-start;font-family:var(--titre);font-weight:600;letter-spacing:-.05em;line-height:1.25;white-space:nowrap;flex:none}
+.slide[data-s="05"] .wm svg{margin-left:.05em;display:block;flex:none;overflow:visible}
+.slide[data-s="05"] .pg{position:absolute;inset:0;padding:72px 96px;display:flex;flex-direction:column;align-items:flex-start}
+.slide[data-s="05"] .hd{width:1728px;height:38px;display:flex;align-items:center;justify-content:space-between;flex:none}
+.slide[data-s="05"] .lab{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="05"] .rt{display:flex;align-items:center;gap:24px}
+.slide[data-s="05"] .cnt{font:500 15px/normal var(--titre);letter-spacing:.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="05"] .rt .lg{gap:8.4px}
+.slide[data-s="05"] h1{position:relative;top:1px;margin:44px 0 48px;width:1500px;flex:none;font:500 76px/82px var(--titre);letter-spacing:-3.04px;color:var(--encre)}
+.slide[data-s="05"] .bd{position:relative;width:1728px;height:724px;flex:none}
+.slide[data-s="05"]  .bd{display:flex;flex-direction:column;gap:32px}
+.slide[data-s="05"]  .r1{display:flex;gap:32px}
+.slide[data-s="05"]  .zone{width:900px;height:330px;background:var(--creme);border-radius:28px;display:flex;align-items:center;justify-content:center;flex:none}
+.slide[data-s="05"]  .zone .dz{border:1.5px dashed var(--cafe);padding:48px;display:flex}
+.slide[data-s="05"]  .zone .lg{gap:42px}
+.slide[data-s="05"]  .tm{width:796px;height:330px;background:var(--creme);border-radius:28px;padding:32px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px;flex:none}
+.slide[data-s="05"]  .tm .k{font:500 13px/normal var(--titre);letter-spacing:1.04px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="05"]  .tm .sz{display:flex;gap:48px;align-items:flex-end}
+.slide[data-s="05"]  .tm .it{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.slide[data-s="05"]  .tm .it span.c{font:400 16px/normal var(--texte);color:var(--cafe);white-space:nowrap}
+.slide[data-s="05"]  .tm .z{width:700px;font:400 19px/27.55px var(--texte);color:var(--cafe)}
+.slide[data-s="05"]  .r2{display:flex;gap:20px}
+.slide[data-s="05"]  .no{width:417px;height:342px;border:1.5px solid #F0E3C8;border-radius:24px;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;background:var(--aube);color:var(--encre);flex:none}
+.slide[data-s="05"]  .no .w{font:600 70px/normal var(--titre);white-space:nowrap}
+.slide[data-s="05"]  .no .x{font:700 18px/normal var(--texte);white-space:pre}
+.slide[data-s="05"]  .no .x b{font-weight:700;color:transparent}
+.slide[data-s="05"]  .rot{display:flex;padding:10px}
+.slide[data-s="05"]  .rot .b{width:250.011px;height:120.559px;display:flex;align-items:center;justify-content:center}
+.slide[data-s="05"]  .rot .b .lg{transform:rotate(8deg);flex:none}
+</style>
+<div class="pg"><div class="hd"><span class="lab">02 · LOGO</span><span class="rt"><span class="cnt">05 / 24</span><span class="lg" style="gap:8.4px;"><span class="sy" style="width:28.5px;height:28.5px;border-radius:8.769px;--a:13.428px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:15.072px;top:0;background:#1F1A17"></i><i style="left:0;top:15.072px;background:#1F1A17"></i><i style="left:15.072px;top:15.072px;background:#FFD36E"></i></span><span class="wm" style="font-size:30px;color:#1F1A17">Soly<svg width="6px" height="37.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></span></div><h1>Espace, taille, interdits.</h1><div class="bd"><div class="r1"><div class="zone"><div class="dz"><span class="lg" style="gap:42px;"><span class="sy" style="width:142.5px;height:142.5px;border-radius:43.847px;--a:67.142px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:75.361px;top:0;background:#1F1A17"></i><i style="left:0;top:75.361px;background:#1F1A17"></i><i style="left:75.361px;top:75.361px;background:#FFD36E"></i></span><span class="wm" style="font-size:150px;color:#1F1A17">Soly<svg width="30px" height="187.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></div></div><div class="tm"><div class="k">TAILLES MINIMALES</div><div class="sz"><div class="it"><span class="lg" style="gap:15.68px;"><span class="sy" style="width:53.2px;height:53.2px;border-radius:16.37px;--a:25.066px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:28.135px;top:0;background:#1F1A17"></i><i style="left:0;top:28.135px;background:#1F1A17"></i><i style="left:28.135px;top:28.135px;background:#FFD36E"></i></span><span class="wm" style="font-size:56px;color:#1F1A17">Soly<svg width="11.2px" height="70px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span><span class="c">56 px, écran</span></div><div class="it"><span class="lg" style="gap:10.08px;"><span class="sy" style="width:34.2px;height:34.2px;border-radius:10.523px;--a:16.114px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:18.087px;top:0;background:#1F1A17"></i><i style="left:0;top:18.087px;background:#1F1A17"></i><i style="left:18.087px;top:18.087px;background:#FFD36E"></i></span><span class="wm" style="font-size:36px;color:#1F1A17">Soly<svg width="7.2px" height="45px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span><span class="c">36 px, petit écran</span></div><div class="it"><span class="lg" style="gap:6.16px;"><span class="sy" style="width:20.9px;height:20.9px;border-radius:6.431px;--a:9.847px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:11.053px;top:0;background:#1F1A17"></i><i style="left:0;top:11.053px;background:#1F1A17"></i><i style="left:11.053px;top:11.053px;background:#FFD36E"></i></span><span class="wm" style="font-size:22px;color:#1F1A17">Soly<svg width="4.4px" height="27.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span><span class="c">22 px, minimum</span></div></div><div class="z">Zone de protection : la hauteur du « S » de chaque côté.</div></div></div><div class="r2"><div class="no"><div class="w" style="letter-spacing:-1.4px">SOLY.</div><div class="x"><b>✕</b>  Pas de majuscules</div></div><div class="no"><div class="w" style="letter-spacing:-3.5px">Soly</div><div class="x"><b>✕</b>  Pas de point oublié</div></div><div class="no"><div class="w" style="letter-spacing:-3.5px;color:#FFD36E">Soly.</div><div class="x"><b>✕</b>  Pas de texte jaune</div></div><div class="no"><div class="rot"><div class="b"><span class="lg" style="gap:19.6px;"><span class="sy" style="width:66.5px;height:66.5px;border-radius:20.462px;--a:31.333px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:35.169px;top:0;background:#1F1A17"></i><i style="left:0;top:35.169px;background:#1F1A17"></i><i style="left:35.169px;top:35.169px;background:#FFD36E"></i></span><span class="wm" style="font-size:70px;color:#1F1A17">Soly<svg width="14px" height="87.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></div></div><div class="x"><b>✕</b>  Pas de rotation</div></div></div></div></div>
+</section>
+
+<section class="slide" data-s="06" data-title="Couleurs">
+<style>
+.slide[data-s="06"] .lg{display:inline-flex;align-items:center;flex:none}
+.slide[data-s="06"] .sy{position:relative;display:block;overflow:hidden;flex:none}
+.slide[data-s="06"] .sy i{position:absolute;display:block;width:var(--a);height:var(--a)}
+.slide[data-s="06"] .wm{display:flex;align-items:flex-start;font-family:var(--titre);font-weight:600;letter-spacing:-.05em;line-height:1.25;white-space:nowrap;flex:none}
+.slide[data-s="06"] .wm svg{margin-left:.05em;display:block;flex:none;overflow:visible}
+.slide[data-s="06"] .pg{position:absolute;inset:0;padding:72px 96px;display:flex;flex-direction:column;align-items:flex-start}
+.slide[data-s="06"] .hd{width:1728px;height:38px;display:flex;align-items:center;justify-content:space-between;flex:none}
+.slide[data-s="06"] .lab{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="06"] .rt{display:flex;align-items:center;gap:24px}
+.slide[data-s="06"] .cnt{font:500 15px/normal var(--titre);letter-spacing:.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="06"] .rt .lg{gap:8.4px}
+.slide[data-s="06"] h1{position:relative;top:1px;margin:44px 0 48px;width:1500px;flex:none;font:500 76px/82px var(--titre);letter-spacing:-3.04px;color:var(--encre)}
+.slide[data-s="06"] .bd{position:relative;width:1728px;height:724px;flex:none}
+.slide[data-s="06"]  .bd{display:flex;flex-direction:column;gap:24px}
+.slide[data-s="06"]  .row{display:flex;gap:24px}
+.slide[data-s="06"]  .cl{width:414px;height:350px;border-radius:28px;padding:28px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;flex:none;white-space:nowrap}
+.slide[data-s="06"]  .cl .nm{font:500 40px/normal var(--titre);letter-spacing:-1.2px}
+.slide[data-s="06"]  .cl .in{display:flex;flex-direction:column;gap:6px}
+.slide[data-s="06"]  .cl .hx{font:500 18px/normal var(--titre);letter-spacing:1.08px}
+.slide[data-s="06"]  .cl .ds{font:400 18px/normal var(--texte)}
+.slide[data-s="06"]  .cl .ra{font:400 15px/normal var(--texte)}
+</style>
+<div class="pg"><div class="hd"><span class="lab">03 · COULEURS</span><span class="rt"><span class="cnt">06 / 24</span><span class="lg" style="gap:8.4px;"><span class="sy" style="width:28.5px;height:28.5px;border-radius:8.769px;--a:13.428px"><i style="left:0;top:0;background:#1F1A17"></i><i style="left:15.072px;top:0;background:#1F1A17"></i><i style="left:0;top:15.072px;background:#1F1A17"></i><i style="left:15.072px;top:15.072px;background:#FFD36E"></i></span><span class="wm" style="font-size:30px;color:#1F1A17">Soly<svg width="6px" height="37.5px" viewBox="0 0 .2 1.25"><circle cx=".115" cy=".915" r=".085" fill="#FFD36E"/></svg></span></span></span></div><h1>Chaudes, lisibles, jamais criardes.</h1><div class="bd"><div class="row"><div class="cl" style="background:#FFFAF0;border:1.5px solid #F0E3C8"><div class="nm" style="color:#1F1A17">Aube</div><div class="in"><div class="hx" style="color:#1F1A17">#FFFAF0</div><div class="ds" style="color:#1F1A17">Fond principal</div><div class="ra" style="color:#6A5F55">Encre 16,6 : 1</div></div></div><div class="cl" style="background:#FFF3D9;"><div class="nm" style="color:#1F1A17">Crème</div><div class="in"><div class="hx" style="color:#1F1A17">#FFF3D9</div><div class="ds" style="color:#1F1A17">Fond des cartes</div><div class="ra" style="color:#6A5F55">Encre 15,7 : 1</div></div></div><div class="cl" style="background:#1F1A17;"><div class="nm" style="color:#FFF8E8">Encre</div><div class="in"><div class="hx" style="color:#FFF8E8">#1F1A17</div><div class="ds" style="color:#FFF8E8">Texte et boutons</div><div class="ra" style="color:#FFE7A8">Sur Aube 16,6 : 1</div></div></div><div class="cl" style="background:#6A5F55;"><div class="nm" style="color:#FFF8E8">Café doux</div><div class="in"><div class="hx" style="color:#FFF8E8">#6A5F55</div><div class="ds" style="color:#FFF8E8">Texte secondaire</div><div class="ra" style="color:#FFE7A8">Sur Aube 6,0 : 1</div></div></div></div><div class="row"><div class="cl" style="background:#FFD36E;"><div class="nm" style="color:#1F1A17">Soleil</div><div class="in"><div class="hx" style="color:#1F1A17">#FFD36E</div><div class="ds" style="color:#1F1A17">Lumière, le point du logo</div><div class="ra" style="color:#6A5F55">Jamais en texte</div></div></div><div class="cl" style="background:#FFC9A3;"><div class="nm" style="color:#1F1A17">Pêche</div><div class="in"><div class="hx" style="color:#1F1A17">#FFC9A3</div><div class="ds" style="color:#1F1A17">Accent chaud</div><div class="ra" style="color:#6A5F55">Encre 11,6 : 1</div></div></div><div class="cl" style="background:#C9B8F0;"><div class="nm" style="color:#1F1A17">Lilas</div><div class="in"><div class="hx" style="color:#1F1A17">#C9B8F0</div><div class="ds" style="color:#1F1A17">Accent doux</div><div class="ra" style="color:#6A5F55">Encre 10,2 : 1</div></div></div><div class="cl" style="background:#F0E3C8;"><div class="nm" style="color:#1F1A17">Ligne</div><div class="in"><div class="hx" style="color:#1F1A17">#F0E3C8</div><div class="ds" style="color:#1F1A17">Filets et bordures</div><div class="ra" style="color:#6A5F55">Décoratif</div></div></div></div></div></div>
+</section>
+
+<section class="slide" data-s="07" data-title="Gradients">
+<style>
+.slide[data-s="07"]{background:var(--aube);color:var(--encre);display:flex;flex-direction:column;align-items:flex-start;padding:72px 96px;box-sizing:border-box;overflow:hidden}
+.slide[data-s="07"] *{box-sizing:border-box;margin:0}
+.slide[data-s="07"] p{margin:0}
+.slide[data-s="07"] .hd{display:flex;align-items:center;justify-content:space-between;width:1728px;flex:none}
+.slide[data-s="07"] .rub{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="07"] .hr{display:flex;gap:24px;align-items:center}
+.slide[data-s="07"] .cnt{font:500 15px/normal var(--titre);letter-spacing:0.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="07"] .logo{display:flex;gap:8.4px;align-items:center}
+.slide[data-s="07"] .sym{position:relative;width:28.5px;height:28.5px;border-radius:8.769px;overflow:hidden;flex:none}
+.slide[data-s="07"] .sym i{position:absolute;width:13.428px;height:13.428px;background:var(--encre);left:0;top:0}
+.slide[data-s="07"] .sym i:nth-child(2){left:15.07px}.slide[data-s="07"] .sym i:nth-child(3){top:15.07px}
+.slide[data-s="07"] .sym i.s{left:15.07px;top:15.07px;background:var(--soleil)}
+.slide[data-s="07"] .wm{display:flex;align-items:flex-start;overflow:hidden}
+.slide[data-s="07"] .wm p{font:600 30px/normal var(--titre);letter-spacing:-1.5px;color:var(--encre);white-space:nowrap}
+.slide[data-s="07"] .dot{position:relative;width:8px;height:38px;flex:none}
+.slide[data-s="07"] .dot::after{content:"";position:absolute;left:2.9px;top:25.3px;width:5.1px;height:5.1px;border-radius:50%;background:var(--soleil)}
+.slide[data-s="07"] .sp44{height:44px;flex:none}.slide[data-s="07"] .sp48{height:48px;flex:none}
+.slide[data-s="07"] .titre{font:500 76px/82px var(--titre);letter-spacing:-3.04px;width:1500px;flex:none}
+.slide[data-s="07"] .body{display:flex;height:724px;width:1728px;flex:none;overflow:hidden}
+.slide[data-s="07"] .lab{font-family:var(--titre);font-weight:500;white-space:nowrap}
+.slide[data-s="07"] .tx{font-family:var(--texte);font-weight:400}
+.slide[data-s="07"] .ti{font-family:var(--titre);font-weight:500}
+
+.slide[data-s="07"] .body{gap:32px;align-items:flex-start}
+.slide[data-s="07"] .gp{width:900px;height:724px;border-radius:32px;padding:36px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:linear-gradient(-16.31374326162546deg, rgb(255, 231, 168) 36.037%, rgb(255, 201, 163) 78.939%, rgb(214, 198, 245) 114.04%)}
+.slide[data-s="07"] .gp .t{font:500 36px/normal var(--titre);letter-spacing:-0.72px;white-space:nowrap}
+.slide[data-s="07"] .gp .d{font:400 20px/29px var(--texte);width:700px}
+.slide[data-s="07"] .col{width:796px;height:724px;display:flex;flex-direction:column;gap:32px;overflow:hidden}
+.slide[data-s="07"] .halo{position:relative;width:796px;height:346px;flex:none;border-radius:32px;background:var(--creme);padding:36px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.slide[data-s="07"] .ell{position:absolute;left:420px;top:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(255,211,110,.5) 0%,rgba(255,201,163,.22) 40%,rgba(201,184,240,.08) 75%,rgba(201,184,240,0) 100%)}
+.slide[data-s="07"] .halo .t{position:relative;font:500 32px/normal var(--titre);letter-spacing:-0.64px;white-space:nowrap}
+.slide[data-s="07"] .halo .d{position:relative;font:400 19px/27.55px var(--texte);color:var(--cafe);width:520px}
+.slide[data-s="07"] .row{display:flex;gap:24px;height:346px;width:796px;flex:none}
+.slide[data-s="07"] .mini{width:386px;height:346px;border-radius:28px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;flex:none}
+.slide[data-s="07"] .mini p{font:500 24px/normal var(--titre);letter-spacing:-0.36px;white-space:nowrap}
+</style>
+<div class="hd"><p class="rub">04 · LUMIÈRE</p><div class="hr"><p class="cnt">07 / 24</p>
+<div class="logo"><div class="sym"><i></i><i></i><i></i><i class="s"></i></div><div class="wm"><p>Soly</p><div class="dot"></div></div></div></div></div>
+<div class="sp44"></div><p class="titre">La lumière se pose, elle ne brille pas.</p><div class="sp48"></div>
+<div class="body"><div class="gp"><p class="t">Gradient photo</p><p class="d">160° · #FFE7A8, #FFC9A3 à 55 %, #D6C6F5</p></div>
+<div class="col"><div class="halo"><div class="ell"></div><p class="t">Halo d’ambiance</p><p class="d">Derrière un écran ou un titre. Jamais sous un bouton ou une carte.</p></div>
+<div class="row"><div class="mini" style="background:linear-gradient(to bottom,#ffd36e,#ffc9a3)"><p>Soleil → Pêche</p></div><div class="mini" style="background:linear-gradient(to bottom,#ffc9a3,#c9b8f0)"><p>Pêche → Lilas</p></div></div></div></div>
+</section>
+
+<section class="slide" data-s="08" data-title="Typographie titres">
+<style>
+.slide[data-s="08"]{background:var(--aube);color:var(--encre);display:flex;flex-direction:column;align-items:flex-start;padding:72px 96px;box-sizing:border-box;overflow:hidden}
+.slide[data-s="08"] *{box-sizing:border-box;margin:0}
+.slide[data-s="08"] p{margin:0}
+.slide[data-s="08"] .hd{display:flex;align-items:center;justify-content:space-between;width:1728px;flex:none}
+.slide[data-s="08"] .rub{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="08"] .hr{display:flex;gap:24px;align-items:center}
+.slide[data-s="08"] .cnt{font:500 15px/normal var(--titre);letter-spacing:0.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="08"] .logo{display:flex;gap:8.4px;align-items:center}
+.slide[data-s="08"] .sym{position:relative;width:28.5px;height:28.5px;border-radius:8.769px;overflow:hidden;flex:none}
+.slide[data-s="08"] .sym i{position:absolute;width:13.428px;height:13.428px;background:var(--encre);left:0;top:0}
+.slide[data-s="08"] .sym i:nth-child(2){left:15.07px}.slide[data-s="08"] .sym i:nth-child(3){top:15.07px}
+.slide[data-s="08"] .sym i.s{left:15.07px;top:15.07px;background:var(--soleil)}
+.slide[data-s="08"] .wm{display:flex;align-items:flex-start;overflow:hidden}
+.slide[data-s="08"] .wm p{font:600 30px/normal var(--titre);letter-spacing:-1.5px;color:var(--encre);white-space:nowrap}
+.slide[data-s="08"] .dot{position:relative;width:8px;height:38px;flex:none}
+.slide[data-s="08"] .dot::after{content:"";position:absolute;left:2.9px;top:25.3px;width:5.1px;height:5.1px;border-radius:50%;background:var(--soleil)}
+.slide[data-s="08"] .sp44{height:44px;flex:none}.slide[data-s="08"] .sp48{height:48px;flex:none}
+.slide[data-s="08"] .titre{font:500 76px/82px var(--titre);letter-spacing:-3.04px;width:1500px;flex:none}
+.slide[data-s="08"] .body{display:flex;height:724px;width:1728px;flex:none;overflow:hidden}
+.slide[data-s="08"] .lab{font-family:var(--titre);font-weight:500;white-space:nowrap}
+.slide[data-s="08"] .tx{font-family:var(--texte);font-weight:400}
+.slide[data-s="08"] .ti{font-family:var(--titre);font-weight:500}
+
+.slide[data-s="08"] .body{gap:48px}
+.slide[data-s="08"] .L{width:760px;height:724px;border-radius:32px;background:var(--creme);padding:40px;display:flex;flex-direction:column;justify-content:space-between;flex:none;overflow:hidden}
+.slide[data-s="08"] .L .k{font:500 14px/normal var(--titre);letter-spacing:1.12px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="08"] .L .aa{font:500 340px/normal var(--titre);letter-spacing:-20.4px;white-space:nowrap}
+.slide[data-s="08"] .L .d{font:400 22px/31.9px var(--texte);color:var(--cafe);width:640px}
+.slide[data-s="08"] .R{width:920px;height:724px;display:flex;flex-direction:column;overflow:hidden;flex:none}
+.slide[data-s="08"] .rw{width:920px;padding:26px 0;display:flex;flex-direction:column;gap:10px;border-top:2px solid var(--ligne);padding-top:25.5px;flex:none}
+.slide[data-s="08"] .rw.f{border-top:0}
+.slide[data-s="08"] .rl{font:500 13px/normal var(--titre);letter-spacing:0.78px;color:var(--cafe);white-space:pre}
+.slide[data-s="08"] .rs{font-family:var(--titre);font-weight:500;color:var(--encre);white-space:nowrap}
+</style>
+<div class="hd"><p class="rub">05 · TYPOGRAPHIE</p><div class="hr"><p class="cnt">08 / 24</p>
+<div class="logo"><div class="sym"><i></i><i></i><i></i><i class="s"></i></div><div class="wm"><p>Soly</p><div class="dot"></div></div></div></div></div>
+<div class="sp44"></div><p class="titre">Lexend pour parler.</p><div class="sp48"></div>
+<div class="body"><div class="L"><p class="k">LEXEND · REGULAR, MEDIUM, SEMIBOLD</p><p class="aa">Aa</p><p class="d">Dessinée pour la lisibilité : formes rondes et ouvertes, chiffres nets, lecture aisée à l’écran.</p></div><div class="R"><div class="rw f"><p class="rl">DISPLAY  ·  Lexend Medium 76 · −4 %</p><p class="rs" style="font-size:64px;letter-spacing:-1.92px">Un rayon de famille.</p></div><div class="rw"><p class="rl">H1  ·  Lexend Medium 48 · −3 %</p><p class="rs" style="font-size:44px;letter-spacing:-1.32px">Un signe pour aujourd’hui</p></div><div class="rw"><p class="rl">H2  ·  Lexend Medium 32 · −2 %</p><p class="rs" style="font-size:32px;letter-spacing:-0.96px">Vous gardez la main</p></div><div class="rw"><p class="rl">BOUTON  ·  Lexend Medium 17 · 0 %</p><p class="rs" style="font-size:20px;letter-spacing:-0.6px">Envoyer un signe</p></div></div></div>
+</section>
+
+<section class="slide" data-s="09" data-title="Typographie texte">
+<style>
+.slide[data-s="09"]{background:var(--aube);color:var(--encre);display:flex;flex-direction:column;align-items:flex-start;padding:72px 96px;box-sizing:border-box;overflow:hidden}
+.slide[data-s="09"] *{box-sizing:border-box;margin:0}
+.slide[data-s="09"] p{margin:0}
+.slide[data-s="09"] .hd{display:flex;align-items:center;justify-content:space-between;width:1728px;flex:none}
+.slide[data-s="09"] .rub{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="09"] .hr{display:flex;gap:24px;align-items:center}
+.slide[data-s="09"] .cnt{font:500 15px/normal var(--titre);letter-spacing:0.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="09"] .logo{display:flex;gap:8.4px;align-items:center}
+.slide[data-s="09"] .sym{position:relative;width:28.5px;height:28.5px;border-radius:8.769px;overflow:hidden;flex:none}
+.slide[data-s="09"] .sym i{position:absolute;width:13.428px;height:13.428px;background:var(--encre);left:0;top:0}
+.slide[data-s="09"] .sym i:nth-child(2){left:15.07px}.slide[data-s="09"] .sym i:nth-child(3){top:15.07px}
+.slide[data-s="09"] .sym i.s{left:15.07px;top:15.07px;background:var(--soleil)}
+.slide[data-s="09"] .wm{display:flex;align-items:flex-start;overflow:hidden}
+.slide[data-s="09"] .wm p{font:600 30px/normal var(--titre);letter-spacing:-1.5px;color:var(--encre);white-space:nowrap}
+.slide[data-s="09"] .dot{position:relative;width:8px;height:38px;flex:none}
+.slide[data-s="09"] .dot::after{content:"";position:absolute;left:2.9px;top:25.3px;width:5.1px;height:5.1px;border-radius:50%;background:var(--soleil)}
+.slide[data-s="09"] .sp44{height:44px;flex:none}.slide[data-s="09"] .sp48{height:48px;flex:none}
+.slide[data-s="09"] .titre{font:500 76px/82px var(--titre);letter-spacing:-3.04px;width:1500px;flex:none}
+.slide[data-s="09"] .body{display:flex;height:724px;width:1728px;flex:none;overflow:hidden}
+.slide[data-s="09"] .lab{font-family:var(--titre);font-weight:500;white-space:nowrap}
+.slide[data-s="09"] .tx{font-family:var(--texte);font-weight:400}
+.slide[data-s="09"] .ti{font-family:var(--titre);font-weight:500}
+
+.slide[data-s="09"] .body{gap:48px}
+.slide[data-s="09"] .L{width:760px;height:724px;border-radius:32px;background:var(--encre);padding:40px;display:flex;flex-direction:column;justify-content:space-between;flex:none;overflow:hidden}
+.slide[data-s="09"] .L .k{font:500 14px/normal var(--titre);letter-spacing:1.12px;color:#fff8e8;white-space:nowrap}
+.slide[data-s="09"] .L .aa{font:700 340px/normal var(--texte);letter-spacing:-10.2px;color:var(--aube);white-space:nowrap}
+.slide[data-s="09"] .L .d{font:400 22px/32px var(--texte);color:#ffe7a8;width:640px}
+.slide[data-s="09"] .R{width:920px;height:724px;display:flex;flex-direction:column;overflow:hidden;flex:none}
+.slide[data-s="09"] .rw{width:920px;padding:26px 0;display:flex;flex-direction:column;gap:12px;border-top:2px solid var(--ligne);padding-top:25.5px;flex:none}
+.slide[data-s="09"] .rw.f{border-top:0}
+.slide[data-s="09"] .rw.l{gap:10px}
+.slide[data-s="09"] .rl{font:500 13px/normal var(--titre);letter-spacing:0.78px;color:var(--cafe);white-space:pre}
+.slide[data-s="09"] .rs{font-family:var(--texte);font-weight:400;color:var(--encre);width:900px}
+</style>
+<div class="hd"><p class="rub">05 · TYPOGRAPHIE</p><div class="hr"><p class="cnt">09 / 24</p>
+<div class="logo"><div class="sym"><i></i><i></i><i></i><i class="s"></i></div><div class="wm"><p>Soly</p><div class="dot"></div></div></div></div></div>
+<div class="sp44"></div><p class="titre">Atkinson pour expliquer.</p><div class="sp48"></div>
+<div class="body"><div class="L"><p class="k">ATKINSON HYPERLEGIBLE · REGULAR, BOLD</p><p class="aa">Aa</p><p class="d">Conçue pour les basses visions : chaque lettre se distingue des autres.</p></div><div class="R">
+<div class="rw f"><p class="rl">CORPS L  ·  Atkinson Regular 21 · interligne 145 %</p><p class="rs" style="font-size:28px;line-height:39.2px">Mamie a vu votre signe à 14 h 12. Elle vous répondra ce soir.</p></div>
+<div class="rw" style="padding-top:27.5px;padding-bottom:22.5px;gap:13px"><p class="rl">CORPS  ·  Atkinson Regular 17</p><p class="rs" style="font-size:24px;line-height:33.6px">Chaque matin, un nouveau cadeau de la famille apparaît sur le cadre.</p></div>
+<div class="rw" style="padding-top:26.5px;padding-bottom:27px"><p class="rl">LIBELLÉ  ·  Lexend Medium 13 · +6 %, capitales</p><p class="rs" style="font-family:var(--titre);font-weight:500;font-size:20px;letter-spacing:1.2px;line-height:normal;white-space:nowrap">PRÉVENU SI BESOIN</p></div>
+<div class="rw l" style="border-top:0"><p class="rl">RÈGLES</p><p class="rs" style="font-size:22px;line-height:31.9px">Jamais sous 17 px sur écran. Contraste minimum 4,5 : 1. Pas de texte Soleil sur fond clair.</p></div>
+</div></div>
+</section>
+
+<section class="slide" data-s="10" data-title="Composants">
+<style>
+.slide[data-s="10"]{background:var(--aube);color:var(--encre);display:flex;flex-direction:column;align-items:flex-start;padding:72px 96px;box-sizing:border-box;overflow:hidden}
+.slide[data-s="10"] *{box-sizing:border-box;margin:0}
+.slide[data-s="10"] p{margin:0}
+.slide[data-s="10"] .hd{display:flex;align-items:center;justify-content:space-between;width:1728px;flex:none}
+.slide[data-s="10"] .rub{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="10"] .hr{display:flex;gap:24px;align-items:center}
+.slide[data-s="10"] .cnt{font:500 15px/normal var(--titre);letter-spacing:0.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="10"] .logo{display:flex;gap:8.4px;align-items:center}
+.slide[data-s="10"] .sym{position:relative;width:28.5px;height:28.5px;border-radius:8.769px;overflow:hidden;flex:none}
+.slide[data-s="10"] .sym i{position:absolute;width:13.428px;height:13.428px;background:var(--encre);left:0;top:0}
+.slide[data-s="10"] .sym i:nth-child(2){left:15.07px}.slide[data-s="10"] .sym i:nth-child(3){top:15.07px}
+.slide[data-s="10"] .sym i.s{left:15.07px;top:15.07px;background:var(--soleil)}
+.slide[data-s="10"] .wm{display:flex;align-items:flex-start;overflow:hidden}
+.slide[data-s="10"] .wm p{font:600 30px/normal var(--titre);letter-spacing:-1.5px;color:var(--encre);white-space:nowrap}
+.slide[data-s="10"] .dot{position:relative;width:8px;height:38px;flex:none}
+.slide[data-s="10"] .dot::after{content:"";position:absolute;left:2.9px;top:25.3px;width:5.1px;height:5.1px;border-radius:50%;background:var(--soleil)}
+.slide[data-s="10"] .sp44{height:44px;flex:none}.slide[data-s="10"] .sp48{height:48px;flex:none}
+.slide[data-s="10"] .titre{font:500 76px/82px var(--titre);letter-spacing:-3.04px;width:1500px;flex:none}
+.slide[data-s="10"] .body{display:flex;height:724px;width:1728px;flex:none;overflow:hidden}
+.slide[data-s="10"] .lab{font-family:var(--titre);font-weight:500;white-space:nowrap}
+.slide[data-s="10"] .tx{font-family:var(--texte);font-weight:400}
+.slide[data-s="10"] .ti{font-family:var(--titre);font-weight:500}
+
+.slide[data-s="10"] .body{flex-direction:column;gap:24px}
+.slide[data-s="10"] .line{display:flex;gap:24px;width:1728px;flex:none;align-items:flex-start}
+.slide[data-s="10"] .bx{height:350px;border-radius:28px;padding:32px;background:var(--creme);display:flex;flex-direction:column;justify-content:space-between;flex:none;overflow:hidden}
+.slide[data-s="10"] .k{font:500 13px/normal var(--titre);letter-spacing:1.04px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="10"] .btns{display:flex;gap:16px;align-items:center}
+.slide[data-s="10"] .btn{display:flex;align-items:center;justify-content:center;height:56px;padding:0 32px;border-radius:999px;font:500 17px/normal var(--titre);white-space:nowrap}
+.slide[data-s="10"] .btn.d{background:var(--encre);color:#fff8e8}
+.slide[data-s="10"] .btn.o{height:59px;padding:0 31px;border:2px solid var(--encre);color:var(--encre)}
+.slide[data-s="10"] .btn.s{background:var(--soleil);color:var(--encre)}
+.slide[data-s="10"] .note{font:400 18px/26.1px var(--texte);color:var(--cafe);width:760px}
+.slide[data-s="10"] .pills{display:flex;gap:12px}
+.slide[data-s="10"] .pill{padding:10px 18px;border-radius:999px;font:500 14px/normal var(--titre);letter-spacing:0.56px;color:var(--encre);white-space:nowrap}
+.slide[data-s="10"] .field{width:800px;background:var(--aube);border:1.5px solid var(--ligne);border-radius:20px;padding:18px 24px;display:flex;align-items:center}
+.slide[data-s="10"] .field p{font:400 19px/normal var(--texte);color:var(--cafe);white-space:nowrap}
+.slide[data-s="10"] .card{width:560px}
+.slide[data-s="10"] .card .g{display:flex;flex-direction:column;gap:10px}
+.slide[data-s="10"] .card .h{font:500 34px/40px var(--titre);letter-spacing:-0.68px;width:480px}
+.slide[data-s="10"] .card .p{font:400 20px/normal var(--texte);width:480px}
+</style>
+<div class="hd"><p class="rub">06 · COMPOSANTS</p><div class="hr"><p class="cnt">10 / 24</p>
+<div class="logo"><div class="sym"><i></i><i></i><i></i><i class="s"></i></div><div class="wm"><p>Soly</p><div class="dot"></div></div></div></div></div>
+<div class="sp44"></div><p class="titre">Sobres, nets, sans ombre.</p><div class="sp48"></div>
+<div class="body"><div class="line"><div class="bx" style="width:840px"><p class="k">BOUTONS</p><div class="btns"><div class="btn d">Envoyer un signe</div><div class="btn o">Voir plus</div><div class="btn s">Aujourd’hui</div></div><p class="note">Pilule de 56 px minimum. Un seul bouton principal par écran. Aucun halo au survol : le fond change, c’est tout.</p></div>
+<div class="bx" style="width:864px"><p class="k">PASTILLES ET CHAMP</p><div class="pills"><div class="pill" style="background:var(--soleil)">Prévenu si besoin</div><div class="pill" style="background:var(--peche)">Aujourd’hui</div><div class="pill" style="background:var(--lilas)">En famille</div></div><div class="field"><p>Écrire un petit mot…</p></div></div></div>
+<div class="line"><div class="bx card"><p class="k">CARTE</p><div class="g"><p class="h">Un signe pour aujourd’hui</p><p class="p">Un geste, une photo, un mot.</p></div></div>
+<div class="bx card" style="background:var(--encre)"><p class="k" style="color:#ffe7a8">CARTE</p><div class="g"><p class="h" style="color:#fff8e8">Vous gardez la main</p><p class="p" style="color:#ffe7a8">Vous choisissez ce que Mamie voit.</p></div></div>
+<div class="bx card" style="background:var(--lilas)"><p class="k">CARTE</p><div class="g"><p class="h">Prévenu si besoin</p><p class="p">Une alerte seulement si c’est utile.</p></div></div></div></div>
+</section>
+
+<section class="slide" data-s="11" data-title="Mockups">
+<style>
+.slide[data-s="11"]{background:var(--aube);color:var(--encre);display:flex;flex-direction:column;align-items:flex-start;padding:72px 96px;box-sizing:border-box;overflow:hidden}
+.slide[data-s="11"] *{box-sizing:border-box;margin:0}
+.slide[data-s="11"] p{margin:0}
+.slide[data-s="11"] .hd{display:flex;align-items:center;justify-content:space-between;width:1728px;flex:none}
+.slide[data-s="11"] .rub{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="11"] .hr{display:flex;gap:24px;align-items:center}
+.slide[data-s="11"] .cnt{font:500 15px/normal var(--titre);letter-spacing:0.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="11"] .logo{display:flex;gap:8.4px;align-items:center}
+.slide[data-s="11"] .sym{position:relative;width:28.5px;height:28.5px;border-radius:8.769px;overflow:hidden;flex:none}
+.slide[data-s="11"] .sym i{position:absolute;width:13.428px;height:13.428px;background:var(--encre);left:0;top:0}
+.slide[data-s="11"] .sym i:nth-child(2){left:15.07px}.slide[data-s="11"] .sym i:nth-child(3){top:15.07px}
+.slide[data-s="11"] .sym i.s{left:15.07px;top:15.07px;background:var(--soleil)}
+.slide[data-s="11"] .wm{display:flex;align-items:flex-start;overflow:hidden}
+.slide[data-s="11"] .wm p{font:600 30px/normal var(--titre);letter-spacing:-1.5px;color:var(--encre);white-space:nowrap}
+.slide[data-s="11"] .dot{position:relative;width:8px;height:38px;flex:none}
+.slide[data-s="11"] .dot::after{content:"";position:absolute;left:2.9px;top:25.3px;width:5.1px;height:5.1px;border-radius:50%;background:var(--soleil)}
+.slide[data-s="11"] .sp44{height:44px;flex:none}.slide[data-s="11"] .sp48{height:48px;flex:none}
+.slide[data-s="11"] .titre{font:500 76px/82px var(--titre);letter-spacing:-3.04px;width:1500px;flex:none}
+.slide[data-s="11"] .body{display:flex;height:724px;width:1728px;flex:none;overflow:hidden}
+.slide[data-s="11"] .lab{font-family:var(--titre);font-weight:500;white-space:nowrap}
+.slide[data-s="11"] .tx{font-family:var(--texte);font-weight:400}
+.slide[data-s="11"] .ti{font-family:var(--titre);font-weight:500}
+
+.slide[data-s="11"] .body{gap:32px}
+.slide[data-s="11"] .salon{width:1000px;height:724px;border-radius:32px;background:var(--creme);display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden}
+.slide[data-s="11"] .cadre{width:620px;height:440px;border-radius:14px;background:var(--encre);padding:22px;display:flex;flex-direction:column;flex:none}
+.slide[data-s="11"] .ecr{width:576px;height:396px;border-radius:6px;padding:36px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(-14.043414514728468deg, rgb(255, 231, 168) 36.037%, rgb(255, 201, 163) 78.939%, rgb(214, 198, 245) 114.04%);overflow:hidden}
+.slide[data-s="11"] .ecr .k{font:500 14px/normal var(--titre);letter-spacing:1.12px;white-space:nowrap}
+.slide[data-s="11"] .ecr .g{display:flex;flex-direction:column;gap:12px}
+.slide[data-s="11"] .ecr .h{font:500 44px/50px var(--titre);letter-spacing:-1.32px;width:500px}
+.slide[data-s="11"] .ecr .p{font:400 22px/normal var(--texte);width:500px}
+.slide[data-s="11"] .app{width:696px;height:724px;border-radius:32px;background:var(--aube);border:1.5px solid var(--ligne);display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden}
+.slide[data-s="11"] .ph{width:300px;height:560px;border-radius:40px;background:var(--encre);padding:10px;display:flex;flex-direction:column;flex:none}
+.slide[data-s="11"] .scr{width:280px;height:540px;border-radius:32px;background:var(--aube);padding:24px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.slide[data-s="11"] .top{display:flex;flex-direction:column;gap:14px}
+.slide[data-s="11"] .lg2{display:flex;gap:7.28px;align-items:center}
+.slide[data-s="11"] .sym2{position:relative;width:24.7px;height:24.7px;border-radius:7.6px;overflow:hidden;flex:none}
+.slide[data-s="11"] .sym2 i{position:absolute;width:11.637px;height:11.637px;background:var(--encre);left:0;top:0}
+.slide[data-s="11"] .sym2 i:nth-child(2){left:13.06px}.slide[data-s="11"] .sym2 i:nth-child(3){top:13.06px}
+.slide[data-s="11"] .sym2 i.s{left:13.06px;top:13.06px;background:var(--soleil)}
+.slide[data-s="11"] .wm2{display:flex;align-items:flex-start;overflow:hidden}
+.slide[data-s="11"] .wm2 p{font:600 26px/normal var(--titre);letter-spacing:-1.3px;white-space:nowrap}
+.slide[data-s="11"] .dot2{position:relative;width:7px;height:33px;flex:none}
+.slide[data-s="11"] .dot2::after{content:"";position:absolute;left:2.5px;top:21.9px;width:4.4px;height:4.4px;border-radius:50%;background:var(--soleil)}
+.slide[data-s="11"] .scr .h{font:500 22px/28px var(--titre);letter-spacing:-0.22px;width:230px}
+.slide[data-s="11"] .img{width:232px;height:150px;border-radius:20px;background:linear-gradient(-13.237298538380216deg, rgb(255, 231, 168) 36.037%, rgb(255, 201, 163) 78.939%, rgb(214, 198, 245) 114.04%)}
+.slide[data-s="11"] .btn{display:flex;align-self:flex-start;height:56px;align-items:center;justify-content:center;padding:0 32px;border-radius:999px;background:var(--encre);color:#fff8e8;font:500 17px/normal var(--titre);white-space:nowrap}
+</style>
+<div class="hd"><p class="rub">07 · MOCKUPS</p><div class="hr"><p class="cnt">11 / 24</p>
+<div class="logo"><div class="sym"><i></i><i></i><i></i><i class="s"></i></div><div class="wm"><p>Soly</p><div class="dot"></div></div></div></div></div>
+<div class="sp44"></div><p class="titre">Au mur, et dans la poche.</p><div class="sp48"></div>
+<div class="body"><div class="salon"><div class="cadre"><div class="ecr"><p class="k">MARDI · 14 H 12</p><div class="g"><p class="h">Un rayon de famille.</p><p class="p">Camille a envoyé un signe</p></div></div></div></div>
+<div class="app"><div class="ph"><div class="scr"><div class="top"><div class="lg2"><div class="sym2"><i></i><i></i><i></i><i class="s"></i></div><div class="wm2"><p>Soly</p><div class="dot2"></div></div></div><p class="h">Mamie a vu votre signe à 14 h 12</p><div class="img"></div></div><div class="btn">Envoyer un signe</div></div></div></div></div>
+</section>
+
+<section class="slide" data-s="12" data-title="Cas d’usage">
+<style>
+.slide[data-s="12"]{background:var(--aube);color:var(--encre);display:flex;flex-direction:column;align-items:flex-start;padding:72px 96px;box-sizing:border-box;overflow:hidden}
+.slide[data-s="12"] *{box-sizing:border-box;margin:0}
+.slide[data-s="12"] p{margin:0}
+.slide[data-s="12"] .hd{display:flex;align-items:center;justify-content:space-between;width:1728px;flex:none}
+.slide[data-s="12"] .rub{font:500 15px/normal var(--titre);letter-spacing:1.2px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="12"] .hr{display:flex;gap:24px;align-items:center}
+.slide[data-s="12"] .cnt{font:500 15px/normal var(--titre);letter-spacing:0.6px;color:var(--cafe);white-space:nowrap}
+.slide[data-s="12"] .logo{display:flex;gap:8.4px;align-items:center}
+.slide[data-s="12"] .sym{position:relative;width:28.5px;height:28.5px;border-radius:8.769px;overflow:hidden;flex:none}
+.slide[data-s="12"] .sym i{position:absolute;width:13.428px;height:13.428px;background:var(--encre);left:0;top:0}
+.slide[data-s="12"] .sym i:nth-child(2){left:15.07px}.slide[data-s="12"] .sym i:nth-child(3){top:15.07px}
+.slide[data-s="12"] .sym i.s{left:15.07px;top:15.07px;background:var(--soleil)}
+.slide[data-s="12"] .wm{display:flex;align-items:flex-start;overflow:hidden}
+.slide[data-s="12"] .wm p{font:600 30px/normal var(--titre);letter-spacing:-1.5px;color:var(--encre);white-space:nowrap}
+.slide[data-s="12"] .dot{position:relative;width:8px;height:38px;flex:none}
+.slide[data-s="12"] .dot::after{content:"";position:absolute;left:2.9px;top:25.3px;width:5.1px;height:5.1px;border-radius:50%;background:var(--soleil)}
+.slide[data-s="12"] .sp44{height:44px;flex:none}.slide[data-s="12"] .sp48{height:48px;flex:none}
+.slide[data-s="12"] .titre{font:500 76px/82px var(--titre);letter-spacing:-3.04px;width:1500px;flex:none}
+.slide[data-s="12"] .body{display:flex;height:724px;width:1728px;flex:none;overflow:hidden}
+.slide[data-s="12"] .lab{font-family:var(--titre);font-weight:500;white-space:nowrap}
+.slide[data-s="12"] .tx{font-family:var(--texte);font-weight:400}
+.slide[data-s="12"] .ti{font-family:var(--titre);font-weight:500}
+
+.slide[data-s="12"] .body{gap:24px}
+.slide[data-s="12"] .cas{width:560px;height:724px;border-radius:32px;padding:36px;display:flex;flex-direction:column;justify-content:space-between;flex:none;overflow:hidden}
+.slide[data-s="12"] .k{font:500 15px/normal var(--titre);letter-spacing:1.5px;white-space:nowrap}
+.slide[data-s="12"] .g{display:flex;flex-direction:column;gap:16px}
+.slide[data-s="12"] .h{font:500 52px/58px var(--titre);letter-spacing:-1.56px;width:480px}
+.slide[data-s="12"] .p{font:400 24px/34px var(--texte);width:480px}
+</style>
+<div class="hd"><p class="rub">08 · CAS D’USAGE</p><div class="hr"><p class="cnt">12 / 24</p>
+<div class="logo"><div class="sym"><i></i><i></i><i></i><i class="s"></i></div><div class="wm"><p>Soly</p><div class="dot"></div></div></div></div></div>
+<div class="sp44"></div><p class="titre">Trois moments de la journée.</p><div class="sp48"></div>
+<div class="body"><div class="cas" style="background:var(--creme)"><p class="k" style="color:var(--cafe)">MATIN</p><div class="g"><p class="h" style="color:var(--encre)">Le cadre s’allume</p><p class="p" style="color:var(--encre)">Un nouveau rayon de la famille apparaît à 8 h, sans rien toucher.</p></div></div><div class="cas" style="background:linear-gradient(-25.191352682748317deg, rgb(255, 231, 168) 36.037%, rgb(255, 201, 163) 78.939%, rgb(214, 198, 245) 114.04%)"><p class="k" style="color:var(--cafe)">MIDI</p><div class="g"><p class="h" style="color:var(--encre)">Un signe arrive</p><p class="p" style="color:var(--encre)">Une photo de la petite-fille. Un geste pour répondre, c’est tout.</p></div></div><div class="cas" style="background:var(--encre)"><p class="k" style="color:#ffe7a8">SOIR</p><div class="g"><p class="h" style="color:#fff8e8">On vous rassure</p><p class="p" style="color:#ffe7a8">Prévenu seulement si besoin. Sinon, la journée a juste été belle.</p></div></div></div>
+</section>
+
+<section class="slide" data-s="13" data-title="À faire, à éviter">
+<style>
+.slide[data-s="13"] *{box-sizing:border-box;margin:0;padding:0}
+.slide[data-s="13"] .t,.slide[data-s="13"] .sym,.slide[data-s="13"] .dot,.slide[data-s="13"] .b{position:absolute}
+.slide[data-s="13"] .sym{overflow:hidden}
+.slide[data-s="13"] .sym i{position:absolute;width:var(--q);height:var(--q);display:block}
+.slide[data-s="13"] .dot{border-radius:50%}
+.slide[data-s="13"] .t{white-space:nowrap;line-height:normal;font-style:normal}
+.slide[data-s="13"] .lx{font-family:var(--titre)}
+.slide[data-s="13"] .at{font-family:var(--texte)}
+.slide[data-s="13"] .r4{font-weight:400;font-size:14px;letter-spacing:1.4px;color:var(--cafe);font-family:var(--titre)}
+.slide[data-s="13"] .sb{font-family:var(--titre);font-weight:600}
+.slide[data-s="13"] .tag{font-family:var(--titre);font-weight:400;font-size:12px;letter-spacing:1.2px;color:var(--cafe)}
+.slide[data-s="13"] .grad{background:linear-gradient(168.4653793975612deg,rgb(214,198,245) 0%,rgb(255,201,163) 38.136%,rgb(255,231,168) 84.746%)}
+.slide[data-s="13"] .hd{position:absolute;left:96px;top:72px;width:1728px;display:flex;align-items:center;justify-content:space-between}
+.slide[data-s="13"] .hd .l{font-family:var(--titre);font-weight:500;font-size:15px;letter-spacing:1.2px;color:var(--cafe)}
+.slide[data-s="13"] .hd .rt{display:flex;align-items:center;gap:24px}
+.slide[data-s="13"] .hd .c{font-family:var(--titre);font-weight:500;font-size:15px;letter-spacing:.6px;color:var(--cafe)}
+.slide[data-s="13"] .lg{display:flex;align-items:center;gap:8.4px}
+.slide[data-s="13"] .lg .sym{position:relative;flex:none}
+.slide[data-s="13"] .wm{display:flex;align-items:center}
+.slide[data-s="13"] .wm b{font-family:var(--titre);font-weight:600;font-size:30px;letter-spacing:-1.5px;color:var(--encre);line-height:normal;padding-right:2px}
+.slide[data-s="13"] .wm svg{width:6px;height:38px;display:block;flex:none}
+.slide[data-s="13"] h1{position:absolute;left:96px;top:154px;width:1500px;font-family:var(--titre);font-weight:500;font-size:76px;line-height:82px;letter-spacing:-3.04px;color:var(--encre)}
+.slide[data-s="13"] .cols{position:absolute;left:96px;top:284px;width:1728px;height:724px;display:flex;gap:32px}
+.slide[data-s="13"] .col{width:848px;height:724px;border-radius:32px;padding:40px;display:flex;flex-direction:column;gap:22px;overflow:hidden}
+.slide[data-s="13"] .col .k{font-family:var(--titre);font-weight:500;font-size:15px;letter-spacing:1.5px;white-space:nowrap}
+.slide[data-s="13"] .row{width:768px;display:flex;align-items:center;gap:20px;padding:16px 0;flex:none}
+.slide[data-s="13"] .n{font-family:var(--titre);font-weight:500;font-size:16px;letter-spacing:.64px;white-space:nowrap}
+.slide[data-s="13"] .x{font-family:var(--texte);font-weight:400;font-size:26px;line-height:34px;width:680px}
+</style>
+<div class="hd"><span class="l">09 · USAGE</span><div class="rt"><span class="c">13 / 24</span><div class="lg"><div class="sym" style="width:28.5px;height:28.5px;border-radius:8.77px;--q:13.428px"><i style="background:var(--encre)"></i><i style="left:15.07px;top:0px;background:var(--encre)"></i><i style="left:0px;top:15.07px;background:var(--encre)"></i><i style="left:15.07px;top:15.07px;background:var(--soleil)"></i></div><div class="wm"><b>Soly</b><svg viewBox="0 0 6 38" fill="none"><circle cx="3.45" cy="27.85" r="2.55" fill="#FFD36E"/></svg></div></div></div></div>
+<h1>À faire, à éviter.</h1>
+<div class="cols"><div class="col" style="background:var(--creme)"><span class="k" style="color:var(--cafe)">À FAIRE</span><div class="row" style="border-bottom:1.5px solid var(--ligne);"><span class="n" style="color:var(--cafe)">01</span><span class="x" style="color:var(--encre)">Jaune en lumière, en point, en reflet</span></div><div class="row" style="border-bottom:1.5px solid var(--ligne);"><span class="n" style="color:var(--cafe)">02</span><span class="x" style="color:var(--encre)">Texte encre sur fond clair</span></div><div class="row" style="border-bottom:1.5px solid var(--ligne);"><span class="n" style="color:var(--cafe)">03</span><span class="x" style="color:var(--encre)">Zones tactiles de 56 px minimum</span></div><div class="row" style="border-bottom:1.5px solid var(--ligne);"><span class="n" style="color:var(--cafe)">04</span><span class="x" style="color:var(--encre)">Un mot de famille, jamais de jargon médical</span></div><div class="row" style=""><span class="n" style="color:var(--cafe)">05</span><span class="x" style="color:var(--encre)">Coins arrondis et marges larges</span></div></div>
+<div class="col" style="background:var(--encre)"><span class="k" style="color:#ffe7a8">À ÉVITER</span><div class="row" style="border-bottom:1.5px solid var(--cafe);"><span class="n" style="color:#ffe7a8">01</span><span class="x" style="color:#fff8e8">Jaune en grand aplat</span></div><div class="row" style="border-bottom:1.5px solid var(--cafe);"><span class="n" style="color:#ffe7a8">02</span><span class="x" style="color:#fff8e8">Texte jaune ou lilas sur fond clair</span></div><div class="row" style="border-bottom:1.5px solid var(--cafe);"><span class="n" style="color:#ffe7a8">03</span><span class="x" style="color:#fff8e8">Lueurs et ombres colorées sous les éléments</span></div><div class="row" style="border-bottom:1.5px solid var(--cafe);"><span class="n" style="color:#ffe7a8">04</span><span class="x" style="color:#fff8e8">Un autre symbole, ou un cadre ajouté autour du logo</span></div><div class="row" style=""><span class="n" style="color:#ffe7a8">05</span><span class="x" style="color:#fff8e8">Capitales sur le nom : Soly., pas SOLY</span></div></div></div>
+</section>
+
+<section class="slide" data-s="14" data-title="Instagram">
+<style>
+.slide[data-s="14"] *{box-sizing:border-box;margin:0;padding:0}
+.slide[data-s="14"] .t,.slide[data-s="14"] .sym,.slide[data-s="14"] .dot,.slide[data-s="14"] .b{position:absolute}
+.slide[data-s="14"] .sym{overflow:hidden}
+.slide[data-s="14"] .sym i{position:absolute;width:var(--q);height:var(--q);display:block}
+.slide[data-s="14"] .dot{border-radius:50%}
+.slide[data-s="14"] .t{white-space:nowrap;line-height:normal;font-style:normal}
+.slide[data-s="14"] .lx{font-family:var(--titre)}
+.slide[data-s="14"] .at{font-family:var(--texte)}
+.slide[data-s="14"] .r4{font-weight:400;font-size:14px;letter-spacing:1.4px;color:var(--cafe);font-family:var(--titre)}
+.slide[data-s="14"] .sb{font-family:var(--titre);font-weight:600}
+.slide[data-s="14"] .tag{font-family:var(--titre);font-weight:400;font-size:12px;letter-spacing:1.2px;color:var(--cafe)}
+.slide[data-s="14"] .grad{background:linear-gradient(168.4653793975612deg,rgb(214,198,245) 0%,rgb(255,201,163) 38.136%,rgb(255,231,168) 84.746%)}
+</style>
+<p class="t r4" style="left:96px;top:82px;">10 · INSTAGRAM</p><p class="t r4" style="left:1655.1px;top:82px;letter-spacing:1.4px">14 / 24</p><div class="sym" style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.77px;--q:13.428px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:15.07px;top:0px;background:var(--encre)"></i><i style="left:0px;top:15.07px;background:var(--encre)"></i><i style="left:15.07px;top:15.07px;background:var(--soleil)"></i></div><p class="t sb" style="left:1758px;top:72px;font-size:30px;letter-spacing:-1.5px;color:var(--encre)">Soly</p><div class="dot" style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:var(--soleil)"></div><p class="t sb" style="left:96px;top:154px;font-size:66px;letter-spacing:-1.98px;color:var(--encre)">Un compte qui donne le sourire.</p><div class="b" style="left:96px;top:284px;width:1728px;height:724px;"><div class="b" style="left:0px;top:0px;width:300px;height:724px;background:var(--encre);border-radius:42px;"><div class="b" style="left:10px;top:10px;width:280px;height:704px;background:var(--aube);border-radius:34px;overflow:hidden;"><div class="dot" style="left:20px;top:60px;width:76px;height:76px;background:var(--creme)"></div><p class="t sb" style="left:28px;top:76px;font-size:22px;letter-spacing:-1.1px;color:var(--encre)">Soly</p><div class="dot" style="left:72.44px;top:94px;width:4px;height:4px;background:var(--soleil)"></div><p class="t sb" style="left:20px;top:150px;font-size:18px;color:var(--encre)">soly.famille</p><p class="t at" style="left:20px;top:178px;font-size:14px;color:var(--cafe);white-space:normal;width:240px">Un rayon de famille, chaque jour.</p><div class="b" style="left:20px;top:224px;width:240px;height:40px;background:var(--encre);border-radius:20px;"><p class="t lx" style="left:0px;top:10px;font-weight:500;font-size:14px;color:var(--aube);width:240px;text-align:center">Suivre</p></div><div class="b grad" style="left:5px;top:290px;width:86px;height:86px;border-radius:10px;"></div><div class="b" style="left:97px;top:290px;width:86px;height:86px;background:var(--creme);border-radius:10px;"><div class="dot" style="left:31px;top:31px;width:24px;height:24px;background:var(--soleil)"></div></div><div class="b" style="left:189px;top:290px;width:86px;height:86px;background:var(--encre);border-radius:10px;"><p class="t sb" style="left:18px;top:22px;font-size:26px;letter-spacing:-1.3px;color:var(--aube)">Soly</p><div class="dot" style="left:70.52px;top:44px;width:4px;height:4px;background:var(--soleil)"></div></div><div class="b" style="left:5px;top:382px;width:86px;height:86px;border-radius:10px;background:var(--peche)"></div><div class="b" style="left:97px;top:382px;width:86px;height:86px;border-radius:10px;background:var(--lilas)"></div><div class="b grad" style="left:189px;top:382px;width:86px;height:86px;border-radius:10px;"></div><div class="b" style="left:5px;top:474px;width:86px;height:86px;background:var(--creme);border-radius:10px;"><div class="dot" style="left:31px;top:31px;width:24px;height:24px;background:var(--soleil)"></div></div><div class="b grad" style="left:97px;top:474px;width:86px;height:86px;border-radius:10px;"></div><div class="b" style="left:189px;top:474px;width:86px;height:86px;border-radius:10px;background:var(--peche)"></div><div class="dot" style="left:28px;top:650px;width:16px;height:16px;background:var(--ligne)"></div><div class="dot" style="left:82px;top:650px;width:16px;height:16px;background:var(--ligne)"></div><div class="dot" style="left:136px;top:650px;width:16px;height:16px;background:var(--ligne)"></div><div class="dot" style="left:190px;top:650px;width:16px;height:16px;background:var(--ligne)"></div><div class="dot" style="left:244px;top:650px;width:16px;height:16px;background:var(--ligne)"></div></div><div class="b" style="left:110px;top:22px;width:80px;height:22px;background:var(--encre);border-radius:11px;"></div></div><div class="b grad" style="left:332px;top:0px;width:440px;height:440px;border-radius:32px;"><div class="sym" style="left:12.78px;top:35.04px;width:26.6px;height:26.6px;border-radius:8.185px;--q:12.533px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:14.065px;top:0px;background:var(--encre)"></i><i style="left:0px;top:14.065px;background:var(--encre)"></i><i style="left:14.065px;top:14.065px;background:var(--soleil)"></i></div><p class="t sb" style="left:47.22px;top:30px;font-size:28px;letter-spacing:-1.4px;color:var(--encre)">Soly</p><div class="dot" style="left:103.78px;top:53px;width:5px;height:5px;background:var(--soleil)"></div><p class="t sb" style="left:30px;top:250px;font-size:44px;letter-spacing:-1.32px;color:var(--encre);white-space:normal;width:380px">Un rayon de famille.</p><p class="t at" style="left:30px;top:370px;font-size:20px;color:var(--encre)">Camille a envoyé un signe</p></div><div class="b" style="left:804px;top:0px;width:440px;height:440px;background:var(--creme);border-radius:32px;"><div class="dot" style="left:30px;top:40px;width:40px;height:40px;background:var(--soleil)"></div><p class="t sb" style="left:30px;top:130px;font-size:40px;letter-spacing:-1.2px;color:var(--encre);white-space:normal;width:380px">Mamie a vu votre signe à 14 h 12.</p><div class="sym" style="left:12.78px;top:377.04px;width:26.6px;height:26.6px;border-radius:8.185px;--q:12.533px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:14.065px;top:0px;background:var(--encre)"></i><i style="left:0px;top:14.065px;background:var(--encre)"></i><i style="left:14.065px;top:14.065px;background:var(--soleil)"></i></div><p class="t sb" style="left:47.22px;top:372px;font-size:28px;letter-spacing:-1.4px;color:var(--encre)">Soly</p><div class="dot" style="left:103.78px;top:395px;width:5px;height:5px;background:var(--soleil)"></div></div><div class="b" style="left:332px;top:470px;width:912px;height:254px;background:var(--aube);border:2px solid var(--ligne);border-radius:32px;"><p class="t tag" style="left:34px;top:34px;font-size:13px;letter-spacing:1.3px">LÉGENDE</p><p class="t at" style="left:34px;top:69px;font-size:26px;line-height:1.3;color:var(--encre);white-space:normal;width:840px">Aujourd’hui, un petit signe a voyagé jusqu’au salon. Pas d’appel, pas de pression : juste un rayon de famille.</p><p class="t at" style="left:34px;top:188px;font-size:20px;color:var(--cafe);white-space:pre">#Soly&nbsp; #RayonDeFamille&nbsp; #GénérationsConnectées</p></div><div class="b" style="left:1321px;top:0px;width:407px;height:724px;border-radius:32px;overflow:hidden;background:linear-gradient(160.04734880623647deg,rgb(214,198,245) 0%,rgb(255,201,163) 38.136%,rgb(255,231,168) 84.746%);"><div class="b" style="left:33px;top:28px;width:341px;height:4px;background:var(--aube);border-radius:2px;"></div><div class="sym" style="left:17.01px;top:56.93px;width:24.7px;height:24.7px;border-radius:7.601px;--q:11.638px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:13.061px;top:0px;background:var(--encre)"></i><i style="left:0px;top:13.061px;background:var(--encre)"></i><i style="left:13.061px;top:13.061px;background:var(--soleil)"></i></div><p class="t sb" style="left:48.99px;top:52px;font-size:26px;letter-spacing:-1.3px;color:var(--encre)">Soly</p><div class="dot" style="left:101.51px;top:74px;width:4px;height:4px;background:var(--soleil)"></div><p class="t sb" style="left:33px;top:260px;font-size:46px;letter-spacing:-1.38px;color:var(--encre);white-space:normal;width:340px">Ce matin, le cadre s’est allumé.</p><div class="b" style="left:33px;top:590px;width:240px;height:56px;background:var(--aube);border-radius:28px;"><p class="t sb" style="left:28px;top:15px;font-size:20px;color:var(--encre)">Voir le cadre</p></div></div></div>
+</section>
+
+<section class="slide" data-s="15" data-title="TikTok">
+<style>
+.slide[data-s="15"] *{box-sizing:border-box;margin:0;padding:0}
+.slide[data-s="15"] .t,.slide[data-s="15"] .sym,.slide[data-s="15"] .dot,.slide[data-s="15"] .b{position:absolute}
+.slide[data-s="15"] .sym{overflow:hidden}
+.slide[data-s="15"] .sym i{position:absolute;width:var(--q);height:var(--q);display:block}
+.slide[data-s="15"] .dot{border-radius:50%}
+.slide[data-s="15"] .t{white-space:nowrap;line-height:normal;font-style:normal}
+.slide[data-s="15"] .lx{font-family:var(--titre)}
+.slide[data-s="15"] .at{font-family:var(--texte)}
+.slide[data-s="15"] .r4{font-weight:400;font-size:14px;letter-spacing:1.4px;color:var(--cafe);font-family:var(--titre)}
+.slide[data-s="15"] .sb{font-family:var(--titre);font-weight:600}
+.slide[data-s="15"] .tag{font-family:var(--titre);font-weight:400;font-size:12px;letter-spacing:1.2px;color:var(--cafe)}
+.slide[data-s="15"] .grad{background:linear-gradient(168.4653793975612deg,rgb(214,198,245) 0%,rgb(255,201,163) 38.136%,rgb(255,231,168) 84.746%)}
+</style>
+<p class="t r4" style="left:96px;top:82px;">11 · TIKTOK</p><p class="t r4" style="left:1655.1px;top:82px;letter-spacing:1.4px">15 / 24</p><div class="sym" style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.77px;--q:13.428px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:15.07px;top:0px;background:var(--encre)"></i><i style="left:0px;top:15.07px;background:var(--encre)"></i><i style="left:15.07px;top:15.07px;background:var(--soleil)"></i></div><p class="t sb" style="left:1758px;top:72px;font-size:30px;letter-spacing:-1.5px;color:var(--encre)">Soly</p><div class="dot" style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:var(--soleil)"></div><p class="t sb" style="left:96px;top:154px;font-size:66px;letter-spacing:-1.98px;color:var(--encre)">Quinze secondes, un seul message.</p><div class="b" style="left:96px;top:284px;width:1728px;height:724px;"><div class="b" style="left:0px;top:0px;width:407px;height:724px;border-radius:32px;overflow:hidden;background:linear-gradient(160.04734880623647deg,rgb(214,198,245) 0%,rgb(255,201,163) 38.136%,rgb(255,231,168) 84.746%);"><p class="t at" style="left:0px;top:32px;font-weight:700;font-size:18px;color:var(--encre);white-space:pre;width:407px;text-align:center">Abonnements&nbsp;&nbsp;&nbsp; Pour toi</p><p class="t sb" style="left:33px;top:190px;font-size:48px;letter-spacing:-1.44px;color:var(--encre);white-space:normal;width:330px">POV : le cadre de Mamie s’allume.</p><div class="dot" style="left:335px;top:380px;width:52px;height:52px;background:var(--aube)"></div><div class="dot" style="left:335px;top:452px;width:52px;height:52px;background:var(--aube)"></div><div class="dot" style="left:335px;top:524px;width:52px;height:52px;background:var(--aube)"></div><div class="dot" style="left:335px;top:596px;width:52px;height:52px;background:var(--aube)"></div><p class="t sb" style="left:33px;top:610px;font-size:20px;color:var(--encre)">@soly.famille</p><p class="t at" style="left:33px;top:646px;font-size:18px;color:var(--encre)">Le cadre qui rapproche. #Soly</p></div><div class="b" style="left:440px;top:0px;width:407px;height:724px;border-radius:32px;overflow:hidden;background:var(--creme);"><p class="t at" style="left:0px;top:32px;font-weight:700;font-size:18px;color:var(--encre);white-space:pre;width:407px;text-align:center">Abonnements&nbsp;&nbsp;&nbsp; Pour toi</p><p class="t sb" style="left:33px;top:190px;font-size:48px;letter-spacing:-1.44px;color:var(--encre);white-space:normal;width:330px">Une photo arrive. Elle sourit.</p><div class="dot" style="left:335px;top:380px;width:52px;height:52px;background:var(--aube)"></div><div class="dot" style="left:335px;top:452px;width:52px;height:52px;background:var(--aube)"></div><div class="dot" style="left:335px;top:524px;width:52px;height:52px;background:var(--aube)"></div><div class="dot" style="left:335px;top:596px;width:52px;height:52px;background:var(--aube)"></div><p class="t sb" style="left:33px;top:610px;font-size:20px;color:var(--encre)">@soly.famille</p><p class="t at" style="left:33px;top:646px;font-size:18px;color:var(--encre)">Le cadre qui rapproche. #Soly</p></div><div class="b" style="left:880px;top:0px;width:407px;height:724px;border-radius:32px;overflow:hidden;background:var(--encre);"><p class="t at" style="left:0px;top:32px;font-weight:700;font-size:18px;color:var(--aube);white-space:pre;width:407px;text-align:center">Abonnements&nbsp;&nbsp;&nbsp; Pour toi</p><p class="t sb" style="left:33px;top:190px;font-size:48px;letter-spacing:-1.44px;color:var(--aube);white-space:normal;width:330px">Prévenu seulement si besoin.</p><div class="dot" style="left:33px;top:150px;width:28px;height:28px;background:var(--soleil)"></div><div class="dot" style="left:335px;top:380px;width:52px;height:52px;background:var(--cafe)"></div><div class="dot" style="left:335px;top:452px;width:52px;height:52px;background:var(--cafe)"></div><div class="dot" style="left:335px;top:524px;width:52px;height:52px;background:var(--cafe)"></div><div class="dot" style="left:335px;top:596px;width:52px;height:52px;background:var(--cafe)"></div><p class="t sb" style="left:33px;top:610px;font-size:20px;color:var(--aube)">@soly.famille</p><p class="t at" style="left:33px;top:646px;font-size:18px;color:var(--aube)">Le cadre qui rapproche. #Soly</p></div><p class="t tag" style="left:1320px;top:0px;font-size:13px;letter-spacing:1.3px">FORMAT</p><p class="t sb" style="left:1320px;top:30px;font-size:40px;letter-spacing:-1.2px;color:var(--encre);white-space:normal;width:408px">Un hook, un geste, le logo.</p><div class="b" style="left:1320px;top:230px;width:408px;height:2px;background:var(--ligne);"></div><p class="t r4" style="left:1320px;top:254px;letter-spacing:0">01</p><p class="t at" style="left:1368px;top:250px;font-size:24px;color:var(--encre);white-space:normal;width:360px">Hook en 2 secondes : une phrase de famille</p><div class="b" style="left:1320px;top:342px;width:408px;height:2px;background:var(--ligne);"></div><p class="t r4" style="left:1320px;top:366px;letter-spacing:0">02</p><p class="t at" style="left:1368px;top:362px;font-size:24px;color:var(--encre);white-space:normal;width:360px">Sous-titres grands, pas de voix off</p><div class="b" style="left:1320px;top:454px;width:408px;height:2px;background:var(--ligne);"></div><p class="t r4" style="left:1320px;top:478px;letter-spacing:0">03</p><p class="t at" style="left:1368px;top:474px;font-size:24px;color:var(--encre);white-space:normal;width:360px">Un seul geste montré par vidéo</p><div class="b" style="left:1320px;top:566px;width:408px;height:2px;background:var(--ligne);"></div><p class="t r4" style="left:1320px;top:590px;letter-spacing:0">04</p><p class="t at" style="left:1368px;top:586px;font-size:24px;color:var(--encre);white-space:normal;width:360px">Fin de plan : Soly. sur fond aube</p></div>
+</section>
+
+<section class="slide" data-s="16" data-title="Sacs">
+<style>
+.slide[data-s="16"] *{box-sizing:border-box;margin:0;padding:0}
+.slide[data-s="16"] .t,.slide[data-s="16"] .sym,.slide[data-s="16"] .dot,.slide[data-s="16"] .b{position:absolute}
+.slide[data-s="16"] .sym{overflow:hidden}
+.slide[data-s="16"] .sym i{position:absolute;width:var(--q);height:var(--q);display:block}
+.slide[data-s="16"] .dot{border-radius:50%}
+.slide[data-s="16"] .t{white-space:nowrap;line-height:normal;font-style:normal}
+.slide[data-s="16"] .lx{font-family:var(--titre)}
+.slide[data-s="16"] .at{font-family:var(--texte)}
+.slide[data-s="16"] .r4{font-weight:400;font-size:14px;letter-spacing:1.4px;color:var(--cafe);font-family:var(--titre)}
+.slide[data-s="16"] .sb{font-family:var(--titre);font-weight:600}
+.slide[data-s="16"] .tag{font-family:var(--titre);font-weight:400;font-size:12px;letter-spacing:1.2px;color:var(--cafe)}
+.slide[data-s="16"] .grad{background:linear-gradient(168.4653793975612deg,rgb(214,198,245) 0%,rgb(255,201,163) 38.136%,rgb(255,231,168) 84.746%)}
+</style>
+<p class="t r4" style="left:96px;top:82px;">12 · SACS</p><p class="t r4" style="left:1655.1px;top:82px;letter-spacing:0.7px">16 / 24</p><div class="sym" style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.77px;--q:13.428px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:15.07px;top:0px;background:var(--encre)"></i><i style="left:0px;top:15.07px;background:var(--encre)"></i><i style="left:15.07px;top:15.07px;background:var(--soleil)"></i></div><p class="t sb" style="left:1758px;top:72px;font-size:30px;letter-spacing:-1.5px;color:var(--encre)">Soly</p><div class="dot" style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:var(--soleil)"></div><p class="t sb" style="left:96px;top:154px;font-size:66px;letter-spacing:-1.98px;color:var(--encre)">Un sac qu’on a plaisir à porter.</p><div class="b" style="left:96px;top:284px;width:1728px;height:724px;"><div class="b" style="left:0px;top:0px;width:520px;height:724px;background:var(--creme);border-radius:32px;overflow:hidden;"><div class="b" style="left:160px;top:56px;width:200px;height:260px;border:14px solid var(--encre);border-radius:100px;"></div><div class="b" style="left:60px;top:190px;width:400px;height:470px;background:var(--encre);border-radius:18px;"><div class="sym" style="left:35.84px;top:187.28px;width:91.2px;height:91.2px;border-radius:28.064px;--q:42.97px"><i style="left:0px;top:0px;background:var(--aube)"></i><i style="left:48.224px;top:0px;background:var(--aube)"></i><i style="left:0px;top:48.224px;background:var(--aube)"></i><i style="left:48.224px;top:48.224px;background:var(--soleil)"></i></div><p class="t sb" style="left:153.92px;top:170px;font-size:96px;letter-spacing:-4.8px;color:var(--aube)">Soly</p><div class="dot" style="left:347.84px;top:249.68px;width:16.32px;height:16.32px;background:#FFD36E"></div><p class="t lx" style="left:0px;top:300px;font-weight:400;font-size:18px;color:var(--peche);white-space:normal;width:400px;text-align:center">Le cadre qui rapproche.</p></div><p class="t tag" style="left:32px;top:684px;">ENCRE</p></div><div class="b" style="left:604px;top:0px;width:520px;height:724px;background:var(--creme);border-radius:32px;overflow:hidden;"><div class="b" style="left:160px;top:56px;width:200px;height:260px;border:14px solid var(--peche);border-radius:100px;"></div><div class="b" style="left:60px;top:190px;width:400px;height:470px;background:var(--peche);border-radius:18px;"><div class="sym" style="left:35.84px;top:187.28px;width:91.2px;height:91.2px;border-radius:28.064px;--q:42.97px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:48.224px;top:0px;background:var(--encre)"></i><i style="left:0px;top:48.224px;background:var(--encre)"></i><i style="left:48.224px;top:48.224px;background:var(--soleil)"></i></div><p class="t sb" style="left:153.92px;top:170px;font-size:96px;letter-spacing:-4.8px;color:var(--encre)">Soly</p><div class="dot" style="left:347.84px;top:249.68px;width:16.32px;height:16.32px;background:var(--encre)"></div><p class="t lx" style="left:0px;top:300px;font-weight:400;font-size:18px;color:var(--encre);white-space:normal;width:400px;text-align:center">Le cadre qui rapproche.</p></div><p class="t tag" style="left:32px;top:684px;">PÊCHE</p></div><div class="b" style="left:1208px;top:0px;width:520px;height:724px;background:var(--creme);border-radius:32px;overflow:hidden;"><div class="b" style="left:160px;top:56px;width:200px;height:260px;border:14px solid var(--cafe);border-radius:100px;"></div><div class="b" style="left:60px;top:190px;width:400px;height:470px;background:var(--aube);border-radius:18px;border:2px solid var(--ligne);"><div class="b" style="left:-2px;top:-2px;width:400px;height:470px;"><div class="sym" style="left:35.84px;top:187.28px;width:91.2px;height:91.2px;border-radius:28.064px;--q:42.97px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:48.224px;top:0px;background:var(--encre)"></i><i style="left:0px;top:48.224px;background:var(--encre)"></i><i style="left:48.224px;top:48.224px;background:var(--soleil)"></i></div><p class="t sb" style="left:153.92px;top:170px;font-size:96px;letter-spacing:-4.8px;color:var(--encre)">Soly</p><div class="dot" style="left:347.84px;top:249.68px;width:16.32px;height:16.32px;background:#F2A900"></div><p class="t lx" style="left:0px;top:300px;font-weight:400;font-size:18px;color:var(--cafe);white-space:normal;width:400px;text-align:center">Le cadre qui rapproche.</p></div></div><p class="t tag" style="left:32px;top:684px;">AUBE</p></div></div>
+</section>
+
+<section class="slide" data-s="17" data-title="Coffret">
+<style>
+.slide[data-s="17"] *{box-sizing:border-box;margin:0;padding:0}
+.slide[data-s="17"] .t,.slide[data-s="17"] .sym,.slide[data-s="17"] .dot,.slide[data-s="17"] .b{position:absolute}
+.slide[data-s="17"] .sym{overflow:hidden}
+.slide[data-s="17"] .sym i{position:absolute;width:var(--q);height:var(--q);display:block}
+.slide[data-s="17"] .dot{border-radius:50%}
+.slide[data-s="17"] .t{white-space:nowrap;line-height:normal;font-style:normal}
+.slide[data-s="17"] .lx{font-family:var(--titre)}
+.slide[data-s="17"] .at{font-family:var(--texte)}
+.slide[data-s="17"] .r4{font-weight:400;font-size:14px;letter-spacing:1.4px;color:var(--cafe);font-family:var(--titre)}
+.slide[data-s="17"] .sb{font-family:var(--titre);font-weight:600}
+.slide[data-s="17"] .tag{font-family:var(--titre);font-weight:400;font-size:12px;letter-spacing:1.2px;color:var(--cafe)}
+.slide[data-s="17"] .grad{background:linear-gradient(168.4653793975612deg,rgb(214,198,245) 0%,rgb(255,201,163) 38.136%,rgb(255,231,168) 84.746%)}
+</style>
+<p class="t r4" style="left:96px;top:82px;">13 · BOÎTE DU CADRE</p><p class="t r4" style="left:1655.1px;top:82px;letter-spacing:0.7px">17 / 24</p><div class="sym" style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.77px;--q:13.428px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:15.07px;top:0px;background:var(--encre)"></i><i style="left:0px;top:15.07px;background:var(--encre)"></i><i style="left:15.07px;top:15.07px;background:var(--soleil)"></i></div><p class="t sb" style="left:1758px;top:72px;font-size:30px;letter-spacing:-1.5px;color:var(--encre)">Soly</p><div class="dot" style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:var(--soleil)"></div><p class="t sb" style="left:96px;top:154px;font-size:66px;letter-spacing:-1.98px;color:var(--encre)">Ouvrir la boîte, c’est déjà un cadeau.</p><div class="b" style="left:96px;top:284px;width:1728px;height:724px;"><div class="b" style="left:0px;top:0px;width:840px;height:724px;background:var(--creme);border-radius:32px;overflow:hidden;"><div class="b" style="left:100px;top:90px;width:640px;height:110px;background:var(--encre);border-radius:20px;"></div><div class="b" style="left:110px;top:200px;width:620px;height:420px;background:linear-gradient(180deg,#EDEDED 0%,#BDBDBD 100%);border-radius:20px;"><div class="sym" style="left:73.9px;top:95.2px;width:133px;height:133px;border-radius:40.927px;--q:62.664px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:70.326px;top:0px;background:var(--encre)"></i><i style="left:0px;top:70.326px;background:var(--encre)"></i><i style="left:70.326px;top:70.326px;background:var(--soleil)"></i></div><p class="t sb" style="left:246.1px;top:70px;font-size:140px;letter-spacing:-7px;color:var(--encre)">Soly</p><div class="dot" style="left:527.9px;top:186.2px;width:23.8px;height:23.8px;background:var(--soleil)"></div><p class="t lx" style="left:60px;top:290px;font-weight:400;font-size:20px;color:var(--encre)">Cadre mural + application familiale</p><p class="t lx" style="left:60px;top:330px;font-weight:400;font-size:16px;color:var(--encre)">Un rayon de famille, chaque jour.</p></div><p class="t tag" style="left:32px;top:684px;">FACE AVANT</p></div><div class="b" style="left:888px;top:0px;width:840px;height:724px;background:var(--creme);border-radius:32px;overflow:hidden;"><div class="b" style="left:70px;top:70px;width:700px;height:520px;background:var(--encre);border-radius:24px;"></div><div class="b" style="left:90px;top:90px;width:660px;height:480px;background:var(--aube);border-radius:14px;"></div><div class="b" style="left:120px;top:150px;width:330px;height:330px;background:var(--encre);border-radius:30px;"><div class="b" style="left:22px;top:22px;width:286px;height:286px;background:var(--aube);border-radius:18px;"><div class="dot" style="left:113px;top:85px;width:60px;height:60px;background:var(--soleil)"></div><p class="t sb" style="left:0px;top:175px;font-size:34px;letter-spacing:-1.02px;color:var(--encre);width:286px;text-align:center">Bonjour.</p></div></div><div class="b" style="left:480px;top:150px;width:240px;height:330px;background:var(--creme);border:2px solid var(--ligne);border-radius:18px;"><div class="sym" style="left:52px;top:31.09px;width:36.1px;height:36.1px;border-radius:11.109px;--q:17.009px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:19.089px;top:0px;background:var(--encre)"></i><i style="left:0px;top:19.089px;background:var(--encre)"></i><i style="left:19.089px;top:19.089px;background:var(--soleil)"></i></div><p class="t sb" style="left:98.74px;top:24px;font-size:38px;letter-spacing:-1.9px;color:var(--encre)">Soly</p><div class="dot" style="left:175.5px;top:55.54px;width:6.46px;height:6.46px;background:var(--soleil)"></div><p class="t sb" style="left:22px;top:98px;font-size:26px;line-height:32px;letter-spacing:-.52px;color:var(--encre);white-space:normal;width:190px">Bienvenue chez vous.</p><p class="t lx" style="left:22px;top:228px;font-weight:400;font-size:16px;color:var(--cafe);white-space:normal;width:190px">Branchez, posez : c’est prêt.</p></div><p class="t lx" style="left:70px;top:620px;font-weight:400;font-size:18px;color:var(--cafe);white-space:normal;width:700px">Dans la boîte : le cadre, le câble, le guide d’une page.</p><p class="t tag" style="left:32px;top:684px;">BOÎTE OUVERTE</p></div></div>
+</section>
+
+<section class="slide" data-s="18" data-title="Icône">
+<style>
+.slide[data-s="18"] *{box-sizing:border-box;margin:0;padding:0}
+.slide[data-s="18"] .t,.slide[data-s="18"] .sym,.slide[data-s="18"] .dot,.slide[data-s="18"] .b{position:absolute}
+.slide[data-s="18"] .sym{overflow:hidden}
+.slide[data-s="18"] .sym i{position:absolute;width:var(--q);height:var(--q);display:block}
+.slide[data-s="18"] .dot{border-radius:50%}
+.slide[data-s="18"] .t{white-space:nowrap;line-height:normal;font-style:normal}
+.slide[data-s="18"] .lx{font-family:var(--titre)}
+.slide[data-s="18"] .at{font-family:var(--texte)}
+.slide[data-s="18"] .r4{font-weight:400;font-size:14px;letter-spacing:1.4px;color:var(--cafe);font-family:var(--titre)}
+.slide[data-s="18"] .sb{font-family:var(--titre);font-weight:600}
+.slide[data-s="18"] .tag{font-family:var(--titre);font-weight:400;font-size:12px;letter-spacing:1.2px;color:var(--cafe)}
+.slide[data-s="18"] .grad{background:linear-gradient(168.4653793975612deg,rgb(214,198,245) 0%,rgb(255,201,163) 38.136%,rgb(255,231,168) 84.746%)}
+</style>
+<p class="t r4" style="left:96px;top:82px;">14 · ICÔNE D’APP</p><p class="t r4" style="left:1655.1px;top:82px;letter-spacing:0.7px">18 / 24</p><div class="sym" style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.77px;--q:13.428px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:15.07px;top:0px;background:var(--encre)"></i><i style="left:0px;top:15.07px;background:var(--encre)"></i><i style="left:15.07px;top:15.07px;background:var(--soleil)"></i></div><p class="t sb" style="left:1758px;top:72px;font-size:30px;letter-spacing:-1.5px;color:var(--encre)">Soly</p><div class="dot" style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:var(--soleil)"></div><p class="t sb" style="left:96px;top:154px;font-size:66px;letter-spacing:-1.98px;color:var(--encre)">Une icône qu’on reconnaît.</p><div class="b" style="left:96px;top:284px;width:1728px;height:724px;"><div class="b" style="left:0px;top:0px;width:960px;height:724px;background:var(--creme);border-radius:32px;overflow:hidden;"><div class="b" style="left:60px;top:70px;width:260px;height:260px;border-radius:60.008px;background:var(--aube);border:2px solid var(--ligne);"><div class="sym" style="left:55.2px;top:55.2px;width:145.6px;height:145.6px;border-radius:44.804px;--q:68.601px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:76.989px;top:0px;background:var(--encre)"></i><i style="left:0px;top:76.989px;background:var(--encre)"></i><i style="left:76.989px;top:76.989px;background:var(--soleil)"></i></div></div><div class="b" style="left:360px;top:70px;width:260px;height:260px;border-radius:60.008px;background:var(--encre);"><div class="sym" style="left:57.2px;top:57.2px;width:145.6px;height:145.6px;border-radius:44.804px;--q:68.601px"><i style="left:0px;top:0px;background:var(--aube)"></i><i style="left:76.989px;top:0px;background:var(--aube)"></i><i style="left:0px;top:76.989px;background:var(--aube)"></i><i style="left:76.989px;top:76.989px;background:var(--soleil)"></i></div></div><div class="b" style="left:660px;top:70px;width:260px;height:260px;border-radius:60.008px;background:linear-gradient(168.4653793975612deg,rgb(214,198,245) 0%,rgb(255,201,163) 38.136%,rgb(255,231,168) 84.746%);"><div class="sym" style="left:57.2px;top:57.2px;width:145.6px;height:145.6px;border-radius:44.804px;--q:68.601px"><i style="left:0px;top:0px;background:var(--encre)"></i><i style="left:76.989px;top:0px;background:var(--encre)"></i><i style="left:0px;top:76.989px;background:var(--encre)"></i><i style="left:76.989px;top:76.989px;background:var(--aube)"></i></div></div><p class="t tag" style="left:60px;top:350px;">AUBE</p><p class="t tag" style="left:360px;top:350px;">ENCRE</p><p class="t tag" style="left:660px;top:350px;">DÉGRADÉ</p><p class="t tag" style="left:60px;top:440px;">TAILLES</p><div class="b" style="left:60px;top:480px;width:180px;height:180px;border-radius:41.544px;background:var(--encre);"><div class="sym" style="left:39.6px;top:39.6px;width:100.8px;height:100.8px;border-radius:31.018px;--q:47.493px"><i style="left:0px;top:0px;background:var(--aube)"></i><i style="left:53.3px;top:0px;background:var(--aube)"></i><i style="left:0px;top:53.3px;background:var(--aube)"></i><i style="left:53.3px;top:53.3px;background:var(--soleil)"></i></div></div><div class="b" style="left:280px;top:540px;width:120px;height:120px;border-radius:27.696px;background:var(--encre);"><div class="sym" style="left:26.4px;top:26.4px;width:67.2px;height:67.2px;border-radius:20.679px;--q:31.662px"><i style="left:0px;top:0px;background:var(--aube)"></i><i style="left:35.533px;top:0px;background:var(--aube)"></i><i style="left:0px;top:35.533px;background:var(--aube)"></i><i style="left:35.533px;top:35.533px;background:var(--soleil)"></i></div></div><div class="b" style="left:450px;top:580px;width:80px;height:80px;border-radius:18.464px;background:var(--encre);"><div class="sym" style="left:17.6px;top:17.6px;width:44.8px;height:44.8px;border-radius:13.786px;--q:21.108px"><i style="left:0px;top:0px;background:var(--aube)"></i><i style="left:23.689px;top:0px;background:var(--aube)"></i><i style="left:0px;top:23.689px;background:var(--aube)"></i><i style="left:23.689px;top:23.689px;background:var(--soleil)"></i></div></div><div class="b" style="left:570px;top:604px;width:56px;height:56px;border-radius:12.925px;background:var(--encre);"><div class="sym" style="left:12.32px;top:12.32px;width:31.36px;height:31.36px;border-radius:9.65px;--q:14.776px"><i style="left:0px;top:0px;background:var(--aube)"></i><i style="left:16.582px;top:0px;background:var(--aube)"></i><i style="left:0px;top:16.582px;background:var(--aube)"></i><i style="left:16.582px;top:16.582px;background:var(--soleil)"></i></div></div><div class="b" style="left:660px;top:620px;width:40px;height:40px;border-radius:9.232px;background:var(--encre);"><div class="sym" style="left:8.8px;top:8.8px;width:22.4px;height:22.4px;border-radius:6.893px;--q:10.554px"><i style="left:0px;top:0px;background:var(--aube)"></i><i style="left:11.844px;top:0px;background:var(--aube)"></i><i style="left:0px;top:11.844px;background:var(--aube)"></i><i style="left:11.844px;top:11.844px;background:var(--soleil)"></i></div></div><p class="t lx" style="left:60px;top:680px;font-weight:400;font-size:18px;color:var(--cafe)">Quatre quarts, un soleil. Lisible à 40 px.</p></div><div class="b" style="left:1008px;top:0px;width:720px;height:724px;background:var(--creme);border-radius:32px;overflow:hidden;"><div class="b" style="left:190px;top:32px;width:340px;height:660px;background:var(--encre);border-radius:48px;"><div class="b" style="left:10px;top:10px;width:320px;height:640px;border-radius:39px;overflow:hidden;background:linear-gradient(157.8deg,rgb(214,198,245) 0%,rgb(255,201,163) 38.136%,rgb(255,231,168) 84.746%);"><div class="b" style="left:115px;top:12px;width:90px;height:26px;background:var(--encre);border-radius:13px;"></div><div class="b" style="left:16px;top:56px;width:288px;height:86px;background:var(--aube);border-radius:22px;"><div class="b" style="left:14px;top:16px;width:52px;height:52px;border-radius:12.002px;background:var(--encre);"><div class="sym" style="left:11.44px;top:11.44px;width:29.12px;height:29.12px;border-radius:8.961px;--q:13.72px"><i style="left:0px;top:0px;background:var(--aube)"></i><i style="left:15.398px;top:0px;background:var(--aube)"></i><i style="left:0px;top:15.398px;background:var(--aube)"></i><i style="left:15.398px;top:15.398px;background:var(--soleil)"></i></div></div><p class="t at" style="left:78px;top:16px;font-weight:700;font-size:14px;color:var(--cafe)">Soly</p><p class="t at" style="left:78px;top:38px;font-size:16px;line-height:20px;color:var(--encre);white-space:normal;width:196px">Mamie a vu votre signe à 14 h 12.</p></div><div class="b" style="left:20px;top:230px;width:56px;height:56px;background:var(--aube);border-radius:14px;opacity:.7;"></div><div class="b" style="left:92px;top:230px;width:56px;height:56px;background:var(--creme);border-radius:14px;opacity:.7;"></div><div class="b" style="left:164px;top:230px;width:56px;height:56px;background:var(--aube);border-radius:14px;opacity:.7;"></div><div class="b" style="left:236px;top:230px;width:56px;height:56px;background:var(--creme);border-radius:14px;opacity:.7;"></div><div class="b" style="left:20px;top:330px;width:56px;height:56px;background:var(--creme);border-radius:14px;opacity:.7;"></div><div class="b" style="left:92px;top:330px;width:56px;height:56px;border-radius:12.925px;background:var(--encre);"><div class="sym" style="left:12.32px;top:12.32px;width:31.36px;height:31.36px;border-radius:9.65px;--q:14.776px"><i style="left:0px;top:0px;background:var(--aube)"></i><i style="left:16.582px;top:0px;background:var(--aube)"></i><i style="left:0px;top:16.582px;background:var(--aube)"></i><i style="left:16.582px;top:16.582px;background:var(--soleil)"></i></div></div><div class="b" style="left:164px;top:330px;width:56px;height:56px;background:var(--creme);border-radius:14px;opacity:.7;"></div><div class="b" style="left:236px;top:330px;width:56px;height:56px;background:var(--aube);border-radius:14px;opacity:.7;"></div><p class="t at" style="left:86px;top:392px;font-size:12px;color:var(--encre);width:68px;text-align:center">Soly</p><div class="b" style="left:20px;top:540px;width:296px;height:76px;background:var(--aube);border-radius:24px;opacity:.8;"></div></div></div></div></div>
+</section>
+
+<section class="slide" data-s="19" data-title="Quatre écrans">
+<style>
+.slide[data-s="19"] .a{position:absolute;margin:0;box-sizing:border-box}
+.slide[data-s="19"] .lx{font-family:var(--titre);font-weight:600;line-height:normal}
+.slide[data-s="19"] .lr{font-family:var(--titre);font-weight:400;line-height:normal}
+.slide[data-s="19"] .ar{font-family:var(--texte);font-weight:400;line-height:normal}
+.slide[data-s="19"] .ab{font-family:var(--texte);font-weight:700;line-height:normal}
+</style>
+<p class="a lr" style="left:96px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:1.4px;">15 · APPLICATION</p><p class="a lr" style="left:1655.1px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:0.7px;">19 / 24</p><div class="a " style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.769449999999999px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:0px;top:15.071655px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:15.071655px;width:13.428345px;height:13.428345px;background:#ffd36e;"></div></div><p class="a lx" style="left:1758px;top:72px;font-size:30px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.5px;">Soly</p><div class="a " style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:#ffd36e;border-radius:2.55px;"></div><p class="a lx" style="left:96px;top:154px;font-size:66px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.98px;">Quatre écrans, un seul geste.</p><div class="a " style="left:96px;top:284px;width:380px;height:724px;background:#1f1a17;border-radius:53px;"><div class="a " style="left:10px;top:10px;width:360px;height:704px;background:#fffaf0;border-radius:44px;overflow:hidden;"><div class="a " style="left:135px;top:12px;width:90px;height:26px;background:#1f1a17;border-radius:13px;"></div><p class="a ar" style="left:28px;top:66px;font-size:16px;color:#6a5f55;white-space:nowrap;">Bonjour.</p><p class="a lx" style="left:28px;top:92px;font-size:30px;color:#1f1a17;width:304px;line-height:36px;letter-spacing:-0.9px;">Votre rayon de famille.</p><div class="a " style="left:28px;top:200px;width:304px;height:190px;background:#fff3d9;border-radius:24px;border:2px solid #f0e3c8;"><div class="a " style="left:22px;top:26px;width:14px;height:14px;background:#ffd36e;border-radius:7.0px;"></div><p class="a ab" style="left:46px;top:20px;font-size:19px;color:#1f1a17;white-space:nowrap;">Cadre de Mamie</p><p class="a ar" style="left:22px;top:62px;font-size:17px;color:#6a5f55;width:256px;">Allumé, photo vue à 14 h 12.</p><div class="a " style="left:22px;top:118px;width:256px;height:2px;background:#f0e3c8;"></div><p class="a ar" style="left:22px;top:136px;font-size:16px;color:#6a5f55;white-space:nowrap;">Dernier signe : ce matin</p></div><div class="a " style="left:28px;top:410px;width:304px;height:140px;background:linear-gradient(174.63deg,rgb(214,198,245) 0%,#ffc9a3 38.136%,rgb(255,231,168) 84.746%);border-radius:24px;"><p class="a lx" style="left:24px;top:24px;font-size:22px;color:#1f1a17;width:240px;line-height:28px;letter-spacing:-0.44px;">Un rayon de famille, chaque jour.</p></div><div class="a " style="left:28px;top:618px;width:304px;height:56px;background:#1f1a17;border-radius:28px;"><p class="a lx" style="left:0px;top:15px;font-size:17px;color:#fffaf0;width:304px;text-align:center;">Envoyer un signe</p></div></div></div><div class="a " style="left:545px;top:284px;width:380px;height:724px;background:#1f1a17;border-radius:53px;"><div class="a " style="left:10px;top:10px;width:360px;height:704px;background:#fffaf0;border-radius:44px;overflow:hidden;"><div class="a " style="left:135px;top:12px;width:90px;height:26px;background:#1f1a17;border-radius:13px;"></div><p class="a ar" style="left:28px;top:66px;font-size:16px;color:#6a5f55;white-space:nowrap;">Nouveau</p><p class="a lx" style="left:28px;top:92px;font-size:30px;color:#1f1a17;width:304px;line-height:36px;letter-spacing:-0.9px;">Un petit signe ?</p><div class="a " style="left:28px;top:190px;width:304px;height:68px;background:#fffaf0;border-radius:22px;border:2px solid #1f1a17;"><div class="a " style="left:20px;top:23px;width:18px;height:18px;background:#ffd36e;border-radius:9.0px;"></div><p class="a ab" style="left:54px;top:18px;font-size:20px;color:#1f1a17;white-space:nowrap;">Un bonjour</p></div><div class="a " style="left:28px;top:274px;width:304px;height:68px;background:#fff3d9;border-radius:22px;border:2px solid #f0e3c8;"><div class="a " style="left:20px;top:23px;width:18px;height:18px;background:#ffd36e;border-radius:9.0px;"></div><p class="a ab" style="left:54px;top:18px;font-size:20px;color:#1f1a17;white-space:nowrap;">Une photo</p></div><div class="a " style="left:28px;top:358px;width:304px;height:68px;background:#fff3d9;border-radius:22px;border:2px solid #f0e3c8;"><div class="a " style="left:20px;top:23px;width:18px;height:18px;background:#ffd36e;border-radius:9.0px;"></div><p class="a ab" style="left:54px;top:18px;font-size:20px;color:#1f1a17;white-space:nowrap;">Un bisou</p></div><p class="a ar" style="left:28px;top:463px;font-size:17px;color:#6a5f55;width:304px;line-height:24px;">Le cadre s’allumera doucement. Pas d’appel, pas de pression.</p><div class="a " style="left:28px;top:618px;width:304px;height:56px;background:#1f1a17;border-radius:28px;"><p class="a lx" style="left:0px;top:15px;font-size:17px;color:#fffaf0;width:304px;text-align:center;">Envoyer</p></div></div></div><div class="a " style="left:994px;top:284px;width:380px;height:724px;background:#1f1a17;border-radius:53px;"><div class="a " style="left:10px;top:10px;width:360px;height:704px;background:#fffaf0;border-radius:44px;overflow:hidden;"><div class="a " style="left:135px;top:12px;width:90px;height:26px;background:#1f1a17;border-radius:13px;"></div><p class="a ar" style="left:28px;top:66px;font-size:16px;color:#6a5f55;white-space:nowrap;">Cette semaine</p><p class="a lx" style="left:28px;top:92px;font-size:30px;color:#1f1a17;width:304px;line-height:36px;letter-spacing:-0.9px;">Journal</p><p class="a lr" style="left:28px;top:170px;font-size:12px;color:#6a5f55;white-space:nowrap;letter-spacing:1.2px;">14 H 12</p><p class="a ar" style="left:28px;top:196px;font-size:21px;color:#1f1a17;width:304px;line-height:28px;">Mamie a vu votre signe.</p><div class="a " style="left:28px;top:260px;width:304px;height:2px;background:#f0e3c8;"></div><p class="a lr" style="left:28px;top:284px;font-size:12px;color:#6a5f55;white-space:nowrap;letter-spacing:1.2px;">9 H 05</p><p class="a ar" style="left:28px;top:310px;font-size:21px;color:#1f1a17;width:304px;line-height:28px;">Le cadre s’est allumé.</p><div class="a " style="left:28px;top:374px;width:304px;height:2px;background:#f0e3c8;"></div><p class="a lr" style="left:28px;top:398px;font-size:12px;color:#6a5f55;white-space:nowrap;letter-spacing:1.2px;">HIER</p><p class="a ar" style="left:28px;top:424px;font-size:21px;color:#1f1a17;width:304px;line-height:28px;">Photo envoyée par un proche.</p><div class="a " style="left:28px;top:488px;width:304px;height:2px;background:#f0e3c8;"></div><p class="a lr" style="left:28px;top:512px;font-size:12px;color:#6a5f55;white-space:nowrap;letter-spacing:1.2px;">LUNDI</p><p class="a ar" style="left:28px;top:538px;font-size:21px;color:#1f1a17;width:304px;line-height:28px;">Tout va bien cette semaine.</p><div class="a " style="left:28px;top:602px;width:304px;height:2px;background:#f0e3c8;"></div></div></div><div class="a " style="left:1443px;top:284px;width:380px;height:724px;background:#1f1a17;border-radius:53px;"><div class="a " style="left:10px;top:10px;width:360px;height:704px;background:#fffaf0;border-radius:44px;overflow:hidden;"><div class="a " style="left:135px;top:12px;width:90px;height:26px;background:#1f1a17;border-radius:13px;"></div><p class="a ar" style="left:28px;top:66px;font-size:16px;color:#6a5f55;white-space:nowrap;">Réglages</p><p class="a lx" style="left:28px;top:92px;font-size:30px;color:#1f1a17;width:304px;line-height:36px;letter-spacing:-0.9px;">Vous gardez la main.</p><p class="a ab" style="left:28px;top:210px;font-size:20px;color:#1f1a17;white-space:nowrap;">Alertes</p><p class="a ar" style="left:28px;top:240px;font-size:16px;color:#6a5f55;white-space:nowrap;">Seulement si besoin</p><div class="a " style="left:280px;top:216px;width:52px;height:30px;"><div class="a " style="left:0px;top:0px;width:52px;height:30px;background:#1f1a17;border-radius:15px;"></div><div class="a " style="left:26px;top:4px;width:22px;height:22px;background:#fffaf0;border-radius:11.0px;"></div></div><div class="a " style="left:28px;top:290px;width:304px;height:2px;background:#f0e3c8;"></div><p class="a ab" style="left:28px;top:320px;font-size:20px;color:#1f1a17;white-space:nowrap;">Résumé du soir</p><p class="a ar" style="left:28px;top:350px;font-size:16px;color:#6a5f55;white-space:nowrap;">Un message par jour</p><div class="a " style="left:280px;top:326px;width:52px;height:30px;"><div class="a " style="left:0px;top:0px;width:52px;height:30px;background:#1f1a17;border-radius:15px;"></div><div class="a " style="left:26px;top:4px;width:22px;height:22px;background:#fffaf0;border-radius:11.0px;"></div></div><div class="a " style="left:28px;top:400px;width:304px;height:2px;background:#f0e3c8;"></div><p class="a ab" style="left:28px;top:430px;font-size:20px;color:#1f1a17;white-space:nowrap;">Partager la position</p><p class="a ar" style="left:28px;top:460px;font-size:16px;color:#6a5f55;white-space:nowrap;">Jamais sans accord</p><div class="a " style="left:280px;top:436px;width:52px;height:30px;"><div class="a " style="left:0px;top:0px;width:52px;height:30px;background:#f0e3c8;border-radius:15px;"></div><div class="a " style="left:4px;top:4px;width:22px;height:22px;background:#fffaf0;border-radius:11.0px;"></div></div><div class="a " style="left:28px;top:510px;width:304px;height:2px;background:#f0e3c8;"></div></div></div>
+</section>
+
+<section class="slide" data-s="20" data-title="Au mur">
+<style>
+.slide[data-s="20"] .a{position:absolute;margin:0;box-sizing:border-box}
+.slide[data-s="20"] .lx{font-family:var(--titre);font-weight:600;line-height:normal}
+.slide[data-s="20"] .lr{font-family:var(--titre);font-weight:400;line-height:normal}
+.slide[data-s="20"] .ar{font-family:var(--texte);font-weight:400;line-height:normal}
+.slide[data-s="20"] .ab{font-family:var(--texte);font-weight:700;line-height:normal}
+</style>
+<p class="a lr" style="left:96px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:1.4px;">16 · DANS LE SALON</p><p class="a lr" style="left:1655.1px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:0.7px;">20 / 24</p><div class="a " style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.769449999999999px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:0px;top:15.071655px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:15.071655px;width:13.428345px;height:13.428345px;background:#ffd36e;"></div></div><p class="a lx" style="left:1758px;top:72px;font-size:30px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.5px;">Soly</p><div class="a " style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:#ffd36e;border-radius:2.55px;"></div><p class="a lx" style="left:96px;top:154px;font-size:66px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.98px;">Il trouve sa place au mur.</p><div class="a " style="left:96px;top:284px;width:1728px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:0px;top:560px;width:1728px;height:164px;background:#f0e3c8;"></div><div class="a" style="left:40px;top:-20px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(255,211,110,.35) 0%,rgba(255,211,110,.12) 50%,rgba(255,211,110,0) 100%)"></div><div class="a " style="left:140px;top:100px;width:360px;height:360px;background:#1f1a17;border-radius:28px;"><div class="a " style="left:20px;top:20px;width:320px;height:320px;background:#fffaf0;border-radius:16px;overflow:hidden;"><div class="a " style="left:125px;top:90px;width:70px;height:70px;background:#ffd36e;border-radius:35.0px;"></div><p class="a lx" style="left:0px;top:190px;font-size:40px;color:#1f1a17;width:320px;letter-spacing:-1.2px;text-align:center;">Bonjour.</p></div></div><div class="a " style="left:640px;top:330px;width:760px;height:230px;background:#c9b8f0;border-radius:48px;"></div><div class="a " style="left:610px;top:430px;width:820px;height:150px;background:#c9b8f0;border-radius:40px;"></div><div class="a " style="left:700px;top:360px;width:200px;height:160px;background:#ffc9a3;border-radius:32px;"></div><div class="a " style="left:1130px;top:380px;width:180px;height:140px;background:#fffaf0;border-radius:32px;"></div><div class="a " style="left:660px;top:580px;width:14px;height:50px;background:#1f1a17;border-radius:4px;"></div><div class="a " style="left:1370px;top:580px;width:14px;height:50px;background:#1f1a17;border-radius:4px;"></div><div class="a " style="left:1470px;top:470px;width:190px;height:14px;background:#1f1a17;border-radius:4px;"></div><div class="a " style="left:1490px;top:484px;width:10px;height:130px;background:#1f1a17;border-radius:3px;"></div><div class="a " style="left:1630px;top:484px;width:10px;height:130px;background:#1f1a17;border-radius:3px;"></div><div class="a " style="left:1530px;top:390px;width:70px;height:80px;background:#ffc9a3;border-radius:26px;"></div><div class="a " style="left:520px;top:60px;width:430px;height:150px;background:#fffaf0;border-radius:24px;border:2px solid #f0e3c8;"><p class="a lx" style="left:26px;top:24px;font-size:26px;color:#1f1a17;width:370px;line-height:32px;letter-spacing:-0.52px;">Dans le salon, sans rien changer.</p><p class="a ar" style="left:26px;top:98px;font-size:18px;color:#6a5f55;width:370px;">Il se branche, il s’allume.</p></div><p class="a lr" style="left:32px;top:684px;font-size:12px;color:#6a5f55;white-space:nowrap;letter-spacing:1.2px;">CADRE AU MUR, FACE AU CANAPÉ</p></div>
+</section>
+
+<section class="slide" data-s="21" data-title="Affiche et goodies">
+<style>
+.slide[data-s="21"] .a{position:absolute;margin:0;box-sizing:border-box}
+.slide[data-s="21"] .lx{font-family:var(--titre);font-weight:600;line-height:normal}
+.slide[data-s="21"] .lr{font-family:var(--titre);font-weight:400;line-height:normal}
+.slide[data-s="21"] .ar{font-family:var(--texte);font-weight:400;line-height:normal}
+.slide[data-s="21"] .ab{font-family:var(--texte);font-weight:700;line-height:normal}
+</style>
+<p class="a lr" style="left:96px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:1.4px;">17 · AFFICHE ET GOODIES</p><p class="a lr" style="left:1655.1px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:0.7px;">21 / 24</p><div class="a " style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.769449999999999px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:0px;top:15.071655px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:15.071655px;width:13.428345px;height:13.428345px;background:#ffd36e;"></div></div><p class="a lx" style="left:1758px;top:72px;font-size:30px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.5px;">Soly</p><div class="a " style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:#ffd36e;border-radius:2.55px;"></div><p class="a lx" style="left:96px;top:154px;font-size:66px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.98px;">Un univers, jusque dans les détails.</p><div class="a " style="left:96px;top:284px;width:520px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:90px;top:60px;width:340px;height:480px;background:linear-gradient(163.93deg,rgb(214,198,245) 0%,#ffc9a3 38.136%,rgb(255,231,168) 84.746%);border-radius:8px;"><div class="a " style="left:27.56px;top:42.08px;width:53.2px;height:53.2px;border-radius:16.36964px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:25.066244px;height:25.066244px;background:#1f1a17;"></div><div class="a " style="left:28.133756px;top:0px;width:25.066244px;height:25.066244px;background:#1f1a17;"></div><div class="a " style="left:0px;top:28.133756px;width:25.066244px;height:25.066244px;background:#1f1a17;"></div><div class="a " style="left:28.133756px;top:28.133756px;width:25.066244px;height:25.066244px;background:#ffd36e;"></div></div><p class="a lx" style="left:96.44px;top:32px;font-size:56px;color:#1f1a17;white-space:nowrap;letter-spacing:-2.8px;">Soly</p><div class="a " style="left:209.56px;top:78.48px;width:9.52px;height:9.52px;background:#fffaf0;border-radius:4.76px;"></div><p class="a lx" style="left:32px;top:300px;font-size:42px;color:#1f1a17;width:280px;line-height:46px;letter-spacing:-1.26px;">Un rayon de famille.</p><p class="a ar" style="left:32px;top:420px;font-size:18px;color:#1f1a17;width:280px;">Le cadre qui rapproche.</p></div><p class="a lr" style="left:32px;top:684px;font-size:12px;color:#6a5f55;white-space:nowrap;letter-spacing:1.2px;">AFFICHE</p></div><div class="a " style="left:664px;top:284px;width:560px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:80px;top:70px;width:400px;height:230px;background:#1f1a17;border-radius:18px;"><div class="a " style="left:28.79px;top:37.97px;width:51.3px;height:51.3px;border-radius:15.785009999999998px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:24.171020999999996px;height:24.171020999999996px;background:#fffaf0;"></div><div class="a " style="left:27.128979px;top:0px;width:24.171020999999996px;height:24.171020999999996px;background:#fffaf0;"></div><div class="a " style="left:0px;top:27.128979px;width:24.171020999999996px;height:24.171020999999996px;background:#fffaf0;"></div><div class="a " style="left:27.128979px;top:27.128979px;width:24.171020999999996px;height:24.171020999999996px;background:#ffd36e;"></div></div><p class="a lx" style="left:95.21px;top:28px;font-size:54px;color:#fffaf0;white-space:nowrap;letter-spacing:-2.7px;">Soly</p><div class="a " style="left:204.29px;top:72.82px;width:9.18px;height:9.18px;background:#ffd36e;border-radius:4.59px;"></div><p class="a ar" style="left:32px;top:168px;font-size:20px;color:#ffc9a3;white-space:nowrap;">Un rayon de famille.</p></div><div class="a " style="left:80px;top:330px;width:400px;height:230px;background:#fffaf0;border-radius:18px;border:2px solid #f0e3c8;"><div class="a " style="left:26.79px;top:35.97px;width:51.3px;height:51.3px;border-radius:15.785009999999998px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:24.171020999999996px;height:24.171020999999996px;background:#1f1a17;"></div><div class="a " style="left:27.128979px;top:0px;width:24.171020999999996px;height:24.171020999999996px;background:#1f1a17;"></div><div class="a " style="left:0px;top:27.128979px;width:24.171020999999996px;height:24.171020999999996px;background:#1f1a17;"></div><div class="a " style="left:27.128979px;top:27.128979px;width:24.171020999999996px;height:24.171020999999996px;background:#ffd36e;"></div></div><p class="a lx" style="left:93.21px;top:26px;font-size:54px;color:#1f1a17;white-space:nowrap;letter-spacing:-2.7px;">Soly</p><div class="a " style="left:202.29px;top:70.82px;width:9.18px;height:9.18px;background:#f2a900;border-radius:4.59px;"></div><p class="a ar" style="left:30px;top:166px;font-size:20px;color:#6a5f55;white-space:nowrap;">Le cadre qui rapproche.</p></div><p class="a lr" style="left:32px;top:684px;font-size:12px;color:#6a5f55;white-space:nowrap;letter-spacing:1.2px;">CARTES</p></div><div class="a " style="left:1272px;top:284px;width:552px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:40px;top:60px;width:150px;height:150px;background:#ffd36e;border-radius:75.0px;"></div><p class="a lx" style="left:71.2px;top:110px;font-size:40px;color:#1f1a17;white-space:nowrap;letter-spacing:-2px;">Soly</p><div class="a " style="left:152px;top:143.2px;width:6.8px;height:6.8px;background:#1f1a17;border-radius:3.4px;"></div><div class="a " style="left:206px;top:60px;width:150px;height:150px;background:#1f1a17;border-radius:75.0px;"></div><p class="a lx" style="left:237.2px;top:110px;font-size:40px;color:#fffaf0;white-space:nowrap;letter-spacing:-2px;">Soly</p><div class="a " style="left:318px;top:143.2px;width:6.8px;height:6.8px;background:#ffd36e;border-radius:3.4px;"></div><div class="a " style="left:372px;top:60px;width:150px;height:150px;background:#ffc9a3;border-radius:75.0px;"></div><p class="a lx" style="left:403.2px;top:110px;font-size:40px;color:#1f1a17;white-space:nowrap;letter-spacing:-2px;">Soly</p><div class="a " style="left:484px;top:143.2px;width:6.8px;height:6.8px;background:#1f1a17;border-radius:3.4px;"></div><p class="a lr" style="left:40px;top:224px;font-size:12px;color:#6a5f55;white-space:nowrap;letter-spacing:1.2px;">AUTOCOLLANTS</p><div class="a " style="left:300px;top:390px;width:110px;height:150px;border-radius:55px;border:18px solid #f0e3c8;"></div><div class="a " style="left:130px;top:360px;width:230px;height:230px;background:#fffaf0;border-radius:30px;border:2px solid #f0e3c8;"><div class="a " style="left:3.56px;top:79.52px;width:60.8px;height:60.8px;border-radius:18.708159999999996px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:28.647135999999996px;height:28.647135999999996px;background:#1f1a17;"></div><div class="a " style="left:32.152864px;top:0px;width:28.647135999999996px;height:28.647135999999996px;background:#1f1a17;"></div><div class="a " style="left:0px;top:32.152864px;width:28.647135999999996px;height:28.647135999999996px;background:#1f1a17;"></div><div class="a " style="left:32.152864px;top:32.152864px;width:28.647135999999996px;height:28.647135999999996px;background:#ffd36e;"></div></div><p class="a lx" style="left:82.28px;top:68px;font-size:64px;color:#1f1a17;white-space:nowrap;letter-spacing:-3.2px;">Soly</p><div class="a " style="left:211.56px;top:121.12px;width:10.88px;height:10.88px;background:#f2a900;border-radius:5.44px;"></div></div><p class="a lr" style="left:40px;top:684px;font-size:12px;color:#6a5f55;white-space:nowrap;letter-spacing:1.2px;">MUG</p></div>
+</section>
+
+<section class="slide" data-s="22" data-title="Le cadre">
+<style>
+.slide[data-s="22"] .a{position:absolute;margin:0;box-sizing:border-box}
+.slide[data-s="22"] .lx{font-family:var(--titre);font-weight:600;line-height:normal}
+.slide[data-s="22"] .lr{font-family:var(--titre);font-weight:400;line-height:normal}
+.slide[data-s="22"] .ar{font-family:var(--texte);font-weight:400;line-height:normal}
+.slide[data-s="22"] .ab{font-family:var(--texte);font-weight:700;line-height:normal}
+</style>
+<p class="a lr" style="left:96px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:1.4px;">18 · LE CADRE</p><p class="a lr" style="left:1655.1px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:0.7px;">22 / 24</p><div class="a " style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.769449999999999px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:0px;top:15.071655px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:15.071655px;width:13.428345px;height:13.428345px;background:#ffd36e;"></div></div><p class="a lx" style="left:1758px;top:72px;font-size:30px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.5px;">Soly</p><div class="a " style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:#ffd36e;border-radius:2.55px;"></div><p class="a lx" style="left:96px;top:154px;font-size:66px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.98px;">Le cadre, en un coup d’œil.</p><div class="a " style="left:96px;top:284px;width:1728px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a" style="left:20px;top:-40px;width:780px;height:780px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(255,211,110,.4) 0%,rgba(255,211,110,.14) 50%,rgba(255,211,110,0) 100%)"></div><div class="a " style="left:130px;top:102px;width:520px;height:520px;background:#1f1a17;border-radius:36px;"><div class="a " style="left:31px;top:31px;width:458px;height:458px;background:linear-gradient(168.47deg,rgb(214,198,245) 0%,#ffc9a3 38.136%,rgb(255,231,168) 84.746%);border-radius:18px;overflow:hidden;"><div class="a " style="left:27.48px;top:357.24px;width:403.04px;height:73.28px;background:#fffaf0;border-radius:18.32px;"><p class="a ab" style="left:0px;top:20.61px;font-size:27.48px;color:#1f1a17;width:403.04px;text-align:center;">Un rayon de famille.</p></div></div></div><div class="a " style="left:150px;top:122px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">1</p></div><div class="a " style="left:372px;top:330px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">2</p></div><div class="a " style="left:300px;top:560px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">3</p></div><div class="a " style="left:600px;top:590px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">4</p></div><div class="a " style="left:820px;top:64px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">1</p></div><p class="a lx" style="left:884px;top:60px;font-size:32px;color:#1f1a17;white-space:nowrap;letter-spacing:-0.64px;">Un écran photo</p><p class="a ar" style="left:884px;top:108px;font-size:22px;color:#6a5f55;width:760px;line-height:30px;">Les photos de la famille défilent, comme un cadre qu’on connaît déjà.</p><div class="a " style="left:820px;top:188px;width:830px;height:2px;background:#f0e3c8;"></div><div class="a " style="left:820px;top:222px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">2</p></div><p class="a lx" style="left:884px;top:218px;font-size:32px;color:#1f1a17;white-space:nowrap;letter-spacing:-0.64px;">Un seul geste</p><p class="a ar" style="left:884px;top:266px;font-size:22px;color:#6a5f55;width:760px;line-height:30px;">Toucher le cadre suffit pour faire signe à ses proches.</p><div class="a " style="left:820px;top:346px;width:830px;height:2px;background:#f0e3c8;"></div><div class="a " style="left:820px;top:380px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">3</p></div><p class="a lx" style="left:884px;top:376px;font-size:32px;color:#1f1a17;white-space:nowrap;letter-spacing:-0.64px;">Aucun menu</p><p class="a ar" style="left:884px;top:424px;font-size:22px;color:#6a5f55;width:760px;line-height:30px;">Pas de petit bouton à chercher, pas de lunettes à retrouver.</p><div class="a " style="left:820px;top:504px;width:830px;height:2px;background:#f0e3c8;"></div><div class="a " style="left:820px;top:538px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">4</p></div><p class="a lx" style="left:884px;top:534px;font-size:32px;color:#1f1a17;white-space:nowrap;letter-spacing:-0.64px;">Prêt avec un code</p><p class="a ar" style="left:884px;top:582px;font-size:22px;color:#6a5f55;width:760px;line-height:30px;">On le branche, un code apparaît, la famille l’associe depuis l’appli.</p></div>
+</section>
+
+<section class="slide" data-s="23" data-title="Un geste">
+<style>
+.slide[data-s="23"] .a{position:absolute;margin:0;box-sizing:border-box}
+.slide[data-s="23"] .lx{font-family:var(--titre);font-weight:600;line-height:normal}
+.slide[data-s="23"] .lr{font-family:var(--titre);font-weight:400;line-height:normal}
+.slide[data-s="23"] .ar{font-family:var(--texte);font-weight:400;line-height:normal}
+.slide[data-s="23"] .ab{font-family:var(--texte);font-weight:700;line-height:normal}
+</style>
+<p class="a lr" style="left:96px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:1.4px;">19 · LE GESTE</p><p class="a lr" style="left:1655.1px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:0.7px;">23 / 24</p><div class="a " style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.769449999999999px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:0px;top:15.071655px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:15.071655px;width:13.428345px;height:13.428345px;background:#ffd36e;"></div></div><p class="a lx" style="left:1758px;top:72px;font-size:30px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.5px;">Soly</p><div class="a " style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:#ffd36e;border-radius:2.55px;"></div><p class="a lx" style="left:96px;top:154px;font-size:66px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.98px;">Un geste : on touche.</p><div class="a " style="left:96px;top:284px;width:544px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:36px;top:36px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">1</p></div><p class="a lx" style="left:88px;top:34px;font-size:30px;color:#1f1a17;white-space:nowrap;letter-spacing:-0.6px;">Une photo arrive</p><div class="a " style="left:92px;top:130px;width:360px;height:360px;background:#1f1a17;border-radius:25px;"><div class="a " style="left:22px;top:22px;width:316px;height:316px;background:linear-gradient(168.47deg,rgb(214,198,245) 0%,#ffc9a3 38.136%,rgb(255,231,168) 84.746%);border-radius:13px;overflow:hidden;"><div class="a " style="left:18.96px;top:246.48px;width:278.08px;height:50.56px;background:#fffaf0;border-radius:12.64px;"><p class="a ab" style="left:0px;top:14.22px;font-size:18.96px;color:#1f1a17;width:278.08px;text-align:center;">Un rayon de famille.</p></div></div></div><p class="a ar" style="left:36px;top:560px;font-size:22px;color:#6a5f55;width:470px;line-height:30px;">Un proche l’envoie depuis l’appli. Le cadre la recadre tout seul.</p></div><div class="a " style="left:688px;top:284px;width:544px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:36px;top:36px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">2</p></div><p class="a lx" style="left:88px;top:34px;font-size:30px;color:#1f1a17;white-space:nowrap;letter-spacing:-0.6px;">On touche le cadre</p><div class="a " style="left:92px;top:130px;width:360px;height:360px;background:#1f1a17;border-radius:25px;"><div class="a " style="left:22px;top:22px;width:316px;height:316px;background:#fffaf0;border-radius:13px;overflow:hidden;"><div class="a" style="left:15.8px;top:6.32px;width:284.4px;height:284.4px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(255,211,110,.4) 0%,rgba(255,211,110,.14) 50%,rgba(255,211,110,0) 100%)"></div><div class="a " style="left:123.24px;top:75.84px;width:69.52px;height:69.52px;background:#ffd36e;border-radius:34.76px;"></div><p class="a lx" style="left:0px;top:176.96px;font-size:37.92px;color:#1f1a17;width:316px;letter-spacing:-1.1376px;text-align:center;">Envoyé.</p></div></div><p class="a ar" style="left:36px;top:560px;font-size:22px;color:#6a5f55;width:470px;line-height:30px;">Rien d’autre à faire. Pas de bouton, pas de menu.</p></div><div class="a " style="left:1280px;top:284px;width:544px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:36px;top:36px;width:38px;height:38px;background:#1f1a17;border-radius:19.0px;"><p class="a ab" style="left:0px;top:8px;font-size:17px;color:#fffaf0;width:38px;text-align:center;">3</p></div><p class="a lx" style="left:88px;top:34px;font-size:30px;color:#1f1a17;white-space:nowrap;letter-spacing:-0.6px;">La famille le voit</p><div class="a " style="left:34px;top:150px;width:476px;height:150px;background:#fffaf0;border-radius:28px;border:2px solid #f0e3c8;"><div class="a " style="left:22px;top:26px;width:94px;height:94px;background:#1f1a17;border-radius:22px;"><div class="a " style="left:18px;top:18px;width:58px;height:58px;border-radius:17.8466px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:27.327859999999998px;height:27.327859999999998px;background:#fffaf0;"></div><div class="a " style="left:30.672140000000002px;top:0px;width:27.327859999999998px;height:27.327859999999998px;background:#fffaf0;"></div><div class="a " style="left:0px;top:30.672140000000002px;width:27.327859999999998px;height:27.327859999999998px;background:#fffaf0;"></div><div class="a " style="left:30.672140000000002px;top:30.672140000000002px;width:27.327859999999998px;height:27.327859999999998px;background:#ffd36e;"></div></div></div><p class="a ab" style="left:138px;top:26px;font-size:16px;color:#6a5f55;white-space:nowrap;">Soly</p><p class="a ar" style="left:138px;top:54px;font-size:22px;color:#1f1a17;width:310px;line-height:28px;">Mamie a touché le cadre à 14 h 12.</p></div><div class="a " style="left:34px;top:330px;width:476px;height:150px;background:#fffaf0;border-radius:28px;border:2px solid #f0e3c8;"><div class="a " style="left:34px;top:58px;width:30px;height:30px;background:#ffd36e;border-radius:15.0px;"></div><p class="a ar" style="left:90px;top:46px;font-size:22px;color:#1f1a17;width:350px;line-height:28px;">Tout va bien, le cadre est allumé.</p></div><p class="a ar" style="left:36px;top:560px;font-size:22px;color:#6a5f55;width:470px;line-height:30px;">Un petit signe, sans appel ni message à écrire.</p></div>
+</section>
+
+<section class="slide" data-s="24" data-title="Les états du cadre">
+<style>
+.slide[data-s="24"] .a{position:absolute;margin:0;box-sizing:border-box}
+.slide[data-s="24"] .lx{font-family:var(--titre);font-weight:600;line-height:normal}
+.slide[data-s="24"] .lr{font-family:var(--titre);font-weight:400;line-height:normal}
+.slide[data-s="24"] .ar{font-family:var(--texte);font-weight:400;line-height:normal}
+.slide[data-s="24"] .ab{font-family:var(--texte);font-weight:700;line-height:normal}
+</style>
+<p class="a lr" style="left:96px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:1.4px;">20 · LES ÉTATS DU CADRE</p><p class="a lr" style="left:1655.1px;top:82px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:0.7px;">24 / 24</p><div class="a " style="left:1721.1px;top:77.65px;width:28.5px;height:28.5px;border-radius:8.769449999999999px;overflow:hidden;"><div class="a " style="left:0px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:0px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:0px;top:15.071655px;width:13.428345px;height:13.428345px;background:#1f1a17;"></div><div class="a " style="left:15.071655px;top:15.071655px;width:13.428345px;height:13.428345px;background:#ffd36e;"></div></div><p class="a lx" style="left:1758px;top:72px;font-size:30px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.5px;">Soly</p><div class="a " style="left:1818.6px;top:96.9px;width:5.1px;height:5.1px;background:#ffd36e;border-radius:2.55px;"></div><p class="a lx" style="left:96px;top:154px;font-size:66px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.98px;">Quatre visages, une même douceur.</p><div class="a " style="left:96px;top:284px;width:408px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:54px;top:60px;width:300px;height:300px;background:#1f1a17;border-radius:21px;"><div class="a " style="left:18px;top:18px;width:264px;height:264px;background:linear-gradient(168.47deg,rgb(214,198,245) 0%,#ffc9a3 38.136%,rgb(255,231,168) 84.746%);border-radius:11px;overflow:hidden;"><p class="a lx" style="left:21.12px;top:21.12px;font-size:36.96px;color:#1f1a17;white-space:nowrap;letter-spacing:-1.1088px;">14 h 12</p><p class="a ar" style="left:21.12px;top:68.64px;font-size:14.52px;color:#1f1a17;white-space:nowrap;">Mardi</p></div></div><p class="a lr" style="left:36px;top:420px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:1.4px;">01</p><p class="a lx" style="left:36px;top:452px;font-size:30px;color:#1f1a17;width:340px;letter-spacing:-0.6px;">Au repos</p><p class="a ar" style="left:36px;top:506px;font-size:21px;color:#6a5f55;width:336px;line-height:29px;">Photo, heure, jour. Un cadre comme les autres.</p></div><div class="a " style="left:536px;top:284px;width:408px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:54px;top:60px;width:300px;height:300px;background:#1f1a17;border-radius:21px;"><div class="a " style="left:18px;top:18px;width:264px;height:264px;background:linear-gradient(168.47deg,rgb(214,198,245) 0%,#ffc9a3 38.136%,rgb(255,231,168) 84.746%);border-radius:11px;overflow:hidden;"><div class="a " style="left:15.84px;top:205.92px;width:232.32px;height:42.24px;background:#fffaf0;border-radius:10.56px;"><p class="a ab" style="left:0px;top:11.88px;font-size:15.84px;color:#1f1a17;width:232.32px;text-align:center;">Un rayon de famille.</p></div></div></div><p class="a lr" style="left:36px;top:420px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:1.4px;">02</p><p class="a lx" style="left:36px;top:452px;font-size:30px;color:#1f1a17;width:340px;letter-spacing:-0.6px;">Une photo arrive</p><p class="a ar" style="left:36px;top:506px;font-size:21px;color:#6a5f55;width:336px;line-height:29px;">La nouvelle photo s’affiche avec sa légende.</p></div><div class="a " style="left:976px;top:284px;width:408px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:54px;top:60px;width:300px;height:300px;background:#1f1a17;border-radius:21px;"><div class="a " style="left:18px;top:18px;width:264px;height:264px;background:#fffaf0;border-radius:11px;overflow:hidden;"><div class="a" style="left:13.2px;top:5.28px;width:237.6px;height:237.6px;border-radius:50%;background:radial-gradient(circle closest-side,rgba(255,211,110,.4) 0%,rgba(255,211,110,.14) 50%,rgba(255,211,110,0) 100%)"></div><div class="a " style="left:102.96px;top:63.36px;width:58.08px;height:58.08px;background:#ffd36e;border-radius:29.04px;"></div><p class="a lx" style="left:0px;top:147.84px;font-size:31.68px;color:#1f1a17;width:264px;letter-spacing:-0.9504px;text-align:center;">Envoyé.</p></div></div><p class="a lr" style="left:36px;top:420px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:1.4px;">03</p><p class="a lx" style="left:36px;top:452px;font-size:30px;color:#1f1a17;width:340px;letter-spacing:-0.6px;">Touché</p><p class="a ar" style="left:36px;top:506px;font-size:21px;color:#6a5f55;width:336px;line-height:29px;">Le soleil s’allume : le signe est parti.</p></div><div class="a " style="left:1416px;top:284px;width:408px;height:724px;background:#fff3d9;border-radius:32px;overflow:hidden;"><div class="a " style="left:54px;top:60px;width:300px;height:300px;background:#1f1a17;border-radius:21px;"><div class="a " style="left:18px;top:18px;width:264px;height:264px;background:#fffaf0;border-radius:11px;overflow:hidden;"><p class="a ar" style="left:0px;top:39.6px;font-size:15.84px;color:#6a5f55;width:264px;text-align:center;">Code du cadre</p><div class="a " style="left:31.68px;top:89.76px;width:42.24px;height:58.08px;background:#fff3d9;border-radius:10.56px;border:2px solid #f0e3c8;"><p class="a lx" style="left:0px;top:9.88px;font-size:31.68px;color:#1f1a17;width:38.24px;text-align:center;">4</p></div><div class="a " style="left:84.47999999999999px;top:89.76px;width:42.24px;height:58.08px;background:#fff3d9;border-radius:10.56px;border:2px solid #f0e3c8;"><p class="a lx" style="left:0px;top:9.88px;font-size:31.68px;color:#1f1a17;width:38.24px;text-align:center;">8</p></div><div class="a " style="left:137.28px;top:89.76px;width:42.24px;height:58.08px;background:#fff3d9;border-radius:10.56px;border:2px solid #f0e3c8;"><p class="a lx" style="left:0px;top:9.88px;font-size:31.68px;color:#1f1a17;width:38.24px;text-align:center;">2</p></div><div class="a " style="left:190.07999999999998px;top:89.76px;width:42.24px;height:58.08px;background:#fff3d9;border-radius:10.56px;border:2px solid #f0e3c8;"><p class="a lx" style="left:0px;top:9.88px;font-size:31.68px;color:#1f1a17;width:38.24px;text-align:center;">9</p></div><p class="a ar" style="left:0px;top:179.52px;font-size:14.52px;color:#6a5f55;width:264px;text-align:center;">À saisir dans l’appli.</p></div></div><p class="a lr" style="left:36px;top:420px;font-size:14px;color:#6a5f55;white-space:nowrap;letter-spacing:1.4px;">04</p><p class="a lx" style="left:36px;top:452px;font-size:30px;color:#1f1a17;width:340px;letter-spacing:-0.6px;">À l’installation</p><p class="a ar" style="left:36px;top:506px;font-size:21px;color:#6a5f55;width:336px;line-height:29px;">Un code apparaît. La famille l’associe dans l’appli.</p></div>
+</section>
+</div>
+</main>
+
+<script>
+(() => {
+  const root = document.documentElement, stage = document.getElementById('stage'), deck = document.getElementById('deck');
+  const slides = [...deck.querySelectorAll(':scope > .slide')];
+  const pad = n => String(n).padStart(2, '0');
+  // chaque planche dans une cellule mise à l'échelle
+  const cells = slides.map((s, i) => {
+    const c = document.createElement('div'); c.className = 'cell'; c.dataset.i = i;
+    const clip = document.createElement('div'); clip.className = 'clip';
+    s.replaceWith(c); clip.appendChild(s); c.appendChild(clip);
+    const n = document.createElement('div'); n.className = 'num';
+    n.innerHTML = '<b>' + pad(i + 1) + '</b>' + (s.dataset.title || '');
+    c.appendChild(n);
+    c.addEventListener('click', () => { if (root.dataset.mode === 'grid') { go(i); setMode('deck'); } });
+    return c;
+  });
+  const N = cells.length;
+  let cur = 0;
+  const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+
+  function fit() {
+    const mode = root.dataset.mode;
+    if (root.hasAttribute('data-raw')) { root.style.setProperty('--k', 1); return; }
+    const W = stage.clientWidth, H = stage.clientHeight;
+    let k;
+    if (mode === 'deck') {
+      const m = W < 760 ? 12 : 72;
+      k = Math.min((W - m * 2) / 1920, (H - (W < 760 ? 24 : 56)) / 1080);
+    } else if (mode === 'grid') {
+      const cols = W < 600 ? 1 : W < 1000 ? 2 : W < 1500 ? 3 : 4;
+      root.style.setProperty('--cols', cols);
+      k = (W - 40 - 20 * (cols - 1)) / cols / 1920;
+    } else {
+      k = Math.min(W - 32, 1600) / 1920;
+    }
+    root.style.setProperty('--k', Math.max(k, .05).toFixed(4));
+  }
+
+  function show() {
+    cells.forEach((c, i) => c.classList.toggle('on', i === cur));
+    const t = slides[cur].dataset.title || '';
+    document.getElementById('now').innerHTML = '<b>' + pad(cur + 1) + ' / ' + pad(N) + '</b>' + t;
+    document.getElementById('progress').style.width = ((cur + 1) / N * 100) + '%';
+    document.getElementById('prev').disabled = cur === 0;
+    document.getElementById('next').disabled = cur === N - 1;
+    const h = '#' + pad(cur + 1);
+    if (location.hash !== h) history.replaceState(null, '', h);
+  }
+  function go(i) { cur = Math.max(0, Math.min(N - 1, i)); show(); }
+
+  function setMode(m) {
+    root.dataset.mode = m; store.set('soly-da-mode', m);
+    [['bDeck','deck'],['bGrid','grid'],['bRead','read']].forEach(([id, v]) => document.getElementById(id).setAttribute('aria-pressed', m === v));
+    fit();
+    if (m !== 'deck') requestAnimationFrame(() => cells[cur].scrollIntoView({ block: m === 'grid' ? 'center' : 'start' }));
+    stage.focus({ preventScroll: true });
+  }
+
+  // lecture continue : la planche visible devient la courante
+  const io = new IntersectionObserver(es => {
+    if (root.dataset.mode !== 'read') return;
+    es.forEach(e => { if (e.isIntersecting) { cur = +e.target.dataset.i; show(); } });
+  }, { root: stage, threshold: .55 });
+  cells.forEach(c => io.observe(c));
+
+  document.getElementById('prev').onclick = () => go(cur - 1);
+  document.getElementById('next').onclick = () => go(cur + 1);
+  document.getElementById('bDeck').onclick = () => setMode('deck');
+  document.getElementById('bGrid').onclick = () => setMode(root.dataset.mode === 'grid' ? 'deck' : 'grid');
+  document.getElementById('bRead').onclick = () => setMode('read');
+  document.getElementById('bFull').onclick = toggleFull;
+  document.getElementById('bPrint').onclick = () => window.print();
+  function toggleFull() { if (document.fullscreenElement) document.exitFullscreen(); else root.requestFullscreen && root.requestFullscreen(); }
+
+  addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const m = root.dataset.mode, k = e.key;
+    if (k === 'g' || k === 'G') setMode(m === 'grid' ? 'deck' : 'grid');
+    else if (k === 'p' || k === 'P' || (k === 'Escape' && m === 'grid')) setMode('deck');
+    else if (k === 'l' || k === 'L') setMode('read');
+    else if (k === 'f' || k === 'F') toggleFull();
+    else if (m === 'deck') {
+      if (['ArrowRight','ArrowDown','PageDown',' '].includes(k)) { e.preventDefault(); go(cur + 1); }
+      else if (['ArrowLeft','ArrowUp','PageUp'].includes(k)) { e.preventDefault(); go(cur - 1); }
+      else if (k === 'Home') go(0); else if (k === 'End') go(N - 1);
+    }
+  });
+
+  // glisser au doigt
+  let x0 = null;
+  stage.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', e => {
+    if (x0 === null || root.dataset.mode !== 'deck') return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1));
+  });
+  // clic sur la planche : avancer (moitié droite) ou reculer (moitié gauche)
+  deck.addEventListener('click', e => {
+    if (root.dataset.mode !== 'deck' || e.target.closest('a,button')) return;
+    const r = deck.getBoundingClientRect();
+    go(cur + (e.clientX - r.left > r.width / 3 ? 1 : -1));
+  });
+
+  addEventListener('resize', fit);
+  addEventListener('hashchange', () => { const n = parseInt(location.hash.slice(1), 10); if (n) go(n - 1); });
+  const n0 = parseInt(location.hash.slice(1), 10);
+  cur = n0 && n0 <= N ? n0 - 1 : 0;
+  setMode(root.hasAttribute('data-raw') ? 'deck' : (store.get('soly-da-mode') || 'deck'));
+  show();
+})();
+</script>
+</body>
+</html>
