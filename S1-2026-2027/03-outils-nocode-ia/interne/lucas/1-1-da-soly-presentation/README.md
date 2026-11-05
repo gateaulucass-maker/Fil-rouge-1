@@ -24,8 +24,8 @@ Les 24 planches de la direction artistique Soly (Figma « Fil rouge B2 », page 
 ## Pages de rendu (onglets)
 Deux pages à ouvrir dans Chrome, dans `interne/lucas/` :
 - `1-1-soly-rendu-da.html` : la DA seule (Projet, Identité, Couleurs et typo, Interface, Applications, Planches).
-- `1-1-soly-rendu-da-maquette.html` : la DA avec la maquette interactive v3 intégrée (onglet Maquette).
+- `1-1-soly-rendu-da-maquette.html` : la DA avec la maquette interactive v4 intégrée (onglet Maquette).
 
 Interactions : onglets (flèches du clavier, lien direct `#couleurs`), clic sur une couleur pour copier son code, choix du fond du logo, spécimen typo réglable, planches filtrables et agrandissables (Échap pour fermer). Impression : tous les onglets à la suite.
 
-Modifier : gabarit `_src/rendu.html`, contenu dans `_src/build_rendu.py`, puis `python3 _src/build_rendu.py` régénère les deux pages. Les planches viennent de `slides/`. Le prototype est lu depuis `../1-1-soly-prototype-interactif-v3.html`.
+Modifier : gabarit `_src/rendu.html`, contenu dans `_src/build_rendu.py`, puis `python3 _src/build_rendu.py` régénère les deux pages. Les planches viennent de `slides/`. Le prototype est lu depuis `../1-1-soly-prototype-interactif-v4.html`.

@@ -328,7 +328,7 @@ footer .w{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
       <button class="tab" role="tab" id="t-planches" data-tab="planches" data-label="Planches" aria-controls="planches" aria-selected="false" tabindex="-1">Planches</button>
       <span class="ink" id="ink" aria-hidden="true"></span>
     </nav>
-    <span class="meta">DA v2 + maquette v3</span>
+    <span class="meta">DA v2 + maquette v4</span>
   </div>
 </header>
 
@@ -339,7 +339,7 @@ footer .w{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
   <div class="hero rv">
     <div class="halo" aria-hidden="true"></div>
     <div>
-      <div class="lab">Direction artistique · V2 · Maquette v3</div>
+      <div class="lab">Direction artistique · V2 · Maquette v4</div>
       <h1>Le cadre qui ensoleille la journée.</h1>
       <p class="l">Soly relie un parent âgé et sa famille : un cadre photo au mur du salon, une application dans la poche. Un geste suffit pour dire « je pense à toi ».</p>
     </div>
@@ -569,7 +569,7 @@ footer .w{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
 <section class="panel" id="maquette" role="tabpanel" aria-labelledby="t-maquette">
   <div class="head">
     <div><div class="lab rv">04 · Maquette interactive</div><h2 class="rv" style="--d:1">La DA, appliquée écran par écran.</h2><p class="intro rv" style="--d:2">Le cadre au mur et l’application de la famille, reliés. Lancez un scénario, ou touchez directement le téléphone et le cadre.</p></div>
-    <aside class="rv" style="--d:3"><b>Prototype v3</b>28 écrans d’application, 3 états du cadre, 5 scénarios guidés.</aside>
+    <aside class="rv" style="--d:3"><b>Prototype v4</b>28 écrans d’application, 3 états du cadre, 5 scénarios guidés.</aside>
   </div>
   <div class="steps">
     <div class="step rv"><span class="n">1</span><b>Installer</b><span>« Parcours d’installation » : le cadre affiche un code, l’appli le scanne.</span></div>
@@ -577,15 +577,15 @@ footer .w{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
     <div class="step rv" style="--d:2"><span class="n">3</span><b>Le moment du jour</b><span>Une notification douce, une photo à partager.</span></div>
     <div class="step rv" style="--d:3"><span class="n">4</span><b>Rassurer</b><span>« 48 h sans toucher » : la famille est prévenue, sans alarme.</span></div>
   </div>
-  <div class="mq-frame rv"><iframe id="mq" title="Maquette interactive Soly v3"></iframe></div>
-  <div class="links"><a class="btn o" href="1-1-soly-prototype-interactif-v3.html" target="_blank" rel="noopener">Ouvrir la maquette seule</a></div>
+  <div class="mq-frame rv"><iframe id="mq" title="Maquette interactive Soly v4"></iframe></div>
+  <div class="links"><a class="btn o" href="1-1-soly-prototype-interactif-v4.html" target="_blank" rel="noopener">Ouvrir la maquette seule</a></div>
 </section>
 <textarea hidden id="mqsrc">&lt;!doctype html&gt;
 &lt;html lang="fr"&gt;
 &lt;head&gt;
 &lt;meta charset="utf-8"&gt;
 &lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
-&lt;title&gt;Soly, maquette interactive v3&lt;/title&gt;
+&lt;title&gt;Soly, maquette interactive v4&lt;/title&gt;
 &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
 &lt;link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap" rel="stylesheet"&gt;
 &lt;style&gt;
@@ -596,11 +596,18 @@ body{color:var(--encre);font:17px/1.5 "Atkinson Hyperlegible",system-ui,sans-ser
 h1,h2,h3,.lx{font-family:Lexend,system-ui,sans-serif;font-weight:600;letter-spacing:-.03em}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 .w{max-width:1240px;margin:0 auto}
-.eb{font:12px Lexend,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--cafe)}
+.eb{font:14px Lexend,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--cafe)}
 h1{font-size:clamp(32px,5vw,52px);line-height:1.05;margin:8px 0 10px}
 .lead{color:var(--cafe);max-width:760px;font-size:19px}
-.logo{display:inline-flex;align-items:flex-end;font:600 28px Lexend,sans-serif;letter-spacing:-.03em}
-.logo i{width:.17em;height:.17em;border-radius:50%;background:var(--soleil);margin-left:.04em}
+.logo{display:inline-flex;align-items:center;gap:.3em;font:600 28px Lexend,sans-serif;letter-spacing:-.05em;vertical-align:middle}
+.sy{position:relative;display:inline-block;width:.95em;height:.95em;border-radius:.29em;overflow:hidden;flex:none}
+.sy i{position:absolute;left:0;top:0;width:47.1%;height:47.1%;background:var(--encre)}
+.sy i:nth-child(2){left:52.9%}.sy i:nth-child(3){top:52.9%}.sy i:nth-child(4){left:52.9%;top:52.9%;background:var(--soleil)}
+.logo .wm{display:inline-flex;align-items:flex-end;line-height:1.1}
+.logo .wm b{width:.17em;height:.17em;border-radius:50%;background:var(--soleil);margin:0 0 .2em .05em}
+.logo.inv .sy i{background:var(--aube)}.logo.inv .sy i:nth-child(4){background:var(--soleil)}
+.deliv{display:flex;align-items:center;gap:10px;background:var(--creme);border-radius:16px;padding:10px 14px;font-size:15px}
+.deliv .sy{width:18px;height:18px;border-radius:5px}
 
 /* scénarios */
 .scen{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 6px}
@@ -645,7 +652,7 @@ h1{font-size:clamp(32px,5vw,52px);line-height:1.05;margin:8px 0 10px}
 .mg{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;min-height:0}
 .mt{background:var(--creme);border-radius:12px;background-size:cover;background-position:center;position:relative;opacity:.25;transition:opacity .6s}
 .mt.on{opacity:1}
-.mt span{position:absolute;left:8px;bottom:8px;right:8px;background:var(--aube);border-radius:8px;padding:2px 8px;font-size:clamp(11px,1.4vw,14px)}
+.mt span{position:absolute;left:8px;bottom:8px;right:8px;background:var(--aube);border-radius:8px;padding:2px 8px;font-size:clamp(14px,1.4vw,14px)}
 .c-off{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--aube);font:600 28px Lexend,sans-serif;text-align:center}
 .c-off small{font:400 18px "Atkinson Hyperlegible";color:var(--cafe)}
 .night{position:absolute;inset:0;background:rgba(31,26,23,.62);opacity:0;transition:opacity .8s;pointer-events:none;z-index:4}
@@ -722,16 +729,16 @@ div.row{background:transparent;border-style:dashed}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .th{aspect-ratio:1;border-radius:12px;background:var(--creme) center/cover;position:relative;border:2px solid transparent;overflow:hidden;padding:0}
 .th.on{border-color:var(--encre)}
-.th .ck{position:absolute;right:5px;top:5px;width:22px;height:22px;border-radius:50%;background:var(--encre);color:var(--aube);display:none;place-items:center;font:600 13px Lexend}
+.th .ck{position:absolute;right:5px;top:5px;width:22px;height:22px;border-radius:50%;background:var(--encre);color:var(--aube);display:none;place-items:center;font:600 14px Lexend}
 .th.on .ck{display:grid}
 .th.hid{opacity:.35}
 .th .ic{position:absolute;left:5px;bottom:5px;width:24px;height:24px;border-radius:50%;background:var(--aube);display:grid;place-items:center}
-.th.motc{background:var(--peche);font:600 13px/1.15 Lexend;padding:8px;text-align:left;display:flex;align-items:flex-end}
+.th.motc{background:var(--peche);font:600 14px/1.15 Lexend;padding:8px;text-align:left;display:flex;align-items:flex-end}
 .svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
 .tabbar{height:78px;flex:none;display:none;justify-content:space-around;align-items:flex-start;padding-top:8px;border-top:1px solid var(--ligne);background:var(--aube)}
 .tabbar.on{display:flex}
-.tab{display:flex;flex-direction:column;align-items:center;gap:2px;font:500 13px Lexend,sans-serif;min-width:72px;padding:2px 0}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;font:500 14px Lexend,sans-serif;min-width:72px;padding:2px 0}
 .tab i{width:56px;height:34px;border-radius:99px;display:grid;place-items:center}
 .tab.on i{background:var(--soleil)}
 .tab.on{font-weight:600}
@@ -745,22 +752,24 @@ div.row{background:transparent;border-style:dashed}
 .banner b{display:block;font:600 15px Lexend;letter-spacing:-.02em}
 .toast{position:absolute;left:20px;right:20px;top:50px;background:var(--encre);color:var(--aube);border-radius:14px;padding:12px 16px;font-size:15px;z-index:9;opacity:0;transform:translateY(-8px);transition:.3s;pointer-events:none;text-align:center}
 .toast.on{opacity:1;transform:none}
-.who{position:absolute;left:50%;top:2px;transform:translateX(-50%);font:500 13px Lexend;background:var(--lilas);border-radius:99px;padding:2px 12px;z-index:7;display:none}
+.who{position:absolute;left:50%;top:2px;transform:translateX(-50%);font:500 14px Lexend;background:var(--lilas);border-radius:99px;padding:2px 12px;z-index:7;display:none}
 
 /* écrans verrouillés */
 .v.lock{background:var(--encre);color:var(--aube);padding:30px 18px 20px;align-items:stretch;gap:10px}
 .lock .big{font:400 78px/1 Lexend;text-align:center;margin-top:10px;letter-spacing:-.04em}
 .lock .dt{text-align:center;margin-bottom:12px;font-size:18px}
 .nt{background:var(--creme);color:var(--encre);border-radius:20px;padding:12px 16px;text-align:left;width:100%;font-size:15px}
-.nt .hd{font-size:13px;color:var(--cafe);display:flex;gap:6px;align-items:center;margin-bottom:2px}
-.nt .hd i{width:16px;height:16px;border-radius:50%;background:var(--soleil)}
+.nt .hd{font-size:14px;color:var(--cafe);display:flex;gap:6px;align-items:center;margin-bottom:2px}
+.nt .hd i{position:relative;width:16px;height:16px;border-radius:5px;background:conic-gradient(from 90deg,var(--soleil) 0 25%,var(--encre) 0);flex:none}
+.nt .hd i::before,.nt .hd i::after{content:"";position:absolute;background:var(--creme)}
+.nt .hd i::before{left:7.5px;top:0;width:1px;height:16px}.nt .hd i::after{top:7.5px;left:0;height:1px;width:16px}
 .nt b{display:block;font:600 16px Lexend;letter-spacing:-.02em}
 .nt:hover{outline:2px solid var(--soleil)}
 .unl{margin-top:auto;text-align:center;font-size:14px;color:rgba(255,250,240,.75);padding:10px}
 
 /* caméra */
 .cam{flex:1;background:var(--encre);border-radius:20px;position:relative;display:grid;place-items:center;color:var(--aube);font-size:15px;text-align:center;padding:20px;min-height:0;overflow:hidden}
-.cam .me{position:absolute;left:12px;top:12px;width:84px;height:112px;border-radius:12px;border:2px solid var(--soleil);background:var(--cafe);display:grid;place-items:center;font:500 12px Lexend}
+.cam .me{position:absolute;left:12px;top:12px;width:84px;height:112px;border-radius:12px;border:2px solid var(--soleil);background:var(--cafe);display:grid;place-items:center;font:500 14px Lexend}
 .cam.flash::after{content:"";position:absolute;inset:0;background:var(--aube);animation:fl .5s forwards}
 @keyframes fl{from{opacity:1}to{opacity:0}}
 .shut{width:78px;height:78px;border-radius:50%;border:4px solid var(--encre);display:grid;place-items:center;margin:0 auto;background:var(--aube)}
@@ -792,13 +801,13 @@ div.row{background:transparent;border-style:dashed}
 .grp{background:var(--creme);border-radius:24px;padding:20px}
 .grp h3{font-size:17px;margin-bottom:10px}
 .grp .chips{gap:6px}
-.grp .pill{background:var(--aube);font-size:13px;padding:7px 12px;min-height:36px}
+.grp .pill{background:var(--aube);font-size:14px;padding:7px 12px;min-height:36px}
 .axes{margin-top:64px}
 .alist{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-top:18px}
 .ax{background:var(--creme);border-radius:24px;padding:22px;display:grid;gap:8px;align-content:start}
 .ax h3{font-size:19px}
 .ax p{font-size:16px;color:var(--cafe)}
-.ax .src{font:12px Lexend;letter-spacing:.1em;text-transform:uppercase;color:var(--cafe)}
+.ax .src{font:14px Lexend;letter-spacing:.1em;text-transform:uppercase;color:var(--cafe)}
 .ax .bz{border-top:2px solid var(--ligne);padding-top:8px;color:var(--encre);font-size:16px}
 .fin{margin-top:36px;color:var(--cafe);font-size:15px;max-width:820px}
 @media(max-width:1000px){.stage{grid-template-columns:minmax(0,1fr)}.phone{position:static;margin:0 auto}}
@@ -818,7 +827,7 @@ if(document.fonts)document.fonts.ready.then(send)})();
 &lt;body&gt;
 &lt;div class="w"&gt;
 &lt;div class="eb"&gt;Fil rouge · Bloc 03 · Brouillon de Lucas&lt;/div&gt;
-&lt;h1&gt;Soly, prototype interactif &lt;span class="logo" aria-hidden="true"&gt;soly&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h1&gt;
+&lt;h1&gt;Soly, prototype interactif &lt;span class="logo" aria-hidden="true"&gt;&lt;span class="sy" aria-hidden="true"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;span class="wm"&gt;Soly&lt;b&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt;&lt;/h1&gt;
 &lt;p class="lead"&gt;Les 28 écrans de la maquette Figma et les 3 écrans du cadre, cliquables. À gauche le cadre chez le parent, à droite l'application de la famille : ce que fait l'un se voit sur l'autre. Personnages fictifs, photos de maquette.&lt;/p&gt;
 
 &lt;div class="scen" role="group" aria-label="Scénarios de démonstration"&gt;
@@ -836,7 +845,7 @@ if(document.fonts)document.fonts.ready.then(send)})();
   &lt;div class="wall" id="wall"&gt;
     &lt;div class="led"&gt;&lt;/div&gt;
     &lt;button class="frame" id="frame" aria-label="Le cadre de Jeanne : touchez pour envoyer un Soly à la famille"&gt;
-      &lt;div class="cm c-wait on" id="cm-wait"&gt;&lt;div class="bj"&gt;Bonjour !&lt;/div&gt;&lt;div class="cp"&gt;Code pour relier ce Soly&lt;/div&gt;&lt;div class="code"&gt;482 731&lt;/div&gt;&lt;/div&gt;
+      &lt;div class="cm c-wait on" id="cm-wait"&gt;&lt;span class="logo" style="font-size:22px;margin-bottom:6px" aria-hidden="true"&gt;&lt;span class="sy" aria-hidden="true"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;span class="wm"&gt;Soly&lt;b&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt;&lt;div class="bj"&gt;Bonjour !&lt;/div&gt;&lt;div class="cp"&gt;Code pour relier ce Soly&lt;/div&gt;&lt;div class="code"&gt;482 731&lt;/div&gt;&lt;/div&gt;
       &lt;div class="cm" id="cm-ph"&gt;&lt;div id="slides"&gt;&lt;/div&gt;&lt;/div&gt;
       &lt;div class="cm c-mo" id="cm-mo"&gt;&lt;h4&gt;Le moment du jour · mardi&lt;/h4&gt;&lt;div class="mg" id="mg"&gt;&lt;/div&gt;&lt;/div&gt;
       &lt;div class="cm c-off" id="cm-off"&gt;Je cherche le wifi...&lt;small&gt;Les photos reviennent dès que c'est rétabli.&lt;/small&gt;&lt;/div&gt;
@@ -867,7 +876,7 @@ if(document.fonts)document.fonts.ready.then(send)})();
 &lt;!-- 1 Bienvenue --&gt;
 &lt;section class="v on" id="v-1" data-n="1" data-time="9:41"&gt;
   &lt;div style="height:150px;border-radius:24px;background:var(--gp);position:relative;overflow:hidden"&gt;&lt;div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:150px;height:96px;border:10px solid var(--encre);border-radius:12px;background:var(--aube)"&gt;&lt;/div&gt;&lt;/div&gt;
-  &lt;div class="logo" style="font-size:34px"&gt;soly&lt;i&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;span class="logo" style="font-size:34px" role="img" aria-label="Soly"&gt;&lt;span class="sy" aria-hidden="true"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;span class="wm"&gt;Soly&lt;b&gt;&lt;/b&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;
   &lt;div class="h1" style="font-size:32px"&gt;Toute la famille au même mur.&lt;/div&gt;
   &lt;p class="sub" style="font-size:16px"&gt;Des photos et des mots doux sur le mur de votre parent.&lt;/p&gt;
   &lt;div class="sp"&gt;&lt;/div&gt;
@@ -1027,6 +1036,7 @@ if(document.fonts)document.fonts.ready.then(send)})();
   &lt;button class="card act" id="h-moment" data-act="momentCard"&gt;&lt;span class="ico"&gt;&lt;svg class="svg" viewBox="0 0 24 24"&gt;&lt;path d="M6 17V11a6 6 0 0 1 12 0v6l1.5 2h-15zM10 21h4"/&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class="tx"&gt;&lt;b&gt;Moment du jour&lt;/b&gt;&lt;small id="h-moment-s"&gt;Pas encore arrivé. Vous serez prévenu, à une heure surprise.&lt;/small&gt;&lt;/span&gt;&lt;span class="go"&gt;Ouvrir&lt;/span&gt;&lt;/button&gt;
   &lt;div class="prev" id="h-prev" aria-label="Ce qui est en cours sur le cadre"&gt;&lt;/div&gt;
   &lt;button class="row" data-go="11"&gt;&lt;span class="lab"&gt;&lt;span class="ico"&gt;&lt;svg class="svg" viewBox="0 0 24 24"&gt;&lt;rect x="4" y="5" width="16" height="14" rx="3"/&gt;&lt;rect x="9" y="9.5" width="6" height="5" rx="1"/&gt;&lt;/svg&gt;&lt;/span&gt;Voir ce qui défile sur le cadre&lt;/span&gt;&lt;/button&gt;
+  &lt;div class="deliv" id="h-deliv" hidden&gt;&lt;span class="sy" aria-hidden="true"&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/span&gt;&lt;span id="h-deliv-t"&gt;&lt;/span&gt;&lt;/div&gt;
   &lt;div class="sub" id="h-status" style="display:flex;gap:18px"&gt;&lt;span&gt;&lt;i class="st lil"&gt;&lt;/i&gt; Cadre connecté&lt;/span&gt;&lt;span&gt;&lt;i class="st pe"&gt;&lt;/i&gt; Alerte : activée&lt;/span&gt;&lt;/div&gt;
   &lt;div class="sp"&gt;&lt;/div&gt;
   &lt;button class="btn p" data-go="8"&gt;&lt;svg class="svg" viewBox="0 0 24 24"&gt;&lt;path d="M4 12l16-8-6 16-3-7z"/&gt;&lt;/svg&gt;Hop, au mur&lt;/button&gt;
@@ -1218,6 +1228,7 @@ var S={paired:false,view:"1",prev:"7",parent:"Jeanne",call:"Maman",me:"Sophie",c
 var timers={};
 
 /* ---------- utilitaires ---------- */
+function deliv(){var d=$("#h-deliv");if(!d)return;if(!S.last){d.hidden=true;return}d.hidden=false;$("#h-deliv-t").textContent=S.last.k+(S.wifi?" : au mur de "+S.parent:" : en attente du wifi du cadre")}
 function esc(t){var d=document.createElement("div");d.textContent=t;return d.innerHTML}
 function bg(el,src){el.style.backgroundImage=src?"url("+src+")":""}
 function toast(t){var e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(timers.toast);timers.toast=setTimeout(function(){e.classList.remove("on")},2600)}
@@ -1370,7 +1381,7 @@ function renderHome(){
   $("#h-touch-s").textContent=S.lastTouch+(S.touched?" · renvoie-lui un Soly":" · pas encore de toucher aujourd'hui");
   $("#h-moment-s").textContent=S.momentDone?"Aujourd'hui : Sophie envoyé. Lucas, Léa et Hugo en cours.":(S.moment?"C'est le moment ! Il reste 2 minutes.":"Pas encore arrivé. Vous serez prévenu, à une heure surprise.");
   var cur=rot()[S.idx]||rot()[0];bg($("#h-prev"),cur&amp;&amp;cur.type!=="mot"?cur.src:"");
-  $("#h-status").innerHTML='&lt;span&gt;&lt;i class="st lil"&gt;&lt;/i&gt; '+(S.wifi?"Cadre connecté":"Cadre hors ligne")+'&lt;/span&gt;&lt;span&gt;&lt;i class="st pe"&gt;&lt;/i&gt; Alerte : '+(S.consent&amp;&amp;S.alertOn&amp;&amp;!S.vac?"activée":(S.consent?"en pause":"non acceptée"))+'&lt;/span&gt;';
+  deliv();$("#h-status").innerHTML='&lt;span&gt;&lt;i class="st lil"&gt;&lt;/i&gt; '+(S.wifi?"Cadre connecté":"Cadre hors ligne")+'&lt;/span&gt;&lt;span&gt;&lt;i class="st pe"&gt;&lt;/i&gt; Alerte : '+(S.consent&amp;&amp;S.alertOn&amp;&amp;!S.vac?"activée":(S.consent?"en pause":"non acceptée"))+'&lt;/span&gt;';
 }
 var SORTS=["Récentes d'abord","Anciennes d'abord","Mélange"];
 function renderKeep(){
@@ -1397,11 +1408,11 @@ function sendNow(){
   var cap=$("#p9-cap").value.trim();
   S.items.unshift({id:"s"+Date.now(),type:S.pickType,src:S.pickSrc,note:cap,from:S.me,hidden:false,fit:S.fit});S.idx=0;
   setMode("photos");
-  $("#p9-cap").value="";toast("Envoi en cours...");clearTimeout(timers.dl);timers.dl=setTimeout(function(){toast(S.wifi?"Au mur de "+S.parent+" à l'instant":"Reçu, il s'affichera quand le wifi revient")},1400);go(7);
+  $("#p9-cap").value="";toast("Envoi en cours...");clearTimeout(timers.dl);S.last={k:"Ta photo",t:Date.now()};timers.dl=setTimeout(function(){toast(S.wifi?"Au mur de "+S.parent+" à l'instant":"Reçu, il s'affichera quand le wifi revient");deliv()},1400);go(7);
 }
 function renderMot(){
   var cur=rot()[S.idx]||rot()[0];var p=$("#m-prev");bg(p,cur&amp;&amp;cur.type!=="mot"?cur.src:"");var t=$("#m-text").value;
-  p.innerHTML=S.motMode==="popup"?'&lt;div class="pp"&gt;'+esc(t)+'&lt;br&gt;&lt;small style="font:400 12px Atkinson Hyperlegible;color:var(--cafe)"&gt;'+esc(S.me)+'&lt;/small&gt;&lt;/div&gt;':'&lt;span class="cap"&gt;'+esc(t)+'&lt;/span&gt;';
+  p.innerHTML=S.motMode==="popup"?'&lt;div class="pp"&gt;'+esc(t)+'&lt;br&gt;&lt;small style="font:400 14px Atkinson Hyperlegible;color:var(--cafe)"&gt;'+esc(S.me)+'&lt;/small&gt;&lt;/div&gt;':'&lt;span class="cap"&gt;'+esc(t)+'&lt;/span&gt;';
   $("#m-count").textContent=(function(n){return n+" caractère"+(n&gt;1?"s":"")+" restant"+(n&gt;1?"s":"")})(89-t.length);
 }
 $("#m-text").addEventListener("input",renderMot);
@@ -1411,7 +1422,7 @@ function sendMot(){
   if(S.motMode==="popup"){S.items.push({id:"t"+Date.now(),type:"mot",text:t,from:S.me,hidden:false,rot:false});popup(t,S.me,5500)}
   else if(cur&amp;&amp;cur.type!=="mot"){cur.note=t;buildSlides();showSlide(S.idx)}
   else{S.items.unshift({id:"t"+Date.now(),type:"mot",text:t,from:S.me,hidden:false});S.idx=0;buildSlides();showSlide(0)}
-  $("#m-text").value="";toast("Envoi en cours...");clearTimeout(timers.dl);timers.dl=setTimeout(function(){toast(S.wifi?"Mot affiché chez "+S.parent:"Reçu, il s'affichera quand le wifi revient")},1400);go(7);
+  $("#m-text").value="";toast("Envoi en cours...");clearTimeout(timers.dl);S.last={k:"Ton mot",t:Date.now()};timers.dl=setTimeout(function(){toast(S.wifi?"Mot affiché chez "+S.parent:"Reçu, il s'affichera quand le wifi revient");deliv()},1400);go(7);
 }
 
 /* ---------- ce qui défile ---------- */
@@ -1527,14 +1538,14 @@ var A={
   cNight:function(){S.veille=!S.veille;$$(".nuit-l").forEach(function(e){e.textContent=S.veille?"Sortir de la veille":"Mode veille"});wall.classList.toggle("veille",S.veille);toast(S.veille?"Mode veille : les photos continuent, plus douces":"Mode veille coupé")},
   cWifi:function(){if(!S.paired)pair();S.wifi=!S.wifi;if(!S.wifi){setMode("off")}else{setMode("photos");if(S.pendingGlow){S.pendingGlow=false;glow(8000)}}
     $$(".wifi-l").forEach(function(e){e.textContent=S.wifi?"Couper le wifi":"Rétablir le wifi"});
-    if(S.view==="7")renderHome();toast(S.wifi?"Wifi rétabli":"Wifi coupé : le cadre l'indique au parent")}
+    deliv();if(S.view==="7")renderHome();toast(S.wifi?"Wifi rétabli":"Wifi coupé : le cadre l'indique au parent")}
 };
 function showWait(){
   $("#cm-wait .bj").textContent="Bonjour !";$("#cm-wait .cp").textContent="Code pour relier ce Soly";$("#cm-wait .code").textContent="482 731";setMode("wait")}
 function reset(thenStart){
   clearInterval(timers.loop);clearTimeout(timers.mo);stopCam();
   S.paired=false;S.items=[];S.idx=0;S.moment=false;S.momentDone=false;S.touched=false;S.lastTouch="Ce matin, 8 h 12";S.alertOn=true;S.vac=false;S.hours=48;S.consent=false;S.alertOn=false;S.gallery=false;
-  S.car=[0,1,2];S.dur=15;S.weekly=true;S.keep=[0];S.sortI=0;S.wifi=true;S.viewer="Sophie";S.handled=false;wall.classList.remove("glow","veille");S.veille=false;
+  S.car=[0,1,2];S.dur=15;S.weekly=true;S.keep=[0];S.sortI=0;S.wifi=true;S.last=null;S.viewer="Sophie";S.handled=false;wall.classList.remove("glow","veille");S.veille=false;
   clearTimeout(timers.dl);clearTimeout(timers.glow);hideBanner();
   S.parent="Jeanne";S.call="Maman";S.me="Sophie";S.leaName="Léa";S.ts=0;S.fit="auto";S.filter="all";S.pendingGlow=false;
   ["f-me","f-parent","f-call","l-name"].forEach(function(id){var e=$("#"+id);if(e)e.value={"f-me":"Sophie","f-parent":"Jeanne","f-call":"Maman","l-name":"Léa"}[id]});
@@ -1580,10 +1591,10 @@ $("#groups").innerHTML=GROUPS.map(function(g){return '&lt;div class="grp"&gt;&lt
 var AX=[
  ["Ouvert dans Figma","Qui appelle les secours, et quand ?","L'alerte s'arrête à « si personne ne réagit : à définir » (écran 14, point 5).","Proposition : le cadre n'appelle jamais les secours seul. Après 24 h sans réponse des aidants, un rappel part, puis la décision reste humaine. À tester avec un aidant."],
  ["Observation","L'alerte n'est pas atteignable depuis les réglages","L'écran 14 existe, mais l'écran 16 n'a aucune ligne qui y mène. Dans le prototype j'ai ajouté « Alerte et mode vacances ».","Ajouter la ligne dans la maquette, ou créer un onglet Famille et alerte distinct de Réglages du cadre."],
- ["Observation","Taille de texte et zones à toucher","Beaucoup de textes secondaires sont petits dans la maquette (notes, sous-titres). Le prototype monte à 14 px minimum et 44 px de hauteur utile.","Fixer la règle dans la DA : 14 px minimum pour l'aidant, 20 px et plus pour tout ce que le parent lit sur le cadre."],
+ ["Observation · appliqué en v4","Taille de texte et zones à toucher","Beaucoup de textes secondaires sont petits dans la maquette (notes, sous-titres). La v4 passe tout le texte à 14 px minimum, avec 44 px de hauteur utile.","Fixer la règle dans la DA : 14 px minimum pour l'aidant, 20 px et plus pour tout ce que le parent lit sur le cadre."],
  ["Ouvert dans Figma","Une photo envoyée en retard est-elle acceptée ?","Écran 19, point 4. Le prototype laisse envoyer après les 2 minutes avec la mention « plus tard ».","Décider la règle et l'afficher : un compteur à zéro doit changer le libellé du bouton, pas bloquer."],
- ["Observation","Aucun état « cadre hors ligne »","Le parent ne voit rien si le wifi tombe, l'aidant non plus. J'ai ajouté l'état dans le prototype (bouton Couper le wifi).","Dessiner l'écran du cadre « Je cherche le wifi » et une carte d'état dans l'accueil de l'app, avec un ton neutre."],
- ["Observation","Envoyer sans savoir si c'est affiché","Pas de « vu » pour le parent (décidé), mais l'envoyeur n'a aucune confirmation que la photo est bien au mur.","Un statut de livraison simple, « Au mur de Jeanne », sans heure de lecture ni compteur : livraison, pas pointage."],
+ ["Observation · dans le prototype","Aucun état « cadre hors ligne »","Le parent ne voit rien si le wifi tombe, l'aidant non plus. Le prototype a l'état (bouton Couper le wifi) : écran du cadre « Je cherche le wifi » et « Cadre hors ligne » sur l'accueil.","Dessiner l'écran du cadre « Je cherche le wifi » et une carte d'état dans l'accueil de l'app, avec un ton neutre."],
+ ["Observation · appliqué en v4","Envoyer sans savoir si c'est affiché","Pas de « vu » pour le parent (décidé), mais l'envoyeur n'avait aucune confirmation. La v4 garde sur l'accueil « Ta photo : au mur de Jeanne », ou « en attente du wifi du cadre ».","Un statut de livraison simple, « Au mur de Jeanne », sans heure de lecture ni compteur : livraison, pas pointage."],
  ["Ouvert dans Figma","Qui voit « Maman t'a envoyé un Soly » : les aidants seuls ou toute la famille ?","Écran 25, point 4. Les petits-enfants reçoivent le moment du jour, pas le toucher.","Garder aidants seuls au départ, puis tester si les petits-enfants le demandent. Sinon le toucher devient un pointage."],
  ["Observation","Petit-enfant de moins de 15 ans","Écran 23 : « un parent valide le compte », mais aucun écran d'attente de validation.","Ajouter « En attente de Sophie » côté petit-enfant et une demande de validation côté aidant (point RGPD déjà marqué ouvert)."],
  ["Ouvert dans Figma","Mosaïque ou une photo à la fois ?","Écran 20, point 2. Le prototype joue la mosaïque 9 s puis rejoint le défilement.","Tester les deux sur le cadre avec un parent : la mosaïque est-elle lisible à 2 mètres, sans lunettes ?"]
@@ -1677,7 +1688,7 @@ names();go(1);
 <nav class="nextp" id="nextp" aria-label="Section précédente et suivante"></nav>
 </main>
 
-<footer><div class="w"><span>Soly · PFR Générations Connectées · Ynov B2 · 2026 · Lucas</span><span>Sources : Figma « Fil rouge B2 » (DA v2), maquette interactive v3. Personnages fictifs.</span></div></footer>
+<footer><div class="w"><span>Soly · PFR Générations Connectées · Ynov B2 · 2026 · Lucas</span><span>Sources : Figma « Fil rouge B2 » (DA v2), maquette interactive v4. Personnages fictifs.</span></div></footer>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Planche agrandie">
   <button class="rb x" id="lbx" aria-label="Fermer"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M3 3l12 12M15 3L3 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
