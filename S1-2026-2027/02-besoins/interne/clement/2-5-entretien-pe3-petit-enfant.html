@@ -1,0 +1,319 @@
+<title>Entretien PE3</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Grille suisse des rendus du dépôt : rail gauche, colonne de contenu, filets noirs. Thème clair unique, comme les rendus. */
+:root{--cream:#f4eee1;--paper:#faf6ec;--ink:#111526;--muted:#5d6172;--blue:#1d3bc1;--blue-soft:#dfe3f2;--line:#d3ccba;--orange:#e8571c;--ok:#1b6b3e;--ko:#a3301c;--test:#8a5200;--sans:"Archivo",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{background:var(--cream);color:var(--ink);font:17px/1.55 var(--sans);margin:0}
+main{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:48px 80px}
+header{display:grid;gap:28px;padding-bottom:48px}
+.eyebrow{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-weight:800;font-size:clamp(44px,8.5vw,112px);line-height:.92;letter-spacing:-.035em;margin:0;max-width:11ch;text-wrap:balance}
+.key{border-top:6px solid var(--blue);padding-top:18px;display:grid;gap:10px;max-width:34em}
+.key span{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.key p{margin:0;font-size:clamp(20px,2.6vw,30px);font-weight:700;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+.toc{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none;font:500 14px var(--mono)}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}.toc a:hover{color:var(--blue);border-color:var(--blue)}
+.legend{font:13px var(--mono);color:var(--muted);margin:0;max-width:70ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;border-top:2px solid var(--ink);padding-top:14px;max-width:900px}
+.facts div{min-width:0}.facts span{display:block;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.facts b{display:block;font-size:17px;font-weight:700;margin-top:4px;line-height:1.3}
+.q{scroll-margin-top:16px;display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:0 32px;border-top:3px solid var(--ink);padding-block:28px 56px}
+.rail{min-width:0}
+.qnum{display:block;font-weight:800;color:var(--blue);font-size:clamp(34px,4.6vw,56px);line-height:.95;letter-spacing:-.03em}
+.kicker{font:500 13px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:8px 0 0}
+.qbody{min-width:0;display:grid;gap:20px}
+h2{font-size:clamp(28px,4vw,48px);font-weight:800;margin:0;line-height:1;letter-spacing:-.025em;text-wrap:balance}
+.text{display:grid;gap:12px;max-width:68ch}.text p{margin:0}
+.bref{border-top:6px solid var(--blue);background:var(--paper);padding:14px 20px 16px;display:grid;gap:8px;max-width:72ch}
+.bref span{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.bref ul{margin:0;padding-left:18px;display:grid;gap:4px;font-weight:600;font-size:16px;line-height:1.4}
+.bref.neutre{border-top-color:var(--ink)}.bref.neutre span{color:var(--ink)}
+.bref.neutre ul{font-weight:400}
+/* une question du guide */
+.temps{border-top:2px solid var(--ink);padding-top:12px;display:grid;gap:14px}
+.temps>h3{margin:0;font-size:22px;font-weight:800;letter-spacing:-.01em;line-height:1.15;max-width:30em;text-wrap:balance}
+.temps>h3 small{display:block;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.temps .rel{margin:0;padding-left:16px;display:grid;gap:3px;font-size:15px;color:var(--muted);max-width:60ch}
+.tag{display:inline-flex;gap:8px;flex-wrap:wrap;font:500 12px var(--mono);letter-spacing:.04em}
+.tag b{font-weight:500;background:var(--blue);color:#fff;padding:1px 7px;border-radius:2px}
+.tag b.no{background:transparent;color:var(--ko);border:1px solid var(--ko)}
+.tag b.off{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.tag em{font-style:normal;border:1px solid var(--blue);color:var(--blue);padding:0 6px;border-radius:2px}
+.hl{margin:0;max-width:76ch}.hl div{display:grid;grid-template-columns:7em minmax(0,1fr);gap:12px;border-bottom:1px solid var(--line);padding-block:10px}
+.hl dt{font:500 12px var(--mono);color:var(--blue);padding-top:3px;letter-spacing:.04em}
+.hl dd{margin:0;font-size:15.5px;line-height:1.45}.hl dd p{margin:0}.hl dd p+p{margin-top:6px}
+@media (max-width:760px){.hl div{grid-template-columns:minmax(0,1fr);gap:2px}}
+blockquote{margin:10px 0 0;padding:10px 16px;border-left:3px solid var(--blue);background:var(--paper);font-size:16px;line-height:1.45;max-width:58ch}
+blockquote+blockquote{margin-top:8px}
+/* dialogue : une question, sa réponse, puis la relance et sa réponse */
+.dlg{display:grid;gap:10px;max-width:72ch}
+.dlg>div{display:grid;grid-template-columns:7em minmax(0,1fr);gap:12px;align-items:start}
+.dlg .who{font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:5px}
+.dlg .ask .who{color:var(--blue)}
+.dlg .ask p{margin:0;font-size:18px;font-weight:700;line-height:1.35}
+.dlg .ans p{margin:0;padding:10px 16px;border-left:3px solid var(--blue);background:var(--paper);font-size:16px;line-height:1.45}
+.dlg .note{border-top:1px solid var(--line);padding-top:8px}.dlg .note p{margin:0;font-size:14.5px;color:var(--muted)}
+@media (max-width:760px){.dlg>div{grid-template-columns:minmax(0,1fr);gap:2px}}
+/* cartes de la fiche à chaud */
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:1000px}
+.duo>div{background:var(--paper);border-top:3px solid var(--ink);padding:14px 18px 18px;min-width:0}
+.duo h3{margin:0 0 8px;font-size:20px;font-weight:800;letter-spacing:-.01em}
+.duo ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15.5px;line-height:1.45}
+.duo .int{border-top-color:var(--blue)}.duo .ver{border-top-color:var(--orange)}
+/* tableaux */
+.tbl{overflow-x:auto;max-width:1000px}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:15px;border-top:2px solid var(--ink)}
+th,td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--line)}
+th{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td.k{font:500 13px var(--mono);color:var(--blue);white-space:nowrap}
+td i{font-style:normal;color:var(--muted)}
+.sign{font:800 26px/1 var(--sans)}.sign.p{color:var(--ok)}.sign.f{color:var(--test)}.sign.m{color:var(--ko)}
+.list{margin:0;padding-left:18px;display:grid;gap:10px;max-width:68ch}
+footer{border-top:3px solid var(--ink);padding-top:20px;font:13px/1.5 var(--mono);color:var(--muted);display:grid;gap:6px}footer p{margin:0;max-width:90ch}
+@media (max-width:760px){.q{grid-template-columns:minmax(0,1fr);gap:16px;padding-block:22px 40px}.qnum{font-size:34px}}
+</style>
+
+<main>
+<header>
+  <div class="eyebrow">Besoins utilisateurs · Séance 2 · Atelier 2 · PFR Générations Connectées · Kit 2-5 · 28 octobre 2026</div>
+  <h1>Entretien PE3</h1>
+  <div class="key"><span>Fiche d'entretien · petit-enfant · mené par Clément</span><p>Un petit-enfant parle d'une grand-mère qui vit loin. Trois appels par an, une carte postale par an, et de la culpabilité entre les deux.</p></div>
+  <div class="facts">
+    <div><span>Code</span><b>PE3</b></div>
+    <div><span>Guide</span><b>Petit-enfant, 8 questions</b></div>
+    <div><span>Posées</span><b>6 sur 8, dont 2 reformulées</b></div>
+    <div><span>Hors guide</span><b>2 questions ajoutées</b></div>
+    <div><span>Signes</span><b>E1 + · E3 + · P2 ?</b></div>
+  </div>
+  <ul class="toc"><li><a href="#profil">Le profil</a></li><li><a href="#questions">Question par question</a></li><li><a href="#fiche">La fiche à chaud</a></li><li><a href="#debrief">Débrief par hypothèse</a></li><li><a href="#methode">La méthode</a></li></ul>
+  <p class="legend">Mise au propre de l'enregistrement par Clément. Citations exactes entre guillemets ; prénoms, ville et pays d'origine retirés, comme le kit le demande (codes anonymes uniquement).</p>
+</header>
+
+<section class="q" id="profil">
+  <div class="rail"><span class="qnum">01</span><p class="kicker">Le tableau des profils</p></div>
+  <div class="qbody">
+    <h2>Qui a été rencontré</h2>
+    <div class="text"><p>La ligne PE3 du tableau du kit, remplie avec ce que l'enregistrement permet. Les cases vides sont à renseigner par Clément, pas à deviner.</p></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Critère du kit</th><th>PE3</th><th>D'où ça vient</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Public</td><td>Petit-enfant</td><td><i>planning du kit</i></td></tr>
+        <tr><td class="k">Mené par</td><td>Clément, seul, sans preneur de notes</td><td><i>enregistrement</i></td></tr>
+        <tr><td class="k">Âge (tranche)</td><td><i>à renseigner</i></td><td>non demandé</td></tr>
+        <tr><td class="k">F / H</td><td><i>à renseigner</i></td><td>non demandé</td></tr>
+        <tr><td class="k">Lien enquêteur</td><td>Connaissance ou famille d'un membre de l'équipe, <i>à préciser</i></td><td>tutoiement, famille citée par les prénoms</td></tr>
+        <tr><td class="k">Distance</td><td>Plus de 3 h</td><td>« elle habite loin… c'est hyper long d'y aller, ça nous fait des frais »</td></tr>
+        <tr><td class="k">Achat déjà fait</td><td>Oui : cartes postales, petit cadeau ; un carnet photo offert à une autre grand-mère</td><td>Q3 et question « offert »</td></tr>
+        <tr><td class="k">Travaille / étudie</td><td><i>à renseigner</i></td><td>non demandé</td></tr>
+        <tr><td class="k">Paire</td><td>Aucune</td><td>la grand-mère n'est pas dans l'échantillon</td></tr>
+        <tr><td class="k">Grand-mère décrite</td><td>Vit loin, en ville. Sort seule (courses, amies). Très croyante. Famille d'origine étrangère. Écrans : « pas hyper high-tech », dit des grands-mères en général</td><td>Q1, Q2, Q3</td></tr>
+        <tr><td class="k">Génération</td><td>Grand-mère ou arrière-grand-mère, <i>à clarifier</i></td><td>non demandé</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<section class="q" id="questions">
+  <div class="rail"><span class="qnum">02</span><p class="kicker">Les 8 questions du guide</p></div>
+  <div class="qbody">
+    <h2>Une question, sa réponse, puis la relance</h2>
+    <div class="text"><p>Dans l'ordre réel de l'entretien, qui suit celui du kit. Sous chaque question du guide : ce que Clément a dit, mot pour mot, la réponse juste en dessous, puis chaque relance suivie de sa réponse.</p></div>
+
+    <div class="temps">
+      <h3>Q1 · « Parlez-moi de votre grand-mère. »<small>Obligatoire · échauffement · 3 min</small></h3>
+      <ul class="rel"><li>« Où vit-elle ? »</li><li>« Quand l'avez-vous vue pour la dernière fois ? »</li></ul>
+      <p class="tag"><b>Posée</b><em>distance</em><em>place du grand-parent</em></p>
+      <div class="dlg">
+        <div class="ask"><span class="who">Clément</span><p>« J'aimerais que tu me parles de ta grand-mère. »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Déjà elle habite loin. Donc déjà c'est hyper long d'y aller. Et donc ça nous fait des frais et tout ça, donc on y va vraiment très rarement. Et voilà, c'est un peu triste. »</p></div>
+        <div class="ask"><span class="who">Relance</span><p>« Du coup, tu sais comment elle passe ses journées, ou pas ? »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Elle a ses petites habitudes : elle va faire ses petites courses. Elle avait un petit chat, mais plus maintenant. Elle fait à manger, elle va voir ses copines, la sieste. »</p></div>
+        <div class="ask"><span class="who">Relance</span><p>« Est-ce que tu es au courant si elle va bien ou pas ? »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Pas trop, parce que je ne l'appelle pas non plus hyper souvent. »</p></div>
+        <div class="ask"><span class="who">Relance</span><p>« Du coup, t'as des journées sans nouvelles ? »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Complètement. Des semaines… »</p></div>
+        <div class="note"><span class="who">Note</span><p>« Quand l'avez-vous vue pour la dernière fois ? » n'a pas été posée ici ; la réponse arrive à la Q3 : un mariage, il y a un an à un an et demi.</p></div>
+      </div>
+    </div>
+
+    <div class="temps">
+      <h3>Q2 · « La dernière fois que vous avez eu de ses nouvelles, comment est-ce arrivé ? »<small>Obligatoire · E3 · P2 · 4 min</small></h3>
+      <ul class="rel"><li>« Qui a commencé l'échange ? »</li><li>« Et la fois d'avant ? »</li></ul>
+      <p class="tag"><b>Posée</b><em>canal</em><em>initiative</em></p>
+      <div class="dlg">
+        <div class="ask"><span class="who">Clément</span><p>« La dernière fois, justement, que tu as eu des nouvelles d'elle, c'est arrivé comment ? Comment tu les as eues, ces nouvelles ? »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Pour son anniversaire, on s'est appelés. Si c'était pour son anniversaire, c'est moi qui l'ai appelée. Ou surtout pour Pâques, parce qu'elle est hyper croyante, et que c'est l'élément le plus proche qu'on a eu de religieux, donc on l'appelle à ce moment-là. »</p></div>
+        <div class="note"><span class="who">Note</span><p>Les deux relances du guide n'ont pas été posées, mais la réponse les couvre : c'est le petit-enfant qui appelle, et la fois d'avant était Pâques.</p></div>
+      </div>
+    </div>
+
+    <div class="temps">
+      <h3>Q3 · « La dernière fois que vous avez envoyé une photo à un proche, comment ça s'est passé ? »<small>Obligatoire · critique · E1 · 6 min</small></h3>
+      <ul class="rel"><li>« À qui l'avez-vous envoyée ? »</li><li>« Qu'est-ce qui vous a fait l'envoyer à ce moment-là ? »</li><li>Si la grand-mère n'est pas citée : « Et votre grand-mère, comment voit-elle vos photos ? »</li></ul>
+      <p class="tag"><b>Posée, reformulée deux fois</b><em>le déclic</em><em>le destinataire</em><em>le moyen</em></p>
+      <div class="dlg">
+        <div class="ask"><span class="who">Clément</span><p>« J'aimerais que tu me racontes maintenant la dernière fois que tu as partagé un bon moment de ta vie avec tes proches. »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« La dernière fois qu'on était tous ensemble avec [elle], c'était au mariage de [mon oncle et ma tante]. Donc ça remonte à un an, un an et demi. Et c'était hyper émouvant, parce qu'au mariage [mamie et papy] sont partis, et qu'ils ont fait un hommage de ouf en mettant une musique et tout. Et c'est ce moment-là où on était hyper proches avec [elle]. »</p></div>
+        <div class="ask"><span class="who">Relance</span><p>« Et maintenant je tourne ma question : c'est quand, la dernière fois que tu as envoyé un moment de ta vie à tes proches ? »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Est-ce qu'une carte postale, ça compte ? J'aime bien envoyer des cartes postales. Oui, à [elle]. Ça, c'est pareil, ça remonte à quasiment un an. Après, je le fais plus souvent avec mes autres mamies. Parce que c'est pas un réflexe que j'ai et on s'appelle pas non plus trop souvent, mais avec [mes trois autres grands-mères], j'envoie tout le temps des cartes postales tous les étés et j'essaye de les appeler tous les 15 jours. »</p></div>
+        <div class="ask"><span class="who">Relance</span><p>« Et du coup, la dernière fois que t'as envoyé une photo, ça s'est passé comment ? Pas forcément à cette mamie-là : c'est à qui que tu l'as envoyée ? »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Souvent, pour les mamies, vu qu'elles ne sont pas hyper high-tech, je les développe moi-même. Et je les envoie par carte postale pour qu'après elles puissent les mettre dans un cadre et tout ça. Ou quand c'est les fêtes et qu'on se voit, par exemple à Noël, l'année dernière, à [une autre grand-mère], je lui ai offert un carnet photo avec toutes nos photos de famille dedans. »</p></div>
+        <div class="ask"><span class="who">Relance</span><p>« Et c'est quoi qui t'a fait dire que tu lui envoies à ce moment-là, cette photo ? »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« C'était pour lui faire plaisir, et puis pour qu'elle ait une trace de nous, des photos plus récentes, pour qu'elle voie comment on grandit, vu qu'on est loin aussi, surtout quand on est avec les petits et qu'on est tous les quatre. Ça me fait plaisir, c'est pour ça que je prends plein de photos pour lui faire un livret souvent. »</p></div>
+        <div class="note"><span class="who">Note</span><p>La première formulation (« partagé un bon moment ») a fait raconter un moment vécu, pas un envoi. « Et ta grand-mère, comment voit-elle tes photos ? » n'a pas été posée pour la grand-mère de loin.</p></div>
+      </div>
+    </div>
+
+    <div class="temps">
+      <h3>Hors guide · Deux questions ajoutées entre Q3 et Q5<small>Posées à cet endroit de l'entretien</small></h3>
+      <ul class="rel"></ul>
+      <p class="tag"><b class="off">Hors guide petit-enfant</b><em>« offert »</em><em>« inquiet » : guide enfant, E2</em></p>
+      <div class="dlg">
+        <div class="ask"><span class="who">Clément</span><p>« J'aimerais que tu me racontes la dernière chose que t'as offerte. On reste sur [la même grand-mère] ? »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Là, dans ma tête, j'ai dérivé. Ce n'était pas la carte postale. Je pense que c'est un petit cadeau, une carte postale [du pays d'origine], je ne vois pas beaucoup. »</p></div>
+        <div class="ask"><span class="who">Clément</span><p>« Maintenant, j'aimerais que tu me racontes la dernière fois que tu as été inquiet pour elle. »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Je me dis que pas de nouvelles, bonne nouvelle, donc si on ne s'appelle pas, c'est que ça va. Je sais qu'elle est tout le temps en contact avec ma grand-mère et avec ma mère, donc je le sais si ça va ou pas de la part de ma mère. Mais sinon, je ne le sais pas, ça se trouve ça ne va pas du tout et je ne le sais pas. »</p></div>
+        <div class="note"><span class="who">Note</span><p>La question « inquiet » donne le verbatim le plus fort de l'entretien, et la seule réponse qui décrit le circuit des nouvelles (Q7).</p></div>
+      </div>
+    </div>
+
+    <div class="temps">
+      <h3>Q4 · « La dernière fois que votre grand-mère a vu une photo de vous, comment l'a-t-elle eue ? »<small>Obligatoire · E1 · P2 · 4 min</small></h3>
+      <ul class="rel"><li>« Comment a-t-elle réagi ? »</li><li>« Comment l'avez-vous su ? »</li></ul>
+      <p class="tag"><b class="no">Pas posée</b><em>le chemin de la photo</em><em>sa réponse</em></p>
+      <div class="dlg">
+        <div class="note"><span class="who">Note</span><p>Trou principal de l'entretien. On sait que les photos partent en papier pour être encadrées ; on ne sait ni quand la grand-mère de loin en a vu une récente, ni comment elle a réagi.</p></div>
+      </div>
+    </div>
+
+    <div class="temps">
+      <h3>Q5 · « Racontez-moi une habitude que vous avez avec elle. »<small>Optionnelle · E3 · 4 min</small></h3>
+      <ul class="rel"><li>« Comment a-t-elle commencé ? »</li><li>« Parlez-moi d'une habitude qui s'est arrêtée. »</li></ul>
+      <p class="tag"><b>Posée</b><em>ce qui fait tenir le lien</em></p>
+      <div class="dlg">
+        <div class="ask"><span class="who">Clément</span><p>« J'aimerais que tu me parles un peu des habitudes que tu as avec cette personne. »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« L'appeler pour Noël et pour Pâques, c'est vraiment le truc à faire, et son anniversaire, le truc qu'on fait tous les ans avec ma mère. »</p></div>
+        <div class="note"><span class="who">Note</span><p>Les deux relances du guide (comment l'habitude a commencé, laquelle s'est arrêtée) n'ont pas été posées.</p></div>
+      </div>
+    </div>
+
+    <div class="temps">
+      <h3>Q6 · « Quand avez-vous pensé à elle pour la dernière fois ? »<small>Obligatoire · critique · E1 · E3 · 4 min</small></h3>
+      <ul class="rel"><li>« Que faisiez-vous à ce moment-là ? »</li><li>« Et ensuite ? »</li></ul>
+      <p class="tag"><b>Posée</b><em>l'oubli, le temps ou autre chose</em></p>
+      <div class="dlg">
+        <div class="ask"><span class="who">Clément</span><p>« Et quand est-ce que tu as pensé à elle pour la dernière fois ? »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Pour de vrai, souvent quand on rentre dans une église, je pense même. Parce que c'est hyper chrétien de ce côté-là, et que moi, ce côté-là me relie à eux. »</p></div>
+        <div class="ask"><span class="who">Relance</span><p>« Ok, et ensuite ? La plupart du temps, c'est donc dans l'église, quand tu y vas, donc ce n'est pas beaucoup. »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Quand je pense à l'église, aux réunions de famille ou quand on se retrouve, je me demande s'il y a mamie et tout ça. Ou quand on va vers [sa ville], si on passe par là : est-ce qu'on ne peut pas aller voir mamie, ou un truc comme ça ? »</p></div>
+        <div class="note"><span class="who">Note</span><p>Pas de date. La pensée vient d'un lieu et, dans le récit, aucun geste ne la suit. La relance « Et ensuite ? » a été lâchée (« Moi je vais passer directement là »).</p></div>
+      </div>
+    </div>
+
+    <div class="temps">
+      <h3>Q7 · « Comment les nouvelles circulent-elles dans votre famille ? »<small>Optionnelle · 3 min</small></h3>
+      <ul class="rel"><li>« Qui envoie quoi ? »</li><li>« Comment votre grand-mère reçoit-elle ces nouvelles ? »</li></ul>
+      <p class="tag"><b class="no">Pas posée telle quelle</b><em>le groupe familial</em></p>
+      <div class="dlg">
+        <div class="note"><span class="who">Note</span><p>La réponse à « inquiet » la couvre en partie : la grand-mère de loin est en contact permanent avec une autre grand-mère et avec la mère. Comment elle reçoit les nouvelles des petits-enfants : non demandé.</p></div>
+      </div>
+    </div>
+
+    <div class="temps">
+      <h3>Q8 · « Y a-t-il quelque chose d'important dont on n'a pas parlé ? »<small>Obligatoire · clôture · 2 min</small></h3>
+      <ul class="rel"><li>« Si je résume : [ses mots]. Est-ce juste ? »</li><li>« Qui d'autre pourrais-je rencontrer ? »</li></ul>
+      <p class="tag"><b>Posée aux deux tiers</b></p>
+      <div class="dlg">
+        <div class="ask"><span class="who">Clément</span><p>« J'aimerais que tu me dises quelque chose que tu trouves important, dont on n'a pas forcément parlé, concernant ça. »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Des fois je me sens coupable de ne pas prendre plus de nouvelles. »</p></div>
+        <div class="ask"><span class="who">Résumé</span><p>« Donc tu penses qu'aujourd'hui tu n'as pas assez de nouvelles d'elle, et donc elle n'a pas assez de nouvelles de ta part. »</p></div>
+        <div class="ans"><span class="who">PE3</span><p>« Et pour moi, c'est important de donner des nouvelles à ses mamies, surtout quand elles sont loin. C'est important de voir comment, parce que, vu qu'on grandit vite, souvent elle a des belles images de nous, tout ça quoi. Mais en fait, ouais, je pense. »</p></div>
+        <div class="note"><span class="who">Note</span><p>« Qui d'autre pourrais-je rencontrer ? » n'a pas été posée.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="q" id="fiche">
+  <div class="rail"><span class="qnum">03</span><p class="kicker">La fiche à chaud · kit, section 10</p></div>
+  <div class="qbody">
+    <h2>Dit, observé, interprété, à vérifier</h2>
+    <div class="text"><p>Ce qui a été dit est séparé de ce qu'on en déduit, avant que la mémoire ne réécrive l'entretien.</p></div>
+    <div class="duo">
+      <div><h3>Dit</h3><ul>
+        <li>Grand-mère à plus de 3 h, visites très rares à cause du trajet et des frais.</li>
+        <li>Trois appels par an, à Noël, à Pâques et pour son anniversaire, avec la mère. Toujours à l'initiative de la famille.</li>
+        <li>Dernières nouvelles : un appel d'anniversaire. Le reste de l'année, l'état de la grand-mère remonte par la mère.</li>
+        <li>Dernier envoi à cette grand-mère : une carte postale, il y a presque un an.</li>
+        <li>Aux trois autres grands-mères : cartes chaque été, photos tirées à la main pour être encadrées, un carnet photo à Noël, appels visés « tous les 15 jours ».</li>
+        <li>Pense à elle dans une église, aux réunions de famille, sur un trajet qui passe près de chez elle. Rien ne suit.</li>
+        <li>Dernier moment ensemble : un mariage, il y a un an à un an et demi.</li>
+        <li>Se sent parfois coupable de ne pas prendre plus de nouvelles.</li>
+      </ul></div>
+      <div><h3>Observé</h3><ul>
+        <li>Rien de montré ni de décrit : ni téléphone, ni photo, ni appareil. À compléter par Clément s'il a vu quelque chose (face à face ou visio ?).</li>
+        <li>Ton détendu, tutoiement, famille désignée par les prénoms : personne connue de l'enquêteur.</li>
+        <li>La personne a dérivé une fois (question « cadeau ») et s'est reprise seule.</li>
+      </ul></div>
+      <div class="int"><h3>Interprété</h3><ul>
+        <li>Le lien avec cette grand-mère tient à trois dates par an, portées par la mère. En dehors, aucun canal direct.</li>
+        <li>Le petit-enfant fait déjà à la main ce que ferait un cadre connecté : il tire des photos pour qu'elles soient encadrées. L'envie et le moyen existent ; ce qui manque, c'est le réflexe et la fréquence.</li>
+        <li>Le papier est choisi parce que les grands-mères « ne sont pas high-tech » : un objet qui reçoit sans manipulation va dans le sens de P2.</li>
+        <li>Le moteur n'est pas l'inquiétude après un incident, mais la culpabilité et l'incertitude : « ça se trouve ça ne va pas du tout et je ne le sais pas ».</li>
+        <li>La pensée pour elle est déclenchée par des lieux, pas par un rappel, et ne devient jamais un geste. Le besoin est un passage de la pensée à l'envoi, pas un outil de plus.</li>
+        <li>L'image que la grand-mère a d'eux date : « pour qu'elle voie comment on grandit ». Côté grand-parent, le contenu attendu est le visage qui change.</li>
+      </ul></div>
+      <div class="ver"><h3>À vérifier</h3><ul>
+        <li>Qui est qui : grand-mère ou arrière-grand-mère ? Au mariage, « mamie et papy » ont reçu un hommage ; sont-ce deux autres personnes ? Nécessaire pour la tranche d'âge.</li>
+        <li>Âge, F / H, travaille ou étudie, lien exact avec l'équipe : non demandés.</li>
+        <li>Si la personne est de la famille d'un membre de l'équipe, l'écrire : biais à nommer, et le plan exclut nos propres grands-parents.</li>
+        <li>Q4 : quand la grand-mère de loin a-t-elle vu une photo récente d'eux, et comment a-t-elle réagi ?</li>
+        <li>« J'essaye de les appeler tous les 15 jours » est une intention, pas un fait : chiffrer au prochain entretien.</li>
+        <li>Les deux accords (participer, être enregistré) ne figurent pas dans l'enregistrement : confirmer qu'ils ont été demandés.</li>
+        <li>Enregistrement à effacer une fois cette fiche relue, règle du kit.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="q" id="debrief">
+  <div class="rail"><span class="qnum">04</span><p class="kicker">Le débrief par hypothèse</p></div>
+  <div class="qbody">
+    <h2>Un signe par hypothèse, un verbatim chacune</h2>
+    <div class="text"><p>Les trois hypothèses que le guide petit-enfant teste. Règle du kit : + appuie, − contredit, ? flou. C'est le seuil qui tranche mercredi, pas l'impression.</p></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Hyp.</th><th>Question</th><th>Elle est fausse si…</th><th>Signe</th><th>Pourquoi</th><th>Verbatim, sans nom ni ville</th></tr></thead>
+      <tbody>
+        <tr><td class="k">E1</td><td>PE Q3</td><td>3 enfants sur 5 envoient déjà des photos à leur parent chaque semaine.</td><td><span class="sign p">+</span></td><td>Une carte par an à cette grand-mère, une carte par été aux autres. Jamais hebdomadaire. La cause donnée est le réflexe, pas l'outil.</td><td>« C'est pas un réflexe que j'ai, et on s'appelle pas non plus trop souvent. »</td></tr>
+        <tr><td class="k">E3</td><td>PE Q5</td><td>3 enfants sur 5 tiennent un geste chaque semaine depuis plus de 3 mois.</td><td><span class="sign p">+</span></td><td>Trois appels par an, à dates fixes, avec la mère. Au mieux « tous les 15 jours » avec les autres, et c'est une intention.</td><td>« Pour Noël et pour Pâques, c'est vraiment le truc à faire, et son anniversaire, le truc qu'on fait tous les ans avec ma mère. »</td></tr>
+        <tr><td class="k">P2</td><td>PE Q2, Q4</td><td>3 parents sur 5 ne répondent pas, ou pas par la voix.</td><td><span class="sign f">?</span></td><td>Vu du petit-enfant seulement. Elle répond au téléphone aux dates fixes, mais n'appelle jamais la première dans le récit. Q4 non posée.</td><td>« Je sais qu'elle est tout le temps en contact avec ma grand-mère et avec ma mère, donc je le sais si ça va ou pas de la part de ma mère. »</td></tr>
+      </tbody>
+    </table></div>
+    <div class="bref neutre"><span>Pour la synthèse</span><ul><li>À reporter dans la synthèse des entretiens famille de Lucas, section petits-enfants, à côté de PE2 : là où PE2 donne trois « ? », PE3 donne deux « + » et un « ? ».</li></ul></div>
+  </div>
+</section>
+
+<section class="q" id="methode">
+  <div class="rail"><span class="qnum">05</span><p class="kicker">Pour le prochain entretien</p></div>
+  <div class="qbody">
+    <h2>Les écarts au guide</h2>
+    <div class="text"><p>Ce que l'enregistrement montre de la conduite de l'entretien. Une liste de réglages, pas un jugement sur la personne interrogée.</p></div>
+    <ul class="list">
+      <li><b>Garder les mots du guide pour Q3.</b> « Partagé un bon moment » a fait raconter un moment vécu, pas un envoi ; il a fallu deux reformulations pour arriver à la photo.</li>
+      <li><b>Q4 et le « Et ensuite ? » de Q6 sont les relances qui manquent.</b> C'est là que se jouent E1 (le chemin de la photo) et P2 (la réaction de la grand-mère).</li>
+      <li><b>Deux questions ajoutées, une seule a rapporté.</b> « Inquiet » a donné le meilleur verbatim ; « offert » a fait perdre le fil. Si on en garde une, c'est l'inquiétude.</li>
+      <li><b>« Qui d'autre pourrais-je rencontrer ? » a sauté.</b> C'est la question qui doit ramener le cinquième parent.</li>
+      <li><b>Personne connue, tutoiement, seul sans preneur de notes :</b> normal avec l'entourage, mais à écrire dans la fiche comme biais, comme le kit le demande.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>Fiche d'entretien PE3 établie à partir de l'enregistrement retranscrit par Clément le 28 octobre 2026. Les citations sont les mots exacts de la personne ; les prénoms, la ville et le pays d'origine ont été retirés.</p>
+  <p>Brouillon de Clément, dossier interne du bloc 02. Les notes brutes restent hors du dépôt public.</p>
+</footer>
+</main>
