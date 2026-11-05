@@ -20,3 +20,9 @@
 - Hypothèse : « bonne typo, bonnes couleurs, bons CTA » = charte Soly (Lexend titres et numéros, Atkinson texte, pastilles soleil/lilas/pêche avec texte encre, CTA pilule 56 px encre + contour encre).
 - Même style de CTA appliqué à « Ouvrir la maquette seule » par cohérence. Classes propres (.audit, .st) pour ne pas toucher au CSS de Camille.
 - Titres de toute la section 05 passés de Bricolage Grotesque à Lexend (h2, h3, h4, chiffres clés, libellés), texte en Atkinson. Le reste du rendu de Camille garde sa police.
+
+## 2026-11-05 : tout le rendu v2 en charte Soly
+- Hypothèse : « ergonomise tout » = appliquer la charte Soly à tout le document v2, pas seulement à la section 05. Le fichier de Camille n'est pas modifié.
+- Couche `soly-theme` : Lexend pour les titres, libellés et menu, Atkinson pour le texte (16 à 17 px). Plus de libellés en monospace majuscule. Pastilles de statut (soleil, lilas, pêche). Boutons en pilule de 56 px. Focus lilas.
+- Graphiques : retenu = encre, plan B = lilas foncé #9B85D6 (le lilas #C9B8F0 est trop pâle pour une barre sur fond aube), autres = soleil. Les verdicts du tableau sont en encre ou café doux.
+- Le blueprint intégré (iframe, travail de Clément) garde son propre style.
