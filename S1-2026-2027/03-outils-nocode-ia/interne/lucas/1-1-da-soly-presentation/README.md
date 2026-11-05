@@ -20,3 +20,12 @@ Les 24 planches de la direction artistique Soly (Figma « Fil rouge B2 », page 
 - Aucune image : logos, mockups et dégradés sont en SVG et CSS, donc nets à toute taille.
 - Approximations : dégradé gris de la boîte (planche 17) et de la mini-carte (planche 18).
 - Écart mesuré avec les exports Figma : moins de 2 % de pixels différents par planche.
+
+## Pages de rendu (onglets)
+Deux pages à ouvrir dans Chrome, dans `interne/lucas/` :
+- `1-1-soly-rendu-da.html` : la DA seule (Projet, Identité, Couleurs et typo, Interface, Applications, Planches).
+- `1-1-soly-rendu-da-maquette.html` : la DA avec la maquette interactive v3 intégrée (onglet Maquette).
+
+Interactions : onglets (flèches du clavier, lien direct `#couleurs`), clic sur une couleur pour copier son code, choix du fond du logo, spécimen typo réglable, planches filtrables et agrandissables (Échap pour fermer). Impression : tous les onglets à la suite.
+
+Modifier : gabarit `_src/rendu.html`, contenu dans `_src/build_rendu.py`, puis `python3 _src/build_rendu.py` régénère les deux pages. Les planches viennent de `slides/`. Le prototype est lu depuis `../1-1-soly-prototype-interactif-v3.html`.
