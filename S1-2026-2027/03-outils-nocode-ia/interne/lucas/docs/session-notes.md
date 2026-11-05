@@ -15,3 +15,7 @@
 - Section 05 développée : principes, logo et 6 déclinaisons, construction, couleurs et lumière, typo et échelle, interface, applications, maquette, audit. 24 planches en JPG dans img-rendu-da/.
 - Maquette réduite en JS (scale) pour voir cadre et téléphone entiers sans ouvrir la maquette seule.
 - Hypothèse : niveau de détail entre la v2 initiale et 1-1-soly-rendu-da.html.
+
+## 2026-11-05 : audit de la DA restylé en charte Soly
+- Hypothèse : « bonne typo, bonnes couleurs, bons CTA » = charte Soly (Lexend titres et numéros, Atkinson texte, pastilles soleil/lilas/pêche avec texte encre, CTA pilule 56 px encre + contour encre).
+- Même style de CTA appliqué à « Ouvrir la maquette seule » par cohérence. Classes propres (.audit, .st) pour ne pas toucher au CSS de Camille.
