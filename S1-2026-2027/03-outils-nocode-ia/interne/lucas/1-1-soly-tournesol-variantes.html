@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soly, idées d'icône</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--aube:#fffaf0;--creme:#fff3d9;--encre:#1f1a17;--cafe:#6a5f55;--soleil:#ffd36e;--peche:#ffc9a3;--ligne:#f0e3c8}
+*{box-sizing:border-box}body{margin:0;background:var(--aube);color:var(--encre);font-family:'Atkinson Hyperlegible',system-ui,sans-serif}
+.w{max-width:1200px;margin:0 auto;padding:64px 32px 96px}
+h1{font:600 clamp(36px,5vw,64px)/1.05 Lexend,sans-serif;letter-spacing:-.04em;margin:0 0 16px}
+.lead{font-size:20px;color:var(--cafe);max-width:720px;line-height:1.5;margin:0 0 48px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+.card{background:var(--creme);border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:20px}
+.big{background:var(--aube);border-radius:22px;border:2px solid var(--ligne);display:flex;align-items:center;justify-content:center;height:220px}
+.big svg{width:150px;height:150px}
+.n{font:400 14px Lexend;letter-spacing:.1em;color:var(--cafe)}
+h2{font:600 26px/1.15 Lexend;letter-spacing:-.03em;margin:0}
+p{margin:0;font-size:18px;line-height:1.5;color:var(--cafe)}
+.sizes{display:flex;align-items:center;gap:16px}.sizes svg{display:block}
+.app{width:56px;height:56px;border-radius:14px;background:linear-gradient(160deg,#d6c6f5,#ffc9a3 45%,#ffe7a8);display:flex;align-items:center;justify-content:center}
+.app svg{width:34px;height:34px}
+.rec{margin-top:48px;background:var(--encre);color:var(--aube);border-radius:28px;padding:36px}
+.rec h2{color:var(--aube)}.rec p{color:#e8dcc6;margin-top:12px}
+@media(max-width:600px){.w{padding:40px 16px}.grid{grid-template-columns:1fr}}
+</style></head><body><div class="w">
+<h1>Le tournesol de Soly, dix variantes.</h1>
+<p class="lead">Idée de départ : un centre jaune, des pétales autour. Le centre est le senior, les pétales sont la famille, et le tout est un petit soleil. On joue sur le nombre de pétales, leur forme, leur taille et ce qui s'allume.</p>
+<div class="grid" id="g"></div>
+<div class="rec"><h2>Mon avis</h2><p>La 03 (quatre pétales) garde ta famille en quatre et la rend plus chaleureuse : c'est la plus cohérente avec le travail déjà fait. La 05 (un pétale s'allume) est la plus fidèle à l'idée « un seul s'allume ». La 09 (le tournesol sur sa tige) est la plus parlante seule, mais la moins compacte en 16 px.</p></div>
+<script>
+const E='#1f1a17',Y='#ffd36e',P='#ffc9a3',A='#fffaf0';
+const rot=(n,f)=>Array.from({length:n},(_,i)=>f(i*360/n,i)).join('');
+const el=(a,rx,ry,cy,f)=>`<ellipse cx="60" cy="${cy}" rx="${rx}" ry="${ry}" fill="${f}" transform="rotate(${a} 60 60)"/>`;
+const I=[
+['Le départ','Rappel : huit pétales ovales encre, un centre jaune. La base des variantes suivantes.',rot(8,a=>el(a,9,16,24,E))+`<circle cx="60" cy="60" r="16" fill="${Y}"/>`],
+['Six pétales larges','Moins de pétales, plus larges : plus lisible en petit, plus doux, presque une fleur de dessin d\'enfant.',rot(6,a=>el(a,15,20,26,E))+`<circle cx="60" cy="60" r="15" fill="${Y}"/>`],
+['Quatre pétales','Quatre pétales arrondis en croix : la famille en quatre, avec le senior au centre. Très proche de la famille en 4 déjà validée.',rot(4,a=>el(a,19,22,27,E))+`<circle cx="60" cy="60" r="15" fill="${Y}"/>`],
+['Huit points','Les pétales deviennent des points : le point de « Soly. » répété huit fois autour du point jaune. Très simple, très cohérent avec le logo.',rot(8,a=>`<circle cx="60" cy="19" r="9" fill="${E}" transform="rotate(${a} 60 60)"/>`)+`<circle cx="60" cy="60" r="17" fill="${Y}"/>`],
+['Un pétale s\'allume','Huit pétales encre, un seul jaune : le membre de la famille qui vient de passer un message. Le centre reste encre.',rot(8,(a,i)=>el(a,9,16,24,i===3?Y:E))+`<circle cx="60" cy="60" r="16" fill="${E}"/>`],
+['Pétales au trait','Pétales dessinés en contour, centre plein : plus léger, plus éditorial, dans l\'esprit du style suisse.',rot(8,a=>`<ellipse cx="60" cy="24" rx="8" ry="15" fill="none" stroke="${E}" stroke-width="6" transform="rotate(${a} 60 60)"/>`)+`<circle cx="60" cy="60" r="16" fill="${Y}"/>`],
+['Fleur à cinq lobes','Une seule forme découpée en cinq lobes arrondis, une silhouette d\'un seul tenant. Plus rare qu\'un tournesol, plus proche d\'une icône d\'appli.',`<g fill="${E}">${rot(5,a=>`<circle cx="60" cy="30" r="21" transform="rotate(${a} 60 60)"/>`)}<circle cx="60" cy="60" r="24"/></g><circle cx="60" cy="60" r="15" fill="${Y}"/>`],
+['Soleil à rayons','Le tournesol rejoint le soleil : un disque jaune et seize rayons courts. Le plus proche du nom « Soly ».',rot(16,a=>`<rect x="57" y="8" width="6" height="${a%45===0?24:16}" rx="3" fill="${E}" transform="rotate(${a} 60 60)"/>`)+`<circle cx="60" cy="60" r="24" fill="${Y}"/>`],
+['Sur sa tige','Un tournesol penché sur sa tige, avec une feuille : l\'image la plus naturelle. Elle se lit seule, sans explication.',`<path d="M60 70V112" stroke="${E}" stroke-width="7" stroke-linecap="round"/><path d="M60 100C44 100 38 90 36 82C50 82 58 88 60 100Z" fill="${E}"/>`+rot(8,a=>`<ellipse cx="60" cy="20" rx="7" ry="12" fill="${E}" transform="rotate(${a} 60 40) translate(0 0)"/>`).replace(/60 60\)/g,'60 40)')+`<circle cx="60" cy="40" r="12" fill="${Y}"/>`],
+['Les générations','Quatre pétales de tailles croissantes : du plus petit au plus grand, enfants, parents, grands-parents. Le centre jaune les relie.',`<ellipse cx="60" cy="34" rx="7" ry="11" fill="${E}"/><ellipse cx="88" cy="60" rx="11" ry="15" fill="${E}" transform="rotate(90 88 60) rotate(-90 88 60)"/><ellipse cx="60" cy="88" rx="14" ry="19" fill="${E}"/><ellipse cx="30" cy="60" rx="10" ry="14" fill="${E}" transform="rotate(90 30 60)"/><circle cx="60" cy="60" r="14" fill="${Y}"/>`]
+];
+I.forEach((x,i)=>{const s=z=>`<svg viewBox="0 0 120 120" width="${z}" height="${z}">${x[2]}</svg>`;
+g.insertAdjacentHTML('beforeend',`<div class="card"><div class="big">${s(150)}</div><div class="n">${String(i+1).padStart(2,'0')}</div><h2>${x[0]}</h2><p>${x[1]}</p><div class="sizes">${s(48)}${s(24)}${s(16)}<div class="app">${s(34)}</div></div></div>`)});
+</script></body></html>

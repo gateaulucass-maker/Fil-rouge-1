@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soly, idées d'icône</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--aube:#fffaf0;--creme:#fff3d9;--encre:#1f1a17;--cafe:#6a5f55;--soleil:#ffd36e;--peche:#ffc9a3;--ligne:#f0e3c8}
+*{box-sizing:border-box}body{margin:0;background:var(--aube);color:var(--encre);font-family:'Atkinson Hyperlegible',system-ui,sans-serif}
+.w{max-width:1200px;margin:0 auto;padding:64px 32px 96px}
+h1{font:600 clamp(36px,5vw,64px)/1.05 Lexend,sans-serif;letter-spacing:-.04em;margin:0 0 16px}
+.lead{font-size:20px;color:var(--cafe);max-width:720px;line-height:1.5;margin:0 0 48px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+.card{background:var(--creme);border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:20px}
+.big{background:var(--aube);border-radius:22px;border:2px solid var(--ligne);display:flex;align-items:center;justify-content:center;height:220px}
+.big svg{width:150px;height:150px}
+.n{font:400 14px Lexend;letter-spacing:.1em;color:var(--cafe)}
+h2{font:600 26px/1.15 Lexend;letter-spacing:-.03em;margin:0}
+p{margin:0;font-size:18px;line-height:1.5;color:var(--cafe)}
+.sizes{display:flex;align-items:center;gap:16px}.sizes svg{display:block}
+.app{width:56px;height:56px;border-radius:14px;background:linear-gradient(160deg,#d6c6f5,#ffc9a3 45%,#ffe7a8);display:flex;align-items:center;justify-content:center}
+.app svg{width:34px;height:34px}
+.rec{margin-top:48px;background:var(--encre);color:var(--aube);border-radius:28px;padding:36px}
+.rec h2{color:var(--aube)}.rec p{color:#e8dcc6;margin-top:12px}
+@media(max-width:600px){.w{padding:40px 16px}.grid{grid-template-columns:1fr}}
+</style></head><body><div class="w">
+<h1>Soly, dix autres idées.</h1>
+<p class="lead">Cette fois, on sort du « carré avec un soleil » : formes, lettres, gestes et lien. Chaque idée est montrée en grand, puis à 48, 24 et 16 px, puis sur l'icône d'appli. Les idées sont à comparer, aucune n'est validée.</p>
+<div class="grid" id="g"></div>
+<div class="rec"><h2>Mon avis</h2><p>La 01 (l'arche) est la plus ownable : une forme à nous, avec le point du logo. La 02 (le point signature) est la plus simple et la plus cohérente avec « Soly. ». La 04 (la famille en quatre) raconte le mieux le produit. À éviter : la 09 (visage), trop enfantine pour des seniors.</p></div>
+</div>
+<script>
+const E='#1f1a17',Y='#ffd36e',P='#ffc9a3',A='#fffaf0';
+const fr=`<rect x="16" y="16" width="88" height="88" rx="24" fill="none" stroke="${E}" stroke-width="8"/>`;
+const I=[
+['L\'arche','Une fenêtre en arche, pleine, avec le point jaune du logo en bas. Une forme qu\'on ne confond pas avec une app de photos.',`<path d="M18 106V58A42 42 0 0 1 102 58V106Z" fill="${E}"/><circle cx="60" cy="84" r="14" fill="${Y}"/>`],
+['Le point signature','Rien que le carré encre et le point jaune, placé comme dans « Soly. ». Le plus sobre : l\'icône devient le point.',`<rect x="10" y="10" width="100" height="100" rx="30" fill="${E}"/><circle cx="82" cy="82" r="14" fill="${Y}"/>`],
+['Le S en fil','Un S tracé d\'un seul trait, le point jaune au bout. Comme une lettre manuscrite : un signe envoyé à la main.',`<path d="M80 38C72 24 38 26 38 46C38 68 82 56 82 78C82 96 50 98 38 82" fill="none" stroke="${E}" stroke-width="12" stroke-linecap="round"/><circle cx="92" cy="98" r="9" fill="${Y}"/>`],
+['La famille en quatre','Quatre cadres, un seul qui s\'allume. La famille réunie, et un proche qui fait signe.',`<rect x="14" y="14" width="42" height="42" rx="13" fill="${E}"/><rect x="64" y="14" width="42" height="42" rx="13" fill="${E}"/><rect x="14" y="64" width="42" height="42" rx="13" fill="${E}"/><rect x="64" y="64" width="42" height="42" rx="13" fill="${Y}"/>`],
+['Les photos empilées','Deux cadres qui se chevauchent, un point au centre. Le souvenir et la pile de photos qu\'on retrouve.',`<rect x="30" y="12" width="78" height="78" rx="20" fill="${P}"/><rect x="12" y="30" width="78" height="78" rx="20" fill="${A}" stroke="${E}" stroke-width="7"/><circle cx="51" cy="69" r="13" fill="${Y}"/>`],
+['La maison','Un cadre en forme de maison. Dit « chez soi » : l\'objet reste à la maison, il ne surveille pas.',`<path d="M18 56L60 18L102 56V96A8 8 0 0 1 94 104H26A8 8 0 0 1 18 96Z" fill="none" stroke="${E}" stroke-width="8" stroke-linejoin="round"/><circle cx="60" cy="74" r="13" fill="${Y}"/>`],
+['La bulle','Un cadre-bulle avec le point jaune. Le signe, le petit mot : on se parle sans parler.',`<path d="M40 16H80A24 24 0 0 1 104 40V64A24 24 0 0 1 80 88H52L30 106V86A24 24 0 0 1 16 64V40A24 24 0 0 1 40 16Z" fill="none" stroke="${E}" stroke-width="8" stroke-linejoin="round"/><circle cx="60" cy="52" r="12" fill="${Y}"/>`],
+['Deux points reliés','Une pastille encre, deux points qui se rejoignent. Le lien entre deux personnes, sans montrer l\'objet.',`<rect x="6" y="34" width="108" height="52" rx="26" fill="${E}"/><path d="M40 60H80" stroke="${Y}" stroke-width="4" stroke-linecap="round"/><circle cx="34" cy="60" r="14" fill="${Y}"/><circle cx="86" cy="60" r="14" fill="${A}"/>`],
+['Le cadre qui sourit','Deux yeux, un sourire, deux joues pêche. Chaleureux et vivant, mais plus enfantin : à tester avec les parents.',fr+`<circle cx="44" cy="48" r="6" fill="${E}"/><circle cx="76" cy="48" r="6" fill="${E}"/><circle cx="33" cy="66" r="7" fill="${P}"/><circle cx="87" cy="66" r="7" fill="${P}"/><path d="M44 72Q60 88 76 72" fill="none" stroke="${E}" stroke-width="6" stroke-linecap="round"/>`],
+['Le signe en ondes','Un point jaune entouré de deux ondes. Le geste de toucher qui se propage jusqu\'à la famille. Pas de carré.',`<circle cx="60" cy="60" r="13" fill="${Y}"/><circle cx="60" cy="60" r="30" fill="none" stroke="${E}" stroke-width="7"/><circle cx="60" cy="60" r="47" fill="none" stroke="${E}" stroke-width="7" opacity=".3"/>`]
+];
+const g=document.getElementById('g');
+I.forEach((x,i)=>{const s=z=>`<svg viewBox="0 0 120 120" width="${z}" height="${z}">${x[2]}</svg>`;
+g.insertAdjacentHTML('beforeend',`<div class="card"><div class="big">${s(150)}</div><div class="n">${String(i+1).padStart(2,'0')}</div><h2>${x[0]}</h2><p>${x[1]}</p><div class="sizes">${s(48)}${s(24)}${s(16)}<div class="app">${s(34)}</div></div></div>`)});
+</script></body></html>

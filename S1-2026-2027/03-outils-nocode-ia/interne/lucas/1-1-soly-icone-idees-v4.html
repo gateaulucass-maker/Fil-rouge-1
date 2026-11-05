@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soly, idées d'icône</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--aube:#fffaf0;--creme:#fff3d9;--encre:#1f1a17;--cafe:#6a5f55;--soleil:#ffd36e;--peche:#ffc9a3;--ligne:#f0e3c8}
+*{box-sizing:border-box}body{margin:0;background:var(--aube);color:var(--encre);font-family:'Atkinson Hyperlegible',system-ui,sans-serif}
+.w{max-width:1200px;margin:0 auto;padding:64px 32px 96px}
+h1{font:600 clamp(36px,5vw,64px)/1.05 Lexend,sans-serif;letter-spacing:-.04em;margin:0 0 16px}
+.lead{font-size:20px;color:var(--cafe);max-width:720px;line-height:1.5;margin:0 0 48px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+.card{background:var(--creme);border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:20px}
+.big{background:var(--aube);border-radius:22px;border:2px solid var(--ligne);display:flex;align-items:center;justify-content:center;height:220px}
+.big svg{width:150px;height:150px}
+.n{font:400 14px Lexend;letter-spacing:.1em;color:var(--cafe)}
+h2{font:600 26px/1.15 Lexend;letter-spacing:-.03em;margin:0}
+p{margin:0;font-size:18px;line-height:1.5;color:var(--cafe)}
+.sizes{display:flex;align-items:center;gap:16px}.sizes svg{display:block}
+.app{width:56px;height:56px;border-radius:14px;background:linear-gradient(160deg,#d6c6f5,#ffc9a3 45%,#ffe7a8);display:flex;align-items:center;justify-content:center}
+.app svg{width:34px;height:34px}
+.rec{margin-top:48px;background:var(--encre);color:var(--aube);border-radius:28px;padding:36px}
+.rec h2{color:var(--aube)}.rec p{color:#e8dcc6;margin-top:12px}
+@media(max-width:600px){.w{padding:40px 16px}.grid{grid-template-columns:1fr}}
+</style></head><body><div class="w">
+<h1>Soly, dix idées qui changent tout.</h1>
+<p class="lead">Fini les quatre carrés. Ici, dix univers différents : lettre, soleil, bulle, lien, maison, lampe, porte, cœur. Chaque idée est montrée en grand, puis à 48, 24 et 16 px, puis sur l'icône d'appli.</p>
+<div class="grid" id="g"></div>
+<div class="rec"><h2>Mon avis</h2><p>La 01 (le S-fil) est la plus ownable : une lettre, un trait continu, le point du logo. La 02 (le soleil levant) est la plus lisible en une seconde. La 06 (la veilleuse) est la plus rassurante pour les familles. Je ferais la version Figma de ces trois.</p></div>
+<script>
+const E='#1f1a17',Y='#ffd36e',P='#ffc9a3',A='#fffaf0',L='#c9b8f0';
+const st=(d,w=9,c=E)=>`<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+const I=[
+['Le S-fil','Un S dessiné d\'un seul trait, comme un fil qui ne se coupe jamais (le fil rouge de la famille). Il se termine par le point de « Soly. ».',st('M82 28C70 16 38 16 38 40C38 62 82 54 82 78C82 100 48 102 34 88',10)+`<circle cx="92" cy="96" r="9" fill="${Y}"/>`],
+['Le soleil levant','Un demi-soleil qui se lève sur une ligne d\'horizon. Le matin, le premier signe de la journée. Très simple, très chaud.',`<path d="M20 78a40 40 0 0 1 80 0Z" fill="${Y}"/>`+st('M10 90H110',9)+st('M36 104H84',9)],
+['La bulle','Une bulle de dialogue ronde avec un point à l\'intérieur : un message, une voix, « je pense à toi ». Le point est le point de Soly.',`<path d="M60 12C32 12 12 31 12 54C12 69 20 82 33 90L28 108L50 97C53 97 57 98 60 98C88 98 108 79 108 54C108 31 88 12 60 12Z" fill="${E}"/><circle cx="60" cy="55" r="14" fill="${Y}"/>`],
+['Deux anneaux','Deux anneaux qui s\'entrecroisent : deux générations reliées. Un anneau encre, un anneau jaune, pour le parent et l\'enfant.',st('M50 30a30 30 0 1 0 0.1 0',10)+st('M70 30a30 30 0 1 0 0.1 0',10,Y)],
+['La maison','Un toit, un point sous le toit : quelqu\'un est là, chez lui, et on veille. Le toit est un simple chevron, aucune fenêtre.',st('M16 56L60 18L104 56',10)+`<circle cx="60" cy="76" r="14" fill="${Y}"/>`+st('M30 102H90',10)],
+['La veilleuse','Une petite lampe de chevet qui diffuse un cône de lumière jaune. Elle dit : quelqu\'un veille, tout va bien. Douce, nocturne, rassurante.',`<path d="M40 14H80L92 52H28Z" fill="${E}"/><path d="M28 60H92L112 108H8Z" fill="${Y}"/>`],
+['Le sourire','Un arc qui sourit et un point au-dessus : un visage minimal, ou le soleil qui se lève. Ce qu\'on ressent en recevant des nouvelles.',st('M24 66Q60 106 96 66',11)+`<circle cx="60" cy="36" r="13" fill="${Y}"/>`],
+['Le tournesol','Un cœur rond entouré de huit pétales : un tournesol, un soleil vivant (Soly = soleil). Le centre est le senior, les pétales sont la famille.',[0,45,90,135,180,225,270,315].map(a=>`<ellipse cx="60" cy="24" rx="9" ry="16" fill="${E}" transform="rotate(${a} 60 60)"/>`).join('')+`<circle cx="60" cy="60" r="16" fill="${Y}"/>`],
+['L\'arche','Une porte arrondie avec un point jaune sur le seuil : quelqu\'un est chez lui, la porte est ouverte. Un accueil, pas un dispositif.',st('M26 108V58a34 34 0 0 1 68 0V108',10)+`<circle cx="60" cy="82" r="13" fill="${Y}"/>`],
+['Le cœur-point','Un cœur au trait simple, avec le point jaune de Soly en son centre. Le plus universel : on comprend tout de suite que c\'est de l\'affection.',st('M60 102C20 74 14 46 34 32C48 23 58 32 60 42C62 32 72 23 86 32C106 46 100 74 60 102Z',10)+`<circle cx="60" cy="58" r="12" fill="${Y}"/>`]
+];
+I.forEach((x,i)=>{const s=z=>`<svg viewBox="0 0 120 120" width="${z}" height="${z}">${x[2]}</svg>`;
+g.insertAdjacentHTML('beforeend',`<div class="card"><div class="big">${s(150)}</div><div class="n">${String(i+1).padStart(2,'0')}</div><h2>${x[0]}</h2><p>${x[1]}</p><div class="sizes">${s(48)}${s(24)}${s(16)}<div class="app">${s(34)}</div></div></div>`)});
+</script></body></html>
