@@ -14,7 +14,7 @@ import re
 D = pathlib.Path(__file__).resolve().parent.parent
 OUT = D.parent
 TPL = (D / "_src" / "rendu.html").read_text(encoding="utf-8")
-PROTO = OUT / "1-1-soly-prototype-interactif-v3.html"
+PROTO = OUT / "1-1-soly-prototype-interactif-v4.html"
 
 SLIDES = {}
 for f in sorted((D / "slides").glob("[0-9][0-9].html")):
@@ -47,7 +47,7 @@ MAQ_PANEL = """<!-- ======================= MAQUETTE ======================= -->
 <section class="panel" id="maquette" role="tabpanel" aria-labelledby="t-maquette">
   <div class="head">
     <div><div class="lab rv">04 · Maquette interactive</div><h2 class="rv" style="--d:1">La DA, appliquée écran par écran.</h2><p class="intro rv" style="--d:2">Le cadre au mur et l’application de la famille, reliés. Lancez un scénario, ou touchez directement le téléphone et le cadre.</p></div>
-    <aside class="rv" style="--d:3"><b>Prototype v3</b>28 écrans d’application, 3 états du cadre, 5 scénarios guidés.</aside>
+    <aside class="rv" style="--d:3"><b>Prototype v4</b>28 écrans d’application, 3 états du cadre, 5 scénarios guidés.</aside>
   </div>
   <div class="steps">
     <div class="step rv"><span class="n">1</span><b>Installer</b><span>« Parcours d’installation » : le cadre affiche un code, l’appli le scanne.</span></div>
@@ -55,8 +55,8 @@ MAQ_PANEL = """<!-- ======================= MAQUETTE ======================= -->
     <div class="step rv" style="--d:2"><span class="n">3</span><b>Le moment du jour</b><span>Une notification douce, une photo à partager.</span></div>
     <div class="step rv" style="--d:3"><span class="n">4</span><b>Rassurer</b><span>« 48 h sans toucher » : la famille est prévenue, sans alarme.</span></div>
   </div>
-  <div class="mq-frame rv"><iframe id="mq" title="Maquette interactive Soly v3"></iframe></div>
-  <div class="links"><a class="btn o" href="1-1-soly-prototype-interactif-v3.html" target="_blank" rel="noopener">Ouvrir la maquette seule</a></div>
+  <div class="mq-frame rv"><iframe id="mq" title="Maquette interactive Soly v4"></iframe></div>
+  <div class="links"><a class="btn o" href="1-1-soly-prototype-interactif-v4.html" target="_blank" rel="noopener">Ouvrir la maquette seule</a></div>
 </section>
 <textarea hidden id="mqsrc">%s</textarea>
 """
@@ -140,14 +140,14 @@ def build(with_mq):
         "<!--TITLE-->": "Soly, DA et maquette" if with_mq else "Soly, direction artistique",
         "<!--DESC-->": "direction artistique et maquette interactive" if with_mq else "direction artistique",
         "<!--TABS-->": tabs_html(tabs),
-        "<!--META-->": "DA v2 + maquette v3" if with_mq else "DA v2",
-        "<!--HERO_LAB-->": " · Maquette v3" if with_mq else "",
+        "<!--META-->": "DA v2 + maquette v4" if with_mq else "DA v2",
+        "<!--HERO_LAB-->": " · Maquette v4" if with_mq else "",
         "<!--MAP_TITLE-->": "Six onglets, de l’idée à l’écran." if with_mq else "Cinq onglets, de l’idée à l’objet.",
         "<!--MAP-->": map_html(tabs),
         "<!--PALETTE-->": palette_html(),
         "<!--APP_NUM-->": "05" if with_mq else "04",
         "<!--ALL-->": all_html(),
-        "<!--FOOT_SRC-->": ", maquette interactive v3" if with_mq else "",
+        "<!--FOOT_SRC-->": ", maquette interactive v4" if with_mq else "",
         "<!--SLIDES-->": "\n".join(s for _, s in SLIDES.values()),
     }
     if with_mq:
