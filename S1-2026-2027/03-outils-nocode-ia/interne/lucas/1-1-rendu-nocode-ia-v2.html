@@ -635,7 +635,7 @@ fit();addEventListener("resize",fit);addEventListener("load",fit);addEventListen
   var P=["resume","stack","ia","blueprint","da","equipe","usage"],items=[].slice.call(document.querySelectorAll("#menu>li[data-p]"));
   function show(){
     var h=(location.hash||"#resume").slice(1),page=h.split("-")[0]; if(P.indexOf(page)<0)page="resume";
-    P.forEach(function(p){var s=document.getElementById("p-"+p);s.classList.toggle("on",p===page);var f=s.querySelector("iframe");if(f&&p===page&&!f.src)f.src=f.getAttribute("data-src")});
+    P.forEach(function(p){var s=document.getElementById("p-"+p);s.classList.toggle("on",p===page);if(p===page)s.querySelectorAll("iframe[data-src]").forEach(function(f){if(!f.src)f.src=f.getAttribute("data-src")})});
     items.forEach(function(li){li.classList.toggle("on",li.dataset.p===page)});
     var el=document.getElementById(h); if(el&&h!==page&&el.classList.contains("sec")) el.scrollIntoView(); else window.scrollTo(0,0);
     spy();
