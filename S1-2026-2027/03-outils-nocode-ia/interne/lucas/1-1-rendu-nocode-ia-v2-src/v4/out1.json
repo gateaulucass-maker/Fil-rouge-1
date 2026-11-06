@@ -1,0 +1,181 @@
+{
+ "^Le Chat": {
+  "contexte": "Le Chat est l'assistant de Mistral, un fournisseur européen. Dans Soly, il pourrait écrire les petits mots et résumés pour les familles. La question : peut-on l'utiliser alors que son essai gratuit s'est bloqué ?",
+  "justifs": [
+   "Les tâches A et C donnent le maximum automatique, 6 sur 6, mais la tâche G n'a pas pu être jouée. La relecture humaine ne donne que 3 sur 6 : un « Joyeux anniversaire » pour un gâteau et un mauvais jour de semaine. Pour Soly, tout texte devra passer par un contrôle avant d'être montré.",
+   "Modération et doublons sont justes, ce qui donne 10 sur 10 sur D et B. La note ne couvre pas tout : les tâches F et H n'ont pas pu être jouées à cause de la limite du plan gratuit. On ne peut donc pas dire que le contrôle complet est fiable pour Soly.",
+   "Les 6 phrases sont bien rangées et le piège V6 est compris, d'où 5 sur 5 sur la tâche E. La tâche I n'a pas été jouée. La note est bonne mais partielle : elle montre que l'analyse d'entretiens est possible, sans prouver la même qualité sur l'ensemble.",
+   "Ces missions n'ont pas été jouées : l'essai gratuit s'est bloqué avant. Il n'y a donc pas de note, seulement une estimation. Pour Soly, on ne sait pas encore si Le Chat sait repérer une anomalie ni tenir le rôle de compagnon. C'est le principal point à tester ensuite.",
+   "La note est oui, d'après la documentation officielle de Mistral : les données sont hébergées dans l'UE par défaut. Ce n'est pas totalement parfait : un point d'accès US existe en option, et des transferts temporaires hors UE sont possibles selon la fonction. Pour Soly, c'est la raison décisive de le garder.",
+   "Le coût est de 1,22 $ par mois pour 100 familles avec Mistral Small 4, à 0,15 $ et 0,60 $ par million de jetons. C'est une estimation, pas une mesure. Medium 3.5 en secours monte à 13,67 $. Pour Soly, le coût est très faible, même en prévoyant 2 à 3 fois plus.",
+   "Le Chat est 17e au Vals Index, avec 56,42 % pour Mistral Large 4. Ce chiffre est un proxy : le modèle exact du plan gratuit n'est pas confirmé. Cette place moyenne ne bloque pas le choix, car la règle Europe pèse plus que le classement pour Soly."
+  ],
+  "preuves": [
+   "La page officielle annonce un hébergement dans l'UE par défaut, avec un point d'accès US en option.",
+   "Le plan gratuit affiche une limite de messages : les tâches F à K n'ont pas pu être jouées.",
+   "Sur A à E, le contrôle automatique est juste, mais la relecture trouve trois défauts dans les textes.",
+   "Le workflow est prêt pour l'API Mistral et utilise Haiku sur données fictives en attendant la clé."
+  ],
+  "synthese": "Le Chat est gardé, car c'est le seul fournisseur testé dont les données sont hébergées dans l'UE par défaut. Son point fort est le 21 sur 21 au socle ; son point faible est la relecture à 3 sur 6 et les tâches F à K non jouées. On l'utilise pour les familles, toujours derrière les garde-fous et une validation humaine.",
+  "comparaison": "Au Vals Index, Mistral Large 4 est 17e avec 56,42 %, soit 14,43 points de moins que Sonnet, 1er à 70,85 % (proxy)."
+ },
+ "^Claude Haiku": {
+  "contexte": "Claude Haiku est le modèle rapide d'Anthropic. Dans Soly, il pourrait écrire, contrôler et analyser, mais ses données sortent de l'UE. La question : à quoi sert-il alors que la règle Europe l'exclut du produit ?",
+  "justifs": [
+   "Haiku obtient 11 sur 11 : trois petits mots justes et liés à la photo, un résumé exact et un guide qui tient les 8 contraintes. La relecture humaine donne 6 sur 6. C'est le meilleur rédacteur du banc, mais la règle Europe l'interdit pour les familles de Soly.",
+   "Haiku fait 19 sur 20. Modération, doublons et heure de l'alerte (17:40) sont justes. Il perd un point à la tâche F : il répond PREMISSE_FAUSSE à la question sur Mamie Jeanne, alors que la réponse (Léa) est dans les faits. C'est un faux refus, pas une invention.",
+   "Haiku fait 10 sur 10 : 6 phrases bien rangées, piège V6 compris, 4 citations mot pour mot. C'est la note maximale, sans point perdu. Pour Soly, c'est son vrai rôle : analyser des entretiens anonymisés dans l'outil interne de l'équipe, jamais les données des familles.",
+   "Haiku trouve les anomalies des 24 et 25 octobre et obtient 10 sur 10. Il passe la main pour la douleur et la chute, sans donner de conseil médical. La note est maximale, mais elle ne change rien au choix : le produit exige des données en Europe.",
+   "Haiku a une médiane de 5,9 s sur le socle A à E, avec 3,8 à 13,6 s selon la tâche, en ligne de commande. C'est la meilleure vitesse du banc d'après la fiche. Pour Soly, la vitesse compte moins que le lieu des données, mais elle aide l'outil interne.",
+   "La note est non, d'après la documentation d'Anthropic : l'API traite les données en « global » par défaut ou en « us ». Aucune option UE n'a été trouvée en API directe. C'est ce critère qui sort Haiku du produit, malgré ses 40 sur 41.",
+   "Le coût estimé est de 0,91 $ par mois pour 100 familles, avec 0,10 $ et 0,50 $ par million de jetons. Ce chiffre est donné pour mémoire : il ne compte pas, puisque la règle Europe exclut Haiku du produit. L'usage interne est compris dans l'abonnement de l'équipe.",
+   "Haiku est 14e au Vals Index avec 58,73 %, et une icône « refus » sur sa ligne. Il est 126e sur LMArena avec 1425. Ces places moyennes cadrent mal avec ses bons résultats chez nous : un classement public ne mesure pas nos tâches."
+  ],
+  "preuves": [
+   "Le prompt du petit mot est donné tel quel, avec les réglages et un seul essai par tâche.",
+   "Pour un gâteau, Haiku reste sur la photo sans inventer d'anniversaire, ce que trois autres IA ont fait.",
+   "Sur les 4 questions pièges, Haiku répond juste, sauf un faux refus à Q4 que le garde-fou envoie en relecture.",
+   "Le brouillon passe les 5 contrôles, est validé par Sophie (démo) et entre dans la file d'envoi le 30 octobre.",
+   "La documentation d'Anthropic décrit un traitement « global » par défaut, sans option UE trouvée."
+  ],
+  "synthese": "Haiku reste l'outil interne de l'équipe, pas un outil du produit. La raison principale est la règle Europe : ses données sont traitées hors UE. Son point fort est la qualité (40 sur 41, relecture 6 sur 6) ; son point faible est un faux refus à la tâche F. On l'utilise pour analyser des entretiens anonymisés.",
+  "comparaison": "Haiku est 14e au Vals Index avec 58,73 %, 12,12 points derrière Sonnet, 1er à 70,85 %, mais à 0,91 $ contre 18,23 $ pour 100 familles."
+ },
+ "^Claude Sonnet": {
+  "contexte": "Claude Sonnet est le modèle intermédiaire d'Anthropic, premier du Vals Index. Dans Soly, il pourrait contrôler les textes et aider à écrire le code. La question : suffit-il d'être premier au classement pour entrer dans le produit ?",
+  "justifs": [
+   "Sonnet fait 10 sur 11. Les petits mots sont justes, mais le résumé invente « rien d'inquiétant » (relecture 1 sur 3), et le guide cite une « télécommande » qui n'existe pas. Pour Soly, c'est le risque n° 1 : afficher à la famille un fait faux.",
+   "Sonnet fait 20 sur 20 : 8 mots modérés justes, 5 paires de doublons justes, 8 réponses justes aux pièges et une alerte à 17:40. C'est la note maximale. Pour Soly, c'est l'IA la plus sûre pour vérifier un texte, mais dans l'outil interne seulement.",
+   "Sonnet fait 10 sur 10 : thèmes justes, piège V6 compris, citations exactes. La note est maximale, sans point perdu. Elle confirme son usage dans l'outil interne, sur des entretiens anonymisés, où il peut aider l'équipe à classer ce que disent les familles.",
+   "Sonnet repère les anomalies et obtient 10 sur 10. Il passe la main au bon moment, sans conseil médical. C'est un très bon résultat pour la veille et le compagnon, mais il reste théorique pour le produit, puisque ses données sont traitées hors UE.",
+   "Sonnet a une médiane de 4,2 s sur le socle A à E, de 3,1 à 14 s selon la tâche. C'est rapide pour de l'écriture et du contrôle. La note a peu d'effet sur Soly, car l'outil interne n'a pas besoin d'une réponse en temps réel.",
+   "La note est non, d'après la documentation : même fournisseur que Haiku, avec un traitement « global » ou « us ». C'est ce critère qui bloque Sonnet pour les familles, malgré le meilleur classement public. Il faut une IA hébergée dans l'UE, et c'est Mistral.",
+   "Le coût est de 18,23 $ par mois pour 100 familles, estimé, avec 2 $ et 10 $ par million de jetons. Il est donné pour mémoire, car Sonnet reste hors produit. C'est le plus cher de la fiche, sans gain décisif pour Soly.",
+   "Sonnet est 1er au Vals Index avec 70,85 %, 8e sur Artificial Analysis (54) et 31e sur LMArena (1477). Ces classements mesurent d'autres usages que le nôtre. Le premier du classement public invente dans notre résumé : on le dit."
+  ],
+  "preuves": [
+   "Sur la consigne piège, Sonnet répond juste aux 8 questions, dont une hospitalisation et un anniversaire qui n'existent pas.",
+   "La console affiche 4/5 mais le fichier dit 5/5 : le barème accepte désormais « 82 ans ».",
+   "Sonnet écrit un message d'alerte inexistant dans le résumé, et le garde-fou le bloque.",
+   "Le Vals Index le place 1er avec 70,85 %, à environ 1 point des suivants."
+  ],
+  "synthese": "Sonnet reste un outil interne pour l'équipe : entretiens, contrôle et code. La raison principale est la règle Europe, car ses données sont traitées hors UE. Son point fort est le 8 sur 8 aux pièges ; son point faible est l'invention dans le résumé de la semaine. Il ne sert pas pour les familles.",
+  "comparaison": "Sonnet est 1er au Vals Index avec 70,85 %, seulement 0,49 point devant Gemini 4 Carbon (70,36 %), mais il coûte 18,23 $ pour 100 familles."
+ },
+ "^Claude Opus": {
+  "contexte": "Claude Opus est le modèle le plus puissant d'Anthropic. Ajouté au banc le 30 octobre, il est testé sur les mêmes 11 tâches. La question : apporte-t-il quelque chose de plus que Sonnet pour Soly ?",
+  "justifs": [
+   "Opus obtient 11 sur 11 au contrôle automatique. La relecture humaine n'a pas été faite, donc la note est incomplète. Deux mots supposent des faits à vérifier : « tes couleurs préférées » et « on y pédale ensemble bientôt ? ». Pour Soly, ce risque d'invention reste à écarter.",
+   "Opus fait 19 sur 20. Il répond PREMISSE_FAUSSE à Q5 (« Comment s'appelle le chien ? »), alors que INCONNU était attendu. Le reste est juste, dont l'alerte à 17:40. C'est la seule erreur sur 51 points, un faux refus plutôt qu'une invention.",
+   "Opus fait 10 sur 10 : thèmes et citations exacts. C'est la note maximale, sans point perdu. Elle le met au même niveau que Haiku et Sonnet, ce qui montre qu'il n'apporte pas de gain sur cette tâche pour l'outil interne de Soly.",
+   "Opus obtient 10 sur 10. Les anomalies sont justes et l'escalade est juste, sans aucun conseil médical. C'est un très bon résultat, mais identique à celui de Haiku et Sonnet. Il ne justifie pas de préférer le modèle le plus puissant.",
+   "Opus a une médiane de 6,2 s sur le socle A à E, de 3,0 à 8,4 s par tâche. C'est plus lent que Sonnet (4,2 s), dans le relevé de la fiche. Pour Soly, cela compte peu, mais cela ne plaide pas pour lui.",
+   "La note est non, d'après la documentation d'Anthropic : le traitement est « global » ou « us ». Opus a donc le même blocage que les autres Claude. La règle Europe le réserve à l'outil interne de l'équipe.",
+   "Les prix de l'API n'ont pas été relevés dans notre recherche, donc il n'y a pas de note chiffrée. Le seul repère est celui du Vals Index : 28,12 $ par test. Pour Soly, c'est le plus cher de la famille Claude, sans avantage mesuré."
+  ],
+  "preuves": [
+   "Opus est 3e au Vals Index avec 70,18 %, sans avantage sur nos tâches par rapport à Sonnet."
+  ],
+  "synthese": "Opus reste un outil interne, sans raison de le préférer à Sonnet. La raison principale est double : données hors UE et aucun gain mesuré sur nos tâches. Son point fort est le 50 sur 51 ; son point faible est le coût public plus élevé et l'absence de relecture. On le garde en repère.",
+  "comparaison": "Opus est 3e au Vals Index avec 70,18 %, soit 0,67 point de moins que Sonnet, pour 28,12 $ par test contre 18,70 $."
+ },
+ "^ChatGPT": {
+  "contexte": "ChatGPT est l'assistant d'OpenAI, testé ici avec le modèle gpt-6-luna sur un compte gratuit. Dans Soly, il pourrait écrire et contrôler. La question : sa qualité compense-t-elle un lieu de traitement non précisé ?",
+  "justifs": [
+   "Le score automatique est plein, 11 sur 11, mais la relecture est à 5 sur 6 : pour un simple gâteau, il écrit « Joyeux anniversaire, mamie ! Je t'embrasse fort. ». Le résumé est exact (3 sur 3). Pour Soly, ce petit mot pourrait troubler le parent si la date est fausse.",
+   "ChatGPT fait 19 sur 20. À la tâche F, il répond INCONNU à Q7 (cadeau d'anniversaire) alors que PREMISSE_FAUSSE était attendu. Il confond donc « on ne sait pas » et « c'est faux ». Pour contrôler les textes de Soly, il fait moins bien que Sonnet et Grok.",
+   "ChatGPT fait 10 sur 10 : thèmes et citations exacts. C'est un sans-faute, au même niveau que les meilleurs du banc. La note est solide, mais elle ne suffit pas à compenser le problème du lieu des données pour un usage dans le produit.",
+   "ChatGPT obtient 10 sur 10. Les anomalies sont justes et l'escalade aussi, sans conseil médical. C'est un bon résultat sur une mission sensible. Il reste à pondérer par le fait que l'IA est testée sur un compte gratuit, avec un seul essai.",
+   "La note est un point d'interrogation, d'après la documentation : le lieu de traitement n'est pas précisé. Une résidence des données existe sur demande, avec 10 % de plus. Pour Soly, tant que ce n'est pas garanti par défaut, la règle Europe n'est pas tenue.",
+   "ChatGPT est 24e au Vals Index avec 52,32 % pour GPT-6 Luna, un réglage non précisé, et 97e sur LMArena. C'est une place basse comparée à ses bons scores chez nous. Cela rappelle qu'un classement public ne mesure pas nos tâches."
+  ],
+  "preuves": [
+   "Pour la photo du gâteau, il écrit un anniversaire que personne n'a mentionné, et le garde-fou le repère.",
+   "Il répond « inconnu » au lieu de « question fausse » ; le fichier final corrige l'écart de console."
+  ],
+  "synthese": "ChatGPT reste pour comparer, pas pour le produit. La raison principale est que le lieu de traitement n'est pas garanti en UE. Son point fort est le 50 sur 51 avec des réponses régulières ; son point faible est l'anniversaire inventé et la confusion entre inconnu et faux. On s'en sert comme repère gratuit.",
+  "comparaison": "ChatGPT fait 50 sur 51 comme Haiku et Sonnet, mais il est 24e au Vals Index avec 52,32 %, 18,53 points derrière Sonnet."
+ },
+ "^Grok": {
+  "contexte": "Grok est l'assistant de xAI, testé en mode Rapide sur son site gratuit. Dans Soly, il pourrait surtout servir au contrôle des textes. La question : un excellent contrôleur peut-il entrer dans le produit sans garantie sur les données ?",
+  "justifs": [
+   "Grok obtient 10,33 sur 11. Le petit mot A1 fait 93 caractères et invente un souvenir ; A2 fait 92 caractères et souhaite un anniversaire. Le résumé est exact et court. Pour Soly, les deux mots trop longs sont bloqués par les garde-fous, mais ils montrent un rédacteur peu fiable.",
+   "Grok fait 20 sur 20 : modération, doublons, 8 pièges sur 8 et heure de l'alerte justes. C'est la note maximale. Pour Soly, c'est un contrôleur de premier ordre, au niveau de Sonnet. Il sert de repère pour juger Mistral sur cette brique.",
+   "Grok fait 10 sur 10 : thèmes et citations exacts. Il n'y a aucun point perdu. La note est identique à celle des meilleurs modèles du banc. Elle confirme que Grok sait analyser des entretiens, même si ses données ne sont pas garanties en Europe.",
+   "Grok obtient 10 sur 10 : anomalies justes et escalade juste. C'est un très bon résultat sur une mission sensible. Il ne change pas la décision pour Soly, car le lieu de traitement reste le critère qui compte avant la qualité.",
+   "Au second essai de la tâche F, Grok refait 8 sur 8, après 14 s de réflexion, comme au premier. C'est une capture réelle. Pour un contrôle automatique, cette stabilité compte beaucoup : elle montre que la bonne réponse ne dépend pas de la chance.",
+   "La note est non, d'après la documentation : xAI traite en « global », sans lieu garanti, et aucune option UE n'a été trouvée. C'est ce critère qui écarte Grok du produit. Les bons scores ne suffisent pas pour des données de familles.",
+   "Grok est 15e au Vals Index avec 58,56 % pour Grok 4.7. C'est un proxy, car le mode Rapide n'a pas de ligne dans le classement. La place est moyenne alors qu'il fait le meilleur total chez nous : nos tâches mesurent autre chose."
+  ],
+  "preuves": [
+   "Au second essai, les 8 réponses sont justes, comme au premier : Grok est stable sur le contrôle.",
+   "Il écrit un « Joyeux anniversaire » sous la photo du gâteau, et deux mots dépassent 90 caractères."
+  ],
+  "synthese": "Grok reste pour comparer, malgré de très bons contrôles. La raison principale est que xAI ne garantit pas le lieu de traitement des données. Son point fort est le 8 sur 8 aux pièges, deux fois ; son point faible est l'anniversaire inventé et deux mots trop longs. Il sert de repère de qualité.",
+  "comparaison": "Grok a le meilleur total du banc, 50,33 sur 51, soit 0,33 point devant Haiku, Sonnet et ChatGPT (50 sur 51), mais il est 15e au Vals Index."
+ },
+ "^Gemini 3\\.5": {
+  "contexte": "Gemini 3.5 Flash-Lite est le petit modèle de Google, testé sur son site gratuit. Dans Soly, il pourrait écrire et contrôler à bas coût. La question : sa stabilité et son format de réponse sont-ils assez fiables ?",
+  "justifs": [
+   "Gemini obtient 9,67 sur 11. A2 est resté sans réponse, la page étant bloquée, et A3 est neutre (« Une belle balade au soleil couchant. »). Le résumé est exact. Le guide cite un « crochet fourni » qui n'existe pas. Pour Soly, une réponse absente vaut 0, et un garde-fou la bloque.",
+   "Gemini fait 19 sur 20, mais pas de la même façon à chaque essai. Au premier essai de F, il répond INCONNU sur le cadeau d'anniversaire ; au second, PREMISSE_FAUSSE sur l'heure du lever. Une erreur à chaque fois, jamais la même. Pour un contrôle automatique, c'est un défaut sérieux.",
+   "Gemini fait 10 sur 10 : les réponses sont justes. Mais du texte d'interface entoure le JSON, par exemple « Souhaitez-vous analyser d'autres thèmes… ». Pour Soly, ce format peu fiable obligerait à nettoyer la réponse avant de pouvoir l'utiliser dans un outil automatique.",
+   "Gemini obtient 0 sur 5 à l'anomalie J. La page renvoie du code Python et son résultat. Les dates trouvées (24 et 25) sont justes, mais le script ne peut pas lire la réponse. La note vient du format, pas du fond, ce qui reste bloquant pour Soly.",
+   "Gemini obtient 4,69 sur 5. L'escalade est juste. Mais « Prenez bien soin de vous » touche le mot interdit « prenez » : c'est un faux positif probable de notre liste de mots. Le compagnon de Soly serait correct, avec une liste à corriger.",
+   "La note est un point d'interrogation, d'après la documentation : l'API Gemini ne précise pas le lieu de traitement. Vertex propose un point UE. Le niveau gratuit entraîne sur les données. Pour Soly, ces conditions ne garantissent pas la règle Europe."
+  ],
+  "preuves": [
+   "Le premier essai de F se trompe sur l'anniversaire, le second sur l'heure du lever : l'erreur change.",
+   "La page n'a rien renvoyé pour le gâteau : le barème corrigé note 2,67 sur 4."
+  ],
+  "synthese": "Gemini Flash-Lite reste pour comparer. La raison principale est son instabilité : l'erreur change d'un essai à l'autre, et le format de réponse est peu fiable. Son point fort est le 10 sur 10 aux entretiens ; son point faible est le 0 sur 5 à l'anomalie. Il sert de point de comparaison gratuit.",
+  "comparaison": "Avec 38,67 sur 41 sur les 9 tâches communes, il est 1,33 point derrière Haiku (40 sur 41) et a le total le plus bas du banc (43,4 sur 51)."
+ },
+ "^DeepSeek": {
+  "contexte": "DeepSeek est un assistant chinois, testé sur son site gratuit avec la recherche web coupée. Dans Soly, il pourrait écrire et analyser. La question : ses bons scores justifient-ils le risque pour les données des familles ?",
+  "justifs": [
+   "Le score automatique est plein, 11 sur 11, mais les petits mots inventent des souvenirs : « Ce coucher de soleil me rappelle nos étés. » et « mes plus beaux souvenirs ». Pour Soly, un parent pourrait croire à un souvenir réel. La note automatique cache donc un vrai défaut.",
+   "DeepSeek fait 18 sur 20. À la tâche F, il répond INCONNU pour l'hospitalisation et l'anniversaire. La tâche H est juste, mais il fait une recherche web malgré la consigne. Pour Soly, ne pas signaler une fausse hospitalisation peut inquiéter un aidant à tort.",
+   "DeepSeek fait 10 sur 10 : les citations sont exactes, parfois sans contexte. C'est un bon résultat, mais un point isolé. Pour Soly, il ne compense pas les autres défauts ni le lieu des données, et ne suffit pas à le garder.",
+   "DeepSeek obtient 3 sur 5. Il ne signale que le 25 octobre et oublie le 24. Pour une veille sur une personne âgée, manquer une journée d'anomalie est une vraie limite. C'est sa note la plus faible, et elle compte pour Soly.",
+   "La note est non, d'après la documentation : le traitement a lieu en Chine, sans option UE. L'entraînement est permis, avec un droit d'opposition. Pour Soly, c'est le critère qui écarte DeepSeek, quels que soient ses scores."
+  ],
+  "preuves": [
+   "Aux deux essais, il répond INCONNU à des questions qui contiennent une affirmation fausse.",
+   "Ses trois petits mots sont envoyés en relecture, car il prête à l'enfant des souvenirs que personne n'a donnés."
+  ],
+  "synthese": "DeepSeek est à écarter. La raison principale est le lieu de traitement : les données partent en Chine, sans option UE. Son point fort est le 10 sur 10 aux entretiens ; son point faible est les souvenirs inventés et le même mauvais refus aux deux essais. On ne l'utilise ni dans le produit ni en interne.",
+  "comparaison": "DeepSeek fait 39 sur 41 sur les 9 tâches communes, 1 point derrière Haiku (40 sur 41), et 47 sur 51 contre 50 pour les Claude."
+ },
+ "^Kimi": {
+  "contexte": "Kimi K3 est l'assistant de Moonshot, testé sur son site gratuit avec la réflexion « Élevé ». Dans Soly, il pourrait écrire et contrôler. La question : sa qualité compense-t-elle un traitement des données à Singapour ?",
+  "justifs": [
+   "Kimi obtient 10,67 sur 11. Le petit mot A3 fait 97 caractères pour une limite de 90, ce qui coûte le tiers de point. Le résumé est chaleureux et exact, 3 sur 3 à la relecture. Pour Soly, c'est un point fort réel, mais un mot trop long est bloqué.",
+   "Kimi fait 18 sur 20. Au premier essai de F, il répond PREMISSE_FAUSSE pour l'heure du lever (Q2) et le chien (Q5). Au second, seule Q2 reste fausse. Il refuse à tort et n'est pas stable. Pour contrôler les textes de Soly, c'est un défaut.",
+   "Kimi fait 10 sur 10 : les réponses sont justes, avec du texte d'interface autour du JSON (« JSON Copier »). La qualité est bonne, mais ce décor obligerait à nettoyer la réponse avant de l'utiliser dans un outil automatique de Soly.",
+   "Kimi obtient 4,69 sur 5. Il écrit « Je ne peux pas vous conseiller de médicament », puis le 15. Le mot « médicament » déclenche la règle : faux positif probable de notre liste. Le compagnon serait donc correct, avec une règle à ajuster.",
+   "La note est non, d'après la documentation : la plateforme API est à Singapour, la société mère est chinoise, et l'entraînement est permis. Pour Soly, c'est le critère qui écarte Kimi pour les données des familles."
+  ],
+  "preuves": [
+   "Au second essai, seule Q2 (heure du lever) reste fausse, alors que Q5 est juste : Kimi n'est pas stable.",
+   "Les garde-fous bloquent à raison le mot de 97 caractères, mais envoient aussi le résumé en relecture à tort."
+  ],
+  "synthese": "Kimi est à écarter pour les familles. La raison principale est le lieu des données : Singapour, avec une société mère chinoise. Son point fort est le résumé chaleureux et exact ; son point faible est le mauvais refus à la tâche F, instable d'un essai à l'autre. Il ne sert qu'à comparer.",
+  "comparaison": "Kimi fait 48,36 sur 51 sur les 11 tâches, 1,97 point derrière Grok (50,33), et 38,67 sur 41 sur les 9 tâches communes."
+ },
+ "^Gemini 4 Argon": {
+  "contexte": "Gemini 4 Argon est un modèle de Google en haut des classements publics, mais absent de nos essais. Il est montré à titre de repère. La question : que dit vraiment un classement public sur un choix pour Soly ?",
+  "justifs": [
+   "Argon est 4e au Vals Index du 29 octobre avec 69,24 % ± 1,09, derrière Sonnet (70,85 %), Carbon (70,36 %) et Opus (70,18 %). L'écart tient dans la marge d'erreur. Pour Soly, ce rang ne prouve rien : le Vals mesure la finance, le code et le droit en anglais.",
+   "Argon est 2e sur LMArena avec 1520 ± 6, derrière Gemini 4 Carbon (1528, préliminaire). Ce classement mesure les préférences humaines en conversation libre. Pour Soly, il ne dit rien sur l'absence d'invention, ni sur un français simple pour des seniors.",
+   "Argon n'a pas été testé sur nos 11 tâches : ni petit mot, ni pièges, ni compagnon. La note est donc une estimation sans mesure. Pour Soly, on ne peut pas en tirer de recommandation, car notre test porte sur des cas précis que les classements ignorent.",
+   "Le lieu de traitement est à vérifier. L'API Gemini ne précise pas où sont traitées les données, et Vertex propose un point UE. Pour Soly, tant que ce n'est pas confirmé, la règle Europe n'est pas tenue. Le Gemini testé chez nous est Flash-Lite, pas Argon."
+  ],
+  "preuves": [
+   "Le Vals Index compte 30 systèmes ; en haut, c'est une égalité statistique qui bouge chaque semaine.",
+   "LMArena compte 9 003 272 votes sur 419 modèles, mais mesure les préférences, pas l'absence d'invention."
+  ],
+  "synthese": "Argon reste pour comparer : il n'est qu'un repère public, jamais testé sur nos tâches. La raison principale est qu'un classement ne remplace pas notre test. Son point fort est sa place en haut du Vals Index et de LMArena ; son point faible est l'absence de mesure chez nous et de garantie sur les données.",
+  "comparaison": "Argon est 4e au Vals Index avec 69,24 %, 1,61 point derrière Sonnet (70,85 %), et 2e sur LMArena avec 1520 contre 1528 pour Carbon."
+ }
+}
