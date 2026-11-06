@@ -366,14 +366,22 @@ iframe.bp,.bpimg,.f-sec figure img{border-color:#F0E3C8;border-radius:16px}
 
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-ol.rows.pages li{position:relative}
+ol.rows.pages li{position:relative;isolation:isolate}
+ol.rows.pages li::before{content:"";position:absolute;inset:0 -16px;z-index:-1;border-radius:16px;background:#FFF3D9;transform:scaleX(0);transform-origin:left center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
 ol.rows.pages .a a{color:inherit;text-decoration:none;outline:none}
-ol.rows.pages .a a::after{content:"";position:absolute;inset:0}
-ol.rows.pages .a b{display:block}
-ol.rows.pages .n{transition:background-color .15s ease}
-ol.rows.pages li:hover .n,ol.rows.pages li:focus-within .n{background:#FFD36E}
-ol.rows.pages li:hover .a b,ol.rows.pages li:focus-within .a b{text-decoration:underline;text-underline-offset:4px}
-ol.rows.pages a:focus-visible::after{outline:2px solid #1F1A17;outline-offset:6px;border-radius:12px}
+ol.rows.pages .a a::after{content:"";position:absolute;inset:0 -16px;border-radius:16px}
+ol.rows.pages .a b{display:flex;align-items:center;gap:10px;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+ol.rows.pages .a b::after{content:"→";opacity:0;transform:translateX(-8px);transition:opacity .25s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+ol.rows.pages .n{transition:background-color .25s ease,color .25s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+ol.rows.pages li:hover::before,ol.rows.pages li:focus-within::before{transform:scaleX(1)}
+ol.rows.pages li:hover .n,ol.rows.pages li:focus-within .n{background:#1F1A17;color:#FFD36E;transform:rotate(-8deg) scale(1.08)}
+ol.rows.pages li:hover .a b,ol.rows.pages li:focus-within .a b{transform:translateX(6px)}
+ol.rows.pages li:hover .a b::after,ol.rows.pages li:focus-within .a b::after{opacity:1;transform:translateX(0)}
+ol.rows.pages a:focus-visible::after{outline:2px solid #1F1A17;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){ol.rows.pages li::before,ol.rows.pages .a b,ol.rows.pages .a b::after,ol.rows.pages .n{transition:none}ol.rows.pages li:hover .n,ol.rows.pages li:focus-within .n{transform:none}}
+#p-resume .facts em{display:block;font:600 13px/16px var(--title);letter-spacing:.08em;text-transform:uppercase;color:#6A5F55;font-style:normal;margin-bottom:12px}
+#p-resume .facts b small{font-size:.45em;font-weight:500;letter-spacing:0;margin-left:4px;color:#6A5F55}
+#p-resume .facts span{max-width:30ch;color:#1F1A17}
 </style>
 </head>
 <body>
@@ -393,8 +401,8 @@ ol.rows.pages a:focus-visible::after{outline:2px solid #1F1A17;outline-offset:6p
 <main>
 
 <section class="page" id="p-resume"><span class="k">01 · Résumé</span>
-<h2 class="t">On construit avec la stack A, les textes passent par Mistral, une personne les valide.</h2>
-<div class="facts"><div><b>75</b><span>sur 100 pour la stack A, première de huit</span></div><div><b>8 IA</b><span>jouées sur 11 tâches : elles se valent, le pays des données décide</span></div><div><b>14</b><span>étapes du service, de la découverte à la première photo</span></div></div>
+<h2 class="t">Le Cadre se construit sur la stack A. Mistral écrit les textes, et une personne les relit avant chaque envoi.</h2>
+<div class="facts"><div><em>La stack</em><b>75<small>/ 100</small></b><span>La note de la stack A, la meilleure des huit stacks comparées.</span></div><div><em>Les IA</em><b>8<small>IA testées</small></b><span>Sur les mêmes 11 tâches, leurs scores sont très proches. On choisit donc selon le pays où partent les données.</span></div><div><em>Le service</em><b>14<small>étapes</small></b><span>Le parcours complet de la famille, de la découverte du Cadre à la première photo reçue.</span></div></div>
 <div class="sec"><h3>Le rendu, page par page</h3>
 <ol class="rows pages">
 <li><span class="n">02</span><div class="a"><b><a href="#stack">Stack</a></b><span>A est gardée, G est la meilleure no-code, D ou E en plan B.</span></div><span class="tag ok">fait</span></li>
