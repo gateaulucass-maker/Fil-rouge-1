@@ -1,0 +1,60 @@
+<style id="soly-theme">
+/* Couche charte Soly sur tout le rendu v2 (Lucas) */
+:root{--bg:#FFFAF0;--fg:#1F1A17;--muted:#6A5F55;--hair:#F0E3C8;--soft:#FFF3D9;--blue:#1F1A17;--green:#1F1A17;--orange:#1F1A17;--beurre:#FFD36E;--sable:#F0E3C8;
+--title:Lexend,"Helvetica Neue",Arial,sans-serif;--mono:Lexend,"Helvetica Neue",Arial,sans-serif;--lilas:#C9B8F0;--peche:#FFC9A3;--soleil:#FFD36E}
+body{font:16px/26px var(--body);background:#FFFAF0;color:#1F1A17}
+/* titres : Lexend, poids 600, approche normale */
+.side h1{font:600 30px/36px var(--title);letter-spacing:-.02em}
+.page h2.t{font:600 clamp(32px,3.4vw,46px)/1.15 var(--title);letter-spacing:-.02em;max-width:22ch}
+.sec h3,.f-sec h3{font:600 26px/34px var(--title);letter-spacing:-.01em}
+.who h4{font:600 22px/30px var(--title);letter-spacing:-.01em}
+.p-in h2,.f-in h2{font-weight:600;letter-spacing:-.015em}
+.facts b{font:600 44px/48px var(--title);letter-spacing:-.02em}
+.facts span{font-size:16px;line-height:24px}
+.col .v,.hb .v,.flow li b,.p-c b,#mini .h b,#mini .h span,#mini li b{font-weight:600;letter-spacing:-.01em}
+.p-s,.f-s{font-weight:600;letter-spacing:-.02em}
+.sec>p,.f-sec p{font-size:17px;line-height:27px;max-width:62ch}
+/* libellés : Lexend, plus de monospace */
+.k{font:500 13px/18px var(--mono);letter-spacing:.06em;color:#6A5F55}
+.legend,.col .n,#mini .c,.p-m{font-family:var(--mono);font-size:13px;letter-spacing:0}
+table.t th,table.m th,table.v th,.f-sec th,.lay h4{font:500 14px/20px var(--mono);letter-spacing:0;text-transform:none;color:#6A5F55}
+.three b,.rows .a b,ol.steps b,.f-sec dt{font-family:var(--title);font-weight:500}
+.rows li{padding:20px 0;align-items:center}
+.rows .n,ol.steps .n{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#FFF3D9;color:#1F1A17;font:600 16px/1 var(--title)}
+.rows .a span,.three p{font-size:16px;line-height:25px}
+/* pastilles de statut */
+.tag,.tg{font:500 14px/20px var(--mono);letter-spacing:0;text-transform:none;padding:6px 14px;border-radius:999px;color:#1F1A17}
+.tag.ok,.tg.teste{background:#FFD36E;color:#1F1A17}
+.tag.mid,.tg.doc{background:#C9B8F0;color:#1F1A17}
+.tag.soon,.tg.est{background:#FFC9A3;color:#1F1A17}
+table.m td.lo{background:#FFC9A3;color:#1F1A17}
+/* menu */
+.side{background:#FFFAF0}
+.side .hero p{font-size:15px;line-height:22px}
+.menu>li>a{font:400 16px/22px var(--title);min-height:48px;align-items:center;padding:12px 8px;border-radius:12px;margin:2px 0}
+.menu>li>a b{font:500 13px/18px var(--title)}
+.menu>li>a:hover{background:#FFF3D9}
+.menu>li.on>a{font-weight:500;background:#FFF3D9}
+.menu>li.on>a b{color:#1F1A17}
+.menu>li.soon>a em{font:500 12px/16px var(--title);text-transform:none;letter-spacing:0}
+.menu ul{border-left-color:#FFD36E}
+.menu ul a{font-size:15px;line-height:22px;padding:7px 0}
+.menu ul a.on{font-weight:600}
+/* CTA */
+.go{display:inline-flex;align-items:center;min-height:56px;padding:0 28px;border-radius:999px;background:#1F1A17;color:#FFFAF0;border:0;font:500 17px/1 var(--title);letter-spacing:0;text-transform:none}
+.go:hover{background:#3A322C;color:#FFFAF0}
+.p-x{border-radius:999px;font:500 14px var(--title);letter-spacing:0;text-transform:none;border-color:#1F1A17}
+.p-x:hover{background:#FFF3D9}
+.p-go{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border:2px solid #1F1A17;border-radius:999px;font:500 16px var(--title);color:#1F1A17;text-decoration:none}
+.p-go:hover{background:#FFF3D9}
+.p-st{font:500 13px/18px var(--title);letter-spacing:.04em}
+/* survols et focus */
+.col:hover .v,.col:focus-visible .v{color:#1F1A17}
+.hb li:hover,.hb li:focus-visible,table.v tbody tr:hover,table.v tbody tr:focus-visible{background:#FFF3D9}
+.menu a:focus-visible,.col:focus-visible,.hb li:focus-visible,table.v tr:focus-visible,#panel :focus-visible,#full :focus-visible,a:focus-visible,button:focus-visible{outline:3px solid #C9B8F0;outline-offset:3px}
+iframe.bp,.bpimg,.f-sec figure img{border-color:#F0E3C8;border-radius:16px}
+#mini{border-color:#1F1A17;border-radius:16px;box-shadow:0 10px 26px rgba(31,26,23,.14)}
+#panel{box-shadow:-18px 0 44px rgba(31,26,23,.22)}
+#veil{background:rgba(31,26,23,.45)}
+@media (max-width:960px){.facts b{font-size:36px;line-height:40px}}
+</style>
