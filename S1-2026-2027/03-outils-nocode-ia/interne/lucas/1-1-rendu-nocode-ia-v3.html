@@ -379,9 +379,9 @@ ol.rows.pages li:hover .a b,ol.rows.pages li:focus-within .a b{transform:transla
 ol.rows.pages li:hover .a b::after,ol.rows.pages li:focus-within .a b::after{opacity:1;transform:translateX(0)}
 ol.rows.pages a:focus-visible::after{outline:2px solid #1F1A17;outline-offset:2px}
 @media (prefers-reduced-motion:reduce){ol.rows.pages li::before,ol.rows.pages .a b,ol.rows.pages .a b::after,ol.rows.pages .n{transition:none}ol.rows.pages li:hover .n,ol.rows.pages li:focus-within .n{transform:none}}
-#p-resume .facts em{display:block;font:600 13px/16px var(--title);letter-spacing:.08em;text-transform:uppercase;color:#6A5F55;font-style:normal;margin-bottom:12px}
-#p-resume .facts b small{font-size:.45em;font-weight:500;letter-spacing:0;margin-left:4px;color:#6A5F55}
-#p-resume .facts span{max-width:30ch;color:#1F1A17}
+#p-resume .facts em,#p-stack .facts em{display:block;font:600 13px/16px var(--title);letter-spacing:.08em;text-transform:uppercase;color:#6A5F55;font-style:normal;margin-bottom:12px}
+#p-resume .facts b small,#p-stack .facts b small{font-size:.45em;font-weight:500;letter-spacing:0;margin-left:4px;color:#6A5F55}
+#p-resume .facts span,#p-stack .facts span{max-width:30ch;color:#1F1A17}
 </style>
 </head>
 <body>
@@ -424,8 +424,8 @@ ol.rows.pages a:focus-visible::after{outline:2px solid #1F1A17;outline-offset:2p
 </section>
 
 <section class="page" id="p-stack"><span class="k">02 · Stack</span>
-<h2 class="t">Huit façons de construire le Cadre. On en garde une, avec un plan B prêt.</h2>
-<div class="facts"><div><b>A · 75</b><span>React, Next.js, Supabase : la meilleure note sur huit stacks</span></div><div><b>26 / 26</b><span>étapes réussies sur le banc Supabase, en local</span></div><div><b>9 / 9</b><span>tests de sécurité réussis : chaque famille ne voit que ses données</span></div></div>
+<h2 class="t">On a comparé huit stacks. La stack A l’emporte, et un plan B est prêt.</h2>
+<div class="facts"><div><em>La stack A</em><b>75<small>/ 100</small></b><span>React, Next.js et Supabase : la meilleure note des huit stacks comparées.</span></div><div><em>Le scénario</em><b>26<small>/ 26 étapes</small></b><span>Le parcours « Famille Test » rejoué en local, sans une seule erreur.</span></div><div><em>La sécurité</em><b>9<small>/ 9 tests</small></b><span>Tous réussis : chaque famille ne voit que ses propres données.</span></div></div>
 <div class="sec" id="stack-pourquoi"><span class="k">Étape 1</span><h3>Pourquoi comparer</h3><p>Avant de construire, il fallait choisir les outils. Le Cadre doit tenir quatre usages : la vitrine, l’écran du cadre, l’appli de l’aidante et l’alerte après 48 h sans nouvelles. Une règle passe avant tout : les données des familles restent en Europe. Plusieurs assemblages pouvaient le faire, du tout no-code au code écrit par une IA. On en a comparé huit.</p></div>
 <div class="sec" id="stack-notes"><span class="k">Étape 2</span><h3>Comment on a noté</h3><p>Chaque note vient d’une source, et la page dit laquelle.</p>
 <div class="vis"><ol class="steps"><li><span class="n">1</span><b>Lire la doc officielle</b><p>Prix, régions et quotas relevés sur les pages des outils. Une note tirée de là est marquée « documenté ».</p></li><li><span class="n">2</span><b>Tester en local</b><p>Le scénario « Famille Test » rejoué le 22 octobre : 26 étapes sur 26 et 9 tests de sécurité sur 9 avec Supabase.</p></li><li><span class="n">3</span><b>Casser exprès</b><p>On a ouvert les données à tout le monde : les tests ont échoué. Ils mesurent donc vraiment.</p></li></ol></div>
