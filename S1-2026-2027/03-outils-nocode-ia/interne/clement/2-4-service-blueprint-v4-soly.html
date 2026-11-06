@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=2360">
+<title>Le Cadre, de la pub au premier mois : service blueprint v4 (DA Soly)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<!--
+  Service blueprint v4 refait à l'identique de /Downloads/Blueprint.jpg (export FigJam), dans la DA Soly de Lucas :
+  Lexend (titres) + Atkinson Hyperlegible (texte), aube / crème / ligne / encre / café / soleil / pêche / lilas.
+  Aucune modification de contenu : textes identiques à la référence (pharmacien, dépliant, etc. inclus).
+  - Les polices à chasse fixe de la référence (sur-titres, mentions) sont rendues en Lexend capitales espacées (la charte n'a que deux polices).
+  - Impossible à reproduire tel quel : le vert pastel des proches (absent de la charte) devient aube à contour encre ; le texte « Rond bleu » est gardé mot pour mot alors que le rond du geste est lilas.
+  - Chaque écran de téléphone et chaque cadre est dessiné en HTML/CSS (aucune image). 12 écrans de téléphone, comme sur la référence.
+-->
+<style>
+:root{--aube:#FFFAF0;--creme:#FFF3D9;--ligne:#F0E3C8;--encre:#1F1A17;--cafe:#6A5F55;--soleil:#FFD36E;--peche:#FFC9A3;--lilas:#C9B8F0;
+ --titre:"Lexend",system-ui,sans-serif;--texte:"Atkinson Hyperlegible",system-ui,sans-serif;
+ --n-enfant:#DDD0F6;--n-parent:#FFD3B5;--n-proches:#FFFAF0;--n-part:#EEE8FA;--n-equipe:#FFE4D2;--n-outils:#FFE08A;
+ --photo:#DACCF5;--cadre:#6A5F55}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--aube)}
+body{width:2360px;height:1699px;position:relative;overflow:hidden;font-family:var(--texte);color:var(--encre);-webkit-font-smoothing:antialiased}
+#p{position:absolute;left:0;top:0;width:2360px;height:1699px}
+#p>*{position:absolute}
+.abs{position:absolute}
+/* carte */
+.card{left:28px;top:28px;width:2304px;height:1643px;border-radius:16px;border:1.5px solid var(--ligne);background:var(--aube)}
+.board{left:29px;top:358px;width:2302px;height:1212px;background:var(--creme);border-top:2px solid var(--encre);border-bottom:2px solid var(--encre)}
+.kick{font:500 8.4px/1 var(--titre);letter-spacing:.12em;text-transform:uppercase;color:var(--cafe);white-space:nowrap}
+/* entête */
+.rule{left:60px;top:64px;width:1000px;height:2px;background:var(--encre)}
+.ttl{left:58px;top:92px;font:600 56px/1.1 var(--titre);letter-spacing:-.045em;color:var(--encre);white-space:nowrap}
+.ttl span{position:static;background:linear-gradient(transparent 58%,var(--soleil) 58%,var(--soleil) 94%,transparent 94%);padding:0 3px}
+.prod{left:60px;top:184px;width:560px;height:120px;border-left:5px solid var(--soleil);padding-left:14px}
+.prod .kick{margin-top:2px;display:block}
+.prod p{display:block;margin-top:8px;font:700 16px/1.42 var(--texte);color:var(--encre)}
+.scen{left:605px;top:182px;width:373px;height:144px;border-radius:12px;background:var(--creme);border:1.5px solid var(--ligne);padding:13px 15px}
+.scen .kick{display:block}
+.scen b{display:block;margin-top:9px;font:700 12.6px/1.42 var(--texte)}
+.scen p{display:block;margin-top:9px;font:400 9.6px/1.45 var(--texte);color:var(--cafe)}
+.lire{left:1005px;top:182px;width:330px;height:129px;border-radius:12px;background:#EEE8FA;border:1.5px solid var(--ligne);padding:13px 15px}
+.lire .kick{display:block}
+.lire div{position:relative;display:block;padding-left:23px;margin-top:7px;font:400 10px/1.4 var(--texte);color:var(--encre)}
+.lire div s{position:absolute;left:0;top:0;width:15px;height:15px;border-radius:50%;background:var(--encre);color:var(--aube);font:600 8.5px/15px var(--titre);text-align:center;text-decoration:none}
+.leg{left:60px;top:331px;display:flex;gap:17px;align-items:center;font:400 9.4px/1 var(--texte);color:var(--cafe);white-space:nowrap}
+.leg span{position:static;display:flex;align-items:center;gap:5px}
+.leg i{position:static;display:block;width:11px;height:11px;border-radius:3px;border:1px solid var(--encre)}
+.leg i.ro{border-radius:50%;background:rgba(201,184,240,.85);border:1.5px solid var(--encre)}
+/* en-têtes de la grille */
+.phb{top:377px;height:26px;color:var(--aube);font:500 11px/26px var(--titre);text-align:center;letter-spacing:-.005em}
+.phb.a{background:var(--encre)}.phb.b{background:var(--cafe)}
+.phb.f{clip-path:polygon(0 0,calc(100% - 8px) 0,100% 50%,calc(100% - 8px) 100%,0 100%)}
+.phb.n{clip-path:polygon(0 0,calc(100% - 8px) 0,100% 50%,calc(100% - 8px) 100%,0 100%,8px 50%)}
+.stp{top:410px;width:140px;height:55px;border-radius:9px;background:var(--aube);border:1.5px solid var(--encre);box-shadow:3px 3px 0 var(--encre);padding:7px 8px}
+.stp em{display:block;font:500 8.5px/1 var(--titre);color:var(--cafe);letter-spacing:.06em;font-style:normal}
+.stp b{display:block;margin-top:6px;font:600 11.2px/1.2 var(--titre);letter-spacing:-.02em;color:var(--encre)}
+/* bandes et libellés */
+.bar{left:59px;width:32px;border-radius:7px;display:flex;align-items:center;justify-content:center}
+.bar span{display:block;writing-mode:vertical-rl;transform:rotate(180deg);font:600 11px/1 var(--titre);color:var(--encre);letter-spacing:.01em;white-space:nowrap}
+.bar.dk span{color:var(--aube)}
+.lb{left:99px;width:112px;display:flex;flex-direction:column;justify-content:center}
+.lb b{display:block;font:600 11.6px/1.15 var(--titre);letter-spacing:-.02em;color:var(--encre)}
+.lb span{display:block;margin-top:2px;font:400 9.6px/1.25 var(--texte);color:var(--cafe)}
+/* post-its */
+.nt{width:140px;border-radius:6px;border:1.2px solid var(--encre);padding:10px 9px 6px;box-shadow:0 2px 4px rgba(31,26,23,.16)}
+.nt p{display:block;font:400 10.7px/1.27 var(--texte);color:var(--encre)}
+.nt i{position:absolute;display:block;left:50%;top:-6px;width:30px;height:9px;margin-left:-15px;background:rgba(255,250,240,.85);border:1px solid rgba(31,26,23,.25);border-radius:2px}
+.nt.e{background:var(--n-enfant)}.nt.pa{background:var(--n-parent)}.nt.pr{background:var(--n-proches)}
+.nt.pt{background:var(--n-part)}.nt.eq{background:var(--n-equipe)}.nt.ou{background:var(--n-outils)}
+.ar{width:0;height:0;border-left:6.4px solid var(--encre);border-top:4px solid transparent;border-bottom:4px solid transparent;position:absolute}
+/* lignes */
+.ln{left:213px;width:2081px;height:2px;background:var(--encre)}
+.dsh{left:213px;width:2081px;height:2px;background:repeating-linear-gradient(90deg,var(--encre) 0 8px,transparent 8px 12px)}
+.lnl{left:59px;width:150px;display:flex;gap:7px;align-items:flex-start;font:500 7.7px/1.35 var(--titre);letter-spacing:.11em;text-transform:uppercase;color:var(--encre)}
+.lnl svg{position:static;flex:none;width:13px;height:13px;margin-top:-1px}
+.lnl span{position:static;display:block}
+/* téléphones */
+.ph{width:107px;height:200px;border-radius:22px;background:var(--encre);padding:3px}
+.ph .n{position:absolute;left:50%;top:7px;width:27px;height:7px;margin-left:-13.5px;border-radius:4px;background:var(--encre);z-index:2;border:0}
+.ph .s{position:relative;left:auto;top:auto;width:101px;height:194px;border-radius:19px;background:var(--aube);overflow:hidden;padding:20px 8px 8px;font:400 6.6px/1.32 var(--texte);color:var(--encre)}
+.ph.dk .s{background:#2B2420;color:var(--aube)}
+.ph.gr .s{background:#F6EEDD}
+.s h4{font:600 9.6px/1.15 var(--titre);letter-spacing:-.02em;margin:0 0 3px;color:var(--encre)}
+.s .mu{color:var(--cafe)}
+.s .btn{display:block;text-align:center;border-radius:99px;background:var(--soleil);border:1.2px solid var(--encre);color:var(--encre);font:600 7.2px/1 var(--titre);padding:6px 4px;position:relative}
+.s .btn.o{background:transparent}
+.s .btn.dk{background:var(--encre);color:var(--aube)}
+.s .in{display:block;border:1px solid var(--cafe);border-radius:5px;padding:4px 5px;font:400 6.8px/1.1 var(--texte);background:#fff;margin-bottom:3px}
+.s .fl{display:block;font:400 5.8px/1.3 var(--texte);color:var(--cafe);margin-top:2px}
+.tap{position:absolute!important;width:12px;height:12px;border-radius:50%;background:rgba(201,184,240,.88);border:1.4px solid var(--encre)}
+.pf{position:relative!important;display:block;background:var(--photo);overflow:hidden}
+.pf span{position:absolute!important;left:0;right:0;top:34%;text-align:center;font:500 5px/1 var(--titre);letter-spacing:.1em;color:var(--cafe)}
+.pf em{position:absolute!important;left:0;right:0;bottom:0;background:rgba(31,26,23,.72);color:var(--aube);font:700 5.2px/1 var(--texte);font-style:normal;padding:2.5px 3px}
+.mf{display:block;background:var(--cadre);border-radius:2px;padding:2px;position:relative!important}
+.mf div{display:block;background:var(--photo);width:100%;height:100%}
+.lock{font:700 26px/1 var(--titre);letter-spacing:-.04em;text-align:center;margin-top:8px;color:var(--aube)}
+.nf{display:block;border-radius:7px;background:#F4EEE2;color:var(--encre);padding:5px 6px;position:relative!important;margin-top:10px}
+.nf small{display:block;font:500 4.8px/1 var(--titre);letter-spacing:.1em;color:var(--cafe);margin-bottom:3px}
+.nf b{display:block;font:600 7.4px/1.2 var(--titre);letter-spacing:-.01em;margin-bottom:2px}
+.nf span{display:block;font:400 6.1px/1.25 var(--texte)}
+.bub{display:block;background:#fff;border-radius:7px;padding:5px 6px;margin-bottom:5px;font:400 6.4px/1.3 var(--texte);color:var(--encre)}
+/* légendes */
+.cp{font:400 8px/1.3 var(--texte)}
+.cp b{display:block;font:700 8.1px/1.24 var(--texte);color:var(--encre);letter-spacing:-.005em}
+.cp .mn{display:block;margin-top:2.5px;font:500 5.8px/1.4 var(--titre);letter-spacing:.055em;text-transform:uppercase}
+.mn.f{color:#7A5A12}.mn.m{color:#4C3F8F}
+/* cadres */
+.fr{width:133px;height:90px;border-radius:5px;background:var(--cadre);padding:5px;box-shadow:0 3px 6px rgba(31,26,23,.25)}
+.fr .fi{position:relative;left:auto;top:auto;width:123px;height:80px;background:var(--aube);overflow:hidden;text-align:center;padding-top:6px}
+.fi h3{font:600 20px/1 var(--titre);letter-spacing:-.04em;margin-top:4px;color:var(--encre)}
+.fi .pc{display:block;margin-top:6px;font:400 7.4px/1 var(--texte);color:var(--cafe)}
+.fi .cd{display:block;margin-top:5px;font:600 15.5px/1 var(--titre);letter-spacing:.02em;color:var(--encre)}
+.fi h5{font:600 7.3px/1.2 var(--titre);margin-top:6px;color:var(--encre);letter-spacing:-.01em}
+.fi .bb{display:flex;gap:5px;justify-content:center;margin-top:5px;position:relative}
+.fi .bb s{text-decoration:none;display:block;font:600 6.8px/1 var(--titre);border-radius:99px;padding:4px 7px;border:1.2px solid var(--encre)}
+.fi .bb s.y{background:var(--soleil)}
+.fr.ph13 .fi,.fr.ph11 .fi{padding:0}
+.fr .fi .pf{position:absolute!important;left:0;top:0;right:0;bottom:0}
+.fr .fi .pf span{font-size:6px;top:30%}
+.fr .fi .pf em{font-size:8.2px;padding:6px 5px;font-weight:700;text-align:left}
+.wf{position:absolute!important;right:5px;top:5px;background:#fff;border-radius:99px;font:700 6.2px/1 var(--texte);padding:3.2px 6px;color:var(--encre);border:1px solid var(--encre);z-index:3}
+/* boîte */
+.bx{left:1122px;top:1057px;width:114px;height:69px;border-radius:3px 3px 5px 5px;background:#E9B98E}
+.bx .lid{position:absolute;left:0;top:0;width:114px;height:12px;background:#D8A275;border-radius:3px 3px 0 0}
+.bx .mf{position:absolute!important;left:14px;top:-9px;width:56px;height:38px}
+.bx strong{position:absolute;left:9px;bottom:6px;font:600 10.6px/1 var(--titre);letter-spacing:-.02em;color:var(--encre)}
+.bx .cart{position:absolute;left:70px;top:27px;width:44px;height:30px;background:var(--aube);border-radius:3px;transform:rotate(7deg);border:1px solid var(--encre);padding:4px 5px;font:700 5.6px/1.5 var(--texte);color:var(--encre)}
+.bx .cart div{display:block;white-space:nowrap}
+
+.dep{width:87px;height:97px;background:var(--aube);border:1.2px solid var(--encre);border-radius:3px;transform:rotate(1.6deg);box-shadow:0 3px 6px rgba(31,26,23,.22);overflow:hidden}
+.dep .dh{position:absolute;left:0;top:0;width:87px;height:5px;background:var(--soleil);border-bottom:1.2px solid var(--encre)}
+.dep b{position:absolute;left:6px;top:11px;font:600 9px/1 var(--titre);letter-spacing:-.03em}
+.dep p{position:absolute;left:6px;top:25px;width:70px;font:400 6.1px/1.25 var(--texte)}
+.dep .mf{left:19px;top:42px;position:absolute!important}
+.dep .qr{position:absolute;left:6px;top:80px;width:78px}
+.dep .qr i{position:absolute;left:0;top:0;width:11px;height:11px;background:var(--encre);border-radius:2px}
+.dep .qr span{position:absolute;left:14px;top:0;width:60px;font:400 5.2px/1.2 var(--texte);color:var(--cafe)}
+svg.cn{left:0;top:0;width:2360px;height:1699px;pointer-events:none}
+.src{left:58px;top:1590px}
+.srt{left:58px;top:1606px;width:1300px;font:400 10.2px/1.5 var(--texte);color:var(--encre)}
+</style>
+</head>
+<body>
+<div id="p">
+<div class="card"></div>
+<div class="board"></div>
+
+<div class="rule"></div>
+<div class="kick" style="left:60px;top:76px;word-spacing:0">Service blueprint · version 4 &nbsp;&nbsp; PFR Générations connectées · Le Cadre &nbsp;&nbsp; Avant-vente, vente, usage, après-vente &nbsp;&nbsp; Clément · 30 octobre 2026</div>
+<div class="ttl">Le Cadre, <span>de la pub au premier mois</span></div>
+<div class="prod"><span class="kick">Le produit</span><p>Une appli pour la famille, un cadre photo chez le parent. Un proche envoie une photo depuis son téléphone : elle s’affiche sur le cadre, avec son prénom. Le parent n’installe rien et n’a pas de compte.</p></div>
+<div class="scen"><span class="kick">Le scénario · fictif</span><b>Un enfant de 52 ans achète Le Cadre pour son parent de 81 ans, qui vit seul à 300 km. Les autres proches (son frère, ses enfants) enverront aussi des photos.</b><p>Le prix (149 €, sans abonnement), les textes des écrans et les outils sont inventés pour rendre le parcours concret. Le prix reste à trancher par l’équipe.</p></div>
+<div class="lire"><span class="kick">Comment lire ce tableau</span><div><s>1</s>De gauche à droite, le temps : de la pub au premier mois.</div><div><s>2</s>De haut en bas : ce que fait la famille, ce qu’elle voit (téléphone, objets), puis ce qu’elle ne voit pas.</div><div><s>3</s>Rond bleu : le geste fait sur l’écran. Pointillés : qui agit sur quoi.</div></div>
+<div class="leg"><span><i style="background:var(--n-enfant)"></i>L’enfant, qui achète</span><span><i style="background:var(--n-parent)"></i>Le parent</span><span><i style="background:var(--n-proches)"></i>Les proches</span><span><i style="background:var(--n-part)"></i>Partenaires et équipe, devant la famille</span><span><i style="background:var(--n-equipe)"></i>Notre équipe, en coulisse</span><span><i style="background:var(--n-outils)"></i>Les outils</span><span><i class="ro"></i>Le geste fait sur l’écran</span></div>
+<div class="kick" style="left:59px;top:385px">Phases</div>
+<div class="kick" style="left:59px;top:456px">Étapes</div>
+<div class="phb a f" style="left:213.0px;width:588.3px">Avant-vente : découvrir</div>
+<div class="phb a n" style="left:810.3px;width:439.0px">Vente : acheter et recevoir</div>
+<div class="phb b n" style="left:1258.3px;width:289.7px">Installation</div>
+<div class="phb b n" style="left:1557.0px;width:439.0px">Usage : faire vivre</div>
+<div class="phb a n" style="left:2005.0px;width:289.7px">Après-vente</div>
+<div class="stp" style="left:213.0px"><em>01</em><b>Le déclic</b></div>
+<div class="stp" style="left:362.3px"><em>02</em><b>Elle découvre Le Cadre</b></div>
+<div class="stp" style="left:511.7px"><em>03</em><b>Elle visite le site</b></div>
+<div class="stp" style="left:661.0px"><em>04</em><b>L’enfant en parle à son parent</b></div>
+<div class="stp" style="left:810.3px"><em>05</em><b>Elle commande</b></div>
+<div class="stp" style="left:959.7px"><em>06</em><b>La confirmation</b></div>
+<div class="stp" style="left:1109.0px"><em>07</em><b>La livraison</b></div>
+<div class="stp" style="left:1258.3px"><em>08</em><b>L’installation chez le parent</b></div>
+<div class="stp" style="left:1407.7px"><em>09</em><b>Le parent dit oui</b></div>
+<div class="stp" style="left:1557.0px"><em>10</em><b>La famille rejoint</b></div>
+<div class="stp" style="left:1706.3px"><em>11</em><b>La première photo</b></div>
+<div class="stp" style="left:1855.7px"><em>12</em><b>Tous les jours</b></div>
+<div class="stp" style="left:2005.0px"><em>13</em><b>Un souci</b></div>
+<div class="stp" style="left:2154.3px"><em>14</em><b>Le premier mois</b></div>
+<div class="bar" style="top:484px;height:232px;background:var(--lilas);"><span>La famille</span></div>
+<div class="lb" style="top:487px;height:80px"><b>L’enfant</b><span>achète et installe</span></div>
+<div class="lb" style="top:582px;height:64px"><b>Le parent</b><span>n’a ni appli ni compte</span></div>
+<div class="lb" style="top:661px;height:52px"><b>Les proches</b><span>frères et sœurs, petits-enfants</span></div>
+<div class="nt e" style="left:213.0px;top:487px;height:80px;transform:rotate(-0.48deg)"><i style="margin-left:-9px"></i><p>« Pas de nouvelles, bonne nouvelle ? » Appelle son parent le dimanche, s’inquiète en semaine.</p></div>
+<div class="nt e" style="left:362.3px;top:487px;height:80px;transform:rotate(0.64deg)"><i style="margin-left:-9px"></i><p>Voit une pub entre deux stories ; le pharmacien de son parent lui en parle aussi.</p></div>
+<div class="nt e" style="left:511.7px;top:487px;height:80px;transform:rotate(0.32deg)"><i style="margin-left:-9px"></i><p>Lit la page : rien à installer pour son parent ? Pas de caméra ? Combien ?</p></div>
+<div class="nt e" style="left:661.0px;top:487px;height:80px;transform:rotate(0.00deg)"><i style="margin-left:-9px"></i><p>En parle à son parent au téléphone, puis à son frère.</p></div>
+<div class="nt e" style="left:810.3px;top:487px;height:80px;transform:rotate(-0.32deg)"><i style="margin-left:-9px"></i><p>Commande sur son téléphone, paie 149 €.</p></div>
+<div class="nt e" style="left:959.7px;top:487px;height:80px;transform:rotate(-0.64deg)"><i style="margin-left:-9px"></i><p>Lit l’e-mail, télécharge l’appli, crée son compte.</p></div>
+<div class="nt e" style="left:1109.0px;top:487px;height:80px;transform:rotate(0.48deg)"><i style="margin-left:-9px"></i><p>Reçoit le SMS de suivi, récupère le colis.</p></div>
+<div class="nt e" style="left:1258.3px;top:487px;height:80px;transform:rotate(0.16deg)"><i style="margin-left:-9px"></i><p>Chez son parent : branche le cadre, tape le wifi, entre le code dans l’appli.</p></div>
+<div class="nt e" style="left:1407.7px;top:487px;height:80px;transform:rotate(-0.16deg)"><i style="margin-left:-9px"></i><p>Laisse son parent répondre seul.</p></div>
+<div class="nt e" style="left:1557.0px;top:487px;height:80px;transform:rotate(-0.48deg)"><i style="margin-left:-9px"></i><p>Invite les proches par WhatsApp.</p></div>
+<div class="nt e" style="left:1706.3px;top:487px;height:80px;transform:rotate(0.64deg)"><i style="margin-left:-9px"></i><p>Voit la photo d’un proche arriver chez son parent.</p></div>
+<div class="nt e" style="left:1855.7px;top:487px;height:80px;transform:rotate(0.32deg)"><i style="margin-left:-9px"></i><p>À la pause café, la notification sonne : une photo, tout de suite.</p></div>
+<div class="nt e" style="left:2005.0px;top:487px;height:80px;transform:rotate(0.00deg)"><i style="margin-left:-9px"></i><p>Reçoit « cadre hors ligne », suit l’aide, rappelle son parent.</p></div>
+<div class="nt e" style="left:2154.3px;top:487px;height:80px;transform:rotate(-0.32deg)"><i style="margin-left:-9px"></i><p>Répond au mail du premier mois : elle le garde.</p></div>
+<b class="ar" style="left:354.5px;top:523.0px"></b>
+<b class="ar" style="left:503.8px;top:523.0px"></b>
+<b class="ar" style="left:653.1px;top:523.0px"></b>
+<b class="ar" style="left:802.5px;top:523.0px"></b>
+<b class="ar" style="left:951.8px;top:523.0px"></b>
+<b class="ar" style="left:1101.1px;top:523.0px"></b>
+<b class="ar" style="left:1250.5px;top:523.0px"></b>
+<b class="ar" style="left:1399.8px;top:523.0px"></b>
+<b class="ar" style="left:1549.1px;top:523.0px"></b>
+<b class="ar" style="left:1698.5px;top:523.0px"></b>
+<b class="ar" style="left:1847.8px;top:523.0px"></b>
+<b class="ar" style="left:1997.1px;top:523.0px"></b>
+<b class="ar" style="left:2146.5px;top:523.0px"></b>
+<div class="nt pa" style="left:213.0px;top:582px;height:64px;transform:rotate(0.00deg)"><i style="margin-left:0px"></i><p>Dit au téléphone que tout va bien.</p></div>
+<div class="nt pa" style="left:661.0px;top:582px;height:64px;transform:rotate(0.48deg)"><i style="margin-left:0px"></i><p>« Encore un truc compliqué ? » puis « Si je n’ai rien à faire… »</p></div>
+<div class="nt pa" style="left:1258.3px;top:582px;height:64px;transform:rotate(0.64deg)"><i style="margin-left:0px"></i><p>Choisit la place, sur le buffet du salon.</p></div>
+<div class="nt pa" style="left:1407.7px;top:582px;height:64px;transform:rotate(0.32deg)"><i style="margin-left:0px"></i><p>Lit « Voulez-vous voir leurs photos ? » et touche « D’accord ».</p></div>
+<div class="nt pa" style="left:1706.3px;top:582px;height:64px;transform:rotate(-0.32deg)"><i style="margin-left:0px"></i><p>Voit la photo d’un proche, avec son prénom.</p></div>
+<div class="nt pa" style="left:1855.7px;top:582px;height:64px;transform:rotate(-0.64deg)"><i style="margin-left:0px"></i><p>Voit chaque jour un moment de sa famille.</p></div>
+<div class="nt pa" style="left:2005.0px;top:582px;height:64px;transform:rotate(0.48deg)"><i style="margin-left:0px"></i><p>Ne remarque rien : ses photos restent affichées.</p></div>
+<div class="nt pa" style="left:2154.3px;top:582px;height:64px;transform:rotate(0.16deg)"><i style="margin-left:0px"></i><p>Parle des photos quand on l’appelle.</p></div>
+<b class="ar" style="left:1399.8px;top:610.0px"></b>
+<b class="ar" style="left:1847.8px;top:610.0px"></b>
+<b class="ar" style="left:1997.1px;top:610.0px"></b>
+<b class="ar" style="left:2146.5px;top:610.0px"></b>
+<div class="nt pr" style="left:661.0px;top:661px;height:52px;transform:rotate(-0.48deg)"><i style="margin-left:9px"></i><p>Le frère : « D’accord, j’enverrai aussi. »</p></div>
+<div class="nt pr" style="left:1557.0px;top:661px;height:52px;transform:rotate(0.48deg)"><i style="margin-left:9px"></i><p>Reçoivent le lien, rejoignent la famille.</p></div>
+<div class="nt pr" style="left:1706.3px;top:661px;height:52px;transform:rotate(0.16deg)"><i style="margin-left:9px"></i><p>Un petit-enfant envoie une photo et un petit mot.</p></div>
+<div class="nt pr" style="left:1855.7px;top:661px;height:52px;transform:rotate(-0.16deg)"><i style="margin-left:9px"></i><p>Répondent à la notification du jour, ou pas.</p></div>
+<b class="ar" style="left:1698.5px;top:683.0px"></b>
+<b class="ar" style="left:1847.8px;top:683.0px"></b>
+<div class="lnl" style="top:728px"><svg viewBox="0 0 16 16" fill="none" stroke="#1F1A17" stroke-width="1.5"><path d="M2 2.5h12v8H8l-3.5 3v-3H2z" stroke-linejoin="round"/></svg><span>Ligne d’interaction : la famille touche un écran ou un objet</span></div>
+<div class="ln" style="top:739px"></div>
+<div class="bar dk" style="top:767px;height:252px;background:var(--encre);"><span>Téléphone</span></div>
+<div class="lb" style="top:767px;height:252px"><b>Sur le téléphone</b><span>pub, site, e-mails, SMS, appli</span></div>
+<div class="ph" style="left:378.8px;top:771px"><div class="n"></div><div class="s"><div style="display:flex;align-items:center;gap:4px;margin:-6px 0 4px"><span style="display:block;width:11px;height:11px;border-radius:50%;background:var(--lilas);border:1px solid var(--encre)"></span><span style="display:block;line-height:1.1"><b style="display:block;font:600 7.4px/1.1 var(--titre)">lecadre</b><span class="mu" style="display:block;font-size:6.4px">Sponsorisé</span></span></div>
+<div style="display:flex;justify-content:center;align-items:center;background:var(--creme);height:60px;margin:0 -8px"><div style="width:47px;height:33px"><div class="mf" style="width:47px;height:33px"><div style="position:relative"><div style="position:relative"><em style="position:absolute;left:0;right:0;bottom:0;background:rgba(31,26,23,.7);color:var(--aube);font:700 3.5px/1 var(--texte);font-style:normal;padding:1.6px 2px">Prénom · « Bisous ! »</em></div></div></div></div></div>
+<div style="display:flex;justify-content:space-between;background:var(--soleil);border-top:1.2px solid var(--encre);border-bottom:1.2px solid var(--encre);margin:0 -8px;padding:5px 8px;font:600 8px/1 var(--titre)"><span>En savoir plus</span><span>›</span></div>
+<div style="font-size:7.2px;line-height:1.35;margin-top:6px">Vos photos chez vos parents, le jour même. Rien à installer de leur côté.</div><u class="tap" style="right:-3px;top:98px"></u></div></div>
+<div class="ph" style="left:528.2px;top:771px"><div class="n"></div><div class="s"><div style="display:block;background:#EDE3D0;border-radius:99px;text-align:center;padding:3px;font-size:6.4px;color:var(--cafe);margin:-6px 0 5px">lecadre.fr</div>
+<h4 style="font-size:9px;line-height:1.1">Vos photos chez vos parents</h4>
+<div style="display:flex;justify-content:center;margin:5px 0"><div class="mf" style="width:50px;height:35px"><div style="position:relative"><div style="position:relative"><em style="position:absolute;left:0;right:0;bottom:0;background:rgba(31,26,23,.7);color:var(--aube);font:700 3.5px/1 var(--texte);font-style:normal;padding:1.6px 2px">Prénom · « Bisous ! »</em></div></div></div></div>
+<div style="display:block;margin:2px 0 1.5px"><span style="display:inline-block;width:3.5px;height:3.5px;border-radius:50%;background:var(--encre);margin-right:3px;vertical-align:middle"></span>Rien à installer pour eux</div>
+<div style="display:block;margin:2px 0 1.5px"><span style="display:inline-block;width:3.5px;height:3.5px;border-radius:50%;background:var(--encre);margin-right:3px;vertical-align:middle"></span>Pas de caméra, pas de micro</div>
+<div style="display:block;margin:2px 0 1.5px"><span style="display:inline-block;width:3.5px;height:3.5px;border-radius:50%;background:var(--encre);margin-right:3px;vertical-align:middle"></span>Sans abonnement</div>
+<div style="display:block;margin:5px 0 5px"><b style="font:700 12px/1 var(--titre);letter-spacing:-.03em">149 €</b> <span class="mu" style="font-size:6px">livraison offerte</span></div>
+<div class="btn" style="font-size:7.6px;padding:7px 4px">Commander</div><u class="tap" style="right:-3px;bottom:5px"></u></div></div>
+<div class="ph" style="left:826.8px;top:771px"><div class="n"></div><div class="s"><h4 style="font-size:9.8px;margin-top:-6px">Votre commande</h4>
+<div style="display:flex;gap:4px;align-items:center;background:var(--creme);border-radius:6px;padding:4px;margin:3px 0 4px"><div class="mf" style="width:17px;height:15px;flex:none"><div></div></div><span style="display:block;line-height:1.2"><b style="display:block;font:600 7.4px/1.2 var(--titre)">Le Cadre</b><span class="mu" style="font-size:6.4px">149 €</span></span></div>
+<span class="fl">Livrer à</span><span class="in">Mon adresse</span><span class="fl">E-mail</span><span class="in">vous@exemple.fr</span>
+<div style="margin-top:5px"><b style="font:600 7.8px/1.2 var(--titre)">Total 149 €</b><span class="mu" style="display:block;font-size:6px">Retour gratuit sous 30 jours</span></div>
+<div class="btn dk" style="position:absolute!important;left:8px;right:8px;bottom:10px;padding:7px 4px;font-size:7.4px">Payer 149 €</div><u class="tap" style="right:2px;bottom:3px"></u></div></div>
+<div class="ph" style="left:976.2px;top:771px"><div class="n"></div><div class="s"><div class="mu" style="font-size:5.8px;margin-top:-6px">Boîte de réception</div>
+<h4 style="font-size:8.4px;margin-top:3px;line-height:1.2">Le Cadre<br>Votre Cadre est commandé</h4>
+<div style="height:1px;background:var(--ligne);margin:3px 0 5px;background:#D9CDB6"></div>
+<div style="font-size:6.5px;line-height:1.38">Bonjour, votre cadre part sous 48 h. En attendant, installez l’appli et créez votre compte : vous serez prêt le jour de la pose.</div>
+<div class="btn" style="position:absolute!important;left:8px;right:8px;top:127px;font-size:7.2px;padding:6.5px 4px">Télécharger l’appli</div>
+<div class="mu" style="position:absolute!important;left:8px;top:150px;font-size:6px">Commande n° 10482</div><u class="tap" style="right:2px;top:130px"></u></div></div>
+<div class="ph gr" style="left:1125.5px;top:771px"><div class="n"></div><div class="s"><h4 style="text-align:center;font-size:8.2px;margin-top:-5px;margin-bottom:5px">Transporteur</h4>
+<div class="bub" style="margin-right:-8px;border-radius:7px 0 0 7px">Votre colis Le Cadre arrive demain entre 9 h et 13 h. Suivre : lien</div>
+<div class="bub" style="margin-right:-8px;border-radius:7px 0 0 7px">Votre colis est livré. Bonne installation !</div></div></div>
+<div class="ph" style="left:1274.8px;top:771px"><div class="n"></div><div class="s"><h4 style="font-size:10px;margin-top:-6px;margin-bottom:5px">Relier le cadre</h4>
+<div class="mu" style="font-size:6.6px;line-height:1.35">Entrez le code affiché sur le cadre.</div>
+<div style="display:flex;gap:1.5px;margin-top:7px;margin-left:-1px"><span style="display:block;width:11.5px;height:15px;border:1px solid var(--lilas);background:#EEE8FA;border-radius:2.5px;font:700 8.6px/14px var(--titre);text-align:center;color:var(--encre)">4</span><span style="display:block;width:11.5px;height:15px;border:1px solid var(--lilas);background:#EEE8FA;border-radius:2.5px;font:700 8.6px/14px var(--titre);text-align:center;color:var(--encre)">8</span><span style="display:block;width:11.5px;height:15px;border:1px solid var(--lilas);background:#EEE8FA;border-radius:2.5px;font:700 8.6px/14px var(--titre);text-align:center;color:var(--encre)">2</span><span style="display:block;width:11.5px;height:15px;border:1px solid var(--lilas);background:#EEE8FA;border-radius:2.5px;font:700 8.6px/14px var(--titre);text-align:center;color:var(--encre)">9</span><span style="display:block;width:11.5px;height:15px;border:1px solid var(--lilas);background:#EEE8FA;border-radius:2.5px;font:700 8.6px/14px var(--titre);text-align:center;color:var(--encre)">1</span><span style="display:block;width:11.5px;height:15px;border:1px solid var(--lilas);background:#EEE8FA;border-radius:2.5px;font:700 8.6px/14px var(--titre);text-align:center;color:var(--encre)">3</span></div>
+<div class="btn" style="position:absolute!important;left:8px;right:8px;bottom:13px;padding:7px 4px;font-size:7.4px">Relier</div><u class="tap" style="right:0px;bottom:5px"></u></div></div>
+<div class="ph dk" style="left:1424.2px;top:771px"><div class="n"></div><div class="s"><div class="lock" style="margin-top:7px">11:02</div>
+<div class="nf" style="margin-top:20px"><small>LE CADRE · MAINTENANT</small><b>Votre parent a dit oui</b><span>Son cadre est prêt à recevoir vos photos.</span></div></div></div>
+<div class="ph" style="left:1573.5px;top:771px"><div class="n"></div><div class="s"><h4 style="font-size:10px;margin-top:-6px;margin-bottom:5px">Inviter</h4>
+<div class="mu" style="font-size:6.6px;line-height:1.35">Partagez ce code : vos proches rejoignent le cadre.</div>
+<div style="display:block;background:#EEE8FA;border-radius:6px;text-align:center;font:700 11.6px/1 var(--titre);padding:9px 2px;margin-top:6px;letter-spacing:-.01em">FAM-4827</div>
+<div class="btn" style="position:absolute!important;left:8px;right:8px;top:137px;font-size:7.4px;padding:7px 4px">WhatsApp</div>
+<div class="btn o" style="position:absolute!important;left:8px;right:8px;top:156px;font-size:7.2px;padding:6px 4px">Copier le lien</div><u class="tap" style="right:-3px;top:140px"></u></div></div>
+<div class="ph" style="left:1722.8px;top:771px"><div class="n"></div><div class="s"><h4 style="font-size:10px;margin-top:-6px;margin-bottom:4px">Envoyer</h4>
+<div class="pf" style="height:56px;border-radius:3px"><span style="top:41%;font-size:5.6px">PHOTO</span></div>
+<div style="display:block;border:1px solid var(--cafe);border-radius:4px;height:25px;margin-top:6px;padding:4px 5px;font-size:6.6px;background:#fff">Bisous !</div>
+<div class="btn" style="position:absolute!important;left:8px;right:8px;bottom:12px;padding:7px 4px;font-size:7.4px">Envoyer</div><u class="tap" style="right:-3px;bottom:4px"></u></div></div>
+<div class="ph dk" style="left:1872.2px;top:771px"><div class="n"></div><div class="s"><div class="lock" style="margin-top:7px;font-size:25px">14:37</div>
+<div style="text-align:center;font:400 7.4px/1 var(--texte);margin-top:3px;color:var(--aube)">mardi</div>
+<div class="nf" style="margin-top:9px"><small>LE CADRE · MAINTENANT</small><b style="font-size:8.2px">C’est le moment !</b><span>Montrez-lui ce que vous faites, là, maintenant.</span><u class="tap" style="right:-4px;bottom:-4px;width:11px;height:11px"></u></div>
+<div style="text-align:center;font:700 6.9px/1.25 var(--texte);margin-top:7px;color:var(--aube)">2 minutes pour prendre la photo</div></div></div>
+<div class="ph" style="left:2021.5px;top:771px"><div class="n"></div><div class="s"><h4 style="font-size:9.6px;margin-top:-6px;margin-bottom:5px">Le cadre</h4>
+<div style="display:block;background:var(--peche);border-radius:5px;padding:5px 6px;font:700 7px/1 var(--texte);border:1px solid var(--encre)"><span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--encre);margin-right:3px;vertical-align:middle"></span>Hors ligne · 24 h</div>
+<div style="font-size:6.6px;line-height:1.4;margin-top:6px">Ses photos restent affichées. Souvent, la box a redémarré ou le wifi a changé.</div>
+<div class="btn" style="position:absolute!important;left:8px;right:8px;top:135px;font-size:7.2px;padding:6.5px 4px">Voir l’aide</div>
+<div class="btn o" style="position:absolute!important;left:8px;right:8px;top:154px;font-size:7.2px;padding:6px 4px">Nous écrire</div><u class="tap" style="right:-3px;top:138px"></u></div></div>
+<div class="ph" style="left:2170.8px;top:771px"><div class="n"></div><div class="s"><div class="mu" style="font-size:5.8px;margin-top:-6px">Boîte de réception</div>
+<h4 style="font-size:8.4px;margin-top:3px;line-height:1.2">Le Cadre<br>Un mois avec Le Cadre</h4>
+<div style="height:1px;margin:3px 0 4px;background:#D9CDB6"></div>
+<div style="font-size:6.4px;line-height:1.38">Votre parent a reçu 37 photos de 3 proches ce mois-ci. Le cadre vous plaît ?</div>
+<div style="margin-top:5px;font-size:11px;line-height:1;letter-spacing:1px;color:var(--soleil);-webkit-text-stroke:.5px var(--encre)">★★★★<span style="color:transparent;-webkit-text-stroke:.6px var(--encre)">★</span></div>
+<div class="btn" style="position:absolute!important;left:8px;right:8px;top:137px;font-size:7.2px;padding:6.5px 4px">Donner mon avis</div>
+<div class="mu" style="position:absolute!important;left:8px;top:157px;right:8px;font-size:5.8px;line-height:1.3">Retour possible jusqu’au 30e jour</div><u class="tap" style="right:-3px;top:141px"></u></div></div>
+<div class="cp" style="left:362.3px;top:977px;width:140px"><b>L’enfant voit une pub entre deux stories et touche « En savoir plus »</b><span class="mn f">FICTIF · PUB CIBLÉE ENFANTS AIDANTS</span></div>
+<div class="cp" style="left:511.7px;top:977px;width:140px"><b>L’enfant lit la page, pose une question au chat, puis touche « Commander »</b><span class="mn f">FICTIF · SITE VENDEUR, PRIX À TRANCHER</span></div>
+<div class="cp" style="left:810.3px;top:977px;width:140px"><b>L’enfant se fait livrer chez lui et paie</b><span class="mn f">FICTIF · PAIEMENT EN LIGNE</span></div>
+<div class="cp" style="left:959.7px;top:977px;width:140px"><b>L’enfant reçoit l’e-mail et installe l’appli avant la livraison</b><span class="mn f">FICTIF · E-MAIL AUTOMATIQUE</span></div>
+<div class="cp" style="left:1109.0px;top:977px;width:140px"><b>L’enfant suit le colis par SMS</b><span class="mn f">FICTIF · TRANSPORTEUR</span></div>
+<div class="cp" style="left:1258.3px;top:977px;width:140px"><b>Chez le parent, l’enfant tape le code affiché sur le cadre</b><span class="mn m">MAQUETTE DE LUCAS N°3 · À CONSTRUIRE</span></div>
+<div class="cp" style="left:1407.7px;top:977px;width:140px"><b>L’enfant est prévenu quand son parent accepte</b><span class="mn f">FICTIF · PROPOSITION, PAS DANS LA MAQUETTE</span></div>
+<div class="cp" style="left:1557.0px;top:977px;width:140px"><b>L’enfant invite les proches</b><span class="mn m">MAQUETTE DE LUCAS N°21 · À CONSTRUIRE</span></div>
+<div class="cp" style="left:1706.3px;top:977px;width:140px"><b>Un proche envoie une photo et un mot ; elle arrive en 20 à 80 s (estimé)</b><span class="mn m">MAQUETTE DE LUCAS N°8 · À CONSTRUIRE</span></div>
+<div class="cp" style="left:1855.7px;top:977px;width:140px"><b>Toute la famille reçoit la même notification, à une heure surprise</b><span class="mn m">MAQUETTE DE LUCAS N°17 · À CONSTRUIRE</span></div>
+<div class="cp" style="left:2005.0px;top:977px;width:140px"><b>L’enfant est prévenu, suit l’aide ou écrit au service client</b><span class="mn f">FICTIF · IDÉE DE LA VEILLE DE LUCAS, NON CONSTRUITE</span></div>
+<div class="cp" style="left:2154.3px;top:977px;width:140px"><b>L’enfant fait le point et garde le cadre</b><span class="mn f">FICTIF · E-MAIL DU PREMIER MOIS</span></div>
+<div class="bar dk" style="top:1027px;height:186px;background:var(--cafe);"><span>En vrai</span></div>
+<div class="lb" style="top:1027px;height:186px"><b>En vrai</b><span>dépliant, colis, le cadre chez le parent</span></div>
+<div class="dep" style="left:391px;top:1027px"><div class="dh"></div><b>Le Cadre</b><p>Vos photos chez vos parents, le jour même.</p><div class="mf" style="width:49px;height:33px"><div></div></div><div class="qr"><i></i><span>Scannez pour en savoir plus</span></div></div>
+<div class="cp" style="left:362.3px;top:1152px;width:140px"><b>Au comptoir, le pharmacien tend le dépliant</b><span class="mn f">FICTIF · PARTENAIRE PRESCRIPTEUR</span></div>
+<div class="bx"><div class="lid"></div><div class="mf"><div></div></div><strong>Le Cadre</strong><div class="cart"><div>1 Branchez</div><div>2 Le wifi</div><div>3 Le code</div></div></div>
+<div class="cp" style="left:1109.0px;top:1136px;width:140px"><b>Dans la boîte : le cadre, le câble, une carte en 3 étapes</b><span class="mn f">FICTIF · EMBALLAGE</span></div>
+<div class="fr " style="left:1261.8px;top:1033px"><div class="fi"><h3>Bonjour</h3><span class="pc">Code pour l’appli</span><span class="cd">482 913</span></div></div>
+<div class="cp" style="left:1258.3px;top:1131px;width:140px"><b>Le cadre démarre seul et affiche le code (le wifi est tapé juste avant sur son clavier)</b><span class="mn m">PARCOURS V2 · PAGE WIFI À CONSTRUIRE</span></div>
+<div class="fr " style="left:1411.2px;top:1033px"><div class="fi"><h3 style="font-size:17px;margin-top:0">Bonjour</h3><h5>Voulez-vous voir leurs photos ?</h5><div class="bb"><s class="y">D’accord</s><s>Plus tard</s><u class="tap" style="left:41px;top:9px;width:11px;height:11px"></u></div></div></div>
+<div class="cp" style="left:1407.7px;top:1131px;width:140px"><b>Le parent touche « D’accord » ou « Plus tard », lisible à 2 m</b><span class="mn m">ÉCRAN D’ACCORD · À CONSTRUIRE</span></div>
+<div class="fr ph11" style="left:1709.8px;top:1033px"><div class="fi"><div class="pf"><span>PHOTO</span><em>Prénom · « Bisous ! »</em></div></div></div>
+<div class="cp" style="left:1706.3px;top:1131px;width:140px"><b>La photo arrive avec le prénom et le mot, 8 s, sans son</b><span class="mn m">BANDEAU : EXISTE DANS L’APPLI V0</span></div>
+<div class="fr ph13" style="left:2008.5px;top:1033px"><div class="fi"><div class="pf"><span>PHOTO</span></div><span class="wf">sans wifi</span></div></div>
+<div class="cp" style="left:2005.0px;top:1131px;width:140px"><b>Chez le parent, les photos continuent de tourner</b><span class="mn m">PARCOURS V2 · R41, GARDE SES PHOTOS EN MÉMOIRE</span></div>
+<div class="bar" style="top:1221px;height:71px;background:#EEE8FA;border:1.5px solid var(--encre);"><span>Devant</span></div>
+<div class="lb" style="top:1221px;height:71px"><b>Partenaires et équipe</b><span>devant la famille</span></div>
+<div class="nt pt" style="left:362.3px;top:1224px;height:65px;transform:rotate(0.64deg)"><i style="margin-left:18px"></i><p>Pharmacie partenaire : présentoir et dépliant au comptoir.</p></div>
+<div class="nt pt" style="left:511.7px;top:1224px;height:65px;transform:rotate(0.32deg)"><i style="margin-left:18px"></i><p>Le chat du site répond : « Non, pas de caméra ni de micro. »</p></div>
+<div class="nt pt" style="left:1258.3px;top:1224px;height:65px;transform:rotate(0.16deg)"><i style="margin-left:18px"></i><p>Aide à l’installation par chat ou téléphone, si besoin.</p></div>
+<div class="nt pt" style="left:2005.0px;top:1224px;height:65px;transform:rotate(0.00deg)"><i style="margin-left:18px"></i><p>Le service client répond et guide pour la box.</p></div>
+<div class="nt pt" style="left:2154.3px;top:1224px;height:65px;transform:rotate(-0.32deg)"><i style="margin-left:18px"></i><p>Envoie le mail du premier mois ; accepte un retour sous 30 jours.</p></div>
+<b class="ar" style="left:503.8px;top:1252.5px"></b>
+<b class="ar" style="left:2146.5px;top:1252.5px"></b>
+<div class="lnl" style="top:1304px"><svg viewBox="0 0 16 16" fill="none" stroke="#1F1A17" stroke-width="1.5"><path d="M1 8s2.6-4.6 7-4.6S15 8 15 8s-2.6 4.6-7 4.6S1 8 1 8z"/><circle cx="8" cy="8" r="2.1"/></svg><span>Ligne de visibilité : en dessous, la famille ne voit rien</span></div>
+<div class="dsh" style="top:1316px"></div>
+<div class="bar" style="top:1344px;height:86px;background:var(--peche);"><span>En coulisse</span></div>
+<div class="lb" style="top:1344px;height:86px"><b>Notre équipe</b><span>en coulisse</span></div>
+<div class="nt eq" style="left:362.3px;top:1347px;height:80px;transform:rotate(-0.32deg)"><i style="margin-left:-18px"></i><p>Campagne visant les enfants aidants de 45 à 65 ans ; accords avec pharmacies et mutuelles.</p></div>
+<div class="nt eq" style="left:511.7px;top:1347px;height:80px;transform:rotate(-0.64deg)"><i style="margin-left:-18px"></i><p>Enrichit la FAQ avec les questions du chat.</p></div>
+<div class="nt eq" style="left:810.3px;top:1347px;height:80px;transform:rotate(0.16deg)"><i style="margin-left:-18px"></i><p>Valide la commande, réserve un cadre.</p></div>
+<div class="nt eq" style="left:959.7px;top:1347px;height:80px;transform:rotate(-0.16deg)"><i style="margin-left:-18px"></i><p>Relie la commande au code d’un cadre.</p></div>
+<div class="nt eq" style="left:1109.0px;top:1347px;height:80px;transform:rotate(-0.48deg)"><i style="margin-left:-18px"></i><p>Prépare, teste et expédie le cadre sous 48 h.</p></div>
+<div class="nt eq" style="left:1706.3px;top:1347px;height:80px;transform:rotate(-0.32deg)"><i style="margin-left:-18px"></i><p>Surveille l’envoi des photos vers les cadres.</p></div>
+<div class="nt eq" style="left:2005.0px;top:1347px;height:80px;transform:rotate(0.48deg)"><i style="margin-left:-18px"></i><p>Repère les cadres hors ligne depuis 24 h.</p></div>
+<div class="nt eq" style="left:2154.3px;top:1347px;height:80px;transform:rotate(0.16deg)"><i style="margin-left:-18px"></i><p>Lit les avis et les retours.</p></div>
+<b class="ar" style="left:503.8px;top:1383.0px"></b>
+<b class="ar" style="left:951.8px;top:1383.0px"></b>
+<b class="ar" style="left:1101.1px;top:1383.0px"></b>
+<b class="ar" style="left:2146.5px;top:1383.0px"></b>
+<div class="lnl" style="top:1441px;width:150px"><svg viewBox="0 0 16 16" fill="none" stroke="#1F1A17" stroke-width="1.5"><path d="M1 8s2.6-4.6 7-4.6S15 8 15 8s-2.6 4.6-7 4.6S1 8 1 8z"/><circle cx="8" cy="8" r="2.1"/></svg><span>Ligne d’interaction interne</span></div>
+<div class="dsh" style="top:1449px"></div>
+<div class="bar" style="top:1472px;height:72px;background:var(--soleil);"><span>Outils</span></div>
+<div class="lb" style="top:1472px;height:72px"><b>Les outils</b><span>exemples, à choisir</span></div>
+<div class="nt ou" style="left:362.3px;top:1474px;height:67px;transform:rotate(0.16deg)"><i style="margin-left:-9px"></i><p>Régie pub des réseaux sociaux ; QR code du dépliant.</p></div>
+<div class="nt ou" style="left:511.7px;top:1474px;height:67px;transform:rotate(-0.16deg)"><i style="margin-left:-9px"></i><p>Site vendeur, chat.</p></div>
+<div class="nt ou" style="left:810.3px;top:1474px;height:67px;transform:rotate(0.64deg)"><i style="margin-left:-9px"></i><p>Paiement en ligne.</p></div>
+<div class="nt ou" style="left:959.7px;top:1474px;height:67px;transform:rotate(0.32deg)"><i style="margin-left:-9px"></i><p>E-mails automatiques ; compte dans l’appli.</p></div>
+<div class="nt ou" style="left:1109.0px;top:1474px;height:67px;transform:rotate(0.00deg)"><i style="margin-left:-9px"></i><p>Transporteur, suivi par SMS.</p></div>
+<div class="nt ou" style="left:1258.3px;top:1474px;height:67px;transform:rotate(-0.32deg)"><i style="margin-left:-9px"></i><p>Cadre : page wifi, code de liaison ; serveur.</p></div>
+<div class="nt ou" style="left:1407.7px;top:1474px;height:67px;transform:rotate(-0.64deg)"><i style="margin-left:-9px"></i><p>Écran d’accord sur le cadre.</p></div>
+<div class="nt ou" style="left:1557.0px;top:1474px;height:67px;transform:rotate(0.48deg)"><i style="margin-left:-9px"></i><p>Lien d’invitation.</p></div>
+<div class="nt ou" style="left:1706.3px;top:1474px;height:67px;transform:rotate(0.16deg)"><i style="margin-left:-9px"></i><p>Serveur photos vers le cadre (20 à 80 s, estimé).</p></div>
+<div class="nt ou" style="left:1855.7px;top:1474px;height:67px;transform:rotate(-0.16deg)"><i style="margin-left:-9px"></i><p>Notification du jour.</p></div>
+<div class="nt ou" style="left:2005.0px;top:1474px;height:67px;transform:rotate(-0.48deg)"><i style="margin-left:-9px"></i><p>Alerte « hors ligne depuis 24 h ».</p></div>
+<div class="nt ou" style="left:2154.3px;top:1474px;height:67px;transform:rotate(0.64deg)"><i style="margin-left:-9px"></i><p>E-mail du premier mois ; gestion des retours.</p></div>
+<div class="kick src">Sources</div>
+<div class="srt">Qui paie, qui prescrit, ce qui freine : veille et analyse de marché de l’équipe (01-veille). Écrans de l’appli : maquette de Lucas. Écrans du cadre et frictions : parcours v2 de Camille. Pub, site, e-mails, SMS, prix et outils : fictifs, pour illustrer.</div>
+<svg class="cn" viewBox="0 0 2360 1699"><path d="M 1265.8,871 H 1241.8 Q 1229.8,871 1229.8,883 V 1066 Q 1229.8,1078 1241.8,1078 H 1261.8" fill="none" stroke="#1F1A17" stroke-width="1.8"/><polygon points="1266.8,871 1274.8,866.4 1274.8,875.6" fill="#1F1A17"/><path d="M 1540.2,871 H 1563.5 Q 1575.5,871 1575.5,883 V 1066 Q 1575.5,1078 1563.5,1078 H 1547.2" fill="none" stroke="#1F1A17" stroke-width="1.8"/><polygon points="1532.2,871 1540.2,866.4 1540.2,875.6" fill="#1F1A17"/><path d="M 1829.8,871 H 1864.2 Q 1876.2,871 1876.2,883 V 1068 Q 1876.2,1080 1864.2,1080 H 1851.8" fill="none" stroke="#1F1A17" stroke-width="1.8"/><polygon points="1844.8,1080 1852.8,1075.4 1852.8,1084.6" fill="#1F1A17"/><path d="M 2137.5,871 H 2161.8 Q 2173.8,871 2173.8,883 V 1068 Q 2173.8,1080 2161.8,1080 H 2144.5" fill="none" stroke="#1F1A17" stroke-width="1.8"/><polygon points="2130.5,871 2138.5,866.4 2138.5,875.6" fill="#1F1A17"/><path d="M 1776.3,714 V 757" fill="none" stroke="#1F1A17" stroke-width="1.8" stroke-dasharray="5 3.4"/><polygon points="1776.3,757 1771.7,765 1780.9,765" fill="#1F1A17"/><polygon points="1925.7,730 1921.1,721 1930.3,721" fill="#1F1A17"/><path d="M 1925.7,730 V 770" fill="none" stroke="#1F1A17" stroke-width="1.8" stroke-dasharray="5 3.4"/></svg>
+</div></body></html>

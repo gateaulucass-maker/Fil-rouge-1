@@ -358,6 +358,16 @@ table.m td.lo{background:#FFC9A3;color:#1F1A17}
 .hb li:hover,.hb li:focus-visible,table.v tbody tr:hover,table.v tbody tr:focus-visible{background:#FFF3D9}
 .menu a:focus-visible,.col:focus-visible,.hb li:focus-visible,table.v tr:focus-visible,#panel :focus-visible,#full :focus-visible,a:focus-visible,button:focus-visible{outline:3px solid #C9B8F0;outline-offset:3px}
 iframe.bp,.bpimg,.f-sec figure img{border-color:#F0E3C8;border-radius:16px}
+.bpw{position:relative;margin-top:44px}.bpw iframe.bp{margin-top:0}
+.bpfs{position:absolute;right:0;top:-40px;width:32px;height:32px;display:grid;place-items:center;padding:0;border:1.5px solid #1F1A17;border-radius:10px;background:#FFFAF0;color:#1F1A17;cursor:pointer}
+.bpfs:hover{background:#FFF3D9}.bpfs svg{width:16px;height:16px}.bpfs .out{display:none}
+.bpw:fullscreen{background:#FFFAF0}.bpw:-webkit-full-screen{background:#FFFAF0}
+.bpw:fullscreen iframe.bp{height:100%;border:0;border-radius:0}.bpw:-webkit-full-screen iframe.bp{height:100%;border:0;border-radius:0}
+.bpw:fullscreen .bpfs{top:14px;right:14px}.bpw:-webkit-full-screen .bpfs{top:14px;right:14px}
+.bpesc{display:none;position:absolute;top:14px;right:56px;height:32px;align-items:center;gap:8px;padding:0 12px;border:1.5px solid #1F1A17;border-radius:10px;background:#FFFAF0;color:#1F1A17;font-size:13px;font-weight:500;pointer-events:none}
+.bpesc kbd{font:inherit;font-weight:700;padding:2px 7px;border-radius:6px;background:#F6D775}
+.bpw:fullscreen .bpesc{display:flex}.bpw:-webkit-full-screen .bpesc{display:flex}
+.bpw:fullscreen .bpfs .in{display:none}.bpw:fullscreen .bpfs .out{display:block}.bpw:-webkit-full-screen .bpfs .in{display:none}.bpw:-webkit-full-screen .bpfs .out{display:block}
 #mini{border-color:#1F1A17;border-radius:16px;box-shadow:0 10px 26px rgba(31,26,23,.14)}
 #panel{box-shadow:-18px 0 44px rgba(31,26,23,.22)}
 #veil{background:rgba(31,26,23,.45)}
@@ -447,8 +457,14 @@ iframe.bp,.bpimg,.f-sec figure img{border-color:#F0E3C8;border-radius:16px}
 
 <section class="page" id="p-blueprint"><span class="k">04 · Blueprint</span>
 <h2 class="t">Ce que vit la famille, et ce que fait l’équipe derrière.</h2>
-<div class="sec" id="bp-tableau" style="border-top:0;margin-top:48px"><h3>Le service en un tableau</h3><p>De la pub au premier mois : 14 étapes, de la famille à l’équipe en coulisse. Version 4 de Clément. Cliquez l’image pour l’ouvrir en grand.</p><a href="../clement/2-4-service-blueprint-v4.jpg" target="_blank" rel="noopener"><img class="bpimg" src="../clement/2-4-service-blueprint-v4.jpg" alt="Service blueprint v4 : Le Cadre, de la pub au premier mois" loading="lazy"></a></div>
-<div class="sec" id="bp-pas"><h3>Le service pas à pas</h3><p>La même histoire, animée, dans la charte Soly.</p><iframe class="bp" data-src="../clement/2-4-service-blueprint-soly.html" title="Blueprint du service, pas à pas"></iframe></div></section>
+<div class="sec" id="bp-tableau" style="border-top:0;margin-top:48px"><h3>Le service en un tableau</h3><p>De la pub au premier mois : 14 étapes, de la famille à l’équipe en coulisse. Version 4 de Clément. Cliquez l’image pour l’ouvrir en grand.</p><a href="../clement/2-4-service-blueprint-v4-soly.html" target="_blank" rel="noopener"><img class="bpimg" src="../clement/2-4-service-blueprint-v4-soly.jpg" alt="Service blueprint v4 : Le Cadre, de la pub au premier mois" loading="lazy"></a></div>
+<div class="sec" id="bp-pas"><h3>Le service pas à pas</h3><p>La même histoire, animée, dans la charte Soly.</p><div class="bpw" id="bp-pas-w"><button class="bpfs" type="button" aria-label="Afficher le blueprint en plein écran" title="Plein écran"><svg class="in" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg><svg class="out" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v4H2M14 6h-4V2M10 14v-4h4M2 10h4v4"/></svg></button><span class="bpesc"><kbd>Espace</kbd>pour avancer</span><iframe class="bp" data-src="../clement/2-4-service-blueprint-soly.html" title="Blueprint du service, pas à pas"></iframe></div>
+<script>(function(){var w=document.getElementById("bp-pas-w"),b=w.querySelector(".bpfs");
+function cur(){return document.fullscreenElement||document.webkitFullscreenElement}
+b.addEventListener("click",function(){b.blur();if(cur()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{(w.requestFullscreen||w.webkitRequestFullscreen).call(w)}});
+function sync(){var on=cur()===w;b.setAttribute("aria-label",on?"Quitter le plein écran":"Afficher le blueprint en plein écran");b.title=on?"Quitter le plein écran":"Plein écran"}
+document.addEventListener("fullscreenchange",sync);document.addEventListener("webkitfullscreenchange",sync);
+document.addEventListener("keydown",function(e){if(cur()!==w||(e.code!=="Space"&&e.key!==" "))return;e.preventDefault();var f=w.querySelector("iframe");if(f&&f.contentWindow)f.contentWindow.postMessage({bp:"step",d:e.shiftKey?-1:1},"*")})})();</script></div></section>
 
 <section class="page" id="p-da"><span class="k">05 · Direction artistique</span>
 <h2 class="t">Soly : une marque chaude et lisible, mise à l’épreuve écran par écran.</h2>

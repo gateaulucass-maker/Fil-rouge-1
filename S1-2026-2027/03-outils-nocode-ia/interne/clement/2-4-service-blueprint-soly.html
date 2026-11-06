@@ -8,16 +8,16 @@
 <title>Soly, l’histoire</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Atkinson+Hyperlegible+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
 /* Mise en page : une scène fixe plein écran, vue d'un seul angle ; une carte en haut à gauche raconte l'étape ; le défilement fait avancer l'histoire. */
 :root{
   color-scheme:light;
   /* charte Soly (DA de Lucas) : crème, beurre, cacao, noisette, lilas */
-  --paper:#fff6e0; --card:#fffdf6; --ink:#2e1e14; --muted:#5c4636; --accent:#6a4fb3; --butter:#f6d775; --soft:#fdefc4; --line:#ecdca8; --lilac:#b7a3e0;
-  --z1:#e9e0f8; --z2:#fdefc4; --z3:#f4e3d1; --z4:#e2f0e6;
-  --fictif:#8a5a00; --fictif-bg:#fff2cf;
-  --title:"Bricolage Grotesque","Arial Black",Arial,sans-serif; --display:"Atkinson Hyperlegible",Arial,sans-serif; --mono:"Atkinson Hyperlegible Mono",ui-monospace,Menlo,monospace;
+  --paper:#FFFAF0; --card:#FFFFFF; --ink:#1F1A17; --muted:#6A5F55; --accent:#1F1A17; --butter:#FFD36E; --soft:#FFF3D9; --line:#F0E3C8; --lilac:#C9B8F0;
+  --z1:#E6DCF8; --z2:#FFF3D9; --z3:#FFE4D2; --z4:#FFEDB8;
+  --fictif:#6A5F55; --fictif-bg:#FFE7A8;
+  --title:"Lexend",system-ui,Arial,sans-serif; --display:"Atkinson Hyperlegible",Arial,sans-serif; --mono:"Lexend",system-ui,Arial,sans-serif;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--display);-webkit-font-smoothing:antialiased}
@@ -25,7 +25,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 var(--
 header.top{max-width:1500px;margin-inline:auto;padding-block:clamp(28px,5vw,56px) 24px}
 .eyebrow{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-top:2px solid var(--ink);padding-top:12px;display:flex;flex-wrap:wrap;gap:4px 24px;margin:0}
 h1{font:800 clamp(46px,8vw,120px)/.9 var(--title);letter-spacing:-.05em;margin:26px 0 0;max-width:12ch;text-wrap:balance}
-h1 em{font-style:normal;color:var(--accent)}
+h1 em{font-style:normal;color:var(--ink);background:linear-gradient(transparent 58%,var(--butter) 58%,var(--butter) 92%,transparent 92%)}
 .lead{font:700 clamp(19px,2vw,25px)/1.3 var(--display);letter-spacing:-.012em;max-width:50ch;margin:22px 0 0;border-left:6px solid var(--accent);padding-left:18px}
 .brand{display:flex;align-items:center;gap:10px;margin:0 0 18px;font:800 30px/1 var(--title);letter-spacing:-.03em}
 .hint{margin:18px 0 0;font:500 12.5px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -68,13 +68,13 @@ h1 em{font-style:normal;color:var(--accent)}
 .table-wrap{overflow-x:auto;margin-top:22px;border:2px solid var(--ink);background:#fff;border-radius:18px}
 table{border-collapse:collapse;min-width:1100px;font-size:13.5px;line-height:1.38}
 th,td{border:1px solid var(--line);padding:9px 10px;vertical-align:top;text-align:left}
-thead th{background:var(--ink);color:#fff6e0;font:700 12.5px/1.25 var(--display)}
+thead th{background:var(--ink);color:#FFFAF0;font:700 12.5px/1.25 var(--display)}
 tbody th{font:700 12.5px/1.2 var(--display);white-space:nowrap;position:sticky;left:0;border-right:2px solid var(--ink)}
 .sources{margin-top:22px;font-size:14.5px;color:var(--muted);max-width:86ch}
 .progress{flex-wrap:nowrap;gap:8px;align-items:flex-start}
 .progress .pg{display:flex;flex-direction:column;gap:3px;opacity:.75;transition:opacity .3s}
 .progress .pg.on{opacity:1}
-.progress .pg small{font:700 10px/1.1 var(--display);color:var(--muted);white-space:nowrap;max-width:110px;overflow:hidden;text-overflow:ellipsis;border-top:3px solid #ecdca8;padding-top:3px}
+.progress .pg small{font:700 10px/1.1 var(--display);color:var(--muted);white-space:nowrap;max-width:110px;overflow:hidden;text-overflow:ellipsis;border-top:3px solid #F0E3C8;padding-top:3px}
 .progress .pg.on small{color:var(--accent);border-color:var(--accent)}
 .progress .pg div{display:flex;gap:3px}
 .progress button{width:26px;height:26px;line-height:23px;font-size:12px}
@@ -86,7 +86,7 @@ tbody th{font:700 12.5px/1.2 var(--display);white-space:nowrap;position:sticky;l
 .rows li.empty em{color:var(--muted);font-style:normal}
 .ctl{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
 .ctl button{all:unset;cursor:pointer;font:700 13.5px/1 var(--display);padding:10px 15px;border:2px solid var(--ink);background:#fff;border-radius:999px}
-.ctl .play{background:var(--ink);color:#fff6e0;border-color:var(--ink)}
+.ctl .play{background:var(--ink);color:#FFFAF0;border-color:var(--ink)}
 .ctl button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 @media (max-width:1180px){.progress .pg small{display:none}}
 @media (max-width:900px){
@@ -102,7 +102,7 @@ tbody th{font:700 12.5px/1.2 var(--display);white-space:nowrap;position:sticky;l
 </style>
 
 <header class="top wrap">
-  <div class="brand" aria-label="Soly"><svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="11" fill="#f6d775" stroke="#2e1e14" stroke-width="2"/><rect x="10" y="10" width="20" height="20" rx="4" fill="none" stroke="#2e1e14" stroke-width="3"/></svg><span>soly</span></div>
+  <div class="brand" aria-label="Soly"><svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="11" fill="#FFD36E" stroke="#1F1A17" stroke-width="2"/><rect x="10" y="10" width="20" height="20" rx="4" fill="none" stroke="#1F1A17" stroke-width="3"/></svg><span>soly</span></div>
   <p class="eyebrow"><span>Service blueprint · Soly (projet Le Cadre)</span><span>PFR Générations Connectées</span><span>Version histoire · 14 étapes · charte Soly · 30 octobre 2026</span></p>
   <h1>Soly, <em>l’histoire pas à pas</em></h1>
   <p class="lead">Une appli pour la famille, un cadre photo chez le parent. Pour chaque moment : ce que vit la famille, ce qu’elle voit, ce que fait notre équipe sans qu’elle le voie, et l’outil qui fait tout marcher.</p>
@@ -137,7 +137,7 @@ const ZONES=[
  {id:'z4',name:'Les outils',sub:'les processus support',c:'var(--z4)'}];
 const F='<span class="tag">fictif</span>';
 const M=[
- {t:'Découvrir',z1:'L’enfant s’inquiète pour son parent. Il voit une pub, et le pharmacien lui tend un dépliant.',z2:'La pub sur son téléphone, le dépliant au comptoir.'+F,z3:'Une campagne vise les enfants aidants ; des accords avec pharmacies et mutuelles.',z4:'La régie pub des réseaux sociaux.'},
+ {t:'Découvrir',z1:'L’enfant s’inquiète pour son parent. Il voit une pub sur son téléphone.',z2:'La pub sur son téléphone.'+F,z3:'Une campagne vise les enfants aidants.',z4:'La régie pub des réseaux sociaux.'},
  {t:'Commander',z1:'Il lit le site, en parle à son parent et à son frère, puis commande : 149 €.'+F,z2:'Le site : rien à installer, pas de caméra, sans abonnement. Le chat répond.',z3:'L’équipe valide la commande et enrichit la FAQ.',z4:'Le site vendeur, le chat, le paiement en ligne.'},
  {t:'Recevoir',z1:'Il installe l’appli dès l’e-mail, puis récupère le colis.',z2:'L’e-mail de confirmation, le SMS de livraison, la boîte et sa carte en 3 étapes.'+F,z3:'Un cadre est relié à un code, testé, emballé et expédié sous 48 h.',z4:'Les e-mails automatiques, le transporteur.'},
  {t:'Installer',z1:'Chez son parent, il branche le cadre, tape le wifi, entre le code dans l’appli.',z2:'Le cadre s’allume seul : « Bonjour » et son code. L’appli : « Relier le cadre ».',z3:'Si besoin, l’équipe aide par chat ou par téléphone.',z4:'La page wifi du cadre, le code de liaison, le serveur.'},
@@ -150,8 +150,8 @@ const M=[
 const NS='http://www.w3.org/2000/svg';const S=22,C30=Math.cos(Math.PI/6);
 const P=(x,y,z=0)=>[(x-y)*C30*S,(x+y)*.5*S-z*S];
 const pts=a=>a.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-const INK='#2e1e14';
-const K={enfant:'#6a4fb3',parent:'#e9a23b',proche:'#6fb98d',wood:'#b07a4a',woodD:'#8c5c33',kraft:'#cfa271',kraftD:'#b5865a',screen:'#3b2a20',lilac:'#d9cdf2',accent:'#6a4fb3',steel:'#c9b48f',dark:'#3b2a20',green:'#1d9a6c',red:'#c8372d',sun:'#ffd36b',curtain:'#6a4fb3'};
+const INK='#1F1A17';
+const K={enfant:'#9B85D6',parent:'#FFB98A',proche:'#FFD36E',wood:'#EBCB98',woodD:'#C9A06A',kraft:'#F2C79A',kraftD:'#D9A777',screen:'#3A322D',lilac:'#D6C6F5',accent:'#1F1A17',steel:'#c9b48f',dark:'#3A322D',green:'#1d9a6c',red:'#c8372d',sun:'#FFD36E',curtain:'#C9B8F0'};
 const svg=document.getElementById('scene');
 function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)if(a[k]!==undefined&&a[k]!=='')e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;}
 function shade(hex,f){const v=parseInt(hex.slice(1),16);const c=[v>>16,v>>8&255,v&255].map(x=>Math.min(255,Math.round(x*f)));return '#'+c.map(x=>x.toString(16).padStart(2,'0')).join('');}
@@ -161,7 +161,7 @@ function box(g,x,y,z,w,d,h,c,o={}){const sw=o.sw||1.4;
  el('polygon',{points:pts([P(x,y,z+h),P(x+w,y,z+h),P(x+w,y+d,z+h),P(x,y+d,z+h)]),fill:o.top||c,stroke:INK,'stroke-width':sw,'stroke-linejoin':'round'},g);}
 const faceL=(g,x,y,z,d,h)=>{const o=P(x,y+d,z+h);return el('g',{transform:`matrix(${C30*S},${.5*S},0,${S},${o[0]},${o[1]})`},g);};
 const faceTop=(g,x,y,z)=>{const o=P(x,y,z);return el('g',{transform:`matrix(${C30*S},${.5*S},${-C30*S},${.5*S},${o[0]},${o[1]})`},g);};
-function T(g,x,y,s,size,o={}){const t=el('text',{x,y,'font-size':size,'font-family':o.mono?'Atkinson Hyperlegible Mono, monospace':o.hand?'Bricolage Grotesque, Arial, sans-serif':'Atkinson Hyperlegible, Arial, sans-serif','font-weight':o.w||700,fill:o.fill||INK,'text-anchor':o.anchor},g);t.textContent=s;return t;}
+function T(g,x,y,s,size,o={}){const t=el('text',{x,y,'font-size':size,'font-family':o.mono?'Lexend, Arial, sans-serif':o.hand?'Lexend, Arial, sans-serif':'Atkinson Hyperlegible, Arial, sans-serif','font-weight':o.w||700,fill:o.fill||INK,'text-anchor':o.anchor},g);t.textContent=s;return t;}
 function R(g,x,y,w,h,r,fill,o={}){return el('rect',{x,y,width:w,height:h,rx:r,fill,stroke:o.stroke,'stroke-width':o.sw},g);}
 const dot=(g,cx,cy,r,fill,o={})=>el('circle',{cx,cy,r,fill,stroke:o.stroke,'stroke-width':o.sw},g);
 function person(g,x,y,shirt,o={}){const [px,py]=P(x,y,o.z||0);const gg=el('g',{transform:`translate(${px.toFixed(1)},${py.toFixed(1)}) scale(${o.k||1.25})`},g);
@@ -172,7 +172,7 @@ function person(g,x,y,shirt,o={}){const [px,py]=P(x,y,o.z||0);const gg=el('g',{t
  el('path',{d:`M-7.5 ${t+19} Q-8.5 ${t+2} 0 ${t} Q8.5 ${t+2} 7.5 ${t+19} Z`,fill:shirt,stroke:INK,'stroke-width':1.6,'stroke-linejoin':'round'},gg);
  if(o.cardigan)el('path',{d:`M0 ${t+1} L0 ${t+19}`,stroke:INK,'stroke-width':1},gg);
  const a=o.arm||'down';
- if(a==='phone'){el('path',{d:`M6.5 ${t+4} Q10 ${t+12} 3 ${t+12}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);R(gg,-.5,t+6,5.5,8.5,1,K.screen,{stroke:INK,sw:1});R(gg,.5,t+7,3.5,6,.6,'#b7a3e0');}
+ if(a==='phone'){el('path',{d:`M6.5 ${t+4} Q10 ${t+12} 3 ${t+12}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);R(gg,-.5,t+6,5.5,8.5,1,K.screen,{stroke:INK,sw:1});R(gg,.5,t+7,3.5,6,.6,'#C9B8F0');}
  else if(a==='ear'){el('path',{d:`M6.5 ${t+4} Q11 ${t-1} 5 ${t-5}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);R(gg,3,t-10,4,7,1,K.screen,{stroke:INK,sw:1});el('path',{d:`M-6.5 ${t+4} L-7 ${t+15}`,stroke:INK,'stroke-width':2.4,'stroke-linecap':'round'},gg);}
  else if(a==='carry'){el('path',{d:`M-6.5 ${t+5} Q-3 ${t+12} 2 ${t+12} M6.5 ${t+5} Q4 ${t+11} 2 ${t+12}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);el('polygon',{points:`-7,${t+9} 9,${t+9} 9,${t+20} -7,${t+20}`,fill:K.kraft,stroke:INK,'stroke-width':1.3},gg);}
  else if(a==='paper'){el('path',{d:`M6.5 ${t+4} Q11 ${t+9} 11 ${t+11}`,stroke:INK,'stroke-width':2.4,fill:'none','stroke-linecap':'round'},gg);R(gg,9,t+5,7,9,.5,'#fff',{stroke:INK,sw:1});R(gg,10,t+6,5,1.4,0,K.accent);}
@@ -189,14 +189,14 @@ function person(g,x,y,shirt,o={}){const [px,py]=P(x,y,o.z||0);const gg=el('g',{t
  return gg;}
 function panel(g,x,y,z,w,h,frame,draw){box(g,x,y,z,w,.35,h,frame,{left:frame});const f=faceL(g,x,y,z,.35,h);draw(f,w,h);return f;}
 function phone(g,x,y,z,draw,o={}){const w=2.2,h=4.0;box(g,x+w/2-.15,y+.1,z,.3,.2,.5,K.steel);box(g,x+w/2-.6,y-.1,z,1.2,.6,.12,K.steel);
- panel(g,x,y,z+.5,w,h,K.dark,(f,W,H)=>{R(f,.1,.1,W-.2,H-.2,.26,'#2e1e14');R(f,.2,.36,W-.4,H-.58,.15,o.bg||'#fff');R(f,W/2-.32,.17,.64,.11,.05,'#1a110b');draw(f,W,H);});}
-const tap=(f,cx,cy)=>dot(f,cx,cy,.15,'rgba(29,59,193,.35)',{stroke:K.accent,sw:.035});
-const btn=(f,x,y,w,label,o={})=>{R(f,x,y,w,.3,.15,o.ghost?'#fff':(o.c||'#2e1e14'),{stroke:o.ghost?'#2e1e14':undefined,sw:.025});T(f,x+w/2,y+.21,label,.14,{anchor:'middle',fill:o.ghost?'#2e1e14':'#fff6e0'});return [x+w-.12,y+.25];};
-const mini=(f,x,y,w)=>{const h=w*.68;R(f,x,y,w,h,.06,'#f6d775');R(f,x+.06,y+.06,w-.12,h-.12,0,K.lilac);R(f,x+.06,y+h-.22,w-.12,.16,0,'rgba(18,22,46,.65)');};
-const cadre=(g,x,y,z,draw)=>{box(g,x-1.3,y-.5,z,2.6,1.1,1,K.wood);box(g,x-1.15,y-.15,z+1,2.3,.26,1.6,'#f6d775');const f=faceL(g,x-1.15,y-.15,z+1,.26,1.6);R(f,.1,.1,2.1,1.4,0,'#fbf6ea');draw(f,2.1,1.4);};
-const rack=(g,x,y,h)=>{box(g,x,y,0,1.1,1.3,h||2.8,'#3b2a20');const f=faceL(g,x,y,0,1.3,h||2.8);for(let i=0;i<4;i++){R(f,.1,.22+i*.6,.9,.36,.04,'#5a4434');dot(f,.86,.4+i*.6,.06,i%2?'#5cbf8f':'#9fe1bf');}};
+ panel(g,x,y,z+.5,w,h,K.dark,(f,W,H)=>{R(f,.1,.1,W-.2,H-.2,.26,'#1F1A17');R(f,.2,.36,W-.4,H-.58,.15,o.bg||'#fff');R(f,W/2-.32,.17,.64,.11,.05,'#1F1A17');draw(f,W,H);});}
+const tap=(f,cx,cy)=>dot(f,cx,cy,.15,'rgba(201,184,240,.75)',{stroke:K.accent,sw:.035});
+const btn=(f,x,y,w,label,o={})=>{R(f,x,y,w,.3,.15,o.ghost?'#fff':(o.c||'#1F1A17'),{stroke:o.ghost?'#1F1A17':undefined,sw:.025});T(f,x+w/2,y+.21,label,.14,{anchor:'middle',fill:o.ghost?'#1F1A17':'#FFFAF0'});return [x+w-.12,y+.25];};
+const mini=(f,x,y,w)=>{const h=w*.68;R(f,x,y,w,h,.06,'#FFD36E');R(f,x+.06,y+.06,w-.12,h-.12,0,K.lilac);R(f,x+.06,y+h-.22,w-.12,.16,0,'rgba(18,22,46,.65)');};
+const cadre=(g,x,y,z,draw)=>{box(g,x-1.3,y-.5,z,2.6,1.1,1,K.wood);box(g,x-1.15,y-.15,z+1,2.3,.26,1.6,'#FFD36E');const f=faceL(g,x-1.15,y-.15,z+1,.26,1.6);R(f,.1,.1,2.1,1.4,0,'#fbf6ea');draw(f,2.1,1.4);};
+const rack=(g,x,y,h)=>{box(g,x,y,0,1.1,1.3,h||2.8,'#3A322D');const f=faceL(g,x,y,0,1.3,h||2.8);for(let i=0;i<4;i++){R(f,.1,.22+i*.6,.9,.36,.04,'#5a4434');dot(f,.86,.4+i*.6,.06,i%2?'#5cbf8f':'#9fe1bf');}};
 const desk=(g,x,y)=>box(g,x-1.2,y-.5,0,2.4,1.1,.95,'#ffffff');
-const monitor=(g,x,y,draw)=>{box(g,x-.07,y+.15,.95,.14,.14,.3,'#4a382c');panel(g,x-.65,y,1.25,1.3,.95,'#4a382c',(f,W,H)=>{R(f,.07,.07,W-.14,H-.14,.03,'#fff');draw&&draw(f,W,H);});};
+const monitor=(g,x,y,draw)=>{box(g,x-.07,y+.15,.95,.14,.14,.3,'#3A322D');panel(g,x-.65,y,1.25,1.3,.95,'#3A322D',(f,W,H)=>{R(f,.07,.07,W-.14,H-.14,.03,'#fff');draw&&draw(f,W,H);});};
 const sign=(g,x,y,lines)=>{box(g,x-.1,y,0,.2,.2,1.3,K.steel);box(g,x-1,y-.15,1.3,2,.15,1.0,'#ffffff');const f=faceL(g,x-1,y-.15,1.3,.15,1.0);lines.forEach((l,i)=>T(f,1,.38+i*.26,l,.2,{anchor:'middle',hand:true}));};
 
 // ===================== PLATEAU =====================
@@ -209,7 +209,7 @@ el('path',{d:'M0 0 L10 5 L0 10 Z',fill:INK},el('marker',{id:'ah',viewBox:'0 0 10
 const lg=el('linearGradient',{id:'col',x1:0,y1:0,x2:1,y2:0},defs);el('stop',{offset:0,'stop-color':'#fff1a6','stop-opacity':.9},lg);el('stop',{offset:1,'stop-color':'#ffe680','stop-opacity':.9},lg);
 const base=el('g',{id:'base'});
 box(base,X0-1,-1,-.8,X1-X0+2,50,.8,'#f3e7c9',{left:'#e0cfa6',right:'#cfbb8e',sw:1.8});
-const zoneShade={z1:'#efe8fb',z2:'#fdf3d6',z3:'#f6eadc',z4:'#e6f2e8'};
+const zoneShade={z1:'#EFE8FB',z2:'#fdf3d6',z3:'#FFE9DA',z4:'#FFF3C4'};
 const zonePoly={};
 for(const z of ZY)zonePoly[z.id]=el('polygon',{points:pts([P(X0-1,z.y0),P(X1+1,z.y0),P(X1+1,z.y1),P(X0-1,z.y1)]),fill:zoneShade[z.id],opacity:.9},base);
 // colonne lumineuse du moment
@@ -218,7 +218,7 @@ const colHi=el('polygon',{fill:'url(#col)',opacity:0},base);
 const lines=el('g',{});
 for(const yy of [36,24,12]){const a=P(X0-4,yy),b=P(X1+5,yy);el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:INK,'stroke-width':2.4,'stroke-dasharray':'12 9'},lines);}
 const zLab={};
-ZONES.forEach((z,i)=>{const zz=ZY[i];const p=P(X1+4.8,(zz.y0+zz.y1)/2+2);const g=el('g',{},lines);T(g,p[0],p[1],z.name,22,{hand:true});T(g,p[0],p[1]+18,z.sub,12.5,{mono:true,w:500,fill:'#5c4636'});zLab[z.id]=g;});
+ZONES.forEach((z,i)=>{const zz=ZY[i];const p=P(X1+4.8,(zz.y0+zz.y1)/2+2);const g=el('g',{},lines);T(g,p[0],p[1],z.name,22,{hand:true});T(g,p[0],p[1]+18,z.sub,12.5,{mono:true,w:500,fill:'#6A5F55'});zLab[z.id]=g;});
 // numéros des moments le long du bord avant
 const nums=[];
 for(let i=0;i<NC;i++){const f=faceL(base,cx(i)-1.3,47,-.8,2,.8);R(f,.05,.08,2.5,.64,.06,'#fff',{stroke:INK,sw:.04});T(f,.22,.56,String(i+1),.42,{w:800,fill:K.accent,hand:true});T(f,.62,.53,M[i].t.length>14?M[i].t.slice(0,13)+'…':M[i].t,.24,{w:700});nums.push(f);}
@@ -227,8 +227,8 @@ for(let i=0;i<NC;i++){const f=faceL(base,cx(i)-1.3,47,-.8,2,.8);R(f,.05,.08,2.5,
 const items=[];const add=(i,z,draw)=>items.push({i,z,draw});
 const z1=Y.z1,z2=Y.z2,z3=Y.z3,z4=Y.z4;
 // --- zone 1 : la famille
-add(0,'z1',g=>{person(g,cx(0)-.6,z1+1,K.enfant,{arm:'paper'});box(g,cx(0)+.1,z1-1.4,0,1.4,.9,1.1,'#ffffff');person(g,cx(0)+.8,z1-1.9,'#fff',{arm:'down',k:1.05});box(g,cx(0)+1.25,z1-1.6,0,.15,.15,1.6,K.steel);box(g,cx(0)+.95,z1-1.75,1.6,.7,.12,.7,K.green);});
-add(1,'z1',g=>{box(g,cx(1)-1.1,z1-.4,0,2.2,1.1,.7,'#cdbdf0');box(g,cx(1)-1.1,z1-.4,.7,2.2,.3,.8,'#cdbdf0');person(g,cx(1),z1+.3,K.enfant,{sit:true,z:.7,arm:'phone'});});
+add(0,'z1',g=>{person(g,cx(0)-.6,z1+1,K.enfant,{arm:'phone'});});
+add(1,'z1',g=>{box(g,cx(1)-1.1,z1-.4,0,2.2,1.1,.7,'#C9B8F0');box(g,cx(1)-1.1,z1-.4,.7,2.2,.3,.8,'#C9B8F0');person(g,cx(1),z1+.3,K.enfant,{sit:true,z:.7,arm:'phone'});});
 add(2,'z1',g=>{person(g,cx(2),z1+.6,K.enfant,{arm:'carry'});box(g,cx(2)+.6,z1-1.6,0,.25,1.6,2.8,'#ffffff');box(g,cx(2)+.6,z1-1.4,0,.15,1.2,2.5,K.wood,{left:K.wood});});
 add(3,'z1',g=>{const f=faceTop(g,cx(3)-1.5,z1-2.2,0);R(f,0,0,3,4.4,.3,'#f6e3d5',{stroke:'#d9b8a1',sw:.06});person(g,cx(3)+.2,z1+.8,K.enfant,{arm:'phone'});person(g,cx(3)-.9,z1-.6,K.parent,{arm:'point',hair:'grey',cardigan:true});});
 add(4,'z1',g=>{const f=faceTop(g,cx(4)-1.5,z1-2.2,0);R(f,0,0,3,4.4,.3,'#f6e3d5',{stroke:'#d9b8a1',sw:.06});box(g,cx(4)-.9,z1-.9,0,1.7,1.7,.8,'#f2c9b5');box(g,cx(4)-.9,z1-.9,.8,.35,1.7,1.15,'#f2c9b5');person(g,cx(4)-.05,z1,K.parent,{sit:true,z:.8,arm:'point',hair:'grey',cardigan:true,glasses:true});person(g,cx(4)+1.1,z1+1.5,K.enfant,{arm:'down',k:1.1});});
@@ -239,16 +239,16 @@ add(7,'z1',g=>{person(g,cx(7),z1+.6,K.enfant,{arm:'ear'});});
 const arrows=el('g',{id:'arrows'});
 // --- zone 2 : la scène (estrade commune)
 const stageG=el('g',{id:'stage'});
-box(stageG,X0-.6,24.4,0,X1-X0+1.2,11.4,.8,K.wood,{top:'#c98f5b'});{const ft=faceTop(stageG,X0-.6,24.4,.8);for(let i=1;i<8;i++)el('line',{x1:0,y1:i*1.42,x2:X1-X0+1.2,y2:i*1.42,stroke:'#b07a4a','stroke-width':.04},ft);}
-box(stageG,X0-.6,24.4,.8,X1-X0+1.2,.4,2.6,'#4a382c',{left:'#3d2e24'});
+box(stageG,X0-.6,24.4,0,X1-X0+1.2,11.4,.8,K.wood,{top:'#F5DDB0'});{const ft=faceTop(stageG,X0-.6,24.4,.8);for(let i=1;i<8;i++)el('line',{x1:0,y1:i*1.42,x2:X1-X0+1.2,y2:i*1.42,stroke:'#EBCB98','stroke-width':.04},ft);}
+box(stageG,X0-.6,24.4,.8,X1-X0+1.2,.4,2.6,'#3A322D',{left:'#3d2e24'});
 const ZS=.8;
-add(0,'z2',g=>{phone(g,cx(0)-1.1,z2-2.2,ZS,(f,W)=>{dot(f,.48,.66,.13,K.accent);T(f,.68,.7,'soly',.15);R(f,.2,.9,W-.4,1.25,0,'#f3e9da');mini(f,.55,1.1,1.1);R(f,.2,2.15,W-.4,.34,0,K.accent);T(f,.34,2.37,'En savoir plus',.15,{fill:'#fff'});tap(f,W-.4,2.4);T(f,.32,2.78,'Tes photos chez tes',.13,{w:500});T(f,.32,2.96,'parents, le jour même.',.13,{w:500});});box(g,cx(0)+.2,z2+2,ZS,1.1,.2,1.0,'#ffffff');const d=faceL(g,cx(0)+.2,z2+2,ZS,.2,1.0);R(d,0,0,1.1,.1,0,K.accent);T(d,.1,.32,'Soly',.15,{w:800});mini(d,.25,.42,.6);});
+add(0,'z2',g=>{phone(g,cx(0)-1.1,z2-2.2,ZS,(f,W)=>{dot(f,.48,.66,.13,K.accent);T(f,.68,.7,'soly',.15);R(f,.2,.9,W-.4,1.25,0,'#f3e9da');mini(f,.55,1.1,1.1);R(f,.2,2.15,W-.4,.34,0,K.accent);T(f,.34,2.37,'En savoir plus',.15,{fill:'#fff'});tap(f,W-.4,2.4);T(f,.32,2.78,'Tes photos chez tes',.13,{w:500});T(f,.32,2.96,'parents, le jour même.',.13,{w:500});});});
 add(1,'z2',g=>phone(g,cx(1)-1.1,z2-2.2,ZS,(f,W)=>{R(f,.32,.5,W-.64,.22,.11,'#f3e7c9');T(f,W/2,.65,'soly.fr',.12,{anchor:'middle',w:500});T(f,.32,.98,'Tes photos',.2,{w:800});T(f,.32,1.19,'chez tes parents',.2,{w:800});['Rien à installer','Pas de caméra','Sans abonnement'].forEach((s,i)=>{dot(f,.38,1.45+i*.22,.045,K.green);T(f,.48,1.5+i*.22,s,.13,{w:500});});T(f,.32,2.4,'149 €',.26,{w:800});tap(f,...btn(f,.32,2.95,W-.64,'Commander'));}));
-add(2,'z2',g=>{phone(g,cx(2)-1.1,z2-2.2,ZS,(f,W)=>{T(f,W/2,.7,'Transporteur',.14,{anchor:'middle'});R(f,.3,.85,W-.7,.64,.12,'#f6eedb');['Ton colis Soly','arrive demain,','9 h-13 h.'].forEach((s,i)=>T(f,.4,1.06+i*.17,s,.12,{w:500}));R(f,.3,1.65,W-.6,.9,.08,'#fff',{stroke:'#ecdca8',sw:.02});T(f,.4,1.88,'Ton Soly est',.12);T(f,.4,2.04,'commandé',.12);T(f,.4,2.22,'Installe l’appli.',.11,{w:500});});box(g,cx(2)-.3,z2+1.6,ZS,1.6,1.2,1,K.kraft);const f=faceL(g,cx(2)-.3,z2+1.6,ZS,1.2,1);T(f,.15,.6,'Soly',.3,{fill:'#fff',w:900});});
-add(3,'z2',g=>{cadre(g,cx(3),z2+.6,ZS,(f,W)=>{T(f,W/2,.5,'Bonjour',.32,{anchor:'middle',w:900});T(f,W/2,.78,'Code pour l’appli',.13,{anchor:'middle',w:500,fill:'#5c4636'});T(f,W/2,1.12,'482 913',.3,{anchor:'middle',w:900,fill:K.accent});});});
+add(2,'z2',g=>{phone(g,cx(2)-1.1,z2-2.2,ZS,(f,W)=>{T(f,W/2,.7,'Transporteur',.14,{anchor:'middle'});R(f,.3,.85,W-.7,.64,.12,'#f6eedb');['Ton colis Soly','arrive demain,','9 h-13 h.'].forEach((s,i)=>T(f,.4,1.06+i*.17,s,.12,{w:500}));R(f,.3,1.65,W-.6,.9,.08,'#fff',{stroke:'#F0E3C8',sw:.02});T(f,.4,1.88,'Ton Soly est',.12);T(f,.4,2.04,'commandé',.12);T(f,.4,2.22,'Installe l’appli.',.11,{w:500});});box(g,cx(2)-.3,z2+1.6,ZS,1.6,1.2,1,K.kraft);const f=faceL(g,cx(2)-.3,z2+1.6,ZS,1.2,1);T(f,.15,.6,'Soly',.3,{fill:'#fff',w:900});});
+add(3,'z2',g=>{cadre(g,cx(3),z2+.6,ZS,(f,W)=>{T(f,W/2,.5,'Bonjour',.32,{anchor:'middle',w:900});T(f,W/2,.78,'Code pour l’appli',.13,{anchor:'middle',w:500,fill:'#6A5F55'});T(f,W/2,1.12,'482 913',.3,{anchor:'middle',w:900,fill:K.accent});});});
 add(4,'z2',g=>{cadre(g,cx(4),z2+.6,ZS,(f,W)=>{T(f,W/2,.36,'Bonjour',.22,{anchor:'middle',w:900});T(f,W/2,.62,'Voulez-vous voir',.15,{anchor:'middle'});T(f,W/2,.8,'leurs photos ?',.15,{anchor:'middle'});tap(f,...btn(f,.17,.95,.82,'D’accord'));btn(f,1.1,.95,.82,'Plus tard',{ghost:true});});});
-add(5,'z2',g=>{phone(g,cx(5)-1.1,z2-2.4,ZS,(f,W)=>{T(f,.32,.75,'Envoyer',.18,{w:800});R(f,.32,.9,W-.64,1.15,.08,K.lilac);T(f,W/2,1.53,'PHOTO',.1,{anchor:'middle',mono:true,fill:'#5c4636',w:500});R(f,.32,2.15,W-.64,.42,.06,'#fff',{stroke:'#d9c79a',sw:.02});T(f,.42,2.42,'Bisous !',.14,{w:500});tap(f,...btn(f,.32,2.95,W-.64,'Envoyer'));});cadre(g,cx(5),z2+2.6,ZS,(f,W,H)=>{R(f,0,0,W,H,0,'#cfe1f3');el('path',{d:`M0 ${H} L.6 .7 L1.1 1.0 L1.5 .7 L${W} ${H} Z`,fill:'#9fc9a8'},f);dot(f,1.6,.35,.14,K.sun);R(f,0,H-.3,W,.3,0,'rgba(18,22,46,.72)');T(f,.1,H-.1,'Prénom · « Bisous ! »',.15,{fill:'#fff'});});});
-add(6,'z2',g=>phone(g,cx(6)-1.1,z2-2.2,ZS,(f,W)=>{T(f,W/2,.95,'14:37',.4,{anchor:'middle',fill:'#fff',w:800});R(f,.25,1.2,W-.5,.95,.12,'rgba(255,255,255,.93)');T(f,.36,1.42,'SOLY · MAINTENANT',.08,{mono:true,fill:'#5c4636',w:500});T(f,.36,1.64,'C’est le moment !',.15);T(f,.36,1.83,'Montre-lui ce que',.11,{w:500});T(f,.36,1.98,'tu fais.',.11,{w:500});tap(f,W-.45,2.05);T(f,W/2,2.55,'2 minutes',.13,{anchor:'middle',fill:'#fff'});},{bg:'#3b2a20'}));
+add(5,'z2',g=>{phone(g,cx(5)-1.1,z2-2.4,ZS,(f,W)=>{T(f,.32,.75,'Envoyer',.18,{w:800});R(f,.32,.9,W-.64,1.15,.08,K.lilac);T(f,W/2,1.53,'PHOTO',.1,{anchor:'middle',mono:true,fill:'#6A5F55',w:500});R(f,.32,2.15,W-.64,.42,.06,'#fff',{stroke:'#d9c79a',sw:.02});T(f,.42,2.42,'Bisous !',.14,{w:500});tap(f,...btn(f,.32,2.95,W-.64,'Envoyer'));});cadre(g,cx(5),z2+2.6,ZS,(f,W,H)=>{R(f,0,0,W,H,0,'#cfe1f3');el('path',{d:`M0 ${H} L.6 .7 L1.1 1.0 L1.5 .7 L${W} ${H} Z`,fill:'#9fc9a8'},f);dot(f,1.6,.35,.14,K.sun);R(f,0,H-.3,W,.3,0,'rgba(18,22,46,.72)');T(f,.1,H-.1,'Prénom · « Bisous ! »',.15,{fill:'#fff'});});});
+add(6,'z2',g=>phone(g,cx(6)-1.1,z2-2.2,ZS,(f,W)=>{T(f,W/2,.95,'14:37',.4,{anchor:'middle',fill:'#fff',w:800});R(f,.25,1.2,W-.5,.95,.12,'rgba(255,255,255,.93)');T(f,.36,1.42,'SOLY · MAINTENANT',.08,{mono:true,fill:'#6A5F55',w:500});T(f,.36,1.64,'C’est le moment !',.15);T(f,.36,1.83,'Montre-lui ce que',.11,{w:500});T(f,.36,1.98,'tu fais.',.11,{w:500});tap(f,W-.45,2.05);T(f,W/2,2.55,'2 minutes',.13,{anchor:'middle',fill:'#fff'});},{bg:'#3A322D'}));
 add(7,'z2',g=>{phone(g,cx(7)-1.1,z2-2.2,ZS,(f,W)=>{T(f,.32,.75,'Le cadre',.18,{w:800});R(f,.32,.92,W-.64,.36,.08,'#fde8e6');dot(f,.48,1.1,.05,K.red);T(f,.6,1.15,'Hors ligne · 24 h',.13,{fill:'#8b1a1a'});['Ses photos restent','affichées. La box a','sûrement redémarré.'].forEach((s,i)=>T(f,.32,1.52+i*.17,s,.115,{w:500}));tap(f,...btn(f,.32,2.55,W-.64,'Voir l’aide'));btn(f,.32,2.95,W-.64,'Nous écrire',{ghost:true});});box(g,cx(7)-.2,z2+1.6,ZS,1.8,1,.9,'#ffffff');person(g,cx(7)+.6,z2+1.3,'#fff',{z:ZS,arm:'type',headset:true,k:1.05});});
 // rideaux aux deux bouts de la scène
 add(-1,'z2',g=>{for(const xx of [X0-.6,X1-.7]){box(g,xx,33.6,.8,1.3,1.8,5.2,K.curtain);const f=faceL(g,xx,33.6,.8,1.8,5.2);for(let i=1;i<6;i++)el('line',{x1:i*.22,y1:0,x2:i*.22,y2:5.2,stroke:'#4f3a8f','stroke-width':.05},f);}});
@@ -263,10 +263,10 @@ add(6,'z3',g=>sign(g,cx(6),z3,['Rien à faire :','c’est automatique']));
 add(7,'z3',g=>{desk(g,cx(7),z3);monitor(g,cx(7)-.3,z3-.3,(f)=>{for(let i=0;i<3;i++){dot(f,.22,.22+i*.22,.05,i===1?K.red:K.green);R(f,.33,.18+i*.22,.8,.07,.03,i===1?'#f3b8b2':'#e3d4b0');}});person(g,cx(7)+.6,z3+1.3,'#fff',{arm:'point'});});
 // --- zone 4 : les outils
 add(0,'z4',g=>{box(g,cx(0)-1,z4-.8,0,2,1.4,2.2,K.steel);const f=faceL(g,cx(0)-1,z4-.8,0,1.4,2.2);R(f,.15,.25,1.7,1.0,.06,'#fff');R(f,.28,.38,1.44,.4,.04,K.lilac);R(f,.15,1.45,1.7,.5,.06,'#8b6f5a');T(f,1,1.82,'PUB',.26,{anchor:'middle',fill:'#fff',w:900});});
-add(1,'z4',g=>{rack(g,cx(1)-1.2,z4-.8,2.4);box(g,cx(1)+.2,z4-.2,0,1,1,1.1,'#ffffff');box(g,cx(1)+.4,z4,1.1,.6,.6,.2,'#4a382c');box(g,cx(1)+.5,z4+1.1,0,.9,.12,.55,K.accent);});
+add(1,'z4',g=>{rack(g,cx(1)-1.2,z4-.8,2.4);box(g,cx(1)+.2,z4-.2,0,1,1,1.1,'#ffffff');box(g,cx(1)+.4,z4,1.1,.6,.6,.2,'#3A322D');box(g,cx(1)+.5,z4+1.1,0,.9,.12,.55,K.accent);});
 add(2,'z4',g=>{box(g,cx(2)-1.5,z4-1.2,.32,2.1,2.2,1.9,K.curtain);const f=faceL(g,cx(2)-1.5,z4-1.2,.32,2.2,1.9);T(f,.15,1.05,'Soly',.48,{fill:'#fff',w:900});box(g,cx(2)+.6,z4-1.2,.32,1,2.2,1.3,'#ffffff');for(const wx of [cx(2)-1,cx(2)+1.1]){const c=P(wx,z4+1,.32);el('ellipse',{cx:c[0],cy:c[1],rx:8,ry:6,fill:INK},g);el('ellipse',{cx:c[0],cy:c[1],rx:3.6,ry:2.6,fill:'#ccc'},g);}box(g,cx(2)+.9,z4+1.6,0,.8,.8,.7,K.kraft);});
 add(3,'z4',g=>{rack(g,cx(3)-1,z4-.8,2.4);box(g,cx(3)+.4,z4,0,1,.7,.35,'#ffffff');for(const dx of [.55,1.15]){const a=P(cx(3)+dx,z4+.3,.35),b=P(cx(3)+dx,z4+.3,1.1);el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:INK,'stroke-width':1.6},g);}});
-add(4,'z4',g=>{box(g,cx(4)-.15,z4,0,.3,.3,1,K.steel);box(g,cx(4)-.75,z4-.1,1,1.5,.2,1,'#4a382c');const f=faceL(g,cx(4)-.75,z4-.1,1,.2,1);R(f,.08,.08,1.34,.84,0,'#fbf6ea');R(f,.2,.52,.5,.2,.04,K.accent);R(f,.8,.52,.5,.2,.04,'#fff',{stroke:K.accent,sw:.02});});
+add(4,'z4',g=>{box(g,cx(4)-.15,z4,0,.3,.3,1,K.steel);box(g,cx(4)-.75,z4-.1,1,1.5,.2,1,'#3A322D');const f=faceL(g,cx(4)-.75,z4-.1,1,.2,1);R(f,.08,.08,1.34,.84,0,'#fbf6ea');R(f,.2,.52,.5,.2,.04,K.accent);R(f,.8,.52,.5,.2,.04,'#fff',{stroke:K.accent,sw:.02});});
 add(5,'z4',g=>{rack(g,cx(5)-1.3,z4-.8);rack(g,cx(5)+.1,z4-.8);const c=P(cx(5),z4-.6,3.9);el('path',{d:`M${c[0]-24} ${c[1]} a10 10 0 0 1 12 -12 a13 13 0 0 1 24 2 a9 9 0 0 1 4 16 h-36 a8 8 0 0 1 -4 -6z`,fill:'#fff',stroke:INK,'stroke-width':1.5},g);T(g,c[0]-1,c[1]-2,'photos',9.5,{anchor:'middle',fill:K.accent});});
 add(6,'z4',g=>{box(g,cx(6)-.5,z4-.5,0,1,1,1.1,'#ffffff');const b=P(cx(6),z4,2.4);el('path',{d:`M${b[0]-9} ${b[1]} q0 -13 9 -13 q9 0 9 13 l3 4 h-24 z`,fill:K.sun,stroke:INK,'stroke-width':1.4},g);dot(g,b[0],b[1]+7,2.6,INK);});
 add(7,'z4',g=>{box(g,cx(7)-.9,z4-.5,0,.9,.9,1.1,'#ffffff');const b=P(cx(7)-.45,z4-.05,2);el('path',{d:`M${b[0]-7} ${b[1]} v-8 a7 7 0 0 1 14 0 v8 z`,fill:K.red,stroke:INK,'stroke-width':1.4},g);el('path',{d:`M${b[0]-13} ${b[1]-10} l-5 -3 M${b[0]+13} ${b[1]-10} l5 -3`,stroke:K.red,'stroke-width':2,'stroke-linecap':'round'},g);box(g,cx(7)+.65,z4+.3,0,.25,.25,1.4,K.steel);box(g,cx(7)+.2,z4-.1,1.4,1.1,1,.8,K.accent);});
@@ -279,7 +279,7 @@ items.sort((a,b)=>ord[a.z]-ord[b.z]||(a.i-b.i)).forEach(it=>{const g=el('g',{},z
 svg.appendChild(arrows);
 for(let i=0;i<NC-1;i++){const a=P(cx(i)+.55,z1+3.4),b=P(cx(i+1)-.55,z1+3.4);el('path',{d:`M${a[0]} ${a[1]} Q${(a[0]+b[0])/2} ${(a[1]+b[1])/2-14} ${b[0]} ${b[1]}`,fill:'none',stroke:INK,'stroke-width':1.7,'marker-end':'url(#ah)'},arrows);}
 // cases de la colonne, une par zone (celle de la scène est posée sur l'estrade)
-const CELL={z1:{y0:36,y1:48,z:0,fill:'#cdbdf0'},z2:{y0:24.4,y1:35.8,z:.8,fill:'#f6d775'},z3:{y0:12,y1:24,z:0,fill:'#e8c4a0'},z4:{y0:0,y1:12,z:0,fill:'#a8d5b5'}};
+const CELL={z1:{y0:36,y1:48,z:0,fill:'#C9B8F0'},z2:{y0:24.4,y1:35.8,z:.8,fill:'#FFD36E'},z3:{y0:12,y1:24,z:0,fill:'#FFC9A3'},z4:{y0:0,y1:12,z:0,fill:'#FFE08A'}};
 const cellLow=el('g',{id:'cells'});base.appendChild(cellLow);
 const cellTop=el('g',{id:'cell-stage'});stageG.parentNode.insertBefore(cellTop,stageG.nextSibling);
 const cells={};for(const z of ['z1','z2','z3','z4'])cells[z]=el('polygon',{fill:CELL[z].fill,stroke:K.accent,'stroke-width':3,'stroke-linejoin':'round',opacity:0},z==='z2'?cellTop:cellLow);
@@ -305,7 +305,7 @@ const MOM=['Découvrir','Commander','Recevoir','Installer','Le parent dit oui','
 const E='enfant',PA='parent',PR='proches';
 const S14=[
  {m:0,t:'Le déclic',bref:'Tout commence par une inquiétude.',q:'Pas de nouvelles, bonne nouvelle ?',fam:[[E,'Appelle son parent le dimanche ; en semaine, il s’inquiète.'],[PA,'Dit au téléphone que tout va bien.']],obj:null,pers:null,z3:null,z4:null,e:{obj:'Rien encore : il ne connaît pas Soly.',z3:'Rien encore.',z4:'Rien encore.'}},
- {m:0,t:'Il découvre Soly',bref:'Il entend parler de Soly, deux fois.',q:null,fam:[[E,'Voit une pub entre deux stories ; le pharmacien de son parent lui en parle aussi.']],obj:'La pub : « Tes photos chez tes parents, le jour même. » Le dépliant au comptoir.'+F,pers:'Le pharmacien partenaire présente Soly et tend le dépliant.'+F,z3:'Une campagne vise les enfants aidants de 45 à 65 ans ; accords avec pharmacies et mutuelles.',z4:'La régie pub des réseaux sociaux ; le QR code du dépliant.'},
+ {m:0,t:'Il découvre Soly',bref:'Il voit une pub entre deux stories.',q:null,fam:[[E,'Voit une pub entre deux stories et touche « En savoir plus ».']],obj:'La pub : « Tes photos chez tes parents, le jour même. »'+F,pers:null,z3:'Une campagne vise les enfants aidants de 45 à 65 ans.',z4:'La régie pub des réseaux sociaux.'},
  {m:1,t:'Il visite le site',bref:'Il vérifie que c’est simple pour son parent.',q:'Pas de caméra ? Combien ?',fam:[[E,'Lit la page : rien à installer pour son parent ? Pas de caméra ? Combien ?']],obj:'Le site : rien à installer, pas de caméra ni de micro, sans abonnement, 149 €.'+F,pers:'Le chat du site répond : « Non, pas de caméra ni de micro. »'+F,z3:'Enrichit la FAQ avec les questions du chat.',z4:'Le site vendeur et son chat.'},
  {m:1,t:'Il en parle à son parent',bref:'Il demande l’avis de son parent et de son frère.',q:'Si je n’ai rien à faire…',fam:[[E,'En parle à son parent au téléphone, puis à son frère.'],[PA,'« Encore un truc compliqué ? » puis « Si je n’ai rien à faire… »'],[PR,'Le frère : « D’accord, j’enverrai aussi. »']],obj:null,pers:null,z3:null,z4:null,e:{obj:'Rien : ça se passe entre eux, au téléphone.',z3:'Rien.',z4:'Rien.'}},
  {m:1,t:'Il commande',bref:'Il achète Soly sur son téléphone.',q:null,fam:[[E,'Commande sur son téléphone et paie 149 €.'+F]],obj:'Le paiement : 149 €, retour gratuit sous 30 jours.'+F,pers:null,z3:'Valide la commande et réserve un cadre.',z4:'Le paiement en ligne.'},
@@ -318,7 +318,7 @@ const S14=[
  {m:6,t:'Tous les jours',bref:'Chaque jour, une petite photo de la vie de chacun.',q:'C’est le moment !',fam:[[E,'À la pause café, la notification sonne : une photo, tout de suite.'],[PR,'Répondent à la notification du jour, ou pas.'],[PA,'Voit chaque jour un moment de sa famille.']],obj:'La notification du jour : « C’est le moment ! », 2 minutes pour la photo.',pers:null,z3:null,z4:'La notification du jour.',e:{z3:'Rien : tout est automatique.'}},
  {m:7,t:'Un souci',bref:'Le cadre perd internet : on répare sans stress.',q:null,fam:[[E,'Reçoit « cadre hors ligne », suit l’aide, rappelle son parent.'],[PA,'Ne remarque rien : ses photos restent affichées.']],obj:'L’appli : « Hors ligne depuis 24 h », l’aide en 3 étapes. Sans wifi, le cadre garde ses photos.',pers:'Le service client répond et guide pour la box.'+F,z3:'Repère les cadres hors ligne depuis 24 h.',z4:'L’alerte « hors ligne depuis 24 h ».'},
  {m:7,t:'Le premier mois',bref:'Un mois plus tard, on fait le point.',q:null,fam:[[E,'Répond au mail du premier mois : il garde le cadre.'],[PA,'Parle des photos quand on l’appelle.']],obj:'L’e-mail : « Un mois avec Soly ».'+F,pers:'L’équipe envoie le mail du premier mois et accepte un retour sous 30 jours.'+F,z3:'Lit les avis et les retours.',z4:'L’e-mail du premier mois ; la gestion des retours.'}];
-const WHO={enfant:['L’enfant','#6a4fb3'],parent:['Le parent','#e9a23b'],proches:['Les proches','#6fb98d']};
+const WHO={enfant:['L’enfant','#9B85D6'],parent:['Le parent','#FFB98A'],proches:['Les proches','#FFD36E']};
 const has=(st,z)=>z==='z1'?st.fam.length>0:z==='z2'?!!(st.obj||st.pers):!!st[z];
 const ZK=['z1','z2','z3','z4'];
 const STEPS=[{k:'intro'},{k:'zone',z:'z1'},{k:'zone',z:'z2'},{k:'zone',z:'z3'},{k:'zone',z:'z4'},...S14.map((s,i)=>({k:'step',i})),{k:'fin'}];
@@ -329,6 +329,11 @@ prog.innerHTML=MOM.map((m,mi)=>`<div class="pg"><small title="${m}">${mi+1} · $
 let navTarget=null,navTimer=null;
 const goStep=i=>{const t=trig.children[FIRST+i];navTarget=FIRST+i;clearTimeout(navTimer);navTimer=setTimeout(()=>{navTarget=null;show(centerTrig());},2600);window.scrollTo({top:t.getBoundingClientRect().top+scrollY+t.offsetHeight/2-innerHeight/2,behavior:reduce?'auto':'smooth'});};
 prog.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;stopTour();goStep(+b.dataset.i);});
+// barre d'espace : écran suivant (Maj + espace : précédent), aussi reçue de la page qui intègre le blueprint
+const goTrig=n=>{const t=trig.children[n];navTarget=n;clearTimeout(navTimer);navTimer=setTimeout(()=>{navTarget=null;show(centerTrig());},2600);window.scrollTo({top:t.getBoundingClientRect().top+scrollY+t.offsetHeight/2-innerHeight/2,behavior:reduce?'auto':'smooth'});};
+const stepBy=d=>{stopTour();const c=navTarget!=null?navTarget:centerTrig();goTrig(Math.max(0,Math.min(STEPS.length-1,c+d)));};
+addEventListener('keydown',e=>{if(e.code!=='Space'&&e.key!==' ')return;if(e.target.closest&&e.target.closest('input,textarea,select'))return;e.preventDefault();stepBy(e.shiftKey?-1:1);});
+addEventListener('message',e=>{if(e.data&&e.data.bp==='step')stepBy(e.data.d<0?-1:1);});
 
 // boîtes utiles à la caméra
 const svgAspect=()=>{const r=svg.getBoundingClientRect();return r.width/Math.max(1,r.height);};
