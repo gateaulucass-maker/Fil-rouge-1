@@ -365,6 +365,20 @@ iframe.bp,.bpimg,.f-sec figure img{border-color:#F0E3C8;border-radius:16px}
 </style>
 
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+ol.rows.pages li{position:relative;border-radius:16px;transition:background-color .2s ease,box-shadow .2s ease}
+ol.rows.pages .a a{color:inherit;text-decoration:none;outline:none}
+ol.rows.pages .a a::after{content:"";position:absolute;inset:0;border-radius:16px}
+ol.rows.pages .a b{display:flex;align-items:center;gap:8px}
+ol.rows.pages .a b::after{content:"→";opacity:0;transform:translateX(-6px);transition:opacity .2s ease,transform .2s ease}
+ol.rows.pages .n{transition:background-color .2s ease,transform .2s ease}
+ol.rows.pages li:hover,ol.rows.pages li:focus-within{background:#FFF3D9;box-shadow:0 0 0 16px #FFF3D9}
+ol.rows.pages li:hover .n,ol.rows.pages li:focus-within .n{background:#FFD36E;transform:scale(1.06)}
+ol.rows.pages li:hover .a b::after,ol.rows.pages li:focus-within .a b::after{opacity:1;transform:translateX(0)}
+ol.rows.pages li:focus-within{outline:2px solid #1F1A17;outline-offset:16px}
+ol.rows.pages li:has(a:focus:not(:focus-visible)){outline:none}
+@media (prefers-reduced-motion:reduce){ol.rows.pages li,ol.rows.pages .n,ol.rows.pages .a b::after{transition:none}ol.rows.pages li:hover .n{transform:none}}
+</style>
 </head>
 <body>
 <aside class="side">
@@ -386,13 +400,13 @@ iframe.bp,.bpimg,.f-sec figure img{border-color:#F0E3C8;border-radius:16px}
 <h2 class="t">On construit avec la stack A, les textes passent par Mistral, une personne les valide.</h2>
 <div class="facts"><div><b>75</b><span>sur 100 pour la stack A, première de huit</span></div><div><b>8 IA</b><span>jouées sur 11 tâches : elles se valent, le pays des données décide</span></div><div><b>14</b><span>étapes du service, de la découverte à la première photo</span></div></div>
 <div class="sec"><h3>Le rendu, page par page</h3>
-<ol class="rows">
-<li><span class="n">02</span><div class="a"><b>Stack</b><span>A est gardée, G est la meilleure no-code, D ou E en plan B.</span></div><span class="tag ok">fait</span></li>
-<li><span class="n">03</span><div class="a"><b>IA</b><span>Mistral dans le produit, Claude pour l’équipe, un clic humain avant tout envoi.</span></div><span class="tag mid">relecture à valider</span></li>
-<li><span class="n">04</span><div class="a"><b>Blueprint</b><span>Ce que vit la famille, ce que fait l’équipe en coulisse.</span></div><span class="tag ok">fait</span></li>
-<li><span class="n">05</span><div class="a"><b>Direction artistique et maquettage</b><span>La marque Soly, la maquette v4 et l’audit de la DA en 9 axes.</span></div><span class="tag ok">fait</span></li>
-<li><span class="n">06</span><div class="a"><b>Qui a fait quoi</b><span>La contribution de chacun.</span></div><span class="tag mid">à compléter</span></li>
-<li><span class="n">07</span><div class="a"><b>Usage de l’IA</b><span>Chaque outil, pour quoi, ce qui a été vérifié.</span></div><span class="tag ok">fait</span></li>
+<ol class="rows pages">
+<li><span class="n">02</span><div class="a"><b><a href="#stack">Stack</a></b><span>A est gardée, G est la meilleure no-code, D ou E en plan B.</span></div><span class="tag ok">fait</span></li>
+<li><span class="n">03</span><div class="a"><b><a href="#ia">IA</a></b><span>Mistral dans le produit, Claude pour l’équipe, un clic humain avant tout envoi.</span></div><span class="tag mid">relecture à valider</span></li>
+<li><span class="n">04</span><div class="a"><b><a href="#blueprint">Blueprint</a></b><span>Ce que vit la famille, ce que fait l’équipe en coulisse.</span></div><span class="tag ok">fait</span></li>
+<li><span class="n">05</span><div class="a"><b><a href="#da">Direction artistique et maquettage</a></b><span>La marque Soly, la maquette v4 et l’audit de la DA en 9 axes.</span></div><span class="tag ok">fait</span></li>
+<li><span class="n">06</span><div class="a"><b><a href="#equipe">Qui a fait quoi</a></b><span>La contribution de chacun.</span></div><span class="tag mid">à compléter</span></li>
+<li><span class="n">07</span><div class="a"><b><a href="#usage">Usage de l’IA</a></b><span>Chaque outil, pour quoi, ce qui a été vérifié.</span></div><span class="tag ok">fait</span></li>
 </ol></div>
 <div class="sec"><h3>Limites et suite</h3><p>Ce qui n’est pas encore fait, dit sans détour.</p>
 <ol class="rows" style="margin-top:24px">
