@@ -11,7 +11,7 @@ JS=r'''  var LB=document.createElement("div");LB.id="lb";LB.setAttribute("role",
   function openFull(d,btn){
     var it=d.it,col=vc(it.verdict.couleur),h='',body='';
     function sec(id,t,c){body+='<section class="f-sec" id="fs-'+id+'"><h3>'+t+'</h3>'+c+'</section>'}
-    function keyFirst(x){var ps=String(x).split(/\n\n+/),k='',rest=[];ps.forEach(function(p){var m=/^Ce que ça change\s*:\s*/.exec(p);if(m&&!k){var q=p.slice(m[0].length);k='<p class="f-key">'+esc(q.charAt(0).toUpperCase()+q.slice(1))+'</p>'};else rest.push(p)});return k+'<div class="f-det">'+proof(rest.join("\n\n"))+'</div>'}
+    function keyFirst(x){var ps=String(x).split(/\n\n+/),k='',rest=[];ps.forEach(function(p){var m=/^Ce que ça change\s*:\s*/.exec(p);if(m&&!k){var q=p.slice(m[0].length);k='<p class="f-key">'+esc(q.charAt(0).toUpperCase()+q.slice(1))+'</p>'}else rest.push(p)});return k+'<div class="f-det">'+proof(rest.join("\n\n"))+'</div>'}
     function srcTag(st){return '<span class="f-src '+esc(st)+'">'+esc(STX[st]||st)+'</span>'}
     var ctx=String(it.plan||"").split(/\n\n+/).filter(function(p){var o=it.ouverture.toLowerCase(),w=p.toLowerCase().split(/[^a-zà-ÿ0-9]+/).filter(function(x){return x.length>3}),k=w.filter(function(x){return o.indexOf(x)>=0}).length;return p&&p.indexOf(it.ouverture.slice(0,40))<0&&(!w.length||k/w.length<.6)});
     sec("bref","Synthèse",'<p class="f-lead">'+esc(it.ouverture)+'</p>'+(ctx.length?'<details class="f-more"><summary>Contexte</summary>'+ctx.map(function(p){return '<p>'+esc(p)+'</p>'}).join("")+'</details>':''));
