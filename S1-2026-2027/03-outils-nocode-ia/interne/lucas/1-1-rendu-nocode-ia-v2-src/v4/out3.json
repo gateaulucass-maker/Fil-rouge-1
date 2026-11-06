@@ -1,0 +1,160 @@
+{
+ "^HTML,\\ CSS\\ et\\ JavaScript\\ seuls$": {
+  "contexte": "HTML, CSS et JavaScript seuls désigne des pages écrites à la main, sans framework, qui pourraient servir à l'écran du cadre et à l'appli aidant de Soly. La fiche mesure ce qu'il faut coder soi-même.",
+  "justifs": [
+   "Note 4 sur 5, estimée. Une vitrine simple se fait très bien avec ces trois langages. Mais la commande, les comptes et le paiement sont à coder à la main ou à confier à un service. C'est pourquoi la note ne monte pas à 5 pour la vente de Soly.",
+   "Note 4 sur 5, estimée. L'écran du cadre est une page plein écran, et cela suffit. C'est le format de tous nos rendus, donc l'équipe sait déjà le faire. Elle n'est pas à 5, car tout reste à écrire à la main pour Soly.",
+   "Note 2 sur 5, estimée. Une appli installable (PWA) est possible, mais tout est à écrire soi-même : l'état, le cache et les notifications. C'est la note la plus basse de l'outil. Pour la famille de Soly, cela représente beaucoup de code à produire et à maintenir.",
+   "Note 3 sur 5, estimée. Il n'y a rien à installer et tout le monde peut lire le code. C'est un vrai avantage au départ. Mais l'ensemble devient lourd dès que l'appli grossit, ce qui retient la note au milieu de l'échelle.",
+   "Note 5 sur 5, d'après la doc. L'outil est gratuit, ce qui donne le maximum. C'est le point fort de la fiche. Pour Soly, cette couche ne coûte rien, et les fichiers statiques peuvent aller chez n'importe quel hébergeur européen.",
+   "Note 3 sur 5, estimée. Le web entier sert de ressource, donc on trouve de l'aide partout. Mais il n'y a ni composants prêts ni structure imposée. Chacun doit s'organiser seul, ce qui pèse sur une petite équipe qui construit Soly."
+  ],
+  "preuves": [],
+  "synthese": "HTML, CSS et JavaScript seuls obtient 70 sur 100 et reste à comparer. Sa force est le coût nul (5/5), son point faible l'appli aidant (2/5) à écrire entièrement à la main. On le garde comme base de comparaison, avec des données en Europe à vérifier.",
+  "comparaison": "6e sur 10 avec 70, à 10 points de React + Next.js (80) et à égalité avec Python + Django (70)."
+ },
+ "^WordPress\\ \\+\\ WooCommerce$": {
+  "contexte": "WordPress + WooCommerce est un outil très répandu pour créer des sites avec boutique, qui pourrait porter la vitrine et la vente de Soly. La fiche se demande s'il sert aussi au cadre et à l'appli.",
+  "justifs": [
+   "Note 5 sur 5, d'après la doc. C'est le standard des sites vitrines avec boutique : thèmes, paiement et commandes se font sans coder. C'est le point fort de l'outil. Pour Soly, la vente du cadre pourrait être mise en ligne vite et sans développeur.",
+   "Note 1 sur 5, estimée. Le pourquoi tient en une phrase : l'outil n'est pas fait pour ça. Un site de boutique n'est pas un diaporama plein écran pour une personne âgée. Pour l'écran du cadre de Soly, il faudrait donc un autre outil.",
+   "Note 1 sur 5, estimée. Même constat que pour le cadre : l'outil n'est pas fait pour ça. Une appli de suivi pour les aidants demande des comptes, de l'état et des alertes. Pour Soly, WordPress ne couvrirait pas cette partie.",
+   "Note 4 sur 5, estimée. Camille et Lucas peuvent modifier le site sans écrire de code. C'est un atout concret pour une petite équipe. La note n'est pas à 5, car il reste des réglages d'hébergeur, de thème et d'extensions à gérer.",
+   "Note 3 sur 5, d'après la doc. Le logiciel est gratuit, mais l'hébergement, le thème et les extensions payants s'additionnent. Le coût réel dépend donc des choix faits. Pour Soly, la facture peut grimper sans que le site soit plus utile.",
+   "Note 5 sur 5, d'après la doc. L'outil fait tourner près de la moitié des sites web du monde. Agences, thèmes et extensions existent partout, et l'aide se trouve facilement. Pour Soly, c'est un gain de temps si un problème survient."
+  ],
+  "preuves": [],
+  "synthese": "WordPress + WooCommerce est une option pour la vitrine seulement, notée 63 sur 100. Il est excellent pour vendre (5/5) et très bien soutenu (5/5), mais inadapté au cadre et à l'appli aidant (1/5 chacun). On le garde pour comparer, avec l'hébergeur à choisir en Europe.",
+  "comparaison": "7e sur 10 avec 63, à 17 points de React + Next.js (80), au même niveau que Softr (63)."
+ },
+ "^Softr$": {
+  "contexte": "Softr est un outil no-code qui construit des sites et des portails web, et pourrait servir de portail aidant et de vitrine pour Soly. La fiche cherche s'il couvre aussi l'écran du cadre.",
+  "justifs": [
+   "Note 5 sur 5, d'après la doc. Softr sert à faire des sites et des portails : c'est son métier. C'est le point fort de l'outil. Pour Soly, la vitrine de vente peut être montée sans coder, avec des blocs déjà prêts.",
+   "Note 2 sur 5, estimée. Les pages web peuvent passer en plein écran, mais l'outil est pensé pour un portail, pas pour un diaporama regardé à 3 mètres. C'est le point faible de la fiche. L'écran du cadre de Soly serait peu confortable.",
+   "Note 3 sur 5, estimée. Le portail web pour l'aidant s'installe comme une PWA, ce qui convient bien. Les notifications sur téléphone restent à vérifier. Sans elles, la famille de Soly ne serait pas prévenue en direct, d'où une note moyenne.",
+   "Note 4 sur 5, estimée. C'est l'un des outils les plus simples pour un portail : des blocs prêts et une connexion directe à Airtable. Un non-développeur s'y retrouve vite. La note n'est pas à 5, car l'outil reste limité à ses blocs.",
+   "Note 3 sur 5, d'après la doc. Le plan gratuit est limité, et les fonctions utiles passent vite sur un plan payant. Le coût final est donc difficile à fixer d'avance. Pour Soly, il faudra prévoir un abonnement dès que le portail grandit.",
+   "Note 2 sur 5, estimée. La communauté est petite et les blocs se limitent à ce que l'éditeur propose. On a peu de recours en cas de besoin particulier. Pour Soly, toute fonction hors catalogue serait difficile à obtenir."
+  ],
+  "preuves": [],
+  "synthese": "Softr est classé pour comparaison, avec 63 sur 100. Il est fort pour la vitrine (5/5) et simple à utiliser (4/5), mais faible pour l'écran du cadre (2/5). Il faut encore demander à l'éditeur, allemand, où ses sites sont hébergés.",
+  "comparaison": "8e sur 10 avec 63, à 17 points de React + Next.js (80) et 3 points au-dessus de FlutterFlow (60)."
+ },
+ "^FlutterFlow$": {
+  "contexte": "FlutterFlow est un éditeur visuel qui produit de vraies applis mobiles, et pourrait fabriquer l'appli aidant de Soly et peut-être l'écran du cadre. La fiche examine son apprentissage et ses limites.",
+  "justifs": [
+   "Note 2 sur 5, estimée. La publication web est possible, mais l'outil est pensé pour des applis, pas pour un site de vente. C'est son point faible. Pour la vitrine de Soly, il faudrait un autre outil à côté.",
+   "Note 3 sur 5, estimée. Une app mobile peut s'afficher sur une tablette, en plein écran. Les deux sens d'écran et la vidéo restent à vérifier. Tant que ce n'est pas testé, on ne peut pas donner plus au cadre de Soly.",
+   "Note 4 sur 5, d'après la doc. C'est une vraie app mobile, installable sur les stores. C'est le point fort de l'outil. Les notifications push passent par Firebase, à brancher en plus de Supabase, ce qui ajoute un service pour Soly.",
+   "Note 3 sur 5, estimée. L'éditeur est visuel, mais l'apprentissage reste réel. Lucas l'a retenu pour le plan de démo, ce qui montre qu'il est jugé utilisable. La note reste au milieu, car la prise en main demande du temps.",
+   "Note 3 sur 5, d'après la doc. Construire est gratuit. En revanche, publier sur les stores ou récupérer le code demande un plan payant. Pour Soly, le coût arrivera donc au moment de la mise en ligne de l'appli.",
+   "Note 3 sur 5, estimée. La communauté est active, mais elle est fermée à l'outil. On dépend donc de son éditeur pour les évolutions. Pour Soly, c'est un risque à garder en tête si l'outil change."
+  ],
+  "preuves": [],
+  "synthese": "FlutterFlow est à comparer, avec 60 sur 100. Son atout est l'appli aidant (4/5), son défaut la vitrine de vente (2/5). Il faut demander à l'éditeur où ses données sont stockées, alors que l'app parle à Supabase en Europe.",
+  "comparaison": "9e sur 10 avec 60, à 20 points de React + Next.js (80) et 7 points au-dessus de Glide (53)."
+ },
+ "^Glide$": {
+  "contexte": "Glide est un outil no-code qui transforme un tableau en appli, et pourrait donner très vite une appli aux aidants de Soly. La fiche met sa simplicité face à ses limites, dont l'hébergement hors d'Europe.",
+  "justifs": [
+   "Note 1 sur 5, estimée. Glide construit des applis, pas des sites de vente. C'est le point faible de la fiche. Pour la vitrine et la commande de Soly, il faudrait obligatoirement un autre outil.",
+   "Note 2 sur 5, estimée. L'app a un format de téléphone. Le plein écran sur tablette et la rotation sont à tester. Tant que ce n'est pas fait, l'écran du cadre de Soly reste incertain et la note reste basse.",
+   "Note 3 sur 5, estimée. Glide donne une app web de type mobile pour l'aidant. Les notifications push sont réservées aux plans payants, ce qui est à vérifier. Pour la famille de Soly, les alertes seraient donc un coût en plus.",
+   "Note 5 sur 5, estimée. C'est l'argument de Glide : une appli en quelques heures, à partir d'un tableau. C'est le point fort de la fiche. Pour Soly, un premier essai pourrait être prêt très vite, même par quelqu'un sans code.",
+   "Note 3 sur 5, d'après la doc. Un plan gratuit existe. Mais les prix payants sont contestés selon les sources, donc le coût futur est mal connu. Pour Soly, il faudrait confirmer les tarifs avant de s'engager.",
+   "Note 2 sur 5, estimée. La communauté est petite et fermée à l'outil, donc l'aide extérieure est rare. Pour Soly, un blocage serait difficile à résoudre sans passer par l'éditeur. C'est pourquoi la note reste basse malgré la simplicité de Glide."
+  ],
+  "preuves": [],
+  "synthese": "Glide est écarté pour l'instant : 53 sur 100 et des serveurs aux États-Unis, sans option européenne. Sa force est la simplicité (5/5), sa faiblesse la vitrine (1/5). On ne le retient que pour comparer.",
+  "comparaison": "10e et dernier sur 10 avec 53, à 27 points de React + Next.js (80), et seul de la couche hors d'Europe."
+ },
+ "^Airtable$": {
+  "contexte": "Airtable est un tableau en ligne qui sert de base de données, et pourrait ranger les photos, les touchers et les familles de Soly. La fiche vérifie ses limites en gratuit et le lieu des données.",
+  "justifs": [
+   "Note 3 sur 5, d'après la doc. L'outil accepte 1 Go de fichiers par base. Pour Soly, c'est utile pour de petites vidéos, mais cela se remplit vite avec des photos et des vidéos de famille. La note reste donc au milieu.",
+   "Note 2 sur 5, d'après la doc. Le plan gratuit permet 1 000 lignes par base. C'est serré pour un mois de test avec les touchers du cadre. C'est le point faible de la fiche, car il faudrait vite payer.",
+   "Note 4 sur 5, d'après la doc. L'API web est complète et les webhooks sont disponibles. Il n'y a pas de temps réel natif. C'est le point fort d'Airtable, car le cadre peut envoyer ses touchers, sans affichage instantané côté famille.",
+   "Note 3 sur 5, d'après la doc. Le plan gratuit est limité, et l'offre Team coûte environ 20 $ par utilisateur et par mois. Pour Soly, le prix monte avec le nombre de personnes qui accèdent à la base."
+  ],
+  "preuves": [],
+  "synthese": "Airtable est noté 60 sur 100, mais ses données sont aux États-Unis, l'Europe étant réservée au plan Enterprise. Son point fort est l'API (4/5), son point faible les limites gratuites (2/5). On le garde seulement pour comparer.",
+  "comparaison": "3e sur 5 avec 60, à 15 points de Supabase (75) et 10 points sous Firebase (70)."
+ },
+ "^PostgreSQL\\ sur\\ Neon$": {
+  "contexte": "PostgreSQL sur Neon est une base de données seule, hébergée dans le cloud, déjà utilisée pour notre veille. La fiche se demande si elle pourrait aussi porter Soly, sans photos ni comptes inclus.",
+  "justifs": [
+   "Note 1 sur 5, d'après la doc. L'outil ne stocke pas de fichiers. Il faudrait un service à côté pour les photos et les vidéos. C'est le point faible de la fiche. Pour Soly, cela ajoute un outil à gérer.",
+   "Note 3 sur 5, d'après la doc. Le gratuit offre 0,5 Go de base. L'outil se met en veille après inactivité, comme Supabase. Pour un cadre qui doit répondre vite, ce réveil est à surveiller.",
+   "Note 2 sur 5, estimée. C'est une base seule : pas d'API générée, pas de temps réel et pas de comptes. Tout est à coder. Pour Soly, cela représente un travail important avant de montrer la moindre photo.",
+   "Note 4 sur 5, d'après la doc. L'outil est gratuit pour nos volumes. C'est le point fort de la fiche. Notre base de veille y tourne depuis le 1er octobre, avec un projet créé en région Francfort."
+  ],
+  "preuves": [],
+  "synthese": "PostgreSQL sur Neon obtient 50 sur 100, avec des données en Europe. Il est gratuit (4/5) et déjà utilisé pour la veille, mais sans stockage de fichiers (1/5). On le garde pour comparer, pas comme choix principal.",
+  "comparaison": "4e sur 5 avec 50, à 25 points de Supabase (75) et 5 points au-dessus de Glide Tables (45)."
+ },
+ "^Glide\\ Tables$": {
+  "contexte": "Glide Tables est la base de données intégrée à Glide, qui stockerait les données de l'appli Soly construite avec Glide. La fiche regarde ses limites, son API et son hébergement.",
+  "justifs": [
+   "Note 2 sur 5, estimée. Le stockage de fichiers est limité en gratuit, et le chiffre n'a pas été relevé. Pour Soly, on ne peut donc pas savoir combien de photos et de vidéos tiendraient. Cette incertitude garde la note basse.",
+   "Note 2 sur 5, d'après la doc. Les lignes et les mises à jour sont limitées sur le plan gratuit. Pour un mois de test avec les touchers du cadre, la marge est étroite. Il faudrait passer au payant assez vite.",
+   "Note 2 sur 5, estimée. L'API est réservée aux plans payants, et il n'y a pas de temps réel vers un outil externe. Pour Soly, relier le cadre et l'appli à une autre brique serait difficile.",
+   "Note 3 sur 5, d'après la doc. La base est incluse dans Glide, donc il n'y a pas de facture séparée. C'est le point fort de la fiche. Pour Soly, le coût dépend du plan Glide choisi."
+  ],
+  "preuves": [],
+  "synthese": "Glide Tables est le plus faible de la couche, avec 45 sur 100 et des données aux États-Unis comme Glide. Son seul atout est d'être inclus dans Glide (3/5). On ne le retient que pour comparer.",
+  "comparaison": "5e et dernier sur 5 avec 45, à 30 points de Supabase (75) et 5 points sous Neon (50)."
+ },
+ "^Firebase\\ Cloud\\ Functions$": {
+  "contexte": "Firebase Cloud Functions est un service Google qui exécute du code sur demande ou à heure fixe, et pourrait recevoir les touchers du cadre Soly et envoyer les notifications. La fiche mesure quotas et coût.",
+  "justifs": [
+   "Note 5 sur 5, d'après la doc. Une fonction est une adresse HTTP, donc le cadre peut lui envoyer un toucher directement. C'est le maximum. Pour Soly, le lien entre le cadre et l'appli de la famille est simple à mettre en place.",
+   "Note 5 sur 5, d'après la doc. Les fonctions planifiées sont intégrées à l'outil. Pour Soly, un rappel quotidien ou un résumé de la journée pour la famille peut se programmer sans autre service. Rien ne manque, d'où la note maximale.",
+   "Note 5 sur 5, d'après la doc. Les notifications push sont natives (FCM) vers Android et iPhone, sans service tiers. Pour Soly, la famille peut recevoir une alerte sur son téléphone sans outil de plus. C'est un vrai atout face aux autres.",
+   "Note 4 sur 5, d'après la doc. Le plan inclut 2 millions d'appels par mois. C'est très largement suffisant pour un essai avec quelques familles. La note n'est pas à 5, car ce quota reste lié au plan Blaze.",
+   "Note 3 sur 5, d'après la doc. Le plan Blaze est obligatoire, avec une carte bancaire, même si la facture reste à zéro. C'est le point faible de la fiche. Pour Soly, il faut accepter ce moyen de paiement dès le départ."
+  ],
+  "preuves": [],
+  "synthese": "Firebase Cloud Functions obtient 88 sur 100, parmi les meilleurs de la couche, grâce aux webhooks, à la planification et aux notifications (5/5 chacun). Son point faible est le plan Blaze avec carte bancaire (3/5). On le garde, hébergement Google à vérifier.",
+  "comparaison": "3e sur 7 avec 88, à 4 points de Code dans Supabase (92) et à égalité avec n8n (88)."
+ },
+ "^Vercel\\ Cron\\ \\+\\ routes\\ Next\\.js$": {
+  "contexte": "Vercel Cron + routes Next.js permet d'écrire des adresses web et des tâches planifiées dans un même projet, pour recevoir les touchers du cadre Soly et lancer des rappels. La fiche vérifie fréquence et coût.",
+  "justifs": [
+   "Note 5 sur 5, d'après la doc. Une route API de Next.js est une adresse HTTP, et le cadre lui envoie le toucher. C'est le point fort de la fiche. Pour Soly, la réception des touchers est directe et sans outil intermédiaire.",
+   "Note 3 sur 5, d'après la doc. Les tâches planifiées sont incluses, mais une seule fois par jour sur le plan gratuit. Chaque heure demande le plan Pro. C'est le point faible de la fiche, pour des rappels fréquents dans Soly.",
+   "Note 4 sur 5, estimée. La route peut envoyer du Web Push ou un e-mail, comme avec Supabase. Cela couvre le besoin d'alerter la famille de Soly. La note n'est pas à 5, car aucun service de push natif mobile n'est annoncé.",
+   "Note 4 sur 5, d'après la doc. Le quota gratuit est largement suffisant pour trois familles. Pour un essai de Soly, aucune limite ne devrait gêner. Le point manquant pour le 5 est le suivi si le nombre de familles augmente.",
+   "Note 4 sur 5, d'après la doc. L'essai non commercial est gratuit, puis le plan Pro coûte environ 20 $ par mois. Pour Soly, le gratuit suffit au test, mais il faudra payer après le lancement commercial."
+  ],
+  "preuves": [],
+  "synthese": "Vercel Cron + routes Next.js obtient 80 sur 100. Il reçoit très bien les touchers (5/5) mais la planification gratuite est limitée à une fois par jour (3/5). On le garde à comparer, en réglant la région des fonctions sur Francfort.",
+  "comparaison": "4e sur 7 avec 80, à 12 points de Code dans Supabase (92) et 8 points au-dessus de Python + GitHub Actions (72)."
+ },
+ "^Python\\ \\+\\ GitHub\\ Actions$": {
+  "contexte": "Python + GitHub Actions lance des scripts Python sur des machines GitHub, à heure fixe, comme pour notre veille du jeudi. La fiche examine s'il pourrait aussi gérer les alertes de Soly.",
+  "justifs": [
+   "Note 2 sur 5, estimée. L'outil n'est pas fait pour recevoir un toucher en direct. Un déclenchement externe existe, mais avec des minutes de délai. C'est le point faible de la fiche. Pour Soly, la famille attendrait trop longtemps.",
+   "Note 4 sur 5, testée. C'est exactement ce qui lance notre veille chaque jeudi à 7 h 45. Un délai de quelques minutes reste possible. Pour Soly, des rappels programmés fonctionneraient, avec une précision à la minute non garantie.",
+   "Note 3 sur 5, estimée. On peut envoyer un e-mail ou un push via une API, en Python. Cela demande d'écrire le code soi-même. Pour Soly, l'alerte à la famille est faisable, mais sans le confort des services déjà prêts.",
+   "Note 4 sur 5, d'après la doc. Le gratuit offre 2 000 minutes par mois sur un dépôt privé, sans limite sur un dépôt public. C'est confortable pour des tâches courtes. Pour Soly, le quota ne serait pas un obstacle.",
+   "Note 5 sur 5, d'après la doc. L'outil est gratuit. C'est le point fort de la fiche. Pour Soly, aucune facture n'est à prévoir pour cette partie, mais les données de l'alerte passeraient par des machines aux États-Unis par défaut."
+  ],
+  "preuves": [],
+  "synthese": "Python + GitHub Actions obtient 72 sur 100. Il est gratuit (5/5) et déjà pratiqué pour la veille, mais mal adapté au direct (2/5). Les machines de GitHub sont aux États-Unis par défaut : on le garde pour comparer, avec ce point à vérifier.",
+  "comparaison": "5e sur 7 avec 72, à 20 points de Code dans Supabase (92) et 8 points sous Vercel Cron (80)."
+ },
+ "^Zapier$": {
+  "contexte": "Zapier relie des services entre eux avec des scénarios appelés Zaps, et pourrait transmettre les touchers du cadre Soly et envoyer des alertes. La fiche vérifie ses quotas gratuits et ses prix.",
+  "justifs": [
+   "Note 1 sur 5, d'après la doc. Il n'y a pas de webhook entrant sur le plan gratuit. C'est bloquant pour le toucher du cadre, qui doit arriver jusqu'à l'outil. C'est le point le plus faible de la fiche et il explique en grande partie le rang.",
+   "Note 3 sur 5, d'après la doc. Un déclencheur planifié est inclus, mais le plan gratuit limite chaque Zap à 2 étapes. Pour Soly, un rappel simple est possible, mais pas un enchaînement plus complet.",
+   "Note 3 sur 5, estimée. L'outil passe par l'e-mail et par des services tiers, ce qui reste à tester. Pour Soly, on ne sait pas encore si l'alerte arriverait sur le téléphone de la famille sans service de plus.",
+   "Note 1 sur 5, d'après la doc. Le gratuit se limite à 100 tâches par mois. Pour Soly, un cadre qui envoie des touchers toute la journée épuiserait ce quota très vite. C'est la note minimale.",
+   "Note 2 sur 5, d'après la doc. Il faut payer, environ 20 $ par mois, pour obtenir les webhooks. Le gratuit ne suffit donc pas pour Soly. Ce prix s'ajoute pour une brique qui reste la moins bien notée de la couche."
+  ],
+  "preuves": [],
+  "synthese": "Zapier est le dernier de la couche, avec 40 sur 100 et des données aux États-Unis par défaut. Il n'a pas de webhook entrant en gratuit (1/5) et un quota de 100 tâches par mois (1/5). Il est écarté.",
+  "comparaison": "7e et dernier sur 7 avec 40, à 52 points de Code dans Supabase (92) et 28 points sous Make (68)."
+ }
+}

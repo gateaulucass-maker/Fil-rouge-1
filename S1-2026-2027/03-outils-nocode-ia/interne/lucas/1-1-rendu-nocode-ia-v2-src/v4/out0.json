@@ -1,0 +1,160 @@
+{
+ "^A ·": {
+  "contexte": "A est la stack en code : Supabase pour les données, React et Next.js pour les écrans. Elle pourrait porter tout Soly, du cadre à l'appli de l'aidante. La question : tient-elle le scénario d'une famille test ?",
+  "justifs": [
+   "Les quatre usages sont faisables en code : page web pour la vitrine, page plein écran pour le cadre, appli de l'aidante et règle d'alerte planifiée dans Supabase. Cette note est estimée, car rien n'est construit de bout en bout. C'est pourquoi elle vaut 4 et pas 5. Pour Soly, le risque reste le temps de construction.",
+   "Testé en local le 22 octobre : le geste passe par l'API HTTP de Supabase et arrive chez la destinataire en 0,5 s. C'est une exécution réelle, pas une promesse, d'où 4. Pas 5, car la fonction Edge et la notification sur le téléphone ne sont pas testées. Pour Soly, le lien entre le cadre et la famille est prouvé.",
+   "L'écran du cadre est une page web plein écran sur la tablette Ubuntu Touch. En code, le plein écran et la rotation sont libres, d'où 4. Cette note est estimée : rien n'est encore essayé sur la tablette. La lisibilité à 3 mètres reste à vérifier avant de la confirmer.",
+   "La note est de 3 : le code React et Next.js est écrit avec Claude Code, donc tout dépend de nos consignes et de la relecture. Il n'y a pas d'éditeur visuel pour Camille et Lucas. Cette note est estimée. Pour Soly, l'équipe dépend du code et de Clément pour relire, ce qui ralentit les changements.",
+   "Note de 5, d'après la doc officielle : la démo et le prototype sont gratuits (Supabase Free, fonctions comprises, hébergement d'essai). Le coût commercial est hors démo : Supabase Pro environ 25 $ par mois, plus un hébergement payant. Même échelle pour toutes les stacks, donc la comparaison reste juste.",
+   "Testé en local : le temps réel ne rejoue pas les messages manqués pendant une coupure. Le cadre doit relire la base au retour du réseau, d'où 3. D'après la doc, le projet gratuit se met en veille après une semaine sans activité. Pour Soly, il faut prévoir cette relecture et un réveil régulier.",
+   "Note de 3, d'après la doc : le plan gratuit offre 1 Go de fichiers. C'est assez pour la démo avec des vidéos de 30 s compressées. Mais il faudra purger souvent les anciens fichiers. Pas plus haut car la place est vite limitée ; pas plus bas car la démo tient. Pour Soly, le stockage convient au prototype.",
+   "Réponse oui, d'après la doc : Supabase propose la région Francfort et un accord de traitement (DPA). Le critère éliminatoire est donc tenu. Il faut choisir Francfort à la création du projet. L'hébergeur du site et de l'appli reste à choisir en Europe. Pour Soly, les photos des familles restent en Europe."
+  ],
+  "preuves": [
+   "Le banc local joue tout le scénario : 26/26 conformes, 9 tests de sécurité sur 9, code de sortie 0.",
+   "Quand on remplace la règle d'isolation, les tests X01 et X09 échouent : les tests mesurent vraiment.",
+   "Huit envois mesurés : de 60 à 524 ms, médiane 506 ms, dans une machine virtuelle locale.",
+   "Le changement d'heure du 25 octobre décale l'alerte de 48 h réelles à 17 h 40.",
+   "La page de prix officielle confirme un plan Free à 0 $, et la région Francfort existe.",
+   "A 75 contre G 70 : A gagne sur l'affichage et les limites, les coûts sont égaux."
+  ],
+  "synthese": "A est gardée : 75 sur 100, première du classement. Sa raison principale est une base réellement testée en local, 26/26 conformes et 9 tests de sécurité sur 9. Son point fort est la preuve, son point faible est le code sans éditeur visuel. On la prend comme stack de référence.",
+  "comparaison": "A est première des 5 stacks classées avec 75, soit 5 points devant G (70)."
+ },
+ "^G ·": {
+  "contexte": "G assemble trois outils no-code : WeWeb pour les écrans, Baserow pour les données et Make pour les automatisations. Elle pourrait permettre à l'équipe de construire Soly sans coder. La question : ses règles tiennent-elles ?",
+  "justifs": [
+   "WeWeb sert les trois écrans, Baserow les données, Make le geste, la règle des 48 h et la notification. Sur le papier, les quatre usages sont couverts, d'où 4. Cette note est estimée : WeWeb et Make n'ont pas été essayés. Pour Soly, la couverture dépend de ces deux outils encore non testés.",
+   "Testé en local : l'API REST de Baserow est complète et son webhook sortant est reçu par n8n en 0,8 s. D'où 4. Pas 5, car Make et WeWeb ne sont pas testés. Pour Soly, la chaîne qui reçoit un geste et le transmet est déjà prouvée côté base.",
+   "Note de 3, estimée. WeWeb gère le responsive et l'appli installable. La page plein écran sur la tablette Ubuntu Touch, la rotation et la vidéo restent à vérifier. Pas plus haut tant que rien n'est essayé sur la tablette. Pour Soly, c'est un risque pour l'écran du cadre.",
+   "Note de 3, estimée. Il faut relier trois outils visuels, plus une automatisation devant Baserow pour porter les règles. Chaque outil est simple seul, mais l'ensemble demande plus de réglages. Pour Soly, trois comptes et trois outils à suivre pour une équipe de trois personnes.",
+   "Note de 5, d'après la doc : WeWeb à 0 €, Baserow à 0 $ sans limite de durée, Make avec 1 000 crédits par mois. La démo ne coûte rien. Les plans payants existent hors démo, mais ils ne comptent pas dans cette note, comme pour les autres stacks. Pour Soly, aucun budget pour le prototype.",
+   "Testé en local : Baserow n'a pas de champ unique ni obligatoire, ni de droits par ligne. Il faut un espace de travail par famille. Les adresses de fichiers sont publiques, sans expiration. Un fichier vide et un fichier de 12 Mo passent. D'où 2. Pour Soly, tous les refus devront être codés dans Make.",
+   "Note de 3, d'après la doc : Baserow offre 2 Go par espace de travail sur le plan gratuit. C'est un peu plus que le 1 Go de A. Mais comme chaque famille a son espace, la place se compte par famille. Pour Soly, la démo tient, une vraie exploitation demandera un suivi.",
+   "Réponse oui, mais estimée. Baserow est en Allemagne et Make en zone EU1 ou EU2, selon les pages officielles. La réserve vient de WeWeb, qui ne publie pas où l'appli seule est hébergée. Pour Soly, le critère éliminatoire est tenu sur les données, pas encore prouvé sur l'affichage."
+  ],
+  "preuves": [
+   "La table garde le doublon, la ligne sans expéditeur et le cadre inexistant : Baserow ne porte aucune règle.",
+   "Deux familles dans deux espaces sont isolées, mais pas dans un même espace, et les fichiers se lisent sans compte.",
+   "Les pages officielles placent Baserow en Allemagne et Make en zone UE, hors IA de Make.",
+   "Cinq essais restent à faire : WeWeb sur tablette, webhook Make, refus, règle des 48 h, crédits."
+  ],
+  "synthese": "G est à tester : 70 sur 100, deuxième. Sa raison principale est d'être la meilleure piste tout no-code, avec une démo à 0 €. Son point fort est le coût, son point faible est l'absence de règles dans Baserow. On essaie WeWeb et Make avant de trancher.",
+  "comparaison": "G est deuxième des 5 stacks classées avec 70, soit 5 points derrière A (75) et 2 points devant E (68)."
+ },
+ "^D ·": {
+  "contexte": "D garde la base Supabase de A, construit l'appli avec FlutterFlow et confie les règles à n8n. Elle pourrait servir si le code de A bloque. La question : peut-on changer seulement les écrans ?",
+  "justifs": [
+   "Note de 3, estimée. FlutterFlow donne une vraie appli pour l'aidante. La publication web existe, mais elle n'est pas pensée pour un site vitrine. La page du cadre et les notifications restent à confirmer. Pour Soly, il faudrait un autre outil pour la vitrine, d'où cette note moyenne.",
+   "Testé en local : n8n reçoit le geste par webhook, refuse les cas invalides et tient la règle des 48 h. D'où 4. Pas 5, car la liaison de FlutterFlow vers n8n reste à essayer. Pour Soly, la partie règles est déjà prouvée dans le banc.",
+   "Note de 3, estimée. L'appli mobile serait affichée sur la tablette Ubuntu Touch. Le plein écran, les deux sens et la vidéo restent à vérifier. Rien n'a été construit avec FlutterFlow. Pour Soly, l'écran du cadre est un risque tant que l'essai n'est pas fait.",
+   "Note de 3, estimée. L'éditeur est visuel, mais la courbe d'apprentissage est réelle. Lucas l'a retenu pour le plan de démo. Les règles n8n sont écrites en JavaScript, donc plus proches du low-code que du no-code. Pour Soly, c'est plus accessible que du code pur, sans être simple.",
+   "Note de 3, d'après la doc. FlutterFlow est gratuit pour construire, mais publier ou travailler à plusieurs demande un plan payant. n8n est gratuit chez nous, ou 20 € par mois en cloud. Hors démo, Supabase Pro coûte dès 25 $ par mois. Pour Soly, la démo est gratuite, pas la publication.",
+   "Note de 3, d'après la doc. Supabase se met en veille après une semaine sans activité. Sur le plan gratuit de FlutterFlow, un seul éditeur travaille à la fois. Pour Soly, c'est gênant avec trois personnes qui construisent ensemble. Ces limites ne bloquent pas la démo, d'où une note moyenne.",
+   "Note de 3, d'après la doc : Supabase offre 1 Go de fichiers, comme dans A. C'est assez pour la démo avec des vidéos compressées. La base étant identique, la note l'est aussi. Pour Soly, changer l'outil des écrans ne change pas la place disponible pour les vidéos.",
+   "Réponse oui, d'après la doc : Supabase est à Francfort, et n8n à Francfort ou chez nous. Le lieu des données de l'éditeur FlutterFlow n'est pas connu : il faut le demander. Pour Soly, les photos des familles restent en Europe, mais ce point doit être confirmé."
+  ],
+  "preuves": [
+   "Supabase passe 26/26 et 9 tests sur 9 : D réutilise exactement cette base testée en local.",
+   "Sur 8 cas joués, la rafale donne 1 envoi accepté sur 8 et l'alerte part à 17 h 40.",
+   "FlutterFlow est gratuit pour construire, mais publier demande un plan payant, d'après la doc."
+  ],
+  "synthese": "D est le plan B : 64 sur 100. Sa raison principale est de garder la base testée de A et de ne changer que les écrans. Son point fort est cette base prouvée, son point faible est un site vitrine mal couvert et FlutterFlow non essayé. On la garde en secours.",
+  "comparaison": "D obtient 64, soit 11 points derrière A (75), et 4 points devant F (60), la dernière des 5 stacks classées."
+ },
+ "^E ·": {
+  "contexte": "E garde Supabase à Francfort, remplace le code des écrans par WeWeb et confie les règles à n8n. Elle pourrait être le plan B no-code de Soly. La question : n8n tient-il les règles du cadre ?",
+  "justifs": [
+   "Testé en local : n8n joue tout le scénario des règles, avec refus clairs, anti-doublon, rafale (1 accepté sur 8), silence de 48 h et changement d'heure. D'où 4. Pas 5, car les écrans WeWeb ne sont pas testés. Pour Soly, la partie règles est prouvée, la partie écrans reste à voir.",
+   "Testé en local : les webhooks entrants de n8n fonctionnent, et le webhook sortant de Baserow est reçu en 0,8 s. D'où 4. Pas 5, car Supabase vers n8n et WeWeb restent documentés, non testés. Pour Soly, le passage du geste vers les règles est déjà bien établi.",
+   "Note de 3, estimée. WeWeb gère le responsive et l'appli installable. La page plein écran sur la tablette Ubuntu Touch, les deux sens et la vidéo restent à vérifier. Rien n'est essayé sur la tablette. Pour Soly, l'écran du cadre est le principal doute de cette stack.",
+   "Testé : trois workflows s'importent en quelques minutes. C'est rapide, mais les règles sont des nœuds JavaScript, donc du low-code plus que du no-code. D'où 3. Pour Soly, Camille et Lucas pourront importer les workflows, mais modifier une règle demandera un peu de code.",
+   "Note de 3, d'après la doc. WeWeb et Supabase sont gratuits pour construire. n8n coûte 20 € par mois en cloud, ou rien chez nous. Un domaine à soi demande un plan WeWeb payant. Pour Soly, la démo reste gratuite, mais la mise en ligne propre a un coût.",
+   "Note de 3, d'après la doc : Supabase passe en veille après une semaine, et WeWeb gratuit est limité à 1 000 sessions au total. Constaté en local : un refus voulu s'affiche « Succeeded » dans n8n. Pour Soly, une alerte d'échec ne verrait pas ces refus.",
+   "Note de 3, d'après la doc : Supabase offre 1 Go de fichiers, avec 50 Mo par fichier. C'est assez pour la démo avec des vidéos de 30 s compressées. La base est celle de A, donc la note est la même. Pour Soly, le stockage suffit au prototype mais reste serré.",
+   "Réponse oui, mais estimée. Les données sont dans Supabase à Francfort et dans n8n à Francfort ou chez nous. L'appli WeWeb ne contient que l'affichage, mais son hébergement n'est pas publié. Pour Soly, le critère est tenu pour les données, avec un doute sur l'appli."
+  ],
+  "preuves": [
+   "Le test joue geste, doublon, rafale (1 accepté sur 8), silence de 48 h et alerte à 17 h 40.",
+   "Un refus pour doublon s'affiche « Succeeded » dans l'éditeur : une alerte d'échec ne le verrait pas.",
+   "La doc décrit un lien WeWeb vers n8n par webhook, sans dire où l'appli est hébergée."
+  ],
+  "synthese": "E est le plan B : 68 sur 100, avec 38 % de notes testées. Sa raison principale est que n8n est prouvé en local sur la base de A. Son point fort est cette preuve, son point faible est WeWeb jamais essayé. On essaie WeWeb avant de décider.",
+  "comparaison": "E est troisième des 5 stacks classées avec 68, soit 7 points derrière A (75) et 2 points derrière G (70)."
+ },
+ "^F ·": {
+  "contexte": "F voulait tout faire dans un seul outil, Baserow : base, application et automatisations, avec des données en Allemagne. Elle pourrait simplifier la vie d'une petite équipe. La question : Baserow seul tient-il les règles ?",
+  "justifs": [
+   "Testé en local : Baserow range bien les données et les fichiers. Mais il ne refuse ni doublon, ni fichier vide, ni fichier de 12 Mo, ni expéditeur manquant. Ses automatisations, qui pourraient faire ces refus, ne sont pas testées. D'où 2. Pour Soly, les règles du scénario ne seraient pas tenues.",
+   "Testé en local : l'API REST de Baserow est complète et son webhook sortant vers n8n est reçu en 0,8 s. D'où 4. Pas 5, car les automatisations de Baserow restent à essayer. Pour Soly, les échanges avec d'autres outils fonctionnent déjà bien.",
+   "Note de 3, estimée. L'éditeur propose un aperçu ordinateur, tablette et mobile. La page plein écran sur la tablette Ubuntu Touch, la rotation et la vidéo restent à vérifier. Pour Soly, rien n'est prouvé sur le vrai écran du cadre, donc pas de note plus haute.",
+   "Testé : l'installation hors cloud est pénible, avec une image arm64 en panne et un démarrage de 100 s. Il faut en plus une automatisation devant la base pour les règles. D'où 3. Pour Soly, l'idée d'un seul outil simple est affaiblie par ces ajouts.",
+   "Note de 4, estimée. Le plan gratuit n'a pas de limite de durée : 3 000 lignes, 2 Go et 2 000 crédits d'automatisation. Pas 5, car l'Application Builder gratuit n'est pas confirmé. Pour Soly, la démo serait gratuite, sous réserve de cette confirmation.",
+   "Testé en local : pas de champ unique ni obligatoire, pas de droits par ligne, et des adresses de fichiers publiques sans expiration. D'où 2. Pour Soly, des photos de famille avec un lien public posent un problème de vie privée, à régler avant toute vraie famille.",
+   "Note de 3, d'après la doc : le plan gratuit offre 2 Go par espace de travail. C'est assez pour la démo. Mais comme chaque famille demande son propre espace, la place se partage mal. Pour Soly, le stockage suffit à l'essai, pas à une exploitation à grande échelle.",
+   "Réponse oui, d'après la doc. La page officielle d'avril 2026 écrit que toutes les données clients sont stockées en Allemagne. Une installation chez soi permet aussi de choisir le lieu. Pour Soly, c'est le vrai point fort de F : le critère éliminatoire est tenu."
+  ],
+  "preuves": [
+   "Trois photos sont stockées et relues identiques, mais le doublon et la ligne sans expéditeur restent acceptés.",
+   "Deux familles dans deux espaces sont isolées, mais pas dans un même espace.",
+   "La page officielle d'avril 2026 place les données de Baserow Cloud en Allemagne."
+  ],
+  "synthese": "F est à comparer seulement : 60 sur 100, dernière du classement. Sa raison principale est que Baserow seul ne tient pas les règles du scénario. Son point fort est l'Europe, son point faible est la vie privée des photos. On ne la retient plus comme plan B.",
+  "comparaison": "F est dernière des 5 stacks classées avec 60, soit 15 points derrière A (75) et 4 points derrière D (64)."
+ },
+ "^B ·": {
+  "contexte": "B associe Glide et Make pour créer une appli rapidement à partir d'un tableau. Elle pourrait offrir à Soly une prise en main très simple. La question : respecte-t-elle la règle des données en Europe ?",
+  "justifs": [
+   "Réponse non, d'après la doc : les serveurs de Glide sont aux États-Unis, sans option européenne, d'après la page officielle. Le critère est éliminatoire. Pour Soly, les photos et les gestes d'un parent âgé partiraient hors d'Europe, ce que le cahier des charges interdit. B est donc écartée avant tout score.",
+   "Note de 2, estimée. Glide fait des applis, pas des sites de vente. La page du cadre et les notifications gratuites restent à vérifier. B n'a pas été essayée, puisqu'elle était éliminée. Pour Soly, la vitrine devrait être faite avec un autre outil.",
+   "Note de 2, d'après la doc. Make reçoit des webhooks, mais les workflows de Glide sont absents du plan gratuit, selon un site tiers. Cette information vient d'une source non officielle, donc elle reste à confirmer. Pour Soly, le geste du parent passerait difficilement sans payer.",
+   "Note de 2, estimée. L'appli est de type mobile. Le plein écran sur la tablette et la rotation sont à tester, et rien n'a été essayé. Pour Soly, un écran de cadre lisible à distance ne serait pas garanti. C'est l'un des points faibles de B avec l'interopérabilité.",
+   "Note de 4, estimée, et c'est son seul point fort. Glide permet de créer une appli en quelques heures depuis un tableau. Pas 5, car on n'a pas mesuré le temps réel. Pour Soly, ce serait le gain principal de B, mais il ne compense pas les données hors Europe.",
+   "Note de 3, d'après la doc. Glide et Make ont chacun un plan gratuit. Make Core coûte environ 10 $ par mois. Les prix payants de Glide sont contestés selon les sources, donc on ne les retient pas. Pour Soly, la démo serait gratuite, mais les coûts futurs restent flous.",
+   "Note de 3, d'après la doc. Make offre 1 000 crédits par mois en gratuit. Glide gratuit limite les lignes et les utilisateurs, sans que les chiffres exacts figurent dans la fiche. Pour Soly, ces limites suffiraient à une démo, mais il faudrait les vérifier avant d'inviter plusieurs familles.",
+   "Note de 2, estimée. Le stockage est limité sur le plan gratuit, et le chiffre n'a pas été relevé. B n'a pas été essayée. Pour Soly, des vidéos de 30 s pourraient dépasser la place. Cette note basse reste prudente tant que la limite n'est pas lue."
+  ],
+  "preuves": [
+   "L'aide officielle de Glide indique des serveurs aux États-Unis sur Google Cloud, sans option ailleurs."
+  ],
+  "synthese": "B est éliminée : les données sont aux États-Unis. Sa raison principale est la règle Europe du cahier des charges. Son point fort est la simplicité (4 sur 5), son point faible est l'affichage et l'interopérabilité gratuite. Son score de 50 sur 100 sert seulement d'information.",
+  "comparaison": "B obtient 50 pour information, hors classement : 2 points au-dessus de C (48) et 25 points sous A (75)."
+ },
+ "^C ·": {
+  "contexte": "C associe Softr, Airtable et Zapier pour bâtir un portail web. Elle pourrait servir la vitrine et l'espace de l'aidante de Soly. La question : ses données et ses webhooks respectent-ils nos règles ?",
+  "justifs": [
+   "Réponse non, d'après la doc. Airtable héberge aux États-Unis par défaut, et l'Europe est réservée au plan Enterprise d'après le relevé du bench. Zapier est aussi aux États-Unis par défaut. Pour Soly, une démo gratuite enverrait les données hors d'Europe. C est donc écartée.",
+   "Note de 3, estimée. C est bonne pour la vitrine et l'espace de l'aidante. La page du cadre reste à vérifier, et les alertes sont bloquées par Zapier gratuit. C n'a pas été essayée. Pour Soly, deux usages sur quatre seraient bien couverts, pas les deux autres.",
+   "Note de 1, d'après la doc : Zapier gratuit ne reçoit pas de webhooks. Le geste « je suis là » du parent arrive justement par webhook, donc il ne passe pas sans payer. C'est le point le plus bloquant de C. Pour Soly, le cœur du produit ne fonctionnerait pas en gratuit.",
+   "Note de 2, estimée. Softr et Airtable sont pensés pour un portail, pas pour un diaporama lisible à 3 mètres. Rien n'a été essayé sur la tablette. Pour Soly, l'écran du cadre serait mal servi, ce qui explique cette note basse.",
+   "Note de 4, estimée. Softr et Airtable sont parmi les plus simples pour construire un portail. C'est le point fort de C, avec la vitrine. Pas 5, car la liaison avec Zapier ajoute des réglages. Pour Soly, l'équipe construirait vite, mais sur une base hors Europe.",
+   "Note de 2, d'après la doc. Zapier payant coûte environ 20 $ par mois pour recevoir des webhooks. Airtable Team coûte environ 20 $ par utilisateur et par mois. Pour Soly, le geste du parent ne passe qu'en payant. La démo ne serait donc pas gratuite, d'où cette note basse.",
+   "Note de 2, d'après la doc. Airtable limite à 1 000 lignes par base, et Zapier gratuit à 100 tâches par mois. Pour Soly, quelques familles et leurs gestes quotidiens atteindraient vite ces plafonds. La note reste à 2 car la démo pourrait encore tenir un court moment.",
+   "Note de 3, d'après la doc : Airtable offre 1 Go de fichiers par base. C'est assez pour une démo avec des vidéos de 30 s compressées, mais pas confortable. Pour Soly, le stockage est correct sans être un atout. C'est la note moyenne de C sur ce critère."
+  ],
+  "preuves": [
+   "La FAQ annonce l'hébergement dans l'Union européenne, mais la page ne dit pas pour quelle offre."
+  ],
+  "synthese": "C est éliminée : 48 sur 100, le plus bas des 8 stacks. Sa raison principale est que les données sont hors UE sans l'offre Enterprise. Son point fort est la simplicité, son point faible est l'absence de webhook gratuit chez Zapier. On l'écarte, et on garde le score pour information.",
+  "comparaison": "C obtient 48 pour information, hors classement : le plus bas des 8 stacks, 27 points sous A (75)."
+ },
+ "^H ·": {
+  "contexte": "H est Bubble, un outil tout-en-un pour les écrans, la base et les workflows. Elle pourrait tout porter dans Soly sans code. La question : son prix et son hébergement entrent-ils dans notre cadre ?",
+  "justifs": [
+   "Réponse non, d'après la doc. Sur la grille officielle, le choix du lieu d'hébergement n'apparaît que dans la colonne Enterprise, sur devis. Aucune option européenne n'est accessible à notre budget. Pour Soly, le critère éliminatoire n'est pas tenu, ce qui suffit à écarter H.",
+   "Note de 4, estimée. Bubble réunit écrans, base et workflows dans un seul outil, donc il couvre largement les usages. Pas 5, car il n'a pas été essayé. Pour Soly, c'est son point fort : si les données étaient en Europe, il serait un candidat sérieux.",
+   "Note de 3, estimée. Bubble propose un connecteur d'API sur le plan gratuit. Les webhooks entrants et les tâches récurrentes n'ont pas été vérifiés en détail. Or le geste du parent et l'alerte des 48 h en dépendent. Pour Soly, il faudrait confirmer ces deux points avant de s'y fier.",
+   "Note de 3, estimée. Le plein écran et la rotation sur la tablette Ubuntu Touch sont à vérifier. Rien n'a été essayé. Pour Soly, l'écran du cadre dépend de ce test. La note moyenne traduit un doute, ni une réussite ni un échec.",
+   "Note de 3, estimée. Bubble demande une courbe d'apprentissage réelle, même sans code. Pour une équipe de trois, qui apprend en même temps, cela prend du temps. Pas plus haut car rien n'a été essayé. Pas plus bas car l'outil reste visuel.",
+   "Note de 1, d'après la doc. Publier demande au moins le plan Starter à 32 $ par mois, facturé à l'année. Le plan Free sert seulement à construire. Pour Soly, la démo ne peut pas être publiée gratuitement. C'est le point le plus faible de H avec les limites.",
+   "Note de 1, d'après la doc. Il n'y a pas de version en ligne sur le plan gratuit, et le plafond est de 50 000 unités de charge par mois. Pour Soly, il faut payer avant de montrer la démo à un jury. D'où la note la plus basse, comme pour les coûts.",
+   "Note de 2, estimée. Le stockage inclus n'est pas indiqué sur la page de prix. Sans chiffre, on ne peut pas confirmer que des vidéos de 30 s tiennent. Pour Soly, la note reste prudente. Elle monterait si la page donnait la place disponible."
+  ],
+  "preuves": [
+   "La page de prix affiche Free à 0 $, Starter à 32 $, et l'hébergement au choix chez Enterprise seulement."
+  ],
+  "synthese": "H est à écarter : 54 sur 100 pour information. Sa raison principale est l'hébergement en UE réservé à Enterprise, avec un plan payant dès 32 $ par mois pour publier. Son point fort est ses capacités (4 sur 5), son point faible est le coût. On ne la retient pas.",
+  "comparaison": "H obtient 54 pour information, hors classement : 6 points au-dessus de C (48), 4 au-dessus de B (50) et 21 sous A (75)."
+ }
+}

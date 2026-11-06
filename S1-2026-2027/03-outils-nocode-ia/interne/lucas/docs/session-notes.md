@@ -26,3 +26,8 @@
 - Couche `soly-theme` : Lexend pour les titres, libellés et menu, Atkinson pour le texte (16 à 17 px). Plus de libellés en monospace majuscule. Pastilles de statut (soleil, lilas, pêche). Boutons en pilule de 56 px. Focus lilas.
 - Graphiques : retenu = encre, plan B = lilas foncé #9B85D6 (le lilas #C9B8F0 est trop pâle pour une barre sur fond aube), autres = soleil. Les verdicts du tableau sont en encre ou café doux.
 - Le blueprint intégré (iframe, travail de Clément) garde son propre style.
+
+## 2026-11-06 : gabarit du résumé complet (feat/resume-template)
+- Plan : textes réécrits pour les 40 fiches (contexte, justifications de 35 à 70 mots, une ligne par preuve, synthèse, comparaison), injectés dans une v4 dérivée de la version de Camille, sans toucher à son dossier.
+- Ordre : Contexte, Méthode, Notation, Preuves (photo et une ligne), Synthèse puis Comparaison. Limites et coûts, et la Grille du jury, sont retirés.
+- Hypothèse : la sortie est un nouveau fichier lucas/1-1-rendu-nocode-ia-v4.html. La version de Camille reste la référence tant que la v4 n'est pas validée.

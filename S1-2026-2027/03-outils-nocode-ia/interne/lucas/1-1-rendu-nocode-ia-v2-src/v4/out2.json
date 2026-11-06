@@ -1,0 +1,155 @@
+{
+ "^Supabase$": {
+  "contexte": "Supabase est une base de données hébergée, avec fichiers, comptes et temps réel. Dans Soly, elle garderait les familles, les photos et le dernier geste. La fiche demande si elle tient le scénario en Europe.",
+  "justifs": [
+   "Note 3/5, d'après la doc. Le plan gratuit donne 1 Go de fichiers. Des vidéos de 30 s compressées y tiennent, mais il faudra purger les anciennes. Ce n'est pas un 4, car l'espace se remplit vite. Ce n'est pas un 2, car la démo reste possible sans payer.",
+   "Note 3/5, d'après la doc. La base gratuite est limitée à 500 Mo et se met en veille après une semaine sans activité. Pour une démo avec peu de familles, c'est utilisable. Pour Soly en vrai, une mise en veille poserait problème : il faudra prévoir le plan payant.",
+   "Note 5/5, testée en local. Le scénario passe 26 étapes sur 26 conformes, dont 17 exécutées entièrement et 9 partiellement, et 9 tests de sécurité sur 9. Le temps réel met 0,5 s du dépôt à la réception par le cadre. Une famille ne voit jamais les photos d'une autre.",
+   "Note 4/5, d'après la doc. Le plan Free coûte 0 $ et suffit pour la démo. Le plan Pro démarre à 25 $ par mois, premier projet inclus. Ce n'est pas un 5, car la suite devient payante. Pour Soly, le coût reste simple à prévoir.",
+   "Réponse oui, d'après la doc. La région Francfort est au choix et un accord de traitement des données (DPA) est proposé. Ce critère est éliminatoire, donc Supabase le passe. Pour Soly, les photos des familles restent hébergées en Europe."
+  ],
+  "preuves": [
+   "La sortie brute montre 26 étapes et 9 tests ajoutés, tous OK, avec les refus 409, 404, 422 et 413.",
+   "Sur le même scénario, Supabase gagne sur l'Europe et les règles, mais sa règle de doublon est à corriger.",
+   "La grille officielle donne Free à 0 $ et Pro à partir de 25 $ par mois."
+  ],
+  "synthese": "Supabase est gardée pour la couche base de données, avec 75/100. Raison principale : 26/26 et 9/9 en local, et des données à Francfort. Point fort : les règles sont dans la base. Point faible : la règle de doublon est à corriger.",
+  "comparaison": "Supabase est 1re sur 5 bases avec 75/100, 5 points devant Firebase (70/100)."
+ },
+ "^Firebase \\(Google\\)": {
+  "contexte": "Firebase est la base de données de Google, avec fichiers et comptes. Dans Soly, elle serait une alternative à Supabase. La fiche demande si elle fait aussi bien sur le même scénario.",
+  "justifs": [
+   "Note 3/5, estimée. Le stockage est inclus, mais les conditions du plan gratuit ont changé récemment et sont à vérifier. Faute de chiffre relevé, on ne va pas plus haut. Pour Soly, la place disponible pour les vidéos reste à confirmer avant de s'engager.",
+   "Note 3/5, estimée. Les quotas gratuits paraissent confortables pour trois familles. Mais les fonctions demandent le plan payant, et aucun quota ni aucune facturation n'a été testé en local. La note reste au milieu : elle ne monte pas sans mesure.",
+   "Note 5/5, testée en local avec les émulateurs officiels. 25 étapes exécutées sur 25 sont conformes (1 non exécutée) et 10 tests complémentaires sur 10 passent. Le temps réel est de 0,02 s, mais en local : il n'est pas comparable aux 0,5 s de Supabase. La base tient le scénario.",
+   "Note 3/5, d'après la doc. La base est gratuite pour la démo. Mais les fonctions exigent le plan Blaze, avec carte bancaire, même si la facture reste à zéro. Chaque écriture de photo déclenche aussi plusieurs lectures facturables, dont le coût n'est pas chiffré. D'où 3 et pas 4.",
+   "Réponse à vérifier, d'après la doc. Des régions européennes sont possibles, mais Google reste l'hébergeur. Ce critère est éliminatoire, et la fiche ne tranche pas. Pour Soly, il faut confirmer ce point avant de retenir Firebase pour les photos des familles."
+  ],
+  "preuves": [
+   "Le journal brut : EV01 à EV25 et X01 à X10 OK, EV26 (résumé) non exécuté, fonctions serveur simulées.",
+   "Notre tableau comparatif dit « non fait » à tort : l'essai de mutation existe, la capture est à corriger."
+  ],
+  "synthese": "Firebase reste pour comparer, avec 70/100. Raison principale : elle fait aussi bien que Supabase en test local (25/25 et 10/10), mais le plan Blaze avec carte bancaire est obligatoire et Google reste l'hébergeur. Point fort : temps réel local de 19,8 ms. Point faible : fonctions et notifications non testées.",
+  "comparaison": "Firebase est 2e sur 5 bases avec 70/100, 5 points sous Supabase (75/100)."
+ },
+ "^Code dans Supabase": {
+  "contexte": "« Code dans Supabase » veut dire des fonctions Edge et pg_cron dans le projet Supabase. Dans Soly, elles recevraient le geste et déclencheraient l'alerte des 48 h. La fiche demande si cela suffit sans outil en plus.",
+  "justifs": [
+   "Note 5/5, d'après la doc. Une fonction Edge est une adresse HTTP : le cadre peut lui envoyer le geste directement. Aucun outil intermédiaire n'est nécessaire. Ce point n'a pas été testé en local, seule la règle l'a été. Pour Soly, le trajet du geste reste court.",
+   "Note 5/5, d'après la doc. pg_cron planifie la vérification chaque heure. Testée à part en local, la règle en SQL, appelée à la main, tient : rien à 47 h 59, alerte à 48 h. Mais pg_cron n'est pas encore activé : la planification reste à prouver.",
+   "Note 4/5, estimée. La fonction peut envoyer un Web Push ou un courriel, mais aucun envoi réel n'a été exécuté. Il faut encore tester sur Android et iPhone. C'est pourquoi la note n'est pas 5. Pour Soly, l'aidante doit recevoir l'alerte douce : ce point reste à valider.",
+   "Note 4/5, d'après la doc. Les fonctions sont comprises dans le plan gratuit. En revanche, la base se met en veille après une semaine sans activité, ce qui retire un point. Pour Soly, il faudra surveiller cette veille pendant la démo, car la vérification doit tourner chaque heure.",
+   "Note 5/5, d'après la doc. Il n'y a rien à payer en plus de Supabase, soit 0 € de plus. Le vrai coût est caché : le temps d'écrire et de relire le code, qui dépend de Clément et de Claude Code. Pour Soly, le budget ne bouge pas.",
+   "Réponse oui, d'après la doc. Le code tourne dans le projet Supabase, donc dans la région choisie, Francfort. Ce critère est éliminatoire et il est passé sans outil externe. Pour Soly, aucune donnée de famille ne sort de l'Europe à cause de l'automatisation."
+  ],
+  "preuves": [
+   "Rien à 47 h 59, alerte à 48 h, et alerte à 17 h 40 au changement d'heure."
+  ],
+  "synthese": "Code dans Supabase est gardée pour la couche automatisation, avec 92/100. Raison principale : tout reste dans le projet Supabase, en Europe, sans coût en plus. Point fort : la règle des 48 h testée en local. Point faible : pg_cron et la notification ne sont pas testés.",
+  "comparaison": "Elle est 1re sur 7 options avec 92/100, 4 points devant n8n (88/100)."
+ },
+ "^n8n$": {
+  "contexte": "n8n est un outil d'automatisation visuel, en cloud à Francfort ou installé chez nous. Dans Soly, il pourrait recevoir le geste et lancer l'alerte des 48 h. La fiche demande s'il est un bon plan B.",
+  "justifs": [
+   "Note 5/5, testée en local. Le webhook « toucher » répond 200, 400, 404 ou 409 selon le cas, et le webhook de Baserow arrive en 0,8 s. Les 8 cas joués par curl ont tous donné le résultat voulu. Pour Soly, les envois du cadre sont bien acceptés ou refusés.",
+   "Note 5/5, testée en local. Rien à 47 h 59, alerte à 48 h, une seule alerte, et alerte à 17 h 40 au changement d'heure. Le déclencheur horaire est parti seul à 12:00:31. Pour Soly, la règle des 48 h tient sans clic, ce qui justifie le maximum.",
+   "Note 4/5, estimée. Le courriel direct est possible, mais le push passe par un service tiers à brancher et à tester. Aucune notification réelle n'est branchée à ce stade. C'est pourquoi la note reste à 4. Pour Soly, l'aidante recevra l'alerte seulement après ce branchement.",
+   "Note 4/5, d'après la doc. Il n'y a pas de limite si on l'installe chez nous. En cloud Starter, on a 2 500 exécutions par mois. La consommation réelle n'a pas été mesurée, d'où 4 et pas 5. Pour Soly, le plafond serait à surveiller en cloud.",
+   "Note 4/5, d'après la doc. n8n est gratuit installé chez nous, mais le coût du serveur n'est pas chiffré. En cloud, Starter coûte 20 € par mois et Pro 50 € par mois. Il manque donc le point plein : Code dans Supabase ajoute 0 € de plus.",
+   "Réponse oui, d'après la doc. Le cloud est à Francfort, ou on peut utiliser un serveur à nous. Le critère éliminatoire est donc passé dans les deux cas. Pour Soly, l'alerte peut tourner en Europe, gratuitement si on l'héberge soi-même."
+  ],
+  "preuves": [
+   "Les 8 cas joués en local donnent tous le résultat voulu, rafale comprise (1 accepté sur 8).",
+   "L'éditeur marque « Succeeded » un refus pour doublon : en production, il faudra suivre les codes HTTP.",
+   "Starter coûte 20 € par mois ; la version 1.109.2 testée est signalée « Critical update available »."
+  ],
+  "synthese": "n8n est le plan B de la couche automatisation, avec 88/100. Raison principale : il a tenu tout le scénario des règles en local, mais il reste derrière Code dans Supabase. Point fort : 8 cas sur 8 réussis. Point faible : règles en JavaScript, refus affichés « Succeeded » et notification non branchée.",
+  "comparaison": "n8n est 2e sur 7 options avec 88/100, 4 points sous Code dans Supabase (92/100), à égalité avec Firebase Cloud Functions."
+ },
+ "^Make$": {
+  "contexte": "Make est un outil d'automatisation visuel, utilisé dans la stack G. Dans Soly, il recevrait le geste et ferait les refus que Baserow ne fait pas. La fiche demande s'il est assez solide, sans l'avoir essayé.",
+  "justifs": [
+   "Note 4/5, d'après la page de prix. Les webhooks sont disponibles sur le plan gratuit. Mais le webhook entrant gratuit n'est pas vérifié sur une page officielle, seulement sur Make Academy, et Make n'a jamais été essayé. D'où 4 et pas 5. Ce maillon est à tester en premier.",
+   "Note 4/5, d'après la doc. Make propose des scénarios planifiés, mais avec 15 minutes minimum entre deux passages en gratuit. Pour une vérification du silence de 48 h, ce rythme semble suffire. Aucun scénario n'a pourtant tourné chez nous, donc la note reste à 4.",
+   "Note 3/5, estimée. Make sait envoyer un courriel et passer par des services tiers, mais rien n'a été essayé. C'est la seule note estimée parmi les notes chiffrées de la fiche : les autres sont documentées. Pour Soly, l'alerte vers l'aidante reste à prouver.",
+   "Note 3/5, d'après la doc. Le plan gratuit donne 1 000 crédits par mois. La consommation réelle pour 2 familles pendant un mois est inconnue, donc on ne peut pas dire si cela suffit. Ce doute explique le 3. Pour Soly, il faudrait la mesurer avant de choisir.",
+   "Note 3/5, d'après la doc. Le gratuit est limité à 1 000 crédits par mois. Le plan Core coûte environ 10 $ par mois. La note reste moyenne : le prix est approximatif et le besoin en crédits est inconnu. Pour Soly, le budget exact n'est pas encore fixé.",
+   "Réponse oui, d'après la doc. Les zones EU1 et EU2 sont « traitées dans l'UE ». Réserve : certaines fonctions d'IA de Make peuvent traiter hors UE. On ne les utilise pas. Pour Soly, Make passe le critère Europe tant que ses modules d'IA restent écartés."
+  ],
+  "preuves": [
+   "L'aide officielle définit EU1 et EU2 comme traitées dans l'UE, avec une réserve sur les requêtes d'IA."
+  ],
+  "synthese": "Make est à tester dans la couche automatisation, avec 68/100. Raison principale : zone UE et prix documentés, mais l'outil n'a jamais tourné chez nous. Point fort : 1 000 crédits gratuits par mois. Point faible : 15 minutes minimum entre deux passages et crédits à surveiller. On le teste d'abord dans la stack G.",
+  "comparaison": "Make est 6e sur 7 options avec 68/100, 24 points sous Code dans Supabase (92/100) et 4 sous Python + GitHub Actions (72/100)."
+ },
+ "^React\\ \\+\\ Next\\.js$": {
+  "contexte": "React avec Next.js est une façon de créer des sites et des applis en code. Dans Soly, il servirait le site de vente, l'écran du cadre et l'appli des aidants. La fiche demande s'il est le meilleur choix.",
+  "justifs": [
+   "Note 5/5, d'après la doc. Next.js est fait pour les sites web : pages, formulaires, rendu côté serveur. Le site qui vend le cadre et l'appli peut se faire avec le même outil. C'est la note maximale : pour ce besoin, rien de plus n'est nécessaire.",
+   "Note 4/5, estimée. Le plein écran et la rotation sont libres en code. Mais la lisibilité à 3 mètres et la tenue sur une vieille tablette restent à tester. Sans essai, on ne met pas 5. Pour Soly, ce point compte, car l'écran est lu à distance.",
+   "Note 3/5, d'après la doc. L'appli est une web-appli installable (PWA). Les notifications push web marchent sur Android, et sur iPhone seulement depuis iOS 16.4 et en appli installée sur l'écran d'accueil. Cette contrainte retire des points. Pour Soly, les aidants sur iPhone devront installer l'appli.",
+   "Note 2/5, estimée. C'est du code. Claude Code l'écrit, mais la relecture et les corrections reposent sur Clément. Il n'y a pas d'éditeur visuel pour Camille et Lucas. C'est la note la plus basse de la fiche : pour Soly, l'équipe dépend de Clément.",
+   "Note 5/5, d'après la doc. React et Next.js sont libres et gratuits. L'hébergement est compté à part et reste à choisir : Vercel en région Francfort ou un serveur européen. Pour Soly, l'outil lui-même ne coûte rien, ce qui justifie le maximum.",
+   "Note 5/5, d'après la doc. C'est le framework web le plus utilisé dans l'enquête Stack Overflow 2025. On y trouve le plus de tutoriels et de composants prêts, et c'est ce que Claude écrit le mieux. Pour Soly, l'aide est facile à trouver en cas de blocage."
+  ],
+  "preuves": [],
+  "synthese": "React + Next.js est le meilleur de la couche construction, avec 80/100. Raison principale : il obtient 5/5 sur trois critères sur six. Point fort : site vitrine, coût et écosystème. Point faible : simplicité à 2/5, et l'hébergement en Europe reste à vérifier.",
+  "comparaison": "React + Next.js est 1er sur 10 outils avec 80/100, 3 points devant Vue + Nuxt (77/100)."
+ },
+ "^Vue\\ \\+\\ Nuxt$": {
+  "contexte": "Vue avec Nuxt fait la même chose que React avec Next.js, mais avec Vue. Dans Soly, il servirait le site de vente, l'écran du cadre et l'appli des aidants. La fiche demande s'il vaut le coup face à React.",
+  "justifs": [
+   "Note 5/5, d'après la doc. Nuxt fait pour Vue la même chose que Next.js pour React : pages, formulaires et rendu serveur. Le site de vente du cadre se construit donc aussi bien qu'avec React. Pour Soly, ce critère ne départage pas les deux outils.",
+   "Note 4/5, estimée. Comme pour React, le plein écran et la rotation sont libres en code. Aucun essai sur une vieille tablette n'a été fait, donc la note n'atteint pas 5. Pour Soly, l'écran du cadre est identique entre les deux outils.",
+   "Note 3/5, d'après la doc. L'appli est une PWA, avec les mêmes limites de notifications sur iPhone que pour React. Les notifications push web marchent sur Android, mais sur iPhone seulement en appli installée sur l'écran d'accueil. Pour Soly, cela ne change rien par rapport à React.",
+   "Note 3/5, estimée. Vue est réputé plus lisible que React pour débuter : les fichiers ressemblent à du HTML. C'est un point de plus que React (2/5). Mais c'est toujours du code à écrire et à relire. Pour Soly, l'apprentissage est un peu plus doux, sans devenir visuel.",
+   "Note 5/5, d'après la doc. Vue et Nuxt sont libres et gratuits. Comme pour React, l'hébergement est compté à part et reste à choisir. Pour Soly, le coût de l'outil est nul, ce qui justifie le maximum. L'écart avec React ne vient donc pas d'ici.",
+   "Note 3/5, estimée. La communauté est solide, mais deux à trois fois plus petite que celle de React, avec moins de composants prêts. C'est 2 points sous React (5/5). Pour Soly, il y aura moins d'exemples à reprendre quand un blocage apparaîtra."
+  ],
+  "preuves": [],
+  "synthese": "Vue + Nuxt reste pour comparer, avec 77/100. Raison principale : il fait presque tout comme React, mais sa communauté est plus petite (3/5 contre 5/5). Point fort : simplicité à 3/5 contre 2/5 pour React. Point faible : appli aidant à 3/5, et hébergement en Europe à vérifier.",
+  "comparaison": "Vue + Nuxt est 2e sur 10 outils avec 77/100, 3 points sous React + Next.js (80/100) et 4 devant Svelte (73/100)."
+ },
+ "^Svelte\\ \\+\\ SvelteKit$": {
+  "contexte": "Svelte avec SvelteKit est une autre façon de créer des sites et applis en code. Dans Soly, il servirait le site de vente, l'écran du cadre et l'appli des aidants. La fiche demande s'il vaut le coup face à React.",
+  "justifs": [
+   "Note 5/5, d'après la doc. SvelteKit fait pages, formulaires et rendu serveur. Le site qui vend le cadre peut donc se construire avec lui comme avec React ou Vue. Pour Soly, ce critère ne départage pas les trois outils. C'est pourquoi la note est maximale.",
+   "Note 4/5, estimée. Comme pour React, le plein écran et la rotation sont libres en code. Les pages très légères sont un plus sur une vieille tablette, mais aucun essai n'a été fait. D'où 4 et pas 5. Pour Soly, la tenue sur la tablette reste à tester.",
+   "Note 3/5, d'après la doc. L'appli est une PWA, avec les mêmes limites de notifications sur iPhone que pour React. Les notifications push web marchent sur Android, mais sur iPhone seulement en appli installée sur l'écran d'accueil. Pour Soly, cela ne change rien par rapport à React.",
+   "Note 3/5, estimée. SvelteKit demande moins de code que React pour le même écran. C'est un point de plus que React (2/5), au même niveau que Vue (3/5). Mais c'est toujours du code à relire. Pour Soly, l'écriture est plus courte, la relecture reste à faire.",
+   "Note 5/5, d'après la doc. Svelte et SvelteKit sont libres et gratuits. Comme pour React, l'hébergement est compté à part et reste à choisir. Pour Soly, l'outil lui-même ne coûte rien, ce qui justifie le maximum. L'écart avec React ne vient pas d'ici.",
+   "Note 2/5, estimée. La communauté est bien plus petite, avec moins d'exemples et de composants. C'est la note la plus basse de la fiche et 3 points sous React (5/5). Pour Soly, l'aide serait plus difficile à trouver en cas de problème. C'est ce qui le place derrière."
+  ],
+  "preuves": [],
+  "synthese": "Svelte + SvelteKit reste pour comparer, avec 73/100. Raison principale : il couvre le site, l'écran et le coût comme React, mais son écosystème est le plus faible de la fiche (2/5). Point fort : pages très légères. Point faible : peu d'exemples et de composants.",
+  "comparaison": "Svelte + SvelteKit est 3e sur 10 outils avec 73/100, 7 points sous React + Next.js (80/100), à égalité avec Flutter (73/100)."
+ },
+ "^Flutter\\ \\(Dart\\)$": {
+  "contexte": "Flutter est un outil de Google pour créer une vraie application avec le langage Dart. Dans Soly, il ferait tourner l'app sur la tablette et le téléphone. La fiche demande si une app native vaut sa complexité.",
+  "justifs": [
+   "Note 2/5, estimée. Flutter sait faire du web, mais c'est lourd et mal adapté à un site de vente. C'est la note la plus basse de la fiche, avec la simplicité. Pour Soly, il faudrait sans doute un autre outil pour le site qui vend le cadre.",
+   "Note 4/5, estimée. C'est une vraie app Android en plein écran sur la tablette, verrouillable en kiosque. Cela convient bien à l'écran du cadre. Aucun essai n'a été fait sur la tablette, donc on ne met pas 5. Pour Soly, le cadre ne dépendrait pas d'un navigateur.",
+   "Note 5/5, d'après la doc. Flutter produit une app native pour Android et iPhone, avec des notifications push natives et une publication sur les stores. C'est son meilleur critère et le point où il passe devant React (3/5). Pour Soly, l'alerte peut atteindre l'aidante sur les deux téléphones.",
+   "Note 2/5, estimée. Il faut apprendre un langage de plus, Dart, que personne ne connaît dans l'équipe. Il y a aussi deux publications sur les stores à gérer. Pour Soly, la charge d'apprentissage et de publication pèse sur une petite équipe. C'est ce qui explique la note basse.",
+   "Note 5/5, d'après la doc. Flutter est libre et gratuit. Les comptes développeur des stores sont à part, et la fiche ne donne pas leur prix. Pour Soly, l'outil ne coûte rien, mais ce coût des stores reste à chiffrer avant le lancement.",
+   "Note 4/5, estimée. La communauté mobile est grande, portée par Google. C'est un point sous React (5/5). Pour Soly, l'aide existe pour la partie mobile, comme les notifications et la publication sur les stores. La note reste estimée, sans mesure."
+  ],
+  "preuves": [],
+  "synthese": "Flutter reste pour comparer, avec 73/100. Raison principale : c'est le seul outil à 5/5 sur l'appli aidant, mais il est faible sur le site de vente (2/5). Point fort : app native avec push. Point faible : Dart, deux publications sur les stores et un site à faire ailleurs.",
+  "comparaison": "Flutter est 4e sur 10 outils avec 73/100, 7 points sous React + Next.js (80/100), à égalité avec Svelte (73/100)."
+ },
+ "^Python\\ \\+\\ Django$": {
+  "contexte": "Django est un outil en langage Python pour créer des sites web. Dans Soly, il servirait le site et fournirait les contenus à l'écran du cadre. La fiche demande si le langage déjà connu de l'équipe suffit.",
+  "justifs": [
+   "Note 4/5, estimée. Django est très bon pour un site avec formulaires et comptes. Mais l'interface riche demande du JavaScript en plus. C'est pourquoi la note n'atteint pas 5, contrairement à Next.js. Pour Soly, le site de vente est faisable, avec un travail en plus.",
+   "Note 3/5, estimée. Le diaporama et la rotation restent du JavaScript dans la page. Django ne sert qu'à livrer les contenus. Il n'aide donc pas pour l'écran du cadre lui-même, d'où 3 et pas 4. Pour Soly, le travail principal se ferait à côté de Django.",
+   "Note 2/5, estimée. Une PWA est possible, mais les notifications et le temps réel sont à coder à la main. C'est la note la plus basse de la fiche, avec 5/5 pour Flutter sur ce critère. Pour Soly, l'alerte vers l'aidante demanderait du développement en plus.",
+   "Note 3/5, estimée. Python est le seul langage que l'équipe a déjà pratiqué avec Claude : 19 scripts de veille. C'est un vrai atout. Mais cela reste du code à écrire et à relire, donc pas de 4. Pour Soly, le démarrage est plus facile qu'avec un langage inconnu.",
+   "Note 5/5, d'après la doc. Django est libre et gratuit. Il s'héberge où on veut, sur un serveur européen, et l'hébergement est compté à part. Pour Soly, l'outil lui-même ne coûte rien, ce qui justifie le maximum. L'écart avec les autres vient d'ailleurs.",
+   "Note 4/5, estimée. La communauté est large et stable, avec beaucoup de documentation en français. C'est un point sous React (5/5). Pour Soly, l'équipe trouvera de l'aide en français. La note reste estimée, sans mesure précise."
+  ],
+  "preuves": [],
+  "synthese": "Python + Django reste pour comparer, avec 70/100. Raison principale : c'est le langage que l'équipe connaît déjà (19 scripts de veille), mais l'appli aidant est faible (2/5). Point fort : coût nul et aide en français. Point faible : notifications et temps réel à coder à la main.",
+  "comparaison": "Python + Django est 5e sur 10 outils avec 70/100, à égalité avec HTML, CSS et JavaScript seuls et 10 points sous React + Next.js (80/100)."
+ }
+}
