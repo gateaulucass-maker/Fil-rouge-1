@@ -367,18 +367,18 @@ iframe.bp,.bpimg,.f-sec figure img{border-color:#F0E3C8;border-radius:16px}
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 ol.rows.pages li{position:relative;isolation:isolate}
-ol.rows.pages li::before{content:"";position:absolute;inset:0 -16px;z-index:-1;border-radius:16px;background:#FFF3D9;transform:scaleX(0);transform-origin:left center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-ol.rows.pages .a a{color:inherit;text-decoration:none;outline:none}
-ol.rows.pages .a a::after{content:"";position:absolute;inset:0 -16px;border-radius:16px}
-ol.rows.pages .a b{display:flex;align-items:center;gap:10px;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-ol.rows.pages .a b::after{content:"→";opacity:0;transform:translateX(-8px);transition:opacity .25s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
-ol.rows.pages .n{transition:background-color .25s ease,color .25s ease,transform .35s cubic-bezier(.2,.8,.2,1)}
+ol.rows.pages li::before{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:#1F1A17;transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+ol.rows.pages .a a{color:inherit;text-decoration:none;outline:none;background:linear-gradient(#FFD36E,#FFD36E) no-repeat 0 85%/0% .5em;padding:0 2px;margin:0 -2px;transition:background-size .4s cubic-bezier(.2,.8,.2,1)}
+ol.rows.pages .a a::after{content:"";position:absolute;inset:0}
+ol.rows.pages .a b{display:flex;align-items:center;gap:10px}
+ol.rows.pages .a b::after{content:"↗";font-weight:500;opacity:0;transform:translate(-4px,4px);transition:opacity .25s ease,transform .4s cubic-bezier(.2,.8,.2,1)}
+ol.rows.pages .n{transition:background-color .3s ease,color .3s ease}
 ol.rows.pages li:hover::before,ol.rows.pages li:focus-within::before{transform:scaleX(1)}
-ol.rows.pages li:hover .n,ol.rows.pages li:focus-within .n{background:#1F1A17;color:#FFD36E;transform:rotate(-8deg) scale(1.08)}
-ol.rows.pages li:hover .a b,ol.rows.pages li:focus-within .a b{transform:translateX(6px)}
-ol.rows.pages li:hover .a b::after,ol.rows.pages li:focus-within .a b::after{opacity:1;transform:translateX(0)}
-ol.rows.pages a:focus-visible::after{outline:2px solid #1F1A17;outline-offset:2px}
-@media (prefers-reduced-motion:reduce){ol.rows.pages li::before,ol.rows.pages .a b,ol.rows.pages .a b::after,ol.rows.pages .n{transition:none}ol.rows.pages li:hover .n,ol.rows.pages li:focus-within .n{transform:none}}
+ol.rows.pages li:hover .a a,ol.rows.pages li:focus-within .a a{background-size:100% .5em}
+ol.rows.pages li:hover .n,ol.rows.pages li:focus-within .n{background:#FFD36E;color:#1F1A17}
+ol.rows.pages li:hover .a b::after,ol.rows.pages li:focus-within .a b::after{opacity:1;transform:translate(0,0)}
+ol.rows.pages a:focus-visible::after{outline:2px solid #1F1A17;outline-offset:4px}
+@media (prefers-reduced-motion:reduce){ol.rows.pages li::before,ol.rows.pages .a a,ol.rows.pages .a b::after,ol.rows.pages .n{transition:none}}
 #p-resume .facts em,#p-stack .facts em{display:block;font:600 13px/16px var(--title);letter-spacing:.08em;text-transform:uppercase;color:#6A5F55;font-style:normal;margin-bottom:12px}
 #p-resume .facts b small,#p-stack .facts b small{font-size:.45em;font-weight:500;letter-spacing:0;margin-left:4px;color:#6A5F55}
 #p-resume .facts span,#p-stack .facts span{max-width:30ch;color:#1F1A17}
