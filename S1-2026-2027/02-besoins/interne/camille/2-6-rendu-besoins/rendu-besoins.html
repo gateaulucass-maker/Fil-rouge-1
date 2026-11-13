@@ -1114,6 +1114,132 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 #p-intro>.sec::before,#p-methode>.sec::before{content:attr(data-s);display:block;font:500 13px/18px var(--title);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
 #p-intro>.sec,#p-methode>.sec{margin-top:112px}#p-intro>.lead+.sec,#p-methode>.lead+.sec{margin-top:64px}
 </style>
+<style id="accueil">
+/* Pages 01 et 02 alignées sur les pages 03 à 09 : fond crème, lilas, pêche, soleil, rayons 8 et 18 px, sans libellés au-dessus des sections */
+#p-intro>.sec::before,#p-methode>.sec::before{content:none}
+#p-intro>.sec,#p-methode>.sec{margin-top:96px}
+#p-intro>.lead+.sec,#p-methode>.lead+.sec{margin-top:56px}
+#p-intro h2.t::after,#p-methode h2.t::after{content:"";display:inline-block;width:.2em;height:.2em;border-radius:50%;background:var(--soleil);margin-left:.12em;vertical-align:.05em}
+#p-methode>.lien{margin:80px 0 0;font:500 19px/28px var(--title);color:var(--muted);max-width:60ch}
+#p-methode>.lien+.sec{margin-top:24px}
+#p-methode #m-guide>h4.sub{margin-top:40px;padding-top:0;border-top:0}
+#p-methode #m-guide>.gi{margin-top:8px;font-size:17px;line-height:26px}
+#p-methode #m-guide>.tl2{margin-top:24px}
+#p-methode .retour{padding:20px 24px 22px;border-radius:8px;background:var(--card);border:1px solid var(--cardb);border-left:12px solid var(--soleil);max-width:none}
+#p-methode .retour p{margin:0;font:500 clamp(18px,1.6vw,21px)/1.5 var(--title);max-width:64ch}
+#p-methode .retour p.lab{margin:0 0 8px;font:600 15px/22px var(--title);color:var(--muted)}
+#p-intro .lab{margin:0 0 12px;font:600 15px/22px var(--title);color:var(--muted);max-width:none}
+/* phrase de transition en bas de page (toutes les pages) */
+.page .trans{margin:96px 0 0;padding:24px 20% 0 0;border-top:2px solid var(--fg);font:500 clamp(18px,1.5vw,21px)/1.5 var(--title);color:var(--fg);max-width:none;text-wrap:pretty}
+.page .trans+.next{margin-top:20px}
+/* 01 : le projet */
+#p-intro .acc{background:var(--fjbg);border:1.5px solid var(--fjb);border-radius:18px;padding:clamp(20px,3vw,40px);display:grid;gap:36px}
+#p-intro .acc-roles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:none}
+#p-intro .acc-roles li{--c:var(--c-gp);background:var(--c);border-radius:8px;padding:16px 18px 18px;max-width:none;min-width:0;color:var(--fg)}
+#p-intro .acc-roles li.en{--c:var(--c-en)}#p-intro .acc-roles li.pe{--c:var(--c-pe)}
+#p-intro .acc-roles .cd{background:var(--bg);border-color:transparent;font-size:13px}
+#p-intro .acc-roles b{display:block;margin-top:10px;font:600 19px/26px var(--title)}
+#p-intro .acc-roles li>span:last-child{display:block;margin-top:2px;font-size:17px;line-height:26px}
+#p-intro .acc-ten{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--cardb);border-bottom:1px solid var(--cardb)}
+#p-intro .acc-ten p{margin:0;padding:18px 24px 18px 0;font:500 clamp(20px,2vw,26px)/1.35 var(--title);max-width:none}
+#p-intro .acc-ten p+p{padding-left:24px;border-left:1px solid var(--cardb)}
+#p-intro .acc .cap{margin:-24px 0 0;font-size:16px;line-height:24px;color:var(--muted)}
+#p-intro .acc-q{margin:0;font:500 clamp(21px,2.1vw,28px)/1.4 var(--title);letter-spacing:-.01em;max-width:36ch}
+/* 01 : ce que nous devons faire */
+#p-intro .acc-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;max-width:none}
+#p-intro .acc-steps li{position:relative;display:flex;align-items:center;gap:14px;min-height:76px;padding:16px 18px;border-radius:8px;background:var(--card);border:1px solid var(--cardb);max-width:none}
+#p-intro .acc-steps li+li::before{content:"→"/"";position:absolute;left:-22px;top:50%;transform:translateY(-50%);font:500 18px/1 var(--title);color:var(--muted)}
+#p-intro .acc-steps .n{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--soleil);color:#1F1A17;font:600 17px/1 var(--title)}
+#p-intro .acc-steps b{font:500 18px/24px var(--title)}
+#p-intro .acc-obj{margin:0;padding:4px 0 4px 24px;border-left:6px solid var(--soleil);max-width:64ch}
+#p-intro .acc-obj p{margin:0;font:500 clamp(19px,1.8vw,23px)/1.5 var(--title);max-width:none}
+#p-intro .acc-obj p.src{margin-top:12px;font:400 15px/22px var(--body);color:var(--muted)}
+/* 01 : sommaire en frise */
+#p-intro .frise{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 0;max-width:none}
+#p-intro .frise li{position:relative;max-width:none;min-width:0}
+#p-intro .frise li::before{content:"";position:absolute;top:21px;left:0;right:0;height:2px;background:var(--fg)}
+#p-intro .frise li:nth-child(4n+1)::before{left:22px}
+#p-intro .frise li:nth-child(4n)::before{right:calc(100% - 22px)}
+#p-intro .frise a{position:relative;display:block;padding:0 18px 6px 0;text-decoration:none;color:inherit;border-radius:8px}
+#p-intro .frise .fn{position:relative;z-index:1;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:2px solid var(--fg);background:var(--bg);color:var(--fg);font:600 16px/1 var(--title);font-variant-numeric:tabular-nums;transition:background-color var(--mv-f,.15s) ease}
+#p-intro .frise li.gp .fn{background:var(--c-gp)}#p-intro .frise li.en .fn{background:var(--c-en)}#p-intro .frise li.pe .fn{background:var(--c-pe)}
+#p-intro .frise li.pb .fn{background:var(--fg);color:var(--bg)}
+#p-intro .frise b{display:block;margin-top:14px;font:600 18px/24px var(--title);text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:3px;text-underline-offset:5px;transition:text-decoration-color var(--mv-f,.15s) ease}
+#p-intro .frise .fd{display:block;margin-top:4px;font-size:15px;line-height:22px;color:var(--muted)}
+#p-intro .frise a:hover b,#p-intro .frise a:focus-visible b{text-decoration-color:var(--soleil)}
+#p-intro .frise a:hover .fn,#p-intro .frise a:focus-visible .fn{background:var(--soleil);color:#1F1A17}
+/* 02 : neuf personnes en trois colonnes */
+#p-methode .gens{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+#p-methode .gen{--c:var(--c-gp);display:flex;flex-direction:column;gap:12px;min-width:0;padding:20px;border-radius:18px;background:color-mix(in srgb,var(--c) 45%,var(--bg))}
+#p-methode .gen.en{--c:var(--c-en)}#p-methode .gen.pe{--c:var(--c-pe)}
+#p-methode .gen-h{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;margin:0 0 4px}
+#p-methode .gen-h .cd{background:var(--bg);border-color:transparent;font-size:13px}
+#p-methode .gen-h b{font:600 20px/26px var(--title)}
+#p-methode .gen-h span:last-child{margin-left:auto;font:400 14px/20px var(--title);color:var(--muted)}
+#p-methode .per{padding:14px 16px;border-radius:8px;background:var(--bg);border:1px solid color-mix(in srgb,var(--c) 70%,var(--bg))}
+#p-methode .per p{margin:6px 0 0;font-size:16px;line-height:24px;max-width:none}
+#p-methode .per p.per-t{margin:0;font:400 15px/22px var(--title);color:var(--muted)}
+#p-methode .per p.per-t b{margin-right:8px;font:600 18px/24px var(--title);color:var(--fg)}
+#p-methode .per p.per-m{margin-top:8px;font:400 14px/20px var(--title);color:var(--muted)}
+#p-methode .gen-f{margin-top:auto;display:inline-flex;align-items:center;gap:8px;align-self:flex-start;min-height:48px;font:500 16px/22px var(--title);text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:3px;text-underline-offset:5px}
+#p-methode .gen-f:hover,#p-methode .gen-f:focus-visible{text-decoration-color:var(--soleil)}
+#p-methode .gens-note{margin-top:16px!important;font-size:14px;line-height:22px;color:var(--muted);max-width:80ch}
+/* 02 : quatre règles en cartes */
+#p-methode .rg{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:none}
+#p-methode .rg li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:6px 16px;align-content:start;padding:20px 24px 22px;border-radius:8px;background:var(--card);border:1px solid var(--cardb);max-width:none}
+#p-methode .rg .n{grid-row:1 / span 2;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--soleil);color:#1F1A17;font:600 17px/1 var(--title)}
+#p-methode .rg b{align-self:center;font:600 19px/26px var(--title)}
+#p-methode .rg p{margin:0;font-size:16px;line-height:25px;max-width:none}
+/* 02 : l'entretien en frise de 45 minutes */
+#p-methode .tl2{list-style:none;margin:0;padding:0;display:flex;gap:4px;max-width:none}
+#p-methode .tl2 li{flex:var(--d) 1 0;min-width:0;max-width:none}
+#p-methode .tl2 i{display:block;height:14px;border-radius:999px;background:var(--cardb)}
+#p-methode .tl2 li.hot i{background:var(--soleil)}
+#p-methode .tl2 b{display:block;margin-top:10px;font:600 15px/20px var(--title)}
+#p-methode .tl2 span{display:block;font:400 14px/20px var(--title);color:var(--muted)}
+/* 02 : prévu et fait */
+#p-methode .pvf{width:100%;border-collapse:separate;border-spacing:0;font-size:16px;line-height:24px}
+#p-methode .pvf thead th{width:50%;text-align:left;padding:0 16px 10px;font:600 16px/22px var(--title);border-bottom:2px solid var(--fg)}
+#p-methode .pvf tbody th{text-align:left;padding:18px 16px 6px;font:600 14px/20px var(--title);color:var(--muted)}
+#p-methode .pvf td{padding:12px 16px;vertical-align:top}
+#p-methode .pvf td.p{color:var(--muted)}
+#p-methode .pvf td.f{background:var(--card);border-radius:8px;color:var(--fg)}
+/* 02 : des phrases aux insights */
+#p-methode .chain{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 0;max-width:none}
+#p-methode .chain li{display:flex;align-items:baseline;gap:8px;max-width:none;font:400 16px/24px var(--title);color:var(--muted)}
+#p-methode .chain li b{font:600 30px/1 var(--title);color:var(--fg)}
+#p-methode .chain li+li::before{content:"→"/"";margin:0 16px;font-size:18px;color:var(--muted)}
+@media (max-width:1100px){
+ #p-methode .tl2{flex-direction:column;gap:14px}
+ #p-methode .tl2 li{flex:none}
+ #p-methode .tl2 i{width:max(14px,calc(var(--d) * 100% / 18))}
+ #p-methode .tl2 b{margin-top:6px}
+}
+@media (max-width:960px){
+ #p-intro>.sec,#p-methode>.sec{margin-top:72px}
+ #p-methode>.lien{margin-top:64px;font-size:18px}
+ #p-intro .acc-roles,#p-intro .acc-steps,#p-methode .gens,#p-methode .rg{grid-template-columns:1fr}
+ #p-intro .acc-steps{gap:12px}
+ #p-intro .acc-steps li+li::before{content:none}
+ .page .trans{padding-right:0;margin-top:72px}
+}
+@media (max-width:700px){
+ #p-intro .acc-ten{grid-template-columns:1fr}
+ #p-intro .acc-ten p{padding:14px 0}
+ #p-intro .acc-ten p+p{padding-left:0;border-left:0;border-top:1px solid var(--cardb)}
+ #p-intro .frise{grid-template-columns:1fr;gap:0}
+ #p-intro .frise li::before,#p-intro .frise li:nth-child(4n+1)::before,#p-intro .frise li:nth-child(4n)::before{top:0;bottom:0;left:21px;right:auto;width:2px;height:auto}
+ #p-intro .frise li:first-child::before{top:22px}
+ #p-intro .frise li:last-child::before{bottom:auto;height:22px}
+ #p-intro .frise a{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:16px;padding:0 0 24px}
+ #p-intro .frise .fn{grid-row:1 / span 2}
+ #p-intro .frise b{margin-top:10px}
+ #p-intro .frise .fd{grid-column:2}
+ #p-methode .pvf td,#p-methode .pvf thead th{padding-left:10px;padding-right:10px}
+ #p-methode .pvf tbody th{padding-left:10px}
+}
+@media print{.page .trans{margin-top:24px}#p-intro .acc,#p-methode .gen,#p-methode .rg li,#p-methode .retour{break-inside:avoid}}
+</style>
 <style id="sources-persona">
 /* Codes sources des personas : même mention bordeaux partout, pastilles dans « Sources » */
 .pers.pf .pgrid .c2,.pers.pf .who .c2{color:#8E2C43!important;font:700 .8em/1 var(--title)!important;letter-spacing:.02em;white-space:nowrap}
@@ -1124,6 +1250,68 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 .pers.pf .srcleg{margin:16px 0 0;font:400 .82em/1.5 var(--body)!important;color:#6B6259}
 .pers.pf .srcleg .c2{font-size:1em!important}
 </style>
+<style id="pe-ajout">
+.acc-roles li.ajout{position:relative;background:transparent!important;box-shadow:inset 0 0 0 2px #E9A87C;border:0}
+.acc-roles li.ajout .aj{position:absolute;top:12px;right:14px;font:600 11px/1 var(--title);font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:#8E2C43;background:#fff;padding:5px 8px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(142,44,67,.3)}
+</style>
+<style id="accueil-v3">
+/* Accueil v3 (13 nov. 2026) : grille suisse 240 + 48 + texte, échelle 24/48/96/144, filets seuls, sans aplat */
+#p-intro>.lead{font-size:20px;line-height:31px;max-width:56ch;margin-top:24px}
+#p-intro>.lead+.sec{margin-top:96px}
+#p-intro>.sec{margin-top:144px}
+#p-intro .sh{padding-top:24px}
+#p-intro .sh h3{max-width:12ch}
+#p-intro #intro-projet .sh p{color:var(--fg);font-size:18px;line-height:28px;max-width:52ch}
+#p-intro .ac-row{display:grid;grid-template-columns:240px minmax(0,1fr);column-gap:48px;align-items:baseline;margin-top:48px}
+#p-intro .ac-row>.lab{grid-column:1;margin:0;font:500 15px/24px var(--title);color:var(--muted)}
+#p-intro .ac-row>:last-child{grid-column:2;min-width:0}
+#p-intro .ac-row>*{max-width:none}
+#p-intro .ac-q{margin-top:64px}
+#p-intro .ac-q blockquote{margin:0;padding:0}
+#p-intro .ac-q blockquote p{margin:0;font:500 clamp(24px,2.3vw,32px)/1.35 var(--title);letter-spacing:-.015em;max-width:26ch;text-indent:-.45em;text-wrap:balance}
+#p-intro .ac-who{list-style:none;margin:0;padding:0;border-top:1px solid var(--fg)}
+#p-intro .ac-who li{display:grid;grid-template-columns:44px minmax(0,240px) minmax(0,1fr);column-gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--hair);max-width:none}
+#p-intro .ac-who .cd{justify-self:start}
+#p-intro .ac-who b{font:600 18px/26px var(--title)}
+#p-intro .ac-who li>span:last-child{font-size:17px;line-height:26px;color:var(--fg)}
+#p-intro .ac-who li.ajout>span:last-child{color:var(--muted)}
+#p-intro .aj{display:inline-block;margin-left:8px;font:500 12px/18px var(--title);font-style:normal;letter-spacing:.02em;color:var(--muted);border:1px solid currentColor;border-radius:999px;padding:0 8px;vertical-align:2px;white-space:nowrap}
+#p-intro .ac-ten{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;max-width:none}
+#p-intro .ac-ten p{margin:0;font:500 clamp(20px,1.8vw,24px)/1.35 var(--title);max-width:none}
+#p-intro .ac-ten+.cap{margin:16px 0 0;font-size:16px;line-height:24px;color:var(--muted)}
+#p-intro .ac-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:24px;max-width:none}
+#p-intro .ac-steps li{border-top:1px solid var(--fg);padding-top:16px;max-width:none}
+#p-intro .ac-steps .n{display:block;font:500 15px/24px var(--title);color:var(--muted);font-variant-numeric:tabular-nums}
+#p-intro .ac-steps b{display:block;margin-top:4px;font:500 19px/26px var(--title)}
+#p-intro .ac-obj p{margin:0;font:400 clamp(19px,1.6vw,21px)/1.55 var(--title);max-width:52ch}
+#p-intro .ac-obj p.ac-src{margin-top:16px;font:400 15px/22px var(--body);color:var(--muted)}
+#p-intro .ac-note{margin:0;font-size:16px;line-height:26px;color:var(--muted);max-width:56ch}
+#p-intro ol.dec{margin-top:48px;max-width:none}
+#p-intro ol.dec li{max-width:none}
+#p-intro .ac-lire{margin-top:48px}
+#p-intro .ac-lire>p:last-child{margin:0;font-size:15px;line-height:24px;color:var(--muted);max-width:64ch}
+#p-intro .ac-lire .lab{font-size:14px}
+#p-intro>.trans{margin-top:144px}
+@media (max-width:960px){
+ #p-intro>.sec{margin-top:96px}
+ #p-intro>.lead+.sec{margin-top:72px}
+ #p-intro>.lead{font-size:18px;line-height:28px}
+ #p-intro .sh h3{max-width:none}
+ #p-intro .ac-row{grid-template-columns:1fr;margin-top:40px}
+ #p-intro .ac-row>.lab,#p-intro .ac-row>:last-child{grid-column:1}
+ #p-intro .ac-row>.lab{margin-bottom:12px}
+ #p-intro .ac-row>span[aria-hidden]{display:none}
+ #p-intro .ac-who li{grid-template-columns:40px minmax(0,1fr);row-gap:2px;column-gap:12px}
+ #p-intro .ac-who li>span:last-child{grid-column:2}
+ #p-intro .ac-steps{grid-template-columns:1fr;row-gap:24px}
+ #p-intro>.trans{margin-top:96px}
+}
+@media (max-width:600px){
+ #p-intro .ac-ten{grid-template-columns:1fr;row-gap:24px}
+ #p-intro .ac-q blockquote p{text-indent:0}
+}
+@media print{#p-intro>.sec{margin-top:32px}#p-intro .ac-row{margin-top:16px}#p-intro>.trans{margin-top:24px}}
+</style>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -1132,38 +1320,50 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div class="hero"><p class="k">Bloc 02 · Besoins</p><h1>Besoins utilisateurs</h1><p>PFR Générations Connectées</p></div>
 <div class="srch"><label for="q">Chercher dans le dossier</label><input id="q" type="search" autocomplete="off" placeholder="photo, vendredi, déranger…" aria-controls="resl"><p id="resc" role="status" aria-live="polite" hidden></p><ul id="resl" hidden></ul></div>
 <ul class="menu" id="menu">
-<li data-p="intro"><a href="#intro"><b>01</b>Introduction</a><ul><li><a href="#intro-projet">Rappel du projet</a></li><li><a href="#intro-objectif">L'objectif</a></li><li><a href="#intro-plan">Sommaire</a></li></ul></li>
-<li data-p="methode"><a href="#methode"><b>02</b>Méthode</a><ul><li><a href="#m-profils">Qui interroger</a></li><li><a href="#m-regles">Règles d'entretien</a></li><li><a href="#m-ecarts">Retour</a></li><li><a href="#m-suite">Et ensuite</a></li></ul></li>
+<li data-p="intro"><a href="#intro"><b>01</b>Accueil</a><ul><li><a href="#intro-projet">Le projet</a></li><li><a href="#intro-objectif">Ce que nous devons faire</a></li><li><a href="#intro-plan">Le dossier</a></li></ul></li>
+<li data-p="methode"><a href="#methode"><b>02</b>Méthode</a><ul><li><a href="#m-profils">Qui interroger</a></li><li><a href="#m-regles">Règles d'entretien</a></li><li><a href="#m-guide">Le guide d'entretien</a></li><li><a href="#m-ecarts">Notre retour</a></li><li><a href="#m-suite">Des phrases aux insights</a></li></ul></li>
 <li data-p="insights"><a href="#insights"><b>03</b>Affinity map et insights</a><ul><li><a href="#a-verb">Verbatims</a></li><li><a href="#a-map">Affinity map</a></li><li><a href="#a-v1">Insights par groupe</a></li><li><a href="#a-qui-dit">Qui dit quoi</a></li></ul></li>
 <li data-p="parent"><a href="#parent"><b>04</b>Persona parent</a><ul><li><a href="#parent-fiche">Persona</a></li><li><a href="#parent-emp">Empathy map</a></li></ul></li>
 <li data-p="enfant"><a href="#enfant"><b>05</b>Persona enfant</a><ul><li><a href="#enfant-fiche">Persona</a></li><li><a href="#enfant-emp">Empathy map</a></li></ul></li>
 <li data-p="petitenfant"><a href="#petitenfant"><b>06</b>Persona petit-enfant</a><ul><li><a href="#petitenfant-fiche">Persona</a></li><li><a href="#petitenfant-emp">Empathy map</a></li></ul></li>
 <li data-p="parcours"><a href="#parcours"><b>07</b>User journey</a><ul><li><a href="#j-parent">Jacqueline, grand-parent</a></li><li><a href="#j-enfant">Sandrine, enfant</a></li><li><a href="#j-petit-enfant">Hugo, petit-enfant</a></li></ul></li>
 <li data-p="probleme"><a href="#probleme"><b>08</b>Problématique</a><ul><li><a href="#a-ins">Insights</a></li><li><a href="#pb-question">La question</a></li><li><a href="#pb-pourquoi">Pourquoi celle-ci</a></li></ul></li>
-<li data-p="annexes"><a href="#annexes"><b>09</b>Annexes</a><ul><li><a href="#a-preuves">Documents</a></li><li><a href="#a-hyp">Hypothèses de départ</a></li><li><a href="#a-figjam">Nos supports de travail</a></li><li><a href="#a-ia">IA déclarée</a></li><li><a href="#a-qui">Qui a fait quoi</a></li></ul></li>
+<li data-p="annexes"><a href="#annexes"><b>09</b>Annexes</a><ul><li><a href="#a-preuves">Documents</a></li><li><a href="#a-figjam">Nos supports de travail</a></li><li><a href="#a-ia">IA déclarée</a></li><li><a href="#a-qui">Qui a fait quoi</a></li></ul></li>
 </ul>
 <button class="theme" type="button" id="theme" aria-pressed="false" aria-label="Passer en mode sombre" title="Passer en mode sombre"></button>
 </aside>
 <main id="contenu">
 <section class="page" id="p-intro"><span class="k">01 / 09</span>
-<h2 class="t">Introduction</h2>
-<p class="lead">Ce dossier montre ce que des familles nous ont dit sur le lien avec un parent âgé, comment nous l'avons trié, et la question que nous en tirons.</p>
-<div class="sec" id="intro-projet" data-s="Rappel du projet"><div class="sh"><h3>Rassurer sans surveiller</h3><p>Le sujet du semestre : concevoir un objet connecté pour des parents âgés qui rassure leurs enfants sans placer les parents sous surveillance.</p></div>
-<div class="ctx">
-<div><em>Pour qui</em><p>Un enfant aidant de 30 à 50 ans, qui achète. Son parent âgé autonome, qui vit chez lui et utilise. Et les petits-enfants, qui font aussi vivre le lien.</p></div>
-<div><em>La tension</em><p>L'enfant veut savoir. Le parent veut rester libre. Les deux attentes peuvent s'opposer.</p></div>
+<h2 class="t">Les besoins utilisateurs, avant toute solution</h2>
+<p class="lead">Cette partie présente les besoins utilisateurs du projet : ce que des familles nous ont dit du lien avec un parent âgé, comment nous l'avons trié, et la question que nous en tirons.</p>
+<div class="sec" id="intro-projet" data-s="Le projet"><div class="sh"><h3>Le projet : rassurer sans surveiller</h3><p>Le sujet du semestre : concevoir un objet connecté pour des parents âgés qui rassure leurs enfants sans placer les parents sous surveillance.</p></div>
+<div class="ac-row ac-q"><p class="lab">La question du sujet</p>
+<blockquote><p>« Comment rassurer les enfants sans transformer le domicile des parents en poste de surveillance ? »</p></blockquote></div>
+<div class="ac-row"><p class="lab">Pour qui</p>
+<ul class="ac-who">
+<li><span class="cd en">E</span><b>L'enfant aidant</b><span>De 30 à 50 ans. C'est lui qui achète.</span></li>
+<li><span class="cd gp">S</span><b>Le parent âgé autonome</b><span>Il vit chez lui. C'est lui qui utilise.</span></li>
+<li class="ajout"><span class="cd pe">PE</span><b>Les petits-enfants <em class="aj">Notre ajout</em></b><span>Absents du sujet, nous les ajoutons : ils font aussi vivre le lien.</span></li>
+</ul></div>
+<div class="ac-row"><p class="lab">La tension</p>
+<div><div class="ac-ten"><p>L'enfant veut savoir.</p><p>Le parent veut rester libre.</p></div>
+<p class="cap">Les deux attentes peuvent s'opposer.</p></div></div>
 </div>
-<p class="qbig"><small>La question du sujet</small>« Comment rassurer les enfants sans transformer le domicile des parents en poste de surveillance ? »</p>
-<p class="note">Pendant les entretiens, nous n'avons jamais montré ni cité de solution : nous voulions comprendre les familles, pas tester un produit.</p>
+<div class="sec" id="intro-objectif" data-s="Ce que nous devons faire"><div class="sh"><h3>Ce que nous devons faire : comprendre avant de construire</h3><p>Trois étapes, dans cet ordre, avant toute idée de produit.</p></div>
+<div class="ac-row"><p class="lab">Les étapes</p>
+<ol class="ac-steps">
+<li><span class="n">1</span><b>Écouter les familles</b></li>
+<li><span class="n">2</span><b>Trier ce qu'elles disent</b></li>
+<li><span class="n">3</span><b>En tirer une problématique</b></li>
+</ol></div>
+<div class="ac-row"><p class="lab">Notre objectif de recherche</p>
+<div class="ac-obj"><p>Comprendre comment un parent âgé autonome et sa famille entretiennent le lien aujourd'hui, ce qui le fait vivre ou s'éteindre, ce qui déclenche l'achat d'un objet pour le parent, et à quelles conditions cet objet serait accepté sans être vécu comme une surveillance.</p><p class="ac-src">Notre objectif de recherche, fixé par l'équipe à l'atelier 1, le 22 octobre 2026.</p></div></div>
+<div class="ac-row"><span aria-hidden="true"></span>
+<p class="ac-note">Pendant les entretiens, nous n'avons jamais montré ni cité de solution : nous voulions comprendre les familles, pas tester un produit.</p></div>
 </div>
-<p class="flow">D'où notre objectif de recherche.</p>
-<div class="sec" id="intro-objectif" data-s="Objectif"><div class="sh"><h3>Comprendre avant de construire</h3><p>Objectif fixé par l'équipe à l'atelier 1, le 22 octobre 2026.</p></div>
-<p class="obj">Comprendre comment un parent âgé autonome et sa famille entretiennent le lien aujourd'hui, ce qui le fait vivre ou s'éteindre, ce qui déclenche l'achat d'un objet pour le parent, et à quelles conditions cet objet serait accepté sans être vécu comme une surveillance.</p>
-</div>
-<p class="flow">Voici comment le dossier y répond.</p>
 <div class="sec" id="intro-plan" data-s="Sommaire"><div class="sh"><h3>Le dossier suit les outils du cours</h3><p>De la méthode à la problématique, puis les annexes qui en sont les preuves.</p></div>
 <ol class="dec">
-<li><span class="dn">02</span><b><a href="#methode">Méthode</a></b><span>Qui nous avons interrogé, nos règles d'entretien, notre retour sur le terrain.</span></li>
+<li><span class="dn">02</span><b><a href="#methode">Méthode</a></b><span>Qui nous avons interrogé, nos règles et notre guide d'entretien, notre retour sur le terrain.</span></li>
 <li><span class="dn">03</span><b><a href="#insights">Affinity map et insights</a></b><span>Les 18 verbatims rangés en 6 groupes, et un insight par groupe.</span></li>
 <li><span class="dn">04</span><b><a href="#parent">Persona parent</a></b><span>Jacqueline et son empathy map.</span></li>
 <li><span class="dn">05</span><b><a href="#enfant">Persona enfant</a></b><span>Sandrine et son empathy map.</span></li>
@@ -1172,71 +1372,88 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <li><span class="dn">08</span><b><a href="#probleme">Problématique</a></b><span>Nos 4 insights de fin, puis notre « Comment pourrions-nous… ».</span></li>
 <li><span class="dn">09</span><b><a href="#annexes">Annexes</a></b><span>Documents, nos supports de travail, IA déclarée, qui a fait quoi.</span></li>
 </ol>
-<p class="note">Comment lire : chaque phrase porte le code de la personne qui l'a dite. <span class="cd gp">S</span> grand-parent (senior), <span class="cd en">E</span> enfant, <span class="cd pe">PE</span> petit-enfant. Le chiffre après le point est le numéro de la phrase (S4.3 = phrase 3 du senior 4). Les hypothèses s'écrivent « hyp. E3 » pour ne pas les confondre. Ce qui reste à vérifier est marqué <span class="conf">à confirmer</span>.</p>
+<div class="ac-row ac-lire"><p class="lab">Comment lire</p>
+<p>Chaque phrase porte le code de la personne qui l'a dite. <span class="cd gp">S</span> grand-parent (senior), <span class="cd en">E</span> enfant, <span class="cd pe">PE</span> petit-enfant. Le chiffre après le point est le numéro de la phrase (S4.3 = phrase 3 du senior 4). Les hypothèses s'écrivent « hyp. E3 » pour ne pas les confondre. Ce qui reste à vérifier est marqué <span class="conf">à confirmer</span>.</p></div>
 </div>
+<p class="trans">Avant les résultats, la méthode : qui nous avons écouté, comment nous avons questionné, et ce que le terrain a vraiment donné.</p>
 <p class="next"><a href="#methode">Page suivante : Méthode <span>→</span></a></p></section>
 
 <section class="page" id="p-methode"><span class="k">02 / 09</span>
 <h2 class="t">Méthode</h2>
-<p class="lead">Une seule méthode : l'entretien individuel semi-directif. Qui nous avons interrogé, comment nous avons questionné, et ce que le terrain a donné.</p>
-<div class="sec" id="m-profils" data-s="Qui interroger"><div class="sh"><h3>Neuf personnes interrogées, douze prévues</h3><p>Notre question, posée en introduction : comment une famille garde le lien avec un parent âgé autonome, sans le surveiller. Pour y répondre, nous avons prévu 12 entretiens sur trois générations : 4 parents, 5 enfants, 3 petits-enfants. Exclus : nos propres parents directs et les personnes en forte perte d'autonomie.</p></div>
-<div class="ppl">
-<div class="pg gp"><h4><span>Grands-parents</span><span>S</span></h4>
-<div class="pc"><div class="top"><b>S1</b><span>Grand-mère</span></div><p>Vit seule, autonome, au téléphone toute la journée.</p><dl><dt>Fiche</dt><dd>GP1</dd><dt>Mené par</dt><dd>Lucas</dd></dl></div>
-<div class="pc"><div class="top"><b>S2·S3</b><span>Couple, environ 80 ans</span></div><p>Interrogés ensemble, 28 min. Maison et jardin, très équipés.</p><dl><dt>Fiche</dt><dd>P2·P1 <span class="conf">à confirmer</span></dd><dt>Mené par</dt><dd>Camille</dd></dl></div>
-<div class="pc"><div class="top"><b>S4</b><span>Grand-mère</span></div><p>Photos des petits-enfants au salon. Sa fille l'appelle presque chaque jour.</p><dl><dt>Fiche</dt><dd>GP2</dd><dt>Mené par</dt><dd>Lucas</dd></dl></div>
+<p class="lead">De ce sujet et de notre objectif, nous avons tiré une démarche : choisir qui interroger sur trois générations, fixer des règles d'entretien précises, puis comparer le prévu au fait. Une seule méthode : l'entretien individuel semi-directif.</p>
+<div class="sec" id="m-profils" data-s="Qui interroger"><div class="sh"><h3>Neuf personnes interrogées, douze prévues</h3><p>Prévu : 12 entretiens sur trois générations (4 parents, 5 enfants, 3 petits-enfants). Exclus : nos propres parents directs et les personnes en forte perte d'autonomie.</p></div>
+<div class="gens">
+<div class="gen gp"><p class="gen-h"><span class="cd gp">S</span><b>Grands-parents</b><span>4 personnes</span></p>
+<div class="per"><p class="per-t"><b>S1</b>Grand-mère</p><p>Vit seule, autonome, au téléphone toute la journée.</p><p class="per-m">Fiche GP1 · Mené par Lucas</p></div>
+<div class="per"><p class="per-t"><b>S2·S3</b>Couple, environ 80 ans</p><p>Interrogés ensemble, 28 min. Maison et jardin, très équipés.</p><p class="per-m">Fiche P1·P2 · Mené par Camille</p></div>
+<div class="per"><p class="per-t"><b>S4</b>Grand-mère</p><p>Photos des petits-enfants au salon. Sa fille l'appelle presque chaque jour.</p><p class="per-m">Fiche GP2 · Mené par Lucas</p></div>
+<a class="gen-f" href="#parent">A nourri le persona Jacqueline <span aria-hidden="true">→</span></a>
 </div>
-<div class="pg en"><h4><span>Enfants</span><span>E</span></h4>
-<div class="pc"><div class="top"><b>E1</b><span>Enfant, 50-65 ans</span></div><p>Entretien de 7 min. Parents à environ 2 h. Un appel par semaine.</p><dl><dt>Fiche</dt><dd>E1</dd><dt>Mené par</dt><dd>Camille</dd></dl></div>
-<div class="pc"><div class="top"><b>E2</b><span>Enfant</span></div><p>Entretien de 6 min. Père actif, proche. Deux appels par semaine.</p><dl><dt>Fiche</dt><dd>E2</dd><dt>Mené par</dt><dd>Camille</dd></dl></div>
-<div class="pc doute"><div class="top"><b>E3</b><span>Enfant</span></div><p>Absent de la synthèse de Lucas au moment de l'écrire.</p><dl><dt>Fiche</dt><dd><span class="conf">à confirmer</span></dd><dt>Mené par</dt><dd>Lucas <span class="conf">à confirmer</span></dd></dl></div>
+<div class="gen en"><p class="gen-h"><span class="cd en">E</span><b>Enfants</b><span>3 personnes</span></p>
+<div class="per"><p class="per-t"><b>E1</b>Enfant, 50-65 ans</p><p>Entretien de 7 min. Parents à environ 2 h. Un appel par semaine.</p><p class="per-m">Fiche E1 · Mené par Camille</p></div>
+<div class="per"><p class="per-t"><b>E2</b>Enfant</p><p>Entretien de 6 min. Père actif, proche. Deux appels par semaine.</p><p class="per-m">Fiche E2 · Mené par Camille</p></div>
+<div class="per"><p class="per-t"><b>E3</b>Enfant</p><p>Enfant, entretien mené par Lucas.</p><p class="per-m">Fiche E3 · Mené par Lucas</p></div>
+<a class="gen-f" href="#enfant">A nourri le persona Sandrine <span aria-hidden="true">→</span></a>
 </div>
-<div class="pg pe"><h4><span>Petits-enfants</span><span>PE</span></h4>
-<div class="pc"><div class="top"><b>PE1</b><span>Petit-enfant</span></div><p>Grand-mère à plus de 3 h. Trois appels par an.</p><dl><dt>Fiche</dt><dd>PE3</dd><dt>Mené par</dt><dd>Clément</dd></dl></div>
-<div class="pc"><div class="top"><b>PE2</b><span>Petit-enfant, 18-25 ans</span></div><p>Deux paires de grands-parents, dont une loin.</p><dl><dt>Fiche</dt><dd>PE2</dd><dt>Mené par</dt><dd>Lucas</dd></dl></div>
+<div class="gen pe"><p class="gen-h"><span class="cd pe">PE</span><b>Petits-enfants</b><span>2 personnes</span></p>
+<div class="per"><p class="per-t"><b>PE1</b>Petit-enfant</p><p>Grand-mère à plus de 3 h. Trois appels par an.</p><p class="per-m">Fiche PE3 · Mené par Clément</p></div>
+<div class="per"><p class="per-t"><b>PE2</b>Petit-enfant, 18-25 ans</p><p>Deux paires de grands-parents, dont une loin.</p><p class="per-m">Fiche PE2 · Mené par Lucas</p></div>
+<a class="gen-f" href="#petitenfant">A nourri le persona Hugo <span aria-hidden="true">→</span></a>
 </div>
 </div>
-<p class="warn">Écart à trancher : notre tableau de tri annonce 4 enfants, mais seuls E1, E2 et E3 y ont des verbatims. Nos codes (S, E, PE) ne sont pas ceux des fiches du dépôt (GP, P, E, PE) : la correspondance ci-dessus est déduite des phrases et des auteurs des notes.</p>
+<p class="gens-note">À trancher : notre tableau de tri annonce 4 enfants, mais seuls E1, E2 et E3 y ont des verbatims. Nos codes (S, E, PE) diffèrent de ceux des fiches du dépôt (GP, P, E, PE) : la correspondance est déduite des phrases et des auteurs des notes.</p>
 </div>
-<div class="sec" id="m-regles" data-s="Règles d'entretien"><div class="sh"><h3>Faire raconter, jamais orienter</h3><p>Un guide par génération : 45 minutes pour le parent et l'enfant, 30 pour le petit-enfant. Les mêmes règles pour tous.</p></div>
-<ol class="dm"><li><span class="n">01</span><div class="bd"><b>Demander l'accord</b><p>Deux accords distincts : participer, puis être enregistré. Chacun peut passer une question ou arrêter. Dans nos notes, un code à la place du prénom, aucune ville, aucune donnée de santé.</p></div></li><li><span class="n">02</span><div class="bd"><b>Des faits, pas des opinions</b><p>On demande des moments passés et précis. Une idée par question, pas de « pourquoi » direct. Les mots qui orientent (écran, chute, seul, aidant) sont bannis. On ne montre jamais de solution.</p></div></li><li><span class="n">03</span><div class="bd"><b>Mener à deux</b><p>Un membre mène, un autre note. Le parent parle sans son enfant dans la pièce. Pour creuser : « C'est-à-dire ? », « Vous avez un exemple ? », puis cinq secondes de silence.</p></div></li><li><span class="n">04</span><div class="bd"><b>Noter à chaud</b><p>Une fiche dans les 15 minutes : ce qui est dit, ce qui est observé, ce que l'on interprète. Trois phrases recopiées mot pour mot.</p></div></li></ol>
+<p class="lien">Une fois les personnes choisies, nous avons défini des règles d'entretien communes aux trois générations.</p>
+<div class="sec" id="m-regles" data-s="Règles d'entretien"><div class="sh"><h3>Règles d'entretien : faire raconter, jamais orienter</h3><p>Quatre règles, les mêmes pour tous : obtenir l'accord, chercher des faits plutôt que des opinions, mener à deux, noter à chaud.</p></div>
+<ol class="rg">
+<li><span class="n">1</span><b>Demander l'accord</b><p>Deux accords : participer, puis être enregistré. Chacun peut passer une question ou arrêter. Dans nos notes : un code au lieu du prénom, aucune ville, aucune donnée de santé.</p></li>
+<li><span class="n">2</span><b>Des faits, pas des opinions</b><p>Des moments passés et précis, une idée par question, pas de « pourquoi » direct. Mots bannis : écran, chute, seul, aidant. Jamais de solution montrée.</p></li>
+<li><span class="n">3</span><b>Mener à deux</b><p>Un membre mène, un autre note. Le parent parle sans son enfant dans la pièce. Pour creuser : « C'est-à-dire ? », « Vous avez un exemple ? », puis cinq secondes de silence.</p></li>
+<li><span class="n">4</span><b>Noter à chaud</b><p>Une fiche dans les 15 minutes : ce qui est dit, observé, interprété. Trois phrases recopiées mot pour mot.</p></li>
+</ol>
+</div>
+<p class="lien">Ces règles posées, nous avons écrit un guide par génération pour rythmer chaque entretien.</p>
+<div class="sec" id="m-guide" data-s="Le guide d'entretien"><div class="sh"><h3>Le guide d'entretien</h3><p>Un guide par génération : 45 minutes pour le parent et l'enfant, 30 pour le petit-enfant. Notre but : amener chacun à raconter ses usages précis (comment, quand et avec qui il prend et donne des nouvelles) à partir de moments passés.</p></div>
 <h4 class="sub">Comment on questionne : un entretien en cinq temps</h4>
-<div class="tl" role="list">
-<div role="listitem" style="flex:5"><b>Mettre à l'aise</b><span>0 à 5 min</span></div>
-<div role="listitem" style="flex:9"><b>Le quotidien</b><span>5 à 14 min</span></div>
-<div role="listitem" class="hot" style="flex:18"><b>Les histoires</b><span>14 à 32 min</span></div>
-<div role="listitem" style="flex:9"><b>Approfondir</b><span>32 à 41 min</span></div>
-<div role="listitem" style="flex:4"><b>Remercier</b><span>41 à 45</span></div>
-</div>
+<p class="gi">Nous mettons d'abord la personne à l'aise, puis nous laissons la plus grande place aux histoires vécues.</p>
+<ol class="tl2">
+<li style="--d:5"><i></i><b>Mettre à l'aise</b><span>0 à 5 min</span></li>
+<li style="--d:9"><i></i><b>Le quotidien</b><span>5 à 14 min</span></li>
+<li class="hot" style="--d:18"><i></i><b>Les histoires</b><span>14 à 32 min</span></li>
+<li style="--d:9"><i></i><b>Approfondir</b><span>32 à 41 min</span></li>
+<li style="--d:4"><i></i><b>Remercier</b><span>41 à 45 min</span></li>
+</ol>
 <div class="qs">
 <blockquote><small>Ouvrir</small>« Racontez-moi votre journée d'hier, du réveil au coucher. »</blockquote>
 <blockquote><small>Faire raconter</small>« Racontez-moi la dernière fois que vous avez eu des nouvelles de vos enfants. »</blockquote>
 <blockquote><small>Fermer</small>« Y a-t-il quelque chose d'important dont on n'a pas parlé ? »</blockquote>
 </div>
 </div>
-<div class="sec" id="m-ecarts" data-s="Retour sur les entretiens"><div class="sh"><h3>Notre retour sur les entretiens</h3><p>Le terrain ne suit jamais le plan. Nous préférons montrer l'écart plutôt que le cacher.</p></div>
-<table class="pf"><thead><tr><th>Point</th><th>Prévu</th><th>Fait</th></tr></thead><tbody>
-<tr><td>Personnes interrogées</td><td>12 : 4 parents, 5 enfants, 3 petits-enfants</td><td>9 : 4 grands-parents (dont un couple), 3 enfants, 2 petits-enfants</td></tr>
-<tr><td>Durée</td><td>45 min (parent, enfant), 30 min (petit-enfant)</td><td>De 6 à 28 min pour les durées connues</td></tr>
-<tr><td>Paires parent et enfant</td><td>Trois paires interrogées séparément</td><td>Aucune</td></tr>
-<tr><td>Prise de notes</td><td>Un qui mène, un qui note</td><td>Pas toujours à deux : notes prises juste après</td></tr>
-<tr><td>Enregistrement</td><td>Seulement avec accord</td><td>Une partie enregistrée et transcrite, le reste en notes</td></tr>
-</tbody></table>
-<h4 class="sub" id="m-limites">Nos limites</h4>
-<div class="three">
-<div><b>Trop proches</b><p>Presque toutes les personnes viennent de notre entourage. Elles veulent aider et répondent parfois pour faire plaisir.</p></div>
-<div><b>Trop peu, trop courts</b><p>9 personnes, dont deux entretiens de 6 et 7 minutes pour un guide de 45. Hugo repose surtout sur un seul petit-enfant (PE1).</p></div>
-<div><b>Sources mêlées</b><p>Les empathy maps citent aussi A4 et A7, des verbatims d'exercice du cours, pas nos entretiens. Aucun parent hors entourage, aucune paire parent et enfant.</p></div>
-</div>
-
+<p class="lien">Sur le terrain, ces règles et ce guide ont rencontré la réalité des familles.</p>
+<div class="sec" id="m-ecarts" data-s="Retour sur les entretiens"><div class="sh"><h3>Notre retour sur les entretiens</h3><p>Le terrain ne suit jamais le plan. Nous montrons l'écart plutôt que de le cacher : notre retour principal, puis le prévu face au fait.</p></div>
+<div class="retour"><p class="lab">Notre retour principal</p><p>Nous n'avons pas déroulé la trame complète telle qu'elle était écrite. Elle nous a surtout servi de base de compréhension : savoir quoi questionner, puis orienter nos questions selon la personne en face et ce qu'elle racontait.</p></div>
+<table class="pvf"><thead><tr><th scope="col">Prévu</th><th scope="col">Fait</th></tr></thead>
+<tbody><tr><th scope="rowgroup" colspan="2">Personnes interrogées</th></tr><tr><td class="p">12 : 4 parents, 5 enfants, 3 petits-enfants</td><td class="f">9 : 4 grands-parents (dont un couple), 3 enfants, 2 petits-enfants</td></tr></tbody>
+<tbody><tr><th scope="rowgroup" colspan="2">Durée</th></tr><tr><td class="p">45 min (parent, enfant), 30 min (petit-enfant)</td><td class="f">De 6 à 28 min pour les durées connues</td></tr></tbody>
+<tbody><tr><th scope="rowgroup" colspan="2">Paires parent et enfant</th></tr><tr><td class="p">Trois paires interrogées séparément</td><td class="f">Aucune</td></tr></tbody>
+<tbody><tr><th scope="rowgroup" colspan="2">Prise de notes</th></tr><tr><td class="p">Un qui mène, un qui note</td><td class="f">Pas toujours à deux : notes prises juste après</td></tr></tbody>
+<tbody><tr><th scope="rowgroup" colspan="2">Enregistrement</th></tr><tr><td class="p">Seulement avec accord</td><td class="f">Une partie enregistrée et transcrite, le reste en notes</td></tr></tbody>
+</table>
 </div>
 <div class="sec" id="m-suite" data-s="Et ensuite"><div class="sh"><h3>Des phrases aux insights</h3><p>Chaque phrase entendue reçoit un code (E1.1, PE1.9…) puis rejoint celles qui disent la même chose. Six groupes émergent, quatre insights sont retenus. Ils nourrissent trois personas, leurs empathy maps et leurs parcours.</p></div>
+<ol class="chain" aria-label="De la phrase à la problématique">
+<li><b>18</b>verbatims</li>
+<li><b>6</b>groupes</li>
+<li><b>4</b>insights retenus</li>
+<li><b>3</b>personas</li>
+<li><b>1</b>problématique</li>
+</ol>
 </div>
 <p class="next"><a href="#insights">Page suivante : Affinity map et insights <span>→</span></a></p></section>
 
 <section class="page" id="p-insights"><span class="k">03 / 09</span>
 <h2 class="t">Affinity map et insights</h2>
-<p class="lead">Nos verbatims, notre affinity map, nos insights par groupe et notre grille « qui dit quoi ».</p>
+<p class="lead">Après la méthode, nos 18 verbatims : nous les rangeons en 6 groupes, en tirons un insight par groupe, puis croisons qui dit quoi.</p>
 <div class="sec" id="a-verb" data-s="Verbatims"><div class="sh"><h3>Verbatims</h3></div>
 <div class="fj"><h4 class="sub vsub">Enfants</h4><div class="vbg">
 <div class="pit en"><p>S’appelle tt les semaines le vendredi matin.</p><b class="co">E1.1</b><small>camille.breton</small></div><div class="pit en"><p>On se partage quelques fois des photos sur nos moments de vie mais rarement spontanément.</p><b class="co">E1.2</b><small>camille.breton</small></div><div class="pit en"><p>Elle veut qu’on envoie toujours + de photos de voyages ou autres.<br>Elle en veux toujours +</p><b class="co">E1.3</b><small>camille.breton</small></div><div class="pit en"><p>Quand j’ai pas de nouvelles je l’appelle.</p><b class="co">E2.1</b><small>camille.breton</small></div><div class="pit en"><p>J’oublie jamais de lui envoyer des photos et cela viens spontanément.</p><b class="co">E2.2</b><small>camille.breton</small></div><div class="pit en"><b class="co">E3.2</b><p>Parent qui reagis toujours aux photos</p><small>lucas</small></div>
@@ -1272,11 +1489,12 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 </div></div></div>
 <div class="sec" id="a-v1" data-s="Insights par groupe"><div class="sh"><h3>Insights par groupe</h3></div><div class="fj"><div class="igg"><article class="ig o"><span class="tg o">ÉCARTÉ</span><h4>Je prends des nouvelles assez régulièrement</h4><p>Les enfants et petits enfants veulent avoir des nouvelles assez régulièrement par ce que ils tiennent à garder un contact avec leurs grands parents, mais les grands parents en veulent encore plus seulement je n’ai pas ce temps à y consacrer.</p><small>PE2.6 + E1.1 et S4.3 +E1.3</small></article><article class="ig r"><span class="tg r">RETENU</span><h4>Je partage des moment de ma vie avec différente spontanéité.</h4><p>Les enfants/petits-enfants veulent partager des moments de leurs vies parce que sinon ils se sentent coupable de ne pas prendre de nouvelles , mais ils ne le font pas forcement spontanément quand ils ne sont pas proches</p><small>E1.2+ PE1.20 et E2.2</small></article><article class="ig r"><span class="tg r">RETENU</span><h4>J’ai besoin d’un contact et je le réclame</h4><p>Les grands parents veulent avoir un vrai contact social avec leur famille parce que ils en ressentent un manque et se sentent seuls, seulement les enfants et petits enfants prennent pas forcément le temps ou peuvent en consacrer qu’un petit peu.</p><small>S4.3 +E1.3 et PE2.6 +E2.1</small></article><article class="ig r"><span class="tg r">RETENU</span><h4>J’aime avoir un contact mais je ne veux pas déranger</h4><p>Les grands-parents et les petits-enfants veulent garder contact parce que ils veulent des nouvelles les uns des autres, mais ont peur de déranger.</p><small>S2.1 et PE1.16</small></article><article class="ig r"><span class="tg r">RETENU</span><h4>J’aime avoir une preuve physique plutôt que sur téléphone</h4><p>Les parents aimes avoir une photo physique car un sentiment plus profond est dévellopé via le touché, mais les enfants et petit enfant envoie plutot par le téléphone portable.</p><small>PE1.9 + S1.3 + S3.2 + S4.1</small></article><article class="ig o"><span class="tg o">ÉCARTÉ</span><h4>Je prend le temps de m’habituer à la technologie et répondre à mes enfants</h4><p>Les parents s’habituent au téléphone et répondent aux photos de leurs enfants, mais ça leur demande du temps.</p><small>E3.2 + S3.1</small></article></div><p class="igl"><span class="tg r">RETENU</span> insight gardé pour la suite <span class="tg o">ÉCARTÉ</span> insight écarté</p></div></div>
 <div class="sec" id="a-qui-dit" data-s="Qui dit quoi : coder les 18 verbatims"><div class="sh"><h3>Qui dit quoi : coder les 18 verbatims</h3><p>01 → 03 · Grille de synthèse des trois premières étapes</p></div><div class="qdq fj"><p class="qi">Une ligne par groupe de l’affinity map, une colonne par personne interrogée. Un point = la personne a un verbatim dans ce groupe. Lilas = enfant, pêche = petit-enfant, Soleil = grand-parent.</p><table class="qt"><caption class="sr">Grille : pour chaque groupe de l’affinity map, les personnes qui ont un verbatim dans ce groupe</caption><thead><tr><td></td><th scope="col" class="pp e">E1</th><th scope="col" class="pp e">E2</th><th scope="col" class="pp e">E3</th><th scope="col" class="pp p">PE1</th><th scope="col" class="pp p">PE2</th><th scope="col" class="pp g">S1</th><th scope="col" class="pp g">S2</th><th scope="col" class="pp g">S3</th><th scope="col" class="pp g">S4</th></tr></thead><tbody><tr class="o"><th scope="row"><span class="tg o">ÉCARTÉ</span><span class="lb">Je prends des nouvelles assez régulièrement</span></th><td class="has e" data-p="E1"><span class="dt e"><span class="sr">E1 : oui</span></span></td><td class="has e" data-p="E2"><span class="dt e"><span class="sr">E2 : oui</span></span></td><td data-p="E3"></td><td class="has p" data-p="PE1"><span class="dt p"><span class="sr">PE1 : oui</span></span></td><td class="has p" data-p="PE2"><span class="dt p"><span class="sr">PE2 : oui</span></span></td><td data-p="S1"></td><td data-p="S2"></td><td data-p="S3"></td><td data-p="S4"></td></tr><tr class="r"><th scope="row"><span class="tg r">RETENU</span><span class="lb">Je partage des moments de ma vie avec différente spontanéité</span></th><td class="has e" data-p="E1"><span class="dt e"><span class="sr">E1 : oui</span></span></td><td class="has e" data-p="E2"><span class="dt e"><span class="sr">E2 : oui</span></span></td><td data-p="E3"></td><td class="has p" data-p="PE1"><span class="dt p"><span class="sr">PE1 : oui</span></span></td><td data-p="PE2"></td><td data-p="S1"></td><td data-p="S2"></td><td data-p="S3"></td><td data-p="S4"></td></tr><tr class="r"><th scope="row"><span class="tg r">RETENU</span><span class="lb">J’ai besoin d’un contact et je le réclame</span></th><td class="has e" data-p="E1"><span class="dt e"><span class="sr">E1 : oui</span></span></td><td data-p="E2"></td><td data-p="E3"></td><td data-p="PE1"></td><td data-p="PE2"></td><td class="has g" data-p="S1"><span class="dt g"><span class="sr">S1 : oui</span></span></td><td data-p="S2"></td><td data-p="S3"></td><td class="has g" data-p="S4"><span class="dt g"><span class="sr">S4 : oui</span></span></td></tr><tr class="r"><th scope="row"><span class="tg r">RETENU</span><span class="lb">J’aime avoir un contact mais je ne veux pas déranger</span></th><td data-p="E1"></td><td data-p="E2"></td><td data-p="E3"></td><td class="has p" data-p="PE1"><span class="dt p"><span class="sr">PE1 : oui</span></span></td><td data-p="PE2"></td><td data-p="S1"></td><td class="has g" data-p="S2"><span class="dt g"><span class="sr">S2 : oui</span></span></td><td data-p="S3"></td><td data-p="S4"></td></tr><tr class="r"><th scope="row"><span class="tg r">RETENU</span><span class="lb">J’aime avoir une preuve physique plutôt que sur téléphone</span></th><td data-p="E1"></td><td data-p="E2"></td><td data-p="E3"></td><td class="has p" data-p="PE1"><span class="dt p"><span class="sr">PE1 : oui</span></span></td><td data-p="PE2"></td><td class="has g" data-p="S1"><span class="dt g"><span class="sr">S1 : oui</span></span></td><td data-p="S2"></td><td class="has g" data-p="S3"><span class="dt g"><span class="sr">S3 : oui</span></span></td><td class="has g" data-p="S4"><span class="dt g"><span class="sr">S4 : oui</span></span></td></tr><tr class="o"><th scope="row"><span class="tg o">ÉCARTÉ</span><span class="lb">Je prends le temps de m’habituer à la technologie et répondre à mes enfants</span></th><td data-p="E1"></td><td data-p="E2"></td><td class="has e" data-p="E3"><span class="dt e"><span class="sr">E3 : oui</span></span></td><td data-p="PE1"></td><td data-p="PE2"></td><td data-p="S1"></td><td data-p="S2"></td><td class="has g" data-p="S3"><span class="dt g"><span class="sr">S3 : oui</span></span></td><td data-p="S4"></td></tr></tbody><tfoot><tr><th scope="row" class="lt">Groupes par personne</th><td class="n" data-p="E1">3</td><td class="n" data-p="E2">2</td><td class="n" data-p="E3">1</td><td class="n" data-p="PE1">4</td><td class="n" data-p="PE2">1</td><td class="n" data-p="S1">2</td><td class="n" data-p="S2">1</td><td class="n" data-p="S3">2</td><td class="n" data-p="S4">2</td></tr></tfoot></table><p class="qb">Ce que la grille montre d’un coup d’œil : les grands-parents n’apparaissent jamais dans les deux groupes de l’initiative (prendre et partager des nouvelles), seulement là où l’on réclame, où l’on n’ose pas et où l’on garde. Le petit-fils PE1 est dans quatre groupes sur six : il a tout dit, sauf qu’il réclame. Chacun exprime au moins un thème.</p></div></div>
+<p class="trans">Ce tri nous a donné quatre insights retenus ; ils prennent maintenant un visage, en commençant par Jacqueline, notre persona grand-parent.</p>
 <p class="next"><a href="#parent">Page suivante : Persona parent <span>→</span></a></p></section>
 
 <section class="page" id="p-parent"><span class="k">04 / 09</span>
 <h2 class="t">Jacqueline, grand-parent : persona et empathy map</h2>
-<p class="lead">Notre fiche persona, puis notre empathy map.</p>
+<p class="lead">Des insights retenus, nous tirons notre premier persona : Jacqueline, la grand-mère, avec sa fiche puis son empathy map.</p>
 <div class="sec" id="parent-fiche" data-s="Persona Jacqueline"><div class="sh"><h3>Persona</h3></div>
 <div class="pers pf pf-gp"><div class="pid"><span class="pt">PERSONA GRAND-PARENT</span><div class="ph"><img src="images/persona-jacqueline.jpg" alt="Photo d’illustration du persona Jacqueline" width="779" height="570" loading="lazy"></div><h3>Jacqueline,<br>75 ans</h3><p class="who">Elle appelles chaques semaines (<span class="c2">E1.1</span>), à peut de relation avec ses petit enfant (<span class="c2">S4.3</span>) et aimes avoir des photos papier dans sa maison (<span class="c2">S4.1</span>)</p><p class="pied-p">Prénom inventé, âge pris au milieu des verbatims (60 à 80 ans)</p></div><div class="pgrid"><div><h4>Contexte</h4><p>Jacqueline habite loin de sa fille, et elle culpabilise d’être seule. <span class="c2">S1.4</span></p><p>Elle est en appelle toutes les semaine avec sa fille. <span class="c2">E1.1</span></p><p>Elle aimes bien recevoir du courier papier avec des photos imprimé ou carte postal. <span class="c2">PE1.9</span>, <span class="c2">S1.3</span></p></div><div><h4>Objectifs</h4><p>Avoir plus de relation et de nouvelles avec ses petit enfant ! , <span class="c2">S4.3</span> sans devenir insistante et déranger tout le monde. <span class="c2">S2.1</span></p></div><div><h4>Frustrations</h4><p>Elle a peur que l’on oublie sa présence du a la distance entre eux. <span class="c2">S4.3</span></p><p>Elle a peur de déranger et etre insistante sur ces différentes photos ou méssage envoyé <span class="c2">S2.1</span></p><p>Etre seule et loin de tout le monde ne facilite pas la communication et les intéraction, ce fait la frustre aussi... <span class="c2">S1.4</span></p></div><div><h4>Comportements</h4><p>Sa fille appelle chaque vendredi matin pour avoir des nouvelles et voir si tout vas bien <span class="c2">E1.1</span> De temps en temps elle regarde les photos papier accroché au mur dans son salon pour se rappeler de sa petite famille. <span class="c2">S4.1</span> Elle envoie différentes photos de sa vie ou des évènement par moment pour garder le lien familial <span class="c2">S2.1</span></p></div><div><h4>Scénario</h4><p>Un vendredi matin, Sandrine appel sa mère appel sa fille Jacqueline pour raconter sa petite semaine qui vient de se dérouler (<span class="c2">E1.1</span>)</p><p>elle en profite pour lui rappeler que ses petit enfant ne prennent pas le temps de l’appeler et que c’est fort dommage de rompre se lien de famille important. (<span class="c2">S4.3</span>) Les petit enfant envoie donc des photos par carte physique quelle reçoit 1 semaine plus tard quelle accrochera plus tard dans son salon devant son canapé (<span class="c2">S1.3</span>)</p></div><div><h4>Sources</h4><p>Verbatim élaborer suite aux interview avec 4 séniors, 3 enfants et 2 petits-enfants</p><p class="srcl"><span class="c2 chip"><span class="c2">S1.4</span></span><span class="c2 chip"><span class="c2">E1.1</span></span><span class="c2 chip"><span class="c2">PE1.9</span></span><span class="c2 chip"><span class="c2">S1.3</span></span><span class="c2 chip"><span class="c2">S4.3</span></span><span class="c2 chip"><span class="c2">S2.1</span></span><span class="c2 chip"><span class="c2">S4.3</span></span><span class="c2 chip"><span class="c2">S2.1</span></span><span class="c2 chip"><span class="c2">S4.1</span></span></p><p class="srcleg"><span class="c2">S</span> grand-parent · <span class="c2">E</span> enfant · <span class="c2">PE</span> petit-enfant. <span class="c2">S1.4</span> = personne S1, phrase 4.</p></div></div></div></div>
 <div class="sec" id="parent-emp" data-s="Empathy map Jacqueline"><div class="sh"><h3>Empathy map</h3></div><div class="empw"><div class="emp emp2" role="group" aria-label="Empathy map de Jacqueline">
@@ -1288,11 +1506,12 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div class="ez z-dit"><h4><i>4</i>Ce qu'elle dit</h4><div class="pis"><div class="pi"><span class="cd">S4.3</span>« Mes petits enfant ne m’appelles pas suffisement»</div><div class="pi"><span class="cd">S3.2</span>« Je perds beaucoup de photos sur mon téléphone»</div><div class="pi"><span class="cd">S1.3</span>« Le papier créer plus de lien»</div><div class="pi"><span class="cd">S3.1</span>« On s’habitue au téléphone et à cette technologie»</div></div></div>
 <div class="ez z-fait"><h4><i>5</i>Ce qu'elle fait</h4><div class="pis"><div class="pi"><span class="cd">E1.1</span>« J'appelle toutes les semaine »</div><div class="pi"><span class="cd">S4.1</span>«Regarde les photos papier dans son salon»</div><div class="pi"><span class="cd">S2.1</span>« J’envoie des photos quand je peux »</div><div class="pi"><span class="cd">S3.2</span>« Je perds les photos sur mon téléphone »</div></div></div>
 </div></div></div>
+<p class="trans">Jacqueline montre celle qui attend des nouvelles sans oser déranger ; nous passons à Sandrine, l'enfant qui porte le lien.</p>
 <p class="next"><a href="#enfant">Page suivante : Persona enfant <span>→</span></a></p></section>
 
 <section class="page" id="p-enfant"><span class="k">05 / 09</span>
 <h2 class="t">Sandrine, enfant : persona et empathy map</h2>
-<p class="lead">Notre fiche persona, puis notre empathy map.</p>
+<p class="lead">Après la grand-mère, l'enfant : Sandrine, 50 ans, qui appelle sa mère chaque vendredi, avec sa fiche puis son empathy map.</p>
 <div class="sec" id="enfant-fiche" data-s="Persona Sandrine"><div class="sh"><h3>Persona</h3></div>
 <div class="pers pf pf-en"><div class="pid"><span class="pt">PERSONA ENFANT</span><figure class="ph"><img src="images/persona-sandrine.jpg" alt="Photo d’illustration du persona Sandrine" width="779" height="570" loading="lazy"></figure><h3>Sandrine,<br>50 ans</h3></div><div class="pgrid"><div><h4>Contexte</h4><p>Elle l'appelle tous les vendredis matins (<span class="c2">E1.1</span>). Sa mère est veuve et seule dans sa maison, elle en est triste (<span class="c2">S1.4</span>) et dit toujours à Sandrine qu’elle prends pas assez de nouvelles (<span class="c2">E1.1</span>)</p></div><div><h4>Objectifs</h4><p>Elle veut toujours avoir un contact avec sa mère pour savoir si elle va bien (<span class="c2">E1.1</span>), elle veut l’aider à se sentir mieux (<span class="c2">S1.4</span>) et aider ses enfants à prendre des nouvelles (<span class="c2">PE1.20</span>) et/ou à les tenir au courant. (<span class="c2">PE1.16</span>)</p></div><div><h4>Frustrations</h4><p>Sa mère est seule et en manque de liens sociaux, ce qui lui pèse.(<span class="c2">S1.4</span>) De plus, elle veux davantage de contact qu’il y en a déjà alors qu’elle fais déjà de son mieux. (<span class="c2">E1.3</span>) Et elle se doit de prendre un temps pour transformer des photos en papier pour sa mère. (<span class="c2">S1.3</span>)</p></div><div><h4>Comportements</h4><p>Elle appelle sa mère le vendredi matin toutes les semaines pour prendre des nouvelles (<span class="c2">E1.1</span>), elle lui partage aussi quelque fois des photos sur ses moments de vie (<span class="c2">E1.2</span>) et partage à ses enfants des nouvelles de sa mère (<span class="c2">PE1.16</span>) , ceux-ci se prenant pas ou très peu de nouvelles de leur grand mère. (<span class="c2">PE1.20</span>)</p></div><div><h4>Scénario</h4><p>Un vendredi matin, Sandrine appelle sa mère, qui lui confie avoir passé une semaine triste et difficile, seule. Sandrine culpabilise de ne pas avoir pris le temps de s’occuper d’elle. Elle tente de lui remonter le moral en lui demandant des nouvelles. Au fil de la conversation, elle apprend ce que sa mère a fait pendant la semaine et lui fait gentiment remarquer qu’elle aurait pu lui envoyer des photos.</p></div><div><h4>Sources</h4><p class="srcl"><span class="c2 chip"><span class="c2">E1.1</span></span><span class="c2 chip"><span class="c2">S1.4</span></span><span class="c2 chip"><span class="c2">PE1.20</span></span><span class="c2 chip"><span class="c2">PE1.16</span></span><span class="c2 chip"><span class="c2">S1.4</span></span><span class="c2 chip"><span class="c2">E1.3</span></span><span class="c2 chip"><span class="c2">S1.3</span></span><span class="c2 chip"><span class="c2">E1.2</span></span></p><p class="srcleg"><span class="c2">S</span> grand-parent · <span class="c2">E</span> enfant · <span class="c2">PE</span> petit-enfant. <span class="c2">S1.4</span> = personne S1, phrase 4.</p></div></div></div></div>
 <div class="sec" id="enfant-emp" data-s="Empathy map Sandrine"><div class="sh"><h3>Empathy map</h3></div><div class="empw"><div class="emp emp2" role="group" aria-label="Empathy map de Sandrine">
@@ -1304,11 +1523,12 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div class="ez z-dit"><h4><i>4</i>Ce qu'elle dit</h4><div class="pis"><div class="pi"><span class="cd">E2.1</span>Quand j’ai pas de nouvelle je l’appelle.</div><div class="pi"><span class="cd">S2.1</span>Non maman quand tu m’envoies des photos tu me déranges pas, je suis juste occupée.</div></div></div>
 <div class="ez z-fait"><h4><i>5</i>Ce qu'elle fait</h4><div class="pis"><div class="pi"><span class="cd">E1.1</span>Appelle toutes les semaines le vendredi matin</div><div class="pi"><span class="cd">E1.2</span>Partage quelques fois des photos sur ses moments de vie.</div><div class="pi"><span class="cd">PE1.16</span>Partage a ses enfants les nouvelles de sa mère.</div></div></div>
 </div></div></div>
+<p class="trans">Sandrine fait déjà sa part et porte tout le lien ; nous regardons maintenant Hugo, le petit-fils qui n'a pas le réflexe des nouvelles.</p>
 <p class="next"><a href="#petitenfant">Page suivante : Persona petit-enfant <span>→</span></a></p></section>
 
 <section class="page" id="p-petitenfant"><span class="k">06 / 09</span>
 <h2 class="t">Hugo, petit-enfant : persona et empathy map</h2>
-<p class="lead">Notre fiche persona, puis notre empathy map.</p>
+<p class="lead">Troisième génération : Hugo, 18 ans, le petit-fils qui culpabilise de ne pas donner de nouvelles, avec sa fiche puis son empathy map.</p>
 <div class="sec" id="petitenfant-fiche" data-s="Persona Hugo"><div class="sh"><h3>Persona</h3></div>
 <div class="pers pf pf-pe"><div class="pid"><span class="pt">PERSONA PETIT-ENFANT</span><figure class="ph"><img src="images/persona-hugo.jpg" alt="Photo d’illustration du persona Hugo" width="779" height="570" loading="lazy"></figure><h3>Hugo,<br>18 ans</h3><p class="who">“Parfois je me sens coupable de ne pas prendre de nouvelles.” (<span class="c2">PE1.20</span>)</p></div><div class="pgrid"><div><h4>Contexte</h4><p>Hugo, 18 ans, petit-fils. Sa grand-mère vit seule et a des moments de tristesse qu'elle ne dit pas vraiment. (<span class="c2">S1.4</span>) Le lien passe par ses parents : ce sont eux qui l'appellent chaque semaine (<span class="c2">E1.1</span>)et qui envoient les photos. (<span class="c2">E2.2</span>) Lui n'a de ses nouvelles que par sa mère. (<span class="c2">PE1.16</span>) L'appel direct n'arrive qu'aux grandes dates. (<span class="c2">PE1.6</span>)</p></div><div><h4>Objectifs</h4><p>Savoir par lui-même si elle va bien, sans passer par sa mère. (<span class="c2">PE1.16</span>) Donner des nouvelles sans que ce soit un effort. (<span class="c2">PE1.9</span>) Tenir un rythme qu'il peut suivre, comme un appel toutes les deux semaines. (<span class="c2">PE2.6</span>) Ne plus se sentir coupable. (<span class="c2">PE1.20</span>)</p></div><div><h4>Frustrations</h4><p>Il culpabilise de ne pas prendre de nouvelles. (<span class="c2">PE1.20</span>) Les cartes postales, il les envoie, mais ce n'est pas un réflexe. (<span class="c2">PE1.9</span>) Il entend que “les petits-enfants n'appellent pas assez.” (<span class="c2">S4.3</span>) De son côté, sa grand-mère n'ose pas envoyer ses photos par peur de le déranger. (<span class="c2">S2.1</span>) Chacun attend l'autre.</p></div><div><h4>Comportements</h4><p>Appelle aux grandes dates : anniversaires, Noël, Pâques. (<span class="c2">PE1.6</span>) Envoie une carte postale de temps en temps. (<span class="c2">PE1.9</span>) Prend des nouvelles par sa mère. (<span class="c2">PE1.16</span>) Laisse ses parents tenir l'appel hebdomadaire et les photos. (<span class="c2">E1.1</span>, <span class="c2">E2.2</span>)</p></div><div><h4>Scénario</h4><p>Noël passe, Hugo appelle sa grand-mère. (<span class="c2">PE1.6</span>) Les semaines suivantes, plus rien, il sait qu'elle va bien parce que sa mère lui dit. (<span class="c2">PE1.16</span>) Un soir, il se sent coupable (<span class="c2">PE1.20</span>) et pense à une carte postale, mais ce n'est pas un réflexe. (<span class="c2">PE1.9</span>) Pendant ce temps, sa grand-mère regarde les photos du salon plusieurs fois par jour, (<span class="c2">S4.1</span>) trouve que ses petits-enfants n'appellent pas assez (<span class="c2">S4.3</span>) et n'ose pas envoyer les siennes de peur de déranger. (<span class="c2">S2.1</span>)</p></div><div><h4>Sources</h4><p class="srcl"><span class="c2 chip"><span class="c2">PE1.6</span></span><span class="c2 chip"><span class="c2">PE1.9</span></span><span class="c2 chip"><span class="c2">PE1.16</span></span><span class="c2 chip"><span class="c2">PE1.20</span></span><span class="c2 chip"><span class="c2">PE2.6</span></span><span class="c2 chip"><span class="c2">E1.1</span></span><span class="c2 chip"><span class="c2">E2.2</span></span><span class="c2 chip"><span class="c2">S1.4</span></span><span class="c2 chip"><span class="c2">S2.1</span></span><span class="c2 chip"><span class="c2">S4.1</span></span><span class="c2 chip"><span class="c2">S4.3</span></span></p><p class="srcleg"><span class="c2">S</span> grand-parent · <span class="c2">E</span> enfant · <span class="c2">PE</span> petit-enfant. <span class="c2">S1.4</span> = personne S1, phrase 4.</p></div></div></div></div>
 <div class="sec" id="petitenfant-emp" data-s="Empathy map Hugo"><div class="sh"><h3>Empathy map</h3></div><div class="empw"><div class="emp emp2" role="group" aria-label="Empathy map de Hugo">
@@ -1320,11 +1540,12 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div class="ez z-dit"><h4><i>4</i>Ce qu'il dit</h4><div class="pis"><div class="pi"><span class="cd">PE1.20</span>“Parfois je me sens coupable de ne pas prendre de nouvelles.”</div><div class="pi"><span class="cd">PE1.9</span>“Je lui envoie des cartes postales mais c'est pas un réflexe.”</div></div></div>
 <div class="ez z-fait"><h4><i>5</i>Ce qu'il fait</h4><div class="pis"><div class="pi"><span class="cd">PE1.9</span>Je lui envoie des cartes postales</div><div class="pi"><span class="cd">PE1.6</span>Je l’appelle lorsqu’il y a une date importante</div><div class="pi"><span class="cd">PE1.16</span>Prend des nouvelles par sa mère, jamais en direct.</div></div></div>
 </div></div></div>
+<p class="trans">Nos trois personas sont posés ; nous les suivons maintenant étape par étape pour repérer où naissent leurs frictions.</p>
 <p class="next"><a href="#parcours">Page suivante : User journey <span>→</span></a></p></section>
 
 <section class="page" id="p-parcours"><span class="k">07 / 09</span>
 <h2 class="t">User journey</h2>
-<p class="lead">Nos trois parcours : étapes, actions, pensées, émotion, frictions, opportunités. Le scénario et les sources de chaque personne sont sur sa fiche persona.</p>
+<p class="lead">Après les personas, leurs parcours : étapes, actions, pensées, émotion, frictions et opportunités de Jacqueline, Sandrine et Hugo.</p>
 <div class="sec" id="j-parent" data-s="User journey Jacqueline"><div class="sh"><h3>Jacqueline, grand-parent : elle attend le vendredi sans rien envoyer</h3></div><div class="jb"><span class="jpill">USER JOURNEY · GRAND-PARENT</span><h4 class="jt">Anatomie d’un parcours : Jacqueline, Parent, Grand parent</h4><div class="jm" role="region" aria-label="User journey de Jacqueline" tabindex="0"><div class="jm-g" style="--n:6"><div class="jl">Étapes</div>
 <div class="js">Décrocher</div>
 <div class="js">Se plaindre</div>
@@ -1361,11 +1582,12 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div class="jl">Émotion</div><div class="em neu">Neutre</div><div class="em neg bd">Culpabilité</div><div class="em neu">Hésitant</div><div class="em neg bd">Résigné</div><div class="em pos bd">Content</div><div class="em neg bd">Culpabilité</div>
 <div class="jl">Frictions</div><div>Jamais de nouvelles en direct</div><div class="cx">Pas le réflexe de prendre contact <span class="sr" style="position:absolute;left:-9999px">(croix de l’équipe)</span></div><div>Rien de simple entre l’appel et la carte</div><div>Elle trouve que ses petits enfants n’appellent pas assez</div><div>Rien entre deux dates</div><div>Elle vit seule et s’ennuie, elle n’ose pas déranger</div>
 <div class="jl">Opportunités</div><div>Savoir par lui-même si elle va bien</div><div>Avoir une solution qui permet de penser à elle plus régulièrement</div><div class="cx">Un geste aussi simple qu’un message <span class="sr" style="position:absolute;left:-9999px">(croix de l’équipe)</span></div><div>Un rappel discret qui garde le réflexe</div><div>Un rythme qu’il peut tenir, un appel toutes les deux semaines</div><div>Un lien direct entre eux deux, sans passer par sa mère</div></div></div><p class="jleg"><span>Couleur de la case Émotion :</span><span class="neg">Négative</span><span class="neu">Neutre</span><span class="pos">Positive</span><span class="x">Croix posée par l’équipe</span></p></div></div>
+<p class="trans">Les trois parcours butent au même endroit, entre deux appels ; nous en tirons nos insights de fin et notre problématique.</p>
 <p class="next"><a href="#probleme">Page suivante : Problématique <span>→</span></a></p></section>
 
 <section class="page" id="p-probleme"><span class="k">08 / 09</span>
 <h2 class="t">Problématique</h2>
-<p class="lead">La question que nous retenons, et son raisonnement.</p>
+<p class="lead">De nos trois personas et de leurs parcours, nous tirons quatre insights de fin, puis la question que nous retenons et son raisonnement.</p>
 <div class="sec" id="a-ins" data-s="Insights"><div class="insf"><h3>Un appel par semaine, et entre les deux, plus rien.</h3><article class="icard" id="i1" data-s="Insight 1 · Sandrine, l’enfant"><p class="il">INSIGHT 1 · SANDRINE, L’ENFANT</p><p class="it">Le parent veut que le lien avec sa mère ne repose pas que sur son appel du vendredi parce qu’elle veut que sa mère aille bien et se sente moins seule, mais elle fait déjà sa part et sa mère en veut toujours plus.</p></article><article class="icard" id="i2" data-s="Insight 2 · Jacqueline, la grand-mère"><p class="il">INSIGHT 2 · JACQUELINE, LA GRAND-MÈRE</p><p class="it">Le grand-parent veut recevoir des nouvelles de ses petits-enfants parce que vivre seule lui pèse et que leurs photos sont ce qu’elle regarde le plus dans la journée, mais elle n’ose pas les réclamer de peur de déranger.</p></article><article class="icard" id="i3" data-s="Insight 3 · Hugo, le petit-fils"><p class="il">INSIGHT 3 · HUGO, LE PETIT-FILS</p><p class="it">Le petit-fils veut donner des nouvelles à sa grand-mère parce qu’il culpabilise de ne pas le faire, mais il n’en a pas le réflexe et n’appelle qu’aux grandes dates.</p></article><article class="icard cle" id="i4" data-s="Insight 4 · La tension commune"><p class="il">INSIGHT 4 · LA TENSION COMMUNE</p><p class="it">La famille veut que les nouvelles circulent entre deux appels parce que chacun veut savoir que l’autre va bien, mais la grand-mère n’ose pas, le petit-enfant n’y pense pas et chacun attend que l’autre fasse le premier pas.</p></article></div></div>
 <div class="hmw pbf" id="pb-question" data-s="Comment pourrions-nous"><h3>Problématique</h3><div class="pbtxt"><p>La famille veut que les nouvelles circulent entre deux appels, parce que chacun veut savoir que l’autre va bien : l’enfant appelle chaque semaine, la grand-mère attend des signes, le petit-enfant culpabilise de ne pas en donner.</p>
 <p>Mais tout repose sur l’appel de l’enfant. La grand-mère n’ose pas envoyer de peur de déranger, le petit-enfant n’en a pas le réflexe, et chacun attend que l’autre fasse le premier pas.</p>
@@ -1377,11 +1599,12 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div><b>« Donner et recevoir, sans peur de déranger »</b><p>Jacqueline n'ose pas réclamer, Hugo n'y pense pas : les nouvelles doivent pouvoir partir des deux côtés (<a href="#i2">insights 2</a> et <a href="#i3">3</a>).</p></div>
 </div>
 </div>
+<p class="trans">Notre question porte sur les nouvelles entre deux appels ; les annexes rassemblent maintenant les preuves de chaque étape qui y a mené.</p>
 <p class="next"><a href="#annexes">Page suivante : Annexes <span>→</span></a></p></section>
 
 <section class="page" id="p-annexes"><span class="k">09 / 09</span>
 <h2 class="t">Annexes</h2>
-<p class="lead">Les preuves de tout ce qui précède : nos documents, nos hypothèses de départ, nos supports de travail, l'usage de l'IA et qui a fait quoi.</p>
+<p class="lead">Voici nos preuves de tout ce qui précède : documents, hypothèses de départ, supports de travail, usage de l'IA et qui a fait quoi.</p>
 <div class="sec" id="a-preuves" data-s="Les documents"><div class="sh"><h3>Guides et comptes rendus</h3><p>Chaque document est dans le dépôt de l'équipe. Les notes brutes et les enregistrements restent hors du dépôt.</p></div>
 <div class="tw"><table><thead><tr><th>Document</th><th>Ce qu'il prouve</th><th>Auteur</th></tr></thead><tbody>
 <tr><td><a href="../../../rendus/2-2-hypotheses-critiques-equipe.html">Hypothèses critiques</a></td><td>Les 20 hypothèses, leur tri, les 6 critiques.</td><td>Équipe</td></tr>
@@ -1394,40 +1617,6 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <tr><td><a href="../../lucas/2-5-synthese-entretiens-famille.html">Synthèse famille</a></td><td>PE2, GP1 et GP2 (S1 et S4 sur le tableau).</td><td>Lucas</td></tr>
 <tr><td><a href="../2-4-parcours-familles-test.html">Parcours familles (test)</a></td><td>Première esquisse de parcours, avant notre tableau.</td><td>Camille</td></tr>
 </tbody></table></div>
-</div>
-<div class="sec" id="a-hyp" data-s="Hypothèses de départ"><div class="sh"><h3>Hypothèses de départ</h3><p>Pour mémoire. 20 hypothèses écrites avant le terrain (10 sur le parent, 10 sur l'enfant), classées de la plus risquée à la moins risquée. Si l'une de ces six est fausse, notre piste de départ perd son sens.</p></div>
-<div class="hyp">
-<div class="hg gp"><h4>Côté parent</h4>
-<div class="hc"><span class="c">P1</span><b>Partager seulement si c'est son choix</b><p>Le parent accepte de donner une information sur lui quand il décide, et la refuse quand l'enfant l'impose.</p><span class="vd tend v">Tendance +</span></div>
-<div class="hc"><span class="c">P2</span><b>Recevoir, puis répondre par la voix</b><p>Le parent apprécie les nouvelles, mais remercie par téléphone, pas par le service.</p><span class="vd ko v">Fragilisée : la réponse écrite existe</span></div>
-<div class="hc"><span class="c">P4</span><b>Un écran ne s'adopte pas seul</b><p>Le parent n'adopte un écran que si quelqu'un l'accompagne au départ.</p><span class="vd none v">Sans donnée</span></div>
-</div>
-<div class="hg en"><h4>Côté enfant</h4>
-<div class="hc"><span class="c">E1</span><b>L'oubli au moment de partager</b><p>Les enfants partagent leurs photos partout, sauf avec leur parent.</p><span class="vd ok v">Appuyée</span></div>
-<div class="hc"><span class="c">E2</span><b>Le lien s'achète avant l'incident</b><p>On offre un objet de lien sans attendre une chute, souvent en cadeau.</p><span class="vd none v">Sans donnée</span></div>
-<div class="hc risk"><span class="rk">La plus risquée</span><span class="c">E3</span><b>La corvée</b><p>Les enfants arrêtent d'alimenter un service dès qu'il demande un geste régulier.</p><span class="vd mix v">Partagée</span></div>
-</div>
-</div>
-<h4 class="sub">Ce que chaque entretien dit des six hypothèses</h4>
-<p class="muted">Une ligne par hypothèse, une colonne par personne interrogée (notre code, puis celui de la fiche). La dernière colonne donne notre lecture. Aucun seuil « 3 sur 5 » n'est atteint : ce sont des tendances.</p>
-<p class="lgd"><span><span class="sig p">+ appuie</span>l'entretien va dans son sens</span><span><span class="sig m">− contredit</span>il la dément</span><span><span class="sig f">? flou</span>on ne peut pas trancher</span><span><span class="sig n">· non testée</span>la question n'a pas été posée</span></p>
-<div class="tw"><table class="mx"><caption class="muted" style="caption-side:bottom;text-align:left;padding-top:8px;font-size:14px">S2 et S3 ont été interrogés ensemble : une seule colonne. E3 n'a pas de fiche dans le dépôt : pas de colonne.</caption><thead>
-<tr class="grp"><th></th><th class="gp" colspan="3">Grands-parents</th><th class="en" colspan="2">Enfants</th><th class="pe" colspan="2">Petits-enfants</th><th></th></tr>
-<tr><th></th><th scope="col">S1<small>GP1</small></th><th scope="col">S2·S3<small>P1·P2</small></th><th scope="col">S4<small>GP2</small></th><th scope="col">E1<small>E1</small></th><th scope="col">E2<small>E2</small></th><th scope="col">PE1<small>PE3</small></th><th scope="col">PE2<small>PE2</small></th><th style="text-align:left;padding-left:10px">Lecture</th></tr>
-</thead><tbody>
-<tr><th scope="row">Hyp. E1<small>L'oubli au moment de partager</small></th><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd ok">Appuyée</span></td></tr>
-<tr><th scope="row">Hyp. P2<small>Répondre par la voix</small></th><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd ko">Fragilisée</span></td></tr>
-<tr><th scope="row">Hyp. E3<small>La corvée</small></th><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd mix">Partagée</span></td></tr>
-<tr><th scope="row">Hyp. P1<small>Partager si c'est son choix</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd tend">Tendance +</span></td></tr>
-<tr><th scope="row">Hyp. P4<small>Un écran ne s'adopte pas seul</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd none">Sans donnée</span></td></tr>
-<tr><th scope="row">Hyp. E2<small>Le lien s'achète avant l'incident</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd none">Sans donnée</span></td></tr>
-</tbody></table></div>
-<h4 class="sub">Hyp. E3, l'appel régulier : partagée</h4>
-<p>Les deux lectures sont vraies à la fois. L'appel tient chaque semaine, sans effort : cela contredit la « corvée ». Mais l'envoi de photos ou de cartes ne devient pas un geste régulier : cela l'appuie.</p>
-<div class="vb">
-<figure class="q"><blockquote>« On s’appelle toutes les semaines le vendredi matin. »</blockquote><figcaption><b>E1.1</b>enfant · contre hyp. E3 : l'appel tient</figcaption></figure>
-<figure class="q"><blockquote>« Je lui envoie des cartes postales mais c’est pas un réflexe. »</blockquote><figcaption><b>PE1.9</b>petit-enfant · pour hyp. E3 : le geste ne tient pas</figcaption></figure>
-</div>
 </div>
 <div class="sec" id="a-figjam" data-s="Nos supports de travail"><div class="sh"><h3>Nos supports de travail</h3><p>Notre tableau « fil rouge B2 », découpé en extraits lisibles : 15 images, dans l'ordre du tableau. Cliquer ouvre l'image en grand.</p></div>
 <div class="shots"><figure><a href="images/figjam-verbatims.jpg" target="_blank" rel="noopener"><img src="images/figjam-verbatims.jpg" alt="Extrait de notre tableau : Verbatims" loading="lazy" width="1696" height="1634"></a><figcaption>Verbatims<small>Les 18 phrases, par public.</small></figcaption></figure><figure><a href="images/figjam-affinity-map.jpg" target="_blank" rel="noopener"><img src="images/figjam-affinity-map.jpg" alt="Extrait de notre tableau : Affinity map" loading="lazy" width="2256" height="1662"></a><figcaption>Affinity map<small>Les 6 groupes et leurs post-its.</small></figcaption></figure><figure><a href="images/figjam-insights-groupes.jpg" target="_blank" rel="noopener"><img src="images/figjam-insights-groupes.jpg" alt="Extrait de notre tableau : Insights par groupe" loading="lazy" width="2400" height="991"></a><figcaption>Insights par groupe<small>Retenu ou écarté, groupe par groupe.</small></figcaption></figure><figure><a href="images/figjam-qui-dit-quoi.jpg" target="_blank" rel="noopener"><img src="images/figjam-qui-dit-quoi.jpg" alt="Extrait de notre tableau : Qui dit quoi" loading="lazy" width="2400" height="1103"></a><figcaption>Qui dit quoi<small>La grille des 18 verbatims.</small></figcaption></figure><figure><a href="images/figjam-persona-sandrine.jpg" target="_blank" rel="noopener"><img src="images/figjam-persona-sandrine.jpg" alt="Extrait de notre tableau : Persona de Sandrine" loading="lazy" width="2400" height="1474"></a><figcaption>Persona de Sandrine<small>La fiche persona.</small></figcaption></figure><figure><a href="images/figjam-persona-jacqueline.jpg" target="_blank" rel="noopener"><img src="images/figjam-persona-jacqueline.jpg" alt="Extrait de notre tableau : Persona de Jacqueline" loading="lazy" width="2296" height="1562"></a><figcaption>Persona de Jacqueline<small>La fiche persona.</small></figcaption></figure><figure><a href="images/figjam-persona-hugo.jpg" target="_blank" rel="noopener"><img src="images/figjam-persona-hugo.jpg" alt="Extrait de notre tableau : Persona de Hugo" loading="lazy" width="2400" height="1368"></a><figcaption>Persona de Hugo<small>La fiche persona.</small></figcaption></figure><figure><a href="images/figjam-empathy-sandrine.jpg" target="_blank" rel="noopener"><img src="images/figjam-empathy-sandrine.jpg" alt="Extrait de notre tableau : Empathy map de Sandrine" loading="lazy" width="2400" height="1776"></a><figcaption>Empathy map de Sandrine<small>Les 7 zones.</small></figcaption></figure><figure><a href="images/figjam-empathy-jacqueline.jpg" target="_blank" rel="noopener"><img src="images/figjam-empathy-jacqueline.jpg" alt="Extrait de notre tableau : Empathy map de Jacqueline" loading="lazy" width="2400" height="1753"></a><figcaption>Empathy map de Jacqueline<small>Les 7 zones.</small></figcaption></figure><figure><a href="images/figjam-empathy-hugo.jpg" target="_blank" rel="noopener"><img src="images/figjam-empathy-hugo.jpg" alt="Extrait de notre tableau : Empathy map de Hugo" loading="lazy" width="2400" height="1753"></a><figcaption>Empathy map de Hugo<small>Les 7 zones.</small></figcaption></figure><figure><a href="images/figjam-journey-sandrine.jpg" target="_blank" rel="noopener"><img src="images/figjam-journey-sandrine.jpg" alt="Extrait de notre tableau : User journey de Sandrine" loading="lazy" width="2400" height="1175"></a><figcaption>User journey de Sandrine<small>Six étapes, deux croix.</small></figcaption></figure><figure><a href="images/figjam-journey-jacqueline.jpg" target="_blank" rel="noopener"><img src="images/figjam-journey-jacqueline.jpg" alt="Extrait de notre tableau : User journey de Jacqueline" loading="lazy" width="2400" height="1175"></a><figcaption>User journey de Jacqueline<small>Six étapes, deux croix.</small></figcaption></figure><figure><a href="images/figjam-journey-hugo.jpg" target="_blank" rel="noopener"><img src="images/figjam-journey-hugo.jpg" alt="Extrait de notre tableau : User journey de Hugo" loading="lazy" width="2400" height="1126"></a><figcaption>User journey de Hugo<small>Six étapes, deux croix.</small></figcaption></figure><figure><a href="images/figjam-insights-fin.jpg" target="_blank" rel="noopener"><img src="images/figjam-insights-fin.jpg" alt="Extrait de notre tableau : Insights de fin" loading="lazy" width="2400" height="998"></a><figcaption>Insights de fin<small>Quatre insights, dont la tension commune.</small></figcaption></figure><figure><a href="images/figjam-problematique.jpg" target="_blank" rel="noopener"><img src="images/figjam-problematique.jpg" alt="Extrait de notre tableau : Problématique" loading="lazy" width="2400" height="799"></a><figcaption>Problématique<small>Notre question « Comment pourrions-nous… ».</small></figcaption></figure></div>
@@ -1449,6 +1638,7 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 </div>
 <p class="note">Affinity map, insights retenus et problématique : toute l’équipe (Lucas Gâteau, Clément Gosselin, Camille Breton).</p>
 </div>
+<p class="trans">Ces documents bouclent notre dossier, des entretiens à la problématique ; le retour au début ramène à l'accueil et au sommaire.</p>
 <p class="next"><a href="#intro">Retour au début <span>→</span></a></p>
 <footer class="pied">Dossier « Besoins utilisateurs », PFR Générations Connectées, Ynov Bordeaux, novembre 2026. Codes anonymes uniquement. Les prénoms des personas sont inventés.</footer>
 </section>
