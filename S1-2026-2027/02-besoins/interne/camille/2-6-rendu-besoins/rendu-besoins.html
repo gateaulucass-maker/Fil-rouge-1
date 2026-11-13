@@ -814,9 +814,9 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 .vd.ok::before{background:#3E9B6E}.vd.tend::before{background:none;box-shadow:inset 0 0 0 2px #3E9B6E}.vd.mix::before{background:#E0A800}.vd.ko::before{background:#D9714E}
 .pc.doute{border-bottom-style:dashed}
 .dm{list-style:none;margin:0;padding:0;max-width:none}.dm>li{max-width:none}
-.dm li{display:grid;grid-template-columns:72px minmax(0,1fr) 260px;gap:8px 32px;padding:28px 0;border-top:1px solid var(--hair)}
+.dm li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:8px 24px;padding:20px 0;border-top:1px solid var(--hair)}
 .dm li:last-child{border-bottom:1px solid var(--hair)}
-.dm .n{font:600 40px/1 var(--title);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px var(--muted)}
+.dm .n{font:600 28px/1 var(--title);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px var(--muted)}
 .dm .bd small{display:block;font:500 12px/16px var(--title);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .dm .bd b{display:block;font:600 21px/28px var(--title);letter-spacing:-.01em}
 .dm .bd p{margin:8px 0 0;font-size:16px;line-height:26px;max-width:58ch}
@@ -847,14 +847,14 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div class="srch"><label for="q">Chercher dans le dossier</label><input id="q" type="search" autocomplete="off" placeholder="photo, vendredi, déranger…" aria-controls="resl"><p id="resc" role="status" aria-live="polite" hidden></p><ul id="resl" hidden></ul></div>
 <ul class="menu" id="menu">
 <li data-p="intro"><a href="#intro"><b>01</b>Introduction</a><ul><li><a href="#intro-projet">Rappel du projet</a></li><li><a href="#intro-objectif">L'objectif</a></li><li><a href="#intro-plan">Sommaire</a></li></ul></li>
-<li data-p="methode"><a href="#methode"><b>02</b>Méthode</a><ul><li><a href="#m-hyp">Hypothèses</a></li><li><a href="#m-methodes">La démarche</a></li><li><a href="#m-guide">Le guide</a></li><li><a href="#m-profils">Profils interrogés</a></li><li><a href="#m-ecarts">Prévu et fait</a></li><li><a href="#m-limites">Limites</a></li></ul></li>
+<li data-p="methode"><a href="#methode"><b>02</b>Méthode</a><ul><li><a href="#m-profils">Qui interroger</a></li><li><a href="#m-regles">Règles d'entretien</a></li><li><a href="#m-ecarts">Retour</a></li><li><a href="#m-suite">Et ensuite</a></li></ul></li>
 <li data-p="insights"><a href="#insights"><b>03</b>Affinity map et insights</a><ul><li><a href="#a-verb">Verbatims</a></li><li><a href="#a-map">Affinity map</a></li><li><a href="#a-v1">Insights par groupe</a></li><li><a href="#a-ins">Insights</a></li></ul></li>
 <li data-p="parent"><a href="#parent"><b>04</b>Persona parent</a><ul><li><a href="#parent-fiche">Persona</a></li><li><a href="#parent-emp">Empathy map</a></li></ul></li>
 <li data-p="enfant"><a href="#enfant"><b>05</b>Persona enfant</a><ul><li><a href="#enfant-fiche">Persona</a></li><li><a href="#enfant-emp">Empathy map</a></li></ul></li>
 <li data-p="petitenfant"><a href="#petitenfant"><b>06</b>Persona petit-enfant</a><ul><li><a href="#petitenfant-fiche">Persona</a></li><li><a href="#petitenfant-emp">Empathy map</a></li></ul></li>
 <li data-p="parcours"><a href="#parcours"><b>07</b>User journey</a><ul><li><a href="#j-parent">Jacqueline, grand-parent</a></li><li><a href="#j-enfant">Sandrine, enfant</a></li><li><a href="#j-petit-enfant">Hugo, petit-enfant</a></li></ul></li>
 <li data-p="probleme"><a href="#probleme"><b>08</b>Problématique</a><ul><li><a href="#pb-question">La question</a></li><li><a href="#pb-pourquoi">Pourquoi celle-ci</a></li></ul></li>
-<li data-p="annexes"><a href="#annexes"><b>09</b>Annexes</a><ul><li><a href="#a-preuves">Documents</a></li><li><a href="#a-figjam">Nos supports de travail</a></li><li><a href="#a-ia">IA déclarée</a></li><li><a href="#a-qui">Qui a fait quoi</a></li></ul></li>
+<li data-p="annexes"><a href="#annexes"><b>09</b>Annexes</a><ul><li><a href="#a-preuves">Documents</a></li><li><a href="#a-hyp">Hypothèses de départ</a></li><li><a href="#a-figjam">Nos supports de travail</a></li><li><a href="#a-ia">IA déclarée</a></li><li><a href="#a-qui">Qui a fait quoi</a></li></ul></li>
 </ul>
 <button class="theme" type="button" id="theme" aria-pressed="false" aria-label="Passer en mode sombre" title="Passer en mode sombre"></button>
 </aside>
@@ -877,7 +877,7 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <p class="flow">Voici comment le dossier y répond.</p>
 <div class="sec" id="intro-plan" data-s="Sommaire"><div class="sh"><h3>Le dossier suit les outils du cours</h3><p>De la méthode à la problématique, puis les annexes qui en sont les preuves.</p></div>
 <ol class="dec">
-<li><span class="dn">02</span><b><a href="#methode">Méthode</a></b><span>Nos hypothèses, la démarche d'entretien en huit étapes, prévu et fait.</span></li>
+<li><span class="dn">02</span><b><a href="#methode">Méthode</a></b><span>Qui nous avons interrogé, nos règles d'entretien, notre retour sur le terrain.</span></li>
 <li><span class="dn">03</span><b><a href="#insights">Affinity map et insights</a></b><span>Les verbatims rangés en groupes, puis ce qu'ils nous apprennent.</span></li>
 <li><span class="dn">04</span><b><a href="#parent">Persona parent</a></b><span>Jacqueline et son empathy map.</span></li>
 <li><span class="dn">05</span><b><a href="#enfant">Persona enfant</a></b><span>Sandrine et son empathy map.</span></li>
@@ -892,59 +892,8 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 
 <section class="page" id="p-methode"><span class="k">02 / 09</span>
 <h2 class="t">Méthode</h2>
-<p class="lead">Une seule méthode : l'entretien individuel semi-directif. Voici ce que nous voulions vérifier, comment nous avons mené chaque entretien, étape par étape, et ce qui s'est passé en vrai.</p>
-<div class="sec" id="m-hyp" data-s="Hypothèses critiques"><div class="sh"><h3>Six hypothèses qui font tomber le produit</h3><p>20 hypothèses écrites avant le terrain (10 sur le parent, 10 sur l'enfant), classées de la plus risquée à la moins risquée. Si l'une de ces six est fausse, le Cadre perd son sens.</p></div>
-<div class="hyp">
-<div class="hg gp"><h4>Côté parent</h4>
-<div class="hc"><span class="c">P1</span><b>Partager seulement si c'est son choix</b><p>Le parent accepte de donner une information sur lui quand il décide, et la refuse quand l'enfant l'impose.</p><span class="vd tend v">Tendance +</span></div>
-<div class="hc"><span class="c">P2</span><b>Recevoir, puis répondre par la voix</b><p>Le parent apprécie les nouvelles, mais remercie par téléphone, pas par le service.</p><span class="vd ko v">Fragilisée : la réponse écrite existe</span></div>
-<div class="hc"><span class="c">P4</span><b>Un écran ne s'adopte pas seul</b><p>Le parent n'adopte un écran que si quelqu'un l'accompagne au départ.</p><span class="vd none v">Sans donnée</span></div>
-</div>
-<div class="hg en"><h4>Côté enfant</h4>
-<div class="hc"><span class="c">E1</span><b>L'oubli au moment de partager</b><p>Les enfants partagent leurs photos partout, sauf avec leur parent.</p><span class="vd ok v">Appuyée</span></div>
-<div class="hc"><span class="c">E2</span><b>Le lien s'achète avant l'incident</b><p>On offre un objet de lien sans attendre une chute, souvent en cadeau.</p><span class="vd none v">Sans donnée</span></div>
-<div class="hc risk"><span class="rk">La plus risquée</span><span class="c">E3</span><b>La corvée</b><p>Les enfants arrêtent d'alimenter un service dès qu'il demande un geste régulier.</p><span class="vd mix v">Partagée</span></div>
-</div>
-</div>
-<h4 class="sub">Ce que chaque entretien dit des six hypothèses</h4>
-<p class="muted">Une ligne par hypothèse, une colonne par personne interrogée (notre code, puis celui de la fiche). La dernière colonne donne notre lecture. Aucun seuil « 3 sur 5 » n'est atteint : ce sont des tendances.</p>
-<p class="lgd"><span><span class="sig p">+ appuie</span>l'entretien va dans son sens</span><span><span class="sig m">− contredit</span>il la dément</span><span><span class="sig f">? flou</span>on ne peut pas trancher</span><span><span class="sig n">· non testée</span>la question n'a pas été posée</span></p>
-<div class="tw"><table class="mx"><caption class="muted" style="caption-side:bottom;text-align:left;padding-top:8px;font-size:14px">S2 et S3 ont été interrogés ensemble : une seule colonne. E3 n'a pas de fiche dans le dépôt : pas de colonne.</caption><thead>
-<tr class="grp"><th></th><th class="gp" colspan="3">Grands-parents</th><th class="en" colspan="2">Enfants</th><th class="pe" colspan="2">Petits-enfants</th><th></th></tr>
-<tr><th></th><th scope="col">S1<small>GP1</small></th><th scope="col">S2·S3<small>P1·P2</small></th><th scope="col">S4<small>GP2</small></th><th scope="col">E1<small>E1</small></th><th scope="col">E2<small>E2</small></th><th scope="col">PE1<small>PE3</small></th><th scope="col">PE2<small>PE2</small></th><th style="text-align:left;padding-left:10px">Lecture</th></tr>
-</thead><tbody>
-<tr><th scope="row">Hyp. E1<small>L'oubli au moment de partager</small></th><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd ok">Appuyée</span></td></tr>
-<tr><th scope="row">Hyp. P2<small>Répondre par la voix</small></th><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd ko">Fragilisée</span></td></tr>
-<tr><th scope="row">Hyp. E3<small>La corvée</small></th><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd mix">Partagée</span></td></tr>
-<tr><th scope="row">Hyp. P1<small>Partager si c'est son choix</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd tend">Tendance +</span></td></tr>
-<tr><th scope="row">Hyp. P4<small>Un écran ne s'adopte pas seul</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd none">Sans donnée</span></td></tr>
-<tr><th scope="row">Hyp. E2<small>Le lien s'achète avant l'incident</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd none">Sans donnée</span></td></tr>
-</tbody></table></div>
-<h4 class="sub">Hyp. E3, l'appel régulier : partagée</h4>
-<p>Les deux lectures sont vraies à la fois. L'appel tient chaque semaine, sans effort : cela contredit la « corvée ». Mais l'envoi de photos ou de cartes ne devient pas un geste régulier : cela l'appuie.</p>
-<div class="vb">
-<figure class="q"><blockquote>« On s’appelle toutes les semaines le vendredi matin. »</blockquote><figcaption><b>E1.1</b>enfant · contre hyp. E3 : l'appel tient</figcaption></figure>
-<figure class="q"><blockquote>« Je lui envoie des cartes postales mais c’est pas un réflexe. »</blockquote><figcaption><b>PE1.9</b>petit-enfant · pour hyp. E3 : le geste ne tient pas</figcaption></figure>
-</div>
-</div>
-<div class="sec" id="m-methodes" data-s="La démarche"><div class="sh"><h3>Huit étapes, de la question à la persona</h3><p>Nous n'avons rien montré, rien vendu : nous avons fait raconter. Chaque étape a sa règle, pour que ce que l'on entend vienne des familles et pas de nous.</p></div>
-<ol class="dm"><li><span class="n">01</span><div class="bd"><small>Avant</small><b>Fixer ce que l'on cherche</b><p>Une phrase d'objectif et six hypothèses critiques, chacune reliée aux questions du guide qui peuvent la confirmer ou la faire tomber.</p></div><aside><em>Repère</em>Une hypothèse sans question dans le guide n'est pas testée.</aside></li><li><span class="n">02</span><div class="bd"><small>Avant</small><b>Choisir qui écouter</b><p>Trois générations d'une même histoire : le parent âgé autonome, l'enfant qui s'en occupe, le petit-enfant. On varie l'âge, la distance, l'aisance avec le téléphone. Premier contact par un message neutre : ni produit, ni âge, « ce n'est pas une vente ».</p></div><aside><em>Exclus</em>Nos propres parents directs et les personnes en forte perte d'autonomie.</aside></li><li><span class="n">03</span><div class="bd"><small>Avant</small><b>Écrire trois guides</b><p>Un guide par génération : parent 45 min, enfant 45 min, petit-enfant 30 min. Onze questions environ, chacune avec deux relances prêtes. Une même situation est posée au parent et à l'enfant, pour lire les deux récits côte à côte.</p></div><aside><em>Exemple</em>« Racontez-moi la dernière fois que vous avez eu des nouvelles de vos enfants. »</aside></li><li><span class="n">04</span><div class="bd"><small>Avant</small><b>Se tenir à une posture</b><p>On demande des faits passés et datés, jamais des opinions. Une idée par question. Pas de « pourquoi » direct, pas de « d'habitude ». Aucun conseil, aucun réconfort. Les mots qui orientent (écran, chute, seul, aidant) sont bannis.</p></div><aside><em>Règle d'or</em>Ne jamais montrer ni décrire de solution, même à la fin.</aside></li><li><span class="n">05</span><div class="bd"><small>Avant</small><b>Demander l'accord, protéger</b><p>Deux accords distincts : participer, puis être enregistré. Pas d'enregistrement par défaut. Chacun peut passer une question ou arrêter. Dans nos notes, un code à la place du prénom, une tranche d'âge, aucune ville, aucune donnée de santé.</p></div><aside><em>Trace</em>Les notes restent hors du dépôt public.</aside></li><li><span class="n">06</span><div class="bd"><small>Pendant</small><b>Mener l'entretien</b><p>Un membre mène, un autre note ; seul, on note juste après. Le parent parle sans son enfant dans la pièce, et rien n'est rapporté de l'un à l'autre. Pour creuser : « C'est-à-dire ? », « Et ensuite ? », « Vous avez un exemple ? ».</p></div><aside><em>Relance</em>Cinq secondes de silence. La personne reprend presque toujours.</aside></li><li><span class="n">07</span><div class="bd"><small>Juste après</small><b>Noter à chaud</b><p>Une fiche remplie dans les 15 minutes, en quatre blocs : ce qui est dit, ce qui est observé, ce que l'on interprète, ce qu'il faut vérifier. Pour chaque hypothèse critique, un signe : appuie, contredit ou flou. Trois phrases recopiées mot pour mot.</p></div><aside><em>Outil</em>Les entretiens enregistrés sont transcrits sur l'ordinateur, sans envoi en ligne.</aside></li><li><span class="n">08</span><div class="bd"><small>Ensuite</small><b>Trier ce que l'on a entendu</b><p>Chaque phrase reçoit un code (E1.1, PE1.9…) puis rejoint celles qui disent la même chose. Six groupes émergent. Chaque groupe donne un insight, quatre sont retenus. Ils nourrissent trois personas, leurs empathy maps et leurs parcours.</p></div><aside><em>Résultat</em>6 groupes, 4 insights, 3 personas, 1 problématique.</aside></li></ol>
-</div>
-<div class="sec" id="m-guide" data-s="Le guide"><div class="sh"><h3>Un entretien de 45 minutes, en cinq temps</h3><p>La trame du guide parent. Le cœur, ce sont les histoires : près de vingt minutes à faire raconter des moments précis.</p></div>
-<div class="tl" role="list">
-<div role="listitem" style="flex:5"><b>Mettre à l'aise</b><span>0 à 5 min</span></div>
-<div role="listitem" style="flex:9"><b>Le quotidien</b><span>5 à 14 min</span></div>
-<div role="listitem" class="hot" style="flex:18"><b>Les histoires</b><span>14 à 32 min</span></div>
-<div role="listitem" style="flex:9"><b>Approfondir</b><span>32 à 41 min</span></div>
-<div role="listitem" style="flex:4"><b>Remercier</b><span>41 à 45</span></div>
-</div>
-<div class="qs">
-<blockquote><small>Ouvrir</small>« Racontez-moi votre journée d'hier, du réveil au coucher. »</blockquote>
-<blockquote><small>Faire raconter</small>« Racontez-moi la dernière fois que vous avez eu des nouvelles de vos enfants. »</blockquote>
-<blockquote><small>Fermer</small>« Y a-t-il quelque chose d'important dont on n'a pas parlé ? »</blockquote>
-</div>
-</div>
-<div class="sec" id="m-profils" data-s="Profils interrogés"><div class="sh"><h3>Neuf personnes, surtout de notre entourage</h3><p>Rangées par génération. Le grand code est celui utilisé partout dans ce dossier. La fiche est celle du dépôt. Une carte en pointillés reste à vérifier.</p></div>
+<p class="lead">Une seule méthode : l'entretien individuel semi-directif. Qui nous avons interrogé, comment nous avons questionné, et ce que le terrain a donné.</p>
+<div class="sec" id="m-profils" data-s="Qui interroger"><div class="sh"><h3>Neuf personnes interrogées, douze prévues</h3><p>Notre question, posée en introduction : comment une famille garde le lien avec un parent âgé autonome, sans le surveiller. Pour y répondre, nous avons prévu 12 entretiens sur trois générations : 4 parents, 5 enfants, 3 petits-enfants. Exclus : nos propres parents directs et les personnes en forte perte d'autonomie.</p></div>
 <div class="ppl">
 <div class="pg gp"><h4><span>Grands-parents</span><span>S</span></h4>
 <div class="pc"><div class="top"><b>S1</b><span>Grand-mère</span></div><p>Vit seule, autonome, au téléphone toute la journée.</p><dl><dt>Fiche</dt><dd>GP1</dd><dt>Mené par</dt><dd>Lucas</dd></dl></div>
@@ -963,7 +912,23 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 </div>
 <p class="warn">Écart à trancher : notre tableau de tri annonce 4 enfants, mais seuls E1, E2 et E3 y ont des verbatims. Nos codes (S, E, PE) ne sont pas ceux des fiches du dépôt (GP, P, E, PE) : la correspondance ci-dessus est déduite des phrases et des auteurs des notes.</p>
 </div>
-<div class="sec" id="m-ecarts" data-s="Prévu et fait"><div class="sh"><h3>Ce que nous avions prévu, ce que nous avons fait</h3><p>Le terrain ne suit jamais le plan. Nous préférons montrer l'écart plutôt que le cacher.</p></div>
+<div class="sec" id="m-regles" data-s="Règles d'entretien"><div class="sh"><h3>Faire raconter, jamais orienter</h3><p>Un guide par génération : 45 minutes pour le parent et l'enfant, 30 pour le petit-enfant. Les mêmes règles pour tous.</p></div>
+<ol class="dm"><li><span class="n">01</span><div class="bd"><b>Demander l'accord</b><p>Deux accords distincts : participer, puis être enregistré. Chacun peut passer une question ou arrêter. Dans nos notes, un code à la place du prénom, aucune ville, aucune donnée de santé.</p></div></li><li><span class="n">02</span><div class="bd"><b>Des faits, pas des opinions</b><p>On demande des moments passés et précis. Une idée par question, pas de « pourquoi » direct. Les mots qui orientent (écran, chute, seul, aidant) sont bannis. On ne montre jamais de solution.</p></div></li><li><span class="n">03</span><div class="bd"><b>Mener à deux</b><p>Un membre mène, un autre note. Le parent parle sans son enfant dans la pièce. Pour creuser : « C'est-à-dire ? », « Vous avez un exemple ? », puis cinq secondes de silence.</p></div></li><li><span class="n">04</span><div class="bd"><b>Noter à chaud</b><p>Une fiche dans les 15 minutes : ce qui est dit, ce qui est observé, ce que l'on interprète. Trois phrases recopiées mot pour mot.</p></div></li></ol>
+<h4 class="sub">Comment on questionne : un entretien en cinq temps</h4>
+<div class="tl" role="list">
+<div role="listitem" style="flex:5"><b>Mettre à l'aise</b><span>0 à 5 min</span></div>
+<div role="listitem" style="flex:9"><b>Le quotidien</b><span>5 à 14 min</span></div>
+<div role="listitem" class="hot" style="flex:18"><b>Les histoires</b><span>14 à 32 min</span></div>
+<div role="listitem" style="flex:9"><b>Approfondir</b><span>32 à 41 min</span></div>
+<div role="listitem" style="flex:4"><b>Remercier</b><span>41 à 45</span></div>
+</div>
+<div class="qs">
+<blockquote><small>Ouvrir</small>« Racontez-moi votre journée d'hier, du réveil au coucher. »</blockquote>
+<blockquote><small>Faire raconter</small>« Racontez-moi la dernière fois que vous avez eu des nouvelles de vos enfants. »</blockquote>
+<blockquote><small>Fermer</small>« Y a-t-il quelque chose d'important dont on n'a pas parlé ? »</blockquote>
+</div>
+</div>
+<div class="sec" id="m-ecarts" data-s="Retour sur les entretiens"><div class="sh"><h3>Notre retour sur les entretiens</h3><p>Le terrain ne suit jamais le plan. Nous préférons montrer l'écart plutôt que le cacher.</p></div>
 <table class="pf"><thead><tr><th>Point</th><th>Prévu</th><th>Fait</th></tr></thead><tbody>
 <tr><td>Personnes interrogées</td><td>12 : 4 parents, 5 enfants, 3 petits-enfants</td><td>9 : 4 grands-parents (dont un couple), 3 enfants, 2 petits-enfants</td></tr>
 <tr><td>Durée</td><td>45 min (parent, enfant), 30 min (petit-enfant)</td><td>De 6 à 28 min pour les durées connues</td></tr>
@@ -971,13 +936,15 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <tr><td>Prise de notes</td><td>Un qui mène, un qui note</td><td>Pas toujours à deux : notes prises juste après</td></tr>
 <tr><td>Enregistrement</td><td>Seulement avec accord</td><td>Une partie enregistrée et transcrite, le reste en notes</td></tr>
 </tbody></table>
-</div>
-<div class="sec" id="m-limites" data-s="Limites"><div class="sh"><h3>Nos limites, dites franchement</h3><p>La matière est utile pour comprendre, pas pour prouver.</p></div>
+<h4 class="sub" id="m-limites">Nos limites</h4>
 <div class="three">
 <div><b>Trop proches</b><p>Presque toutes les personnes viennent de notre entourage. Elles veulent aider et répondent parfois pour faire plaisir.</p></div>
 <div><b>Trop peu, trop courts</b><p>9 personnes, dont deux entretiens de 6 et 7 minutes pour un guide de 45. Hugo repose surtout sur un seul petit-enfant (PE1).</p></div>
 <div><b>Sources mêlées</b><p>Les empathy maps citent aussi A4 et A7, des verbatims d'exercice du cours, pas nos entretiens. Aucun parent hors entourage, aucune paire parent et enfant.</p></div>
 </div>
+
+</div>
+<div class="sec" id="m-suite" data-s="Et ensuite"><div class="sh"><h3>Des phrases aux insights</h3><p>Chaque phrase entendue reçoit un code (E1.1, PE1.9…) puis rejoint celles qui disent la même chose. Six groupes émergent, quatre insights sont retenus. Ils nourrissent trois personas, leurs empathy maps et leurs parcours.</p></div>
 </div>
 <p class="next"><a href="#insights">Page suivante : Affinity map et insights <span>→</span></a></p></section>
 
@@ -1127,7 +1094,7 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 
 <section class="page" id="p-annexes"><span class="k">09 / 09</span>
 <h2 class="t">Annexes</h2>
-<p class="lead">Les preuves de tout ce qui précède : nos documents, nos supports de travail, l'usage de l'IA et qui a fait quoi.</p>
+<p class="lead">Les preuves de tout ce qui précède : nos documents, nos hypothèses de départ, nos supports de travail, l'usage de l'IA et qui a fait quoi.</p>
 <div class="sec" id="a-preuves" data-s="Les documents"><div class="sh"><h3>Guides et comptes rendus</h3><p>Chaque document est dans le dépôt de l'équipe. Les notes brutes et les enregistrements restent hors du dépôt.</p></div>
 <div class="tw"><table><thead><tr><th>Document</th><th>Ce qu'il prouve</th><th>Auteur</th></tr></thead><tbody>
 <tr><td><a href="../../../rendus/2-2-hypotheses-critiques-equipe.html">Hypothèses critiques</a></td><td>Les 20 hypothèses, leur tri, les 6 critiques.</td><td>Équipe</td></tr>
@@ -1140,6 +1107,40 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <tr><td><a href="../../lucas/2-5-synthese-entretiens-famille.html">Synthèse famille</a></td><td>PE2, GP1 et GP2 (S1 et S4 sur le tableau).</td><td>Lucas</td></tr>
 <tr><td><a href="../2-4-parcours-familles-test.html">Parcours familles (test)</a></td><td>Première esquisse de parcours, avant notre tableau.</td><td>Camille</td></tr>
 </tbody></table></div>
+</div>
+<div class="sec" id="a-hyp" data-s="Hypothèses de départ"><div class="sh"><h3>Hypothèses de départ</h3><p>Pour mémoire. 20 hypothèses écrites avant le terrain (10 sur le parent, 10 sur l'enfant), classées de la plus risquée à la moins risquée. Si l'une de ces six est fausse, le Cadre perd son sens.</p></div>
+<div class="hyp">
+<div class="hg gp"><h4>Côté parent</h4>
+<div class="hc"><span class="c">P1</span><b>Partager seulement si c'est son choix</b><p>Le parent accepte de donner une information sur lui quand il décide, et la refuse quand l'enfant l'impose.</p><span class="vd tend v">Tendance +</span></div>
+<div class="hc"><span class="c">P2</span><b>Recevoir, puis répondre par la voix</b><p>Le parent apprécie les nouvelles, mais remercie par téléphone, pas par le service.</p><span class="vd ko v">Fragilisée : la réponse écrite existe</span></div>
+<div class="hc"><span class="c">P4</span><b>Un écran ne s'adopte pas seul</b><p>Le parent n'adopte un écran que si quelqu'un l'accompagne au départ.</p><span class="vd none v">Sans donnée</span></div>
+</div>
+<div class="hg en"><h4>Côté enfant</h4>
+<div class="hc"><span class="c">E1</span><b>L'oubli au moment de partager</b><p>Les enfants partagent leurs photos partout, sauf avec leur parent.</p><span class="vd ok v">Appuyée</span></div>
+<div class="hc"><span class="c">E2</span><b>Le lien s'achète avant l'incident</b><p>On offre un objet de lien sans attendre une chute, souvent en cadeau.</p><span class="vd none v">Sans donnée</span></div>
+<div class="hc risk"><span class="rk">La plus risquée</span><span class="c">E3</span><b>La corvée</b><p>Les enfants arrêtent d'alimenter un service dès qu'il demande un geste régulier.</p><span class="vd mix v">Partagée</span></div>
+</div>
+</div>
+<h4 class="sub">Ce que chaque entretien dit des six hypothèses</h4>
+<p class="muted">Une ligne par hypothèse, une colonne par personne interrogée (notre code, puis celui de la fiche). La dernière colonne donne notre lecture. Aucun seuil « 3 sur 5 » n'est atteint : ce sont des tendances.</p>
+<p class="lgd"><span><span class="sig p">+ appuie</span>l'entretien va dans son sens</span><span><span class="sig m">− contredit</span>il la dément</span><span><span class="sig f">? flou</span>on ne peut pas trancher</span><span><span class="sig n">· non testée</span>la question n'a pas été posée</span></p>
+<div class="tw"><table class="mx"><caption class="muted" style="caption-side:bottom;text-align:left;padding-top:8px;font-size:14px">S2 et S3 ont été interrogés ensemble : une seule colonne. E3 n'a pas de fiche dans le dépôt : pas de colonne.</caption><thead>
+<tr class="grp"><th></th><th class="gp" colspan="3">Grands-parents</th><th class="en" colspan="2">Enfants</th><th class="pe" colspan="2">Petits-enfants</th><th></th></tr>
+<tr><th></th><th scope="col">S1<small>GP1</small></th><th scope="col">S2·S3<small>P1·P2</small></th><th scope="col">S4<small>GP2</small></th><th scope="col">E1<small>E1</small></th><th scope="col">E2<small>E2</small></th><th scope="col">PE1<small>PE3</small></th><th scope="col">PE2<small>PE2</small></th><th style="text-align:left;padding-left:10px">Lecture</th></tr>
+</thead><tbody>
+<tr><th scope="row">Hyp. E1<small>L'oubli au moment de partager</small></th><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd ok">Appuyée</span></td></tr>
+<tr><th scope="row">Hyp. P2<small>Répondre par la voix</small></th><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd ko">Fragilisée</span></td></tr>
+<tr><th scope="row">Hyp. E3<small>La corvée</small></th><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd mix">Partagée</span></td></tr>
+<tr><th scope="row">Hyp. P1<small>Partager si c'est son choix</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd tend">Tendance +</span></td></tr>
+<tr><th scope="row">Hyp. P4<small>Un écran ne s'adopte pas seul</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd none">Sans donnée</span></td></tr>
+<tr><th scope="row">Hyp. E2<small>Le lien s'achète avant l'incident</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd none">Sans donnée</span></td></tr>
+</tbody></table></div>
+<h4 class="sub">Hyp. E3, l'appel régulier : partagée</h4>
+<p>Les deux lectures sont vraies à la fois. L'appel tient chaque semaine, sans effort : cela contredit la « corvée ». Mais l'envoi de photos ou de cartes ne devient pas un geste régulier : cela l'appuie.</p>
+<div class="vb">
+<figure class="q"><blockquote>« On s’appelle toutes les semaines le vendredi matin. »</blockquote><figcaption><b>E1.1</b>enfant · contre hyp. E3 : l'appel tient</figcaption></figure>
+<figure class="q"><blockquote>« Je lui envoie des cartes postales mais c’est pas un réflexe. »</blockquote><figcaption><b>PE1.9</b>petit-enfant · pour hyp. E3 : le geste ne tient pas</figcaption></figure>
+</div>
 </div>
 <div class="sec" id="a-figjam" data-s="Nos supports de travail"><div class="sh"><h3>Nos supports de travail</h3><p>Notre tableau « fil rouge B2 », découpé en extraits lisibles. Cliquer ouvre l'image en grand.</p></div>
 <div class="shots"><figure><a href="images/figjam-verbatims.jpg" target="_blank" rel="noopener"><img src="images/figjam-verbatims.jpg" alt="Extrait de notre tableau : Verbatims" loading="lazy" width="2000" height="1000"></a><figcaption>Verbatims<small>Les 18 phrases, par public.</small></figcaption></figure><figure><a href="images/figjam-affinity-map.jpg" target="_blank" rel="noopener"><img src="images/figjam-affinity-map.jpg" alt="Extrait de notre tableau : Affinity map" loading="lazy" width="2000" height="1000"></a><figcaption>Affinity map<small>Les 6 groupes et leurs post-its.</small></figcaption></figure><figure><a href="images/figjam-insights-groupes.jpg" target="_blank" rel="noopener"><img src="images/figjam-insights-groupes.jpg" alt="Extrait de notre tableau : Insights par groupe" loading="lazy" width="2000" height="1000"></a><figcaption>Insights par groupe<small>Un insight par groupe.</small></figcaption></figure><figure><a href="images/figjam-insights-v2.jpg" target="_blank" rel="noopener"><img src="images/figjam-insights-v2.jpg" alt="Extrait de notre tableau : Insights retenus" loading="lazy" width="2000" height="1000"></a><figcaption>Insights retenus<small>Quatre insights, un par persona et la tension commune.</small></figcaption></figure><figure><a href="images/figjam-problematique.jpg" target="_blank" rel="noopener"><img src="images/figjam-problematique.jpg" alt="Extrait de notre tableau : Problématique" loading="lazy" width="2000" height="1000"></a><figcaption>Problématique<small>La question retenue.</small></figcaption></figure><figure><a href="images/figjam-empathy-jacqueline.jpg" target="_blank" rel="noopener"><img src="images/figjam-empathy-jacqueline.jpg" alt="Extrait de notre tableau : Empathy map de Jacqueline" loading="lazy" width="2000" height="1000"></a><figcaption>Empathy map de Jacqueline<small>Les 7 zones.</small></figcaption></figure><figure><a href="images/figjam-empathy-sandrine.jpg" target="_blank" rel="noopener"><img src="images/figjam-empathy-sandrine.jpg" alt="Extrait de notre tableau : Empathy map de Sandrine" loading="lazy" width="2000" height="1000"></a><figcaption>Empathy map de Sandrine<small>Les 7 zones.</small></figcaption></figure><figure><a href="images/figjam-empathy-hugo.jpg" target="_blank" rel="noopener"><img src="images/figjam-empathy-hugo.jpg" alt="Extrait de notre tableau : Empathy map de Hugo" loading="lazy" width="2000" height="1000"></a><figcaption>Empathy map de Hugo<small>Les 7 zones.</small></figcaption></figure><figure><a href="images/figjam-journey-jacqueline.jpg" target="_blank" rel="noopener"><img src="images/figjam-journey-jacqueline.jpg" alt="Extrait de notre tableau : User journey de Jacqueline" loading="lazy" width="2000" height="1000"></a><figcaption>User journey de Jacqueline<small>Six étapes, deux croix.</small></figcaption></figure><figure><a href="images/figjam-journey-sandrine.jpg" target="_blank" rel="noopener"><img src="images/figjam-journey-sandrine.jpg" alt="Extrait de notre tableau : User journey de Sandrine" loading="lazy" width="2000" height="1000"></a><figcaption>User journey de Sandrine<small>Six étapes, deux croix.</small></figcaption></figure><figure><a href="images/figjam-journey-hugo.jpg" target="_blank" rel="noopener"><img src="images/figjam-journey-hugo.jpg" alt="Extrait de notre tableau : User journey de Hugo" loading="lazy" width="2000" height="1000"></a><figcaption>User journey de Hugo<small>Six étapes, deux croix.</small></figcaption></figure></div>
