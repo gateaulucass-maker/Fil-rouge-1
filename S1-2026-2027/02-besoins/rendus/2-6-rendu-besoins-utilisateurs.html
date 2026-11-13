@@ -1,0 +1,1312 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Besoins utilisateurs</title>
+<meta name="description" content="Dossier Besoins utilisateurs du projet Le Cadre (Soly) : méthode, affinity map, insights, trois personas avec empathy map, trois user journeys, problématique.">
+<link rel="stylesheet" href="polices/fonts.css">
+<style>
+:root{--bg:#FFFAF0;--fg:#1F1A17;--muted:#6A5F55;--hair:#F0E3C8;--soft:#FFF3D9;--soleil:#FFD36E;--lilas:#C9B8F0;--peche:#FFC9A3;--sable:#F0E3C8;
+--title:Lexend,"Helvetica Neue",Arial,sans-serif;--body:"Atkinson Hyperlegible","Helvetica Neue",Arial,sans-serif;--code:"Atkinson Hyperlegible Mono",ui-monospace,Menlo,monospace;
+--codebg:#FFF3D9;--ck:#5B3FA8;--cs:#8A4B00;--cn:#1F1A17;--cc:#6A5F55;color-scheme:light}
+:root[data-theme="dark"]{--bg:#17130F;--fg:#F4EADB;--muted:#BBAE9C;--hair:#3A3027;--soft:#2A221A;--codebg:#0E0B09;--ck:#C9B8F0;--cs:#FFC9A3;--cn:#FFD36E;--cc:#BBAE9C;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:24px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/26px var(--body);-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+a{color:inherit}
+code,pre,kbd{font-family:var(--code)}
+.k{font:500 13px/18px var(--title);letter-spacing:.06em;color:var(--muted)}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:999px;z-index:200}
+.skip:focus{left:12px}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--lilas);outline-offset:3px}
+/* menu latéral */
+.side{position:fixed;inset:0 auto 0 0;width:288px;padding:32px 24px 92px 32px;display:flex;flex-direction:column;overflow-y:auto;background:var(--side,var(--bg))}
+.side .hero{padding-bottom:20px;border-bottom:1px solid var(--fg)}
+.side h1{margin:12px 0 8px;font:600 30px/36px var(--title);letter-spacing:-.02em}
+.side .hero p{margin:0;font-size:15px;line-height:22px;color:var(--muted)}
+.srch{margin:16px 0 0}
+.srch label{display:block;font:500 13px/18px var(--title);color:var(--muted);margin-bottom:4px}
+.srch input{width:100%;height:44px;border:1px solid var(--hair);border-radius:999px;background:var(--bg);color:var(--fg);padding:0 16px;font:400 15px var(--body)}
+.srch input:hover{border-color:var(--fg)}
+#resl{list-style:none;margin:12px 0 0;padding:0}
+#resl li{border-bottom:1px solid var(--hair)}
+#resl a{display:block;padding:9px 6px;text-decoration:none;border-radius:10px}
+#resl a:hover,#resl a:focus-visible{background:var(--soft)}
+#resl b{display:block;font:500 14px/20px var(--title)}
+#resl small{display:block;font-size:13px;line-height:18px;color:var(--muted)}
+#resl mark{background:var(--soleil);color:#1F1A17;border-radius:3px;padding:0 1px}
+#resc{font:500 13px/18px var(--title);color:var(--muted);margin:8px 0 0}
+.menu{list-style:none;margin:16px 0 0;padding:0}
+.menu>li{border-bottom:1px solid var(--hair)}
+.menu>li>a{display:flex;align-items:center;gap:12px;font:400 16px/22px var(--title);min-height:48px;padding:12px 8px;border-radius:12px;margin:2px 0;text-decoration:none;color:var(--muted)}
+.menu>li>a b{font:500 13px/18px var(--title);min-width:20px}
+.menu>li>a:hover{background:var(--soft);color:var(--fg)}
+.menu>li.on>a{font-weight:500;background:var(--soft);color:var(--fg)}
+.menu ul{list-style:none;margin:0 0 12px 32px;padding:0 0 0 12px;border-left:2px solid var(--soleil);display:none}
+.menu>li.on ul{display:block}
+.menu ul a{display:block;padding:7px 0;font-size:15px;line-height:22px;text-decoration:none;color:var(--muted)}
+.menu ul a:hover,.menu ul a.on{color:var(--fg)}
+.menu ul a.on{font-weight:600}
+.side .foot{margin-top:auto;padding-top:20px}
+.side .foot a{font:500 14px var(--title)}
+/* contenu */
+main{margin-left:288px;padding:64px clamp(32px,6vw,96px) 160px;max-width:calc(1040px + 288px + clamp(32px,6vw,96px)*2)}
+.page{display:none}.page.on{display:block}
+.page>.k{display:block;margin-bottom:16px}
+.page h2.t{margin:0;font:600 clamp(32px,3.4vw,46px)/1.15 var(--title);letter-spacing:-.02em;max-width:24ch}
+.lead{font-size:18px;line-height:28px;max-width:62ch;margin:20px 0 0;color:var(--fg)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px;margin:48px 0 0}
+.facts div{border-top:2px solid var(--fg);padding-top:12px}
+.facts em{display:block;font:600 13px/16px var(--title);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-style:normal;margin-bottom:12px}
+.facts b{display:block;font:600 44px/48px var(--title);letter-spacing:-.02em}
+.facts b small{font-size:.4em;font-weight:500;letter-spacing:0;margin-left:6px;color:var(--muted)}
+.facts span{display:block;margin-top:8px;max-width:30ch}
+/* section : titre à gauche, description à droite */
+.sec{margin-top:96px}
+.sh{display:grid;grid-template-columns:240px minmax(0,1fr);column-gap:48px;align-items:start;border-top:2px solid var(--fg);padding-top:32px}
+.sh h3{grid-column:1;grid-row:1 / span 2;margin:0;font:600 26px/34px var(--title);letter-spacing:-.01em}
+.sh p{grid-column:2;margin:4px 0 0;font-size:16px;line-height:26px;color:var(--muted);max-width:62ch}
+.sh p+p{margin-top:12px}
+.sec>*:not(.sh){margin-top:32px}
+.sec>.sh+*{margin-top:40px}
+.sec h4.sub{margin:48px 0 0;padding-top:24px;border-top:2px solid var(--fg);font:600 22px/30px var(--title)}
+.sec p,.sec li{max-width:68ch}
+.sec ul,.sec ol.plain{padding-left:22px}
+.muted{color:var(--muted)}
+code{background:var(--soft);border-radius:6px;padding:1px 6px;font-size:.9em;overflow-wrap:anywhere}
+.tw{overflow-x:auto}
+.tw table{width:100%;border-collapse:collapse;font-size:15px;line-height:22px}
+.tw th{font:500 14px/20px var(--title);color:var(--muted);text-align:left;padding:8px 16px 8px 0;border-bottom:1px solid var(--fg)}
+.tw td{padding:12px 16px 12px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+.tw tbody tr:hover{background:var(--soft)}
+.tw td:first-child{font-weight:700}
+.tw table.kv th{width:170px;border-bottom:1px solid var(--hair);vertical-align:top;padding:10px 20px 10px 0}
+.tw table.kv tr:hover{background:none}
+.tw table.kv td:first-child{font-weight:400}
+.tw td code{white-space:normal}
+/* rangées du sommaire */
+ol.dec{list-style:none;margin:32px 0 0;padding:0;border-top:2px solid var(--fg)}
+ol.dec li{display:grid;grid-template-columns:40px 260px 1fr;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--hair);position:relative;isolation:isolate}
+ol.dec li b{font:600 24px/30px var(--title)}
+ol.dec li span{font-size:17px;line-height:26px}
+ol.dec .dn{font:500 15px/30px var(--title);font-variant-numeric:tabular-nums;color:var(--muted)}
+ol.dec li::before{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--fg);transform:scaleX(0);transform-origin:left center;transition:transform var(--mv-l) var(--mv-out)}
+ol.dec a{color:inherit;text-decoration:none;outline:none;background:linear-gradient(#FFD36E,#FFD36E) no-repeat 0 85%/0% .5em;padding:0 2px;margin:0 -2px;transition:background-size var(--mv-m) var(--mv-out)}
+ol.dec a::after{content:"";position:absolute;inset:0}
+ol.dec b{display:inline-flex;align-items:center;gap:10px}
+ol.dec b::after{content:"↗";font-weight:500;opacity:0;transform:translate(-4px,4px);transition:opacity var(--mv-f) var(--mv-out),transform var(--mv-m) var(--mv-spring)}
+ol.dec li:hover::before,ol.dec li:focus-within::before{transform:scaleX(1)}
+ol.dec li:hover a,ol.dec li:focus-within a{background-size:100% .5em}
+ol.dec li:hover .dn,ol.dec li:focus-within .dn{color:var(--fg)}
+ol.dec li:hover b::after,ol.dec li:focus-within b::after{opacity:1;transform:none}
+ol.dec a:focus-visible::after{outline:2px solid var(--fg);outline-offset:4px}
+:root[data-theme="dark"] ol.dec li:hover a,:root[data-theme="dark"] ol.dec li:focus-within a{color:#1F1A17}
+/* rangées numérotées (rows) et trois colonnes */
+ol.rows{list-style:none;margin:0;padding:0;border-top:2px solid var(--fg)}
+ol.rows li{display:grid;grid-template-columns:48px 1fr auto;gap:8px 24px;align-items:center;padding:20px 0;border-bottom:1px solid var(--hair)}
+ol.rows .n{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--soft);font:600 16px/1 var(--title)}
+ol.rows .a b{display:block;font:500 18px/26px var(--title)}
+ol.rows .a span{color:var(--muted)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+.three>div{border-top:2px solid var(--fg);padding-top:12px}
+.three b{display:block;font:500 17px/24px var(--title);margin-bottom:4px}
+.three p{margin:0;color:var(--muted);font-size:15px;line-height:24px}
+/* pastilles */
+.tag,.m{display:inline-block;font:500 14px/20px var(--title);padding:4px 14px;border-radius:999px;color:#1F1A17;white-space:nowrap;vertical-align:middle}
+.tag-ok{background:#FFD36E}.tag-part{background:#C9B8F0}.tag-no{background:#FFC9A3}
+.tag-prop{background:transparent;color:var(--muted);border:1px solid var(--muted)}
+.m{font:600 13px/20px var(--code);min-width:72px;text-align:center;letter-spacing:.02em}
+.m-GET{background:#C9B8F0}.m-POST{background:#FFD36E}.m-PATCH{background:#FFC9A3}.m-DELETE{background:var(--fg);color:var(--bg)}.m-WSS{background:#F0E3C8}
+/* fiches d'endpoint */
+.ep{border-top:2px solid var(--fg);padding-top:24px;margin-top:56px!important}
+.ep h4{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center;margin:0;font:600 16px/24px var(--title)}
+.ep h4 code{background:none;padding:0;font:600 15px/24px var(--code)}
+.ep p{margin:12px 0 0}
+.ep .who{color:var(--muted);font-size:15px}
+.ep h5{margin:28px 0 4px;font:500 14px/20px var(--title);color:var(--muted)}
+.note,.warn{border-radius:16px;padding:16px 20px;margin:20px 0 0;max-width:76ch;font-size:15px;line-height:24px}
+.note{background:var(--soft);border-left:6px solid var(--soleil)}
+.warn{background:color-mix(in srgb,var(--peche) 30%,var(--bg));border-left:6px solid var(--peche)}
+/* code */
+.cb{border:1px solid var(--hair);border-radius:16px;background:var(--codebg);margin:12px 0;overflow:hidden}
+.cbh{display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--hair);padding:6px 10px 6px 16px;min-height:44px}
+.clabel{font:500 13px/18px var(--title);color:var(--muted)}
+.src{font:500 12px/16px var(--title);border:1px solid var(--fg);border-radius:999px;padding:2px 10px;margin-left:8px;white-space:nowrap}
+.src-reel{background:var(--fg);color:var(--bg)}
+.src-prevu{border-style:dashed}.src-prop{border-style:dotted}
+.copy{margin-left:auto;font:500 14px var(--title);min-height:34px;padding:0 16px;border:1px solid var(--fg);border-radius:999px;background:none;color:var(--fg);cursor:pointer;transition:border-color var(--mv-f) var(--mv-out),background-color var(--mv-f) var(--mv-out),scale var(--mv-f) var(--mv-out)}
+.copy:hover{background:var(--soleil);color:#1F1A17}
+.copy:active{scale:.96}
+.copy.done{background:var(--lilas);color:#1F1A17;border-color:var(--lilas)}
+pre{margin:0;padding:14px 16px;overflow-x:auto;font-size:13.5px;line-height:21px;tab-size:2}
+pre code{background:none;padding:0;font-size:inherit;overflow-wrap:normal}
+.cb .k{color:var(--ck);font:inherit;letter-spacing:0}
+.cb .s{color:var(--cs)}.cb .n{color:var(--cn);font-weight:700}.cb .c{color:var(--cc);font-style:italic}
+/* wiki */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.cards a{display:block;border:1px solid var(--hair);border-radius:16px;padding:16px 18px;text-decoration:none;transition:background-color var(--mv-f) var(--mv-out),border-color var(--mv-f) var(--mv-out)}
+.cards a:hover{background:var(--soft);border-color:var(--fg)}
+.cards b{display:block;font:500 17px/24px var(--title)}
+.cards span{font-size:14px;color:var(--muted);line-height:20px}
+.gl{margin:0;border-top:2px solid var(--fg)}
+.gl-i{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:16px 0;border-bottom:1px solid var(--hair);margin:0!important}
+.gl-i dt{font:500 17px/26px var(--title)}
+.gl-i dd{margin:0}
+.gl-i dd small{display:block;color:var(--muted);margin-top:4px}
+.guide{border-top:2px solid var(--fg);padding-top:24px;margin-top:56px!important}
+.guide h4{margin:0;font:600 22px/30px var(--title)}
+ol.steps{list-style:none;margin:24px 0 0;padding:0;counter-reset:s}
+ol.steps>li{position:relative;padding:0 0 28px 64px;max-width:none}
+ol.steps>li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font:600 16px var(--title)}
+ol.steps>li>b{display:block;font:500 18px/26px var(--title)}
+ol.steps>li>p{margin:4px 0 0;color:var(--muted)}
+details.prompt{border-bottom:1px solid var(--hair);padding:0}
+.gfaq{border-top:2px solid var(--fg)}
+details.prompt>summary{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;list-style:none;padding:18px 0;font:500 18px/26px var(--title);min-height:56px}
+details.prompt>summary::-webkit-details-marker{display:none}
+details.prompt>div{padding:0 0 20px;max-width:68ch}
+details.prompt>div p{margin:0 0 10px}
+.go{display:inline-flex;align-items:center;min-height:56px;padding:0 28px;border-radius:999px;background:var(--fg);color:var(--bg);border:0;font:500 17px/1 var(--title);text-decoration:none;transition:background-color var(--mv-f) var(--mv-out)}
+.go:hover{background:var(--soleil);color:#1F1A17}
+.page .next{margin-top:128px;text-align:right;max-width:none}
+.page .next a{font-family:var(--title);font-weight:500;font-size:18px;text-decoration:none;background:linear-gradient(#FFD36E,#FFD36E) 0 100%/0% .5em no-repeat}
+.page .next a:hover,.page .next a:focus-visible{background-size:100% .5em}
+:root[data-theme="dark"] .page .next a:hover{color:#1F1A17}
+.page .next a span{display:inline-block}
+.jrn td:nth-child(1){white-space:nowrap}
+.seq{border:1px solid var(--hair);border-radius:16px;padding:16px;overflow-x:auto;background:var(--bg)}
+.seq svg{display:block;min-width:760px;width:100%;height:auto;color:var(--fg)}
+.seq text{font-family:var(--title);fill:var(--fg)}
+footer.pied{margin-top:96px;padding-top:16px;border-top:1px solid var(--hair);font-size:14px;color:var(--muted)}
+@media (max-width:960px){
+ .side{position:static;width:auto;padding:20px 16px 0}
+ .menu>li ul{display:none!important}
+ main{margin-left:0;padding:32px 16px 96px}
+ .facts,.three{grid-template-columns:1fr;gap:24px}
+ .sh{grid-template-columns:1fr}.sh h3,.sh p{grid-column:1;grid-row:auto}.sh h3{margin-bottom:8px}
+ ol.dec li{grid-template-columns:32px 1fr;gap:4px 16px}ol.dec li>span:last-child{grid-column:2}
+ .gl-i{grid-template-columns:1fr;gap:4px}
+ .side .theme{position:static!important}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{
+ .side,.copy,.skip,.srch,#theme,.next{display:none!important}
+ main{margin:0;padding:0;max-width:none}
+ .page{display:block!important;break-before:page}
+ .page:first-of-type{break-before:auto}
+ .ep,.cb,.guide{break-inside:avoid}
+ pre{white-space:pre-wrap;overflow:visible}
+ body{font-size:11pt;line-height:1.45;background:#fff;color:#000}
+ details.prompt>div{display:block!important}
+ details.prompt:not([open])>div{display:block}
+}
+</style>
+<style id="reuse">
+:root{--side:color-mix(in srgb,var(--bg) 95.5%,#1F1A17)}
+:root[data-theme="dark"]{--side:color-mix(in srgb,var(--bg) 70%,#000)}
+@media (min-width:961px){
+  .side{background:var(--side)!important;border-right:0!important}
+  body::before,body::after{content:"";position:fixed;left:288px;width:28px;height:28px;z-index:3;pointer-events:none}
+  body::before{top:0;background:radial-gradient(circle at 100% 100%,transparent 27.5px,var(--side) 28px)}
+  body::after{bottom:0;background:radial-gradient(circle at 100% 0,transparent 27.5px,var(--side) 28px)}
+}
+@media print{body::before,body::after{display:none}.side{background:none!important}}
+
+
+@media (min-width:961px){
+  html::after{content:"";position:fixed;left:288px;top:0;bottom:0;width:80px;border-radius:28px 0 0 28px;box-shadow:-10px 0 28px -8px rgba(31,26,23,.16);clip-path:inset(-60px 0 -60px -60px);pointer-events:none;z-index:4}
+  :root[data-theme="dark"]::after{box-shadow:-10px 0 28px -6px rgba(0,0,0,.6)}
+}
+@media print{html::after{display:none}}
+
+
+.side .theme{order:99;margin:16px 0 0;width:44px;height:44px;min-height:44px;padding:0;justify-content:center;border:1px solid var(--hair);border-radius:999px;flex:none}
+.side .theme:hover,.side .theme:focus-visible{border-color:var(--fg)}
+.side .theme svg{display:block}
+@media (min-width:961px){.side .theme{position:fixed;left:32px;bottom:24px;z-index:5;background:var(--bg)}.side{padding-bottom:92px}}
+
+
+details.prompt>summary::after,details.m-det>summary::after{content:"";width:8px;height:8px;margin-left:2px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+details.prompt[open]>summary::after,details.m-det[open]>summary::after{transform:translateY(2px) rotate(-135deg)}
+details.prompt>summary{transition:border-color .2s,background-color .2s}
+details.prompt[open]>summary{border-color:var(--fg)}
+details.prompt>pre,details.m-det>pre{transform-origin:top}
+@media (prefers-reduced-motion:reduce){details.prompt>summary::after,details.m-det>summary::after{transition:none}}
+
+
+/* Système d'animation (6 nov.) : 3 durées, 2 courbes. Rien n'est caché sans le JS (classe mv-on). */
+:root{--mv-f:160ms;--mv-m:280ms;--mv-l:560ms;--mv-out:cubic-bezier(.22,1,.36,1);
+--mv-spring:linear(0, .038, .131, .25, .378, .503, .616, .715, .797, .862, .913, .952, .979, .998, 1.009, 1.016, 1.019, 1.02, 1.019, 1.017, 1.014, 1.012, 1.009, 1.007, 1.005, 1.004, 1.002, 1.002, 1.001, 1)}
+/* états d'attente, posés par JS seulement */
+.mv-on .mv-w{opacity:0}
+.mv-on .mv-wc .col i{transform:scaleY(0)}
+.mv-on .mv-wc .col .v{opacity:0}
+.col i{transform-origin:50% 100%}
+.mv-wd{display:inline-block}
+/* menu */
+.menu a,.menu>li>a b{transition:color var(--mv-f) var(--mv-out)}
+.menu ul a{transition:color var(--mv-f) var(--mv-out),translate var(--mv-m) var(--mv-spring)}
+.menu ul a:hover{translate:3px 0}
+/* colonnes : la survolée monte, les autres s'effacent */
+.col[data-n] i{transition:outline-color var(--mv-f) var(--mv-out),opacity var(--mv-m) var(--mv-out),translate var(--mv-m) var(--mv-spring)}
+.col[data-n]:hover i,.col[data-n]:focus-visible i{translate:0 -4px}
+.cols:has(.col[data-n]:hover) .col[data-n]:not(:hover) i{opacity:.4}
+.col[data-n] .v{transition:color var(--mv-f) var(--mv-out)}
+/* liens et lignes */
+.page .next a{transition:background-size var(--mv-m) var(--mv-out)}
+.page .next a span{transition:transform var(--mv-m) var(--mv-spring)}
+.page .next a:hover span,.page .next a:focus-visible span{transform:translateX(6px)}
+ol.rows.pages li::before,#p-resume .lien::before{transition:transform var(--mv-l) var(--mv-out)}
+ol.rows.pages .a a,#p-resume .lien a{transition:background-size var(--mv-m) var(--mv-out)}
+ol.rows.pages .a b::after,#p-resume .lien b::after{transition:opacity var(--mv-f) var(--mv-out),transform var(--mv-m) var(--mv-spring)}
+#p-resume .dec .dn,ol.rows.pages .n{transition:color var(--mv-f) var(--mv-out),background-color var(--mv-f) var(--mv-out)}
+[data-n],table.v tbody tr{transition:background-color var(--mv-f) var(--mv-out)}
+/* boutons : bordure qui se fonce, léger appui */
+.p-x,.p-go,.prompt summary,.bpfs,.side .theme,.f-th,.tzb button{transition:border-color var(--mv-f) var(--mv-out),background-color var(--mv-f) var(--mv-out),scale var(--mv-f) var(--mv-out)}
+.p-x:active,.prompt summary:active,.bpfs:active,.side .theme:active,.tzb button:active{scale:.96}
+.side .theme svg{transition:rotate var(--mv-m) var(--mv-spring)}
+.side .theme:hover svg,.side .theme:focus-visible svg{rotate:-18deg}
+.f-th img{transition:scale var(--mv-l) var(--mv-out)}
+.f-th:hover img,.f-th:focus-visible img{scale:1.03}
+/* accordéons : flèche à ressort */
+details.prompt>summary::after,details.m-det>summary::after{transition:transform var(--mv-m) var(--mv-spring)}
+/* carte de survol : même placement, entrée douce depuis la flèche */
+#mini{transform:translateY(6px) scale(.97);transform-origin:var(--ax,50%) 100%;transition:opacity var(--mv-f) var(--mv-out),transform var(--mv-m) var(--mv-spring)}
+#mini.bas{transform:translateY(-6px) scale(.97);transform-origin:var(--ax,50%) 0}
+#mini.on{transform:none}
+/* panneaux */
+#panel{transition:transform var(--mv-m) var(--mv-out)}
+#veil{transition:opacity var(--mv-m) var(--mv-out)}
+#full{transition:none}
+/* thème : fondu entre clair et sombre (View Transitions si dispo) */
+::view-transition-old(root),::view-transition-new(root){animation-duration:var(--mv-m);animation-timing-function:var(--mv-out)}
+/* jauge de fin de page */
+#mv-suite{position:fixed;right:24px;bottom:24px;z-index:60;width:248px;padding:12px 16px 14px;background:var(--bg);color:var(--fg);border:1px solid var(--fg);border-radius:14px;font:400 14px/20px var(--title);pointer-events:none;opacity:0;transform:translateY(12px);transition:opacity var(--mv-m) var(--mv-out),transform var(--mv-m) var(--mv-spring)}
+#mv-suite.on{opacity:1;transform:none}
+#mv-suite .l{display:block;color:var(--muted);font-size:13px;line-height:18px}
+#mv-suite .r{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:2px}
+#mv-suite b{font:500 16px/22px var(--title);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mv-suite .p{font:500 16px/22px var(--title);font-variant-numeric:tabular-nums}
+#mv-suite .t{display:block;height:3px;margin-top:10px;background:var(--hair);border-radius:2px;overflow:hidden}
+#mv-suite .t i{display:block;height:100%;background:var(--fg);transform:scaleX(0);transform-origin:left center;transition:transform var(--mv-m) var(--mv-out)}
+#mv-suite.plein{border-width:2px}
+@media (max-width:960px){#mv-suite{right:16px;bottom:16px}}
+@media (prefers-reduced-motion:reduce){
+.mv-on .mv-w{opacity:1!important}.mv-on .mv-wc .col i{transform:none!important}.mv-on .mv-wc .col .v{opacity:1!important}
+*,*::before,*::after{transition-duration:1ms!important;animation-duration:1ms!important}
+.col[data-n]:hover i,.menu ul a:hover{translate:none}.p-x:active,.prompt summary:active,.bpfs:active,.side .theme:active{scale:none}
+#mv-suite{display:none!important}}
+@media print{
+.mv-w,.mv-wc .col .v{opacity:1!important}.mv-wc .col i{transform:none!important}
+*,*::before,*::after{transition:none!important;animation:none!important}
+#mv-suite{display:none!important}}
+
+
+#mv-suite{background:none!important;border:0!important;border-radius:0!important;padding:0!important;width:220px;box-shadow:none!important}
+#mv-suite.plein{border-width:0!important}
+
+#mv-suite .l,#mv-suite b{display:none!important}#mv-suite{width:140px}#mv-suite .r{justify-content:flex-end}</style>
+<style id="besoins">
+/* ===== Composants du rendu Besoins (V1) ===== */
+.afaire{border:1.5px dashed var(--muted);border-radius:16px;padding:14px 18px;color:var(--muted);font-size:15px;line-height:24px;max-width:76ch;background:transparent}
+.afaire b{color:var(--fg);font:500 15px/24px var(--title)}
+.conf{display:inline;font:500 14px/20px var(--title);color:var(--muted);border-bottom:1.5px dashed var(--muted)}
+/* objectif en grand */
+.obj{font:500 clamp(22px,2.1vw,28px)/1.4 var(--title);letter-spacing:-.01em;max-width:34ch;margin:0;border-left:6px solid var(--soleil);padding-left:24px}
+/* citation sourcée */
+.vb{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+figure.q{margin:0;background:var(--soft);border-radius:16px;padding:18px 20px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:14px;transition:background-color var(--mv-f) var(--mv-out),translate var(--mv-m) var(--mv-spring)}
+figure.q:hover{translate:0 -3px}
+figure.q blockquote{margin:0;font:400 17px/26px var(--body)}
+figure.q figcaption{font:500 13px/18px var(--title);color:var(--muted)}
+figure.q figcaption b{display:inline-block;min-width:44px;font:600 13px/20px var(--title);color:#1F1A17;background:var(--lilas);border-radius:999px;padding:1px 10px;margin-right:8px;text-align:center}
+/* bloc insight */
+.ins{border-top:2px solid var(--fg);padding-top:28px;margin-top:72px!important;display:grid;grid-template-columns:240px minmax(0,1fr);column-gap:48px;row-gap:24px}
+.ins:first-of-type{margin-top:48px!important}
+.ins>.ih{grid-column:1}
+.ins>.ih .k{display:block}
+.ins>.ih .n{display:block;font:600 64px/1 var(--title);letter-spacing:-.03em;margin:8px 0 12px}
+.ins>.ih p{margin:0;color:var(--muted);font-size:15px;line-height:22px}
+.ins>.ib{grid-column:2;min-width:0}
+.ins h3{margin:0;font:600 26px/34px var(--title);letter-spacing:-.01em;max-width:30ch}
+.ins .fmt{margin:12px 0 0;color:var(--muted);max-width:64ch}
+.ins .fmt em{font-style:normal;color:var(--fg)}
+.ins .vb{margin-top:24px}
+.ins .so{margin:16px 0 0;font-size:15px;color:var(--muted)}
+/* persona */
+.pers{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:40px;margin-top:48px!important;align-items:start}
+.pid{background:var(--soft);border-radius:24px;padding:28px;position:sticky;top:24px}
+.pid .av{width:72px;height:72px;border-radius:50%;background:var(--peche);display:grid;place-items:center;font:600 28px/1 var(--title);color:#1F1A17}
+.pid.e .av{background:var(--lilas)}
+.pid h3{margin:20px 0 4px;font:600 30px/36px var(--title);letter-spacing:-.02em}
+.pid .who{margin:0;color:var(--muted);font-size:15px;line-height:22px}
+.pid dl{margin:20px 0 0;border-top:1px solid var(--fg)}
+.pid dl div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--hair)}
+.pid dt{font:500 14px/22px var(--title);color:var(--muted)}
+.pid dd{margin:0;font-size:15px;line-height:22px}
+.pid blockquote{margin:24px 0 0;font:500 19px/28px var(--title);letter-spacing:-.005em}
+.pid blockquote+p{margin:8px 0 0;font:500 13px/18px var(--title);color:var(--muted)}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 32px}
+.pgrid>div{border-top:2px solid var(--fg);padding-top:12px}
+.pgrid h4{margin:0 0 8px;font:500 18px/26px var(--title)}
+.pgrid ul{margin:0;padding:0;list-style:none}
+.pgrid li{padding:8px 0;border-bottom:1px solid var(--hair);font-size:15px;line-height:23px}
+.pgrid li small{display:block;font:500 12.5px/18px var(--title);color:var(--muted);margin-top:2px}
+.attend{grid-column:1/-1;background:color-mix(in srgb,var(--soleil) 26%,var(--bg));border-radius:20px;padding:20px 24px;border-top:0!important}
+.attend h4{margin:0 0 6px}
+.attend p{margin:0;max-width:70ch}
+/* relation parent-enfant */
+.rel{display:grid;grid-template-columns:200px minmax(0,1fr) 200px;gap:24px;align-items:center}
+.rel .pole{border-radius:20px;padding:20px;text-align:center;font:600 20px/26px var(--title);color:#1F1A17}
+.rel .pole small{display:block;font:400 14px/20px var(--body);margin-top:4px}
+.rel .p1{background:var(--peche)}.rel .p2{background:var(--lilas)}
+.rel ol{list-style:none;margin:0;padding:0;border-top:2px solid var(--fg)}
+.rel li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--hair)}
+.rel li .ar{font:600 20px/24px var(--title);text-align:center}
+.rel li span{font-size:15px;line-height:23px}
+.rel li small{display:block;font:500 12.5px/18px var(--title);color:var(--muted)}
+/* journey map */
+.jm{border:1px solid var(--hair);border-radius:20px;overflow-x:auto;background:var(--bg)}
+.jm-g{display:grid;grid-template-columns:96px repeat(var(--n),minmax(132px,1fr));min-width:888px}
+.jm-g>div{padding:12px 14px;border-bottom:1px solid var(--hair);font-size:14px;line-height:21px}
+.jm-g>.jl{font:500 13px/18px var(--title);color:var(--muted);background:var(--soft)}
+.jm-g>.js{font:600 15px/21px var(--title);border-bottom:2px solid var(--fg)}
+.jm-g>.js small{display:block;font:500 12px/16px var(--title);color:var(--muted);margin-bottom:4px}
+.jm-g>.vt{background:color-mix(in srgb,var(--soleil) 30%,var(--bg))}
+.jm-g>.js.vt small{color:#6b4a00}
+:root[data-theme="dark"] .jm-g>.vt{background:color-mix(in srgb,var(--soleil) 14%,var(--bg))}
+:root[data-theme="dark"] .jm-g>.js.vt small{color:var(--soleil)}
+.jm-g .src{display:block;border:0;padding:0;margin:4px 0 0;font:500 12px/16px var(--title);color:var(--muted);white-space:normal}
+.jm-g>.jd{color:var(--fg)}
+.jm-g>.jo{color:var(--fg)}
+.jemo{grid-column:2/-1;position:relative;height:120px;padding:0!important}
+.jemo svg{position:absolute;inset:14px 0;width:100%;height:calc(100% - 28px);overflow:visible}
+.jemo .ax{stroke:var(--hair);stroke-width:1;vector-effect:non-scaling-stroke}
+.jemo .ln{fill:none;stroke:var(--fg);stroke-width:2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.jemo i{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--bg);border:2px solid var(--fg)}
+.jemo i.lo{background:var(--peche)}.jemo i.hi{background:var(--soleil)}
+.jleg{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:12px!important;font:500 13px/18px var(--title);color:var(--muted)}
+.jleg span::before{content:"";display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:-1px;background:color-mix(in srgb,var(--soleil) 30%,var(--bg));border:1px solid var(--soleil)}
+/* problématique */
+.hmw{margin:56px 0 0;max-width:none}
+.hmw p.k{margin:0 0 16px}
+.hmw blockquote{margin:0;font:600 clamp(30px,3.6vw,48px)/1.18 var(--title);letter-spacing:-.025em;max-width:22ch}
+.hmw blockquote span{color:var(--muted);font-weight:500}
+.hmw .court{margin:24px 0 0;font:500 20px/28px var(--title);max-width:44ch}
+.hmw .court mark{background:linear-gradient(transparent 55%,var(--soleil) 55%);color:inherit;padding:0 2px}
+:root[data-theme="dark"] .hmw .court mark{background:linear-gradient(transparent 55%,color-mix(in srgb,var(--soleil) 55%,transparent) 55%)}
+/* signes du tableau des hypothèses */
+.sg{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;font:600 15px/1 var(--title);color:#1F1A17}
+.sg.p{background:var(--soleil)}.sg.m{background:var(--peche)}.sg.f{background:transparent;color:var(--muted);border:1px solid var(--hair)}.sg.n{background:transparent;color:var(--muted)}
+.tw td .sg{margin:-4px 0}
+.tw.ctr td:not(:first-child):not(:last-child),.tw.ctr th:not(:first-child):not(:last-child){text-align:center}
+/* qui a fait quoi */
+.who3{display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+.who3>div{border-top:2px solid var(--fg);padding-top:12px}
+.who3 h4{margin:0 0 8px;font:600 20px/28px var(--title)}
+.who3 ul{margin:0;padding:0;list-style:none}
+.who3 li{padding:7px 0;border-bottom:1px solid var(--hair);font-size:15px;line-height:22px}
+@media (max-width:960px){
+ .ins{grid-template-columns:1fr}.ins>.ib{grid-column:1}
+ .pers{grid-template-columns:1fr}.pid{position:static}
+ .pgrid,.who3{grid-template-columns:1fr}
+ .rel{grid-template-columns:1fr}
+}
+@media print{.pid{position:static}.jm{overflow:visible}}
+</style>
+
+<style id="besoins2">
+/* ===== Composants ajoutés (version complète, 13 nov.) ===== */
+:root{--menthe:#CFEBDD;--pi:#FFFDF8;
+--c-gp:color-mix(in srgb,var(--peche) 62%,#fff);--c-en:color-mix(in srgb,var(--lilas) 62%,#fff);--c-pe:color-mix(in srgb,var(--soleil) 58%,#fff);
+--z-besoin:color-mix(in srgb,var(--soleil) 30%,var(--bg));--z-entend:color-mix(in srgb,var(--peche) 34%,var(--bg));--z-voit:color-mix(in srgb,var(--menthe) 70%,var(--bg));
+--z-dit:color-mix(in srgb,var(--lilas) 34%,var(--bg));--z-fait:color-mix(in srgb,var(--sable) 75%,var(--bg));
+--em-neg:color-mix(in srgb,var(--peche) 70%,var(--bg));--em-pos:color-mix(in srgb,var(--menthe) 90%,var(--bg));--em-neu:var(--soft)}
+:root[data-theme="dark"]{--pi:#211B15;
+--c-gp:color-mix(in srgb,var(--peche) 34%,var(--bg));--c-en:color-mix(in srgb,var(--lilas) 32%,var(--bg));--c-pe:color-mix(in srgb,var(--soleil) 30%,var(--bg));
+--z-besoin:color-mix(in srgb,var(--soleil) 15%,var(--bg));--z-entend:color-mix(in srgb,var(--peche) 16%,var(--bg));--z-voit:color-mix(in srgb,var(--menthe) 17%,var(--bg));
+--z-dit:color-mix(in srgb,var(--lilas) 18%,var(--bg));--z-fait:color-mix(in srgb,var(--sable) 9%,var(--bg));
+--em-neg:color-mix(in srgb,var(--peche) 26%,var(--bg));--em-pos:color-mix(in srgb,var(--menthe) 22%,var(--bg));--em-neu:var(--soft)}
+.page h2.t{max-width:28ch}
+.cd{display:inline-block;font:600 12px/18px var(--title);letter-spacing:.02em;padding:0 7px;border-radius:999px;background:var(--bg);color:var(--fg);border:1px solid var(--hair);white-space:nowrap;vertical-align:1px}
+.cd.gp{background:var(--c-gp);border-color:transparent}.cd.en{background:var(--c-en);border-color:transparent}.cd.pe{background:var(--c-pe);border-color:transparent}
+.legend{display:flex;flex-wrap:wrap;gap:8px 24px;font:500 14px/20px var(--title);color:var(--muted);margin:0;padding:0;list-style:none}
+.legend li::before{content:"";display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:8px;vertical-align:-2px;background:var(--sw)}
+figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{background:var(--lilas)}figure.q figcaption b.pe{background:var(--soleil)}
+/* affinity map */
+.aff{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;background:var(--soft);border-radius:24px;padding:20px}
+.ag{background:var(--bg);border-radius:18px;padding:16px 14px 14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.ag header{padding:0 4px 4px}
+.ag header .k{display:block;margin-bottom:4px}
+.ag h4{margin:0;font:600 17px/23px var(--title);letter-spacing:-.005em}
+.pit{border-radius:6px 6px 6px 14px;padding:10px 12px 9px;font-size:14px;line-height:20px;background:var(--c-gp);color:var(--fg);min-width:0}
+.pit.en{background:var(--c-en)}.pit.pe{background:var(--c-pe)}
+.pit p{margin:0}
+.pit small{display:block;margin-top:6px;font:600 12px/16px var(--title);color:var(--muted)}
+:root:not([data-theme="dark"]) .pit small{color:#5a4f46}
+.ag:target{outline:3px solid var(--fg);outline-offset:3px}
+/* cheminement des insights */
+.ver{list-style:none;margin:0;padding:0;border-top:2px solid var(--fg)}
+.ver li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:6px 24px;padding:14px 0;border-bottom:1px solid var(--hair)}
+.ver li>a{font:500 14px/22px var(--title);color:var(--muted);text-decoration:none}
+.ver li>a:hover{color:var(--fg);text-decoration:underline}
+.ver li p{margin:0;font-size:15px;line-height:23px}
+.ver li p small{display:block;margin-top:4px;font:500 12.5px/18px var(--title);color:var(--muted)}
+.ver2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 28px}
+.ver2>div{border-top:2px solid var(--fg);padding-top:10px}
+.ver2 b{display:block;font:500 15px/22px var(--title);margin-bottom:4px}
+.ver2 p{margin:0;font-size:15px;line-height:23px;color:var(--muted)}
+.ins .txt{margin:14px 0 0;font:400 18px/28px var(--body);max-width:66ch}
+.ins .lien{margin:20px 0 0;border-top:1px solid var(--fg)}
+.ins .lien div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:4px 16px;padding:9px 0;border-bottom:1px solid var(--hair);font-size:15px;line-height:22px}
+.ins .lien dt{font:500 14px/22px var(--title);color:var(--muted)}
+.ins .lien dd{margin:0}
+.ins .lien a{color:inherit}
+.ins.cle{background:color-mix(in srgb,var(--soleil) 22%,var(--bg));border-radius:24px;padding:28px;border-top:0}
+:root[data-theme="dark"] .ins.cle{background:color-mix(in srgb,var(--soleil) 9%,var(--bg))}
+.ins.cle .txt{font:500 20px/30px var(--title)}
+/* persona */
+.pid .av{font-size:30px}
+.pid.gp .av{background:var(--peche)}.pid.en .av{background:var(--lilas)}.pid.pe .av{background:var(--soleil)}
+.pgrid li .cd{margin-left:4px}
+.attend p+p{margin-top:8px}
+/* empathy map */
+.emp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr);grid-template-areas:"besoin besoin besoin" "entend centre voit" "entend centre dit" "fait fait fait";gap:12px}
+.ez{border-radius:22px;padding:16px 16px 18px;background:var(--z);min-width:0}
+.ez h4{display:flex;align-items:center;gap:10px;margin:0 0 12px;font:600 16px/22px var(--title)}
+.ez h4 i{font-style:normal;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--fg);color:var(--bg);font:600 13px/1 var(--title);flex:none}
+.ez .pis{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.ez.z-besoin{grid-area:besoin;--z:var(--z-besoin)}.ez.z-entend{grid-area:entend;--z:var(--z-entend)}.ez.z-voit{grid-area:voit;--z:var(--z-voit)}
+.ez.z-dit{grid-area:dit;--z:var(--z-dit)}.ez.z-fait{grid-area:fait;--z:var(--z-fait)}
+.ez.z-entend .pis,.ez.z-voit .pis,.ez.z-dit .pis{grid-template-columns:1fr}
+.pi{background:var(--pi);border-radius:14px;padding:9px 12px 10px;font-size:14px;line-height:20px;min-width:0}
+.pi .cd{display:table;margin-bottom:4px}
+.pi q{quotes:"« " " »"}
+.centre{grid-area:centre;border:2px solid var(--fg);border-radius:40px;padding:22px 22px 20px;background:var(--bg);display:flex;flex-direction:column;gap:14px;min-width:0}
+.centre .qui{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:center}
+.centre .av{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font:600 26px/1 var(--title);color:#1F1A17;background:var(--peche)}
+.centre.en .av{background:var(--lilas)}.centre.pe .av{background:var(--soleil)}
+.centre .qui b{display:block;font:600 19px/24px var(--title)}
+.centre .qui .lp{display:block;margin-bottom:2px}.centre .qui .de{margin:4px 0 0;font-size:14px;line-height:21px;color:var(--muted)}
+.centre .pr{border-top:1px solid var(--fg);padding-top:12px}
+.centre .pr h4{display:flex;align-items:center;gap:10px;margin:0 0 10px;font:600 16px/22px var(--title)}
+.centre .pr h4 i{font-style:normal;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--fg);color:var(--bg);font:600 13px/1 var(--title)}
+.centre .cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.centre h5{margin:0 0 6px;font:500 13px/18px var(--title);color:var(--muted)}
+.centre ul{list-style:none;margin:0;padding:0}
+.centre li{font-size:14px;line-height:20px;padding:6px 0;border-bottom:1px solid var(--hair)}
+.centre .autre{margin:0;font-size:14px;color:var(--muted)}
+/* relation à trois */
+.tri{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:40px;align-items:center}
+.tri svg{width:100%;height:auto;display:block;color:var(--fg)}
+.tri svg text{font-family:var(--title);fill:var(--fg)}
+.tri svg .nd{stroke:var(--fg);stroke-width:2}
+.tri svg .ed{stroke:var(--fg);stroke-width:1.5;fill:none}
+.tri svg .nb{fill:var(--fg)}.tri svg .nbt{fill:var(--bg);font-weight:600;font-size:15px}
+.tri ol{list-style:none;margin:0;padding:0;border-top:2px solid var(--fg)}
+.tri li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--hair);font-size:15px;line-height:23px}
+.tri li>i{font-style:normal;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--fg);color:var(--bg);font:600 14px/1 var(--title)}
+.tri li b{display:block;font:500 15px/22px var(--title)}
+.tri li.vide span{color:var(--muted)}
+/* user journey */
+.jm-g>.em{font:500 14px/20px var(--title)}
+.jm-g>.em.neg{background:var(--em-neg)}.jm-g>.em.pos{background:var(--em-pos)}.jm-g>.em.neu{background:var(--em-neu)}
+.jm-g>.cx{position:relative;box-shadow:inset 0 0 0 2px var(--fg)}
+.jm-g>.cx::after{content:"+";position:absolute;top:-1px;right:-1px;width:22px;height:22px;border-radius:0 0 0 10px;background:var(--fg);color:var(--bg);display:grid;place-items:center;font:600 16px/1 var(--title)}
+.jemo i.mid{background:var(--bg)}.jemo i.lo{background:var(--peche)}.jemo i.hi{background:var(--menthe)}
+.jleg .neg::before{background:var(--em-neg);border-color:var(--peche)}.jleg .neu::before{background:var(--em-neu);border-color:var(--hair)}.jleg .pos::before{background:var(--em-pos);border-color:#9fd3b9}
+.jleg .x::before{background:var(--fg);border-color:var(--fg)}
+.scn{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:0 32px}
+.scn>div{border-top:2px solid var(--fg);padding-top:10px}
+.scn b{display:block;font:500 15px/22px var(--title);margin-bottom:4px}
+.scn p{margin:0;font-size:15px;line-height:24px}
+/* problématique */
+.bmd{list-style:none;margin:0;padding:0;border-top:2px solid var(--fg)}
+.bmd li{display:grid;grid-template-columns:140px minmax(0,1fr);gap:8px 24px;padding:18px 0;border-bottom:1px solid var(--hair)}
+.bmd li b{font:600 18px/26px var(--title)}
+.bmd li p{margin:0;font-size:17px;line-height:27px;max-width:62ch}
+.hmw blockquote{max-width:24ch}
+.chg td:first-child{white-space:nowrap}
+.chg del{color:var(--muted)}
+.chg ins{text-decoration:none;background:color-mix(in srgb,var(--soleil) 45%,transparent);padding:0 2px;border-radius:3px}
+/* annexes : extraits */
+.shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.shots figure{margin:0}
+.shots a{display:block;border:1px solid var(--hair);border-radius:14px;overflow:hidden;background:#fff;transition:border-color var(--mv-f) var(--mv-out)}
+.shots a:hover{border-color:var(--fg)}
+.shots img{display:block;width:100%;height:170px;object-fit:cover;object-position:top left}
+.shots figcaption{margin-top:8px;font:500 14px/20px var(--title)}
+.shots figcaption small{display:block;font:400 13px/18px var(--body);color:var(--muted)}
+@media (max-width:1180px){.aff{grid-template-columns:repeat(2,minmax(0,1fr))}.tri{grid-template-columns:1fr}.tri svg{max-width:380px}}
+@media (max-width:960px){
+ .aff,.ver2,.scn,.shots{grid-template-columns:1fr}
+ .ver li,.bmd li,.ins .lien div{grid-template-columns:1fr}
+ .emp{grid-template-columns:1fr;grid-template-areas:"centre" "besoin" "voit" "dit" "fait" "entend"}
+ .centre .cols2{grid-template-columns:1fr}
+}
+@media print{
+ .aff{background:none;padding:0;gap:10px}.ag{border:1px solid #ccc;break-inside:avoid}
+ .emp,.ins,.tri,.scn,.shots figure,.bmd li{break-inside:avoid}
+ .jm{border:0}.jm-g{min-width:0!important;font-size:11px}.jm-g>div{padding:6px 7px;font-size:10.5px;line-height:14px}
+ .sec{margin-top:40px}.page .next{display:none}
+ .shots{grid-template-columns:repeat(2,1fr)}.shots img{height:auto;object-fit:contain}
+ .pers{grid-template-columns:260px 1fr;gap:24px}
+ .page h2.t{font-size:26px}
+ body{font-size:9.5pt;line-height:1.4}
+ .sec{margin-top:22px}.sh{padding-top:12px;grid-template-columns:170px 1fr;column-gap:20px}.sh h3{font-size:16px;line-height:21px}.sh p{font-size:9.5pt;line-height:1.4}
+ .sec>*:not(.sh),.sec>.sh+*{margin-top:12px}.sec h4.sub{margin-top:16px;padding-top:8px;font-size:13px}
+ .lead{font-size:10.5pt;line-height:1.4;margin-top:8px}.facts{margin-top:16px}.facts b{font-size:26px;line-height:30px}
+ .ins{margin-top:16px!important;padding-top:12px;grid-template-columns:110px 1fr;column-gap:16px;row-gap:8px}.ins>.ih .n{font-size:32px}.ins h3{font-size:16px;line-height:21px}.ins .txt{font-size:10pt;line-height:1.4}.ins.cle{padding:14px}.ins.cle .txt{font-size:10.5pt;line-height:1.4}
+ .ins .lien div{padding:3px 0;font-size:9pt;grid-template-columns:110px 1fr}.vb{gap:8px}figure.q{padding:8px 10px;gap:6px}figure.q blockquote{font-size:9.5pt;line-height:1.35}
+ .aff{grid-template-columns:repeat(3,1fr)}.ag{padding:8px;gap:5px}.ag h4{font-size:11.5px;line-height:15px}.pit{padding:5px 7px;font-size:9pt;line-height:12.5px}.pit small{margin-top:2px;font-size:8px;line-height:10px}
+ .ver li{padding:5px 0;grid-template-columns:80px 1fr;gap:2px 12px}.ver li p,.ver2 p{font-size:9pt;line-height:1.35}
+ .pid{padding:14px}.pid h3{font-size:20px;line-height:24px;margin-top:8px}.pid .av{width:44px;height:44px;font-size:20px}.pid blockquote{font-size:12px;line-height:17px;margin-top:10px}.pid dl div{padding:4px 0}
+ .pgrid{gap:12px 18px}.pgrid h4{font-size:12px;margin-bottom:2px}.pgrid li{padding:3px 0;font-size:9pt;line-height:12.5px}.attend{padding:10px 12px}
+ .emp{gap:6px}.ez{padding:8px;border-radius:12px}.ez h4,.centre .pr h4{font-size:11.5px;margin-bottom:6px}.ez h4 i,.centre .pr h4 i{width:18px;height:18px;font-size:10px}.ez .pis{gap:5px;grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}.pi{padding:4px 7px;font-size:8.5pt;line-height:11.5px;border-radius:8px}
+ .centre{padding:10px;border-radius:18px;gap:6px}.centre li{font-size:8.5pt;line-height:11.5px;padding:3px 0}.centre .av{width:40px;height:40px;font-size:18px}.centre .qui{grid-template-columns:40px 1fr}.centre .qui b{font-size:13px}.centre .qui .de{font-size:8.5pt;line-height:11.5px}
+ .cd{font-size:8px;line-height:12px;padding:0 4px}
+ .jm-g{grid-template-columns:62px repeat(var(--n),minmax(0,1fr))!important}.jm-g>div{padding:4px 5px;font-size:8pt;line-height:10.5px}.jm-g>.js{font-size:9pt;line-height:11px}.jm-g>.jl{font-size:7.5pt;line-height:10px;padding:4px 3px}.jm-g>.em{font-size:8.5pt;line-height:11px}.jm-g>.js small{font-size:7pt;line-height:9px}.jemo{height:56px}.jemo i{width:9px;height:9px;margin:-4.5px 0 0 -4.5px}.jleg{font-size:8pt;margin-top:4px!important}
+ .scn p{font-size:9pt;line-height:1.35}.rows li{padding:6px 0}ol.rows .n{width:28px;height:28px;font-size:12px}ol.rows .a b{font-size:12px;line-height:16px}ol.rows .a span{font-size:9pt}
+ .tri{grid-template-columns:240px 1fr;gap:16px}.tri li{padding:4px 0;font-size:9pt;line-height:12.5px}
+ .three b{font-size:12px}.three p{font-size:9pt;line-height:1.35}.tw table{font-size:9pt;line-height:1.3}.tw td{padding:4px 10px 4px 0}
+ .hmw blockquote{font-size:24px}.bmd li{padding:6px 0;grid-template-columns:90px 1fr}.bmd li p{font-size:10pt;line-height:1.4}.obj{font-size:14px}
+ .shots{grid-template-columns:repeat(2,1fr);gap:10px}.shots figcaption{font-size:9pt}
+ .note,.warn,.afaire{padding:6px 10px;font-size:9pt;line-height:1.35;margin-top:8px}
+ .ins>.ib{grid-column:2}.sh h3{grid-column:1;grid-row:1 / span 2;margin-bottom:0}.sh p{grid-column:2}
+ .emp{grid-template-columns:1fr 1.15fr 1fr;grid-template-areas:"besoin besoin besoin" "entend centre voit" "entend centre dit" "fait fait fait"}.centre .cols2{grid-template-columns:1fr 1fr}
+ .pgrid{grid-template-columns:1fr 1fr}.three,.facts,.who3,.ver2{grid-template-columns:repeat(3,1fr);gap:0 16px}.scn{grid-template-columns:2fr 1fr;gap:0 16px}.ins .lien div{grid-template-columns:110px 1fr}
+ ol.dec li>span:last-child{grid-column:auto}
+ ol.dec li{padding:6px 0;grid-template-columns:30px 180px 1fr}ol.dec li b{font-size:13px}ol.dec li span{font-size:9pt}.who3 li{font-size:9pt;padding:3px 0}
+}
+</style>
+<style id="empathy-visage">
+.emp.emp2{display:block!important;position:relative;aspect-ratio:100/80;margin-top:32px;border:1.5px solid var(--fg);border-radius:8px;overflow:hidden;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%2080%22%20preserveAspectRatio%3D%22none%22%3E%3Cg%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%220.35%22%3E%3Cpolygon%20points%3D%220%2C0%2050%2C0%2050%2C40%22%20fill%3D%22%23F7E8B5%22/%3E%3Cpolygon%20points%3D%2250%2C0%20100%2C0%2050%2C40%22%20fill%3D%22%23F7E8B5%22/%3E%3Cpolygon%20points%3D%22100%2C0%20100%2C40%2050%2C40%22%20fill%3D%22%23D7ECF2%22/%3E%3Cpolygon%20points%3D%22100%2C40%20100%2C80%2050%2C40%22%20fill%3D%22%23F0D5E1%22/%3E%3Cpolygon%20points%3D%220%2C80%20100%2C80%2050%2C40%22%20fill%3D%22%23DFEABF%22/%3E%3Cpolygon%20points%3D%220%2C0%200%2C80%2050%2C40%22%20fill%3D%22%23EFC4BB%22/%3E%3C/g%3E%3C/svg%3E") center/100% 100% no-repeat;padding:0!important;gap:0!important}
+:root[data-theme="dark"] .emp.emp2{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%2080%22%20preserveAspectRatio%3D%22none%22%3E%3Cg%20stroke%3D%22%2317130F%22%20stroke-width%3D%220.35%22%3E%3Cpolygon%20points%3D%220%2C0%2050%2C0%2050%2C40%22%20fill%3D%22%234A4128%22/%3E%3Cpolygon%20points%3D%2250%2C0%20100%2C0%2050%2C40%22%20fill%3D%22%234A4128%22/%3E%3Cpolygon%20points%3D%22100%2C0%20100%2C40%2050%2C40%22%20fill%3D%22%2322404A%22/%3E%3Cpolygon%20points%3D%22100%2C40%20100%2C80%2050%2C40%22%20fill%3D%22%234A2F3C%22/%3E%3Cpolygon%20points%3D%220%2C80%20100%2C80%2050%2C40%22%20fill%3D%22%2338432A%22/%3E%3Cpolygon%20points%3D%220%2C0%200%2C80%2050%2C40%22%20fill%3D%22%234D312B%22/%3E%3C/g%3E%3C/svg%3E")}
+.emp2 .ez{position:absolute;background:none!important;border:0!important;padding:0!important;box-shadow:none!important;min-height:0!important}
+.emp2 .ez h4{display:flex;align-items:center;gap:8px;margin:0 0 8px;font:600 15px/20px var(--title)!important;color:#1F1A17}
+:root[data-theme="dark"] .emp2 .ez h4{color:var(--fg)}
+.emp2 .ez h4 i{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#5B6070;color:#fff;font:600 12px/1 var(--title);font-style:normal;flex:none}
+.emp2 .pis{display:flex;flex-wrap:wrap;gap:8px}
+.emp2 .pi{background:#FFFFFF!important;color:#1F1A17;border:1.5px solid #E2BE5C!important;border-radius:16px!important;padding:6px 11px!important;font:400 12px/16px var(--body)!important;max-width:100%;box-shadow:none!important}
+.emp2 .pi .cd{display:block;margin:0 0 2px;padding:0;background:none!important;border:0!important;color:#9A7418;font:600 11px/14px var(--title)}
+.emp2 .z-personne{left:14%;top:4.5%;width:34%}
+.emp2 .z-personne .qui{display:block}
+.emp2 .z-personne .av{display:none}
+.emp2 .z-personne b{display:block;font:600 14px/19px var(--title);color:#1F1A17}
+.emp2 .z-personne .de{margin:2px 0 0;font:400 12px/17px var(--body);color:#2b2522}
+.emp2 .z-personne .cd{font:600 11px/14px var(--title);color:#9A7418;background:none!important;padding:0 2px}
+.emp2 .z-besoin{left:52%;top:4.5%;width:40%}
+.emp2 .z-besoin .pi{flex:1 1 0;min-width:0}
+.emp2 .z-voit{right:1.8%;top:23.5%;width:22%}
+.emp2 .z-voit .pi,.emp2 .z-dit .pi{padding:5px 10px!important}
+.emp2 .z-dit{right:1.8%;bottom:4%;top:auto;width:22%}
+.emp2 .z-entend{left:1.8%;top:25%;width:19%}
+.emp2 .z-fait{left:24%;bottom:3.5%;width:52%}
+.emp2 .z-fait h4{justify-content:center}
+.emp2 .z-fait .pis{justify-content:center}
+.emp2 .z-fait .pi{flex:1 1 0;min-width:0}
+.emp2 .centre.tete{position:absolute!important;left:50%;top:50%;transform:translate(-50%,-50%);width:43%;aspect-ratio:1;contain:size layout;border-radius:50%!important;background:#FFFFFF!important;color:#1F1A17;border:2px solid #1F1A17!important;padding:11% 10% 8%!important;box-shadow:none!important;display:flex;flex-direction:column;overflow:visible}
+:root[data-theme="dark"] .emp2 .centre.tete{background:#1F1A17!important;color:var(--fg);border-color:var(--fg)!important}
+.emp2 .tete .oreille{position:absolute;left:-5%;top:41%;width:8%;height:19%;border:2px solid currentColor;border-right:0;border-radius:50% 0 0 50%;background:inherit}
+.emp2 .tete .oeil{position:absolute;right:12%;top:35%;width:3.4%;height:7%;border-radius:50%;background:currentColor}
+.emp2 .tete .nez{position:absolute;right:-6.5%;top:48%;width:0;height:0;border-top:16px solid transparent;border-bottom:4px solid transparent;border-left:30px solid currentColor}
+.emp2 .tete .nez::after{content:"";position:absolute;left:-31px;top:-13px;border-top:13px solid transparent;border-bottom:3px solid transparent;border-left:26px solid #fff}
+:root[data-theme="dark"] .emp2 .tete .nez::after{border-left-color:#1F1A17}
+.emp2 .tete .pr{border:0!important;padding:0!important;margin:0!important}
+.emp2 .tete .pr h4{justify-content:center;white-space:nowrap;font:600 14px/18px var(--title)!important;margin-bottom:10px;color:inherit}
+.emp2 .tete .pr h4 i{display:none}
+.emp2 .tete .pr h4::before{content:"7 · "}
+.emp2 .tete .cols2{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.emp2 .tete .cols2>div+div{border-left:3px solid #C9CDD6;padding-left:12px}
+.emp2 .tete h5{margin:0 0 4px;font:700 12px/16px var(--title);text-transform:uppercase;letter-spacing:.04em}
+.emp2 .tete .cols2>div:first-child h5{color:#A3384B}
+.emp2 .tete .cols2>div+div h5{color:#3D7A3A}
+.emp2 .tete ul{list-style:none;margin:0;padding:0}
+.emp2 .tete li{font:400 11px/14px var(--body);margin:0 0 4px}
+.emp2 .tete .cd{background:none!important;color:#9A7418;font:600 11px/14px var(--title);padding:0}
+.emp2 .tete .autre{margin:auto 0 0;padding-top:8px;border-top:3px solid #C9CDD6;text-align:center;font:400 11.5px/16px var(--body);color:#5B6070}
+@media (max-width:980px){.emp.emp2{aspect-ratio:auto;background:none;border:0}.emp2 .ez,.emp2 .centre.tete{position:static!important;transform:none;width:auto;margin:0 0 12px;padding:14px!important;border-radius:12px!important}.emp2 .ez{background:var(--soft,#F6EEDD)!important}.emp2 .centre.tete{aspect-ratio:auto;border-radius:16px!important}.emp2 .tete .oreille,.emp2 .tete .oeil,.emp2 .tete .nez{display:none}.emp2 .tete .cols2{grid-template-columns:1fr}.emp2 .tete .cols2>div+div{border:0;padding:0}}
+@media print{.emp.emp2{break-inside:avoid}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<aside class="side">
+<div class="hero"><p class="k">Bloc 02 · Besoins</p><h1>Besoins utilisateurs</h1><p>Le Cadre, par Soly · PFR Générations Connectées</p></div>
+<div class="srch"><label for="q">Chercher dans le dossier</label><input id="q" type="search" autocomplete="off" placeholder="photo, vendredi, déranger…" aria-controls="resl"><p id="resc" role="status" aria-live="polite" hidden></p><ul id="resl" hidden></ul></div>
+<ul class="menu" id="menu">
+<li data-p="intro"><a href="#intro"><b>01</b>Introduction</a><ul><li><a href="#intro-projet">Le projet</a></li><li><a href="#intro-objectif">L'objectif</a></li><li><a href="#intro-plan">Le dossier</a></li></ul></li>
+<li data-p="methode"><a href="#methode"><b>02</b>Méthode</a><ul><li><a href="#m-hyp">Hypothèses</a></li><li><a href="#m-methodes">Méthodes</a></li><li><a href="#m-profils">Profils interrogés</a></li><li><a href="#m-limites">Limites</a></li></ul></li>
+<li data-p="insights"><a href="#insights"><b>03</b>Affinity map et insights</a><ul><li><a href="#a-map">Affinity map</a></li><li><a href="#a-v1">Premières versions</a></li><li><a href="#a-ins">Insights</a></li></ul></li>
+<li data-p="parent"><a href="#parent"><b>04</b>Persona parent</a><ul><li><a href="#parent-fiche">Persona</a></li><li><a href="#parent-emp">Empathy map</a></li></ul></li>
+<li data-p="enfant"><a href="#enfant"><b>05</b>Persona enfant</a><ul><li><a href="#enfant-fiche">Persona</a></li><li><a href="#enfant-emp">Empathy map</a></li></ul></li>
+<li data-p="petitenfant"><a href="#petitenfant"><b>06</b>Persona petit-enfant</a><ul><li><a href="#petitenfant-fiche">Persona</a></li><li><a href="#petitenfant-emp">Empathy map</a></li><li><a href="#relation">Les trois ensemble</a></li></ul></li>
+<li data-p="parcours"><a href="#parcours"><b>07</b>User journey</a><ul><li><a href="#j-parent">Jacqueline</a></li><li><a href="#j-enfant">Sandrine</a></li><li><a href="#j-petit-enfant">Hugo</a></li><li><a href="#j-verite">Moments de vérité</a></li></ul></li>
+<li data-p="probleme"><a href="#probleme"><b>08</b>Problématique</a><ul><li><a href="#pb-question">La question</a></li><li><a href="#pb-pourquoi">Pourquoi celle-ci</a></li><li><a href="#pb-avant">Version précédente</a></li></ul></li>
+<li data-p="annexes"><a href="#annexes"><b>09</b>Annexes</a><ul><li><a href="#a-preuves">Documents</a></li><li><a href="#a-figjam">Extraits du FigJam</a></li><li><a href="#a-ia">IA déclarée</a></li><li><a href="#a-qui">Qui a fait quoi</a></li></ul></li>
+</ul>
+<button class="theme" type="button" id="theme" aria-pressed="false" aria-label="Passer en mode sombre" title="Passer en mode sombre"></button>
+</aside>
+<main id="contenu">
+<section class="page" id="p-intro"><span class="k">01 / 09</span>
+<h2 class="t">Introduction</h2>
+<p class="lead">Ce dossier montre ce que des familles nous ont dit sur le lien avec un parent âgé, comment nous l'avons trié, et la question que nous en tirons.</p>
+<div class="facts">
+<div><em>Le terrain</em><b>9<small>personnes</small></b><span>4 grands-parents, 3 enfants, 2 petits-enfants, codés dans le FigJam.</span></div>
+<div><em>La matière</em><b>18<small>verbatims</small></b><span>Rangés en 6 groupes sur l'affinity map de l'équipe.</span></div>
+<div><em>Le résultat</em><b>4<small>insights</small></b><span>Un par persona, et une tension commune qui donne la problématique.</span></div>
+</div>
+<div class="sec" id="intro-projet" data-s="Rappel du projet"><div class="sh"><h3>Rappel du projet : rassurer sans surveiller</h3><p>Le sujet du semestre : concevoir un objet connecté pour des parents âgés qui rassure leurs enfants sans placer les parents sous surveillance.</p></div>
+<div class="tw"><table class="kv"><tbody>
+<tr><th>Pour qui</th><td>Un enfant aidant de 30 à 50 ans, qui achète, et son parent âgé autonome, qui vit chez lui et utilise.</td></tr>
+<tr><th>La tension</th><td>L'enfant veut savoir. Le parent veut rester libre. Les deux ont des attentes qui peuvent s'opposer.</td></tr>
+<tr><th>La question du sujet</th><td>« Comment rassurer les enfants sans transformer le domicile des parents en poste de surveillance ? »</td></tr>
+</tbody></table></div>
+<p class="note">Pendant les entretiens, nous n'avons jamais montré ni cité de solution : nous voulions comprendre les familles, pas tester un produit.</p>
+</div>
+<div class="sec" id="intro-objectif" data-s="Objectif de la recherche"><div class="sh"><h3>Notre objectif : comprendre avant de construire</h3><p>Objectif fixé par l'équipe à l'atelier 1, le 22 octobre 2026.</p></div>
+<p class="obj">Comprendre comment un parent âgé autonome et sa famille entretiennent le lien aujourd'hui, ce qui le fait vivre ou s'éteindre, et à quelles conditions un objet serait accepté sans être vécu comme une surveillance.</p>
+</div>
+<div class="sec" id="intro-plan" data-s="Le plan du dossier"><div class="sh"><h3>Le dossier suit les outils du cours</h3><p>De la méthode à la problématique, puis les annexes qui en sont les preuves.</p></div>
+<ol class="dec">
+<li><span class="dn">02</span><b><a href="#methode">Méthode</a></b><span>Nos hypothèses, qui nous avons interrogé, et nos limites.</span></li>
+<li><span class="dn">03</span><b><a href="#insights">Affinity map et insights</a></b><span>Les 18 verbatims rangés en 6 groupes, puis les 4 insights.</span></li>
+<li><span class="dn">04</span><b><a href="#parent">Persona parent</a></b><span>Jacqueline, 75 ans, et son empathy map.</span></li>
+<li><span class="dn">05</span><b><a href="#enfant">Persona enfant</a></b><span>Sandrine, 50 ans, et son empathy map.</span></li>
+<li><span class="dn">06</span><b><a href="#petitenfant">Persona petit-enfant</a></b><span>Hugo, 18 ans, son empathy map, et ce que les trois attendent les uns des autres.</span></li>
+<li><span class="dn">07</span><b><a href="#parcours">User journey</a></b><span>Les trois parcours, étape par étape, et les moments de vérité.</span></li>
+<li><span class="dn">08</span><b><a href="#probleme">Problématique</a></b><span>« Comment pourrions-nous… », et pourquoi cette question.</span></li>
+<li><span class="dn">09</span><b><a href="#annexes">Annexes</a></b><span>Documents, extraits du FigJam, IA déclarée, qui a fait quoi.</span></li>
+</ol>
+<p class="note">Comment lire : chaque phrase porte le code de la personne qui l'a dite. <span class="cd gp">S</span> grand-parent (senior), <span class="cd en">E</span> enfant, <span class="cd pe">PE</span> petit-enfant. Le chiffre après le point est le numéro de la phrase (S4.3 = phrase 3 du senior 4). Les hypothèses s'écrivent « hyp. E3 » pour ne pas les confondre. Ce qui reste à vérifier est marqué <span class="conf">à confirmer</span>.</p>
+</div>
+<p class="next"><a href="#methode">Page suivante : Méthode <span>→</span></a></p></section>
+
+<section class="page" id="p-methode"><span class="k">02 / 09</span>
+<h2 class="t">Méthode</h2>
+<p class="lead">Comment nous avons cherché : les hypothèses de départ, les méthodes, les personnes interrogées et les limites de l'exercice.</p>
+<div class="sec" id="m-hyp" data-s="Hypothèses critiques"><div class="sh"><h3>Six hypothèses qui font tomber le produit</h3><p>20 hypothèses écrites à partir de la veille (10 sur le parent, 10 sur l'enfant), classées de la plus risquée à la moins risquée. Si l'une de ces six est fausse, le Cadre perd son sens.</p></div>
+<ol class="rows">
+<li><span class="n">P1</span><span class="a"><b>Partager seulement si c'est son choix</b><span>Le parent accepte de donner une information sur lui quand il décide, et la refuse quand l'enfant l'impose.</span></span></li>
+<li><span class="n">P2</span><span class="a"><b>Recevoir, puis répondre par la voix</b><span>Le parent apprécie les nouvelles, mais remercie par téléphone, pas par le service.</span></span></li>
+<li><span class="n">P4</span><span class="a"><b>Un écran ne s'adopte pas seul</b><span>Le parent n'adopte un écran que si quelqu'un l'accompagne au départ.</span></span></li>
+<li><span class="n">E1</span><span class="a"><b>L'oubli au moment de partager</b><span>Les enfants partagent leurs photos partout, sauf avec leur parent.</span></span></li>
+<li><span class="n">E2</span><span class="a"><b>Le lien s'achète avant l'incident</b><span>On offre un objet de lien sans attendre une chute, souvent en cadeau.</span></span></li>
+<li><span class="n">E3</span><span class="a"><b>La corvée</b><span>Les enfants arrêtent d'alimenter un service dès qu'il demande un geste régulier. La plus risquée.</span></span></li>
+</ol>
+<h4 class="sub">Le signe de chaque entretien</h4>
+<p class="muted">Tel que noté dans les fiches du dépôt (codes des fiches, avec le code FigJam dessous). Aucun seuil « 3 sur 5 » n'est atteint : ce sont des tendances.</p>
+<div class="tw ctr"><table><thead><tr><th>Hyp.</th><th>E1<br><small>E1</small></th><th>E2<br><small>E2</small></th><th>P1·P2<br><small>S2·S3</small></th><th>PE2<br><small>PE2</small></th><th>PE3<br><small>PE1</small></th><th>GP1<br><small>S1</small></th><th>GP2<br><small>S4</small></th><th>Lecture</th></tr></thead><tbody>
+<tr><td>E1</td><td><span class="sg p">+</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td>Appuyée</td></tr>
+<tr><td>P2</td><td><span class="sg p">+</span></td><td><span class="sg m">−</span></td><td><span class="sg m">−</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td><span class="sg m">−</span></td><td>Fragilisée : la réponse écrite existe</td></tr>
+<tr><td>E3</td><td><span class="sg m">−</span></td><td><span class="sg m">−</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td><b>Partagée</b></td></tr>
+<tr><td>P1</td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td>Tendance +</td></tr>
+<tr><td>P4</td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td>Sans donnée</td></tr>
+<tr><td>E2</td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg n">·</span></td><td><span class="sg f">?</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td>Sans donnée</td></tr>
+</tbody></table></div>
+<p class="muted" style="font-size:14px">+ appuie · − contredit · ? flou · « · » non testée.</p>
+<h4 class="sub">Hyp. E3, l'appel régulier : partagée</h4>
+<p>Les deux lectures sont vraies à la fois. L'appel tient chaque semaine, sans effort : cela contredit la « corvée ». Mais l'envoi de photos ou de cartes ne devient pas un geste régulier : cela l'appuie.</p>
+<div class="vb">
+<figure class="q"><blockquote>« On s’appelle toutes les semaines le vendredi matin. »</blockquote><figcaption><b>E1.1</b>enfant · contre hyp. E3 : l'appel tient</figcaption></figure>
+<figure class="q"><blockquote>« Je lui envoie des cartes postales mais c’est pas un réflexe. »</blockquote><figcaption><b>PE1.9</b>petit-enfant · pour hyp. E3 : le geste ne tient pas</figcaption></figure>
+</div>
+</div>
+<div class="sec" id="m-methodes" data-s="Méthodes"><div class="sh"><h3>Trois méthodes, de la plus large à la plus proche</h3><p>La veille a donné les hypothèses, les entretiens les ont confrontées au réel, l'atelier FigJam a trié ce que nous avons entendu.</p></div>
+<div class="three">
+<div><b>Veille et avis clients</b><p>Fiche de veille, fiche marché, et 20 avis clients sur des bracelets détecteurs de chute, lus pour ce qu'ils disent des usages.</p></div>
+<div><b>Entretiens semi-directifs</b><p>Trois guides (parent 45 min, enfant 45 min, petit-enfant 30 min), questions au passé, sans montrer le produit.</p></div>
+<div><b>Atelier FigJam</b><p>Verbatims en post-its, affinity map, insights, puis trois personas avec empathy map et user journey.</p></div>
+</div>
+</div>
+<div class="sec" id="m-profils" data-s="Profils interrogés"><div class="sh"><h3>Neuf personnes, surtout de notre entourage</h3><p>Le FigJam annonce « 4 séniors, 4 enfants et 2 petits-enfants ». Nous retrouvons 9 codes : 4 seniors, 3 enfants, 2 petits-enfants.</p></div>
+<div class="tw"><table><thead><tr><th>FigJam</th><th>Fiche</th><th>Public</th><th>Mené par</th><th>Situation</th></tr></thead><tbody>
+<tr><td>S1</td><td>GP1</td><td>Grand-mère</td><td>Lucas</td><td>Vit seule, autonome, téléphone toute la journée.</td></tr>
+<tr><td>S2 · S3</td><td>P2 · P1 <span class="conf">à confirmer</span></td><td>Couple de parents, environ 80 ans</td><td>Camille</td><td>Interrogés ensemble, 28 min. Maison et jardin, très équipés.</td></tr>
+<tr><td>S4</td><td>GP2</td><td>Grand-mère</td><td>Lucas</td><td>Photos des petits-enfants au salon. Appel de sa fille presque chaque jour.</td></tr>
+<tr><td>E1</td><td>E1</td><td>Enfant, 50-65 ans</td><td>Camille</td><td>7 min. Parents à environ 2 h. Un appel par semaine.</td></tr>
+<tr><td>E2</td><td>E2</td><td>Enfant</td><td>Camille</td><td>6 min. Père actif, proche. Deux appels par semaine.</td></tr>
+<tr><td>E3</td><td><span class="conf">à confirmer</span></td><td>Enfant</td><td>Lucas <span class="conf">à confirmer</span></td><td>Absent de la synthèse de Lucas (0 enfant sur 5 au moment de l'écrire).</td></tr>
+<tr><td>PE1</td><td>PE3</td><td>Petit-enfant</td><td>Clément</td><td>Grand-mère à plus de 3 h. Trois appels par an.</td></tr>
+<tr><td>PE2</td><td>PE2</td><td>Petit-enfant, 18-25 ans</td><td>Lucas</td><td>Deux paires de grands-parents, dont une loin.</td></tr>
+</tbody></table></div>
+<p class="warn">Écart à trancher : le FigJam annonce 4 enfants, mais seuls E1, E2 et E3 y ont des verbatims. Les codes du FigJam (S, E, PE) ne sont pas ceux des fiches du dépôt (GP, P, E, PE) : la correspondance ci-dessus est déduite des phrases et des auteurs des post-its.</p>
+</div>
+<div class="sec" id="m-limites" data-s="Limites"><div class="sh"><h3>Nos limites, dites franchement</h3><p>La matière est utile pour comprendre, pas pour prouver.</p></div>
+<div class="three">
+<div><b>Trop proches</b><p>Presque toutes les personnes viennent de notre entourage. Elles veulent aider et répondent parfois pour faire plaisir.</p></div>
+<div><b>Trop peu, trop courts</b><p>9 personnes, dont deux entretiens de 6 et 7 minutes pour un guide de 45. Hugo repose surtout sur un seul petit-enfant (PE1).</p></div>
+<div><b>Sources mêlées</b><p>Les empathy maps citent aussi A4 et A7, des verbatims d'exercice du cours, pas nos entretiens. Aucun parent hors entourage, aucune paire parent et enfant.</p></div>
+</div>
+</div>
+<p class="next"><a href="#insights">Page suivante : Affinity map et insights <span>→</span></a></p></section>
+
+<section class="page" id="p-insights"><span class="k">03 / 09</span>
+<h2 class="t">Affinity map et insights</h2>
+<p class="lead">L'affinity map range les phrases entendues en groupes qui se ressemblent. Un insight dit ce que ces groupes nous apprennent sur les gens.</p>
+<div class="sec" id="a-map" data-s="Affinity map"><div class="sh"><h3>Affinity map</h3><p>Les 18 verbatims du FigJam, tous affichés, en 6 groupes écrits à la première personne (« Je… »). La couleur dit qui parle.</p></div>
+<ul class="legend"><li style="--sw:var(--c-gp)">Grand-parent (S) · 9</li><li style="--sw:var(--c-en)">Enfant (E) · 5</li><li style="--sw:var(--c-pe)">Petit-enfant (PE) · 4</li></ul>
+<div class="aff" role="list" aria-label="Affinity map : 6 groupes, 18 post-its">
+<section class="ag" role="listitem" id="g1" aria-labelledby="g1-t"><header><span class="k">Groupe 1 · 4 post-its</span><h4 id="g1-t">Je prends des nouvelles assez régulièrement</h4></header>
+<div class="pit en"><p>On s’appelle toutes les semaines le vendredi matin.</p><small>E1.1 · enfant</small></div>
+<div class="pit pe"><p>On s’appelle que lors des grandes dates, comme mon anniversaire ou le sien, noël ou Pâques.</p><small>PE1.6 · petit-enfant</small></div>
+<div class="pit pe"><p>On s’appelle toutes les 2 semaines, c’est un appel qui viens donner des nouvelles.</p><small>PE2.6 · petit-enfant</small></div>
+<div class="pit en"><p>Il n’y a que quand j’ai pas de nouvelles je l’appelle.</p><small>E2.1 · enfant</small></div>
+</section>
+<section class="ag" role="listitem" id="g2" aria-labelledby="g2-t"><header><span class="k">Groupe 2 · 3 post-its</span><h4 id="g2-t">Je partage des moments de ma vie avec différente spontanéité</h4></header>
+<div class="pit en"><p>On se partage quelques fois des photos sur nos moments de vie mais rarement spontanément.</p><small>E1.2 · enfant</small></div>
+<div class="pit pe"><p>Parfois je me sens coupable de ne pas prendre de nouvelles.</p><small>PE1.20 · petit-enfant</small></div>
+<div class="pit en"><p>J’oublie jamais de lui envoyer des photos et cela viens spontanément.</p><small>E2.2 · enfant</small></div>
+</section>
+<section class="ag" role="listitem" id="g3" aria-labelledby="g3-t"><header><span class="k">Groupe 3 · 3 post-its</span><h4 id="g3-t">J’ai besoin d’un contact et je le réclame</h4></header>
+<div class="pit en"><p>Elle veut qu’on envoie toujours plus de photos de voyages ou autres.</p><small>E1.3 · enfant</small></div>
+<div class="pit gp"><p>On s'appelle régulièrement avec mon enfant. Par contre, je trouve que mes petits-enfants ne nous appellent pas suffisamment.</p><small>S4.3 · grand-parent</small></div>
+<div class="pit gp"><p>Je vis seul, il y a des moments qui sont assez tristes. C'est un peu chiant. On peut dire que c'est ennuyant même.</p><small>S1.4 · grand-parent</small></div>
+</section>
+<section class="ag" role="listitem" id="g4" aria-labelledby="g4-t"><header><span class="k">Groupe 4 · 2 post-its</span><h4 id="g4-t">J’aime avoir un contact mais je ne veux pas déranger</h4></header>
+<div class="pit gp"><p>J’envoie des photos quand je peux mais j’ai peur de déranger la personne.</p><small>S2.1 · grand-parent</small></div>
+<div class="pit pe"><p>Je sais si ca va ou non, seulement par le biais de ma mère.</p><small>PE1.16 · petit-enfant</small></div>
+</section>
+<section class="ag" role="listitem" id="g5" aria-labelledby="g5-t"><header><span class="k">Groupe 5 · 4 post-its</span><h4 id="g5-t">J’aime avoir une preuve physique plutôt que sur téléphone</h4></header>
+<div class="pit pe"><p>Je lui envoie des cartes postales mais c’est pas un réflexe.</p><small>PE1.9 · petit-enfant</small></div>
+<div class="pit gp"><p>Les photos sur téléphone sont bien mais bon, c'est nul en fait tout ça. Le papier crée plus de lien.</p><small>S1.3 · grand-parent</small></div>
+<div class="pit gp"><p>Je perds beaucoup de photos sur mon téléphone j’aimerais les avoir et les retrouver.</p><small>S3.2 · grand-parent</small></div>
+<div class="pit gp"><p>Oui, les photos de mes petits-enfants, ils sont dans le salon, qu'on regarde plusieurs fois dans la journée.</p><small>S4.1 · grand-parent</small></div>
+</section>
+<section class="ag" role="listitem" id="g6" aria-labelledby="g6-t"><header><span class="k">Groupe 6 · 2 post-its</span><h4 id="g6-t">Je prends le temps de m’habituer à la technologie et de répondre à mes enfants</h4></header>
+<div class="pit en"><p>Mes parents portent un intéret sur les photos que j’envois et font un retour systématique.</p><small>E3.2 · enfant</small></div>
+<div class="pit gp"><p>On s’habitue beaucoup au téléphone et à cette technologie.</p><small>S3.1 · grand-parent</small></div>
+</section>
+</div>
+<p class="muted" style="font-size:14px">Verbatims recopiés tels qu'écrits sur l'affinity map, fautes comprises. Image du tableau en <a href="#a-figjam">annexe</a>.</p>
+</div>
+<div class="sec" id="a-v1" data-s="Premières versions des insights"><div class="sh"><h3>Premières versions, issues des groupes</h3><p>Avant les insights retenus, l'équipe a écrit un insight par groupe, puis trois insights communs. Nous les montrons pour le cheminement.</p></div>
+<h4 class="sub">Version 1 : un insight par groupe</h4>
+<ol class="ver"><li><a href="#g1">Groupe 1</a><p>Les enfants et petits-enfants veulent avoir des nouvelles assez régulièrement, parce qu'ils tiennent à garder un contact avec leurs grands-parents, mais les grands-parents en veulent encore plus, seulement je n'ai pas ce temps à y consacrer.<small><span class="cd pe">PE2.6</span> <span class="cd en">E1.1</span> <span class="cd gp">S4.3</span> <span class="cd en">E1.3</span> · écrit en rouge dans le FigJam</small></p></li><li><a href="#g2">Groupe 2</a><p>Les enfants et petits-enfants veulent partager des moments de leur vie, parce que sinon ils se sentent coupables de ne pas prendre de nouvelles, mais ils ne le font pas forcément spontanément quand ils ne sont pas proches.<small><span class="cd en">E1.2</span> <span class="cd pe">PE1.20</span> <span class="cd en">E2.2</span> · écrit en vert dans le FigJam</small></p></li><li><a href="#g3">Groupe 3</a><p>Les grands-parents veulent avoir un vrai contact social avec leur famille, parce qu'ils en ressentent un manque et se sentent seuls, seulement les enfants et petits-enfants ne prennent pas forcément le temps, ou ne peuvent en consacrer qu'un petit peu.<small><span class="cd gp">S4.3</span> <span class="cd en">E1.3</span> <span class="cd pe">PE2.6</span> <span class="cd en">E2.1</span> · écrit en vert dans le FigJam</small></p></li><li><a href="#g4">Groupe 4</a><p>Les grands-parents et les petits-enfants veulent garder contact, parce qu'ils veulent des nouvelles les uns des autres, mais ont peur de déranger.<small><span class="cd gp">S2.1</span> <span class="cd pe">PE1.16</span> · écrit en vert dans le FigJam</small></p></li><li><a href="#g5">Groupe 5</a><p>Les parents aiment avoir une photo physique, car un sentiment plus profond se développe par le toucher, mais les enfants et petits-enfants envoient plutôt par le téléphone portable.<small><span class="cd pe">PE1.9</span> <span class="cd gp">S1.3</span> <span class="cd gp">S3.2</span> <span class="cd gp">S4.1</span> · écrit en vert dans le FigJam</small></p></li><li><a href="#g6">Groupe 6</a><p>Les parents veulent du temps d'adaptation à la technologie, afin de répondre instinctivement à leurs enfants, cependant l'évolution technologique reste assez importante.<small><span class="cd en">E3.2</span> <span class="cd gp">S3.1</span> · écrit en rouge dans le FigJam</small></p></li></ol>
+<p class="muted" style="font-size:14px">Le FigJam ne dit pas ce que signifient le vert et le rouge <span class="conf">à confirmer</span>.</p>
+<h4 class="sub">Version 2 : « Prendre contact mais personne n'ose. »</h4>
+<div class="ver2">
+<div><b>Insight 1</b><p>La famille veut prendre des nouvelles entre eux parce qu'ils en ressentent un manque, seulement ils n'osent pas, ne prennent pas le temps ou ne peuvent en consacrer qu'un petit peu.</p></div>
+<div><b>Insight 2</b><p>Les petits-enfants et les enfants veulent prendre des nouvelles de leurs grands-parents (parents), parce que le silence leur crée un manque, seulement ils n'osent pas ou n'ont pas le temps de le faire.</p></div>
+<div><b>Insight 3</b><p>Les enfants et petits-enfants veulent savoir que leur parent va bien, parce que sans nouvelles ils s'inquiètent et culpabilisent. Mais prendre des nouvelles n'est pas un réflexe entre deux appels, et le parent n'ose pas en donner par peur de déranger : chacun attend que l'autre fasse le premier pas.</p></div>
+</div>
+</div>
+<div class="sec" id="a-ins" data-s="Insights retenus"><div class="sh"><h3>Insights : le lien existe, mais entre deux appels, rien ne circule</h3><p>Version retenue : un insight par persona, chacun relié à ses verbatims, à son empathy map, à son persona et aux croix de son user journey. Le quatrième est la tension commune : c'est lui qui donne la problématique.</p></div>
+<article class="ins" id="i1" data-s="Insight 1 Sandrine, l’enfant"><div class="ih"><span class="k">Insight</span><span class="n">1</span><p>Celui de l’enfant</p></div><div class="ib"><h3>Sandrine, l’enfant</h3><p class="txt">Sandrine a besoin que le lien avec sa mère ne repose pas uniquement sur son appel du vendredi, parce qu’elle fait déjà sa part et que ça ne suffit pas : sa mère en veut toujours plus, se sent seule entre deux appels et reproche aux petits-enfants de ne pas appeler. Elle porte le lien de toute la famille.</p><dl class="lien"><div><dt>Verbatims</dt><dd><span class="cd en">E1.1</span> <span class="cd en">E1.2</span> <span class="cd en">E1.3</span> <span class="cd gp">S4.3</span> <span class="cd gp">S1.4</span></dd></div><div><dt>Affinity map</dt><dd><a href="#g1">groupe 1</a>, <a href="#g2">groupe 2</a>, <a href="#g3">groupe 3</a></dd></div><div><dt>Empathy map</dt><dd><a href="#enfant-emp">zones 6 et 7</a></dd></div><div><dt>Persona</dt><dd><a href="#enfant">frustrations</a></dd></div><div><dt>User journey</dt><dd><a href="#j-enfant">croix « Culpabiliser » et « Rappeler »</a></dd></div></dl><div class="vb"><figure class="q"><blockquote>« Elle veut qu’on envoie toujours plus de photos de voyages ou autres. »</blockquote><figcaption><b class="en">E1.3</b>enfant</figcaption></figure><figure class="q"><blockquote>« On s'appelle régulièrement avec mon enfant. Par contre, je trouve que mes petits-enfants ne nous appellent pas suffisamment. »</blockquote><figcaption><b class="gp">S4.3</b>grand-parent</figcaption></figure></div></div></article>
+<article class="ins" id="i2" data-s="Insight 2 Jacqueline, la grand-mère"><div class="ih"><span class="k">Insight</span><span class="n">2</span><p>Celui du parent</p></div><div class="ib"><h3>Jacqueline, la grand-mère</h3><p class="txt">Jacqueline a besoin de recevoir des signes de ses petits-enfants sans avoir à les réclamer, parce que quand c’est elle qui envoie elle a peur de déranger, qu’elle trouve que ses petits-enfants n’appellent pas assez, et que les photos qu’elle regarde plusieurs fois par jour sont celles du salon, en papier, pas celles qu’elle perd dans son téléphone.</p><dl class="lien"><div><dt>Verbatims</dt><dd><span class="cd gp">S2.1</span> <span class="cd gp">S4.3</span> <span class="cd gp">S4.1</span> <span class="cd gp">S1.3</span> <span class="cd gp">S3.2</span></dd></div><div><dt>Affinity map</dt><dd><a href="#g3">groupe 3</a>, <a href="#g4">groupe 4</a>, <a href="#g5">groupe 5</a></dd></div><div><dt>Empathy map</dt><dd><a href="#parent-emp">zones 3, 4 et 7</a></dd></div><div><dt>Persona</dt><dd><a href="#parent">frustrations, comportements</a></dd></div><div><dt>User journey</dt><dd><a href="#j-parent">croix « Se retenir » et « Patienter »</a></dd></div></dl><div class="vb"><figure class="q"><blockquote>« J’envoie des photos quand je peux mais j’ai peur de déranger la personne. »</blockquote><figcaption><b class="gp">S2.1</b>grand-parent</figcaption></figure><figure class="q"><blockquote>« Oui, les photos de mes petits-enfants, ils sont dans le salon, qu'on regarde plusieurs fois dans la journée. »</blockquote><figcaption><b class="gp">S4.1</b>grand-parent</figcaption></figure></div></div></article>
+<article class="ins" id="i3" data-s="Insight 3 Hugo, le petit-fils"><div class="ih"><span class="k">Insight</span><span class="n">3</span><p>Celui du petit-enfant</p></div><div class="ib"><h3>Hugo, le petit-fils</h3><p class="txt">Hugo a besoin d’un geste aussi simple qu’un message pour donner des nouvelles, parce qu’il n’appelle qu’aux grandes dates, que la carte postale n’est pas un réflexe, qu’il ne sait comment va sa grand-mère que par sa mère, et qu’il culpabilise. Ce n’est pas l’envie qui manque, c’est le réflexe.</p><dl class="lien"><div><dt>Verbatims</dt><dd><span class="cd pe">PE1.6</span> <span class="cd pe">PE1.9</span> <span class="cd pe">PE1.16</span> <span class="cd pe">PE1.20</span></dd></div><div><dt>Affinity map</dt><dd><a href="#g1">groupe 1</a>, <a href="#g2">groupe 2</a>, <a href="#g4">groupe 4</a>, <a href="#g5">groupe 5</a></dd></div><div><dt>Empathy map</dt><dd><a href="#petitenfant-emp">zones 2, 4 et 5</a></dd></div><div><dt>Persona</dt><dd><a href="#petitenfant">frustrations, objectifs</a></dd></div><div><dt>User journey</dt><dd><a href="#j-petit-enfant">croix « Culpabiliser » et « Vouloir faire un geste »</a></dd></div></dl><div class="vb"><figure class="q"><blockquote>« Je sais si ca va ou non, seulement par le biais de ma mère. »</blockquote><figcaption><b class="pe">PE1.16</b>petit-enfant</figcaption></figure><figure class="q"><blockquote>« Je lui envoie des cartes postales mais c’est pas un réflexe. »</blockquote><figcaption><b class="pe">PE1.9</b>petit-enfant</figcaption></figure></div></div></article>
+<article class="ins cle" id="i4" data-s="Insight 4 La tension commune"><div class="ih"><span class="k">Insight</span><span class="n">4</span><p>La tension commune</p></div><div class="ib">
+<h3>Les trois ensemble</h3><p class="txt">Dans les trois parcours, le lien tient sur un seul rendez-vous, l'appel hebdomadaire de l'enfant, et entre deux appels rien ne circule : la grand-mère n'ose pas, le petit-enfant n'y pense pas, l'enfant porte tout. Chacun attend que l'autre fasse le premier pas, et c'est la grand-mère qui vit seule qui en paie le prix.</p>
+<dl class="lien"><div><dt>Verbatims</dt><dd><span class="cd en">E1.1</span> <span class="cd gp">S2.1</span> <span class="cd pe">PE1.9</span> <span class="cd pe">PE1.16</span> <span class="cd en">E1.3</span> <span class="cd gp">S1.4</span></dd></div>
+<div><dt>Affinity map</dt><dd><a href="#g4">groupe 4</a> « J'aime avoir un contact mais je ne veux pas déranger » et <a href="#g3">groupe 3</a> « J'ai besoin d'un contact et je le réclame »</dd></div>
+<div><dt>User journey</dt><dd>Les <a href="#j-verite">six croix</a> des trois parcours pointent toutes ici.</dd></div></dl>
+<div class="vb"><figure class="q"><blockquote>« On s’appelle toutes les semaines le vendredi matin. »</blockquote><figcaption><b class="en">E1.1</b>enfant</figcaption></figure><figure class="q"><blockquote>« Je vis seul, il y a des moments qui sont assez tristes. C'est un peu chiant. On peut dire que c'est ennuyant même. »</blockquote><figcaption><b class="gp">S1.4</b>grand-parent</figcaption></figure></div></div></article>
+<p class="note">Ce qui a changé par rapport aux versions 1 et 2, d'après le FigJam : un persona par insight au lieu de « la famille » ; aucune cause hors verbatim (« n'osent pas » et « pas le temps » n'existent pas côté enfants et petits-enfants) ; le groupe 5, « preuve physique », enfin utilisé ; le titre « personne n'ose » remplacé, parce que E1.1, E2.1 et E2.2 prouvent que les enfants prennent contact. Le groupe 6, sur la technologie, n'alimente aucun insight retenu.</p>
+</div>
+<p class="next"><a href="#parent">Page suivante : Persona parent <span>→</span></a></p></section>
+
+<section class="page" id="p-parent"><span class="k">04 / 09</span>
+<h2 class="t">Persona parent : Jacqueline, 75 ans</h2>
+<p class="lead">La grand-mère qui attend des nouvelles sans oser en demander. Prénom inventé ; son insight est l'<a href="#i2">insight 2</a>.</p>
+<div class="sec" id="parent-fiche" data-s="Persona Jacqueline"><div class="sh"><h3>Persona</h3><p>Un portrait inventé à partir de vraies paroles. Chaque trait porte le code de la phrase qui le prouve.</p></div>
+<div class="pers"><div class="pid gp"><span class="av" aria-hidden="true">J</span><h3>Jacqueline, 75 ans</h3><p class="who">Grand-mère, vit seule, loin de sa fille. Prénom inventé, âge pris au milieu des verbatims (60 à 80 ans).</p><dl><div><dt>Le lien</dt><dd>L’appel de sa fille, chaque vendredi matin. <span class="cd en">E1.1</span></dd></div><div><dt>Les photos</dt><dd>En papier, au salon, regardées plusieurs fois par jour. <span class="cd gp">S4.1</span></dd></div><div><dt>Le frein</dt><dd>La peur de déranger. <span class="cd gp">S2.1</span></dd></div></dl><blockquote>« J’envoie des photos quand je peux mais j’ai peur de déranger la personne. »</blockquote><p>S2.1, grand-parent</p></div><div class="pgrid"><div><h4>Contexte</h4><ul><li>Elle habite loin de sa fille et souffre d’être seule. <span class="cd gp">S1.4</span></li><li>Elle est en appel toutes les semaines avec sa fille. <span class="cd en">E1.1</span></li><li>Elle aime recevoir du courrier papier : photos imprimées, cartes postales. <span class="cd pe">PE1.9</span> <span class="cd gp">S1.3</span></li></ul></div><div><h4>Objectifs</h4><ul><li>Avoir plus de relations et de nouvelles avec ses petits-enfants. <span class="cd gp">S4.3</span></li><li>Sans devenir insistante ni déranger tout le monde. <span class="cd gp">S2.1</span></li></ul></div><div><h4>Frustrations</h4><ul><li>Elle a peur qu’on oublie sa présence, à cause de la distance. <span class="cd gp">S4.3</span></li><li>Elle a peur de déranger et d’insister avec ses photos ou ses messages. <span class="cd gp">S2.1</span></li><li>Seule et loin de tout le monde, communiquer est plus difficile. <span class="cd gp">S1.4</span></li></ul></div><div><h4>Comportements</h4><ul><li>Sa fille l’appelle chaque vendredi matin pour savoir si tout va bien. <span class="cd en">E1.1</span></li><li>Elle regarde les photos papier du salon pour se rappeler sa famille. <span class="cd gp">S4.1</span></li><li>Elle envoie parfois des photos de sa vie pour garder le lien. <span class="cd gp">S2.1</span></li></ul></div><div><h4>Problèmes</h4><ul><li>On m’oublie, personne ne m’appelle. <span class="cd gp">S4.3</span></li><li>Déranger les personnes. <span class="cd gp">S2.1</span></li><li>Vivre seule, loin de tout le monde. <span class="cd gp">S1.4</span></li></ul></div><div><h4>Aspirations</h4><ul><li>Être rassurée par un appel régulier chaque semaine. <span class="cd pe">PE2.6</span></li><li>Des photos physiques, comme une carte postale. <span class="cd pe">PE1.9</span></li><li>Vivre avec son temps, s’habituer à la technologie. <span class="cd gp">S3.1</span></li></ul></div><div class="attend"><h4>Ce qu'elle attend des autres</h4><p><b>De son petit-fils :</b> plus d’attention, avec des appels plus fréquents et des nouvelles plus régulières.</p><p><b>De sa fille :</b> continuer l’appel de chaque vendredi, pour garder le lien familial.</p></div></div></div>
+</div>
+<div class="sec" id="parent-emp" data-s="Empathy map Jacqueline"><div class="sh"><h3>Empathy map</h3><p>Ce que Jacqueline voit, entend, dit, fait, pense et ressent, et ce qu'elle a besoin de faire. Les numéros sont ceux du FigJam : les insights y renvoient.</p></div>
+<div class="emp emp2" role="group" aria-label="Empathy map de Jacqueline"> <div class="ez z-personne"><div class="qui"><span class="av" aria-hidden="true">J</span><div><h4><i>1</i>La personne</h4><b>Jacqueline, 75 ans</b><p class="de">Grand-mère. Elle appelle chaque semaine <span class="cd en">E1.1</span>, a peu de relations avec ses petits-enfants <span class="cd gp">S4.3</span> et aime avoir des photos papier chez elle <span class="cd gp">S4.1</span>.</p></div></div></div>
+<div class="ez z-besoin"><h4><i>2</i>Ce qu'elle a besoin de faire</h4><div class="pis"><div class="pi"><span class="cd en">E1.1</span>Appeler ses enfants une fois par semaine.</div><div class="pi"><span class="cd gp">S3.1</span>Apprendre à vivre avec son temps.</div></div></div>
+<div class="ez z-entend"><h4><i>6</i>Ce qu'elle entend</h4><div class="pis"><div class="pi"><span class="cd pe">PE1.6</span>Son petit-enfant : je ne peux pas t’appeler chaque jour.</div></div></div>
+<div class="centre tete gp"><span class="oreille" aria-hidden="true"></span><span class="oeil" aria-hidden="true"></span><span class="nez" aria-hidden="true"></span><div class="pr"><h4><i>7</i>Ce qu'elle pense et ressent</h4><div class="cols2"><div><h5>Problèmes</h5><ul><li>On m’oublie, personne ne m’appelle. <span class="cd gp">S4.3</span></li><li>Déranger les personnes. <span class="cd gp">S2.1</span></li><li>Vivre seule, loin de tout le monde. <span class="cd gp">S1.4</span></li></ul></div><div><h5>Aspirations</h5><ul><li>Être rassurée par un appel régulier chaque semaine. <span class="cd pe">PE2.6</span></li><li>Des photos physiques, comme une carte postale. <span class="cd pe">PE1.9</span></li><li>Vivre avec son temps, s’habituer à la technologie. <span class="cd gp">S3.1</span></li></ul></div></div></div><p class="autre">Autres pensées : « Tout va bien »… vraiment ? <span class="cd">A7</span></p></div>
+<div class="ez z-voit"><h4><i>3</i>Ce qu'elle voit</h4><div class="pis"><div class="pi"><span class="cd gp">S4.1</span>Les photos de mes petits-enfants sont dans le salon.</div><div class="pi"><span class="cd gp">S3.2</span>Un téléphone pas forcément intuitif.</div></div></div>
+<div class="ez z-dit"><h4><i>4</i>Ce qu'elle dit</h4><div class="pis"><div class="pi"><span class="cd gp">S4.3</span><q>je trouve que mes petits-enfants ne nous appellent pas suffisamment.</q></div><div class="pi"><span class="cd gp">S3.2</span><q>Je perds beaucoup de photos sur mon téléphone</q></div><div class="pi"><span class="cd gp">S1.3</span><q>Le papier crée plus de lien.</q></div><div class="pi"><span class="cd ">A4</span>On s’habitue au téléphone et à cette technologie.</div></div></div>
+<div class="ez z-fait"><h4><i>5</i>Ce qu'elle fait</h4><div class="pis"><div class="pi"><span class="cd en">E1.1</span>Appelle toutes les semaines.</div><div class="pi"><span class="cd gp">S4.1</span>Regarde les photos papier dans son salon.</div><div class="pi"><span class="cd gp">S2.1</span><q>J’envoie des photos quand je peux</q></div><div class="pi"><span class="cd gp">S3.2</span>Perd les photos sur son téléphone.</div></div></div>
+</div>
+</div>
+<p class="next"><a href="#enfant">Page suivante : Persona enfant <span>→</span></a></p></section>
+
+<section class="page" id="p-enfant"><span class="k">05 / 09</span>
+<h2 class="t">Persona enfant : Sandrine, 50 ans</h2>
+<p class="lead">La fille qui appelle chaque vendredi et porte le lien de toute la famille. C'est elle qui achèterait. Son insight est l'<a href="#i1">insight 1</a>.</p>
+<div class="sec" id="enfant-fiche" data-s="Persona Sandrine"><div class="sh"><h3>Persona</h3><p>Un portrait inventé à partir de vraies paroles. Chaque trait porte le code de la phrase qui le prouve.</p></div>
+<div class="pers"><div class="pid en"><span class="av" aria-hidden="true">S</span><h3>Sandrine, 50 ans</h3><p class="who">L’enfant, persona acheteuse. Sa mère est veuve et vit seule dans sa maison.</p><dl><div><dt>Le lien</dt><dd>Elle appelle sa mère chaque vendredi matin. <span class="cd en">E1.1</span></dd></div><div><dt>Les photos</dt><dd>Partagées parfois, rarement spontanément. <span class="cd en">E1.2</span></dd></div><div><dt>Son rôle</dt><dd>Elle relaie les nouvelles à ses enfants. <span class="cd pe">PE1.16</span></dd></div></dl><blockquote>« Il n’y a que quand j’ai pas de nouvelles je l’appelle. »</blockquote><p>E2.1, enfant</p></div><div class="pgrid"><div><h4>Contexte</h4><ul><li>Elle appelle sa mère tous les vendredis matin. <span class="cd en">E1.1</span></li><li>Sa mère est veuve et seule dans sa maison ; Sandrine en est triste. <span class="cd gp">S1.4</span></li><li>Sa mère lui dit toujours qu’elle ne prend pas assez de nouvelles. <span class="cd en">E1.1</span></li></ul></div><div><h4>Objectifs</h4><ul><li>Garder le contact pour savoir si sa mère va bien. <span class="cd en">E1.1</span></li><li>L’aider à se sentir mieux. <span class="cd gp">S1.4</span></li><li>Aider ses enfants à prendre des nouvelles, ou les tenir au courant. <span class="cd pe">PE1.20</span> <span class="cd pe">PE1.16</span></li></ul></div><div><h4>Frustrations</h4><ul><li>Sa mère est seule et manque de liens sociaux, ce qui lui pèse. <span class="cd gp">S1.4</span></li><li>Sa mère veut plus de contact, alors qu’elle fait déjà de son mieux. <span class="cd en">E1.3</span></li><li>Elle doit prendre du temps pour tirer des photos papier pour sa mère. <span class="cd gp">S1.3</span></li></ul></div><div><h4>Comportements</h4><ul><li>Elle appelle sa mère le vendredi matin, chaque semaine. <span class="cd en">E1.1</span></li><li>Elle lui partage parfois des photos de ses moments de vie. <span class="cd en">E1.2</span></li><li>Elle donne à ses enfants des nouvelles de leur grand-mère, qui en prennent très peu. <span class="cd pe">PE1.16</span> <span class="cd pe">PE1.20</span></li></ul></div><div><h4>Problèmes</h4><ul><li>Ma mère est seule, en manque de liens sociaux. <span class="cd gp">S1.4</span></li><li>Ma mère veut encore plus de contact. <span class="cd en">E1.3</span></li><li>Je dois prendre le temps de transformer ces photos en papier. <span class="cd gp">S1.3</span></li></ul></div><div><h4>Aspirations</h4><ul><li>Avoir un contact pour savoir si elle va bien. <span class="cd en">E1.1</span></li><li>Aider sa mère à se sentir mieux. <span class="cd gp">S1.4</span></li></ul></div><div class="attend"><h4>Ce qu'elle attend des autres</h4><p><b>De son fils :</b> pas grand-chose. Il est libre de prendre des nouvelles quand il veut ; s’il le demande, elle sera là.</p><p><b>De sa mère :</b> qu’elle comprenne que sa fille a beaucoup à gérer et qu’elle fait de son mieux pour répondre à ses demandes.</p></div></div></div>
+</div>
+<div class="sec" id="enfant-emp" data-s="Empathy map Sandrine"><div class="sh"><h3>Empathy map</h3><p>Ce que Sandrine voit, entend, dit, fait, pense et ressent, et ce qu'elle a besoin de faire. Les numéros sont ceux du FigJam : les insights y renvoient.</p></div>
+<div class="emp emp2" role="group" aria-label="Empathy map de Sandrine"> <div class="ez z-personne"><div class="qui"><span class="av" aria-hidden="true">S</span><div><h4><i>1</i>La personne</h4><b>Sandrine, 50 ans</b><p class="de">L’enfant. Elle appelle sa mère tous les vendredis matin <span class="cd en">E1.1</span>. Sa mère est veuve et seule, Sandrine en est triste <span class="cd gp">S1.4</span>.</p></div></div></div>
+<div class="ez z-besoin"><h4><i>2</i>Ce qu'elle a besoin de faire</h4><div class="pis"><div class="pi"><span class="cd en">E1.1</span>Appeler sa mère chaque semaine pour savoir comment elle va.</div><div class="pi"><span class="cd en">E1.1</span>Transformer les photos en format papier.</div></div></div>
+<div class="ez z-entend"><h4><i>6</i>Ce qu'elle entend</h4><div class="pis"><div class="pi"><span class="cd gp">S4.3</span>Sa mère : on s’appelle assez régulièrement, seulement je trouve que tu ne m’appelles pas assez.</div><div class="pi"><span class="cd en">E1.3</span>Sa mère : je veux que tu m’envoies plus de photos de tes voyages.</div><div class="pi"><span class="cd gp">S4.3</span>Sa mère : mes petits-enfants ne m’appellent pas assez souvent.</div><div class="pi"><span class="cd gp">S3.2, S1.3</span>Sa mère : je veux que les photos que vous m’envoyez soient aussi en papier.</div></div></div>
+<div class="centre tete en"><span class="oreille" aria-hidden="true"></span><span class="oeil" aria-hidden="true"></span><span class="nez" aria-hidden="true"></span><div class="pr"><h4><i>7</i>Ce qu'elle pense et ressent</h4><div class="cols2"><div><h5>Problèmes</h5><ul><li>Ma mère est seule, en manque de liens sociaux. <span class="cd gp">S1.4</span></li><li>Ma mère veut encore plus de contact. <span class="cd en">E1.3</span></li><li>Je dois prendre le temps de transformer ces photos en papier. <span class="cd gp">S1.3</span></li></ul></div><div><h5>Aspirations</h5><ul><li>Avoir un contact pour savoir si elle va bien. <span class="cd en">E1.1</span></li><li>Aider sa mère à se sentir mieux. <span class="cd gp">S1.4</span></li></ul></div></div></div></div>
+<div class="ez z-voit"><h4><i>3</i>Ce qu'elle voit</h4><div class="pis"><div class="pi"><span class="cd pe">PE1.20</span>Son fils ne prend pas de nouvelles de sa grand-mère systématiquement.</div><div class="pi"><span class="cd gp">S4.1</span>Sa mère regarde beaucoup les photos de ses petits-enfants dans le salon.</div></div></div>
+<div class="ez z-dit"><h4><i>4</i>Ce qu'elle dit</h4><div class="pis"><div class="pi"><span class="cd en">E2.1</span>Quand j’ai pas de nouvelles, je l’appelle.</div><div class="pi"><span class="cd gp">S2.1</span>Non maman, quand tu m’envoies des photos tu ne me déranges pas, je suis juste occupée.</div></div></div>
+<div class="ez z-fait"><h4><i>5</i>Ce qu'elle fait</h4><div class="pis"><div class="pi"><span class="cd en">E1.1</span>Appelle toutes les semaines, le vendredi matin.</div><div class="pi"><span class="cd en">E1.2</span>Partage quelquefois des photos de ses moments de vie.</div><div class="pi"><span class="cd pe">PE1.16</span>Donne à ses enfants des nouvelles de sa mère.</div></div></div>
+</div>
+</div>
+<p class="next"><a href="#petitenfant">Page suivante : Persona petit-enfant <span>→</span></a></p></section>
+
+<section class="page" id="p-petitenfant"><span class="k">06 / 09</span>
+<h2 class="t">Persona petit-enfant : Hugo, 18 ans</h2>
+<p class="lead">Le petit-fils qui pense à sa grand-mère mais n'en fait pas un geste. Son insight est l'<a href="#i3">insight 3</a>.</p>
+<div class="sec" id="petitenfant-fiche" data-s="Persona Hugo"><div class="sh"><h3>Persona</h3><p>Un portrait inventé à partir de vraies paroles. Chaque trait porte le code de la phrase qui le prouve.</p></div>
+<div class="pers"><div class="pid pe"><span class="av" aria-hidden="true">H</span><h3>Hugo, 18 ans</h3><p class="who">Le petit-fils. Sa grand-mère vit seule ; ses nouvelles passent par sa mère.</p><dl><div><dt>Le lien</dt><dd>Un appel aux grandes dates : Noël, anniversaires, Pâques. <span class="cd pe">PE1.6</span></dd></div><div><dt>Les gestes</dt><dd>Une carte postale de temps en temps. <span class="cd pe">PE1.9</span></dd></div><div><dt>Les nouvelles</dt><dd>Par sa mère, jamais en direct. <span class="cd pe">PE1.16</span></dd></div></dl><blockquote>« Parfois je me sens coupable de ne pas prendre de nouvelles. »</blockquote><p>PE1.20, petit-enfant</p></div><div class="pgrid"><div><h4>Contexte</h4><ul><li>Sa grand-mère vit seule et a des moments de tristesse qu’elle ne dit pas vraiment. <span class="cd gp">S1.4</span></li><li>Le lien passe par ses parents : ils l’appellent chaque semaine et envoient les photos. <span class="cd en">E1.1</span> <span class="cd en">E2.2</span></li><li>Il n’a de nouvelles que par sa mère ; l’appel direct n’arrive qu’aux grandes dates. <span class="cd pe">PE1.16</span> <span class="cd pe">PE1.6</span></li></ul></div><div><h4>Objectifs</h4><ul><li>Savoir par lui-même si elle va bien, sans passer par sa mère. <span class="cd pe">PE1.16</span></li><li>Donner des nouvelles sans que ce soit un effort. <span class="cd pe">PE1.9</span></li><li>Tenir un rythme qu’il peut suivre, comme un appel toutes les deux semaines. <span class="cd pe">PE2.6</span></li><li>Ne plus se sentir coupable. <span class="cd pe">PE1.20</span></li></ul></div><div><h4>Frustrations</h4><ul><li>Il culpabilise de ne pas prendre de nouvelles. <span class="cd pe">PE1.20</span></li><li>Les cartes postales, il les envoie, mais ce n’est pas un réflexe. <span class="cd pe">PE1.9</span></li><li>Il entend que les petits-enfants n’appellent pas assez. <span class="cd gp">S4.3</span></li><li>Sa grand-mère n’ose pas envoyer ses photos, de peur de le déranger. Chacun attend l’autre. <span class="cd gp">S2.1</span></li></ul></div><div><h4>Comportements</h4><ul><li>Il appelle aux grandes dates : anniversaires, Noël, Pâques. <span class="cd pe">PE1.6</span></li><li>Il envoie une carte postale de temps en temps. <span class="cd pe">PE1.9</span></li><li>Il prend des nouvelles par sa mère. <span class="cd pe">PE1.16</span></li><li>Il laisse ses parents tenir l’appel hebdomadaire et les photos. <span class="cd en">E1.1</span> <span class="cd en">E2.2</span></li></ul></div><div><h4>Problèmes</h4><ul><li>Je ne prends pas forcément de nouvelles spontanément. <span class="cd en">E1.2</span></li><li>Je ne veux pas les déranger. <span class="cd gp">S2.1</span></li></ul></div><div><h4>Aspirations</h4><ul><li>Je veux partager des moments de ma vie. <span class="cd en">E1.2</span></li><li>Je veux garder contact et donner des nouvelles. <span class="cd en">E1.2</span></li></ul></div><div class="attend"><h4>Ce qu'il attend des autres</h4><p><b>De sa grand-mère :</b> qu’elle prenne aussi l’initiative de lui envoyer un message, car ça ne le dérange pas, bien au contraire.</p><p><b>De sa mère :</b> rien n’est écrit dans le FigJam.</p></div></div></div>
+</div>
+<div class="sec" id="petitenfant-emp" data-s="Empathy map Hugo"><div class="sh"><h3>Empathy map</h3><p>Ce que Hugo voit, entend, dit, fait, pense et ressent, et ce qu'il a besoin de faire. Les numéros sont ceux du FigJam : les insights y renvoient.</p></div>
+<div class="emp emp2" role="group" aria-label="Empathy map de Hugo"> <div class="ez z-personne"><div class="qui"><span class="av" aria-hidden="true">H</span><div><h4><i>1</i>La personne</h4><b>Hugo, 18 ans</b><p class="de">Le petit-fils. Il n’appelle sa grand-mère qu’aux grandes dates, Noël ou anniversaire <span class="cd pe">PE1.6</span>, et se sent coupable quand il ne prend pas de nouvelles <span class="cd pe">PE1.20</span>.</p></div></div></div>
+<div class="ez z-besoin"><h4><i>2</i>Ce qu'il a besoin de faire</h4><div class="pis"><div class="pi"><span class="cd pe">PE1.20</span>J’ai besoin de prendre des nouvelles.</div><div class="pi"><span class="cd pe">PE1.16</span>Savoir par lui-même si elle va bien, sans passer par sa mère.</div><div class="pi"><span class="cd pe">PE1.9</span>Faire des nouvelles un réflexe, pas un effort.</div></div></div>
+<div class="ez z-entend"><h4><i>6</i>Ce qu'il entend</h4><div class="pis"><div class="pi"><span class="cd pe">PE1.16</span>Je connais la situation de ma grand-mère pratiquement que par ma mère, si elle va bien ou non.</div><div class="pi"><span class="cd en">E1.3</span>Elle veut qu’on envoie toujours plus de photos de voyages ou autres.</div><div class="pi"><span class="cd gp">S1.4</span>Elle vit seule et trouve ça assez ennuyant.</div></div></div>
+<div class="centre tete pe"><span class="oreille" aria-hidden="true"></span><span class="oeil" aria-hidden="true"></span><span class="nez" aria-hidden="true"></span><div class="pr"><h4><i>7</i>Ce qu'il pense et ressent</h4><div class="cols2"><div><h5>Problèmes</h5><ul><li>Je ne prends pas forcément de nouvelles spontanément. <span class="cd en">E1.2</span></li><li>Je ne veux pas les déranger. <span class="cd gp">S2.1</span></li></ul></div><div><h5>Aspirations</h5><ul><li>Je veux partager des moments de ma vie. <span class="cd en">E1.2</span></li><li>Je veux garder contact et donner des nouvelles. <span class="cd en">E1.2</span></li></ul></div></div></div><p class="autre">Autres pensées : « Tout va bien »… vraiment ? <span class="cd">A7</span></p></div>
+<div class="ez z-voit"><h4><i>3</i>Ce qu'il voit</h4><div class="pis"><div class="pi"><span class="cd gp">S4.1</span>Ma grand-mère regarde plusieurs fois les photos que je lui envoie.</div><div class="pi"><span class="cd gp">S3.2</span>Ma grand-mère perd beaucoup de ses photos dans son téléphone.</div><div class="pi"><span class="cd gp">S1.3</span>Pour sa grand-mère, les photos sur téléphone, « c’est nul » : le papier crée plus de lien.</div></div></div>
+<div class="ez z-dit"><h4><i>4</i>Ce qu'il dit</h4><div class="pis"><div class="pi"><span class="cd pe">PE1.20</span><q>Parfois je me sens coupable de ne pas prendre de nouvelles.</q></div><div class="pi"><span class="cd pe">PE1.9</span><q>Je lui envoie des cartes postales mais c’est pas un réflexe.</q></div></div></div>
+<div class="ez z-fait"><h4><i>5</i>Ce qu'il fait</h4><div class="pis"><div class="pi"><span class="cd pe">PE1.9</span>Lui envoie des cartes postales.</div><div class="pi"><span class="cd pe">PE1.6</span>L’appelle lorsqu’il y a une date importante.</div><div class="pi"><span class="cd pe">PE1.16</span>Prend des nouvelles par sa mère, jamais en direct.</div></div></div>
+</div>
+</div>
+<div class="sec" id="relation" data-s="Relation entre les trois"><div class="sh"><h3>Ce que chacun attend des autres</h3><p>Tiré de la fin du FigJam. Les attentes vont surtout vers Hugo, et presque rien ne part de lui.</p></div>
+<div class="tri">
+<svg viewBox="0 0 380 330" role="img" aria-label="Schéma : Jacqueline en haut, Sandrine en bas à gauche, Hugo en bas à droite, reliés par cinq attentes numérotées.">
+<defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+<path class="ed" d="M156 96 L84 215" marker-end="url(#fl)"/><path class="ed" d="M98 226 L170 107" marker-end="url(#fl)"/><path class="ed" d="M224 96 L296 215" marker-end="url(#fl)"/><path class="ed" d="M282 226 L210 107" marker-end="url(#fl)"/><path class="ed" d="M116 266 L262 266" marker-end="url(#fl)"/>
+<circle class="nd" cx="190" cy="56" r="46" fill="var(--peche)"/><text x="190" y="61" text-anchor="middle" font-size="14" font-weight="600" style="fill:#1F1A17">Jacqueline</text>
+<circle class="nd" cx="64" cy="266" r="46" fill="var(--lilas)"/><text x="64" y="271" text-anchor="middle" font-size="14" font-weight="600" style="fill:#1F1A17">Sandrine</text>
+<circle class="nd" cx="316" cy="266" r="46" fill="var(--soleil)"/><text x="316" y="271" text-anchor="middle" font-size="14" font-weight="600" style="fill:#1F1A17">Hugo</text>
+<circle class="nb" cx="110" cy="151" r="13"/><text class="nbt" x="110" y="156" text-anchor="middle">1</text><circle class="nb" cx="144" cy="171" r="13"/><text class="nbt" x="144" y="176" text-anchor="middle">2</text><circle class="nb" cx="270" cy="151" r="13"/><text class="nbt" x="270" y="156" text-anchor="middle">3</text><circle class="nb" cx="236" cy="171" r="13"/><text class="nbt" x="236" y="176" text-anchor="middle">4</text><circle class="nb" cx="190" cy="266" r="13"/><text class="nbt" x="190" y="271" text-anchor="middle">5</text>
+</svg>
+<ol>
+<li><i>1</i><span><b>Jacqueline attend de sa fille</b>Continuer l'appel de chaque vendredi, pour garder le lien familial.</span></li>
+<li><i>2</i><span><b>Sandrine attend de sa mère</b>Qu'elle comprenne que sa fille a beaucoup à gérer et fait de son mieux.</span></li>
+<li><i>3</i><span><b>Jacqueline attend de son petit-fils</b>Plus d'attention : des appels plus fréquents, des nouvelles plus régulières.</span></li>
+<li><i>4</i><span><b>Hugo attend de sa grand-mère</b>Qu'elle prenne aussi l'initiative de lui écrire : ça ne le dérange pas, bien au contraire.</span></li>
+<li><i>5</i><span><b>Sandrine attend de son fils</b>Pas grand-chose : il est libre de prendre des nouvelles quand il veut. S'il le demande, elle sera là.</span></li>
+<li class="vide"><i>?</i><span><b>Hugo attend de sa mère</b>Rien n'est écrit dans le FigJam.</span></li>
+</ol>
+</div>
+<p class="note">Ce que montre le schéma : Jacqueline et Hugo attendent chacun que l'autre écrive le premier. C'est la tension de l'<a href="#i4">insight 4</a>.</p>
+</div>
+<p class="next"><a href="#parcours">Page suivante : User journey <span>→</span></a></p></section>
+
+<section class="page" id="p-parcours"><span class="k">07 / 09</span>
+<h2 class="t">User journey</h2>
+<p class="lead">Une user journey suit une personne étape par étape : ce qu'elle fait, pense et ressent, ce qui la gêne, et ce qu'on pourrait améliorer. Trois parcours d'aujourd'hui, sans le Cadre.</p>
+<div class="sec" id="j-parent" data-s="User journey Jacqueline"><div class="sh"><h3>Jacqueline : elle attend le vendredi sans rien envoyer</h3><p>Le moment de vérité arrive quand elle voudrait envoyer une photo et renonce, puis quand une semaine passe sans aucun signe.</p></div>
+<div class="jm" role="region" aria-label="User journey de Jacqueline" tabindex="0"><div class="jm-g" style="--n:6">
+<div class="jl">Étapes</div>
+<div class="js"><small>1</small>Décrocher</div>
+<div class="js"><small>2</small>Se plaindre</div>
+<div class="js"><small>3</small>Demander</div>
+<div class="js vt"><small>Moment de vérité</small>Se retenir</div>
+<div class="js"><small>5</small>Attendre</div>
+<div class="js vt"><small>Moment de vérité</small>Patienter</div>
+<div class="jl">Actions</div><div>Sa fille l’appelle le vendredi matin et lui raconte sa semaine. (E1.1)</div><div>Reproche à sa fille de ne pas avoir pris plus de nouvelles cette semaine. (S4.3)</div><div>Demande que les photos reçues soient aussi en papier. (S1.3)</div><div class="vt">Voudrait envoyer une photo de sa semaine, puis renonce. (S2.1)</div><div>Regarde les photos des petits-enfants au salon et attend leur appel. (S4.1)</div><div class="vt">Attend le vendredi suivant sans donner de nouvelles. (E1.1, S2.1)</div>
+<div class="jl">Pensées</div><div>Profite de ce moment rare avec sa fille. (E1.1, S4.3)</div><div>« Je suis toute seule, on m’oublie. » (S1.4, S4.3)</div><div>« Le papier crée plus de lien. » (S1.3)</div><div class="vt cx">« J’ai peur de déranger la personne. » (S2.1)<span class="sr" style="position:absolute;left:-9999px"> (croix de l’équipe)</span></div><div>« Mes petits-enfants ne nous appellent pas suffisamment. » (S4.3)</div><div class="vt">« J’aime avoir un contact mais je ne veux pas déranger. » (S2.1, S4.3)</div>
+<div class="jl">Émotion</div>
+<div class="em pos">Heureuse</div>
+<div class="em neg">Frustrée</div>
+<div class="em pos">Contente</div>
+<div class="em neg">Inquiète, seule</div>
+<div class="em neg">Seule, un peu triste</div>
+<div class="em neu">Partagée</div>
+<div class="jl">Courbe</div>
+<div class="jemo"><svg viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true"><line class="ax" x1="0" y1="50" x2="600" y2="50"/><polyline class="ln" points="50,15 150,85 250,15 350,85 450,85 550,50"/></svg><i class="hi" style="left:8.33%;top:calc(14px + (100% - 28px)*0.15)"></i><i class="lo" style="left:25.00%;top:calc(14px + (100% - 28px)*0.85)"></i><i class="hi" style="left:41.67%;top:calc(14px + (100% - 28px)*0.15)"></i><i class="lo" style="left:58.33%;top:calc(14px + (100% - 28px)*0.85)"></i><i class="lo" style="left:75.00%;top:calc(14px + (100% - 28px)*0.85)"></i><i class="mid" style="left:91.67%;top:calc(14px + (100% - 28px)*0.50)"></i></div>
+<div class="jl">Frictions</div><div>Un appel par semaine ne lui suffit pas. (S4.3, E1.3)</div><div>Elle vit seule, loin, et se sent triste sans nouvelles. (S1.4)</div><div>Les photos restent dans le téléphone, elle s’y perd. (S3.2)</div><div class="vt">Moment de vérité : elle se tait, sa fille ne sait pas si ça va. (PE1.16)</div><div>Les nouvelles des petits-enfants passent toutes par sa fille. (PE1.20, S4.3)</div><div class="vt cx">Entre deux vendredis, aucun signe d’un côté ni de l’autre. (S1.4)<span class="sr" style="position:absolute;left:-9999px"> (croix de l’équipe)</span></div>
+<div class="jl">Opportunités</div><div>Faire participer les petits-enfants à l’appel du vendredi. (E1.1, S4.3)</div><div>Donner des nouvelles courtes entre deux appels. (S4.3)</div><div>Imprimer les photos échangées pour le salon. (S1.3, S4.1)</div><div class="vt">Lui dire qu’elle ne dérange pas et la rappeler si elle se tait. (S2.1, E2.1)</div><div>Fixer un rendez-vous régulier avec les petits-enfants. (S4.3)</div><div class="vt">Envoyer un signe de vie entre deux vendredis. (S4.3)</div>
+</div></div>
+<p class="jleg"><span class="neg">Émotion négative</span><span class="neu">Neutre</span><span class="pos">Positive</span><span>Moment de vérité (colonne jaune)</span><span class="x">Croix posée par l’équipe</span></p>
+<div class="scn"><div><b>Scénario</b><p>Un vendredi matin, Sandrine appelle sa mère Jacqueline pour lui raconter sa semaine (E1.1). Jacqueline en profite pour lui rappeler que ses petits-enfants ne prennent pas le temps de l’appeler, et que c’est dommage de rompre ce lien de famille important (S4.3). Les petits-enfants lui envoient alors des photos par carte, qu’elle reçoit une semaine plus tard et accroche dans son salon, devant son canapé (S1.3).</p></div><div><b>Sources</b><p><span class="cd gp">S1.4</span> <span class="cd en">E1.1</span> <span class="cd pe">PE1.9</span> <span class="cd gp">S1.3</span> <span class="cd gp">S4.3</span> <span class="cd gp">S2.1</span> <span class="cd gp">S4.1</span></p></div></div>
+</div>
+<div class="sec" id="j-enfant" data-s="User journey Sandrine"><div class="sh"><h3>Sandrine : l'appel tourne en boucle</h3><p>Chaque vendredi recommence la même semaine : elle appelle, sa mère en veut plus, elle relaie aux enfants, et entre deux rien ne passe.</p></div>
+<div class="jm" role="region" aria-label="User journey de Sandrine" tabindex="0"><div class="jm-g" style="--n:6">
+<div class="jl">Étapes</div>
+<div class="js"><small>1</small>Appeler</div>
+<div class="js vt"><small>Moment de vérité</small>Culpabiliser</div>
+<div class="js"><small>3</small>Créer</div>
+<div class="js"><small>4</small>Encourager</div>
+<div class="js"><small>5</small>Relayer</div>
+<div class="js vt"><small>Moment de vérité</small>Rappeler</div>
+<div class="jl">Actions</div><div>Sandrine appelle sa mère et raconte les nouvelles de la semaine. (E1.1)</div><div class="vt">Sa mère lui reproche de ne pas avoir pris plus de nouvelles cette semaine. (S4.3, E1.1)</div><div>Matérialiser le contact et la nouvelle. (E1.1)</div><div>Lui fait remarquer qu’elle aurait pu lui envoyer des photos de sa semaine.</div><div>Raconte à ses enfants la semaine de sa mère, les pousse à appeler. (PE1.16)</div><div class="vt">Le vendredi suivant, rappelle sa mère : la boucle reprend à l’étape 1. (E1.1, E2.1)</div>
+<div class="jl">Pensées</div><div>« Il faut que j’aie un contact pour savoir si elle va bien. » (E1.1)</div><div class="vt cx">« Non maman, quand tu m’envoies des photos tu ne me déranges pas, je suis juste occupée. » (S2.1)<span class="sr" style="position:absolute;left:-9999px"> (croix de l’équipe)</span></div><div>Ma mère veut que les photos qu’on envoie soient aussi en papier. (S3.2, S1.3)</div><div>« Elle aussi peut me donner des nouvelles. »</div><div>« Mon fils est libre de prendre des nouvelles quand il veut. »</div><div class="vt">« Quand j’ai pas de nouvelles, je l’appelle. » (E2.1)</div>
+<div class="jl">Émotion</div>
+<div class="em neu">Routine</div>
+<div class="em neg">Culpabilise et embêtée</div>
+<div class="em neg">Débordée</div>
+<div class="em neu">Encourageante</div>
+<div class="em neg">Tiraillée</div>
+<div class="em neg">Inquiète</div>
+<div class="jl">Courbe</div>
+<div class="jemo"><svg viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true"><line class="ax" x1="0" y1="50" x2="600" y2="50"/><polyline class="ln" points="50,50 150,85 250,85 350,50 450,85 550,85"/></svg><i class="mid" style="left:8.33%;top:calc(14px + (100% - 28px)*0.50)"></i><i class="lo" style="left:25.00%;top:calc(14px + (100% - 28px)*0.85)"></i><i class="lo" style="left:41.67%;top:calc(14px + (100% - 28px)*0.85)"></i><i class="mid" style="left:58.33%;top:calc(14px + (100% - 28px)*0.50)"></i><i class="lo" style="left:75.00%;top:calc(14px + (100% - 28px)*0.85)"></i><i class="lo" style="left:91.67%;top:calc(14px + (100% - 28px)*0.85)"></i></div>
+<div class="jl">Frictions</div><div>Un appel par semaine ne suffit pas à sa mère. (S4.3)</div><div class="vt">Sa mère se sent seule et triste sans nouvelles. (S1.4)</div><div>Sa mère veut que les photos qu’on envoie soient aussi en papier. (S3.2, S1.3)</div><div>Sa mère n’ose pas, a peur de déranger, et se perd dans son téléphone. (S2.1, S3.2)</div><div>Son fils ne prend pas de nouvelles : tout passe encore par elle. (PE1.20)</div><div class="vt cx">Un appel par semaine ne suffit toujours pas ; entre deux, aucun signe. (S1.4)<span class="sr" style="position:absolute;left:-9999px"> (croix de l’équipe)</span></div>
+<div class="jl">Opportunités</div><div>Partager plus de nouvelles.</div><div class="vt">Matérialiser le contact et la nouvelle.</div><div>Partager une photo qui arrive chez sa mère sans tirage papier.</div><div>Donner des nouvelles à sa mère sans peur de déranger.</div><div>Dire aux petits-enfants de partager aussi, sans passer par elle.</div><div class="vt">Partager un signe de vie entre deux vendredis, sans appeler plus.</div>
+</div></div>
+<p class="jleg"><span class="neg">Émotion négative</span><span class="neu">Neutre</span><span class="pos">Positive</span><span>Moment de vérité (colonne jaune)</span><span class="x">Croix posée par l’équipe</span></p>
+<div class="scn"><div><b>Scénario</b><p>Un vendredi matin, Sandrine appelle sa mère, qui lui confie avoir passé une semaine triste et difficile, seule. Sandrine culpabilise de ne pas avoir pris le temps de s’occuper d’elle. Elle tente de lui remonter le moral en lui demandant des nouvelles. Au fil de la conversation, elle apprend ce que sa mère a fait pendant la semaine et lui fait gentiment remarquer qu’elle aurait pu lui envoyer des photos.</p></div><div><b>Sources</b><p><span class="cd en">E1.1</span> <span class="cd gp">S1.4</span> <span class="cd pe">PE1.20</span> <span class="cd pe">PE1.16</span> <span class="cd en">E1.3</span> <span class="cd gp">S1.3</span> <span class="cd en">E1.2</span></p></div></div>
+</div>
+<div class="sec" id="j-petit-enfant" data-s="User journey Hugo"><div class="sh"><h3>Hugo : la pensée ne devient pas un geste</h3><p>Il culpabilise, pense à une carte, puis laisse passer les semaines jusqu'à la prochaine grande date.</p></div>
+<div class="jm" role="region" aria-label="User journey de Hugo" tabindex="0"><div class="jm-g" style="--n:6">
+<div class="jl">Étapes</div>
+<div class="js"><small>1</small>Apprendre par sa mère</div>
+<div class="js vt"><small>Moment de vérité</small>Culpabiliser</div>
+<div class="js vt"><small>Moment de vérité</small>Vouloir faire un geste</div>
+<div class="js"><small>4</small>Laisser passer</div>
+<div class="js"><small>5</small>Appeler à Noël</div>
+<div class="js"><small>6</small>Retomber</div>
+<div class="jl">Actions</div><div>Sa mère lui donne des nouvelles de sa grand-mère.</div><div class="vt">Se rend compte qu’il n’a pas appelé depuis longtemps.</div><div class="vt">Pense à lui envoyer une carte postale.</div><div>Ne fait rien, les semaines passent.</div><div>L’appelle pour Noël ou son anniversaire.</div><div>L’appel passé, repasse par sa mère pour avoir des nouvelles.</div>
+<div class="jl">Pensées</div><div>« Je connais sa situation que par ma mère. »</div><div class="vt">« Je devrais prendre un peu plus de nouvelles. »</div><div class="vt">« Une carte c’est bien mais c’est pas un réflexe. »</div><div>« Elle va bien, ma mère me l’aurait dit. »</div><div>« Je l’appelle quand il y a une date importante. »</div><div>« Parfois je me sens coupable de ne pas prendre de nouvelles. »</div>
+<div class="jl">Émotion</div>
+<div class="em neu">Neutre</div>
+<div class="em neg">Culpabilité</div>
+<div class="em neu">Hésitant</div>
+<div class="em neg">Résigné</div>
+<div class="em pos">Content</div>
+<div class="em neg">Culpabilité</div>
+<div class="jl">Courbe</div>
+<div class="jemo"><svg viewBox="0 0 600 100" preserveAspectRatio="none" aria-hidden="true"><line class="ax" x1="0" y1="50" x2="600" y2="50"/><polyline class="ln" points="50,50 150,85 250,50 350,85 450,15 550,85"/></svg><i class="mid" style="left:8.33%;top:calc(14px + (100% - 28px)*0.50)"></i><i class="lo" style="left:25.00%;top:calc(14px + (100% - 28px)*0.85)"></i><i class="mid" style="left:41.67%;top:calc(14px + (100% - 28px)*0.50)"></i><i class="lo" style="left:58.33%;top:calc(14px + (100% - 28px)*0.85)"></i><i class="hi" style="left:75.00%;top:calc(14px + (100% - 28px)*0.15)"></i><i class="lo" style="left:91.67%;top:calc(14px + (100% - 28px)*0.85)"></i></div>
+<div class="jl">Frictions</div><div>Jamais de nouvelles en direct.</div><div class="vt cx">Pas le réflexe de prendre contact.<span class="sr" style="position:absolute;left:-9999px"> (croix de l’équipe)</span></div><div class="vt">Rien de simple entre l’appel et la carte.</div><div>Elle trouve que ses petits-enfants n’appellent pas assez.</div><div>Rien entre deux dates.</div><div>Elle vit seule et s’ennuie, elle n’ose pas déranger.</div>
+<div class="jl">Opportunités</div><div>Savoir par lui-même si elle va bien.</div><div class="vt">Avoir une solution qui permet de penser à elle plus régulièrement.</div><div class="vt cx">Un geste aussi simple qu’un message.<span class="sr" style="position:absolute;left:-9999px"> (croix de l’équipe)</span></div><div>Un rappel discret qui garde le réflexe.</div><div>Un rythme qu’il peut tenir, un appel toutes les deux semaines.</div><div>Un lien direct entre eux deux, sans passer par sa mère.</div>
+</div></div>
+<p class="jleg"><span class="neg">Émotion négative</span><span class="neu">Neutre</span><span class="pos">Positive</span><span>Moment de vérité (colonne jaune)</span><span class="x">Croix posée par l’équipe</span></p>
+<div class="scn"><div><b>Scénario</b><p>Noël passe, Hugo appelle sa grand-mère (PE1.6). Les semaines suivantes, plus rien : il sait qu’elle va bien parce que sa mère le lui dit (PE1.16). Un soir, il se sent coupable (PE1.20) et pense à une carte postale, mais ce n’est pas un réflexe (PE1.9). Pendant ce temps, sa grand-mère regarde les photos du salon plusieurs fois par jour (S4.1), trouve que ses petits-enfants n’appellent pas assez (S4.3) et n’ose pas envoyer les siennes, de peur de déranger (S2.1).</p></div><div><b>Sources</b><p><span class="cd pe">PE1.6</span> <span class="cd pe">PE1.9</span> <span class="cd pe">PE1.16</span> <span class="cd pe">PE1.20</span> <span class="cd pe">PE2.6</span> <span class="cd en">E1.1</span> <span class="cd en">E2.2</span> <span class="cd gp">S1.4</span> <span class="cd gp">S2.1</span> <span class="cd gp">S4.1</span> <span class="cd gp">S4.3</span></p></div></div>
+</div>
+<div class="sec" id="j-verite" data-s="Moments de vérité"><div class="sh"><h3>Six croix, un même moment : entre deux appels</h3><p>L'équipe a posé deux croix par parcours sur le FigJam. Toutes tombent là où rien ne circule entre deux appels.</p></div>
+<ol class="rows">
+<li><span class="n">1</span><span class="a"><b>Jacqueline · Se retenir</b><span>« J'ai peur de déranger la personne. » Elle voulait envoyer une photo, elle renonce (S2.1).</span></span></li>
+<li><span class="n">2</span><span class="a"><b>Jacqueline · Patienter</b><span>Entre deux vendredis, aucun signe d'un côté ni de l'autre (S1.4).</span></span></li>
+<li><span class="n">3</span><span class="a"><b>Sandrine · Culpabiliser</b><span>Sa mère lui reproche de ne pas avoir pris plus de nouvelles (S4.3).</span></span></li>
+<li><span class="n">4</span><span class="a"><b>Sandrine · Rappeler</b><span>Un appel par semaine ne suffit toujours pas ; entre deux, aucun signe (S1.4).</span></span></li>
+<li><span class="n">5</span><span class="a"><b>Hugo · Culpabiliser</b><span>Pas le réflexe de prendre contact (PE1.20).</span></span></li>
+<li><span class="n">6</span><span class="a"><b>Hugo · Vouloir faire un geste</b><span>L'opportunité : un geste aussi simple qu'un message (PE1.9).</span></span></li>
+</ol>
+</div>
+<p class="next"><a href="#probleme">Page suivante : Problématique <span>→</span></a></p></section>
+
+<section class="page" id="p-probleme"><span class="k">08 / 09</span>
+<h2 class="t">Problématique</h2>
+<p class="lead">La problématique est la question à laquelle le futur produit devra répondre. Elle part des insights et ne cite aucune solution.</p>
+<div class="hmw" id="pb-question" data-s="Comment pourrions-nous">
+<ol class="bmd">
+<li><b>Le besoin</b><p>La famille a besoin de garder le lien avec son parent : elle veut savoir qu'il va bien, et sans nouvelles, elle s'inquiète et culpabilise.</p></li>
+<li><b>Mais</b><p>Prendre des nouvelles n'est pas un réflexe entre deux appels, et le parent n'ose pas en donner, par peur de déranger. Chacun attend que l'autre fasse le premier pas.</p></li>
+<li><b>De ce fait</b><p>La question que nous retenons :</p></li>
+</ol>
+<blockquote style="margin-top:32px"><span>Comment pourrions-nous</span> rendre la prise de nouvelles plus simple, quotidienne et sans effort, dans les deux sens ?</blockquote>
+<p class="court">En une phrase : le lien existe, <mark>mais entre deux appels, rien ne circule</mark>.</p>
+</div>
+<div class="sec" id="pb-pourquoi" data-s="Pourquoi celle-ci"><div class="sh"><h3>Pourquoi celle-ci : elle vient de l'insight 4</h3><p>La tension commune aux trois personas dit où agir : entre deux appels. Chaque mot de la question répond à un insight.</p></div>
+<div class="three">
+<div><b>« Quotidienne »</b><p>Le lien tient sur un seul rendez-vous par semaine, et rien entre deux. C'est l'<a href="#i4">insight 4</a>.</p></div>
+<div><b>« Sans effort »</b><p>Sandrine fait déjà sa part et porte tout. On ne peut pas lui demander plus (<a href="#i1">insight 1</a>).</p></div>
+<div><b>« Dans les deux sens »</b><p>Jacqueline n'ose pas envoyer, Hugo n'y pense pas. Les nouvelles doivent partir des deux côtés (<a href="#i2">insights 2</a> et <a href="#i3">3</a>).</p></div>
+</div>
+</div>
+<div class="sec" id="pb-avant" data-s="Version précédente de la problématique"><div class="sh"><h3>La version précédente, et ce qui a changé</h3><p>Les deux versions sont dans le FigJam. Nous gardons la seconde.</p></div>
+<p class="obj" style="border-left-color:var(--hair);color:var(--muted)">« De ce fait, comment pourrions-nous rendre la prise de nouvelles plus accessible, quotidienne et sans friction ? »</p>
+<div class="tw chg"><table><thead><tr><th>Partie</th><th>Avant</th><th>Après</th><th>Pourquoi</th></tr></thead><tbody>
+<tr><td>Le besoin</td><td><del>un moyen de mise en relation</del></td><td><ins>garder le lien</ins></td><td>Un besoin ne nomme pas de moyen : « un moyen » annonçait déjà une solution.</td></tr>
+<tr><td>Qui</td><td><del>les petits-enfants et enfants</del></td><td><ins>la famille</ins></td><td>La grand-mère fait aussi partie du lien.</td></tr>
+<tr><td>Le mot clé</td><td><del>accessible</del></td><td><ins>simple</ins></td><td>Hugo a besoin d'un geste « aussi simple qu'un message ».</td></tr>
+<tr><td>Le coût</td><td><del>sans friction</del></td><td><ins>sans effort</ins></td><td>Le frein n'est pas un obstacle technique, c'est l'effort de penser à le faire.</td></tr>
+<tr><td>Le sens</td><td>absent</td><td><ins>dans les deux sens</ins></td><td>Le parent n'ose pas en donner : il doit pouvoir envoyer, pas seulement recevoir.</td></tr>
+</tbody></table></div>
+</div>
+<p class="next"><a href="#annexes">Page suivante : Annexes <span>→</span></a></p></section>
+
+<section class="page" id="p-annexes"><span class="k">09 / 09</span>
+<h2 class="t">Annexes</h2>
+<p class="lead">Les preuves de tout ce qui précède : nos documents, des extraits du tableau FigJam, l'usage de l'IA et qui a fait quoi.</p>
+<div class="sec" id="a-preuves" data-s="Les documents"><div class="sh"><h3>Guides et comptes rendus</h3><p>Chaque document est dans le dépôt de l'équipe. Les notes brutes et les enregistrements restent hors du dépôt.</p></div>
+<div class="tw"><table><thead><tr><th>Document</th><th>Ce qu'il prouve</th><th>Auteur</th></tr></thead><tbody>
+<tr><td><a href="../../depot/S1-2026-2027/02-besoins/rendus/2-2-hypotheses-critiques-equipe.html">Hypothèses critiques</a></td><td>Les 20 hypothèses, leur tri, les 6 critiques.</td><td>Équipe</td></tr>
+<tr><td><a href="../../depot/S1-2026-2027/02-besoins/interne/camille/2-3-plan-recherche-guides-camille.html">Plan de recherche et guides</a></td><td>Objectif, questions, guides parent et enfant.</td><td>Camille</td></tr>
+<tr><td><a href="../../depot/S1-2026-2027/02-besoins/interne/camille/2-5-kit-entretiens-complet.html">Kit d'entretiens</a></td><td>Profils, planning, trois guides, fiche à chaud.</td><td>Camille</td></tr>
+<tr><td><a href="../../depot/S1-2026-2027/02-besoins/interne/lucas/2-3-guides-entretien.html">Guides d'entretien v2</a></td><td>12 questions par guide, 12 corrections.</td><td>Lucas</td></tr>
+<tr><td><a href="../../depot/S1-2026-2027/02-besoins/interne/clement/2-2-guides-entretien.html">Guides d'entretien</a></td><td>Trame en 5 temps, une question par hypothèse.</td><td>Clément</td></tr>
+<tr><td><a href="../compte-rendu-entretiens-camille.html">Compte rendu E1, E2, P1·P2</a></td><td>Trois entretiens, verbatims, signes par hypothèse.</td><td>Camille</td></tr>
+<tr><td><a href="../../depot/S1-2026-2027/02-besoins/interne/clement/2-5-entretien-pe3-petit-enfant.html">Entretien PE3 (PE1 au FigJam)</a></td><td>Question par question, débrief par hypothèse.</td><td>Clément</td></tr>
+<tr><td><a href="../../depot/S1-2026-2027/02-besoins/interne/lucas/2-5-synthese-entretiens-famille.html">Synthèse famille</a></td><td>PE2, GP1 et GP2 (S1 et S4 au FigJam).</td><td>Lucas</td></tr>
+<tr><td><a href="../../depot/S1-2026-2027/02-besoins/interne/camille/2-4-parcours-familles-test.html">Parcours familles (test)</a></td><td>Première esquisse de parcours, avant le FigJam.</td><td>Camille</td></tr>
+</tbody></table></div>
+</div>
+<div class="sec" id="a-figjam" data-s="Extraits du FigJam"><div class="sh"><h3>Extraits du FigJam de l'équipe</h3><p>Le tableau « fil rouge B2 », découpé en extraits lisibles. Cliquer ouvre l'image en grand. Les fiches personas du FigJam ne sont pas reprises : elles portent des photos de personnes réelles.</p></div>
+<div class="shots"><figure><a href="images/figjam-verbatims.jpg" target="_blank" rel="noopener"><img src="images/figjam-verbatims.jpg" alt="Extrait du FigJam : Verbatims" loading="lazy" width="2000" height="1000"></a><figcaption>Verbatims<small>Les 18 phrases, par public.</small></figcaption></figure><figure><a href="images/figjam-affinity-map.jpg" target="_blank" rel="noopener"><img src="images/figjam-affinity-map.jpg" alt="Extrait du FigJam : Affinity map" loading="lazy" width="2000" height="1000"></a><figcaption>Affinity map<small>Les 6 groupes et leurs post-its.</small></figcaption></figure><figure><a href="images/figjam-insights-groupes.jpg" target="_blank" rel="noopener"><img src="images/figjam-insights-groupes.jpg" alt="Extrait du FigJam : Insights, version 1" loading="lazy" width="2000" height="1000"></a><figcaption>Insights, version 1<small>Un insight par groupe.</small></figcaption></figure><figure><a href="images/figjam-insights-v1.jpg" target="_blank" rel="noopener"><img src="images/figjam-insights-v1.jpg" alt="Extrait du FigJam : Insights, version 2" loading="lazy" width="2000" height="1000"></a><figcaption>Insights, version 2<small>« Prendre contact mais personne n'ose. »</small></figcaption></figure><figure><a href="images/figjam-insights-v2.jpg" target="_blank" rel="noopener"><img src="images/figjam-insights-v2.jpg" alt="Extrait du FigJam : Insights retenus" loading="lazy" width="2000" height="1000"></a><figcaption>Insights retenus<small>Quatre insights, un par persona et la tension commune.</small></figcaption></figure><figure><a href="images/figjam-problematique.jpg" target="_blank" rel="noopener"><img src="images/figjam-problematique.jpg" alt="Extrait du FigJam : Problématique" loading="lazy" width="2000" height="1000"></a><figcaption>Problématique<small>Les deux versions, côte à côte.</small></figcaption></figure><figure><a href="images/figjam-empathy-jacqueline.jpg" target="_blank" rel="noopener"><img src="images/figjam-empathy-jacqueline.jpg" alt="Extrait du FigJam : Empathy map de Jacqueline" loading="lazy" width="2000" height="1000"></a><figcaption>Empathy map de Jacqueline<small>Les 7 zones.</small></figcaption></figure><figure><a href="images/figjam-empathy-sandrine.jpg" target="_blank" rel="noopener"><img src="images/figjam-empathy-sandrine.jpg" alt="Extrait du FigJam : Empathy map de Sandrine" loading="lazy" width="2000" height="1000"></a><figcaption>Empathy map de Sandrine<small>Les 7 zones.</small></figcaption></figure><figure><a href="images/figjam-empathy-hugo.jpg" target="_blank" rel="noopener"><img src="images/figjam-empathy-hugo.jpg" alt="Extrait du FigJam : Empathy map de Hugo" loading="lazy" width="2000" height="1000"></a><figcaption>Empathy map de Hugo<small>Les 7 zones (âge écrit 16 ans).</small></figcaption></figure><figure><a href="images/figjam-journey-jacqueline.jpg" target="_blank" rel="noopener"><img src="images/figjam-journey-jacqueline.jpg" alt="Extrait du FigJam : User journey de Jacqueline" loading="lazy" width="2000" height="1000"></a><figcaption>User journey de Jacqueline<small>Six étapes, deux croix.</small></figcaption></figure><figure><a href="images/figjam-journey-sandrine.jpg" target="_blank" rel="noopener"><img src="images/figjam-journey-sandrine.jpg" alt="Extrait du FigJam : User journey de Sandrine" loading="lazy" width="2000" height="1000"></a><figcaption>User journey de Sandrine<small>Six étapes, deux croix.</small></figcaption></figure><figure><a href="images/figjam-journey-hugo.jpg" target="_blank" rel="noopener"><img src="images/figjam-journey-hugo.jpg" alt="Extrait du FigJam : User journey de Hugo" loading="lazy" width="2000" height="1000"></a><figcaption>User journey de Hugo<small>Six étapes, deux croix.</small></figcaption></figure><figure><a href="images/figjam-attentes.jpg" target="_blank" rel="noopener"><img src="images/figjam-attentes.jpg" alt="Extrait du FigJam : Attentes entre les trois" loading="lazy" width="2000" height="1000"></a><figcaption>Attentes entre les trois<small>Ce que chacun attend des autres.</small></figcaption></figure></div>
+</div>
+<div class="sec" id="a-ia" data-s="IA déclarée"><div class="sh"><h3>IA déclarée</h3><p>L'IA a aidé à mettre en forme et à relire. L'équipe a mené les entretiens et pris les décisions.</p></div>
+<div class="tw"><table class="kv"><tbody>
+<tr><th>Transcription</th><td>Enregistrements de Camille transcrits en local sur son ordinateur (Whisper), sans envoi en ligne.</td></tr>
+<tr><th>Mise en forme</th><td>Claude a mis en page ce dossier à partir du FigJam et des documents du dépôt, et a relu l'orthographe des textes rédigés. Les verbatims sont recopiés sans modification.</td></tr>
+<tr><th>Relecture</th><td>Claude a signalé les écarts entre le FigJam et le dépôt (codes, âge de Hugo, nombre d'enfants).</td></tr>
+<tr><th>L'équipe seule</th><td>Conduite des entretiens, choix des verbatims, affinity map, insights, personas, user journeys, choix de la problématique.</td></tr>
+</tbody></table></div>
+<p class="afaire"><b>À compléter par Clément et Lucas :</b> les outils d'IA utilisés pour leurs fiches et pour le FigJam.</p>
+</div>
+<div class="sec" id="a-qui" data-s="Qui a fait quoi"><div class="sh"><h3>Qui a fait quoi</h3><p>D'après les auteurs des fichiers du dépôt et des post-its du FigJam.</p></div>
+<div class="who3">
+<div><h4>Camille Breton</h4><ul><li>Plan de recherche, guides, kit d'entretiens</li><li>Entretiens E1, E2 et du couple de parents (S2, S3)</li><li>Post-its E1, E2, S2, S3 au FigJam</li><li>Compte rendu des entretiens</li></ul></div>
+<div><h4>Clément Gosselin</h4><ul><li>Hypothèses de veille et classement des 20</li><li>Guides d'entretien</li><li>Entretien PE3 (PE1 au FigJam) et sa fiche</li><li>Post-its PE1 au FigJam</li></ul></div>
+<div><h4>Lucas Gâteau</h4><ul><li>Guides d'entretien v2 (12 corrections)</li><li>Entretiens PE2, GP1 et GP2 (S1, S4), et leur synthèse</li><li>Post-its PE2, S1, S4 et E3 au FigJam</li><li>Entretien E3 <span class="conf">à confirmer</span></li></ul></div>
+</div>
+<p class="afaire"><b>À confirmer par l'équipe :</b> qui a écrit les personas, les empathy maps, les user journeys et les insights retenus du FigJam.</p>
+</div>
+<p class="next"><a href="#intro">Retour au début <span>→</span></a></p>
+<footer class="pied">Dossier « Besoins utilisateurs », PFR Générations Connectées, Ynov Bordeaux, novembre 2026. Codes anonymes uniquement. Les prénoms des personas sont inventés.</footer>
+</section>
+</main>
+
+<script>(function(){var r=document.documentElement,b=document.getElementById("theme");
+function set(t){r.setAttribute("data-theme",t);b.innerHTML=t==="dark"?'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>':'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>';var L=t==="dark"?"Passer en mode clair":"Passer en mode sombre";b.setAttribute("aria-label",L);b.title=L;b.setAttribute("aria-pressed",t==="dark");try{localStorage.setItem("theme",t)}catch(e){}}
+var t=null;try{t=localStorage.getItem("theme")}catch(e){}
+if(!t)t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";set(t);
+b.addEventListener("click",function(){var go=function(){set(r.getAttribute("data-theme")==="dark"?"light":"dark")};if(window.MotionSys)MotionSys.theme(b,go);else go()});})();</script>
+<script>
+(function(){
+  var items=[].slice.call(document.querySelectorAll("#menu>li[data-p]")),P=items.map(function(l){return l.dataset.p});
+  function find(h){var el=document.getElementById(h)||document.getElementById("p-"+h);if(!el)return[null,P[0]];var pg=el.closest(".page");return[el,pg?pg.id.slice(2):P[0]]}
+  function show(){
+    var h=decodeURIComponent((location.hash||"#"+P[0]).slice(1)),f=find(h),el=f[0],page=f[1];
+    P.forEach(function(p){document.getElementById("p-"+p).classList.toggle("on",p===page)});
+    items.forEach(function(li){li.classList.toggle("on",li.dataset.p===page)});
+    if(el&&el.tagName==="DETAILS")el.open=true;
+    if(el&&!el.classList.contains("page")){el.scrollIntoView()}else window.scrollTo(0,0);
+    spy();
+  }
+  function spy(){
+    var links=[].slice.call(document.querySelectorAll("#menu li.on ul a"));if(!links.length)return;
+    var y=window.innerHeight*0.3,cur=links[0];
+    links.forEach(function(a){var e=document.getElementById(a.getAttribute("href").slice(1));if(e&&e.getBoundingClientRect().top<=y)cur=a});
+    links.forEach(function(a){a.classList.toggle("on",a===cur)});
+  }
+  window.addEventListener("hashchange",show);window.addEventListener("scroll",spy,{passive:true});show();
+  /* recherche dans toute la doc */
+  var q=document.getElementById("q"),res=document.getElementById("resl"),cnt=document.getElementById("resc"),menu=document.getElementById("menu");
+  function norm(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
+  var idx=[].map.call(document.querySelectorAll("[data-s]"),function(el){
+    var t=el.classList.contains("sec")?(el.querySelector(".sh")||el).textContent:el.textContent;t=t.replace(/\s+/g," ").trim();
+    var pg=el.closest(".page"),pl=pg?pg.querySelector("h2.t").textContent:"";
+    return{id:el.id,title:el.getAttribute("data-s"),text:t,n:norm(el.getAttribute("data-s")+" "+t),page:pl}});
+  function lancer(){
+    var terms=norm(q.value).split(/\s+/).filter(Boolean);
+    if(!terms.length){res.hidden=true;cnt.hidden=true;menu.hidden=false;res.innerHTML="";return}
+    var out=idx.filter(function(x){return terms.every(function(t){return x.n.indexOf(t)>=0})});
+    menu.hidden=true;res.hidden=false;cnt.hidden=false;
+    cnt.textContent=out.length?out.length+" résultat"+(out.length>1?"s":"")+(out.length>12?" (12 premiers affichés)":""):"Aucun résultat";
+    res.innerHTML=out.slice(0,12).map(function(x){
+      var i=norm(x.text).indexOf(terms[0]),s=i<0?x.text.slice(0,90):(i>40?"… ":"")+x.text.slice(Math.max(0,i-40),i+60)+" …";
+      var esc=function(v){return v.replace(/&/g,"&amp;").replace(/</g,"&lt;")};
+      return '<li><a href="#'+x.id+'"><b>'+esc(x.title)+'</b><small>'+esc(x.page)+' · '+esc(s)+'</small></a></li>'}).join("");
+  }
+  q.addEventListener("input",lancer);
+  res.addEventListener("click",function(e){var a=e.target.closest("a");if(!a)return;if(a.getAttribute("href")==="#"+location.hash.slice(1))setTimeout(show,0)});
+})();
+</script>
+<script id="motion-systeme-js">(function(){
+  /* Système d'animation (6 nov.) : WAAPI + IntersectionObserver, sans bibliothèque.
+     Règle : tout est visible par défaut ; l'attente (opacity 0) n'est posée que si l'onglet est visible,
+     et une minuterie finit chaque animation même si l'onglet gèle. */
+  var R=document.documentElement,mm=window.matchMedia;
+  var reduit=!!(mm&&mm("(prefers-reduced-motion: reduce)").matches);
+  var ok=!reduit&&!!Element.prototype.animate&&("IntersectionObserver" in window);
+  var D={f:160,m:280,l:560},E={out:"cubic-bezier(.22,1,.36,1)",spring:"cubic-bezier(.22,1,.36,1)"};
+  try{var sp=getComputedStyle(R).getPropertyValue("--mv-spring").trim();if(sp&&CSS.supports("transition-timing-function",sp))E.spring=sp}catch(e){}
+  var ST=50,STMAX=8;function dl(i,pas,max){return Math.min(i,max||STMAX)*(pas||ST)}
+  function libre(){return ok&&!document.hidden}
+  var vivantes=[],comptes=[],attente=[];
+  if(ok)R.classList.add("mv-on");
+
+  function play(el,kf,o){
+    if(!libre()||!el||!el.animate)return null;o=o||{};var a,d=o.d||D.l,de=o.delay||0;
+    try{a=el.animate(kf,{duration:d,delay:de,easing:o.e||E.out,fill:o.fill||"backwards"})}catch(e){return null}
+    vivantes.push(a);var fin=function(){var k=vivantes.indexOf(a);if(k>=0)vivantes.splice(k,1)};a.onfinish=fin;a.oncancel=fin;
+    if(!o.fill)setTimeout(function(){if(a.playState!=="finished"&&a.playState!=="idle"){try{a.finish()}catch(e){a.cancel()}}},de+d+400);
+    return a}
+  var FADE=function(y){return [{opacity:0,transform:"translateY("+y+"px)"},{opacity:1,transform:"none"}]};
+
+  /* compteur : le premier nœud texte compte jusqu'à sa valeur, puis retrouve son texte exact */
+  function compte(el,de){
+    if(!libre()||!el||el._mvC)return;var tn=null;
+    for(var n=el.firstChild;n;n=n.nextSibling){if(n.nodeType===3&&n.nodeValue.trim()){tn=n;break}}
+    if(!tn)return;var orig=tn.nodeValue,m=/^(\s*[+−-]?)(\d+)(?:,(\d+))?(\s*)$/.exec(orig);if(!m)return;
+    var cible=parseFloat(m[2]+"."+(m[3]||"0")),dec=m[3]?m[3].length:0;if(!(cible>0))return;
+    el._mvC=1;var job={fini:false},t0=null,dur=D.l+D.m;comptes.push(job);
+    function fmt(v){var s=v.toFixed(dec);return m[1]+(dec?s.replace(".",","):s)+m[4]}
+    job.stop=function(){if(job.fini)return;job.fini=true;tn.nodeValue=orig;el._mvC=0};
+    tn.nodeValue=fmt(0);
+    function step(ts){if(job.fini)return;if(t0===null)t0=ts+de;var p=Math.min(1,Math.max(0,(ts-t0)/dur));tn.nodeValue=fmt(cible*(1-Math.pow(1-p,4)));if(p<1)requestAnimationFrame(step);else job.stop()}
+    requestAnimationFrame(step);setTimeout(job.stop,de+dur+500)}
+
+  /* détails animés à l'intérieur d'un bloc qui entre */
+  function details(el,de){
+    var q=function(s){return el.querySelectorAll?[].slice.call(el.querySelectorAll(s)):[]};
+    q(".nt5-seg").forEach(function(sg){[].slice.call(sg.querySelectorAll("i.on")).forEach(function(i,k){play(i,[{transform:"scaleX(0)"},{transform:"none"}],{d:D.m,delay:de+120+k*70,e:E.spring})})});
+    q(".nt5-bar span i,ol.cmp5-bars .tr i,.f-nt s,.p-cmp i").forEach(function(i,k){i.style.transformOrigin="left center";play(i,[{transform:"scaleX(0)"},{transform:"none"}],{d:D.l,delay:de+100+dl(k,40,10),e:E.spring})});
+    q(".cmp5-grid").forEach(function(g){[].slice.call(g.querySelectorAll(".dot")).forEach(function(dt,k){play(dt,[{opacity:0,transform:"scale(0)"},{opacity:1,transform:"none"}],{d:D.m,delay:de+80+Math.min(k*10,420),e:E.spring})})});
+    q(".nt5-big,.f-sc b,.facts b,.cmp5-stats span,.m-note b,.p-s").forEach(function(c){compte(c,de+80)});
+    if(el.matches&&el.matches(".facts>div"))compte(el.querySelector("b"),de+80)}
+
+  function graph(el,de){
+    [].slice.call(el.querySelectorAll(".col")).forEach(function(c,k){
+      var i=c.querySelector("i"),v=c.querySelector(".v"),d2=de+dl(k,45,12);
+      if(i)play(i,[{transform:"scaleY(0)"},{transform:"none"}],{d:D.l,delay:d2,e:E.spring});
+      if(v){play(v,FADE(6),{d:D.m,delay:d2+D.f});compte(v,d2)}})}
+  function bloc(el,de){play(el,FADE(14),{d:D.l,delay:de});details(el,de)}
+
+  /* repérage des cibles d'une page ou du résumé complet */
+  var GROUPES=".vb,.pgrid,.who3,.rel ol,ol.dec,ol.rows,ol.steps,ol.regle,ol.audit,.cc,.who,.three,.pal,.decl,.facts,.choix,ul.anat,.frame4,.kcols,ol.nt5,ol.f-steps,ol.cmp5-bars,.cmp5-stats";
+  function parcours(C,out){
+    [].forEach.call(C.children,function(ch){
+      if(/^(SCRIPT|STYLE|TEMPLATE)$/.test(ch.tagName))return;
+      if(ch.matches("ol.cols")){out.push([ch,graph,"mv-wc"]);return}
+      if(ch.matches(GROUPES)){[].forEach.call(ch.children,function(li){out.push([li,bloc,"mv-w"])});return}
+      if(ch.matches(".couche,.sec,.f-sec,.f-in")||(ch.matches("div.vis")&&!ch.className.replace(/\bvis\b/,"").trim())){parcours(ch,out);return}
+      out.push([ch,bloc,"mv-w"])})}
+  function cibles(page){var out=[];[].forEach.call(page.children,function(ch){
+    if(ch.matches("h2.t")||/^(SCRIPT|STYLE)$/.test(ch.tagName))return;
+    if(ch.matches(".sec")){parcours(ch,out);return}
+    if(ch.matches(GROUPES)){[].forEach.call(ch.children,function(li){out.push([li,bloc,"mv-w"])});return}
+    out.push([ch,bloc,"mv-w"])});return out}
+
+  function entre(el,de){
+    var k=attente.indexOf(el);if(k>=0)attente.splice(k,1);if(io)io.unobserve(el);
+    el.classList.remove("mv-w","mv-wc");el._mvFait=1;if(el._mv)el._mv(el,de||0)}
+  function toutReveler(){
+    attente.slice().forEach(function(el){el.classList.remove("mv-w","mv-wc");el._mvFait=1;if(io)io.unobserve(el)});attente=[];
+    vivantes.slice().forEach(function(a){try{a.finish()}catch(e){a.cancel()}});
+    comptes.forEach(function(j){j.stop&&j.stop()});comptes=[]}
+  var io=ok?new IntersectionObserver(function(ents){
+    var lot=[];ents.forEach(function(e){if(e.isIntersecting)lot.push(e.target)});
+    lot.sort(function(a,b){return a.compareDocumentPosition(b)&4?-1:1});
+    lot.forEach(function(el,i){entre(el,dl(i))})},{rootMargin:"0px 0px -6% 0px",threshold:0}):null;
+  function arme(racine,liste){
+    if(!libre())return;
+    liste.forEach(function(x){var el=x[0];if(el._mvFait||attente.indexOf(el)>=0)return;el._mv=x[1];el.classList.add(x[2]);attente.push(el);io.observe(el)});
+    garde()}
+  /* filet : si l'observateur ne s'est pas déclenché, on révèle ce qui est à l'écran */
+  var GT=null;function garde(){clearTimeout(GT);GT=setTimeout(function(){
+    if(document.hidden){toutReveler();return}
+    attente.slice().forEach(function(el){if(!document.contains(el)){attente.splice(attente.indexOf(el),1);return}
+      var r=el.getBoundingClientRect();if(r.height>0&&r.top<innerHeight&&r.bottom>0)entre(el,0)})},1500)}
+  document.addEventListener("visibilitychange",function(){if(document.hidden)toutReveler()});
+  window.addEventListener("beforeprint",toutReveler);
+  window.addEventListener("scroll",function(){if(attente.length)garde()},{passive:true});
+  document.addEventListener("focusin",function(e){var w=e.target.closest&&e.target.closest(".mv-w,.mv-wc");if(w)entre(w,0)});
+
+  /* titres : mot par mot */
+  function mots(h){
+    if(!h||h._mvM)return h?h._mvM:[];var out=[];
+    [].slice.call(h.childNodes).forEach(function(n){
+      if(n.nodeType===1){n.classList.add("mv-wd");out.push(n);return}
+      if(n.nodeType!==3)return;var f=document.createDocumentFragment();
+      n.nodeValue.split(/( +)/).forEach(function(p){if(!p)return;if(/^ +$/.test(p)){f.appendChild(document.createTextNode(p));return}
+        var s=document.createElement("span");s.className="mv-wd";s.textContent=p;f.appendChild(s);out.push(s)});
+      h.replaceChild(f,n)});
+    h._mvM=out;return out}
+  function ouvreTitre(h,de){if(!libre())return;mots(h).forEach(function(w,i){play(w,[{opacity:0,transform:"translateY(.5em)"},{opacity:1,transform:"none"}],{d:D.l,delay:de+Math.min(i,14)*35,e:E.spring})})}
+
+  /* pages */
+  var dern=null;
+  function pageOn(){return document.querySelector("main>.page.on")}
+  function surPage(){
+    var p=pageOn();if(!p)return;var nv=p!==dern;dern=p;jaugeMaj();
+    if(nv&&libre()){
+      play(p,FADE(12),{d:D.l});ouvreTitre(p.querySelector("h2.t"),60);
+      [].slice.call(document.querySelectorAll("#menu>li.on ul a")).forEach(function(a,i){play(a,[{opacity:0,transform:"translateX(-8px)"},{opacity:1,transform:"none"}],{d:D.m,delay:dl(i,40)})});
+      var b=document.querySelector("#menu>li.on>a b");if(b)play(b,[{transform:"scale(.6)"},{transform:"none"}],{d:D.m,e:E.spring})}
+    arme(p,cibles(p))}
+  window.addEventListener("hashchange",surPage);
+
+  /* résumé complet : entrée, cascade, sortie */
+  var FULL=document.getElementById("full"),LB=document.getElementById("lb");
+  if(FULL)new MutationObserver(function(){
+    if(!FULL.classList.contains("on")||!FULL.firstChild)return;
+    if(FULL._ferme){var f=FULL._ferme;FULL._ferme=null;clearTimeout(f.t);f.a.onfinish=null;f.a.cancel()}
+    if(!libre())return;
+    play(FULL,FADE(24),{d:D.m});
+    ouvreTitre(FULL.querySelector("#f-nom"),40);
+    var l=[];FULL.querySelectorAll(".f-hd .f-v,.f-hd .f-sc,.f-hd .f-sco").forEach(function(x){l.push([x,bloc,"mv-w"])});
+    var fin=FULL.querySelector(".f-in");if(fin)[].forEach.call(fin.querySelectorAll(":scope>.f-sec"),function(s){parcours(s,l)});
+    arme(FULL,l)}).observe(FULL,{childList:true});
+  if(LB)new MutationObserver(function(){if(!LB.classList.contains("on")||!libre())return;
+    play(LB,[{opacity:0},{opacity:1}],{d:D.m});var fg=LB.querySelector("figure");if(fg)play(fg,[{opacity:0,transform:"scale(.96)"},{opacity:1,transform:"none"}],{d:D.l,e:E.spring})}).observe(LB,{attributes:true,attributeFilter:["class"]});
+
+  /* accordéons : hauteur + fondu, flèche à ressort (CSS) */
+  document.addEventListener("click",function(e){
+    var sm=e.target.closest&&e.target.closest("details.prompt>summary,details.m-det>summary");if(!sm||!libre())return;
+    var d=sm.parentElement,c=sm.nextElementSibling;if(!c||!c.animate)return;
+    e.preventDefault();if(d._a){d._a.onfinish=null;d._a.cancel()}c.style.overflow="hidden";
+    if(!d.open){d.open=true;var h=c.offsetHeight,du=h>240?D.l:D.m,a1;
+      a1=d._a=c.animate([{height:"0px",opacity:0,transform:"translateY(-8px)"},{height:h+"px",opacity:1,transform:"none"}],{duration:du,easing:E.out});
+      var f1=function(){if(d._a!==a1)return;a1.cancel();c.style.overflow="";d._a=null};a1.onfinish=f1;setTimeout(f1,du+300)}
+    else{var h2=c.offsetHeight,a2;
+      a2=d._a=c.animate([{height:h2+"px",opacity:1},{height:"0px",opacity:0}],{duration:D.m,easing:E.out});
+      var f2=function(){if(d._a!==a2)return;a2.cancel();d.open=false;c.style.overflow="";d._a=null};a2.onfinish=f2;setTimeout(f2,D.m+300)}
+  });
+
+  /* fin de page : une fois en bas, les gestes de défilement remplissent l'indicateur ; à 100 %, page suivante */
+  var SUITE=null,acc=0,dernierGeste=0,bascule=false,DEC=null,ty0=null;
+  function cible(){return innerHeight*2.5}
+  function nextA(p){var l=p?p.querySelectorAll(".next a"):[];return l.length?l[l.length-1]:null}
+  function bloque(){return bascule||(FULL&&FULL.classList.contains("on"))||(LB&&LB.classList.contains("on"))||document.body.classList.contains("lock")}
+  function enBas(){var se=document.scrollingElement||R;return Math.ceil(scrollY+innerHeight)>=se.scrollHeight-2}
+  if(!reduit){
+    SUITE=document.createElement("div");SUITE.id="mv-suite";SUITE.setAttribute("role","status");SUITE.setAttribute("aria-live","off");
+    SUITE.innerHTML='<span class="l">Page suivante</span><span class="r"><b></b><span class="p">0 %</span></span><span class="t"><i></i></span>';
+    document.body.appendChild(SUITE);
+    window.addEventListener("wheel",function(e){
+      if(e.ctrlKey||bloque())return;var d=e.deltaY*(e.deltaMode===1?40:e.deltaMode===2?innerHeight:1);
+      if(d>0&&enBas())pousse(d);else if(d<0)pousse(d*1.5)},{passive:true});
+    window.addEventListener("touchstart",function(e){ty0=e.touches[0].clientY},{passive:true});
+    window.addEventListener("touchmove",function(e){if(ty0===null||bloque())return;var y=e.touches[0].clientY,d=ty0-y;ty0=y;
+      if(d>0&&enBas())pousse(d*1.5);else if(d<0)pousse(d*1.5)},{passive:true});
+    window.addEventListener("touchend",function(){ty0=null},{passive:true});
+    window.addEventListener("keydown",function(e){
+      if(bloque()||e.altKey||e.ctrlKey||e.metaKey)return;var t=e.target;if(t&&(t.isContentEditable||/^(INPUT|TEXTAREA|SELECT|BUTTON|SUMMARY|IFRAME)$/.test(t.tagName)))return;
+      var k=e.key,d=0;
+      if(k==="ArrowDown")d=120;else if((k===" "&&!e.shiftKey)||k==="PageDown"||k==="End")d=innerHeight*.8;
+      else if(k==="ArrowUp"||k==="PageUp"||k==="Home"||(k===" "&&e.shiftKey))d=-innerHeight*.8;
+      if(d>0&&enBas())pousse(d);else if(d<0)pousse(d)});
+  }
+  function pousse(d){
+    if(d>0)dernierGeste=Date.now();
+    var a0=acc;acc=Math.max(0,Math.min(cible(),acc+d));if(acc===a0&&d<0)return;
+    affiche();
+    if(acc>=cible())go();else if(acc>0)decroit()}
+  function affiche(){
+    if(!SUITE)return;var p=pageOn(),a=nextA(p),v=acc/cible();
+    if(a){var nm=(a.firstChild&&a.firstChild.nodeValue||"").replace(/^[^:]*:\s*/,"").trim();
+      SUITE.querySelector(".l").textContent=/^Retour/.test(a.textContent)?"Retour au début":"Page suivante";
+      SUITE.querySelector("b").textContent=nm}
+    SUITE.querySelector(".p").textContent=Math.round(v*100)+" %";
+    SUITE.querySelector(".t i").style.transform="scaleX("+v+")";
+    SUITE.classList.toggle("on",v>0&&!!a);SUITE.classList.toggle("plein",v>=1)}
+  /* sans geste pendant 1,2 s, la jauge redescend doucement (boucle qui s'arrête à 0) */
+  function decroit(){
+    if(DEC)return;var t0=null;
+    DEC=requestAnimationFrame(function step(ts){
+      if(bascule||acc<=0){DEC=null;return}
+      if(Date.now()-dernierGeste<1200){t0=null;DEC=requestAnimationFrame(step);return}
+      if(t0===null)t0=ts;var dt=ts-t0;t0=ts;acc=Math.max(0,acc-cible()*dt/900);affiche();
+      DEC=requestAnimationFrame(step)})}
+  function jaugeMaj(){acc=0;affiche()}
+  function go(){
+    var p=pageOn(),a=nextA(p);if(!a||bloque())return;
+    bascule=true;var href=a.getAttribute("href");
+    function suite(){
+      R.style.scrollBehavior="auto";
+      if(location.hash===href)window.dispatchEvent(new HashChangeEvent("hashchange"));else location.hash=href;
+      window.scrollTo(0,0);
+      setTimeout(function(){R.style.scrollBehavior="";bascule=false;acc=0;affiche()},120)}
+    var ex=play(p,[{opacity:1,transform:"none"},{opacity:0,transform:"translateY(-24px)"}],{d:D.m,fill:"forwards"});
+    if(!ex){suite();return}
+    var fait=false,f=function(){if(fait)return;fait=true;suite();ex.cancel()};ex.onfinish=f;setTimeout(f,D.m+250)}
+
+  /* interface pour les autres scripts */
+  window.MotionSys={
+    ferme:function(el,cb){
+      if(el._ferme)return true;if(!libre())return false;
+      var a=el.animate([{opacity:1,transform:"none"},{opacity:0,transform:"translateY(16px)"}],{duration:D.f+40,easing:E.out,fill:"forwards"});
+      var st={a:a},fait=false,f=function(){if(fait||el._ferme!==st)return;fait=true;el._ferme=null;cb();a.cancel()};
+      st.t=setTimeout(f,D.f+300);el._ferme=st;a.onfinish=f;return true},
+    theme:function(b,go){
+      var tourne=function(){var s=b.querySelector("svg");if(s)play(s,[{opacity:0,transform:"rotate(-90deg) scale(.6)"},{opacity:1,transform:"none"}],{d:D.l,e:E.spring})};
+      if(libre()&&document.startViewTransition){try{var t=document.startViewTransition(function(){go();tourne()});return}catch(e){}}
+      go();tourne()}
+  };
+
+  surPage();
+})();</script>
+</body>
+</html>
