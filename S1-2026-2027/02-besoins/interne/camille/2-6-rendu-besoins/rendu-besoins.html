@@ -813,6 +813,30 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 .hc .vd{grid-column:2}
 .vd.ok::before{background:#3E9B6E}.vd.tend::before{background:none;box-shadow:inset 0 0 0 2px #3E9B6E}.vd.mix::before{background:#E0A800}.vd.ko::before{background:#D9714E}
 .pc.doute{border-bottom-style:dashed}
+.dm{list-style:none;margin:0;padding:0;max-width:none}.dm>li{max-width:none}
+.dm li{display:grid;grid-template-columns:72px minmax(0,1fr) 260px;gap:8px 32px;padding:28px 0;border-top:1px solid var(--hair)}
+.dm li:last-child{border-bottom:1px solid var(--hair)}
+.dm .n{font:600 40px/1 var(--title);letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px var(--muted)}
+.dm .bd small{display:block;font:500 12px/16px var(--title);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.dm .bd b{display:block;font:600 21px/28px var(--title);letter-spacing:-.01em}
+.dm .bd p{margin:8px 0 0;font-size:16px;line-height:26px;max-width:58ch}
+.dm aside{align-self:start;border-left:2px solid var(--soleil);padding:2px 0 2px 14px;font-size:15px;line-height:23px;color:var(--fg)}
+.dm aside em{display:block;font:500 12px/16px var(--title);letter-spacing:.06em;text-transform:uppercase;font-style:normal;color:var(--muted);margin-bottom:4px}
+.tl{display:flex;gap:4px;margin-top:8px}
+.tl>div{min-width:0;border-top:3px solid var(--hair);padding:10px 8px 0 0}
+.tl>div.hot{border-top-color:var(--soleil)}
+.tl b{display:block;font:600 15px/20px var(--title)}
+.tl span{display:block;font:400 13px/18px var(--title);color:var(--muted);margin-top:2px}
+.qs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:40px}
+.qs blockquote{margin:0;font:500 18px/27px var(--title);border:0;padding:0}
+.qs small{display:block;font:500 12px/16px var(--title);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.pf{width:100%;border-collapse:collapse;font-size:15px;line-height:23px}
+.pf th{text-align:left;font:500 13px/18px var(--title);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:0 24px 8px 0;border-bottom:1px solid var(--fg)}
+.pf td{padding:14px 24px 14px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+.pf td:first-child{font-weight:600;font-family:var(--title);width:24%}
+.pf td:last-child{color:var(--fg)}.pf td:nth-child(2){color:var(--muted)}
+@media (max-width:960px){.dm li{grid-template-columns:48px minmax(0,1fr)}.dm aside{grid-column:2}.dm .n{font-size:30px}.qs{grid-template-columns:1fr;gap:24px}.tl{flex-direction:column;gap:0}.tl>div{flex:none!important;border-top:0;border-left:3px solid var(--hair);padding:6px 0 6px 12px}.tl>div.hot{border-left-color:var(--soleil)}.pf td:first-child{width:auto}}
+@media print{.dm li{break-inside:avoid;padding:12px 0}}
 </style>
 </head>
 <body>
@@ -823,7 +847,7 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div class="srch"><label for="q">Chercher dans le dossier</label><input id="q" type="search" autocomplete="off" placeholder="photo, vendredi, déranger…" aria-controls="resl"><p id="resc" role="status" aria-live="polite" hidden></p><ul id="resl" hidden></ul></div>
 <ul class="menu" id="menu">
 <li data-p="intro"><a href="#intro"><b>01</b>Introduction</a><ul><li><a href="#intro-projet">Rappel du projet</a></li><li><a href="#intro-objectif">L'objectif</a></li><li><a href="#intro-plan">Sommaire</a></li></ul></li>
-<li data-p="methode"><a href="#methode"><b>02</b>Méthode</a><ul><li><a href="#m-hyp">Hypothèses</a></li><li><a href="#m-methodes">Méthodes</a></li><li><a href="#m-profils">Profils interrogés</a></li><li><a href="#m-limites">Limites</a></li></ul></li>
+<li data-p="methode"><a href="#methode"><b>02</b>Méthode</a><ul><li><a href="#m-hyp">Hypothèses</a></li><li><a href="#m-methodes">La démarche</a></li><li><a href="#m-guide">Le guide</a></li><li><a href="#m-profils">Profils interrogés</a></li><li><a href="#m-ecarts">Prévu et fait</a></li><li><a href="#m-limites">Limites</a></li></ul></li>
 <li data-p="insights"><a href="#insights"><b>03</b>Affinity map et insights</a><ul><li><a href="#a-verb">Verbatims</a></li><li><a href="#a-map">Affinity map</a></li><li><a href="#a-v1">Insights par groupe</a></li><li><a href="#a-ins">Insights</a></li></ul></li>
 <li data-p="parent"><a href="#parent"><b>04</b>Persona parent</a><ul><li><a href="#parent-fiche">Persona</a></li><li><a href="#parent-emp">Empathy map</a></li></ul></li>
 <li data-p="enfant"><a href="#enfant"><b>05</b>Persona enfant</a><ul><li><a href="#enfant-fiche">Persona</a></li><li><a href="#enfant-emp">Empathy map</a></li></ul></li>
@@ -853,7 +877,7 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <p class="flow">Voici comment le dossier y répond.</p>
 <div class="sec" id="intro-plan" data-s="Sommaire"><div class="sh"><h3>Le dossier suit les outils du cours</h3><p>De la méthode à la problématique, puis les annexes qui en sont les preuves.</p></div>
 <ol class="dec">
-<li><span class="dn">02</span><b><a href="#methode">Méthode</a></b><span>Nos hypothèses, qui nous avons interrogé, et nos limites.</span></li>
+<li><span class="dn">02</span><b><a href="#methode">Méthode</a></b><span>Nos hypothèses, la démarche d'entretien en huit étapes, prévu et fait.</span></li>
 <li><span class="dn">03</span><b><a href="#insights">Affinity map et insights</a></b><span>Les verbatims rangés en groupes, puis ce qu'ils nous apprennent.</span></li>
 <li><span class="dn">04</span><b><a href="#parent">Persona parent</a></b><span>Jacqueline et son empathy map.</span></li>
 <li><span class="dn">05</span><b><a href="#enfant">Persona enfant</a></b><span>Sandrine et son empathy map.</span></li>
@@ -868,8 +892,8 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 
 <section class="page" id="p-methode"><span class="k">02 / 09</span>
 <h2 class="t">Méthode</h2>
-<p class="lead">Comment nous avons cherché : les hypothèses de départ, les méthodes, les personnes interrogées et les limites de l'exercice.</p>
-<div class="sec" id="m-hyp" data-s="Hypothèses critiques"><div class="sh"><h3>Six hypothèses qui font tomber le produit</h3><p>20 hypothèses écrites à partir de la veille (10 sur le parent, 10 sur l'enfant), classées de la plus risquée à la moins risquée. Si l'une de ces six est fausse, le Cadre perd son sens.</p></div>
+<p class="lead">Une seule méthode : l'entretien individuel semi-directif. Voici ce que nous voulions vérifier, comment nous avons mené chaque entretien, étape par étape, et ce qui s'est passé en vrai.</p>
+<div class="sec" id="m-hyp" data-s="Hypothèses critiques"><div class="sh"><h3>Six hypothèses qui font tomber le produit</h3><p>20 hypothèses écrites avant le terrain (10 sur le parent, 10 sur l'enfant), classées de la plus risquée à la moins risquée. Si l'une de ces six est fausse, le Cadre perd son sens.</p></div>
 <div class="hyp">
 <div class="hg gp"><h4>Côté parent</h4>
 <div class="hc"><span class="c">P1</span><b>Partager seulement si c'est son choix</b><p>Le parent accepte de donner une information sur lui quand il décide, et la refuse quand l'enfant l'impose.</p><span class="vd tend v">Tendance +</span></div>
@@ -883,7 +907,7 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 </div>
 </div>
 <h4 class="sub">Ce que chaque entretien dit des six hypothèses</h4>
-<p class="muted">Une ligne par hypothèse, une colonne par personne interrogée (code FigJam, code de la fiche dessous). La dernière colonne donne notre lecture. Aucun seuil « 3 sur 5 » n'est atteint : ce sont des tendances.</p>
+<p class="muted">Une ligne par hypothèse, une colonne par personne interrogée (notre code, puis celui de la fiche). La dernière colonne donne notre lecture. Aucun seuil « 3 sur 5 » n'est atteint : ce sont des tendances.</p>
 <p class="lgd"><span><span class="sig p">+ appuie</span>l'entretien va dans son sens</span><span><span class="sig m">− contredit</span>il la dément</span><span><span class="sig f">? flou</span>on ne peut pas trancher</span><span><span class="sig n">· non testée</span>la question n'a pas été posée</span></p>
 <div class="tw"><table class="mx"><caption class="muted" style="caption-side:bottom;text-align:left;padding-top:8px;font-size:14px">S2 et S3 ont été interrogés ensemble : une seule colonne. E3 n'a pas de fiche dans le dépôt : pas de colonne.</caption><thead>
 <tr class="grp"><th></th><th class="gp" colspan="3">Grands-parents</th><th class="en" colspan="2">Enfants</th><th class="pe" colspan="2">Petits-enfants</th><th></th></tr>
@@ -903,14 +927,24 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <figure class="q"><blockquote>« Je lui envoie des cartes postales mais c’est pas un réflexe. »</blockquote><figcaption><b>PE1.9</b>petit-enfant · pour hyp. E3 : le geste ne tient pas</figcaption></figure>
 </div>
 </div>
-<div class="sec" id="m-methodes" data-s="Méthodes"><div class="sh"><h3>Trois méthodes, de la plus large à la plus proche</h3><p>La veille a donné les hypothèses, les entretiens les ont confrontées au réel, l'atelier FigJam a trié ce que nous avons entendu.</p></div>
-<div class="three">
-<div><b>Veille et avis clients</b><p>Fiche de veille, fiche marché, et 20 avis clients sur des bracelets détecteurs de chute, lus pour ce qu'ils disent des usages.</p></div>
-<div><b>Entretiens semi-directifs</b><p>Trois guides (parent 45 min, enfant 45 min, petit-enfant 30 min), questions au passé, sans montrer le produit.</p></div>
-<div><b>Atelier FigJam</b><p>Verbatims en post-its, affinity map, insights, puis trois personas avec empathy map et user journey.</p></div>
+<div class="sec" id="m-methodes" data-s="La démarche"><div class="sh"><h3>Huit étapes, de la question à la persona</h3><p>Nous n'avons rien montré, rien vendu : nous avons fait raconter. Chaque étape a sa règle, pour que ce que l'on entend vienne des familles et pas de nous.</p></div>
+<ol class="dm"><li><span class="n">01</span><div class="bd"><small>Avant</small><b>Fixer ce que l'on cherche</b><p>Une phrase d'objectif et six hypothèses critiques, chacune reliée aux questions du guide qui peuvent la confirmer ou la faire tomber.</p></div><aside><em>Repère</em>Une hypothèse sans question dans le guide n'est pas testée.</aside></li><li><span class="n">02</span><div class="bd"><small>Avant</small><b>Choisir qui écouter</b><p>Trois générations d'une même histoire : le parent âgé autonome, l'enfant qui s'en occupe, le petit-enfant. On varie l'âge, la distance, l'aisance avec le téléphone. Premier contact par un message neutre : ni produit, ni âge, « ce n'est pas une vente ».</p></div><aside><em>Exclus</em>Nos propres parents directs et les personnes en forte perte d'autonomie.</aside></li><li><span class="n">03</span><div class="bd"><small>Avant</small><b>Écrire trois guides</b><p>Un guide par génération : parent 45 min, enfant 45 min, petit-enfant 30 min. Onze questions environ, chacune avec deux relances prêtes. Une même situation est posée au parent et à l'enfant, pour lire les deux récits côte à côte.</p></div><aside><em>Exemple</em>« Racontez-moi la dernière fois que vous avez eu des nouvelles de vos enfants. »</aside></li><li><span class="n">04</span><div class="bd"><small>Avant</small><b>Se tenir à une posture</b><p>On demande des faits passés et datés, jamais des opinions. Une idée par question. Pas de « pourquoi » direct, pas de « d'habitude ». Aucun conseil, aucun réconfort. Les mots qui orientent (écran, chute, seul, aidant) sont bannis.</p></div><aside><em>Règle d'or</em>Ne jamais montrer ni décrire de solution, même à la fin.</aside></li><li><span class="n">05</span><div class="bd"><small>Avant</small><b>Demander l'accord, protéger</b><p>Deux accords distincts : participer, puis être enregistré. Pas d'enregistrement par défaut. Chacun peut passer une question ou arrêter. Dans nos notes, un code à la place du prénom, une tranche d'âge, aucune ville, aucune donnée de santé.</p></div><aside><em>Trace</em>Les notes restent hors du dépôt public.</aside></li><li><span class="n">06</span><div class="bd"><small>Pendant</small><b>Mener l'entretien</b><p>Un membre mène, un autre note ; seul, on note juste après. Le parent parle sans son enfant dans la pièce, et rien n'est rapporté de l'un à l'autre. Pour creuser : « C'est-à-dire ? », « Et ensuite ? », « Vous avez un exemple ? ».</p></div><aside><em>Relance</em>Cinq secondes de silence. La personne reprend presque toujours.</aside></li><li><span class="n">07</span><div class="bd"><small>Juste après</small><b>Noter à chaud</b><p>Une fiche remplie dans les 15 minutes, en quatre blocs : ce qui est dit, ce qui est observé, ce que l'on interprète, ce qu'il faut vérifier. Pour chaque hypothèse critique, un signe : appuie, contredit ou flou. Trois phrases recopiées mot pour mot.</p></div><aside><em>Outil</em>Les entretiens enregistrés sont transcrits sur l'ordinateur, sans envoi en ligne.</aside></li><li><span class="n">08</span><div class="bd"><small>Ensuite</small><b>Trier ce que l'on a entendu</b><p>Chaque phrase reçoit un code (E1.1, PE1.9…) puis rejoint celles qui disent la même chose. Six groupes émergent. Chaque groupe donne un insight, quatre sont retenus. Ils nourrissent trois personas, leurs empathy maps et leurs parcours.</p></div><aside><em>Résultat</em>6 groupes, 4 insights, 3 personas, 1 problématique.</aside></li></ol>
+</div>
+<div class="sec" id="m-guide" data-s="Le guide"><div class="sh"><h3>Un entretien de 45 minutes, en cinq temps</h3><p>La trame du guide parent. Le cœur, ce sont les histoires : près de vingt minutes à faire raconter des moments précis.</p></div>
+<div class="tl" role="list">
+<div role="listitem" style="flex:5"><b>Mettre à l'aise</b><span>0 à 5 min</span></div>
+<div role="listitem" style="flex:9"><b>Le quotidien</b><span>5 à 14 min</span></div>
+<div role="listitem" class="hot" style="flex:18"><b>Les histoires</b><span>14 à 32 min</span></div>
+<div role="listitem" style="flex:9"><b>Approfondir</b><span>32 à 41 min</span></div>
+<div role="listitem" style="flex:4"><b>Remercier</b><span>41 à 45</span></div>
+</div>
+<div class="qs">
+<blockquote><small>Ouvrir</small>« Racontez-moi votre journée d'hier, du réveil au coucher. »</blockquote>
+<blockquote><small>Faire raconter</small>« Racontez-moi la dernière fois que vous avez eu des nouvelles de vos enfants. »</blockquote>
+<blockquote><small>Fermer</small>« Y a-t-il quelque chose d'important dont on n'a pas parlé ? »</blockquote>
 </div>
 </div>
-<div class="sec" id="m-profils" data-s="Profils interrogés"><div class="sh"><h3>Neuf personnes, surtout de notre entourage</h3><p>Rangées par génération. Le grand code est celui du FigJam, utilisé partout dans ce dossier. La fiche est celle du dépôt. Une carte en pointillés reste à vérifier.</p></div>
+<div class="sec" id="m-profils" data-s="Profils interrogés"><div class="sh"><h3>Neuf personnes, surtout de notre entourage</h3><p>Rangées par génération. Le grand code est celui utilisé partout dans ce dossier. La fiche est celle du dépôt. Une carte en pointillés reste à vérifier.</p></div>
 <div class="ppl">
 <div class="pg gp"><h4><span>Grands-parents</span><span>S</span></h4>
 <div class="pc"><div class="top"><b>S1</b><span>Grand-mère</span></div><p>Vit seule, autonome, au téléphone toute la journée.</p><dl><dt>Fiche</dt><dd>GP1</dd><dt>Mené par</dt><dd>Lucas</dd></dl></div>
@@ -927,7 +961,16 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div class="pc"><div class="top"><b>PE2</b><span>Petit-enfant, 18-25 ans</span></div><p>Deux paires de grands-parents, dont une loin.</p><dl><dt>Fiche</dt><dd>PE2</dd><dt>Mené par</dt><dd>Lucas</dd></dl></div>
 </div>
 </div>
-<p class="warn">Écart à trancher : le FigJam annonce 4 enfants, mais seuls E1, E2 et E3 y ont des verbatims. Les codes du FigJam (S, E, PE) ne sont pas ceux des fiches du dépôt (GP, P, E, PE) : la correspondance ci-dessus est déduite des phrases et des auteurs des post-its.</p>
+<p class="warn">Écart à trancher : notre tableau de tri annonce 4 enfants, mais seuls E1, E2 et E3 y ont des verbatims. Nos codes (S, E, PE) ne sont pas ceux des fiches du dépôt (GP, P, E, PE) : la correspondance ci-dessus est déduite des phrases et des auteurs des notes.</p>
+</div>
+<div class="sec" id="m-ecarts" data-s="Prévu et fait"><div class="sh"><h3>Ce que nous avions prévu, ce que nous avons fait</h3><p>Le terrain ne suit jamais le plan. Nous préférons montrer l'écart plutôt que le cacher.</p></div>
+<table class="pf"><thead><tr><th>Point</th><th>Prévu</th><th>Fait</th></tr></thead><tbody>
+<tr><td>Personnes interrogées</td><td>12 : 4 parents, 5 enfants, 3 petits-enfants</td><td>9 : 4 grands-parents (dont un couple), 3 enfants, 2 petits-enfants</td></tr>
+<tr><td>Durée</td><td>45 min (parent, enfant), 30 min (petit-enfant)</td><td>De 6 à 28 min pour les durées connues</td></tr>
+<tr><td>Paires parent et enfant</td><td>Trois paires interrogées séparément</td><td>Aucune</td></tr>
+<tr><td>Prise de notes</td><td>Un qui mène, un qui note</td><td>Pas toujours à deux : notes prises juste après</td></tr>
+<tr><td>Enregistrement</td><td>Seulement avec accord</td><td>Une partie enregistrée et transcrite, le reste en notes</td></tr>
+</tbody></table>
 </div>
 <div class="sec" id="m-limites" data-s="Limites"><div class="sh"><h3>Nos limites, dites franchement</h3><p>La matière est utile pour comprendre, pas pour prouver.</p></div>
 <div class="three">
