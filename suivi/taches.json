@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-10-28T23:47",
+  "mise_a_jour": "2026-11-13T15:23",
   "phases": [
     {
       "id": "P0",
@@ -798,6 +798,13 @@
           "date": "2026-10-22",
           "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/1-1-soly-prototype-interactif.html",
           "note": "Cadre au mur cliquable (toucher = lueur + notification) et téléphone cliquable : installation en 5 étapes, accueil, envoi avec mot doux qui s'affiche au mur, Au mur, Smala (QR), réglages, moment du jour en mosaïque, alerte 2 jours. DA Soleil, données fictives."
+        },
+        {
+          "titre": "TP API : fiche des requêtes (TP2) dans le Google Sheet du cours",
+          "statut": "fait",
+          "qui": "Lucas",
+          "date": "2026-11-13",
+          "note": "Onglet « S2. Fiche requêtes » : 15 appels réels. IGN Géoplateforme (2 GET 200, 1 GET 400), Sunrise-Sunset (2 GET 200), Supabase PFR1 Francfort (health, settings, connexion compte de test, POST 201, GET, PATCH, DELETE 200, refus RLS 401, corps vide 400, table absente 404). Table test_api créée par Camille, ligne de test effacée. Aucune clé ni jeton dans le tableau."
         }
       ]
     },
