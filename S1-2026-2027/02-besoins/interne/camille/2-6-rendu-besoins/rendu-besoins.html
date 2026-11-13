@@ -630,6 +630,73 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 @media (max-width:980px){.emp.emp2{aspect-ratio:auto;background:none;border:0}.emp2 .ez,.emp2 .centre.tete{position:static!important;transform:none;width:auto;margin:0 0 12px;padding:14px!important;border-radius:12px!important}.emp2 .ez{background:var(--soft,#F6EEDD)!important}.emp2 .centre.tete{aspect-ratio:auto;border-radius:16px!important}.emp2 .tete .oreille,.emp2 .tete .oeil,.emp2 .tete .nez{display:none}.emp2 .tete .cols2{grid-template-columns:1fr}.emp2 .tete .cols2>div+div{border:0;padding:0}}
 @media print{.emp.emp2{break-inside:avoid}}
 </style>
+<style id="v2">
+/* changements de sujet : bandeau numéroté au-dessus de chaque partie */
+.page{counter-reset:sec}
+.page>.sec{counter-increment:sec;margin-top:120px}
+.page>.lead+.sec,.page>h2.t+.sec{margin-top:64px}
+.page>.sec::before{content:attr(data-s);display:inline-block;font:600 13px/18px var(--title);letter-spacing:.08em;text-transform:uppercase;color:#1F1A17;background:var(--soleil);padding:6px 14px;border-radius:999px;margin-bottom:16px}
+.page>.sec>.sh{border-top-width:4px}
+.sec h4.sub{display:flex;align-items:center;gap:12px}
+.sec h4.sub::before{content:"";flex:none;width:14px;height:14px;border-radius:4px;background:var(--soleil)}
+/* intro */
+.ctx{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.ctx>div{background:var(--soft);border-radius:20px;padding:22px 24px}
+.ctx em{display:block;font:600 13px/18px var(--title);letter-spacing:.08em;text-transform:uppercase;font-style:normal;color:var(--muted);margin-bottom:8px}
+.ctx p{margin:0;font-size:17px;line-height:27px}
+.qbig{margin:0;padding:28px 32px;border-radius:20px;background:var(--fg);color:var(--bg);font:500 clamp(20px,2vw,26px)/1.4 var(--title);letter-spacing:-.01em}
+.qbig small{display:block;font:500 13px/18px var(--title);letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-bottom:10px}
+.flow{display:flex;align-items:center;gap:12px;color:var(--muted);font:500 15px/22px var(--title)}
+.flow::before{content:"";width:2px;height:28px;background:var(--soleil);margin-left:22px}
+/* hypothèses */
+.hyp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.hg>h4{margin:0 0 12px;font:600 15px/22px var(--title);letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;border-radius:12px}
+.hg.gp>h4{background:var(--c-gp);color:#1F1A17}.hg.en>h4{background:var(--c-en);color:#1F1A17}
+.hc{position:relative;display:grid;grid-template-columns:64px minmax(0,1fr);gap:4px 16px;padding:20px 20px 18px;border:1px solid var(--hair);border-radius:18px;background:var(--bg);margin-top:12px}
+.hc .c{grid-row:1 / span 3;font:600 30px/1 var(--title);letter-spacing:-.02em;display:grid;place-items:center;width:64px;height:64px;border-radius:16px}
+.hg.gp .hc .c{background:var(--c-gp);color:#1F1A17}.hg.en .hc .c{background:var(--c-en);color:#1F1A17}
+.hc b{font:600 18px/24px var(--title)}
+.hc p{margin:0;color:var(--muted);font-size:15px;line-height:23px;max-width:none}
+.hc .v{justify-self:start;margin-top:8px}
+.hc.risk{border:2px solid var(--fg)}
+.hc .rk{position:absolute;top:-11px;right:16px;font:600 12px/18px var(--title);letter-spacing:.04em;background:var(--fg);color:var(--bg);padding:2px 10px;border-radius:999px}
+.vd{display:inline-block;font:600 13px/18px var(--title);padding:4px 12px;border-radius:999px;color:#1F1A17;white-space:nowrap}
+.vd.ok{background:var(--menthe)}.vd.tend{background:color-mix(in srgb,var(--menthe) 55%,#fff)}.vd.mix{background:var(--soleil)}.vd.ko{background:var(--peche)}.vd.none{background:transparent;color:var(--muted);border:1px dashed var(--muted)}
+/* matrice des signaux */
+.lgd{display:flex;flex-wrap:wrap;gap:8px 20px;font:500 14px/20px var(--title);color:var(--muted)}
+.lgd span{display:inline-flex;align-items:center;gap:8px}
+.mx{width:100%;border-collapse:separate;border-spacing:4px;min-width:820px}
+.mx th,.mx td{padding:0;border:0;text-align:center;vertical-align:middle}
+.mx thead th{font:600 13px/18px var(--title);padding:6px 4px}
+.mx thead tr.grp th{border-radius:10px;letter-spacing:.06em;text-transform:uppercase;font-size:12px;color:#1F1A17}
+.mx thead tr.grp th.gp{background:var(--c-gp)}.mx thead tr.grp th.en{background:var(--c-en)}.mx thead tr.grp th.pe{background:var(--c-pe)}
+.mx thead small{display:block;font:400 12px/16px var(--body);color:var(--muted)}
+.mx tbody th{text-align:left;padding:8px 10px 8px 0;font:600 15px/20px var(--title);white-space:nowrap}
+.mx tbody th small{display:block;font:400 13px/18px var(--body);color:var(--muted);white-space:normal;max-width:20ch}
+.mx td.bl{text-align:left;padding-left:10px}
+.sig{display:flex;align-items:center;justify-content:center;gap:6px;height:40px;border-radius:10px;font:600 13px/1 var(--title);color:#1F1A17}
+.sig.p{background:var(--menthe)}.sig.m{background:var(--peche)}.sig.f{background:transparent;border:1.5px dashed var(--muted);color:var(--muted)}.sig.n{background:color-mix(in srgb,var(--hair) 45%,var(--bg));color:var(--muted);font-weight:400}
+.lgd .sig{display:inline-flex;height:26px;padding:0 10px;min-width:auto}
+/* neuf personnes */
+.ppl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}
+.pg>h4{margin:0;font:600 15px/22px var(--title);letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;border-radius:12px;color:#1F1A17;display:flex;justify-content:space-between}
+.pg.gp>h4{background:var(--c-gp)}.pg.en>h4{background:var(--c-en)}.pg.pe>h4{background:var(--c-pe)}
+.pc{margin-top:12px;border:1px solid var(--hair);border-radius:16px;padding:16px 18px;background:var(--bg)}
+.pc .top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pc .top b{font:600 24px/28px var(--title);letter-spacing:-.01em}
+.pc .top span{font:500 14px/20px var(--title);color:var(--muted)}
+.pc p{margin:8px 0 0;font-size:15px;line-height:23px}
+.pc dl{margin:12px 0 0;display:grid;grid-template-columns:auto 1fr;gap:2px 12px;font-size:14px;line-height:20px}
+.pc dt{color:var(--muted);font-family:var(--title)}.pc dd{margin:0}
+.pc.doute{border-style:dashed}
+.mx tbody th{position:sticky;left:0;background:var(--bg);z-index:1}
+.flow+.sec{margin-top:40px!important}
+@media (max-width:480px){.vd{white-space:normal}}
+.hg>h4,.hg .hc .c,.pg>h4,.mx thead tr.grp th{color:var(--fg)!important}
+@media (max-width:1100px){.ppl{grid-template-columns:1fr 1fr}}
+@media (max-width:960px){.ctx,.hyp,.ppl{grid-template-columns:1fr}.page>.sec{margin-top:80px}}
+@media print{.page>.sec{margin-top:28px}.page>.sec::before{padding:2px 8px;font-size:9px;margin-bottom:6px}.hc,.pc{break-inside:avoid}.mx{min-width:0}}
+</style>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -637,7 +704,7 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div class="hero"><p class="k">Bloc 02 · Besoins</p><h1>Besoins utilisateurs</h1><p>Le Cadre, par Soly · PFR Générations Connectées</p></div>
 <div class="srch"><label for="q">Chercher dans le dossier</label><input id="q" type="search" autocomplete="off" placeholder="photo, vendredi, déranger…" aria-controls="resl"><p id="resc" role="status" aria-live="polite" hidden></p><ul id="resl" hidden></ul></div>
 <ul class="menu" id="menu">
-<li data-p="intro"><a href="#intro"><b>01</b>Introduction</a><ul><li><a href="#intro-projet">Le projet</a></li><li><a href="#intro-objectif">L'objectif</a></li><li><a href="#intro-plan">Le dossier</a></li></ul></li>
+<li data-p="intro"><a href="#intro"><b>01</b>Introduction</a><ul><li><a href="#intro-projet">Rappel du projet</a></li><li><a href="#intro-objectif">L'objectif</a></li><li><a href="#intro-plan">Sommaire</a></li></ul></li>
 <li data-p="methode"><a href="#methode"><b>02</b>Méthode</a><ul><li><a href="#m-hyp">Hypothèses</a></li><li><a href="#m-methodes">Méthodes</a></li><li><a href="#m-profils">Profils interrogés</a></li><li><a href="#m-limites">Limites</a></li></ul></li>
 <li data-p="insights"><a href="#insights"><b>03</b>Affinity map et insights</a><ul><li><a href="#a-map">Affinity map</a></li><li><a href="#a-v1">Premières versions</a></li><li><a href="#a-ins">Insights</a></li></ul></li>
 <li data-p="parent"><a href="#parent"><b>04</b>Persona parent</a><ul><li><a href="#parent-fiche">Persona</a></li><li><a href="#parent-emp">Empathy map</a></li></ul></li>
@@ -653,29 +720,26 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <section class="page" id="p-intro"><span class="k">01 / 09</span>
 <h2 class="t">Introduction</h2>
 <p class="lead">Ce dossier montre ce que des familles nous ont dit sur le lien avec un parent âgé, comment nous l'avons trié, et la question que nous en tirons.</p>
-<div class="facts">
-<div><em>Le terrain</em><b>9<small>personnes</small></b><span>4 grands-parents, 3 enfants, 2 petits-enfants, codés dans le FigJam.</span></div>
-<div><em>La matière</em><b>18<small>verbatims</small></b><span>Rangés en 6 groupes sur l'affinity map de l'équipe.</span></div>
-<div><em>Le résultat</em><b>4<small>insights</small></b><span>Un par persona, et une tension commune qui donne la problématique.</span></div>
+<div class="sec" id="intro-projet" data-s="Rappel du projet"><div class="sh"><h3>Rassurer sans surveiller</h3><p>Le sujet du semestre : concevoir un objet connecté pour des parents âgés qui rassure leurs enfants sans placer les parents sous surveillance.</p></div>
+<div class="ctx">
+<div><em>Pour qui</em><p>Un enfant aidant de 30 à 50 ans, qui achète. Son parent âgé autonome, qui vit chez lui et utilise. Et les petits-enfants, qui font aussi vivre le lien.</p></div>
+<div><em>La tension</em><p>L'enfant veut savoir. Le parent veut rester libre. Les deux attentes peuvent s'opposer.</p></div>
 </div>
-<div class="sec" id="intro-projet" data-s="Rappel du projet"><div class="sh"><h3>Rappel du projet : rassurer sans surveiller</h3><p>Le sujet du semestre : concevoir un objet connecté pour des parents âgés qui rassure leurs enfants sans placer les parents sous surveillance.</p></div>
-<div class="tw"><table class="kv"><tbody>
-<tr><th>Pour qui</th><td>Un enfant aidant de 30 à 50 ans, qui achète, et son parent âgé autonome, qui vit chez lui et utilise.</td></tr>
-<tr><th>La tension</th><td>L'enfant veut savoir. Le parent veut rester libre. Les deux ont des attentes qui peuvent s'opposer.</td></tr>
-<tr><th>La question du sujet</th><td>« Comment rassurer les enfants sans transformer le domicile des parents en poste de surveillance ? »</td></tr>
-</tbody></table></div>
+<p class="qbig"><small>La question du sujet</small>« Comment rassurer les enfants sans transformer le domicile des parents en poste de surveillance ? »</p>
 <p class="note">Pendant les entretiens, nous n'avons jamais montré ni cité de solution : nous voulions comprendre les familles, pas tester un produit.</p>
 </div>
-<div class="sec" id="intro-objectif" data-s="Objectif de la recherche"><div class="sh"><h3>Notre objectif : comprendre avant de construire</h3><p>Objectif fixé par l'équipe à l'atelier 1, le 22 octobre 2026.</p></div>
-<p class="obj">Comprendre comment un parent âgé autonome et sa famille entretiennent le lien aujourd'hui, ce qui le fait vivre ou s'éteindre, et à quelles conditions un objet serait accepté sans être vécu comme une surveillance.</p>
+<p class="flow">D'où notre objectif de recherche.</p>
+<div class="sec" id="intro-objectif" data-s="Objectif"><div class="sh"><h3>Comprendre avant de construire</h3><p>Objectif fixé par l'équipe à l'atelier 1, le 22 octobre 2026.</p></div>
+<p class="obj">Comprendre comment un parent âgé autonome et sa famille entretiennent le lien aujourd'hui, ce qui le fait vivre ou s'éteindre, ce qui déclenche l'achat d'un objet pour le parent, et à quelles conditions cet objet serait accepté sans être vécu comme une surveillance.</p>
 </div>
-<div class="sec" id="intro-plan" data-s="Le plan du dossier"><div class="sh"><h3>Le dossier suit les outils du cours</h3><p>De la méthode à la problématique, puis les annexes qui en sont les preuves.</p></div>
+<p class="flow">Voici comment le dossier y répond.</p>
+<div class="sec" id="intro-plan" data-s="Sommaire"><div class="sh"><h3>Le dossier suit les outils du cours</h3><p>De la méthode à la problématique, puis les annexes qui en sont les preuves.</p></div>
 <ol class="dec">
 <li><span class="dn">02</span><b><a href="#methode">Méthode</a></b><span>Nos hypothèses, qui nous avons interrogé, et nos limites.</span></li>
-<li><span class="dn">03</span><b><a href="#insights">Affinity map et insights</a></b><span>Les 18 verbatims rangés en 6 groupes, puis les 4 insights.</span></li>
-<li><span class="dn">04</span><b><a href="#parent">Persona parent</a></b><span>Jacqueline, 75 ans, et son empathy map.</span></li>
-<li><span class="dn">05</span><b><a href="#enfant">Persona enfant</a></b><span>Sandrine, 50 ans, et son empathy map.</span></li>
-<li><span class="dn">06</span><b><a href="#petitenfant">Persona petit-enfant</a></b><span>Hugo, 18 ans, son empathy map, et ce que les trois attendent les uns des autres.</span></li>
+<li><span class="dn">03</span><b><a href="#insights">Affinity map et insights</a></b><span>Les verbatims rangés en groupes, puis ce qu'ils nous apprennent.</span></li>
+<li><span class="dn">04</span><b><a href="#parent">Persona parent</a></b><span>Jacqueline et son empathy map.</span></li>
+<li><span class="dn">05</span><b><a href="#enfant">Persona enfant</a></b><span>Sandrine et son empathy map.</span></li>
+<li><span class="dn">06</span><b><a href="#petitenfant">Persona petit-enfant</a></b><span>Hugo, son empathy map, et ce que les trois attendent les uns des autres.</span></li>
 <li><span class="dn">07</span><b><a href="#parcours">User journey</a></b><span>Les trois parcours, étape par étape, et les moments de vérité.</span></li>
 <li><span class="dn">08</span><b><a href="#probleme">Problématique</a></b><span>« Comment pourrions-nous… », et pourquoi cette question.</span></li>
 <li><span class="dn">09</span><b><a href="#annexes">Annexes</a></b><span>Documents, extraits du FigJam, IA déclarée, qui a fait quoi.</span></li>
@@ -688,25 +752,32 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <h2 class="t">Méthode</h2>
 <p class="lead">Comment nous avons cherché : les hypothèses de départ, les méthodes, les personnes interrogées et les limites de l'exercice.</p>
 <div class="sec" id="m-hyp" data-s="Hypothèses critiques"><div class="sh"><h3>Six hypothèses qui font tomber le produit</h3><p>20 hypothèses écrites à partir de la veille (10 sur le parent, 10 sur l'enfant), classées de la plus risquée à la moins risquée. Si l'une de ces six est fausse, le Cadre perd son sens.</p></div>
-<ol class="rows">
-<li><span class="n">P1</span><span class="a"><b>Partager seulement si c'est son choix</b><span>Le parent accepte de donner une information sur lui quand il décide, et la refuse quand l'enfant l'impose.</span></span></li>
-<li><span class="n">P2</span><span class="a"><b>Recevoir, puis répondre par la voix</b><span>Le parent apprécie les nouvelles, mais remercie par téléphone, pas par le service.</span></span></li>
-<li><span class="n">P4</span><span class="a"><b>Un écran ne s'adopte pas seul</b><span>Le parent n'adopte un écran que si quelqu'un l'accompagne au départ.</span></span></li>
-<li><span class="n">E1</span><span class="a"><b>L'oubli au moment de partager</b><span>Les enfants partagent leurs photos partout, sauf avec leur parent.</span></span></li>
-<li><span class="n">E2</span><span class="a"><b>Le lien s'achète avant l'incident</b><span>On offre un objet de lien sans attendre une chute, souvent en cadeau.</span></span></li>
-<li><span class="n">E3</span><span class="a"><b>La corvée</b><span>Les enfants arrêtent d'alimenter un service dès qu'il demande un geste régulier. La plus risquée.</span></span></li>
-</ol>
-<h4 class="sub">Le signe de chaque entretien</h4>
-<p class="muted">Tel que noté dans les fiches du dépôt (codes des fiches, avec le code FigJam dessous). Aucun seuil « 3 sur 5 » n'est atteint : ce sont des tendances.</p>
-<div class="tw ctr"><table><thead><tr><th>Hyp.</th><th>E1<br><small>E1</small></th><th>E2<br><small>E2</small></th><th>P1·P2<br><small>S2·S3</small></th><th>PE2<br><small>PE2</small></th><th>PE3<br><small>PE1</small></th><th>GP1<br><small>S1</small></th><th>GP2<br><small>S4</small></th><th>Lecture</th></tr></thead><tbody>
-<tr><td>E1</td><td><span class="sg p">+</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td>Appuyée</td></tr>
-<tr><td>P2</td><td><span class="sg p">+</span></td><td><span class="sg m">−</span></td><td><span class="sg m">−</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td><span class="sg m">−</span></td><td>Fragilisée : la réponse écrite existe</td></tr>
-<tr><td>E3</td><td><span class="sg m">−</span></td><td><span class="sg m">−</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td><b>Partagée</b></td></tr>
-<tr><td>P1</td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg p">+</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td>Tendance +</td></tr>
-<tr><td>P4</td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td>Sans donnée</td></tr>
-<tr><td>E2</td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg f">?</span></td><td><span class="sg n">·</span></td><td><span class="sg f">?</span></td><td><span class="sg n">·</span></td><td><span class="sg n">·</span></td><td>Sans donnée</td></tr>
+<div class="hyp">
+<div class="hg gp"><h4>Côté parent</h4>
+<div class="hc"><span class="c">P1</span><b>Partager seulement si c'est son choix</b><p>Le parent accepte de donner une information sur lui quand il décide, et la refuse quand l'enfant l'impose.</p><span class="vd tend v">Tendance +</span></div>
+<div class="hc"><span class="c">P2</span><b>Recevoir, puis répondre par la voix</b><p>Le parent apprécie les nouvelles, mais remercie par téléphone, pas par le service.</p><span class="vd ko v">Fragilisée : la réponse écrite existe</span></div>
+<div class="hc"><span class="c">P4</span><b>Un écran ne s'adopte pas seul</b><p>Le parent n'adopte un écran que si quelqu'un l'accompagne au départ.</p><span class="vd none v">Sans donnée</span></div>
+</div>
+<div class="hg en"><h4>Côté enfant</h4>
+<div class="hc"><span class="c">E1</span><b>L'oubli au moment de partager</b><p>Les enfants partagent leurs photos partout, sauf avec leur parent.</p><span class="vd ok v">Appuyée</span></div>
+<div class="hc"><span class="c">E2</span><b>Le lien s'achète avant l'incident</b><p>On offre un objet de lien sans attendre une chute, souvent en cadeau.</p><span class="vd none v">Sans donnée</span></div>
+<div class="hc risk"><span class="rk">La plus risquée</span><span class="c">E3</span><b>La corvée</b><p>Les enfants arrêtent d'alimenter un service dès qu'il demande un geste régulier.</p><span class="vd mix v">Partagée</span></div>
+</div>
+</div>
+<h4 class="sub">Ce que chaque entretien dit des six hypothèses</h4>
+<p class="muted">Une ligne par hypothèse, une colonne par personne interrogée (code FigJam, code de la fiche dessous). La dernière colonne donne notre lecture. Aucun seuil « 3 sur 5 » n'est atteint : ce sont des tendances.</p>
+<p class="lgd"><span><span class="sig p">+ appuie</span>l'entretien va dans son sens</span><span><span class="sig m">− contredit</span>il la dément</span><span><span class="sig f">? flou</span>on ne peut pas trancher</span><span><span class="sig n">· non testée</span>la question n'a pas été posée</span></p>
+<div class="tw"><table class="mx"><caption class="muted" style="caption-side:bottom;text-align:left;padding-top:8px;font-size:14px">S2 et S3 ont été interrogés ensemble : une seule colonne. E3 n'a pas de fiche dans le dépôt : pas de colonne.</caption><thead>
+<tr class="grp"><th></th><th class="gp" colspan="3">Grands-parents</th><th class="en" colspan="2">Enfants</th><th class="pe" colspan="2">Petits-enfants</th><th></th></tr>
+<tr><th></th><th scope="col">S1<small>GP1</small></th><th scope="col">S2·S3<small>P1·P2</small></th><th scope="col">S4<small>GP2</small></th><th scope="col">E1<small>E1</small></th><th scope="col">E2<small>E2</small></th><th scope="col">PE1<small>PE3</small></th><th scope="col">PE2<small>PE2</small></th><th style="text-align:left;padding-left:10px">Lecture</th></tr>
+</thead><tbody>
+<tr><th scope="row">Hyp. E1<small>L'oubli au moment de partager</small></th><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd ok">Appuyée</span></td></tr>
+<tr><th scope="row">Hyp. P2<small>Répondre par la voix</small></th><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd ko">Fragilisée</span></td></tr>
+<tr><th scope="row">Hyp. E3<small>La corvée</small></th><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig m" title="contredit">− contredit</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig f" title="flou">? flou</span></td><td class="bl"><span class="vd mix">Partagée</span></td></tr>
+<tr><th scope="row">Hyp. P1<small>Partager si c'est son choix</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig p" title="appuie">+ appuie</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd tend">Tendance +</span></td></tr>
+<tr><th scope="row">Hyp. P4<small>Un écran ne s'adopte pas seul</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd none">Sans donnée</span></td></tr>
+<tr><th scope="row">Hyp. E2<small>Le lien s'achète avant l'incident</small></th><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig f" title="flou">? flou</span></td><td><span class="sig n" title="non testée">· non testée</span></td><td class="bl"><span class="vd none">Sans donnée</span></td></tr>
 </tbody></table></div>
-<p class="muted" style="font-size:14px">+ appuie · − contredit · ? flou · « · » non testée.</p>
 <h4 class="sub">Hyp. E3, l'appel régulier : partagée</h4>
 <p>Les deux lectures sont vraies à la fois. L'appel tient chaque semaine, sans effort : cela contredit la « corvée ». Mais l'envoi de photos ou de cartes ne devient pas un geste régulier : cela l'appuie.</p>
 <div class="vb">
@@ -721,17 +792,23 @@ figure.q figcaption b.gp{background:var(--peche)}figure.q figcaption b.en{backgr
 <div><b>Atelier FigJam</b><p>Verbatims en post-its, affinity map, insights, puis trois personas avec empathy map et user journey.</p></div>
 </div>
 </div>
-<div class="sec" id="m-profils" data-s="Profils interrogés"><div class="sh"><h3>Neuf personnes, surtout de notre entourage</h3><p>Le FigJam annonce « 4 séniors, 4 enfants et 2 petits-enfants ». Nous retrouvons 9 codes : 4 seniors, 3 enfants, 2 petits-enfants.</p></div>
-<div class="tw"><table><thead><tr><th>FigJam</th><th>Fiche</th><th>Public</th><th>Mené par</th><th>Situation</th></tr></thead><tbody>
-<tr><td>S1</td><td>GP1</td><td>Grand-mère</td><td>Lucas</td><td>Vit seule, autonome, téléphone toute la journée.</td></tr>
-<tr><td>S2 · S3</td><td>P2 · P1 <span class="conf">à confirmer</span></td><td>Couple de parents, environ 80 ans</td><td>Camille</td><td>Interrogés ensemble, 28 min. Maison et jardin, très équipés.</td></tr>
-<tr><td>S4</td><td>GP2</td><td>Grand-mère</td><td>Lucas</td><td>Photos des petits-enfants au salon. Appel de sa fille presque chaque jour.</td></tr>
-<tr><td>E1</td><td>E1</td><td>Enfant, 50-65 ans</td><td>Camille</td><td>7 min. Parents à environ 2 h. Un appel par semaine.</td></tr>
-<tr><td>E2</td><td>E2</td><td>Enfant</td><td>Camille</td><td>6 min. Père actif, proche. Deux appels par semaine.</td></tr>
-<tr><td>E3</td><td><span class="conf">à confirmer</span></td><td>Enfant</td><td>Lucas <span class="conf">à confirmer</span></td><td>Absent de la synthèse de Lucas (0 enfant sur 5 au moment de l'écrire).</td></tr>
-<tr><td>PE1</td><td>PE3</td><td>Petit-enfant</td><td>Clément</td><td>Grand-mère à plus de 3 h. Trois appels par an.</td></tr>
-<tr><td>PE2</td><td>PE2</td><td>Petit-enfant, 18-25 ans</td><td>Lucas</td><td>Deux paires de grands-parents, dont une loin.</td></tr>
-</tbody></table></div>
+<div class="sec" id="m-profils" data-s="Profils interrogés"><div class="sh"><h3>Neuf personnes, surtout de notre entourage</h3><p>Rangées par génération. Le grand code est celui du FigJam, utilisé partout dans ce dossier. La fiche est celle du dépôt. Une carte en pointillés reste à vérifier.</p></div>
+<div class="ppl">
+<div class="pg gp"><h4><span>Grands-parents</span><span>S</span></h4>
+<div class="pc"><div class="top"><b>S1</b><span>Grand-mère</span></div><p>Vit seule, autonome, au téléphone toute la journée.</p><dl><dt>Fiche</dt><dd>GP1</dd><dt>Mené par</dt><dd>Lucas</dd></dl></div>
+<div class="pc"><div class="top"><b>S2·S3</b><span>Couple, environ 80 ans</span></div><p>Interrogés ensemble, 28 min. Maison et jardin, très équipés.</p><dl><dt>Fiche</dt><dd>P2·P1 <span class="conf">à confirmer</span></dd><dt>Mené par</dt><dd>Camille</dd></dl></div>
+<div class="pc"><div class="top"><b>S4</b><span>Grand-mère</span></div><p>Photos des petits-enfants au salon. Sa fille l'appelle presque chaque jour.</p><dl><dt>Fiche</dt><dd>GP2</dd><dt>Mené par</dt><dd>Lucas</dd></dl></div>
+</div>
+<div class="pg en"><h4><span>Enfants</span><span>E</span></h4>
+<div class="pc"><div class="top"><b>E1</b><span>Enfant, 50-65 ans</span></div><p>Entretien de 7 min. Parents à environ 2 h. Un appel par semaine.</p><dl><dt>Fiche</dt><dd>E1</dd><dt>Mené par</dt><dd>Camille</dd></dl></div>
+<div class="pc"><div class="top"><b>E2</b><span>Enfant</span></div><p>Entretien de 6 min. Père actif, proche. Deux appels par semaine.</p><dl><dt>Fiche</dt><dd>E2</dd><dt>Mené par</dt><dd>Camille</dd></dl></div>
+<div class="pc doute"><div class="top"><b>E3</b><span>Enfant</span></div><p>Absent de la synthèse de Lucas au moment de l'écrire.</p><dl><dt>Fiche</dt><dd><span class="conf">à confirmer</span></dd><dt>Mené par</dt><dd>Lucas <span class="conf">à confirmer</span></dd></dl></div>
+</div>
+<div class="pg pe"><h4><span>Petits-enfants</span><span>PE</span></h4>
+<div class="pc"><div class="top"><b>PE1</b><span>Petit-enfant</span></div><p>Grand-mère à plus de 3 h. Trois appels par an.</p><dl><dt>Fiche</dt><dd>PE3</dd><dt>Mené par</dt><dd>Clément</dd></dl></div>
+<div class="pc"><div class="top"><b>PE2</b><span>Petit-enfant, 18-25 ans</span></div><p>Deux paires de grands-parents, dont une loin.</p><dl><dt>Fiche</dt><dd>PE2</dd><dt>Mené par</dt><dd>Lucas</dd></dl></div>
+</div>
+</div>
 <p class="warn">Écart à trancher : le FigJam annonce 4 enfants, mais seuls E1, E2 et E3 y ont des verbatims. Les codes du FigJam (S, E, PE) ne sont pas ceux des fiches du dépôt (GP, P, E, PE) : la correspondance ci-dessus est déduite des phrases et des auteurs des post-its.</p>
 </div>
 <div class="sec" id="m-limites" data-s="Limites"><div class="sh"><h3>Nos limites, dites franchement</h3><p>La matière est utile pour comprendre, pas pour prouver.</p></div>
