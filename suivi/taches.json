@@ -1,6 +1,6 @@
 {
   "projet": "Fil rouge · PFR Générations Connectées",
-  "mise_a_jour": "2026-11-13T17:13",
+  "mise_a_jour": "2026-11-19T11:32",
   "phases": [
     {
       "id": "P0",
@@ -805,6 +805,14 @@
           "qui": "Lucas",
           "date": "2026-11-13",
           "note": "Onglet « S2. Fiche requêtes » : 15 appels réels. IGN Géoplateforme (2 GET 200, 1 GET 400), Sunrise-Sunset (2 GET 200), Supabase PFR1 Francfort (health, settings, connexion compte de test, POST 201, GET, PATCH, DELETE 200, refus RLS 401, corps vide 400, table absente 404). Table test_api créée par l’équipe, ligne de test effacée. Aucune clé ni jeton dans le tableau."
+        },
+        {
+          "titre": "Phase 6 · Cartographie des données et spécification du simulateur",
+          "statut": "en_cours",
+          "qui": "Lucas",
+          "date": "2026-11-19",
+          "lien": "S1-2026-2027/03-outils-nocode-ia/interne/lucas/6-1-cartographie-donnees-simulateur.html",
+          "note": "8 pages : attentes vers données, inventaire 4 familles, flux, API et webhooks, risques R1 à R15, simulateur S1 à S6, passation S2. À relire par l'équipe."
         }
       ]
     },
