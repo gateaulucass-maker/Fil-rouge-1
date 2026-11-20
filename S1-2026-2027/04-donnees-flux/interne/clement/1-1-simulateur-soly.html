@@ -133,12 +133,12 @@ footer { color: var(--muted); font-size: 0.88rem; }
     <p class="intro">Les quatre messages que le cadre (la PWA) envoie. Les données viennent de l'Inventaire. Chaque message porte aussi <code>type_evenement</code> (D76, l'une des quatre valeurs) et <code>simule</code> (D77) : oui quand il vient du générateur ; il ne prévient alors que le foyer de test (voir « Principe du générateur »).</p>
     <div class="scroll">
       <table>
-        <thead><tr><th>Type</th><th>Ce que le cadre signale</th><th>Données envoyées (Inventaire)</th><th>Où ça arrive (schéma)</th><th>Fonctionnalités</th></tr></thead>
+        <thead><tr><th>Type</th><th>Ce que le cadre signale</th><th>Données envoyées (Inventaire)</th><th>Où ça arrive (schéma)</th><th>Fonctionnalités</th><th>Point d'appel (cartographie)</th></tr></thead>
         <tbody>
-          <tr><td><code>appairage</code></td><td>Première ouverture : le cadre affiche un code que l'aidant saisit</td><td>D6 <code>id_cadre</code>, D7 <code>code_appairage</code></td><td><span class="chip c-base">Supabase</span><span class="sub">Flux 1</span></td><td>F1</td></tr>
-          <tr><td><code>signe_de_vie</code></td><td>Le cadre est allumé et connecté</td><td>D6 <code>id_cadre</code>, D28 <code>derniere_connexion</code>, D29 <code>niveau_batterie</code><span class="sub">Batterie facultative : Safari ne la donne pas à la PWA (risque R11)</span></td><td><span class="chip c-base">Table cadres</span><span class="sub">Flux 4</span></td><td>F8, F18, F19</td></tr>
-          <tr><td><code>toucher</code></td><td>Le parent touche le cadre : un Soly part vers les aidants</td><td>D6 <code>id_cadre</code><span class="sub">Posés par le serveur à la réception : D17 <code>id_soly</code>, D18 <code>sens_soly</code>, D19 <code>date_soly</code></span></td><td><span class="chip c-base">Table gestes</span><span class="sub">Flux 2</span></td><td>F5, F7</td></tr>
-          <tr><td><code>photo_affichee</code></td><td>Le cadre confirme qu'il a affiché un envoi</td><td>D6 <code>id_cadre</code>, D10 <code>id_envoi</code> (renvoyé pour dire quelle photo), D16 <code>date_affichage</code>, D58 <code>photo_en_cours</code></td><td><span class="chip c-base">Table photos</span><span class="sub">Flux 5</span></td><td>F4, F15</td></tr>
+          <tr><td><code>appairage</code></td><td>Première ouverture : le cadre affiche un code que l'aidant saisit</td><td>D6 <code>id_cadre</code>, D7 <code>code_appairage</code></td><td><span class="chip c-base">Supabase</span><span class="sub">Flux 1</span></td><td>F1</td><td>Liaison du cadre par le code (A1)</td></tr>
+          <tr><td><code>signe_de_vie</code></td><td>Le cadre est allumé et connecté</td><td>D6 <code>id_cadre</code>, D28 <code>derniere_connexion</code>, D29 <code>niveau_batterie</code><span class="sub">Batterie facultative : Safari ne la donne pas à la PWA (risque R11)</span></td><td><span class="chip c-base">Table cadres</span><span class="sub">Flux 4</span></td><td>F8, F18, F19</td><td>Mise à jour de <code>derniere_connexion</code> dans la table cadres (A8)</td></tr>
+          <tr><td><code>toucher</code></td><td>Le parent touche le cadre : un Soly part vers les aidants</td><td>D6 <code>id_cadre</code><span class="sub">Posés par le serveur à la réception : D17 <code>id_soly</code>, D18 <code>sens_soly</code>, D19 <code>date_soly</code></span></td><td><span class="chip c-base">Table gestes</span><span class="sub">Flux 2</span></td><td>F5, F7</td><td><code>POST /rest/v1/gestes</code> (A5)</td></tr>
+          <tr><td><code>photo_affichee</code></td><td>Le cadre confirme qu'il a affiché un envoi</td><td>D6 <code>id_cadre</code>, D10 <code>id_envoi</code> (renvoyé pour dire quelle photo), D16 <code>date_affichage</code>, D58 <code>photo_en_cours</code></td><td><span class="chip c-base">Table photos</span><span class="sub">Flux 5</span></td><td>F4, F15</td><td><code>PATCH date_affichage</code> sur la photo (A4)</td></tr>
         </tbody>
       </table>
     </div>
@@ -226,7 +226,7 @@ footer { color: var(--muted); font-size: 0.88rem; }
           <dt>Donnée générée</dt>
           <dd>Seulement des <code>signe_de_vie</code> : <code>derniere_connexion</code> reste à jour, <code>dernier_toucher</code> (D25) ne bouge plus.</dd>
           <dt>Réaction du système</dt>
-          <dd>La tâche planifiée <code>verifier_silence</code> lit le dernier toucher, l'accord et la veille. Au-delà de 48 h, elle crée une seule ligne dans la table alertes. Un aidant répond « je m'en occupe » (F22). Le toucher suivant du parent lève l'alerte.</dd>
+          <dd>La tâche planifiée <code>verifier_silence</code> toutes les 15 min, lit le dernier toucher, l'accord, la veille, les vacances et la pause. Au-delà de 48 h, elle crée une seule ligne dans la table alertes ; un Database Webhook déclenche l'envoi du push. Un aidant répond « je m'en occupe » (F22). Le toucher suivant du parent lève l'alerte.</dd>
           <dt>Ce que voit l'aidant</dt>
           <dd>L'alerte (Web Push), puis « Julie s'en occupe ».</dd>
           <dt>Ce qu'on vérifie aussi</dt>
@@ -296,14 +296,7 @@ footer { color: var(--muted); font-size: 0.88rem; }
     </div>
   </section>
 
-  <section aria-labelledby="dec">
-    <h2 id="dec">Reste à décider</h2>
-    <ol class="decisions">
-      <li><div><b>Reformuler D77 dans l'Inventaire</b> : « exclu des alertes et des notifications des vraies familles ; ne prévient que le foyer de test ».<span class="reco">Recommandé. À faire dans le sheet quand l'équipe le valide.</span></div></li>
-    </ol>
-  </section>
-
-  <footer>Sources : Inventaire D1 à D77 (feuille « TP API cours »), scénarios de Camille, schéma « Flux de données Soly », attendus de la phase 6 (19/11). Notifications en push seulement. Toutes les valeurs d'exemple sont fictives.</footer>
+  <footer>Sources : Inventaire D1 à D84 et cartographie, listes 3 et 6 (feuille « TP API cours »), scénarios de Camille, schéma « Flux de données Soly », attendus de la phase 6 (mis à jour le 20/11). Notifications en push seulement. Toutes les valeurs d'exemple sont fictives.</footer>
 </div>
 </body>
 </html>
