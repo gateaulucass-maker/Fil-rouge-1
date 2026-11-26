@@ -144,14 +144,14 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
   <p class="lead">La V1 du cahier des charges, dans la structure du gabarit de l'intervenant : chaque section reprend sa consigne, puis nos réponses dans ses tableaux.</p>
   <div class="facts">
     <div><em>Faces</em><b>3</b><span>Achat, senior, aidant, plus le simulateur.</span></div>
-    <div><em>Stories</em><b>3</b><span>Une par face, chacune reliée à un besoin.</span></div>
-    <div><em>Critères</em><b>8</b><span>4 nominaux, 4 alternatifs, cochables par oui ou par non.</span></div>
+    <div><em>Stories</em><b>10</b><span>Sur 3 parcours complets, chacune reliée à un besoin.</span></div>
+    <div><em>Critères</em><b>22</b><span>11 nominaux, 11 alternatifs, cochables par oui ou par non.</span></div>
   </div>
   <ol class="dec">
     <li><span class="dn">1</span><a href="#s1">Contexte et problématique</a><span>Pourquoi ce produit existe, et pourquoi le cadre.</span></li>
     <li><span class="dn">2</span><a href="#s2">Utilisateurs, besoins, objectifs</a><span>Personas, six besoins sourcés, quatre objectifs.</span></li>
     <li><span class="dn">3</span><a href="#s3">Périmètre fonctionnel</a><span>Inclus, exclu, à clarifier, pour les trois faces.</span></li>
-    <li><span class="dn">4</span><a href="#s4">Parcours et user stories</a><span>Du toucher de Jacqueline au Soly reçu par Sandrine.</span></li>
+    <li><span class="dn">4</span><a href="#s4">Parcours et user stories</a><span>Le toucher, l'achat par Sandrine bis, le petit-fils qui envoie une photo.</span></li>
     <li><span class="dn">5</span><a href="#s5">Règles et critères</a><span>Gradation des alertes et critères Étant donné / Quand / Alors.</span></li>
     <li><span class="dn">A-D</span><a href="#annexes">Annexes</a><span>Traçabilité, questions ouvertes, IA déclarée, glossaire.</span></li>
   </ol>
@@ -160,7 +160,7 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
     <ul class="todo">
       <li><span><b>Compter les pages dans Word.</b> La section 3 doit tenir sur une page.</span></li>
       <li><span><b>Remplir les « à compléter ».</b> Relecteurs, vérification de l'IA, nom commercial, fréquence du simulateur.</span></li>
-      <li><span><b>Compléter les sources de la 2.2.</b> Codes de verbatims pour B1, B2 et B3.</span></li>
+      <li><span><b>Vérifier B4 (achat).</b> C'est une hypothèse : aucun entretien ne la couvre.</span></li>
     </ul>
   </div>
   <p class="next"><a href="#garde">Page de garde →</a></p>
@@ -245,16 +245,17 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
       <tr><td>Senior utilisateur</td><td>Jacqueline, 75 ans</td><td>Plus de nouvelles de ses petits-enfants (S4.3) ; garder leurs photos sous les yeux (S4.1)</td><td>Déranger (S2.1) ; être oubliée (S4.3)</td><td>Senior</td></tr>
       <tr><td>Aidant</td><td>Sandrine, 50 ans</td><td>Savoir que sa mère va bien (E1.1) sans porter seule tout le lien (PE1.16)</td><td>Que sa mère se sente seule (S1.4) ; ne jamais en faire assez (E1.3)</td><td>Aidant</td></tr>
       <tr><td>Proche</td><td>Hugo, 18 ans (petit-fils)</td><td>Donner des nouvelles sans effort (PE1.9)</td><td>Culpabiliser de ne pas le faire (PE1.20)</td><td>Aidant (appli, proche invité)</td></tr>
-      <tr><td>Acheteur</td><td>Sandrine, avant l'installation</td><td><span class="tag line">À compléter</span></td><td><span class="tag line">À compléter</span></td><td>Achat</td></tr>
+      <tr><td>Acheteur</td><td>Sandrine bis : Sandrine, au moment de l'achat</td><td>Offrir le cadre à sa mère et le faire installer simplement (hypothèse, B4)</td><td><span class="tag line">À compléter</span></td><td>Achat</td></tr>
     </tbody></table></div>
-    <div class="note"><p><b>Besoin d'achat :</b> Sandrine achète avant l'installation, avec la question « ma mère l'acceptera-t-elle ? ». Nos entretiens ne l'ont pas couvert : à compléter.</p></div>
+    <div class="note"><p><b>Sandrine bis :</b> c'est Sandrine au moment de l'achat ; c'est elle qui commande et fait installer le cadre. Nos entretiens n'ont pas couvert l'achat : B4 est une hypothèse.</p></div>
   </div>
   <div class="sec">
-    <div class="sh"><h3>2.2 Du problème à la fonctionnalité</h3><p class="consigne">Consigne : noter les solutions envisagées, justifier celle retenue, au moins trois lignes. Source obligatoire ; sans source, c'est une hypothèse.</p><p>Repris de notre atelier « Du besoin à la fonctionnalité » (FigJam). Sources à compléter.</p></div>
+    <div class="sh"><h3>2.2 Du problème à la fonctionnalité</h3><p class="consigne">Consigne : noter les solutions envisagées, justifier celle retenue, au moins trois lignes. Source obligatoire ; sans source, c'est une hypothèse.</p><p>Repris de notre atelier « Du besoin à la fonctionnalité » (FigJam). Sources : codes de verbatims du dossier Besoins ; B4 est une hypothèse.</p></div>
     <div class="tw"><table><thead><tr><th>#</th><th>Problème observé</th><th>Besoin</th><th>Solutions envisagées → retenue</th><th>Fonctionnalité</th><th>Source</th></tr></thead><tbody>
-      <tr><td>B1 · Aidant</td><td>Un aidant actif avec des parents seuls ne peut pas répondre à la demande de contact de ses parents en manque de liens sociaux.</td><td>Avoir un moyen de les contacter sans empiéter sur le peu de temps qu'il possède.</td><td>Un service de mise en contact partageant des nouvelles quotidiennes.</td><td>Avoir une notification quotidienne style « BeReal » pour partager un moment de la journée simplement.</td><td><span class="tag line">À compléter</span></td></tr>
-      <tr><td>B2 · Senior</td><td>Le senior se situe loin de sa famille, se sent seul et isolé.</td><td>Un côté relationnel plus développé afin de communiquer plus facilement, éviter d'avoir un sentiment d'isolement.</td><td>Un objet connecté qui permet d'améliorer le côté relationnel entre l'aidant et le senior, sans forcément être intrusif dans sa vie.</td><td>Consulter des photos journalières de la famille par le biais d'un cadre disposé dans la maison du senior ; une app avec notification type BeReal pour l'aidant.</td><td><span class="tag line">À compléter</span></td></tr>
-      <tr><td>B3 · Petit-enfant</td><td>Ne prend pas assez de nouvelles, ou alors seulement lors de grandes dates (anniversaire, fêtes…) ; sinon, le reste passe par sa mère.</td><td>Faire en sorte que prendre des nouvelles soit un réflexe et non un effort.</td><td>Une app avec un geste aussi simple qu'un message, avec un rappel discret pour garder le réflexe.</td><td>Envoyer une photo facilement en 2 gestes, avec une notification de rappel après quelques jours sans nouvelles.</td><td><span class="tag line">À compléter</span></td></tr>
+      <tr><td>B1 · Aidant</td><td>Un aidant actif avec des parents seuls ne peut pas répondre à la demande de contact de ses parents en manque de liens sociaux.</td><td>Avoir un moyen de les contacter sans empiéter sur le peu de temps qu'il possède.</td><td>Un service de mise en contact partageant des nouvelles quotidiennes.</td><td>Avoir une notification quotidienne style « BeReal » pour partager un moment de la journée simplement.</td><td>E1.1, E1.3, S1.4</td></tr>
+      <tr><td>B2 · Senior</td><td>Le senior se situe loin de sa famille, se sent seul et isolé.</td><td>Un côté relationnel plus développé afin de communiquer plus facilement, éviter d'avoir un sentiment d'isolement.</td><td>Un objet connecté qui permet d'améliorer le côté relationnel entre l'aidant et le senior, sans forcément être intrusif dans sa vie.</td><td>Consulter des photos journalières de la famille par le biais d'un cadre disposé dans la maison du senior ; une app avec notification type BeReal pour l'aidant.</td><td>S1.4, S4.3, S2.1</td></tr>
+      <tr><td>B3 · Petit-enfant</td><td>Ne prend pas assez de nouvelles, ou alors seulement lors de grandes dates (anniversaire, fêtes…) ; sinon, le reste passe par sa mère.</td><td>Faire en sorte que prendre des nouvelles soit un réflexe et non un effort.</td><td>Une app avec un geste aussi simple qu'un message, avec un rappel discret pour garder le réflexe.</td><td>Envoyer une photo facilement en 2 gestes, avec une notification de rappel après quelques jours sans nouvelles.</td><td>PE1.6, PE1.9, PE1.16, PE1.20</td></tr>
+      <tr><td>B4 · Achat (Sandrine bis)</td><td>C'est l'aidant qui achète et fait installer le cadre chez son parent.</td><td>Acheter et faire installer le cadre simplement, en sachant ce qu'il fait et ne fait pas.</td><td>Commande en ligne seule → retenue : commande en ligne, avec mise en place à domicile en option (forfait supérieur).</td><td>Présentation du cadre, commande, mise en place à domicile.</td><td>Hypothèse : aucun verbatim ; veille, fiche marché (bloc 01) : « le senior utilise, l'enfant aidant paie et pousse l'achat ».</td></tr>
     </tbody></table></div>
   </div>
   <div class="sec">
@@ -263,6 +264,7 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
       <tr><td>O1</td><td>Permettre de créer un lien quotidien et constant entre grand-parent et parent.</td><td>Aidant (parent)</td><td>B1</td></tr>
       <tr><td>O2</td><td>Éviter au senior d'avoir un sentiment d'isolement, en communiquant plus facilement avec sa famille.</td><td>Senior (grand-parent)</td><td>B2</td></tr>
       <tr><td>O3</td><td>Faire en sorte que prendre des nouvelles soit un réflexe et non un effort.</td><td>Petit-enfant</td><td>B3</td></tr>
+      <tr><td>O4</td><td>Permettre à l'aidant d'offrir et de faire installer le cadre sans démarche compliquée.</td><td>Sandrine bis (achat)</td><td>B4</td></tr>
     </tbody></table></div>
   </div>
   <p class="next"><a href="#s3">3. Périmètre fonctionnel →</a></p>
@@ -335,11 +337,11 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
 <section class="page" id="s4">
   <span class="k">Section 4</span>
   <h2 class="t">Parcours et user stories</h2>
-  <p class="consigne" style="margin-top:20px">Consigne : pour la V1, un parcours et une story par face.</p>
+  <p class="consigne" style="margin-top:20px">Consigne : pour la V1, un parcours et une story par face. Nous en donnons plus : 3 parcours complets et 10 stories.</p>
   <div class="sec">
-    <div class="sh"><h3>4.1 Parcours P1</h3><p class="consigne">Consigne : un acteur, un objectif, un début, une fin, des étapes et au moins un scénario alternatif. Parcours cœur : de l'événement simulé à l'information vue par l'aidant.</p></div>
+    <div class="sh"><h3>4.1 Parcours P1</h3><p class="consigne">Consigne : un acteur, un objectif, un début, une fin, des étapes et au moins un scénario alternatif.</p></div>
     <div class="tw"><table class="kv"><tbody>
-      <tr><td>Titre</td><td><b>Du toucher de Jacqueline au Soly reçu par Sandrine</b></td></tr>
+      <tr><td>Titre</td><td><b>Du toucher de Jacqueline au signe reçu par Sandrine</b></td></tr>
       <tr><td>Acteur</td><td>Sandrine, aidante. Jacqueline, la senior, déclenche l'événement.</td></tr>
       <tr><td>Objectif</td><td>Savoir entre deux appels que sa mère va bien, sans l'appeler ni la surveiller.</td></tr>
       <tr><td>Déclencheur</td><td>Jacqueline touche l'écran du cadre. Pour le cours, le générateur envoie un événement « toucher » marqué « simulé », pour le foyer de test.</td></tr>
@@ -347,28 +349,87 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
     <h4 class="sub">Étapes, scénario nominal</h4>
     <ol class="steps">
       <li><b>L'événement part</b><span>Le cadre, ou le générateur, envoie l'événement « toucher ».</span></li>
-      <li><b>Le Soly est enregistré</b><span>Avec son heure ; le compteur de silence repart à zéro.</span></li>
+      <li><b>Le toucher est enregistré</b><span>Avec son heure ; le compteur de silence repart à zéro.</span></li>
       <li><b>Les droits sont vérifiés</b><span>Sandrine est aidante de ce foyer et ses notifications sont actives.</span></li>
       <li><b>Sandrine est notifiée</b><span>« Maman t'a envoyé un Soly ».</span></li>
-      <li><b>Elle consulte</b><span>Dans l'appli, elle voit l'heure du dernier Soly.</span></li>
+      <li><b>Elle consulte</b><span>Dans l'appli, elle voit l'heure du dernier toucher.</span></li>
       <li><b>Jacqueline voit que c'est parti</b><span>Un petit signe sur le cadre (forme à choisir).</span></li>
     </ol>
     <h4 class="sub">Scénarios alternatifs</h4>
     <div class="tw"><table><thead><tr><th>#</th><th>Situation</th><th>Réaction du produit</th></tr></thead><tbody>
-      <tr><td>A1</td><td>Aucun toucher depuis 48 h, hors nuit, alerte acceptée</td><td>Une seule alerte à chaque aidant ; un aidant indique « je m'en occupe », la famille est rassurée</td></tr>
-      <tr><td>A2</td><td>Accord absent ou retiré</td><td>Aucune alerte de silence ; les Soly continuent d'arriver</td></tr>
-      <tr><td>A3</td><td>Capteur silencieux : cadre hors connexion</td><td>L'aidant voit « cadre hors ligne » et ne croit pas qu'une photo a été vue (périmètre, petit-enfant)</td></tr>
-      <tr><td>A4</td><td>Double appui en moins d'une seconde</td><td>Un seul Soly, une seule notification</td></tr>
-      <tr><td>A5</td><td>Mode vacances</td><td>Alerte suspendue jusqu'à la date de retour</td></tr>
+      <tr><td>A1</td><td>Silence de 48 h, hors nuit, alerte acceptée</td><td>Une seule alerte à chaque aidant ; un aidant indique « je m'en occupe », la famille est rassurée.</td></tr>
+      <tr><td>A2</td><td>Accord absent ou retiré</td><td>Aucune alerte de silence ; les touchers continuent d'arriver.</td></tr>
+      <tr><td>A3</td><td>Cadre hors connexion (capteur silencieux)</td><td>L'aidant voit « cadre hors ligne ».</td></tr>
+      <tr><td>A4</td><td>Double appui en moins d'une seconde</td><td>Un seul toucher enregistré, une seule notification.</td></tr>
+      <tr><td>A5</td><td>Mode vacances</td><td>Alerte suspendue jusqu'à la date de retour.</td></tr>
     </tbody></table></div>
     <div class="note"><p><b>Fin :</b> Sandrine sait que sa mère est là sans l'avoir appelée ; Jacqueline a donné signe de vie sans écrire ni déranger.</p></div>
   </div>
   <div class="sec">
+    <div class="sh"><h3>4.1 Parcours P2</h3><p class="consigne">Consigne : un acteur, un objectif, un début, une fin, des étapes et au moins un scénario alternatif.</p></div>
+    <div class="tw"><table class="kv"><tbody>
+      <tr><td>Titre</td><td><b>De la commande de Sandrine bis à la première photo chez Jacqueline</b></td></tr>
+      <tr><td>Acteur</td><td>Sandrine bis : Sandrine, au moment de l'achat.</td></tr>
+      <tr><td>Objectif</td><td>Offrir le cadre à sa mère, le faire installer, et voir la première photo s'afficher.</td></tr>
+      <tr><td>Déclencheur</td><td>Sandrine décide d'équiper sa mère.</td></tr>
+    </tbody></table></div>
+    <h4 class="sub">Étapes, scénario nominal</h4>
+    <ol class="steps">
+      <li><b>Elle découvre le cadre</b><span>La présentation dit ce qu'il fait et ce qu'il ne fait pas (ni caméra, ni micro).</span></li>
+      <li><b>Elle commande</b><span>Paiement en mode test ; elle choisit la mise en place à domicile (forfait supérieur).</span></li>
+      <li><b>Elle reçoit la confirmation</b><span>Numéro de commande et livraison prévue (délai à compléter).</span></li>
+      <li><b>Le cadre est posé chez Jacqueline</b><span>Mise en place à domicile.</span></li>
+      <li><b>Jacqueline dit oui ou non, sur le cadre</b><span>Elle accepte ou refuse l'alerte de silence.</span></li>
+      <li><b>Sandrine branche la famille</b><span>Elle partage le lien de connexion au cadre.</span></li>
+      <li><b>La première photo s'affiche</b><span>Le cadre n'est jamais vide à l'ouverture.</span></li>
+    </ol>
+    <h4 class="sub">Scénarios alternatifs</h4>
+    <div class="tw"><table><thead><tr><th>#</th><th>Situation</th><th>Réaction du produit</th></tr></thead><tbody>
+      <tr><td>A1</td><td>Paiement refusé</td><td>Un message explique le refus et propose de réessayer ; aucune commande n'est enregistrée.</td></tr>
+      <tr><td>A2</td><td>Jacqueline refuse l'alerte</td><td>Le cadre affiche quand même les photos ; aucune alerte de silence.</td></tr>
+      <tr><td>A3</td><td>Pas de wifi chez Jacqueline</td><td>À compléter : le réglage du wifi n'est pas encore décidé (parcours du 22 octobre).</td></tr>
+      <tr><td>A4</td><td>Personne n'a encore envoyé de photo</td><td>Sandrine prépare les premières photos avant la pose (flux F11).</td></tr>
+    </tbody></table></div>
+    <div class="note"><p><b>Fin :</b> Le cadre est chez Jacqueline et affiche la première photo de la famille.</p></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>4.1 Parcours P3</h3><p class="consigne">Consigne : un acteur, un objectif, un début, une fin, des étapes et au moins un scénario alternatif.</p></div>
+    <div class="tw"><table class="kv"><tbody>
+      <tr><td>Titre</td><td><b>De l'invitation de Hugo au « Merci » de sa grand-mère</b></td></tr>
+      <tr><td>Acteur</td><td>Hugo, petit-fils (proche).</td></tr>
+      <tr><td>Objectif</td><td>Donner des nouvelles à sa grand-mère sans passer par sa mère.</td></tr>
+      <tr><td>Déclencheur</td><td>Sandrine lui partage le lien de connexion au cadre.</td></tr>
+    </tbody></table></div>
+    <h4 class="sub">Étapes, scénario nominal</h4>
+    <ol class="steps">
+      <li><b>Il rejoint le cadre</b><span>Il ouvre le lien d'invitation et crée son compte.</span></li>
+      <li><b>Il est accepté</b><span>Un aidant l'accepte dans le foyer.</span></li>
+      <li><b>Il envoie une photo</b><span>Prise dans l'app ou choisie dans sa galerie, avec un mot court.</span></li>
+      <li><b>La photo s'affiche</b><span>Elle apparaît sur le cadre de Jacqueline.</span></li>
+      <li><b>Il voit qu'elle a été vue</b><span>Statut « affichée », puis le « Merci » de sa grand-mère.</span></li>
+    </ol>
+    <h4 class="sub">Scénarios alternatifs</h4>
+    <div class="tw"><table><thead><tr><th>#</th><th>Situation</th><th>Réaction du produit</th></tr></thead><tbody>
+      <tr><td>A1</td><td>Cadre hors connexion</td><td>Hugo voit « cadre hors ligne » et ne croit pas que sa photo a été vue.</td></tr>
+      <tr><td>A2</td><td>Plusieurs jours sans envoi</td><td>Un rappel discret, qu'il peut couper.</td></tr>
+      <tr><td>A3</td><td>Proche de moins de 15 ans</td><td>Il reste en attente de l'accord d'un parent avant de pouvoir envoyer.</td></tr>
+      <tr><td>A4</td><td>Il retire une photo</td><td>Elle ne défile plus sur le cadre.</td></tr>
+    </tbody></table></div>
+    <div class="note"><p><b>Fin :</b> Hugo sait que sa grand-mère a vu sa photo, sans passer par sa mère.</p></div>
+  </div>
+  <div class="sec">
     <div class="sh"><h3>4.2 User stories</h3><p class="consigne">Consigne : en tant que [acteur], je veux [capacité], afin de [bénéfice]. Une story = une capacité. Pas de choix d'outil.</p></div>
     <div class="tw"><table><thead><tr><th>ID</th><th>Face</th><th>En tant que…</th><th>Je veux…</th><th>Afin de…</th><th>Besoin</th><th>Parcours</th></tr></thead><tbody>
-      <tr><td>US-A1</td><td>Achat</td><td>acheteuse (Sandrine, avant l'installation)</td><td>commander un cadre pour ma mère depuis le site</td><td>le lui offrir en sachant ce qu'il fait et ce qu'il ne fait pas</td><td><span class="tag line">À compléter</span></td><td>P2 (achat, version finale)</td></tr>
+      <tr><td>US-A1</td><td>Achat</td><td>acheteuse (Sandrine bis)</td><td>commander un cadre pour ma mère depuis le site</td><td>le lui offrir en sachant ce qu'il fait et ce qu'il ne fait pas</td><td>B4</td><td>P2</td></tr>
+      <tr><td>US-A2</td><td>Achat</td><td>acheteuse (Sandrine bis)</td><td>ajouter la mise en place à domicile à ma commande</td><td>ne rien avoir à installer moi-même chez ma mère</td><td>B4</td><td>P2</td></tr>
       <tr><td>US-S1</td><td>Senior</td><td>senior (Jacqueline)</td><td>dire « je suis là » à ma famille d'un seul toucher sur le cadre</td><td>donner signe de vie sans écrire et sans peur de déranger</td><td>B2</td><td>P1</td></tr>
-      <tr><td>US-D1</td><td>Aidant</td><td>aidante (Sandrine)</td><td>être prévenue quand ma mère n'a pas touché le cadre depuis 48 h, si elle l'a accepté</td><td>pouvoir l'appeler à temps, sans la surveiller</td><td>B1</td><td>P1 (A1)</td></tr>
+      <tr><td>US-S2</td><td>Senior</td><td>senior (Jacqueline)</td><td>accepter ou refuser l'alerte de silence, sur le cadre</td><td>garder la main sur ce que ma famille peut savoir</td><td>B2</td><td>P2</td></tr>
+      <tr><td>US-D1</td><td>Aidant</td><td>aidante (Sandrine)</td><td>être prévenue quand ma mère n'a pas touché le cadre depuis 48 h, si elle l'a accepté</td><td>pouvoir l'appeler à temps, sans la surveiller</td><td>B1</td><td>P1</td></tr>
+      <tr><td>US-D2</td><td>Aidant</td><td>aidante (Sandrine)</td><td>partager à la famille le lien de connexion au cadre</td><td>que chacun puisse envoyer des nouvelles sans passer par moi</td><td>B1</td><td>P2</td></tr>
+      <tr><td>US-D3</td><td>Aidant</td><td>aidante (Sandrine)</td><td>recevoir une notification quotidienne et partager un moment de ma journée en photo</td><td>créer un lien quotidien avec ma mère sans empiéter sur mon temps</td><td>B1</td><td>P3</td></tr>
+      <tr><td>US-P1</td><td>Aidant (proche)</td><td>petit-fils (Hugo)</td><td>rejoindre le cadre de ma grand-mère par une invitation</td><td>avoir de ses nouvelles sans passer par ma mère</td><td>B3</td><td>P3</td></tr>
+      <tr><td>US-P2</td><td>Aidant (proche)</td><td>petit-fils (Hugo)</td><td>envoyer une photo au cadre en quelques gestes</td><td>que donner des nouvelles devienne un réflexe</td><td>B3</td><td>P3</td></tr>
+      <tr><td>US-P3</td><td>Aidant (proche)</td><td>petit-fils (Hugo)</td><td>savoir que ma photo s'est affichée et voir le « Merci » de ma grand-mère</td><td>savoir par moi-même qu'elle va bien</td><td>B3</td><td>P3</td></tr>
     </tbody></table></div>
   </div>
   <p class="next"><a href="#s5">5. Règles et critères →</a></p>
@@ -389,6 +450,9 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
       <tr><td>RG5</td><td>Un événement simulé ne déclenche notifications et alertes que dans le foyer de test, jamais dans une vraie famille.</td><td>US-S1, US-D1</td></tr>
       <tr><td>RG6</td><td>Aucune donnée de santé n'est collectée ; le produit ne donne aucun conseil médical.</td><td>Toutes</td></tr>
       <tr><td>RG7</td><td>Aucune commande n'est enregistrée sans paiement accepté ; en démonstration, seul le mode test est utilisé.</td><td>US-A1</td></tr>
+      <tr><td>RG8</td><td>Un proche de moins de 15 ans attend l'accord d'un parent avant de pouvoir envoyer (RGPD).</td><td>US-P1</td></tr>
+      <tr><td>RG9</td><td>Un envoi ne dépasse pas un nombre maximum de photos (nombre à compléter).</td><td>US-P2</td></tr>
+      <tr><td>RG10</td><td>Seul le « Merci » volontaire du senior remonte aux proches, jamais son activité.</td><td>US-P3</td></tr>
     </tbody></table></div>
   </div>
   <div class="sec">
@@ -397,11 +461,25 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
       <tr><td>US-A1</td><td><span class="tag ok">Nominal</span></td><td>un visiteur sur la page du cadre</td><td>il commande avec une carte de test acceptée</td><td>un numéro de commande s'affiche et un e-mail de confirmation est reçu</td></tr>
       <tr><td>US-A1</td><td><span class="tag ok">Nominal</span></td><td>un visiteur sur la page du cadre</td><td>la page s'affiche</td><td>elle indique que le cadre n'a ni caméra ni micro</td></tr>
       <tr><td>US-A1</td><td><span class="tag no">Alternatif</span></td><td>un visiteur qui commande</td><td>le paiement de test est refusé</td><td>un message explique le refus et propose de réessayer ; aucune commande n'est enregistrée</td></tr>
-      <tr><td>US-S1</td><td><span class="tag ok">Nominal</span></td><td>un cadre relié à un foyer qui compte au moins un aidant</td><td>le senior touche l'écran une fois</td><td>un signe s'affiche sur le cadre et le Soly apparaît, avec son heure, dans l'appli de l'aidant</td></tr>
-      <tr><td>US-S1</td><td><span class="tag no">Alternatif</span></td><td>un senior qui touche l'écran deux fois en moins d'une seconde</td><td>les deux touchers arrivent au serveur</td><td>un seul Soly est enregistré et l'aidant ne reçoit qu'une notification</td></tr>
-      <tr><td>US-D1</td><td><span class="tag ok">Nominal</span></td><td>un senior qui a accepté l'alerte et un aidant aux notifications actives</td><td>le générateur simule 48 h sans toucher, hors nuit</td><td>l'aidant reçoit une seule alerte qui indique l'heure du dernier Soly</td></tr>
+      <tr><td>US-A2</td><td><span class="tag ok">Nominal</span></td><td>une commande en cours</td><td>l'acheteuse ajoute la mise en place à domicile</td><td>le récapitulatif affiche le forfait supérieur et son prix (montant à compléter)</td></tr>
+      <tr><td>US-A2</td><td><span class="tag no">Alternatif</span></td><td>une commande avec la mise en place à domicile</td><td>l'acheteuse retire l'option avant de payer</td><td>le total revient au forfait sans mise en place</td></tr>
+      <tr><td>US-S1</td><td><span class="tag ok">Nominal</span></td><td>un cadre relié à un foyer qui compte au moins un aidant</td><td>le senior touche l'écran une fois</td><td>un signe s'affiche sur le cadre et le toucher apparaît, avec son heure, dans l'appli de l'aidant</td></tr>
+      <tr><td>US-S1</td><td><span class="tag no">Alternatif</span></td><td>un senior qui touche l'écran deux fois en moins d'une seconde</td><td>les deux touchers arrivent au serveur</td><td>un seul toucher est enregistré et l'aidant ne reçoit qu'une notification</td></tr>
+      <tr><td>US-S2</td><td><span class="tag ok">Nominal</span></td><td>un cadre au premier démarrage</td><td>le senior touche « J'accepte »</td><td>l'accord est enregistré avec sa date et l'alerte de silence est active</td></tr>
+      <tr><td>US-S2</td><td><span class="tag no">Alternatif</span></td><td>un cadre au premier démarrage</td><td>le senior touche « Non merci »</td><td>aucune alerte de silence n'est active et le cadre affiche quand même les photos</td></tr>
+      <tr><td>US-D1</td><td><span class="tag ok">Nominal</span></td><td>un senior qui a accepté l'alerte et un aidant aux notifications actives</td><td>le générateur simule 48 h sans toucher, hors nuit</td><td>l'aidant reçoit une seule alerte qui indique l'heure du dernier toucher</td></tr>
       <tr><td>US-D1</td><td><span class="tag no">Alternatif</span></td><td>un senior qui a refusé ou retiré son accord</td><td>le générateur simule 48 h sans toucher</td><td>aucune alerte n'est envoyée</td></tr>
       <tr><td>US-D1</td><td><span class="tag no">Alternatif</span></td><td>un aidant qui a activé le mode vacances</td><td>48 h sans toucher sont simulées pendant cette période</td><td>aucune alerte n'est envoyée</td></tr>
+      <tr><td>US-D2</td><td><span class="tag ok">Nominal</span></td><td>un foyer créé</td><td>l'aidante partage le lien de connexion</td><td>la personne qui ouvre le lien arrive sur la demande d'accès au foyer</td></tr>
+      <tr><td>US-D2</td><td><span class="tag no">Alternatif</span></td><td>une personne qui a ouvert le lien mais n'est pas encore acceptée</td><td>elle essaie d'envoyer une photo</td><td>l'envoi est refusé tant qu'un aidant ne l'a pas acceptée</td></tr>
+      <tr><td>US-D3</td><td><span class="tag ok">Nominal</span></td><td>un aidant aux notifications actives</td><td>l'invitation du jour arrive</td><td>il reçoit une notification et peut envoyer une photo du moment au cadre</td></tr>
+      <tr><td>US-D3</td><td><span class="tag no">Alternatif</span></td><td>un aidant qui a coupé ses notifications</td><td>l'heure de l'invitation du jour passe</td><td>aucune notification n'est envoyée</td></tr>
+      <tr><td>US-P1</td><td><span class="tag ok">Nominal</span></td><td>une invitation valide</td><td>Hugo crée son compte depuis le lien</td><td>il apparaît dans le foyer et peut envoyer une fois accepté</td></tr>
+      <tr><td>US-P1</td><td><span class="tag no">Alternatif</span></td><td>un proche de moins de 15 ans</td><td>il crée son compte depuis le lien</td><td>il reste en attente de l'accord d'un parent et ne peut pas envoyer</td></tr>
+      <tr><td>US-P2</td><td><span class="tag ok">Nominal</span></td><td>un proche accepté</td><td>il choisit une photo dans sa galerie, ajoute un mot court et l'envoie</td><td>la photo et le mot apparaissent sur le cadre</td></tr>
+      <tr><td>US-P2</td><td><span class="tag no">Alternatif</span></td><td>un proche qui envoie plus de photos que le maximum par envoi</td><td>il valide l'envoi</td><td>un message indique le maximum et rien n'est envoyé (maximum à compléter)</td></tr>
+      <tr><td>US-P3</td><td><span class="tag ok">Nominal</span></td><td>une photo envoyée par Hugo</td><td>le cadre l'affiche, puis la grand-mère touche « Merci »</td><td>Hugo voit « affichée », puis le « Merci », dans son historique</td></tr>
+      <tr><td>US-P3</td><td><span class="tag no">Alternatif</span></td><td>un cadre hors connexion</td><td>Hugo ouvre l'appli</td><td>il voit « cadre hors ligne » et sa photo n'est pas marquée « affichée »</td></tr>
     </tbody></table></div>
   </div>
   <p class="next"><a href="#s6">Sections 6 à 10 →</a></p>
@@ -432,10 +510,10 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
   <div class="sec">
     <div class="sh"><h3>A. Matrice de traçabilité</h3><p class="consigne">Consigne : chaque story remonte à un besoin, chaque besoin à une source. Une story sans besoin est justifiée ou retirée.</p></div>
     <div class="tw"><table><thead><tr><th>Besoin</th><th>Objectif</th><th>User stories</th><th>Critères</th></tr></thead><tbody>
-      <tr><td>B1</td><td>O1</td><td>US-D1</td><td>1 nominal, 2 alternatifs</td></tr>
-      <tr><td>B2</td><td>O2</td><td>US-S1</td><td>1 nominal, 1 alternatif</td></tr>
-      <tr><td>B3</td><td>O3</td><td>Version finale</td><td>Aucun pour l'instant</td></tr>
-      <tr><td><span class="tag line">À compléter (achat)</span></td><td><span class="tag line">À compléter</span></td><td>US-A1</td><td>2 nominaux, 1 alternatif</td></tr>
+      <tr><td>B1</td><td>O1</td><td>US-D1, US-D2, US-D3</td><td>3 nominaux, 4 alternatifs</td></tr>
+      <tr><td>B2</td><td>O2</td><td>US-S1, US-S2</td><td>2 nominaux, 2 alternatifs</td></tr>
+      <tr><td>B3</td><td>O3</td><td>US-P1, US-P2, US-P3</td><td>3 nominaux, 3 alternatifs</td></tr>
+      <tr><td>B4 (hypothèse)</td><td>O4</td><td>US-A1, US-A2</td><td>3 nominaux, 2 alternatifs</td></tr>
     </tbody></table></div>
   </div>
   <div class="sec">
