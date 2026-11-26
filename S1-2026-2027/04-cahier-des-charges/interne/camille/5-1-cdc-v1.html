@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cahier des charges V1 · Le Cadre</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+:root{--bg:#FEFAF1;--fg:#1F1A17;--muted:#6A5F55;--hair:#F0E3C8;--soft:#FDF2DC;--soleil:#FFD36E;--lilas:#C9B8F0;--peche:#FFC9A3;
+--title:Lexend,"Helvetica Neue",Arial,sans-serif;--body:"Atkinson Hyperlegible","Helvetica Neue",Arial,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/26px var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--lilas);outline-offset:3px}
+.k{font:500 13px/18px var(--title);letter-spacing:.06em;color:var(--muted)}
+/* menu */
+.side{position:fixed;inset:0 auto 0 0;width:288px;padding:32px 24px 32px 32px;display:flex;flex-direction:column;overflow-y:auto}
+.side .hero{padding-bottom:20px;border-bottom:1px solid var(--fg)}
+.side h1{margin:12px 0 8px;font:600 28px/34px var(--title);letter-spacing:-.02em}
+.side .hero p{margin:0;font-size:15px;line-height:22px;color:var(--muted)}
+.menu{list-style:none;margin:16px 0 0;padding:0}
+.menu li{border-bottom:1px solid var(--hair)}
+.menu a{display:flex;align-items:center;gap:12px;font:400 16px/22px var(--title);min-height:48px;padding:12px 8px;border-radius:12px;margin:2px 0;text-decoration:none;color:var(--muted)}
+.menu a b{font:500 13px/18px var(--title);min-width:20px}
+.menu a:hover{background:var(--soft);color:var(--fg)}
+.menu li.on a{font-weight:500;background:var(--soft);color:var(--fg)}
+.side .foot{margin-top:auto;padding-top:20px;font-size:14px;line-height:20px;color:var(--muted)}
+/* contenu */
+main{margin-left:288px;padding:64px clamp(32px,6vw,96px) 160px;max-width:1420px}
+.js .page{display:none}.js .page.on{display:block}.page{margin-bottom:96px}
+.page>.k{display:block;margin-bottom:16px}
+h2.t{margin:0;font:600 clamp(32px,3.4vw,46px)/1.15 var(--title);letter-spacing:-.02em;max-width:24ch}
+.lead{font-size:18px;line-height:28px;max-width:62ch;margin:20px 0 0}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px;margin:48px 0 0}
+.facts div{border-top:2px solid var(--fg);padding-top:12px}
+.facts em{display:block;font:600 13px/16px var(--title);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-style:normal;margin-bottom:12px}
+.facts b{display:block;font:600 44px/48px var(--title);letter-spacing:-.02em}
+.facts span{display:block;margin-top:8px;max-width:30ch}
+.sec{margin-top:96px}
+.sh{display:grid;grid-template-columns:240px minmax(0,1fr);column-gap:48px;border-top:2px solid var(--fg);padding-top:32px}
+.sh h3{grid-column:1;grid-row:1 / span 2;margin:0;font:600 26px/34px var(--title);letter-spacing:-.01em}
+.sh p{grid-column:2;margin:4px 0 0;color:var(--muted);max-width:62ch}
+.sec>.sh+*{margin-top:40px}
+.sec>*:not(.sh){margin-top:32px}
+.sec p,.sec li{max-width:68ch}
+.quote{font:500 clamp(22px,2.2vw,28px)/1.35 var(--title);letter-spacing:-.01em;max-width:34ch;margin:0;padding-left:24px;border-left:6px solid var(--soleil)}
+.src{color:var(--muted);font-size:15px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+.three>div{border-top:2px solid var(--fg);padding-top:12px}
+.three b{display:block;font:500 17px/24px var(--title);margin-bottom:4px}
+.three p{margin:0;color:var(--muted);font-size:15px;line-height:24px}
+.persona .who{font:600 24px/30px var(--title);margin:4px 0 12px}
+.persona dl{margin:0}
+.persona dt{font:500 13px/18px var(--title);color:var(--muted);margin-top:12px}
+.persona dd{margin:2px 0 0;font-size:15px;line-height:23px}
+.tw{overflow-x:auto}
+.tw table{width:100%;border-collapse:collapse;font-size:15px;line-height:22px}
+.tw th{font:500 14px/20px var(--title);color:var(--muted);text-align:left;padding:8px 16px 8px 0;border-bottom:1px solid var(--fg)}
+.tw td{padding:12px 16px 12px 0;border-bottom:1px solid var(--hair);vertical-align:top}
+.tw tbody tr:hover{background:var(--soft)}
+.tw td:first-child{font-weight:700}
+.tag{display:inline-block;font:500 14px/20px var(--title);padding:4px 14px;border-radius:999px;color:#1F1A17;white-space:nowrap}
+.ok{background:var(--soleil)}.clar{background:var(--lilas)}.no{background:var(--peche)}
+.line{background:transparent;color:var(--muted);border:1px solid var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:14px;color:var(--muted)}
+.note,.warn{border-radius:16px;padding:16px 20px;max-width:76ch;font-size:15px;line-height:24px}
+.note{background:var(--soft);border-left:6px solid var(--soleil)}
+.warn{background:#FFF0E4;border-left:6px solid var(--peche)}
+.note p,.warn p{margin:0}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.steps>li{position:relative;padding:0 0 24px 64px}
+ol.steps>li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font:600 16px var(--title)}
+ol.steps>li b{display:block;font:500 18px/26px var(--title)}
+ol.steps>li span{color:var(--muted)}
+.story{border-top:2px solid var(--fg);padding-top:20px;margin-top:48px!important}
+.story h4{margin:0;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font:600 22px/30px var(--title)}
+.story .us{font:500 19px/30px var(--title);margin:12px 0 0;max-width:52ch}
+.story .us em{font-style:normal;color:var(--muted)}
+.gwt{display:grid;grid-template-columns:120px repeat(3,minmax(0,1fr));gap:0 20px;margin-top:20px;border-top:1px solid var(--fg)}
+.gwt>div{padding:12px 0;border-bottom:1px solid var(--hair);font-size:15px;line-height:23px}
+.gwt .h{font:500 13px/18px var(--title);color:var(--muted);padding:8px 0;border-bottom:1px solid var(--fg)}
+ol.dec{list-style:none;margin:48px 0 0;padding:0;border-top:2px solid var(--fg)}
+ol.dec li{display:grid;grid-template-columns:40px 260px 1fr;gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--hair)}
+ol.dec .dn{font:500 15px/30px var(--title);color:var(--muted)}
+ol.dec a{font:600 22px/30px var(--title);text-decoration:none}
+ol.dec a:hover{background:linear-gradient(var(--soleil),var(--soleil)) no-repeat 0 85%/100% .5em}
+.gl{margin:0;border-top:2px solid var(--fg)}
+.gl div{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:14px 0;border-bottom:1px solid var(--hair)}
+.gl dt{font:500 17px/26px var(--title)}
+.gl dd{margin:0}
+.todo{list-style:none;margin:0;padding:0;border-top:2px solid var(--fg)}
+.todo li{display:grid;grid-template-columns:32px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--hair);max-width:none}
+.todo li::before{content:"";width:20px;height:20px;border:2px solid var(--fg);border-radius:6px;margin-top:3px}
+.todo b{font:500 17px/26px var(--title)}
+.next{margin-top:112px;text-align:right}
+.next a{font:500 18px var(--title);text-decoration:none;background:linear-gradient(var(--soleil),var(--soleil)) 0 100%/0% .5em no-repeat;transition:background-size .3s}
+.next a:hover{background-size:100% .5em}
+footer.pied{margin-top:96px;padding-top:16px;border-top:1px solid var(--hair);font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:960px){
+ .side{position:static;width:auto;padding:20px 16px 0}
+ main{margin-left:0;padding:40px 20px 96px}
+ .facts,.three{grid-template-columns:1fr;gap:24px}
+ .sh{grid-template-columns:1fr}.sh h3{grid-row:auto}.sh p{grid-column:1;margin-top:12px}
+ ol.dec li{grid-template-columns:32px 1fr}ol.dec li span{grid-column:2}
+ .gwt{grid-template-columns:1fr}.gwt .h{display:none}
+ .gl div{grid-template-columns:1fr;gap:4px}
+}
+.consigne{font-size:15px;line-height:23px;color:var(--muted);border-left:3px solid var(--soleil);padding-left:14px;max-width:76ch}
+.sh p.consigne{margin-top:4px}
+h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:600 20px/28px var(--title)}
+.tw table.kv td:first-child{width:170px;font-weight:500;font-family:var(--title);color:var(--muted)}
+.tw table.kv tr:hover{background:none}
+</style>
+</head>
+<body>
+<aside class="side">
+  <div class="hero">
+    <span class="k">PFR Générations Connectées</span>
+    <h1>Cahier des charges V1</h1>
+    <p>Le Cadre · gabarit de l'intervenant, sections 1 à 5 · 26 novembre 2026</p>
+  </div>
+  <ol class="menu">
+    <li><a href="#accueil"><b>00</b>Accueil</a></li>
+    <li><a href="#garde"><b>PG</b>Page de garde</a></li>
+    <li><a href="#s1"><b>1</b>Contexte et problématique</a></li>
+    <li><a href="#s2"><b>2</b>Utilisateurs, besoins, objectifs</a></li>
+    <li><a href="#s3"><b>3</b>Périmètre fonctionnel</a></li>
+    <li><a href="#s4"><b>4</b>Parcours et user stories</a></li>
+    <li><a href="#s5"><b>5</b>Règles et critères</a></li>
+    <li><a href="#s6"><b>6-10</b>Sections suivantes</a></li>
+    <li><a href="#annexes"><b>A-D</b>Annexes</a></li>
+  </ol>
+  <p class="foot">Lucas Gâteau, Clément Gosselin, Camille Breton. Personas fictifs, données simulées.</p>
+</aside>
+
+<main id="contenu">
+
+<!-- ACCUEIL -->
+<section class="page" id="accueil">
+  <span class="k">00 · Accueil</span>
+  <h2 class="t">Un cadre au mur pour que les nouvelles circulent entre deux appels</h2>
+  <p class="lead">La V1 du cahier des charges, dans la structure du gabarit de l'intervenant : chaque section reprend sa consigne, puis nos réponses dans ses tableaux.</p>
+  <div class="facts">
+    <div><em>Faces</em><b>3</b><span>Achat, senior, aidant, plus le simulateur.</span></div>
+    <div><em>Stories</em><b>3</b><span>Une par face, chacune reliée à un besoin.</span></div>
+    <div><em>Critères</em><b>8</b><span>4 nominaux, 4 alternatifs, cochables par oui ou par non.</span></div>
+  </div>
+  <ol class="dec">
+    <li><span class="dn">1</span><a href="#s1">Contexte et problématique</a><span>Pourquoi ce produit existe, et pourquoi le cadre.</span></li>
+    <li><span class="dn">2</span><a href="#s2">Utilisateurs, besoins, objectifs</a><span>Personas, six besoins sourcés, quatre objectifs.</span></li>
+    <li><span class="dn">3</span><a href="#s3">Périmètre fonctionnel</a><span>Inclus, exclu, à clarifier, pour les trois faces.</span></li>
+    <li><span class="dn">4</span><a href="#s4">Parcours et user stories</a><span>Du toucher de Jacqueline au Soly reçu par Sandrine.</span></li>
+    <li><span class="dn">5</span><a href="#s5">Règles et critères</a><span>Gradation des alertes et critères Étant donné / Quand / Alors.</span></li>
+    <li><span class="dn">A-D</span><a href="#annexes">Annexes</a><span>Traçabilité, questions ouvertes, IA déclarée, glossaire.</span></li>
+  </ol>
+  <div class="sec">
+    <div class="sh"><h3>Encore à faire</h3><p>Avant de rendre le .docx (Téléchargements, CDC_Generations_Connectees_Le_Cadre_V1.docx).</p></div>
+    <ul class="todo">
+      <li><span><b>Compter les pages dans Word.</b> La section 3 doit tenir sur une page.</span></li>
+      <li><span><b>Remplir les « à compléter ».</b> Relecteurs, vérification de l'IA, nom commercial, fréquence du simulateur.</span></li>
+      <li><span><b>Trancher Q1, puis poser Q6 à l'intervenant.</b> Retrait de l'accord par le senior ; scénario « chute ».</span></li>
+    </ul>
+  </div>
+  <p class="next"><a href="#garde">Page de garde →</a></p>
+</section>
+
+<!-- PAGE DE GARDE -->
+<section class="page" id="garde">
+  <span class="k">Page de garde</span>
+  <h2 class="t">Le Cadre, V1 du 26 novembre</h2>
+  <div class="sec">
+    <div class="sh"><h3>Page de garde</h3><p class="consigne">Consigne : nom du produit, objet retenu, équipe, version, documents de référence.</p></div>
+    <div class="tw"><table><thead><tr><th>Champ</th><th>Contenu</th></tr></thead><tbody>
+      <tr><td>Nom du produit</td><td>Le Cadre (nom de travail ; nom commercial <span class="tag line">à compléter</span>)</td></tr>
+      <tr><td>Objet connecté retenu</td><td>Cadre photo connecté, accroché au mur chez le senior (archétype « objet compagnon »), simulé par notre générateur d'événements</td></tr>
+      <tr><td>Équipe</td><td>Lucas Gâteau, Clément Gosselin, Camille Breton</td></tr>
+      <tr><td>Version</td><td>V1 du 26 novembre 2026</td></tr>
+      <tr><td>Documents de référence</td><td>Dossier « Besoins utilisateurs » (bloc 02) ; Cartographie S2 et simulateur (phase 4) ; benchmark de stack (bloc 03)</td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>Contributions nominatives</h3><p class="consigne">Consigne : qui a rédigé et qui a relu chaque section. L'intervenant peut interroger chacun sur n'importe quelle partie.</p></div>
+    <div class="tw"><table><thead><tr><th>Section</th><th>Rédaction</th><th>Relecture</th></tr></thead><tbody>
+      <tr><td>1. Contexte et problématique</td><td>Camille Breton (brouillon V1)</td><td><span class="tag line">à compléter</span></td></tr>
+      <tr><td>2. Utilisateurs, besoins et objectifs</td><td>Camille Breton (brouillon V1)</td><td><span class="tag line">à compléter</span></td></tr>
+      <tr><td>3. Périmètre fonctionnel</td><td>Camille Breton (brouillon V1)</td><td><span class="tag line">à compléter</span></td></tr>
+      <tr><td>4. Parcours et user stories</td><td>Camille Breton (brouillon V1)</td><td><span class="tag line">à compléter</span></td></tr>
+      <tr><td>5. Règles de gestion et critères</td><td>Camille Breton (brouillon V1)</td><td><span class="tag line">à compléter</span></td></tr>
+      <tr><td>6 à 10</td><td>Non attendu en V1</td><td>Non attendu en V1</td></tr>
+    </tbody></table></div>
+  </div>
+  <p class="next"><a href="#s1">1. Contexte et problématique →</a></p>
+</section>
+
+<!-- SECTION 1 -->
+<section class="page" id="s1">
+  <span class="k">Section 1</span>
+  <h2 class="t">Contexte et problématique</h2>
+  <p class="consigne" style="margin-top:20px">Consigne : une page maximum. Le lecteur doit comprendre en 2 minutes pourquoi ce produit existe.</p>
+  <div class="sec">
+    <div class="sh"><h3>Situation actuelle</h3><p class="consigne">Consigne : ce que vivent les seniors et leurs enfants, appuyé sur la veille et les entretiens. Un ou deux chiffres sourcés.</p></div>
+    <p>Dans les familles interrogées (9 personnes sur trois générations, dossier Besoins, p. 02), le lien avec le grand-parent tient sur un seul rendez-vous : l'appel du parent, chaque semaine (E1.1). Entre deux appels, rien ne circule : la grand-mère vit seule et s'en attriste (S1.4), n'ose pas envoyer ses photos de peur de déranger (S2.1), et les petits-enfants n'appellent qu'aux grandes dates (PE1.6).</p>
+    <div class="facts" style="grid-template-columns:repeat(2,1fr);margin-top:32px">
+      <div><em>Enfants aidants</em><b>2,1 M</b><span>appellent et passent voir leur parent (DREES, fiche marché, réf. 12).</span></div>
+      <div><em>Aidants pivots seuls</em><b>39 %</b><span>sont seuls à aider dans leur fratrie (DREES, fiche marché, réf. 12).</span></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>Problématique</h3><p class="consigne">Consigne : la problématique validée en phase 3, en une phrase, avec la tension entre le besoin de l'aidant et l'autonomie du senior.</p></div>
+    <p class="quote">Comment pourrions-nous permettre à toute la famille de donner et recevoir des nouvelles entre deux appels, sans effort et sans peur de déranger ?</p>
+    <div class="note"><p><b>La tension.</b> L'aidant veut savoir que son parent va bien ; le senior veut rester libre et ne pas être observé. Notre parti : des nouvelles que chacun donne de lui-même, jamais une surveillance subie.</p></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>Objet retenu et justification</h3><p class="consigne">Consigne : quel archétype d'objet, pourquoi lui plutôt qu'un autre, lien avec un besoin observé ; rappeler qu'il est simulé.</p></div>
+    <p>Un cadre photo connecté, accroché au mur chez le senior. Il affiche les photos, vidéos courtes et petits mots envoyés par la famille ; le senior n'a ni appli ni compte. Un seul toucher sur l'écran envoie un « Soly » (« je suis là ») aux aidants.</p>
+    <div class="three">
+      <div><b>Les photos d'abord</b><p>C'est ce que la grand-mère regarde le plus dans la journée (S4.1).</p></div>
+      <div><b>Pas de téléphone</b><p>Il n'est pas intuitif et les photos s'y perdent (S3.2).</p></div>
+      <div><b>Un objet physique</b><p>« Le papier crée plus de lien » (S1.3).</p></div>
+    </div>
+    <div class="warn"><p><b>Écarté : le bracelet détecteur de chute.</b> Porté seulement quand on est seul (fiche marché, réf. 21) et vécu comme une surveillance.</p></div>
+    <p class="src">Simulé : les événements du cadre (toucher, silence, hors connexion, photo affichée) sont produits par notre générateur (cartographie, phase 4, section 07).</p>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>Cadre réglementaire et éthique</h3><p class="consigne">Consigne : en trois lignes, statut des données, consentement du senior, frontière avec le dispositif médical.</p></div>
+    <div class="three">
+      <div><b>Données simulées</b><p>Chaque événement du générateur est marqué « simulé » et n'agit que sur un foyer de test.</p></div>
+      <div><b>Consentement</b><p>L'alerte de silence n'existe que si le senior l'accepte sur le cadre ; il peut la retirer (Q1).</p></div>
+      <div><b>Pas médical</b><p>Aucun capteur, aucune donnée de santé, aucune détection de chute ; pas une téléassistance.</p></div>
+    </div>
+  </div>
+  <p class="next"><a href="#s2">2. Utilisateurs, besoins, objectifs →</a></p>
+</section>
+
+<!-- SECTION 2 -->
+<section class="page" id="s2">
+  <span class="k">Section 2</span>
+  <h2 class="t">Utilisateurs, besoins et objectifs</h2>
+  <p class="consigne" style="margin-top:20px">Consigne : chaque besoin doit être rattaché à une observation ou un entretien de la phase 3.</p>
+  <div class="sec">
+    <div class="sh"><h3>2.1 Personas</h3><p class="consigne">Consigne : résumer les personas en renvoyant au dossier de phase 3. L'acheteur est souvent l'aidant, à un autre moment : décrire ce besoin à part.</p></div>
+    <div class="tw"><table><thead><tr><th>Rôle</th><th>Persona</th><th>Ce qu'il veut</th><th>Ce qu'il craint</th><th>Face concernée</th></tr></thead><tbody>
+      <tr><td>Senior utilisateur</td><td>Jacqueline, 75 ans</td><td>Plus de nouvelles de ses petits-enfants (S4.3) ; leurs photos sous les yeux (S4.1)</td><td>Déranger (S2.1) ; être oubliée (S4.3)</td><td><span class="tag ok">Senior</span></td></tr>
+      <tr><td>Aidant</td><td>Sandrine, 50 ans</td><td>Savoir que sa mère va bien (E1.1) sans porter seule tout le lien (PE1.16)</td><td>Que sa mère se sente seule (S1.4) ; ne jamais en faire assez (E1.3)</td><td><span class="tag ok">Aidant</span></td></tr>
+      <tr><td>Proche</td><td>Hugo, 18 ans</td><td>Donner des nouvelles sans effort (PE1.9)</td><td>Culpabiliser de ne pas le faire (PE1.20)</td><td><span class="tag ok">Aidant</span></td></tr>
+      <tr><td>Acheteur</td><td>Sandrine, avant l'installation</td><td>Offrir un objet que sa mère acceptera</td><td>Un objet vécu comme une surveillance ; un coût caché</td><td><span class="tag ok">Achat</span></td></tr>
+    </tbody></table></div>
+    <div class="note"><p><b>Besoin d'achat :</b> Sandrine achète avant l'installation, avec la question « ma mère l'acceptera-t-elle ? ». Nos entretiens ne l'ont pas couvert : c'est une hypothèse (B5).</p></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>2.2 Du problème à la fonctionnalité</h3><p class="consigne">Consigne : noter les solutions envisagées, justifier celle retenue, au moins trois lignes. Source obligatoire ; sans source, c'est une hypothèse.</p></div>
+    <div class="tw"><table><thead><tr><th>#</th><th>Problème observé</th><th>Besoin</th><th>Solutions envisagées → retenue</th><th>Fonctionnalité</th><th>Source</th></tr></thead><tbody>
+      <tr><td>B1</td><td>Entre deux appels, la grand-mère ne reçoit rien et n'ose rien réclamer</td><td>Recevoir des nouvelles sans les demander ni manipuler un outil</td><td>Plus d'appels, messagerie, tablette → <b>cadre qui affiche seul ce que la famille envoie</b></td><td>Affichage automatique sur le cadre</td><td>S4.3, S2.1, S1.4, S3.2</td></tr>
+      <tr><td>B2</td><td>Le petit-fils culpabilise mais n'a pas le réflexe</td><td>Donner des nouvelles sans effort, à un rythme tenable</td><td>Rappel d'agenda, appel programmé, cartes → <b>invitation du jour, envoi depuis la galerie</b></td><td>Invitation quotidienne, envoi depuis l'appli</td><td>PE1.20, PE1.9, PE1.6, PE2.6</td></tr>
+      <tr><td>B3</td><td>Le parent porte seul le lien et n'a de nouvelles qu'en appelant</td><td>Savoir que son parent va bien, sans le surveiller</td><td>Géolocalisation, caméra, capteurs → <b>un signe volontaire du senior</b></td><td>Soly</td><td>E1.1, E2.1, PE1.16</td></tr>
+      <tr><td>B4</td><td>Si le senior ne donne plus signe, personne ne le voit avant l'appel suivant</td><td>Être prévenu d'un silence qui dure, si le senior l'accepte</td><td>Caméra, détection de chute, secours → <b>alerte après 48 h sans toucher, consentie</b></td><td>Alerte de silence 48 h</td><td><span class="tag line">Hypothèse</span> dérivée de E2.1</td></tr>
+      <tr><td>B5</td><td>L'acheteur hésite à offrir un objet que son parent pourrait refuser</td><td>Acheter en confiance un objet accepté</td><td>Essai gratuit, fiche détaillée → <b>page qui dit ce que le cadre fait et ne fait pas</b></td><td>Présentation et commande</td><td><span class="tag line">Hypothèse</span> veille, bloc 01</td></tr>
+      <tr><td>B6</td><td>Les photos se perdent dans le téléphone ; le papier crée plus de lien</td><td>Garder une trace physique des photos</td><td>Tirages, gazette mensuelle, album annuel → <b>à trancher (Q3)</b></td><td>Récapitulatif papier</td><td>S1.3, S3.2, S4.1</td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>2.3 Objectifs produit</h3><p class="consigne">Consigne : un objectif décrit le résultat pour un utilisateur. Pour qui, quel problème, quel changement ? Pas de chiffres cibles (phase 6).</p></div>
+    <div class="tw"><table><thead><tr><th>#</th><th>Objectif</th><th>Pour qui</th><th>Besoins couverts</th></tr></thead><tbody>
+      <tr><td>O1</td><td>Permettre au senior de recevoir des nouvelles et d'en donner, sans rien apprendre ni déranger</td><td>Senior (Jacqueline)</td><td>B1, B3, B6</td></tr>
+      <tr><td>O2</td><td>Permettre à chaque proche de donner des nouvelles sans effort, sans que tout passe par le parent</td><td>Proches (Hugo, Sandrine)</td><td>B2</td></tr>
+      <tr><td>O3</td><td>Rassurer l'aidant entre deux appels, sans placer le senior sous surveillance</td><td>Aidant (Sandrine)</td><td>B3, B4</td></tr>
+      <tr><td>O4</td><td>Permettre à l'acheteur d'offrir l'objet en sachant ce qu'il fait et ne fait pas</td><td>Acheteur (Sandrine)</td><td>B5</td></tr>
+    </tbody></table></div>
+  </div>
+  <p class="next"><a href="#s3">3. Périmètre fonctionnel →</a></p>
+</section>
+
+<!-- SECTION 3 -->
+<section class="page" id="s3">
+  <span class="k">Section 3</span>
+  <h2 class="t">Périmètre fonctionnel</h2>
+  <p class="consigne" style="margin-top:20px">Consigne : délimiter n'est pas encore prioriser ; la priorisation et le MVP viendront en phase 6.</p>
+  <p class="legend" style="margin-top:24px"><span class="tag ok">Inclus</span><span class="tag clar">À clarifier</span><span class="tag no">Exclu</span></p>
+  <div class="sec">
+    <div class="sh"><h3>Tableau de périmètre</h3><p class="consigne">Consigne : face, fonctionnalité, décision, justification (besoin, faisabilité, contrainte).</p></div>
+    <div class="tw"><table><thead><tr><th>Face</th><th>Fonctionnalité</th><th>Décision</th><th>Justification</th></tr></thead><tbody>
+      <tr><td>Achat</td><td>Présentation du cadre : ce qu'il fait, ce qu'il ne fait pas (ni caméra, ni micro)</td><td><span class="tag ok">Inclus</span></td><td>B5 : lever la peur d'un objet de surveillance</td></tr>
+      <tr><td>Achat</td><td>Commande de démonstration, paiement en mode test</td><td><span class="tag ok">Inclus</span></td><td>B5 ; aucune transaction réelle dans le cours</td></tr>
+      <tr><td>Achat</td><td>Prix et abonnement</td><td><span class="tag clar">À clarifier</span></td><td>Sans abonnement, ou environ 100 € avec abonnement (Q2)</td></tr>
+      <tr><td>Senior</td><td>Affichage automatique des photos, vidéos (30 s max) et petits mots, sans appli ni compte</td><td><span class="tag ok">Inclus</span></td><td>B1 ; le téléphone n'est pas intuitif (S3.2)</td></tr>
+      <tr><td>Senior</td><td>Soly : un toucher sur l'écran dit « je suis là »</td><td><span class="tag ok">Inclus</span></td><td>B3 ; un seul geste, sans écrire ni répondre</td></tr>
+      <tr><td>Senior</td><td>Accepter ou refuser l'alerte de silence, sur le cadre</td><td><span class="tag ok">Inclus</span></td><td>Consentement du senior, non négociable</td></tr>
+      <tr><td>Senior</td><td>Afficher les photos déjà reçues sans internet</td><td><span class="tag ok">Inclus</span></td><td>Le cadre n'est jamais vide ni en erreur</td></tr>
+      <tr><td>Senior</td><td>Retirer soi-même son accord, masquer une photo</td><td><span class="tag clar">À clarifier</span></td><td>Aujourd'hui l'aidant le fait à sa demande (Q1)</td></tr>
+      <tr><td>Senior</td><td>Appels audio ou vidéo, messages vocaux</td><td><span class="tag no">Exclu</span></td><td>Un objet de nouvelles, pas un téléphone (décision du 15 oct.)</td></tr>
+      <tr><td>Senior</td><td>Caméra, micro, détection de chute</td><td><span class="tag no">Exclu</span></td><td>Surveillance ; risque de dispositif médical</td></tr>
+      <tr><td>Aidant</td><td>Envoyer une photo, une vidéo ou un petit mot, y compris depuis la galerie</td><td><span class="tag ok">Inclus</span></td><td>B2, B3</td></tr>
+      <tr><td>Aidant</td><td>Recevoir les Soly du senior</td><td><span class="tag ok">Inclus</span></td><td>B3</td></tr>
+      <tr><td>Aidant</td><td>Alerte après 48 h sans toucher, si le senior l'a accepté ; pause vacances</td><td><span class="tag ok">Inclus</span></td><td>B4 ; une seule alerte, jamais la nuit</td></tr>
+      <tr><td>Aidant</td><td>Inviter la famille et accepter chaque proche avant qu'il envoie</td><td><span class="tag ok">Inclus</span></td><td>Seuls les proches acceptés écrivent au cadre</td></tr>
+      <tr><td>Aidant</td><td>Invitation du jour à partager un moment</td><td><span class="tag ok">Inclus</span></td><td>B2</td></tr>
+      <tr><td>Aidant</td><td>Récapitulatif papier : gazette mensuelle ou album annuel</td><td><span class="tag clar">À clarifier</span></td><td>B6 ; deux versions dans nos documents (Q3)</td></tr>
+      <tr><td>Aidant</td><td>Appel automatique aux secours si aucun aidant ne réagit</td><td><span class="tag clar">À clarifier</span></td><td>Contredit notre choix de ne pas surveiller (Q4)</td></tr>
+      <tr><td>Aidant</td><td>Géolocalisation, suivi détaillé de l'activité</td><td><span class="tag no">Exclu</span></td><td>Contraire à l'autonomie du senior</td></tr>
+      <tr><td>Simulateur</td><td>Événements générés : toucher (Soly), silence de 48 h, cadre hors connexion, photo affichée. Fréquence <span class="tag line">à compléter</span>. Cas « capteur silencieux » = cadre hors connexion</td><td><span class="tag ok">Inclus</span></td><td>Renvoi à la cartographie, phase 4, section 07 (G1 à G3) ; hors connexion à définir (Q5)</td></tr>
+    </tbody></table></div>
+    <div class="note"><p><b>Non négociable, et respecté :</b> face senior sans appli ni compte, un seul geste ; accord du senior pour l'alerte, retirable (Q1) ; données uniquement simulées, aucune donnée de santé.</p></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>Questions ouvertes</h3><p class="consigne">Consigne : lister les décisions « à clarifier », avec qui doit trancher et avant quand.</p></div>
+    <div class="tw"><table><thead><tr><th>#</th><th>Question</th><th>Qui tranche</th><th>Avant</th></tr></thead><tbody>
+      <tr><td>Q1</td><td>Le senior retire-t-il son accord à l'alerte directement sur le cadre ?</td><td>L'équipe</td><td>3 déc.</td></tr>
+      <tr><td>Q2</td><td>Prix du cadre et abonnement : lequel retenir ?</td><td>L'équipe</td><td>3 déc.</td></tr>
+      <tr><td>Q3</td><td>Trace papier : gazette mensuelle ou album annuel ?</td><td>L'équipe</td><td>3 déc.</td></tr>
+      <tr><td>Q4</td><td>Aucun aidant ne réagit à l'alerte : que fait le produit ? Proposition V1 : rien de plus.</td><td>L'équipe, avec l'intervenant</td><td>3 déc.</td></tr>
+      <tr><td>Q5</td><td>Cadre hors connexion : quel message à l'aidant, et au bout de combien de temps ?</td><td>L'équipe</td><td>3 déc.</td></tr>
+      <tr><td>Q6</td><td>Scénario « chute » du simulateur, sans capteur : on le remplace par le silence de 48 h ?</td><td>L'équipe, avec l'intervenant</td><td>3 déc.</td></tr>
+    </tbody></table></div>
+  </div>
+  <p class="next"><a href="#s4">4. Parcours et user stories →</a></p>
+</section>
+
+<!-- SECTION 4 -->
+<section class="page" id="s4">
+  <span class="k">Section 4</span>
+  <h2 class="t">Parcours et user stories</h2>
+  <p class="consigne" style="margin-top:20px">Consigne : pour la V1, un parcours et une story par face.</p>
+  <div class="sec">
+    <div class="sh"><h3>4.1 Parcours P1</h3><p class="consigne">Consigne : un acteur, un objectif, un début, une fin, des étapes et au moins un scénario alternatif. Parcours cœur : de l'événement simulé à l'information vue par l'aidant.</p></div>
+    <div class="tw"><table class="kv"><tbody>
+      <tr><td>Titre</td><td><b>Du toucher de Jacqueline au Soly reçu par Sandrine</b></td></tr>
+      <tr><td>Acteur</td><td>Sandrine, aidante. Jacqueline, la senior, déclenche l'événement.</td></tr>
+      <tr><td>Objectif</td><td>Savoir entre deux appels que sa mère va bien, sans l'appeler ni la surveiller.</td></tr>
+      <tr><td>Déclencheur</td><td>Jacqueline touche l'écran du cadre. Pour le cours, le générateur envoie un événement « toucher » marqué « simulé », pour le foyer de test.</td></tr>
+    </tbody></table></div>
+    <h4 class="sub">Étapes, scénario nominal</h4>
+    <ol class="steps">
+      <li><b>L'événement part</b><span>Le cadre, ou le générateur, envoie l'événement « toucher ».</span></li>
+      <li><b>Le Soly est enregistré</b><span>Avec son heure ; le compteur de silence repart à zéro.</span></li>
+      <li><b>Les droits sont vérifiés</b><span>Sandrine est aidante de ce foyer et ses notifications sont actives.</span></li>
+      <li><b>Sandrine est notifiée</b><span>« Maman t'a envoyé un Soly ».</span></li>
+      <li><b>Elle consulte</b><span>Dans l'appli, elle voit l'heure du dernier Soly.</span></li>
+      <li><b>Jacqueline voit que c'est parti</b><span>Un petit signe sur le cadre (forme à choisir).</span></li>
+    </ol>
+    <h4 class="sub">Scénarios alternatifs</h4>
+    <div class="tw"><table><thead><tr><th>#</th><th>Situation</th><th>Réaction du produit</th></tr></thead><tbody>
+      <tr><td>A1</td><td>Aucun toucher depuis 48 h, hors nuit, alerte acceptée</td><td>Une seule alerte à chaque aidant ; un aidant indique « je m'en occupe », la famille est rassurée</td></tr>
+      <tr><td>A2</td><td>Accord absent ou retiré</td><td>Aucune alerte de silence ; les Soly continuent d'arriver</td></tr>
+      <tr><td>A3</td><td>Capteur silencieux : cadre hors connexion</td><td>Le silence n'est pas pris pour une absence (règle proposée) ; l'aidant est prévenu (Q5)</td></tr>
+      <tr><td>A4</td><td>Double appui en moins d'une seconde</td><td>Un seul Soly, une seule notification</td></tr>
+      <tr><td>A5</td><td>Mode vacances</td><td>Alerte suspendue jusqu'à la date de retour</td></tr>
+    </tbody></table></div>
+    <div class="note"><p><b>Fin :</b> Sandrine sait que sa mère est là sans l'avoir appelée ; Jacqueline a donné signe de vie sans écrire ni déranger.</p></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>4.2 User stories</h3><p class="consigne">Consigne : en tant que [acteur], je veux [capacité], afin de [bénéfice]. Une story = une capacité. Pas de choix d'outil.</p></div>
+    <div class="tw"><table><thead><tr><th>ID</th><th>Face</th><th>En tant que…</th><th>Je veux…</th><th>Afin de…</th><th>Besoin</th><th>Parcours</th></tr></thead><tbody>
+      <tr><td>US-A1</td><td>Achat</td><td>acheteuse (Sandrine, avant l'installation)</td><td>commander un cadre pour ma mère depuis le site</td><td>le lui offrir en sachant ce qu'il fait et ce qu'il ne fait pas</td><td>B5</td><td>P2, version finale</td></tr>
+      <tr><td>US-S1</td><td>Senior</td><td>senior (Jacqueline)</td><td>dire « je suis là » à ma famille d'un seul toucher sur le cadre</td><td>donner signe de vie sans écrire et sans peur de déranger</td><td>B3</td><td>P1</td></tr>
+      <tr><td>US-D1</td><td>Aidant</td><td>aidante (Sandrine)</td><td>être prévenue quand ma mère n'a pas touché le cadre depuis 48 h, si elle l'a accepté</td><td>pouvoir l'appeler à temps, sans la surveiller</td><td>B4</td><td>P1, A1</td></tr>
+    </tbody></table></div>
+  </div>
+  <p class="next"><a href="#s5">5. Règles et critères →</a></p>
+</section>
+
+<!-- SECTION 5 -->
+<section class="page" id="s5">
+  <span class="k">Section 5</span>
+  <h2 class="t">Règles de gestion et critères d'acceptation</h2>
+  <p class="consigne" style="margin-top:20px">Consigne : un critère décrit un résultat observable que l'on peut tester, pas un écran. Au moins un cas alternatif par story.</p>
+  <div class="sec">
+    <div class="sh"><h3>5.1 Règles de gestion</h3><p class="consigne">Consigne : les conditions que le produit respecte toujours, dont la gradation des alertes : quel événement déclenche quel niveau, et quand le produit se tait.</p></div>
+    <div class="tw"><table><thead><tr><th>ID</th><th>Règle</th><th>Stories concernées</th></tr></thead><tbody>
+      <tr><td>RG1</td><td>Seuls les proches invités et acceptés par un aidant peuvent envoyer au cadre.</td><td>US-S1, US-D1</td></tr>
+      <tr><td>RG2</td><td>L'alerte de silence n'existe que si le senior l'a acceptée ; la date de l'accord est gardée ; après retrait, plus aucune alerte.</td><td>US-D1</td></tr>
+      <tr><td>RG3</td><td><b>Gradation.</b> Soly : information, sans réponse attendue. Cadre hors connexion : information à l'aidant (à définir, Q5). Plus de 48 h sans toucher, hors nuit : une seule alerte, à tous les aidants. Un Soly lève l'alerte. Le produit se tait la nuit (du coucher au lever du soleil), en mode vacances, sans accord du senior, et après une première alerte tant qu'aucun Soly n'est revenu.</td><td>US-S1, US-D1</td></tr>
+      <tr><td>RG4</td><td>Deux touchers à moins d'une seconde comptent pour un seul Soly.</td><td>US-S1</td></tr>
+      <tr><td>RG5</td><td>Un événement simulé n'agit que dans le foyer de test, jamais dans une vraie famille.</td><td>US-S1, US-D1</td></tr>
+      <tr><td>RG6</td><td>Aucune donnée de santé collectée, aucun conseil médical.</td><td>Toutes</td></tr>
+      <tr><td>RG7</td><td>Aucune commande sans paiement accepté ; en démonstration, mode test seulement.</td><td>US-A1</td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>5.2 Critères d'acceptation</h3><p class="consigne">Consigne : étant donné [un contexte], quand [une action], alors [un résultat observable]. Chaque critère se coche par oui ou par non.</p></div>
+    <div class="tw"><table><thead><tr><th>Story</th><th>Type</th><th>Étant donné…</th><th>Quand…</th><th>Alors…</th></tr></thead><tbody>
+      <tr><td>US-A1</td><td><span class="tag ok">Nominal</span></td><td>un visiteur sur la page du cadre</td><td>il commande avec une carte de test acceptée</td><td>un numéro de commande s'affiche et un e-mail de confirmation est reçu</td></tr>
+      <tr><td>US-A1</td><td><span class="tag ok">Nominal</span></td><td>un visiteur sur la page du cadre</td><td>la page s'affiche</td><td>elle indique que le cadre n'a ni caméra ni micro</td></tr>
+      <tr><td>US-A1</td><td><span class="tag no">Alternatif</span></td><td>un visiteur qui commande</td><td>le paiement de test est refusé</td><td>un message explique le refus et propose de réessayer ; aucune commande n'est enregistrée</td></tr>
+      <tr><td>US-S1</td><td><span class="tag ok">Nominal</span></td><td>un cadre relié à un foyer qui compte au moins un aidant</td><td>le senior touche l'écran une fois</td><td>un signe s'affiche sur le cadre et le Soly apparaît, avec son heure, dans l'appli de l'aidant</td></tr>
+      <tr><td>US-S1</td><td><span class="tag no">Alternatif</span></td><td>un senior qui touche l'écran deux fois en moins d'une seconde</td><td>les deux touchers arrivent au serveur</td><td>un seul Soly est enregistré et l'aidant ne reçoit qu'une notification</td></tr>
+      <tr><td>US-D1</td><td><span class="tag ok">Nominal</span></td><td>un senior qui a accepté l'alerte et un aidant aux notifications actives</td><td>le générateur simule 48 h sans toucher, hors nuit</td><td>l'aidant reçoit une seule alerte qui indique l'heure du dernier Soly</td></tr>
+      <tr><td>US-D1</td><td><span class="tag no">Alternatif</span></td><td>un senior qui a refusé ou retiré son accord</td><td>le générateur simule 48 h sans toucher</td><td>aucune alerte n'est envoyée</td></tr>
+      <tr><td>US-D1</td><td><span class="tag no">Alternatif</span></td><td>un aidant qui a activé le mode vacances</td><td>48 h sans toucher sont simulées pendant cette période</td><td>aucune alerte n'est envoyée</td></tr>
+    </tbody></table></div>
+  </div>
+  <p class="next"><a href="#s6">Sections 6 à 10 →</a></p>
+</section>
+
+<!-- SECTIONS 6-10 -->
+<section class="page" id="s6">
+  <span class="k">Sections 6 à 10</span>
+  <h2 class="t">Pas attendues en V1</h2>
+  <p class="lead">Travaillées les 26 et 27 novembre et le 3 décembre. Voici ce que le gabarit demandera.</p>
+  <div class="sec">
+    <div class="sh"><h3>La suite du gabarit</h3><p>Rien n'est rempli ici pour l'instant.</p></div>
+    <div class="tw"><table><thead><tr><th>Section</th><th>Ce que l'intervenant attend</th><th>Quand</th></tr></thead><tbody>
+      <tr><td>6. Exigences non fonctionnelles</td><td>Accessibilité de la face senior, confidentialité et consentement, droits d'accès, fiabilité de la chaîne d'alerte, ton non stigmatisant ; chacune vérifiable</td><td>26-27 nov.</td></tr>
+      <tr><td>7. Contraintes techniques</td><td>Stack retenue par brique, schéma des flux de données, dépendances et pannes possibles</td><td>27 nov.</td></tr>
+      <tr><td>8. Faisabilité</td><td>Ressources, délais, complexité, budget, et leur effet sur le périmètre</td><td>3 déc.</td></tr>
+      <tr><td>9. Risques et hypothèses</td><td>Risques techniques, fonctionnels, réglementaires, classés, avec parades</td><td>3 déc.</td></tr>
+      <tr><td>10. Livrables et validation</td><td>Maquettes, MVP, produit validé, avec leurs critères</td><td>3 déc.</td></tr>
+    </tbody></table></div>
+  </div>
+  <p class="next"><a href="#annexes">Annexes →</a></p>
+</section>
+
+<!-- ANNEXES -->
+<section class="page" id="annexes">
+  <span class="k">Annexes A à D</span>
+  <h2 class="t">Annexes</h2>
+  <div class="sec">
+    <div class="sh"><h3>A. Matrice de traçabilité</h3><p class="consigne">Consigne : chaque story remonte à un besoin, chaque besoin à une source. Une story sans besoin est justifiée ou retirée.</p></div>
+    <div class="tw"><table><thead><tr><th>Besoin</th><th>Objectif</th><th>User stories</th><th>Critères</th></tr></thead><tbody>
+      <tr><td>B1</td><td>O1</td><td>Version finale</td><td>Aucun pour l'instant</td></tr>
+      <tr><td>B2</td><td>O2</td><td>Version finale</td><td>Aucun pour l'instant</td></tr>
+      <tr><td>B3</td><td>O1, O3</td><td>US-S1</td><td>1 nominal, 1 alternatif</td></tr>
+      <tr><td>B4</td><td>O3</td><td>US-D1</td><td>1 nominal, 2 alternatifs</td></tr>
+      <tr><td>B5</td><td>O4</td><td>US-A1</td><td>2 nominaux, 1 alternatif</td></tr>
+      <tr><td>B6</td><td>O1</td><td>À clarifier (Q3)</td><td>Aucun pour l'instant</td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>B. Questions ouvertes</h3><p>Q1 à Q6, détaillées en section 3. Toutes à trancher avant le 3 décembre.</p></div>
+    <p><a href="#s3">Voir les questions ouvertes →</a></p>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>C. Déclaration d'usage de l'IA</h3><p class="consigne">Consigne : outil, usage, sections concernées, vérification faite par.</p></div>
+    <div class="tw"><table><thead><tr><th>Outil</th><th>Usage</th><th>Sections</th><th>Vérification faite par</th></tr></thead><tbody>
+      <tr><td>Claude (Anthropic)</td><td>Lecture des documents de l'équipe et rédaction du brouillon V1. Besoins, verbatims, personas et décisions viennent de l'équipe.</td><td>1 à 5, annexes A, B, D</td><td><span class="tag line">à compléter</span></td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="sec">
+    <div class="sh"><h3>D. Glossaire</h3><p>Termes métier et techniques du document.</p></div>
+    <dl class="gl">
+      <div><dt>Soly</dt><dd>Le signe « je suis là » que le senior envoie d'un toucher sur le cadre.</dd></div>
+      <div><dt>Senior, aidant, proche</dt><dd>Le grand-parent qui a le cadre (S) ; le membre qui administre le foyer et reçoit les alertes (E) ; un membre invité qui peut envoyer au cadre (PE).</dd></div>
+      <div><dt>Foyer</dt><dd>La famille reliée à un cadre. Le foyer de test est fictif : seul lui reçoit les événements simulés.</dd></div>
+      <div><dt>Générateur d'événements</dt><dd>L'outil qui produit des événements fictifs du cadre, marqués « simulé ».</dd></div>
+      <div><dt>Alerte de silence</dt><dd>Alerte aux aidants après 48 h sans Soly, hors nuit, si le senior l'a acceptée.</dd></div>
+    </dl>
+  </div>
+  <footer class="pied">Cahier des charges V1 · PFR Générations Connectées · Ynov Bordeaux · novembre 2026. Codes anonymes, prénoms inventés, données simulées.</footer>
+</section>
+
+</main>
+<script>
+document.documentElement.classList.add("js");
+(function(){
+  var pages=[].slice.call(document.querySelectorAll('.page'));
+  var items=[].slice.call(document.querySelectorAll('.menu li'));
+  function show(){
+    var id=(location.hash||'#accueil').slice(1);
+    var el=document.getElementById(id);
+    if(!el||!el.classList.contains('page'))id='accueil';
+    pages.forEach(function(p){p.classList.toggle('on',p.id===id)});
+    items.forEach(function(li){li.classList.toggle('on',li.querySelector('a').getAttribute('href')==='#'+id)});
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',show);show();
+})();
+</script>
+</body>
+</html>
