@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cahier des charges V1 · Le Cadre</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
 :root{--bg:#FEFAF1;--fg:#1F1A17;--muted:#6A5F55;--hair:#F0E3C8;--soft:#FDF2DC;--soleil:#FFD36E;--lilas:#C9B8F0;--peche:#FFC9A3;
 --title:Lexend,"Helvetica Neue",Arial,sans-serif;--body:"Atkinson Hyperlegible","Helvetica Neue",Arial,sans-serif;color-scheme:light}
@@ -191,7 +191,7 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
   <div class="hero">
     <span class="k">PFR Générations Connectées</span>
     <h1>Cahier des charges V1</h1>
-    <p>Le Cadre · gabarit de l'intervenant, sections 1 à 5 · 26 novembre 2026</p>
+    <p>Le Cadre · gabarit de l'intervenant, sections 1 à 7 · 26 novembre 2026</p>
   </div>
   <ol class="menu">
     <li><a href="#accueil"><b>00</b>Accueil</a></li>
@@ -201,7 +201,7 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
     <li><a href="#s3"><b>3</b>Périmètre fonctionnel</a></li>
     <li><a href="#s4"><b>4</b>Parcours et user stories</a></li>
     <li><a href="#s5"><b>5</b>Règles et critères</a></li>
-    <li><a href="#s6"><b>6-10</b>Sections suivantes</a></li>
+    <li><a href="#s6"><b>6-10</b>Exigences, stack et IA</a></li>
     <li><a href="#annexes"><b>A-D</b>Annexes</a></li>
   </ol>
   <p class="foot">Lucas Gâteau, Clément Gosselin, Camille Breton. Personas fictifs, données simulées.</p>
@@ -216,15 +216,16 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
   <p class="lead">La V1 du cahier des charges, dans la structure du gabarit de l'intervenant : chaque section reprend sa consigne, puis nos réponses dans ses tableaux.</p>
   <div class="facts">
     <div><em>Faces</em><b>3</b><span>Achat, senior, aidant, plus le simulateur.</span></div>
-    <div><em>Stories</em><b>10</b><span>Sur 3 parcours complets, chacune reliée à un besoin.</span></div>
-    <div><em>Critères</em><b>22</b><span>11 nominaux, 11 alternatifs, cochables par oui ou par non.</span></div>
+    <div><em>Stories</em><b>8</b><span>Sur 3 parcours, chacune avec son fil du problème à l'exigence.</span></div>
+    <div><em>Critères</em><b>16</b><span>8 nominaux, 8 alternatifs (3 à compléter), cochables par oui ou non.</span></div>
   </div>
   <ol class="dec">
     <li><span class="dn">1</span><a href="#s1">Contexte et problématique</a><span>Pourquoi ce produit existe, et pourquoi le cadre.</span></li>
     <li><span class="dn">2</span><a href="#s2">Utilisateurs, besoins, objectifs</a><span>Personas, quatre besoins (dont un en hypothèse), quatre objectifs.</span></li>
     <li><span class="dn">3</span><a href="#s3">Périmètre fonctionnel</a><span>Inclus, exclu, à clarifier, pour les trois faces.</span></li>
-    <li><span class="dn">4</span><a href="#s4">Parcours et user stories</a><span>Le Soly, l'achat jusqu'au premier mois, Hugo qui envoie une photo ; un cas d'usage.</span></li>
+    <li><span class="dn">4</span><a href="#s4">Parcours et user stories</a><span>Le Soly, l'achat jusqu'au premier mois, Hugo qui envoie une photo ; le fil de chaque story ; un cas d'usage.</span></li>
     <li><span class="dn">5</span><a href="#s5">Règles et critères</a><span>Gradation des alertes et critères Étant donné / Quand / Alors.</span></li>
+    <li><span class="dn">6-10</span><a href="#s6">Exigences, stack et IA</a><span>Exigences de la séance du 26/11, stack A et IA, puis la suite.</span></li>
     <li><span class="dn">A-D</span><a href="#annexes">Annexes</a><span>Traçabilité, questions ouvertes, IA déclarée, glossaire.</span></li>
   </ol>
   <div class="sec">
@@ -232,7 +233,7 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
     <ul class="todo">
       <li><span><b>Compter les pages dans Word.</b> La section 3 doit tenir sur une page.</span></li>
       <li><span><b>Remplir les « à compléter ».</b> Relecteurs, vérification de l'IA, nom commercial, fréquence du simulateur.</span></li>
-      <li><span><b>Vérifier B4 (achat).</b> C'est une hypothèse : aucun entretien ne la couvre.</span></li>
+      <li><span><b>Remplir B4 et O4 (achat).</b> Problème, besoin, solution et objectif restent à compléter avec l'équipe.</span></li>
     </ul>
   </div>
   <p class="next"><a href="#garde">Page de garde →</a></p>
@@ -561,7 +562,7 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
   <div class="sec">
     <div class="sh"><h3>C. Déclaration d'usage de l'IA</h3><p class="consigne">Consigne : outil, usage, sections concernées, vérification faite par.</p></div>
     <div class="tw"><table><thead><tr><th>Outil</th><th>Usage</th><th>Sections</th><th>Vérification faite par</th></tr></thead><tbody>
-      <tr><td>Claude (Anthropic)</td><td>Lecture des documents de l'équipe et rédaction du brouillon V1. Besoins, verbatims, personas et décisions viennent de l'équipe.</td><td>1 à 5, annexes A, B, D</td><td><span class="tag line">à compléter</span></td></tr>
+      <tr><td>Claude (Anthropic)</td><td>Lecture des documents de l'équipe et rédaction du brouillon V1. Besoins, verbatims, personas et décisions viennent de l'équipe.</td><td>1 à 7, annexes A, B, D</td><td>Camille Breton (relecture) ; Lucas et Clément : <span class="tag line">à compléter</span></td></tr>
     </tbody></table></div>
   </div>
   <div class="sec">
