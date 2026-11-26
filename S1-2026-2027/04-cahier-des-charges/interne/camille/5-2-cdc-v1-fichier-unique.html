@@ -224,7 +224,7 @@ h2.t{margin:0;font:600 clamp(32px,3.4vw,46px)/1.15 var(--title);letter-spacing:-
 .tw tbody tr:hover{background:var(--soft)}
 .tw td:first-child{font-weight:700}
 .tag{display:inline-block;font:500 14px/20px var(--title);padding:4px 14px;border-radius:999px;color:#1F1A17;white-space:nowrap}
-.ok{background:var(--soleil)}.clar{background:var(--lilas)}.no{background:var(--peche)}
+.ok{background:var(--soleil)}.info{background:var(--lilas)}.grad td:nth-child(2){white-space:nowrap}.clar{background:var(--lilas)}.no{background:var(--peche)}
 .line{background:transparent;color:var(--muted);border:1px solid var(--muted)}
 .legend{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:14px;color:var(--muted)}
 .note,.warn{border-radius:16px;padding:16px 20px;max-width:76ch;font-size:15px;line-height:24px}
@@ -532,20 +532,48 @@ h4.sub{margin:48px 0 16px;padding-top:20px;border-top:1px solid var(--fg);font:6
   <div class="sec">
     <div class="sh"><h3>5.1 Règles de gestion</h3><p class="consigne">Consigne : les conditions que le produit respecte toujours, dont la gradation des alertes : quel événement déclenche quel niveau, et quand le produit se tait.</p></div>
     <div class="tw"><table><thead><tr><th>ID</th><th>Règle</th><th>Stories concernées</th></tr></thead><tbody>
-      <tr><td>RG1</td><td>Seuls les proches invités rejoignent la famille du cadre et peuvent y envoyer.</td><td>US-D2, US-P1</td></tr>
+      <tr><td>RG1a</td><td>Seuls les proches invités rejoignent la famille du cadre.</td><td>US-D2, US-P1</td></tr>
+      <tr><td>RG1b</td><td>Seuls les membres de la famille peuvent envoyer au cadre.</td><td>US-D2, US-P1</td></tr>
       <tr><td>RG2</td><td>Un proche de moins de 15 ans attend la validation d'un parent avant son premier envoi.</td><td>US-P1</td></tr>
-      <tr><td>RG3</td><td>L'alerte de silence est désactivée par défaut ; elle ne s'active qu'avec l'accord du senior.</td><td>US-D1</td></tr>
-      <tr><td>RG4</td><td>Alerte après 48 h sans toucher, nuit exclue ; une seule alerte par silence ; délai réglable (24, 48 ou 72 h).</td><td>US-D1</td></tr>
-      <tr><td>RG5</td><td>Pas d'alerte pendant la veille (du coucher au lever du soleil), en mode vacances, ni si le cadre est hors ligne.</td><td>US-D1</td></tr>
+      <tr><td>RG3a</td><td>L'alerte de silence est toujours désactivée par défaut.</td><td>US-D1</td></tr>
+      <tr><td>RG3b</td><td>Jamais d'alerte de silence sans l'accord du senior.</td><td>US-D1</td></tr>
+      <tr><td>RG4a</td><td>Toujours une alerte après 48 h sans toucher (délai par défaut).</td><td>US-D1</td></tr>
+      <tr><td>RG4b</td><td>Au plus une alerte par silence.</td><td>US-D1</td></tr>
+      <tr><td>RG4c</td><td>Le délai d'alerte se règle seulement sur 24, 48 ou 72 h.</td><td>US-D1</td></tr>
+      <tr><td>RG5a</td><td>Jamais d'alerte pendant la veille, du coucher au lever du soleil.</td><td>US-D1</td></tr>
+      <tr><td>RG5b</td><td>Jamais d'alerte en mode vacances.</td><td>US-D1</td></tr>
+      <tr><td>RG5c</td><td>Jamais d'alerte de silence quand le cadre est hors ligne.</td><td>US-D1</td></tr>
       <tr><td>RG6</td><td>Deux touchers à moins d'une seconde comptent pour un seul Soly.</td><td>US-S1</td></tr>
       <tr><td>RG7</td><td>Seuls les aidants reçoivent le Soly et l'alerte.</td><td>US-S1, US-D1</td></tr>
       <tr><td>RG8</td><td>La notification du jour va à une seule personne de la famille par jour, à tour de rôle.</td><td>US-D3, US-P2</td></tr>
-      <tr><td>RG9</td><td>Rappel après 48 h sans envoi ; délai réglable dans les réglages de l'appli.</td><td>US-D3, US-P2</td></tr>
-      <tr><td>RG10</td><td>Pas de « vu », pas de compteur : seul le « Merci » volontaire du senior remonte.</td><td>US-S2</td></tr>
+      <tr><td>RG9a</td><td>Toujours un rappel après 48 h sans envoi (délai par défaut).</td><td>US-D3, US-P2</td></tr>
+      <tr><td>RG9b</td><td>Le délai du rappel se règle dans les réglages de l'appli (valeurs à fixer).</td><td>US-D3, US-P2</td></tr>
+      <tr><td>RG10a</td><td>Jamais de « vu » ni de compteur de lecture.</td><td>US-S2</td></tr>
+      <tr><td>RG10b</td><td>Seul le « Merci » volontaire du senior remonte aux proches.</td><td>US-S2</td></tr>
       <tr><td>RG11</td><td>Un événement simulé n'agit que dans le foyer de test.</td><td>Toutes</td></tr>
-      <tr><td>RG12</td><td>Ni caméra, ni appel, ni donnée de santé.</td><td>Toutes</td></tr>
+      <tr><td>RG12a</td><td>Jamais de caméra sur le cadre.</td><td>Toutes</td></tr>
+      <tr><td>RG12b</td><td>Jamais d'appel depuis le cadre.</td><td>Toutes</td></tr>
+      <tr><td>RG12c</td><td>Aucune donnée de santé n'est collectée.</td><td>Toutes</td></tr>
+      <tr><td>RG13</td><td>Jamais de notification à une personne qui a coupé ses notifications.</td><td>US-S1, US-D3</td></tr>
+      <tr><td>RG14</td><td>Toujours prévenir les aidants quand le cadre ne peut plus recevoir de photos : débranché, sans wifi ou déconnecté de la famille.</td><td>US-S2, US-P2</td></tr>
+      <tr><td>RG15</td><td>Toujours afficher sur le cadre la cause de la coupure.</td><td>US-S2</td></tr>
+      <tr><td>RG16</td><td>Jamais de notification de coupure une fois le cadre rebranché et reconnecté.</td><td>US-S2</td></tr>
+      <tr><td>RG17</td><td>Toujours afficher sur le cadre une photo en attente dès qu'il revient en ligne.</td><td>US-S2, US-P2</td></tr>
+      <tr><td>RG18</td><td>Toujours dire à l'expéditeur si son envoi a réussi ou échoué, avec la cause de l'échec si elle est connue.</td><td>US-D3, US-P2</td></tr>
     </tbody></table></div>
-    <p class="consigne" style="margin-top:12px">Sources : simulateur Soly de Clément (RG4 à RG6), prototype v4 de Lucas (RG2, RG3, RG7, RG10), atelier du 26 novembre (RG8, RG9), FigJam (RG1, RG12), consigne du cours (RG11).</p>
+    <p style="margin-top:56px"><b style="font:600 20px/28px var(--title)">Gradation des alertes et notifications</b><br><span class="src">Repris de notre FigJam « Règle de gestion ». Trois niveaux : information, attention, critique. Chaque ligne renvoie à ses règles.</span></p>
+    <div class="tw"><table class="grad"><thead><tr><th>Événement</th><th>Niveau</th><th>Ce que voit le senior</th><th>Ce que reçoit l’aidant</th><th>Quand le produit se tait</th><th>Règles</th></tr></thead><tbody>
+      <tr><td>Notification quotidienne (envoyer une photo)</td><td><span class="tag info">Information</span></td><td>–</td><td>Une notification push, directement sur son téléphone, qui indique qu’il doit envoyer une photo au senior</td><td>Les notifications sont coupées</td><td>RG8, RG13</td></tr>
+      <tr><td>Notification au bout de 48 h sans réponse</td><td><span class="tag ok">Attention</span></td><td>Clignotement des LED derrière le cadre</td><td>Une notification push qui indique que le senior n’a pas touché le cadre depuis 48 h, et qu’il peut l’appeler en un clic</td><td>Les notifications sont coupées (ou en fonction du temps décidé avant l’alerte)</td><td>RG3 à RG5, RG13</td></tr>
+      <tr><td>Notification de rappel (pas d’envoi depuis un moment)</td><td><span class="tag ok">Attention</span></td><td>–</td><td>Une notification push qui rappelle qu’il n’a pas envoyé de nouvelle depuis un moment, et l’invite à envoyer une photo</td><td>–</td><td>RG9, RG13</td></tr>
+      <tr><td>Déconnecté de la famille</td><td><span class="tag no">Critique</span></td><td>Affichage sur l’écran du cadre : déconnecté de la famille, lien rapide par QR code pour se reconnecter</td><td>Notification de problème de connexion : le cadre n’est plus du tout connecté à l’application famille</td><td>Quand la tablette est connectée à la famille</td><td>RG14 à RG16</td></tr>
+      <tr><td>Débranché</td><td><span class="tag no">Critique</span></td><td>Affichage sur l’écran du cadre : débranché, fonctionne actuellement sur sa réserve de batterie</td><td>Notification de problème de branchement du cadre</td><td>Quand la tablette est branchée</td><td>RG14 à RG16</td></tr>
+      <tr><td>Pas de wifi</td><td><span class="tag no">Critique</span></td><td>Affichage sur l’écran du cadre : déconnecté, ne reçoit donc plus rien et tourne sur sa mémoire de photos</td><td>Notification de problème de connexion au wifi du cadre, qui ne permet plus du tout d’envoyer d’informations</td><td>Quand la tablette est connectée au wifi</td><td>RG14 à RG17</td></tr>
+      <tr><td>Toucher du senior</td><td><span class="tag info">Information</span></td><td>Petite lumière LED au fond du cadre, qui indique que le toucher est bien réalisé</td><td>Notification « (parent) a envoyé un Soly »</td><td>Quand les notifications sont désactivées</td><td>RG6, RG7, RG13</td></tr>
+      <tr><td>Envoi de photo</td><td><span class="tag info">Information</span></td><td>Nouvelle photo affichée sur le cadre, avec ou sans message</td><td>Message de succès de l’envoi, ou d’échec</td><td>Quand il y a un problème de connexion de l’appli</td><td>RG17, RG18</td></tr>
+      <tr><td>Échec d’envoi</td><td><span class="tag ok">Attention</span></td><td>–</td><td>Affichage dans l’appli de l’échec de l’envoi, avec la raison si elle est connue</td><td>Quand la connexion est parfaite et qu’aucun problème de stockage n’interfère</td><td>RG18</td></tr>
+    </tbody></table></div>
+    <p class="consigne" style="margin-top:12px">Sources : simulateur Soly de Clément (RG4 à RG6), prototype v4 de Lucas (RG2, RG3, RG7, RG10), atelier du 26 novembre (RG8, RG9), FigJam (RG1, RG12), consigne du cours (RG11), FigJam « Règle de gestion » (RG13 à RG18 et tableau de gradation). Les règles à plusieurs conditions sont découpées en a, b, c ; les renvois RG1 à RG12 restent valables.</p>
   </div>
   <div class="sec">
     <div class="sh"><h3>5.2 Critères d'acceptation</h3><p class="consigne">Consigne : étant donné [un contexte], quand [une action], alors [un résultat observable]. Chaque critère se coche par oui ou par non.</p></div>
