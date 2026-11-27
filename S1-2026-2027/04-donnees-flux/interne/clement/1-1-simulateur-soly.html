@@ -27,26 +27,6 @@
   --body: "Inter", "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #15171c; --surface: #1d2027; --fg: #eceef2; --muted: #a2a8b3; --line: #2c3039;
-    --etape: #7fb0ff; --etape-bg: #1f3253;
-    --base: #6fd39a; --base-bg: #183826;
-    --externe: #b99bff; --externe-bg: #2e2349;
-    --erreur: #f2a066; --erreur-bg: #42291a;
-    --afixer: #ff8a80; --afixer-bg: #46201d;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #15171c; --surface: #1d2027; --fg: #eceef2; --muted: #a2a8b3; --line: #2c3039;
-  --etape: #7fb0ff; --etape-bg: #1f3253;
-  --base: #6fd39a; --base-bg: #183826;
-  --externe: #b99bff; --externe-bg: #2e2349;
-  --erreur: #f2a066; --erreur-bg: #42291a;
-  --afixer: #ff8a80; --afixer-bg: #46201d;
-  color-scheme: dark;
-}
 * { box-sizing: border-box; }
 body {
   background: var(--bg); color: var(--fg);
@@ -118,7 +98,7 @@ footer { color: var(--muted); font-size: 0.88rem; }
 <div class="page">
   <header>
     <h1>Simulateur Soly</h1>
-    <p class="lead">Ce que le générateur envoie à la place du vrai cadre, à quel rythme, et les scénarios à jouer. Chaque scénario renvoie au flux du schéma « Flux de données Soly ».</p>
+    <p class="lead">Ce que le générateur envoie à la place du vrai cadre, à quel rythme, et les scénarios à jouer, numérotés comme dans la fiche finale. Chaque scénario renvoie au flux du schéma « Flux de données Soly ».</p>
     <div class="legend" aria-label="Légende, reprise du schéma des flux">
       <span><i class="dot" style="background:var(--etape)"></i>Étape (cadre, app)</span>
       <span><i class="dot" style="background:var(--base)"></i>Stocké dans Supabase</span>
@@ -154,8 +134,10 @@ footer { color: var(--muted); font-size: 0.88rem; }
         <tbody>
           <tr><td><code>appairage</code></td><td>Une fois, à la première ouverture du cadre</td><td>D7 <code>code_appairage</code></td></tr>
           <tr><td><code>signe_de_vie</code></td><td>Toutes les 15 min<span class="sub">Deux signes de vie manqués de suite font passer le cadre hors ligne</span></td><td>D30 : le cadre passe <code>hors_ligne</code> après 30 min sans signe de vie</td></tr>
-          <tr><td><code>toucher</code></td><td>1 fois par jour, hors veille<span class="sub">Dans la routine normale (scénario 2)</span></td><td>D40, D75 : veille du coucher au lever du soleil · D26 : alerte au-delà de 48 h sans toucher, nuit exclue</td></tr>
+          <tr><td><code>toucher</code></td><td>1 à 3 fois par jour, hors veille<span class="sub">Dans la routine normale (S1)</span></td><td>D40, D75 : veille du coucher au lever du soleil · D26 : alerte au-delà de 48 h sans toucher, nuit exclue</td></tr>
           <tr><td><code>photo_affichee</code></td><td>À chaque envoi reçu par le cadre</td><td>D16 <code>date_affichage</code></td></tr>
+          <tr><td>silence (aucun toucher)</td><td>Rien n'est envoyé pendant 52 h (S2)</td><td>D26 : alerte au-delà de 48 h</td></tr>
+          <tr><td>coupure (signe de vie arrêté)</td><td>Rien n'est envoyé pendant 31 min (S4)</td><td>D30 : hors ligne après 30 min</td></tr>
         </tbody>
       </table>
     </div>
@@ -163,90 +145,98 @@ footer { color: var(--muted); font-size: 0.88rem; }
 
   <section aria-labelledby="scen">
     <h2 id="scen">Scénarios</h2>
-    <p class="intro">Cinq scénarios : trois normaux, deux inhabituels. Chacun donne l'événement et son moment, la donnée générée, la réaction du système et ce que voit l'aidant. Ils sont numérotés de 1 à 5 dans l'ordre logique, comme dans le schéma « Flux de données Soly ». Tous les messages portent <code>simule</code> = oui.</p>
+    <p class="intro">Les 4 scénarios de la fiche finale, avec ses numéros (S1 à S4) : un normal et trois inhabituels. Puis 2 parcours en plus. Chacun donne l'événement et son moment, la donnée générée, la réaction du système et ce que voit l'aidant. Tous les messages portent <code>simule</code> = oui.</p>
 
-    <div class="group-title"><h3>Scénarios normaux</h3><p>La journée se passe bien : aucune alerte ne doit partir</p></div>
+    <div class="group-title"><h3>Les 4 scénarios de la fiche</h3><p>Le normal ne doit déclencher aucune alerte ; les inhabituels, la bonne, et une seule</p></div>
     <div class="cards">
-
+      <article class="card oblig">
+        <div class="card-head"><h3>S1 · Routine normale</h3><span class="chip c-base">Flux 2</span><span class="chip c-etape">Spécifié</span></div>
+        <dl class="rows">
+          <dt>Événement et moment</dt>
+          <dd><div class="seq"><span class="chip c-etape">toucher 1 à 3 fois par jour, hors veille (ex. 9 h 41)</span><span class="arrow">+</span><span class="chip c-etape">signe_de_vie toutes les 15 min</span><span class="arrow">+</span><span class="chip c-etape">photo_affichee à chaque envoi</span></div></dd>
+          <dt>Donnée générée</dt>
+          <dd><code>date_soly</code> = 2026-11-06 09:41, <code>sens_soly</code> = parent_vers_aidants ; <code>derniere_connexion</code>, <code>niveau_batterie</code> 78.</dd>
+          <dt>Réaction du système</dt>
+          <dd>Le toucher passe par A5 (<code>POST /rest/v1/gestes</code>), puis le Database Webhook (W4) envoie le Web Push en 0,5 s. Le compteur des 48 h repart à zéro, le cadre reste <code>en_ligne</code>. Aucune alerte.</dd>
+          <dt>Ce que voit l'aidant</dt>
+          <dd>« Maman t'a envoyé un Soly ».</dd>
+          <dt>Ce qu'on vérifie</dt>
+          <dd>Que plusieurs journées normales ne déclenchent ni l'alerte 48 h ni l'alerte hors ligne.</dd>
+        </dl>
+      </article>
+      <article class="card oblig">
+        <div class="card-head"><h3>S2 · Inactivité</h3><span class="chip c-erreur">Inhabituel</span><span class="chip c-base">Flux 3</span><span class="chip c-etape">Spécifié</span></div>
+        <dl class="rows">
+          <dt>Événement et moment</dt>
+          <dd><div class="seq"><span class="chip c-etape">signe_de_vie toutes les 15 min</span><span class="arrow">+</span><span class="chip c-erreur">aucun toucher pendant 52 h</span><span class="arrow">·</span><span>nuit exclue</span></div></dd>
+          <dt>Donnée générée</dt>
+          <dd>Seulement des <code>signe_de_vie</code>. <code>heures_sans_toucher</code> = 52, puis <code>date_alerte_48h</code>. Seuil : 48 h ; 52 h simulées pour laisser passer la tâche.</dd>
+          <dt>Réaction du système</dt>
+          <dd>La tâche <code>verifier_silence</code>, toutes les 15 min, lit le dernier toucher, l'accord, la nuit, les vacances, la pause et le statut du cadre. Au-delà de 48 h, elle écrit une seule alerte dans la table cadres ; le Database Webhook (W4) envoie le push. Le toucher suivant du parent lève l'alerte.</dd>
+          <dt>Ce que voit l'aidant</dt>
+          <dd>L'alerte 48 h et le bouton « Je m'en occupe », puis « Julie s'en occupe ».</dd>
+          <dt>Ce qu'on vérifie aussi</dt>
+          <dd>Pas d'alerte sans accord du parent (D23), la nuit, en vacances (D38), pendant une pause (D71), ni si le cadre est hors ligne (S4). Une seule alerte par silence (D27).</dd>
+        </dl>
+      </article>
       <article class="card">
-        <div class="card-head"><h3>Scénario 1 · Première connexion</h3><span class="chip c-base">Flux 1</span><span class="chip c-etape">Camille</span></div>
+        <div class="card-head"><h3>S3 · Chute</h3><span class="chip c-erreur">Inhabituel</span><span class="chip c-base">Flux 3</span><span class="chip c-afixer">À valider en équipe</span></div>
+        <dl class="rows">
+          <dt>Événement et moment</dt>
+          <dd>Aucun : Soly n'a pas de capteur de chute, le générateur n'envoie rien.</dd>
+          <dt>Donnée générée</dt>
+          <dd>Aucune donnée directe.</dd>
+          <dt>Réaction du système</dt>
+          <dd>Limite assumée : si le parent ne touche plus le cadre, l'alerte d'inactivité 48 h (S2) sert de filet.</dd>
+          <dt>Ce que voit l'aidant</dt>
+          <dd>L'alerte 48 h, si le parent ne touche plus le cadre.</dd>
+          <dt>Ce qu'on vérifie</dt>
+          <dd>Que le produit ne prétend jamais détecter une chute : ni mot « chute » ni « santé » (risque R19).</dd>
+        </dl>
+      </article>
+      <article class="card">
+        <div class="card-head"><h3>S4 · Cadre hors ligne</h3><span class="chip c-erreur">Inhabituel</span><span class="chip c-base">Flux 4</span><span class="chip c-etape">Spécifié</span></div>
+        <dl class="rows">
+          <dt>Événement et moment</dt>
+          <dd><div class="seq"><span class="chip c-etape">signe_de_vie</span><span class="arrow">→</span><span class="chip c-erreur">plus rien pendant 31 min</span><span class="arrow">·</span><span>seuil : 30 min</span></div></dd>
+          <dt>Donnée générée</dt>
+          <dd>Aucune : le générateur s'arrête. <code>derniere_connexion</code> (D28) reste sur le dernier signe de vie.</dd>
+          <dt>Réaction du système</dt>
+          <dd><code>statut_cadre</code> passe à <code>hors_ligne</code> (D30) et <code>date_alerte_hors_ligne</code> (D31) est écrite dans la table cadres. L'alerte 48 h est suspendue. Au retour, le cadre rattrape les photos manquées.</dd>
+          <dt>Ce que voit l'aidant</dt>
+          <dd>« Le cadre de Maman est hors ligne ».</dd>
+          <dt>Ce qu'on vérifie</dt>
+          <dd>Qu'un cadre débranché n'est pas pris pour un parent inactif : pas de fausse alerte.</dd>
+        </dl>
+      </article>
+    </div>
+
+    <div class="group-title"><h3>Parcours en plus</h3><p>Joués aussi dans la page de Camille</p></div>
+    <div class="cards">
+      <article class="card">
+        <div class="card-head"><h3>Parcours · Première connexion</h3><span class="chip c-base">Flux 1</span></div>
         <dl class="rows">
           <dt>Événement et moment</dt>
           <dd><div class="seq"><span class="chip c-etape">appairage</span><span class="arrow">·</span><span>une seule fois, à la première ouverture du cadre</span></div></dd>
           <dt>Donnée générée</dt>
           <dd><code>id_cadre</code> CAD-0042, <code>code_appairage</code> 482913 (D7), que l'aidant tape dans l'app.</dd>
           <dt>Réaction du système</dt>
-          <dd>Le cadre est relié au foyer (D8 <code>date_liaison_cadre</code>), puis les invitations partent.</dd>
+          <dd>Le cadre est relié au foyer (D8), le code est effacé, puis les invitations partent.</dd>
           <dt>Ce que voit l'aidant</dt>
           <dd>« Cadre relié », puis l'état de chaque invitation.</dd>
         </dl>
       </article>
-
-      <article class="card oblig">
-        <div class="card-head"><h3>Scénario 2 · Routine normale</h3><span class="chip c-base">Flux 2</span><span class="chip c-afixer">Ajouté</span></div>
-        <dl class="rows">
-          <dt>Événement et moment</dt>
-          <dd><div class="seq"><span class="chip c-etape">signe_de_vie toutes les 15 min</span><span class="arrow">+</span><span class="chip c-etape">toucher 1 fois par jour, hors veille</span><span class="arrow">+</span><span class="chip c-etape">photo_affichee à chaque envoi</span></div></dd>
-          <dt>Donnée générée</dt>
-          <dd>Les trois messages de la section « Types d'événements » : <code>id_cadre</code> CAD-0042, <code>derniere_connexion</code>, <code>niveau_batterie</code> 78, <code>id_envoi</code> ENV-0518.</dd>
-          <dt>Réaction du système</dt>
-          <dd>Chaque toucher est enregistré dans la table gestes et remet le compteur des 48 h à zéro. <code>derniere_connexion</code> reste à jour, le cadre reste <code>en_ligne</code>. Aucune alerte.</dd>
-          <dt>Ce que voit l'aidant</dt>
-          <dd>« Maman t'a envoyé un Soly » à chaque toucher (Web Push). Aucune alerte.</dd>
-          <dt>Ce qu'on vérifie</dt>
-          <dd>Que plusieurs journées normales ne déclenchent ni l'alerte 48 h ni l'alerte hors ligne.</dd>
-        </dl>
-      </article>
-
       <article class="card">
-        <div class="card-head"><h3>Scénario 3 · Le parent envoie un Soly</h3><span class="chip c-base">Flux 2</span><span class="chip c-etape">Camille</span></div>
+        <div class="card-head"><h3>Parcours · Le parent envoie un Soly</h3><span class="chip c-base">Flux 2</span></div>
         <dl class="rows">
           <dt>Événement et moment</dt>
-          <dd><div class="seq"><span class="chip c-etape">toucher</span><span class="arrow">·</span><span>une fois, hors veille</span></div></dd>
+          <dd><div class="seq"><span class="chip c-etape">toucher</span><span class="arrow">→</span><span class="chip c-erreur">second toucher en moins d'1 s</span></div></dd>
           <dt>Donnée générée</dt>
-          <dd><code>id_cadre</code> CAD-0042, <code>type_evenement</code> toucher. Le serveur pose <code>id_soly</code>, <code>sens_soly</code> et <code>date_soly</code> (D17 à D19).</dd>
+          <dd>Le serveur pose <code>id_soly</code>, <code>sens_soly</code> et <code>date_soly</code> (D17 à D19).</dd>
           <dt>Réaction du système</dt>
-          <dd>Un Soly est enregistré dans la table gestes, la notification part et le compteur des 48 h repart à zéro.</dd>
+          <dd>Un seul Soly enregistré ; le second appui est refusé (409).</dd>
           <dt>Ce que voit l'aidant</dt>
-          <dd>« Maman t'a envoyé un Soly ».</dd>
-          <dt>Ce qu'on vérifie aussi</dt>
-          <dd><span class="chip c-erreur">Erreur</span> double appui en moins d'une seconde : refusé (409), une seule notification.</dd>
-        </dl>
-      </article>
-    </div>
-
-    <div class="group-title"><h3>Scénarios inhabituels</h3><p>Le système doit réagir, sans fausse alerte</p></div>
-    <div class="cards">
-
-      <article class="card oblig">
-        <div class="card-head"><h3>Scénario 4 · Inactivité (silence de 48 h)</h3><span class="chip c-base">Flux 3</span><span class="chip c-etape">Camille</span></div>
-        <dl class="rows">
-          <dt>Événement et moment</dt>
-          <dd><div class="seq"><span class="chip c-etape">signe_de_vie toutes les 15 min</span><span class="arrow">+</span><span class="chip c-erreur">aucun toucher pendant 48 h</span><span class="arrow">·</span><span>veille exclue</span></div></dd>
-          <dt>Donnée générée</dt>
-          <dd>Seulement des <code>signe_de_vie</code> : <code>derniere_connexion</code> reste à jour, <code>dernier_toucher</code> (D25) ne bouge plus.</dd>
-          <dt>Réaction du système</dt>
-          <dd>La tâche planifiée <code>verifier_silence</code> toutes les 15 min, lit le dernier toucher, l'accord, la veille, les vacances et la pause. Au-delà de 48 h, elle crée une seule ligne dans la table alertes ; un Database Webhook déclenche l'envoi du push. Un aidant répond « je m'en occupe » (F22). Le toucher suivant du parent lève l'alerte.</dd>
-          <dt>Ce que voit l'aidant</dt>
-          <dd>L'alerte (Web Push), puis « Julie s'en occupe ».</dd>
-          <dt>Ce qu'on vérifie aussi</dt>
-          <dd>Pas d'alerte sans accord du parent (D23), pendant la veille, en vacances (D38), pendant une pause (D71), ni si le cadre est hors ligne (scénario 5). Une seule alerte par silence (D27).</dd>
-        </dl>
-      </article>
-
-      <article class="card">
-        <div class="card-head"><h3>Scénario 5 · Cadre hors ligne</h3><span class="chip c-erreur">Chemin d'erreur</span><span class="chip c-base">Flux 4</span><span class="chip c-etape">Camille</span></div>
-        <dl class="rows">
-          <dt>Événement et moment</dt>
-          <dd><div class="seq"><span class="chip c-etape">signe_de_vie</span><span class="arrow">→</span><span class="chip c-erreur">plus rien pendant 30 min</span><span class="arrow">·</span><span>deux signes de vie manqués</span></div></dd>
-          <dt>Donnée générée</dt>
-          <dd>Aucune : le générateur s'arrête. <code>derniere_connexion</code> (D28) reste sur le dernier signe de vie.</dd>
-          <dt>Réaction du système</dt>
-          <dd><code>statut_cadre</code> passe à <code>hors_ligne</code> (D30). L'alerte 48 h est bloquée. Au retour en ligne, le cadre rattrape les photos manquées et l'alerte se lève.</dd>
-          <dt>Ce que voit l'aidant</dt>
-          <dd>« Le cadre de Maman est hors ligne ».</dd>
-          <dt>Ce qu'on vérifie</dt>
-          <dd>Qu'un cadre débranché n'est pas pris pour un parent inactif : pas de fausse alerte.</dd>
+          <dd>« Maman t'a envoyé un Soly », une seule fois.</dd>
         </dl>
       </article>
     </div>
@@ -260,8 +250,8 @@ footer { color: var(--muted); font-size: 0.88rem; }
         <thead><tr><th>Mode</th><th>Ce qu'on fait</th><th>Exemple</th></tr></thead>
         <tbody>
           <tr><td><b>Manuel</b></td><td>Un bouton par événement</td><td>« Toucher », « Photo affichée », « Appairer », « Couper le signe de vie »</td></tr>
-          <tr><td><b>Automatique</b></td><td>Le <code>signe_de_vie</code> part seul toutes les 15 min tant que la page est ouverte</td><td>La routine normale (scénario 2) tourne sans rien faire</td></tr>
-          <tr><td><b>Scénario</b></td><td>Un bouton par scénario (1 à 5) qui enchaîne les événements</td><td>« Scénario 3 » : un toucher, puis un second en moins d'1 s, pour provoquer l'erreur 409</td></tr>
+          <tr><td><b>Automatique</b></td><td>Le <code>signe_de_vie</code> part seul toutes les 15 min tant que la page est ouverte</td><td>La routine normale (S1) tourne sans rien faire</td></tr>
+          <tr><td><b>Scénario</b></td><td>Un bouton par scénario (S1 à S4) et par parcours, qui enchaîne les événements</td><td>« Le parent envoie un Soly » : un toucher, puis un second en moins d'1 s, pour provoquer l'erreur 409</td></tr>
         </tbody>
       </table>
     </div>
@@ -270,9 +260,9 @@ footer { color: var(--muted); font-size: 0.88rem; }
         <div class="card-head"><h3>Les délais longs, sans attendre</h3><span class="chip c-base">Données fictives</span></div>
         <dl class="rows">
           <dt>Le problème</dt>
-          <dd>On ne peut pas attendre 48 h (scénario 4) ni 30 min (scénario 5) pendant une démo.</dd>
+          <dd>On ne peut pas attendre 48 h (S2) ni 30 min (S4) pendant une démo.</dd>
           <dt>La solution</dt>
-          <dd>Le générateur prépare des données fictives datées dans le passé : un dernier toucher d'il y a 49 h, un dernier signe de vie d'il y a 31 min. On lance ensuite la vérification et on regarde le résultat dans l'app de l'aidant.</dd>
+          <dd>Le générateur prépare des données fictives datées dans le passé : un dernier toucher d'il y a 52 h, un dernier signe de vie d'il y a 31 min (on recule les dates du foyer de test). On lance ensuite la vérification et on regarde le résultat dans l'app de l'aidant.</dd>
           <dt>À vérifier au S2</dt>
           <dd>D19 <code>date_soly</code> est posée par le serveur : ces dates se préparent directement dans la base du foyer de test, pas par le message du cadre.</dd>
         </dl>
@@ -296,7 +286,7 @@ footer { color: var(--muted); font-size: 0.88rem; }
     </div>
   </section>
 
-  <footer>Sources : Inventaire D1 à D84 et cartographie, listes 3 et 6 (feuille « TP API cours »), scénarios de Camille, schéma « Flux de données Soly », attendus de la phase 6 (mis à jour le 20/11). Notifications en push seulement. Toutes les valeurs d'exemple sont fictives.</footer>
+  <footer>Sources : fiche finale (onglet « S2 · Données et flux » de la feuille « TP API cours »), Inventaire D1 à D84, page de Camille, schéma « Flux de données Soly », attendus de la phase 6 (mis à jour le 27/11). Notifications en push seulement. Toutes les valeurs d'exemple sont fictives.</footer>
 </div>
 </body>
 </html>
