@@ -1618,6 +1618,12 @@ document.getElementById("flag").innerHTML=fl;
       if(d>0&&enBas())pousse(d);else if(d<0)pousse(d)});
   }
   addEventListener("hashchange",function(){montre()});montre();
+  /* liens internes : on change de page nous-mêmes, sans dépendre du #, bloqué dans les aperçus comme Teams */
+  document.addEventListener("click",function(e){var a=e.target.closest?e.target.closest('a[href^="#"]'):null;if(!a||e.defaultPrevented)return;
+    var id=a.getAttribute("href").slice(1),el=id&&document.getElementById(id);if(!el)return;
+    var pg=el.classList.contains("page")?el:(el.closest?el.closest(".page"):null);if(!pg)return;
+    e.preventDefault();try{history.replaceState(null,"","#"+id)}catch(x){}
+    if(pageOn()!==pg)montre(pg.id);if(el!==pg)setTimeout(function(){try{el.scrollIntoView({block:"start"})}catch(x){}},80)});
   [].forEach.call(document.querySelectorAll("[data-va]"),function(b){b.addEventListener("click",function(){var c=document.getElementById(b.dataset.va);if(c)c.scrollIntoView({behavior:reduit?"auto":"smooth",block:"start"})})});
   /* menu repliable : une ligne par rubrique, le numéro seul */
   (function(){var b=document.getElementById("side-toggle");if(!b)return;
