@@ -145,7 +145,7 @@ footer { color: var(--muted); font-size: 0.88rem; }
 
   <section aria-labelledby="scen">
     <h2 id="scen">Scénarios</h2>
-    <p class="intro">Les 4 scénarios de la fiche finale, avec ses numéros (S1 à S4) : un normal et trois inhabituels. Puis 2 parcours en plus. Chacun donne l'événement et son moment, la donnée générée, la réaction du système et ce que voit l'aidant. Tous les messages portent <code>simule</code> = oui.</p>
+    <p class="intro">Les 4 scénarios de la fiche finale, avec ses numéros (S1 à S4) : un normal et trois inhabituels. Puis 3 parcours en plus. Chacun donne l'événement et son moment, la donnée générée, la réaction du système et ce que voit l'aidant. Tous les messages portent <code>simule</code> = oui.</p>
 
     <div class="group-title"><h3>Les 4 scénarios de la fiche</h3><p>Le normal ne doit déclencher aucune alerte ; les inhabituels, la bonne, et une seule</p></div>
     <div class="cards">
@@ -239,6 +239,19 @@ footer { color: var(--muted); font-size: 0.88rem; }
           <dd>« Maman t'a envoyé un Soly », une seule fois.</dd>
         </dl>
       </article>
+      <article class="card">
+        <div class="card-head"><h3>Parcours · Invitation du jour</h3><span class="chip c-base">Flux 5</span></div>
+        <dl class="rows">
+          <dt>Événement et moment</dt>
+          <dd><div class="seq"><span class="chip c-etape">heure tirée au hasard par la tâche quotidienne (A16)</span><span class="arrow">→</span><span class="chip c-etape">photo envoyée</span><span class="arrow">→</span><span class="chip c-etape">photo_affichee</span></div></dd>
+          <dt>Donnée générée</dt>
+          <dd><code>heure_invitation_moment</code> (D53), seulement si <code>moment_du_jour_actif</code> = oui (D52) ; puis la photo <code>ENV-0518</code> et <code>date_reponse_moment</code> (D54).</dd>
+          <dt>Réaction du système</dt>
+          <dd>Le push d'invitation part par A9. La photo passe par A2, le cadre l'affiche en temps réel (W3), puis confirme par A4 (<code>date_affichage</code>).</dd>
+          <dt>Ce que voit l'aidant</dt>
+          <dd>L'invitation « Et toi, tu fais quoi en ce moment ? Montre-le à Maman. », puis « Photo affichée ».</dd>
+        </dl>
+      </article>
     </div>
   </section>
 
@@ -251,7 +264,7 @@ footer { color: var(--muted); font-size: 0.88rem; }
         <tbody>
           <tr><td><b>Manuel</b></td><td>Un bouton par événement</td><td>« Toucher », « Photo affichée », « Appairer », « Couper le signe de vie »</td></tr>
           <tr><td><b>Automatique</b></td><td>Le <code>signe_de_vie</code> part seul toutes les 15 min tant que la page est ouverte</td><td>La routine normale (S1) tourne sans rien faire</td></tr>
-          <tr><td><b>Scénario</b></td><td>Un bouton par scénario (S1 à S4) et par parcours, qui enchaîne les événements</td><td>« Le parent envoie un Soly » : un toucher, puis un second en moins d'1 s, pour provoquer l'erreur 409</td></tr>
+          <tr><td><b>Scénario</b></td><td>Un bouton par scénario (S1 à S4) et par parcours (3), qui enchaîne les événements</td><td>« Le parent envoie un Soly » : un toucher, puis un second en moins d'1 s, pour provoquer l'erreur 409</td></tr>
         </tbody>
       </table>
     </div>
